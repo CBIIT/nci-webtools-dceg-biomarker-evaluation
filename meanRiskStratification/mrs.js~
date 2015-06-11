@@ -14,8 +14,7 @@ $(document).ready(function () {
 
 function bind_control_events() {
     // testing
-    $('button#test1').on('click', test);
-    $('button#test2').on('click', test);
+    $('button#test').on('click', test);
 
     $('#reset').on('click', reset);
     $('#add-marker').on('click', new_marker);
@@ -58,7 +57,7 @@ function controls_visibility(numElements) {
 function new_marker() {
     var counter = currentMarkers + 1;
     if (currentMarkers < 3) {
-        var markerTemplate = $('#markers').find('.marker').first();
+        var markerTemplate = marker_base.find('.marker').first();
 
         // clone controls
         var newElement = markerTemplate.clone();
@@ -95,7 +94,7 @@ function new_marker() {
         newElement.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 
         // add new marker to #markers element
-        $('#markers').append(newElement.fadeIn());
+        marker_base.append(newElement.fadeIn());
         currentMarkers++;
 
         panel_actions();
@@ -151,7 +150,7 @@ function calculate() {
 
         var host = window.location.hostname;
         if (host == 'localhost') {
-            host = 'analysistools-sandbox.nci.nih.gov';
+            host = 'http://ncias-d1207-v.nci.nih.gov:9140';
         }
         service = "http://" + host + "/mrsRest/";
 
@@ -172,7 +171,6 @@ function calculate() {
         });
 
         promise.done(return_data);
-
     }
     else {
         // show error message somewhere
@@ -188,13 +186,30 @@ function calculate() {
 }
 
 function clean_data(data) {
-    return JSON.parse(JSON.stringify(data));
+    return data;
+}
+function escape (key, val) {
+    if (typeof(val)!="string") { 
+	return val;
+    }
+    return val
+	.replace(/[\"]/g, '')
+	.replace(/[\\]/g, '')
+	.replace(/[\/]/g, '')
+	.replace(/[\b]/g, '')
+	.replace(/[\f]/g, '')
+	.replace(/[\n]/g, '')
+	.replace(/[\r]/g, '')
+	.replace(/[\t]/g, '')
+	; 
 }
 
 function return_data(data) {
+    data = JSON.stringify(data,escape);
+    console.log(data);
     params = data.parameters;
     calc = data.calculations;
-
+    var prop_array = Object.getOwnPropertyNames(params);
     // loop through appending data to table
     $.each(params, function (name, obj) {
         var lookup_id = lookup[name];
@@ -335,37 +350,121 @@ function reset() {
 }
 
 function test() {
-    var tbs = $('.marker-1');
     var values_option_1 = {a: 471, b: 13, c: 4680, d: 25207};
-    var values_option_2 = {ppv: 0.0914, "npv": (1 - 0.0005), "P(M+)": 0.1696, "total": 30371};
+    var tbs = $('.marker-1');
 
-    if (this.id == "test1") {
-        var tbs = $('.marker-1');
+    // pull data from test_values
+    tbs.find('#a').val(values_option_1['a']);
+    tbs.find('#b').val(values_option_1['b']);
+    tbs.find('#c').val(values_option_1['c']);
+    tbs.find('#d').val(values_option_1['d']);
 
-        // pull data from values_option_1
-        tbs.find('#a').val(values_option_1['a']);
-        tbs.find('#b').val(values_option_1['b']);
-        tbs.find('#c').val(values_option_1['c']);
-        tbs.find('#d').val(values_option_1['d']);
-    }
-    if (this.id == "test2") {
-
-        // clear values for option 1
-        tbs.find('#a').val("");
-        tbs.find('#b').val("");
-        tbs.find('#c').val("");
-        tbs.find('#d').val("");
-
-        // pull data from value_option_2
-        tbs.find('.input[name="param_1"]')[0].selectedIndex = 0;//ppv
-        tbs.find('.input[name="param_1"]')[1].value = values_option_2["ppv"];
-
-        tbs.find('.input[name="param_2"]')[0].selectedIndex = 0;//npv
-        tbs.find('.input[name="param_2"]')[1].value = values_option_2["npv"];
-
-        tbs.find('.input[name="param_3"]')[0].selectedIndex = 0;//P(M+)
-        tbs.find('.input[name="param_3"]')[1].value = values_option_2["P(M+)"];
-
-        tbs.find('.input[name="sampsize"]')[0].value = values_option_2["total"];
-    }
 }
+// definitions used for display
+var definitionObj = {
+    prob_m: {
+        term: "Marker Positivity (M+)",
+        definition: "Positive test result for biomarker"
+    },
+    m_neg: {
+        term: "Marker Negativity (M-)",
+        definition: "Negative test result for biomarker test"
+    },
+    prob_d: {
+        term: "Disease Positive (D+)",
+        definition: "Has disease"
+    },
+    d_neg: {
+        term: "Disease Negative (D-)",
+        definition: "Does not have disease"
+    },
+    danger: {
+        term: "Danger",
+        definition: "Increase in disease risk from testing positive"
+    },
+    reassurance: {
+        term: "Reassurance",
+        definition: "Reduction in disease risk from testing negative"
+    },
+    pbs: {
+        term: "Population Burden Stratification",
+        definition: "Extra disease detection in positive group than negative group"
+    },
+    nns: {
+        term: "Number Needed to Screen",
+        definition: "Definition for number needed to screen"
+    },
+    nnr: {
+        term: "Number Needed to Recruit",
+        definition: "To detect 1 more disease case in positive group than negative group"
+    },
+    max_mrs: {
+        term: "Maximum possible MRS for a disease with this prevalence",
+        definition: "Maximum possible MRS for a disease with this prevalence"
+    },
+    q_spec: {
+        term: "Quality of the specificity",
+        definition: "Increase in specificity versus a random test, fixing test positivity"
+    },
+    q_sens: {
+        term: "Quality of the sensitivity",
+        definition: "Increase in sensitivity versus a random test, fixing test positivity"
+    },
+    spec: {
+        term: "Specificity",
+        definition: "Specificity is the proportion whose biomarker test is negative (below the threshold) among" +
+        " those without disease."
+    },
+    sens: {
+        term: "Sensitivity",
+        definition: "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among " +
+        "those who are positive for disease."
+    },
+    ppv: {
+        term: "Positive Predictive Value (PPV)",
+        definition: "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity " +
+        "and specificity, PPV's reflect disease prevalence and is useful for risk stratification."
+    },
+    npv: {
+        term: "Negative Predictive Value (NPV)",
+        definition: "Definition for NPV"
+    },
+    mrs:{
+        term: "Mean Risk Stratification (MRS)",
+        definition: "Average change in pretest-posttest disease risk"
+    },
+    sampsize:{term:"Sample Size",definition:""}
+};
+var lookup = {
+    "Danger": "danger",
+    "Reassurance": "reassurance",
+    "Quality of the sensitvity": "q_sens",
+    "Quality of the specificity": "q_spec",
+    "Mean Risk Stratification": "mrs",
+    "Maximum possible MRS": "max_mrs",
+    "Population Burden Stratification": "pbs",
+    "Number Needed to Recruit": "nnr",
+    "Number Needed to Screen": "nns",
+    "a": "a",
+    "b": "b",
+    "c": "c",
+    "d": "d",
+    "P(D+,M+)": "d_pos",
+    "P(D+,M-)": "pos_d_neg_m",
+    "P(D-,M+)": "neg_d_pos_m",
+    "P(D-,M-)": "m_neg",
+    "Marker Positivity": "prob_m",
+    "Disease Prevalence": "prob_d",
+    "Positive Predictive Value": "ppv",
+    "complement of the Negative Predictive Value": "c_npv",
+    "Sensitivity": "sens",
+    "Specificity": "spec",
+    "complement of the Specificity": "c_spec",
+    "RR": "rr",
+    "Risk Difference": "r_diff",
+    "Youden": "youden",
+    "Area Under the Curve": "auc",
+    "Confidence Interval (lower bound)": "ci_lb",
+    "Confidence Interval (upper bound)": "ci_ub",
+    "Value":"value"
+};
