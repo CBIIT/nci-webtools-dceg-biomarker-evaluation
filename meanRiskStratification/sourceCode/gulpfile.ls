@@ -3,10 +3,13 @@ require 'matchdep'
   .forEach (module) !->
     global[ module.replace /^gulp-/, '' ] = require module
 
+strip-comments = require \gulp-strip-comments
 notifier = require \node-notifier
 parent-dir = \..
 
-require! <[ gulp gulp-util gulp-stylus gulp-livereload gulp-livescript streamqueue gulp-if gulp-plumber nib ]>
+require! <[ gulp gulp-util gulp-jshint gulp-stylus gulp-livereload gulp-livescript streamqueue gulp-if gulp-plumber nib ]>
+
+jshint = require \gulp-jshint
 gutil = gulp-util
 
 dev = gutil.env._.0 is \dev
@@ -108,9 +111,6 @@ gulp.task 'bower' ->
   gulp-bower!
 
 gulp.task 'js:app' ->
-  #copy common to root
-  gulp.src 'app/assets/common/**/*.*'
-    .pipe gulp.dest "#{parentDir}/common"
 
   #copy json files
   gulp.src 'app/assets/*.json'
@@ -129,11 +129,12 @@ gulp.task 'js:app' ->
     .pipe gulp-livescript({+bare}).on 'error', gutil.log
 
 gulp.task 'js:mergeScripts' <[bower]> ->
-#  bower = gulp.src main-bower-files!
-#    .pipe gulp-filter -> it.path is /\.js$/
-
+# run js file through jshint, report errors, strip the comments, then join the files
   s = streamqueue { +objectMode }
     .done gulp.src 'app/assets/js/*.js'
+    .pipe jshint!
+    .pipe jshint.reporter \default
+    .pipe strip-comments!
     .pipe gulp-concat 'mrs.js'
     .pipe gulp.dest parentDir
     .pipe gulp-if dev, livereload!
