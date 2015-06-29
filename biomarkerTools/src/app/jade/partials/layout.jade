@@ -11,9 +11,9 @@ html(lang="en")
         link(rel='stylesheet', href='styles.css')
         block styles
     body
+        .sr-only
+            a(href="#content") Skip to Content
         .center-block
-            .sr-only
-                a(href="#content") Skip to Content
             include header
             #main
                 #banners
@@ -23,8 +23,7 @@ html(lang="en")
                         'and Reproductive Epidemiology Branch ',
                         height='43')
                     br
-                h3.title.text-center
-                div
+                #contentTabs
                     ul.nav.nav-tabs(role='tablist')
                         li.active(role='presentation')
                             a(href='#home', aria-controls='home', role='tab', data-toggle='tab') Home
@@ -45,8 +44,6 @@ html(lang="en")
                         include ../pages/rs_advanced
                         include ../pages/sampleSize
                         include ../pages/help
-            #contentTabs
-                .tab-content
         include footer
         script(data-main="scripts/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js")
         block scripts
