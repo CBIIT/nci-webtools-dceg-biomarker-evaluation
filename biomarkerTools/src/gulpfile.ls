@@ -131,7 +131,7 @@ gulp.task 'js:copyScripts' <[bower]> ->
   s = streamqueue { +objectMode }
     .done gulp.src 'public/js/*.js'
     .pipe jshint!
-    .pipe jshint.reporter \default
+    .pipe jshint.reporter \jshint-stylish
     .pipe strip-comments!
     .pipe gulp.dest "#{parentDir}/scripts"
     .pipe gulp-if dev, livereload!
