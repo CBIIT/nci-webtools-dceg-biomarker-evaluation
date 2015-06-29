@@ -1,12 +1,12 @@
-#baseURL = 'pages'
-##load content for first tab and initialize
-#tabs = $ \#contentTabs
-#$ '#contentTabs .tab-content' .load "#{baseURL}/home.html" !->
-#  tabs.tab(); #initialize tabs
+$ document .on 'show.bs.tab' (el) !->
+  id = el.target.hash.replace \# ''
+  require [ id ]
+
+#requirejs.onError = (e) !->
+#    if $ '#errors.alert' .length > 0
+#      $ \#errors .alert \close
+#      $ \#errors .alert \close .remove!
 #
-#tabs.bind \show (e) !->
-#  pattern = new regExp '/#.+/gi' #use regex to get anchor(==selector)
-#  contentID = e.target.toString!match(pattern).0 #get anchor
-#  #load content for selected tab
-#  $ contentID .load baseURL+contentID.replace '#' '' !->
-#  tabs.tab! #reinitialize tabs
+#    $ '<div id="errors" class="alert alert-danger">
+#    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+#    ' + '"' + e.requireModules.0 + '" script not found'+'</div>' .insertAfter '.title.text-center'
