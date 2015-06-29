@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+    head
+        title
+        meta(http-equiv='content-type', content='text/html; charset=utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        link(rel='stylesheet', href='/common/css/font-awesome.css', type='text/css')
+        link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css')
+        link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', type='text/css')
+        link(rel='stylesheet', href='/common/css/style.css')
+        link(rel='stylesheet', href='styles.css')
+        block styles
+    body
+        .center-block
+            .sr-only
+                a(href="#content") Skip to Content
+            include header
+            #main
+                #banners
+                    #left
+                        img(src='/common/images/DCEG-BB-HREB.png',
+                        alt='Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal ' +
+                        'and Reproductive Epidemiology Branch ',
+                        height='43')
+                    br
+                h3.title.text-center
+                div
+                    ul.nav.nav-tabs(role='tablist')
+                        li.active(role='presentation')
+                            a(href='#home', aria-controls='home', role='tab', data-toggle='tab') Home
+                        li(role='presentation')
+                            a(href='#m2rs', aria-controls='m2rs', role='tab', data-toggle='tab') Means to Risk Stratification
+                        li(role='presentation')
+                            a(href='#bm_compare', aria-controls='bm_compare', role='tab', data-toggle='tab') Biomarker Comparison
+                        li(role='presentation')
+                            a(href='#rs_advanced', aria-controls='rs_advanced', role='tab', data-toggle='tab') Risk Stratification Advanced Analysis
+                        li(role='presentation')
+                            a(href='#sampleSize', aria-controls='sampleSize', role='tab', data-toggle='tab') Power and Sample Size Calculation
+                        li(role='presentation')
+                            a(href='#help', aria-controls='help', role='tab', data-toggle='tab') Help
+                    .tab-content
+                        include ../pages/home
+                        include ../pages/m2rs
+                        include ../pages/bm_compare
+                        include ../pages/rs_advanced
+                        include ../pages/sampleSize
+                        include ../pages/help
+            #contentTabs
+                .tab-content
+        include footer
+        script(data-main="scripts/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js")
+        block scripts
