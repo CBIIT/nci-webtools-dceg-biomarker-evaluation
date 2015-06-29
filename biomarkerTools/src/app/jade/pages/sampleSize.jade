@@ -1,109 +1,74 @@
 #sampleSize.tab-pane.fade(title="Power and Sample Size Calculation", role='tabpanel')
-    #main
-        br
-        | &#x9;&#x9;&#x9;
-        h2.title(align='center') Power and Sample Size for Biomarker Case Control Studies
-        | &#x9;&#x9;&#x9;
-        #helpGlossaryLinks
-            a(href='#', onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')") Glossary
-        | &#x9;&#x9;&#x9;
-        br
-        | &#x9;&#x9;&#x9;
-        form#ss
-            div(style='clear: left; padding-top: 10px;')
-                table.tablevars
-                    tr
-                        td(align='right')
-                            label(for='independent_dropdown') Independent Variable
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            select#independent_dropdown(name='independent_dropdown', width='100%')
-                                option(value='k', selected='') k
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            label(for='independent')
-                                input#independent.fontnormal(type='text', size='30', pattern='([0-9],[0-9])', title='A comma separated pair that refers to the minimum and maximum respectively', value='0,1')
-                    | &#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td(align='right')
-                            label(for='contour_dropdown') Contour
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            select#contour_dropdown(name='contour_dropdown', onchange='lock_fixed_options();')
-                                option(value='', selected='')
-                                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                                option(value='specificity') Specificity
-                                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                                option(value='sensitivity') Sensitivity
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            label(for='contour')
-                                input#contour.fontnormal(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
-                    | &#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td(align='right')
-                            label(for='fixed_dropdown') Fixed Values
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            select#fixed_dropdown(name='fixed_dropdown')
-                                option(value='', selected='')
-                                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                                option(value='specificity', disabled='disabled') Specificity
-                                option(value='sensitivity', disabled='disabled') Sensitivity
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            label(for='fixed')
-                                input#fixed.fontnormal(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
-                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td(align='right')
-                            label(for='prevalence') Prevalence
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            label(for='prevalence')
-                                input#prevalence.fontnormal(type='text', size='10', value='0.001', title='A floating point number between 0 and 1', required='')
-                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td(align='right')
-                            label(for='n_value') N
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td
-                            label(for='n_value')
-                                input#n_value.fontnormal(type='text', size='10', value='1', pattern='(^[0-9]$)+', title='Number must be an integer', required='')
-                    | &#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td
-                        td
-                        td
-                    |    &#x9;&#x9;&#x9;&#x9;
-                    tr
-                        td.spacer
-                            button.post(type='submit') Calculate
-                            | &#x9;&#x9;&#x9;&#x9;&#x9;&nbsp;
-                            | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-                            button.reset Reset
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td.spacer
-                        | &#x9;&#x9;&#x9;&#x9;&#x9;
-                        td.example
-                            a#add-test-data(title='Populate variables with working example', href='#') Example
-                | &#x9;&#x9;&#x9;&#x9;
-                #specificity_val.dom_valref
-                | &#x9;&#x9;&#x9;&#x9;
-                #sensitivity_val.dom_valref
-                #fixed_flag.dom_valref
-                | &#x9;&#x9;&#x9;      &#x9;
-                #randomnumber.dom_valref
-        | &#x9;&#x9;&#x9;&#x9;
-        div
-            p#spinner(style='display: none;')
-                i.fa.fa-spinner.fa-spin.fa-2x
-                span#spinnerText Calculating
-        #message.col-sm-7.col-sm-offset-2(style='display: none;')
-            .panel.panel-danger
-                .panel-heading
-                #message-content.panel-body
-        | &#x9;&#x9;&#x9;&#x9;
-        br
-        | &#x9;&#x9;&#x9;&#x9;
+    h3.title.text-center(align='center') Power and Sample Size for Biomarker Case Control Studies
+    #helpGlossaryLinks
+        a(href='#', onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')") Glossary
+    form.col-md-12#ss
+        table.tablevars
+            tr
+                td(align='right')
+                    label(for='independent_dropdown') Independent Variable
+                td
+                    select#independent_dropdown(name='independent_dropdown')
+                        option(value='k', selected='') k
+                td
+                    label(for='independent')
+                        input#independent.fontnormal(type='text', size='30', pattern='([0-9],[0-9])', title='A comma separated pair that refers to the minimum and maximum respectively', value='0,1')
+            tr
+                td(align='right')
+                    label(for='contour_dropdown') Contour
+                td
+                    select#contour_dropdown(name='contour_dropdown', onchange='lock_fixed_options();')
+                        option(value='', selected='')
+                        option(value='specificity') Specificity
+                        option(value='sensitivity') Sensitivity
+                td
+                    label(for='contour')
+                        input#contour.fontnormal(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
+            tr
+                td(align='right')
+                    label(for='fixed_dropdown') Fixed Values
+                td
+                    select#fixed_dropdown(name='fixed_dropdown')
+                        option(value='', selected='')
+                        option(value='specificity', disabled='disabled') Specificity
+                        option(value='sensitivity', disabled='disabled') Sensitivity
+                td
+                    label(for='fixed')
+                        input#fixed.fontnormal(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
+            tr
+                td(align='right')
+                    label(for='prevalence') Prevalence
+                td
+                    label(for='prevalence')
+                        input#prevalence.fontnormal(type='text', size='10', value='0.001', title='A floating point number between 0 and 1', required='')
+            tr
+                td(align='right')
+                    label(for='n_value') N
+                td
+                    label(for='n_value')
+                        input#n_value.fontnormal(type='text', size='10', value='1', pattern='(^[0-9]$)+', title='Number must be an integer', required='')
+            tr
+                td
+                td
+                td
+            tr
+                td.spacer
+                    button.post(type='submit') Calculate
+                    button.reset Reset
+                td.spacer
+                td.example
+                    a#add-test-data(title='Populate variables with working example', href='#') Example
+        #specificity_val.dom_valref
+        #sensitivity_val.dom_valref
+        #fixed_flag.dom_valref
+        #randomnumber.dom_valref
+    div
+        p#spinner(style='display: none;')
+            i.fa.fa-spinner.fa-spin.fa-2x
+            span#spinnerText Calculating
+    #message.col-sm-7.col-sm-offset-2(style='display: none;')
+        .panel.panel-danger
+            .panel-heading
+            #message-content.panel-body
+    .col-md-6
         #output_graph
