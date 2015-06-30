@@ -32,7 +32,7 @@
             <li role="presentation"><a href="#sampleSize" aria-controls="sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
             <li role="presentation"><a href="#help" aria-controls="help" role="tab" data-toggle="tab">Help</a></li>
           </ul>
-          <div class="tab-content">
+          <div class="col-md-12 tab-content">
             <div id="home" title="Home" role="tabpanel" class="tab-pane fade in active">
               <h3 align="center" class="title text-center">Biomarker Tools Collection</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
@@ -60,13 +60,13 @@
                       <label for="independent_dropdown">Independent Variable</label>
                     </td>
                     <td>
-                      <select id="independent_dropdown" name="independent_dropdown">
+                      <select id="independent_dropdown" name="independent_dropdown" class="form-control input-sm">
                         <option value="k" selected="">k</option>
                       </select>
                     </td>
                     <td>
                       <label for="independent">
-                        <input id="independent" type="text" size="30" pattern="([0-9],[0-9])" title="A comma separated pair that refers to the minimum and maximum respectively" value="0,1" class="fontnormal">
+                        <input id="independent" type="text" size="30" pattern="([0-9],[0-9])" title="A comma separated pair that refers to the minimum and maximum respectively" value="0,1" class="fontnormal form-control input-sm">
                       </label>
                     </td>
                   </tr>
@@ -75,7 +75,7 @@
                       <label for="contour_dropdown">Contour</label>
                     </td>
                     <td>
-                      <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();">
+                      <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="form-control input-sm">
                         <option value="" selected=""></option>
                         <option value="specificity">Specificity</option>
                         <option value="sensitivity">Sensitivity</option>
@@ -83,7 +83,7 @@
                     </td>
                     <td>
                       <label for="contour">
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal">
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal form-control input-sm">
                       </label>
                     </td>
                   </tr>
@@ -92,7 +92,7 @@
                       <label for="fixed_dropdown">Fixed Values</label>
                     </td>
                     <td>
-                      <select id="fixed_dropdown" name="fixed_dropdown">
+                      <select id="fixed_dropdown" name="fixed_dropdown" class="form-control input-sm">
                         <option value="" selected=""></option>
                         <option value="specificity" disabled="disabled">Specificity</option>
                         <option value="sensitivity" disabled="disabled">Sensitivity</option>
@@ -100,7 +100,7 @@
                     </td>
                     <td>
                       <label for="fixed">
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal">
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal form-control input-sm">
                       </label>
                     </td>
                   </tr>
@@ -110,7 +110,7 @@
                     </td>
                     <td>
                       <label for="prevalence">
-                        <input id="prevalence" type="text" size="10" value="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal">
+                        <input id="prevalence" type="text" size="10" value="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal form-control input-sm">
                       </label>
                     </td>
                   </tr>
@@ -120,7 +120,7 @@
                     </td>
                     <td>
                       <label for="n_value">
-                        <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal">
+                        <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal form-control input-sm">
                       </label>
                     </td>
                   </tr>
@@ -157,13 +157,23 @@
               </div>
             </div>
             <div id="help" title="Help" role="tabpanel" class="tab-pane fade">
-              <h3 align="center" class="title text-center">Help</h3>
+              <h3 class="title text-center">Help</h3>
+              <h4 class="title text-center">Tools Help</h4>
+              <section>
+                <h5>Means to Risk Stratification</h5>
+                <h5>Biomarker Comparison</h5>
+                <h5>Risk Stratification Advanced Analysis</h5>
+                <h5>Power and Sample Size Calculation</h5>
+              </section>
+              <h4 class="title text-center">FAQ</h4>
+              <h4 class="title text-center">Glossary of Terms</h4>
+              <div id="glossary"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="portal-footer">
+    <div id="portal-footer" class="col-md-12">
       <div class="footerLinks"><a href="http://www.cancer.gov/" title="Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" title="Support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" title="Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" title="Accessibility">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://cancer.gov/global/viewing-files" target="_blank" title="Viewing Files">Viewing Files</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" title="FOIA">FOIA</a><br><br><a href="http://www.dhhs.gov/">
           Department of Health and
           Human Services</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
