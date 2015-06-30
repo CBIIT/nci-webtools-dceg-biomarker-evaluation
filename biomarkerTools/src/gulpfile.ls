@@ -101,6 +101,7 @@ gulp.task 'index' ->
   gulp.src ['app/jade/**/*.jade','!app/jade/partials{,/**}']
     .pipe gulp-jade do
       pretty: pretty
+      basedir: parentDir
     .pipe gulp.dest parentDir
     .pipe gulp-if dev, livereload!
 
