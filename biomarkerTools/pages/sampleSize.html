@@ -9,13 +9,13 @@
           <label for="independent_dropdown">Independent Variable</label>
         </td>
         <td>
-          <select id="independent_dropdown" name="independent_dropdown">
+          <select id="independent_dropdown" name="independent_dropdown" class="form-control input-sm">
             <option value="k" selected="">k</option>
           </select>
         </td>
         <td>
           <label for="independent">
-            <input id="independent" type="text" size="30" pattern="([0-9],[0-9])" title="A comma separated pair that refers to the minimum and maximum respectively" value="0,1" class="fontnormal"/>
+            <input id="independent" type="text" size="30" pattern="([0-9],[0-9])" title="A comma separated pair that refers to the minimum and maximum respectively" value="0,1" class="fontnormal form-control input-sm"/>
           </label>
         </td>
       </tr>
@@ -24,7 +24,7 @@
           <label for="contour_dropdown">Contour</label>
         </td>
         <td>
-          <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();">
+          <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="form-control input-sm">
             <option value="" selected=""></option>
             <option value="specificity">Specificity</option>
             <option value="sensitivity">Sensitivity</option>
@@ -32,7 +32,7 @@
         </td>
         <td>
           <label for="contour">
-            <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal"/>
+            <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal form-control input-sm"/>
           </label>
         </td>
       </tr>
@@ -41,7 +41,7 @@
           <label for="fixed_dropdown">Fixed Values</label>
         </td>
         <td>
-          <select id="fixed_dropdown" name="fixed_dropdown">
+          <select id="fixed_dropdown" name="fixed_dropdown" class="form-control input-sm">
             <option value="" selected=""></option>
             <option value="specificity" disabled="disabled">Specificity</option>
             <option value="sensitivity" disabled="disabled">Sensitivity</option>
@@ -49,7 +49,7 @@
         </td>
         <td>
           <label for="fixed">
-            <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal"/>
+            <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal form-control input-sm"/>
           </label>
         </td>
       </tr>
@@ -59,7 +59,7 @@
         </td>
         <td>
           <label for="prevalence">
-            <input id="prevalence" type="text" size="10" value="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal"/>
+            <input id="prevalence" type="text" size="10" value="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal form-control input-sm"/>
           </label>
         </td>
       </tr>
@@ -69,7 +69,7 @@
         </td>
         <td>
           <label for="n_value">
-            <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal"/>
+            <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal form-control input-sm"/>
           </label>
         </td>
       </tr>
