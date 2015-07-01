@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 $(document).on('show.bs.tab', function(el){
   var id, title;
-  id = el.target.hash.replace('#', '');
+  id = el.target.dataset.target.replace('#', '');
   require([id]);
   title = "Biomarker Tools: " + el.target.text;
   document.title = title;
