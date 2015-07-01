@@ -6,7 +6,8 @@ $(function () {
    
     $('.post').click(function () {
         $("#spinner").show();
-        $("#message").hide();
+        $("#message").removeClass('show');
+        $("#message").addClass('hide');
         $.ajax({
             type: 'POST',
            
@@ -38,7 +39,8 @@ $(function () {
                 message = 'Service Unavailable: ' + textStatus + "<br>";
                 message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
                 $("#message-content").empty().append(message);
-                $("#message").show();
+                $("#message").removeClass('hide');
+                $("#message").addClass('show');
             },
         });
        
@@ -196,7 +198,8 @@ function reset_code() {
     $("#contour,#contour_dropdown,#fixed,#fixed_dropdow,#prevalencen,#n_value").val("");
     $("#fixed_flag").text("");
     $("#output_graph, #message, #message-content").empty();
-    $("#message").hide();
+    $("#message").removeClass('show');
+    $("#message").addClass('hide');
     disable_calculate();
    
    
