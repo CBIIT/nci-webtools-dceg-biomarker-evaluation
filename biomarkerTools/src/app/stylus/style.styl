@@ -2,6 +2,7 @@ common-blue = #4e5669
 red = #a90002
 light-red = #CD5C5C
 tan = #F3EFE0
+
 body
   font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
   
@@ -11,29 +12,13 @@ body
   font-size small
 
 .title
-  background-color light-red
-  color whitesmoke
-
-.tab-pane,.tab-content
-  padding 2em
+  color black
 
 #contentTabs
   margin 1.5em auto
-  .tab-content
-    border-left solid 1px red
-    border-bottom solid 1px red
-    border-right solid 1px red
-//    background-color tan
-  ul.nav.nav-tabs
-    border-bottom solid 1px red
-    li a
+  ul.nav.nav-tabs 
+    > li a
         color black
-      .active a
-          font-weight bold
-          border-radius inherit
-          border-top 1px solid red
-          border-right 1px solid red
-          border-left 1px solid red
       :after
         border solid transparent
         margin-left -10px
