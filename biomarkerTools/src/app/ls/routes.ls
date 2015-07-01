@@ -2,7 +2,7 @@ $ document .ready !->
   document.title = "Biomarker Tools: Home"
 
 $ document .on 'show.bs.tab' (el) !->
-  id = el.target.hash.replace \# ''
+  id = el.target.dataset.target.replace \# ''
   require [ id ]
   title = "Biomarker Tools: #{el.target.text}"
   document.title = title 
