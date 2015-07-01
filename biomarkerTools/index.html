@@ -58,109 +58,139 @@
             </div>
             <div id="sampleSize" title="Power and Sample Size Calculation" role="tabpanel" class="tab-pane fade">
               <h3 class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
-              <div id="helpGlossaryLinks"><a href="#" onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')">Glossary</a></div>
-              <form id="ss" class="col-md-12">
-                <table class="tablevars">
-                  <tr>
-                    <td class="pull-right">
-                      <label for="independent_dropdown">Independent Variable</label>
-                    </td>
-                    <td>
-                      <select id="independent_dropdown" name="independent_dropdown" class="form-control input-sm">
-                        <option value="k" selected="">k</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="independent">
-                        <input id="independent" type="text" size="30" pattern="([0-9],[0-9])" title="A comma separated pair that refers to the minimum and maximum respectively" value="0,1" class="fontnormal form-control input-sm">
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pull-right">
-                      <label for="contour_dropdown">Contour</label>
-                    </td>
-                    <td>
-                      <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="form-control input-sm">
-                        <option value="" selected=""></option>
-                        <option value="specificity">Specificity</option>
-                        <option value="sensitivity">Sensitivity</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="contour">
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal form-control input-sm">
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pull-right">
-                      <label for="fixed_dropdown">Fixed Values</label>
-                    </td>
-                    <td>
-                      <select id="fixed_dropdown" name="fixed_dropdown" class="form-control input-sm">
-                        <option value="" selected=""></option>
-                        <option value="specificity" disabled="disabled">Specificity</option>
-                        <option value="sensitivity" disabled="disabled">Sensitivity</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="fixed">
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal form-control input-sm">
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pull-right">
-                      <label for="prevalence">Prevalence</label>
-                    </td>
-                    <td>
-                      <label for="prevalence">
-                        <input id="prevalence" type="text" size="10" value="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal form-control input-sm">
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pull-right">
-                      <label for="n_value">N</label>
-                    </td>
-                    <td>
-                      <label for="n_value">
-                        <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal form-control input-sm">
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td class="spacer">
-                      <button type="submit" class="post">Calculate</button>
-                      <button class="reset">Reset</button>
-                    </td>
-                    <td class="spacer"></td>
-                    <td class="example"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></td>
-                  </tr>
-                </table>
-                <div id="specificity_val" class="dom_valref"></div>
-                <div id="sensitivity_val" class="dom_valref"></div>
-                <div id="fixed_flag" class="dom_valref"></div>
-                <div id="randomnumber" class="dom_valref"></div>
+              <form id="ss">
+                <div class="col-md-12 well well-lg">
+                  <div id="message" style="display: none;" class="col-sm-7 col-sm-offset-2">
+                    <div class="panel panel-danger">
+                      <div class="panel-heading"></div>
+                      <div id="message-content" class="panel-body"></div>
+                    </div>
+                  </div>
+                  <div class="tablevars">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label class="pull-right">Independent Variable</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-4">
+                          <label class="pull-right">Proportion of Assays in Cases (k)</label>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="col-md-6">
+                            <label class="pull-right">Min Value</label>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="pull-left">Max Value</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4"> 
+                        <label class="pull-right"></label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                          <div class="col-md-6">
+                            <input id="minInput" type="number" class="input-sm pull-right col-md-5">
+                          </div>
+                          <div class="col-md-6">
+                            <input id="maxInput" type="number" class="input-sm pull-left col-md-5">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">               
+                        <label for="contour_dropdown" class="pull-right">Contour</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-4">
+                          <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="input-sm pull-right">
+                            <option value="" selected=""></option>
+                            <option value="specificity">Specificity</option>
+                            <option value="sensitivity">Sensitivity</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="contour">
+                            <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal input-sm pull-left">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="fixed_dropdown" class="pull-right">Fixed Values</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-4">
+                          <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm pull-right">
+                            <option value="" selected=""></option>
+                            <option value="specificity" disabled="disabled">Specificity</option>
+                            <option value="sensitivity" disabled="disabled">Sensitivity</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="fixed">
+                            <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal input-sm pull-left">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label class="pull-right">Parameters</label>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="col-md-4">
+                          <label for="prevalence" class="pull-right">Prevalence</label>
+                        </div>
+                        <div class="col-md-4">
+                          <input id="prevalence" type="number" size="10" value="0.001" step="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal input-sm pull-left col-md-5">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-8">
+                        <div class="col-md-4">
+                          <label for="n_value" class="pull-right">Sample Size</label>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="n_value">
+                            <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal input-sm pull-left">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 pull-left">
+                        <div class="col-md-4">
+                          <button type="submit" class="post">Calculate</button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="reset">Reset</button>
+                        </div>
+                      </div>
+                      <div class="col-md-4 pull-right">
+                        <div class="col-md-4 example"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </form>
               <div>
-                <p id="spinner" style="display: none;"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
-              </div>
-              <div id="message" style="display: none;" class="col-sm-7 col-sm-offset-2">
-                <div class="panel panel-danger">
-                  <div class="panel-heading"></div>
-                  <div id="message-content" class="panel-body"></div>
+                <div class="hide">
+                  <div id="specificity_val" class="dom_valref"></div>
+                  <div id="sensitivity_val" class="dom_valref"></div>
+                  <div id="fixed_flag" class="dom_valref"></div>
+                  <div id="randomnumber" class="dom_valref"></div>
                 </div>
+                <p id="spinner" style="display: none;" class="hide"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
               </div>
-              <div class="col-md-6">
-                <div id="output_graph"></div>
-              </div>
+              <div id="output_graph"></div>
             </div>
             <div id="help" title="Help" role="tabpanel" class="tab-pane fade">
               <h3 class="text-center">Help</h3>
