@@ -7,72 +7,52 @@ body {
   font-size: small;
 }
 .title {
-  background-color: #cd5c5c;
-  color: #f5f5f5;
-}
-.tab-pane,
-.tab-content {
-  padding: 2em;
+  color: #000;
 }
 #contentTabs {
   margin: 1.5em auto;
+/* sample size styles */
 }
-#contentTabs .tab-content {
-  border-left: solid 1px #a90002;
-  border-bottom: solid 1px #a90002;
-  border-right: solid 1px #a90002;
-}
-ul.nav.nav-tabs {
-  border-bottom: solid 1px #a90002;
-}
-ul.nav.nav-tabs li a {
+#contentTabs ul.nav.nav-tabs > li a {
   color: #000;
 }
-ul.nav.nav-tabs .active a {
-  font-weight: bold;
-  border-radius: inherit;
-  border-top: 1px solid #a90002;
-  border-right: 1px solid #a90002;
-  border-left: 1px solid #a90002;
-}
-ul.nav.nav-tabs :after {
+#contentTabs ul.nav.nav-tabs :after {
   border: solid transparent;
   margin-left: -10px;
   top: 100%;
   left: 50%;
 }
-/* sample size styles */
-#sampleSize .example-image {
+#contentTabs #sampleSize .example-image {
   float: left;
 }
-#sampleSize .explanation {
+#contentTabs #sampleSize .explanation {
   float: left;
   padding-left: 15px;
   width: 600px;
 }
-#sampleSize .reference_row {
+#contentTabs #sampleSize .reference_row {
   background-color: #ff0;
 }
-#sampleSize #maindiv {
+#contentTabs #sampleSize #maindiv {
   width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
-#sampleSize .fontnormal {
+#contentTabs #sampleSize .fontnormal {
   font-weight: normal;
 }
-#sampleSize .dom_valref {
+#contentTabs #sampleSize .dom_valref {
   display: none;
 }
-#sampleSize td.label {
+#contentTabs #sampleSize td.label {
   text-align: right;
 }
-#sampleSize .top-header {
+#contentTabs #sampleSize .top-header {
   text-align: center;
   background-color: #444;
   color: #fff;
 }
-#sampleSize .header {
+#contentTabs #sampleSize .header {
   background-color: #aaa;
   color: #000;
   font-family: sans-serif;
@@ -83,53 +63,53 @@ ul.nav.nav-tabs :after {
   border: 1px solid #000;
   text-align: center;
 }
-#sampleSize #output {
+#contentTabs #sampleSize #output {
   width: 500px;
 }
-#sampleSize #inputdata {
+#contentTabs #sampleSize #inputdata {
   width: 500px;
 }
-#sampleSize .prevalence_label {
+#contentTabs #sampleSize .prevalence_label {
   font-weight: bold;
   background-color: #aaa;
   color: #444;
   padding: 2px 25px 2px 25px;
 }
-#sampleSize .bibliography {
+#contentTabs #sampleSize .bibliography {
   width: 950px;
   clear: both;
   float: left;
   margin: 50px;
 }
-#sampleSize .bib-author {
+#contentTabs #sampleSize .bib-author {
   float: left;
 }
-#sampleSize .bib-year {
+#contentTabs #sampleSize .bib-year {
   float: left;
 }
-#sampleSize .bib-title {
+#contentTabs #sampleSize .bib-title {
   float: left;
   font-style: italic;
 }
-#sampleSize .bib-journal {
+#contentTabs #sampleSize .bib-journal {
   float: left;
 }
-#sampleSize .bib-ref {
+#contentTabs #sampleSize .bib-ref {
   float: left;
 }
-#sampleSize .bib-pages {
+#contentTabs #sampleSize .bib-pages {
   float: left;
 }
-#sampleSize .bib-doi {
+#contentTabs #sampleSize .bib-doi {
   float: left;
 }
-#sampleSize .bibliography_entry {
+#contentTabs #sampleSize .bibliography_entry {
   width: 300px;
 }
-#sampleSize .bibliography_link {
+#contentTabs #sampleSize .bibliography_link {
   width: 50px;
 }
-#sampleSize table.table_data {
+#contentTabs #sampleSize table.table_data {
   background-color: #fff;
   border: 1px solid #bbb;
   border-collapse: collapse;
@@ -137,14 +117,14 @@ ul.nav.nav-tabs :after {
   margin-right: 20px;
   width: 90%;
 }
-#sampleSize table.output_data {
+#contentTabs #sampleSize table.output_data {
   background-color: #fff;
   border: 2px solid #000;
   border-collapse: collapse;
   margin-left: 20px;
   margin-right: 20px;
 }
-#sampleSize table.table_data td {
+#contentTabs #sampleSize table.table_data td {
   font-family: sans-serif;
   text-align: center;
   font-size: 80%;
@@ -152,17 +132,17 @@ ul.nav.nav-tabs :after {
   border-left: 1px solid #bbb;
   border-collapse: collapse;
 }
-#sampleSize .example {
+#contentTabs #sampleSize .example {
   text-align: right;
 }
-#sampleSize th.col1 {
+#contentTabs #sampleSize th.col1 {
   text-align: right;
 }
-#sampleSize tr.table_data_header {
+#contentTabs #sampleSize tr.table_data_header {
   background-color: #a0a0a0;
   border-bottom: 1px solid #000;
 }
-#sampleSize .ui-tabs .ui-tabs-nav li {
+#contentTabs #sampleSize .ui-tabs .ui-tabs-nav li {
   height: 50px;
   font-size: 12px;
   text-align: center;
