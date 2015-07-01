@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="sr-only"><a href="#content">Skip to Content</a></div>
+    <div class="sr-only"><a href="#contentTabs">Skip to Content</a></div>
     <div class="center-block">
       <div id="wrapper">
         <div id="logos">
@@ -23,40 +23,46 @@
         <div id="banners">
           <div id="left"><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43"></div><br>
         </div>
-        <div id="contentTabs">
+        <div id="contentTabs" class="col-md-12">
           <ul role="tablist" class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a href="#m2rs" aria-controls="m2rs" role="tab" data-toggle="tab">Means to Risk Stratification</a></li>
-            <li role="presentation"><a href="#bm_compare" aria-controls="bm_compare" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
-            <li role="presentation"><a href="#rs_advanced" aria-controls="rs_advanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
-            <li role="presentation"><a href="#sampleSize" aria-controls="sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
-            <li role="presentation"><a href="#help" aria-controls="help" role="tab" data-toggle="tab">Help</a></li>
+            <li role="presentation" class="active"><a data-target="#home" role="tab" data-toggle="tab">Home</a></li>
+            <li role="presentation"><a data-target="#m2rs" role="tab" data-toggle="tab">Means to Risk Stratification</a></li>
+            <li role="presentation"><a data-target="#bm_compare" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
+            <li role="presentation"><a data-target="#rs_advanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
+            <li role="presentation"><a data-target="#sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
+            <li role="presentation"><a data-target="#help" role="tab" data-toggle="tab">Help</a></li>
           </ul>
-          <div class="col-md-12 tab-content">
+          <div class="tab-content">
             <div id="home" title="Home" role="tabpanel" class="tab-pane fade in active">
-              <h3 align="center" class="title text-center">Biomarker Tools Collection</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
+              <h3 class="title text-center">Biomarker Tools Collection</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
               quantities for which people's intuition is poor, such as need for a single marker of a rare disease to improve management
               by some serious intervention. The toolset hopless pursuit, wasteful, unethical clinical testing begins. Thus, using
               these strategies will allow focusing on the most promising markers early on, making specific improvements if required,
-              or abandoning markers that are most likely to fail.
+              or abandoning markers that are most likely to fail.<br>&nbsp;
+              <ul class="list-unstyled">
+                <li><a title="The Means To Risk Stratification Tool" data-target="#m2rs" data-toggle="tab" class="goToTab">The Means To Risk Stratification Tool</a></li>
+                <li><a title="Biomarker Comparison Tool" data-target="#bm_compare" data-toggle="tab" class="goToTab">Biomarker Comparison Tool</a></li>
+                <li> <a title="Risk Stratification Advanced Options Tool" data-target="#rs_advanced" data-toggle="tab" class="goToTab">Risk Stratification Advanced Options Tool</a></li>
+                <li><a title="Power and Sample Size Calculation Tool" data-target="#sampleSize" data-toggle="tab" class="goToTab">Power and Sample Size Calculation Tool</a></li>
+              </ul>
             </div>
-            <div id="m2rs" title="Means to Risk Stratification" role="tabpanel" class="tab-pane fade">
-              <h3 align="center" class="title text-center">Means to Risk Stratification</h3>
+            <div id="m2rs" title="Means to Risk Stratification" role="tabpanel" class="tab-pane fade"> 
+              <h3 class="title text-center">Means to Risk Stratification</h3>
             </div>
-            <div id="bm_compare" title="Biomarker Comparison" role="tabpanel" class="tab-pane fade">
-              <h3 align="center" class="title text-center">Biomarker Comparison</h3>
+            <div id="bm_compare" title="Biomarker Comparison" role="tabpanel" class="tab-pane fade"> 
+              <h3 class="title text-center">Biomarker Comparison</h3>
             </div>
-            <div id="rs_advanced" title="Risk Stratification Adnvanced Analysis" role="tabpanel" class="tab-pane fade">
-              <h3 align="center" class="title text-center">Risk Stratification Advanced Analysis</h3>
+            <div id="rs_advanced" title="Risk Stratification Adnvanced Analysis" role="tabpanel" class="tab-pane fade"> 
+              <h3 class="title text-center">Risk Stratification Advanced Analysis</h3>
             </div>
             <div id="sampleSize" title="Power and Sample Size Calculation" role="tabpanel" class="tab-pane fade">
-              <h3 align="center" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
+              <h3 class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
               <div id="helpGlossaryLinks"><a href="#" onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')">Glossary</a></div>
               <form id="ss" class="col-md-12">
                 <table class="tablevars">
                   <tr>
-                    <td align="right">
+                    <td class="pull-right">
                       <label for="independent_dropdown">Independent Variable</label>
                     </td>
                     <td>
@@ -71,7 +77,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td align="right">
+                    <td class="pull-right">
                       <label for="contour_dropdown">Contour</label>
                     </td>
                     <td>
@@ -88,7 +94,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td align="right">
+                    <td class="pull-right">
                       <label for="fixed_dropdown">Fixed Values</label>
                     </td>
                     <td>
@@ -105,7 +111,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td align="right">
+                    <td class="pull-right">
                       <label for="prevalence">Prevalence</label>
                     </td>
                     <td>
@@ -115,7 +121,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td align="right">
+                    <td class="pull-right">
                       <label for="n_value">N</label>
                     </td>
                     <td>
@@ -157,16 +163,16 @@
               </div>
             </div>
             <div id="help" title="Help" role="tabpanel" class="tab-pane fade">
-              <h3 class="title text-center">Help</h3>
-              <h4 class="title text-center">Tools Help</h4>
+              <h3 class="text-center">Help</h3>
+              <h4 class="text-center">Tools Help</h4>
               <section>
                 <h5>Means to Risk Stratification</h5>
                 <h5>Biomarker Comparison</h5>
                 <h5>Risk Stratification Advanced Analysis</h5>
                 <h5>Power and Sample Size Calculation</h5>
               </section>
-              <h4 class="title text-center">FAQ</h4>
-              <h4 class="title text-center">Glossary of Terms</h4>
+              <h4 class="text-center">FAQ</h4>
+              <h4 class="text-center">Glossary of Terms</h4>
               <div id="glossary"></div>
             </div>
           </div>
