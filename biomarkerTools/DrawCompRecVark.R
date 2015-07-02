@@ -179,11 +179,12 @@ CompRecVarcNPVkSensSpec <- function(sens,spec,prev,N) {
   colnames(data)<-c("Sensitivity","Optimal k","Relative efficiency gain or loss compared to k = 0.5")
   T <-as.table(data)
   T
+  
 }
 
-DrawCompRecVarkSpecSens <- function(minVal,maxVal, spec,sens,prev,N) {
+DrawCompRecVarkSpecSens <- function(k,spec,sens,prev,N) {
   
-  K <- seq(from=min(minVal),to=max(maxVal),by=0.00001)
+  K <- seq(from=min(k),to=max(k),by=0.00001)
   Y <- seq(from=-1,to=3,by=0.00001)
   list <- 1:length(spec)
   vals <-  1:length(spec)
@@ -238,9 +239,9 @@ DrawCompRecVarkSpecSens <- function(minVal,maxVal, spec,sens,prev,N) {
   legend(pch=LTY,lty=LTY,legend=spec,"bottomright",cex=1.15, lwd=3,col= LTY,text.font=2,bty="o",inset=c(-0.3,0),xpd = TRUE,title="Specificity")
 }
 
-DrawCompRecVarkSensSpec <- function(minVal,maxVal,sens,spec,prev,N) {
+DrawCompRecVarkSensSpec <- function(k,sens,spec,prev,N) {
   
-  K <- seq(from=min(minVal),to=max(maxVal),by=0.00001)
+  K <- seq(from=min(k),to=max(k),by=0.00001)
   Y <- seq(from=-1,to=3,by=0.00001)
   list <- 1:length(sens)
   vals <-  1:length(sens)
@@ -295,9 +296,9 @@ DrawCompRecVarkSensSpec <- function(minVal,maxVal,sens,spec,prev,N) {
   legend(pch=LTY,lty=LTY,legend=sens,"bottomright",cex=1.15, lwd=3,col= LTY,text.font=2,bty="o",inset=c(-0.3,0),xpd = TRUE,title="Sensitivity")
 }
 
-DrawCompRecVarcNPVkSpecSens <- function(minVal,maxVal,spec,sens,prev,N) {
+DrawCompRecVarcNPVkSpecSens <- function(k,spec,sens,prev,N) {
   
-  K <- seq(from=min(minVal),to=max(maxVal),by=0.00001)
+  K <- seq(from=min(k),to=max(k),by=0.00001)
   Y <- seq(from=-1,to=3,by=0.00001)
   list <- 1:length(spec)
   vals <-  1:length(spec)
@@ -351,9 +352,9 @@ DrawCompRecVarcNPVkSpecSens <- function(minVal,maxVal,spec,sens,prev,N) {
   legend(pch=LTY,lty=LTY,legend=spec,"bottomright",cex=1.15, lwd=3,col= LTY,text.font=2,bty="o",inset=c(-0.3,0),xpd = TRUE,title="Specificity")
 }
 
-DrawCompRecVarcNPVkSensSpec <- function(minVal,maxVal,sens,spec,prev,N) {
+DrawCompRecVarcNPVkSensSpec <- function(k,sens,spec,prev,N) {
   
-  K <- seq(from=min(minVal),to=max(maxVal),by=0.00001)
+  K <- seq(from=min(k),to=max(k),by=0.00001)
   Y <- seq(from=-1,to=3,by=0.00001)
   list <- 1:length(sens)
   vals <-  1:length(sens)
