@@ -16,7 +16,7 @@ requirejs.config(
     glossary :
       deps: <[ jquery ]>
     sampleSize :
-      deps: <[ bootstrap ]>
+      deps: <[ jquery.ui bootstrap ]>
     routes :
       deps : <[ bootstrap glossary ]>
 )
