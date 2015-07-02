@@ -1,4 +1,4 @@
-var generate_tables, disable_calculate, enable_calculate, generate_tabs, change_ff, lock_fixed_options, change_hidden, trim_spaces, example_code, reset_code, random_gen;
+var generate_tables, disable_calculate, enable_calculate, generate_tabs, change_ff, lock_fixed_options, change_hidden, trim_spaces, example_code, reset_code, random_gen, clean_data;
 generate_tables = function(jsonrtn){
   var i$, len$, i, tablesvar, ppvtabledata, cnpvtabledata, j$, to$, n;
   for (i$ = 0, len$ = jsonrtn.length; i$ < len$; ++i$) {
@@ -127,48 +127,52 @@ random_gen = function(){
   randomno = Math.floor(Math.random() * 1000 + 1);
   $('#randomnumber').text(randomno);
 };
+clean_data = function(ret){
+  ret = JSON.parse(JSON.stringify(ret));
+  $('#spinner').removeClass('show');
+  $('#spinner').addClass('hide');
+  $('#output_graph').empty();
+  generate_tabs($('#fixed').val(), $('#randomnumber').text());
+  generate_tables(ret);
+  random_gen();
+};
 $(function(){
   random_gen();
   disable_calculate();
   $('.post').click(function(){
+    var to_value, input, promise;
     $('#spinner').removeClass('hide');
     $('#spinner').addClass('show');
     $('#message').removeClass('show');
     $('#message').addClass('hide');
-    $.ajax({
-      type: 'POST',
+    to_value = 10 * 1000;
+    input = JSON.stringify({
+      k: $('#minInput').val() + "," + $('#maxInput').val(),
+      sens: trim_spaces($('#sensitivity_val').text()),
+      spec: trim_spaces($('#specificity_val').text()),
+      prev: $('#prevalence').val(),
+      N: $('#n_value').val(),
+      unique_id: $('#randomnumber').text(),
+      fixed_flag: $('#fixed_flag').text()
+    });
+    promise = $.ajax({
+      dataType: 'json',
+      method: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({
-        k: $('#minInput').val() + "," + $('#maxInput').val(),
-        sens: trim_spaces($('#sensitivity_val').text()),
-        spec: trim_spaces($('#specificity_val').text()),
-        prev: $('#prevalence').val(),
-        N: $('#n_value').val(),
-        unique_id: $('#randomnumber').text(),
-        fixed_flag: $('#fixed_flag').text()
-      }, {
-        dataType: 'json'
-      }),
       url: '/sampleSizeRest/',
-      success: function(ret){
-        $('#spinner').removeClass('show');
-        $('#spinner').addClass('hide');
-        $('#output_graph').empty();
-        generate_tabs($('#fixed').val(), $('#randomnumber').text());
-        generate_tables(ret);
-        random_gen();
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-        var message;
-        $('#spinner').removeClass('show');
-        $('#spinner').addClass('hide');
-        console.log("header: " + jqXHR + " \n Status: " + textStatus + " \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
-        message = "Service Unavailable: " + textStatus + " <br>";
-        message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
-        $('#message-content').empty().append(message);
-        $('#message').removeClass('hide');
-        $('#message').addClass('show');
-      }
+      data: input,
+      timeout: to_value
+    });
+    promise.then(clean_data, function(jqXHR, textStatus, errorThrown){
+      var message;
+      $('#spinner').removeClass('show');
+      $('#spinner').addClass('hide');
+      console.log("header: " + jqXHR + " \n Status: " + textStatus + " \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
+      message = "Service Unavailable: " + textStatus + " <br>";
+      message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
+      $('#message-content').empty().append(message);
+      $('#message').removeClass('hide');
+      $('#message').addClass('show');
     });
     return false;
   });
