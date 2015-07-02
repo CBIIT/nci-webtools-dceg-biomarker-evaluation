@@ -2,7 +2,7 @@
     h3.title.text-center Power and Sample Size for Biomarker Case Control Studies
     form#ss
         .col-md-12.well.well-lg
-            #message.col-sm-7.col-sm-offset-2(style='display: none;')
+            #message.col-sm-7.col-sm-offset-2.hide
                 .panel.panel-danger
                     .panel-heading
                     #message-content.panel-body
@@ -83,7 +83,7 @@
             #sensitivity_val.dom_valref
             #fixed_flag.dom_valref
             #randomnumber.dom_valref
-        p#spinner.hide(style='display: none;')
+        p#spinner.hide
             i.fa.fa-spinner.fa-spin.fa-2x
             span#spinnerText Calculating
     #output_graph
