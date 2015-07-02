@@ -140,8 +140,7 @@ $ !->
             # Encode data as JSON.
             #async:false,
             data: JSON.stringify {
-                min: $ \#minInput .val!
-                max: $ \#maxInput .val!
+                k: "#{$ \#minInput .val!},#{$ \#maxInput .val!}"
                 sens: trim_spaces($ \#sensitivity_val .text!)
                 spec: trim_spaces($ \#specificity_val .text!)
                 prev: $ \#prevalence .val!
@@ -174,7 +173,9 @@ $ !->
 $ !->
     $ \.reset .click !->
         $ \#ss .0.reset!
-        reset_code!
+        $ \#message .remove-class \show
+        $ \#message .add-class \hide
+#        reset_code!
 
     $ \#add-test-data .click !->
         example_code!
