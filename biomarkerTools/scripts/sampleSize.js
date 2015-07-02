@@ -145,7 +145,7 @@ $(function(){
     $('#spinner').addClass('show');
     $('#message').removeClass('show');
     $('#message').addClass('hide');
-    to_value = 10 * 1000;
+    to_value = 15 * 1000;
     input = JSON.stringify({
       k: $('#minInput').val() + "," + $('#maxInput').val(),
       sens: trim_spaces($('#sensitivity_val').text()),
