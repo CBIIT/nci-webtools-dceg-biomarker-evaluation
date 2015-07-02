@@ -138,8 +138,8 @@ $(function(){
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
-        min: $('#minInput').text(),
-        max: $('#maxInput').text(),
+        min: $('#minInput').val(),
+        max: $('#maxInput').val(),
         sens: trim_spaces($('#sensitivity_val').text()),
         spec: trim_spaces($('#specificity_val').text()),
         prev: $('#prevalence').val(),
