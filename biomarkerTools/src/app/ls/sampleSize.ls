@@ -143,7 +143,7 @@ $ !->
         $ \#message .remove-class \show
         $ \#message .add-class \hide
         
-        to_value = 10 * 1000
+        to_value = 15 * 1000 #15 sec
         
         input = JSON.stringify(
             k: "#{$ \#minInput .val!},#{$ \#maxInput .val!}"
