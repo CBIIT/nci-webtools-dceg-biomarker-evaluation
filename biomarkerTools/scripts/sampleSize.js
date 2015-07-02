@@ -139,8 +139,7 @@ $(function(){
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
-        min: $('#minInput').val(),
-        max: $('#maxInput').val(),
+        k: $('#minInput').val() + "," + $('#maxInput').val(),
         sens: trim_spaces($('#sensitivity_val').text()),
         spec: trim_spaces($('#specificity_val').text()),
         prev: $('#prevalence').val(),
@@ -177,7 +176,8 @@ $(function(){
 $(function(){
   $('.reset').click(function(){
     $('#ss')[0].reset();
-    reset_code();
+    $('#message').removeClass('show');
+    $('#message').addClass('hide');
   });
   $('#add-test-data').click(function(){
     example_code();
