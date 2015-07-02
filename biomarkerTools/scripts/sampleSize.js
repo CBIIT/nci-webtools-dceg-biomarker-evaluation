@@ -32,7 +32,7 @@ enable_calculate = function(){
   $('.post').removeAttr('disabled');
 };
 generate_tabs = function(iterate, randomnumber){
-  var fixed_flag, fixedvals, arrayLength, tabheaders, tabcontent, pimagename, cimagename, fixedtype, i$, x$, ref$, i, len$, tabs;
+  var fixed_flag, fixedvals, arrayLength, tabheaders, tabcontent, pimagename, cimagename, fixedtype, i$, i, tabs;
   fixed_flag = $('#fixed_flag').text();
   fixedvals = iterate.split(',');
   arrayLength = fixedvals.length;
@@ -47,8 +47,8 @@ generate_tabs = function(iterate, randomnumber){
     pimagename = 'PPVkSpecSens-';
     cimagename = 'cNPVkSpecSens-';
   }
-  for (i$ = 0, len$ = (ref$ = (i = 0, i < arrayLength, i++)).length; i$ < len$; ++i$) {
-    x$ = ref$[i$];
+  for (i$ = 0; i$ <= arrayLength; ++i$) {
+    i = i$;
     console.log(fixedvals[i]);
     tabheaders += '<li><a href="#tab' + (i + 1) + '">' + fixed_flag + '<br />' + fixedvals[i] + '</a></li>';
     tabcontent += '<div id="tab' + (i + 1) + '"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';
