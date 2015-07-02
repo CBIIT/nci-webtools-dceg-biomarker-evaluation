@@ -59,7 +59,7 @@ def sampleSizeRest():
     #2
     jsonstring=''.join(jsonlist)
     print jsonstring
-    return jsonstring 
+    return json.dumps(jsonstring)
     
 
     #1print "--------------------------------------------------"
