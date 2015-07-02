@@ -120,11 +120,21 @@ random_gen = !->
     randomno = Math.floor (Math.random! * 1000) + 1
     $ \#randomnumber .text randomno
 
+clean_data = (ret) !->
+    ret = JSON.parse JSON.stringify ret
+    
+    $ \#spinner .remove-class \show
+    $ \#spinner .add-class \hide
+    $ \#output_graph .empty!
+    
+    generate_tabs($ \#fixed .val!, $ \#randomnumber .text!)
+    generate_tables ret
+    random_gen!
+  
 $ !->
-
     random_gen!
     disable_calculate!
-
+    
     # Post json to server
     $ \.post .click ->
         $ \#spinner .remove-class \hide
@@ -133,40 +143,36 @@ $ !->
         $ \#message .remove-class \show
         $ \#message .add-class \hide
         
-        $.ajax(
-            type: \POST
-            # Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: \application/json
-            # Encode data as JSON.
-            #async:false,
-            data: JSON.stringify {
-                k: "#{$ \#minInput .val!},#{$ \#maxInput .val!}"
-                sens: trim_spaces($ \#sensitivity_val .text!)
-                spec: trim_spaces($ \#specificity_val .text!)
-                prev: $ \#prevalence .val!
-                N: $ \#n_value .val!
-                unique_id: $ \#randomnumber .text!
-                fixed_flag: $ \#fixed_flag .text!
-            },
-            # This is the type of data expected back from the server.
-            dataType: \json
-            url: \/sampleSizeRest/
-            success: (ret) !->
-                $ \#spinner .remove-class \show
-                $ \#spinner .add-class \hide
-                $ \#output_graph .empty!
-                generate_tabs($ \#fixed .val!, $ \#randomnumber .text!)
-                generate_tables ret
-                random_gen!
-            error: (jqXHR, textStatus, errorThrown) !->
-                $ \#spinner .remove-class \show
-                $ \#spinner .add-class \hide
-                console.log "header: #{jqXHR} \n Status: #{textStatus} \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later."
-                message = "Service Unavailable: #{textStatus} <br>"
-                message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>"
-                $ \#message-content .empty!append message
-                $ \#message .removeClass \hide
-                $ \#message .addClass \show
+        to_value = 10 * 1000
+        
+        input = JSON.stringify(
+            k: "#{$ \#minInput .val!},#{$ \#maxInput .val!}"
+            sens: trim_spaces($ \#sensitivity_val .text!)
+            spec: trim_spaces($ \#specificity_val .text!)
+            prev: $ \#prevalence .val!
+            N: $ \#n_value .val!
+            unique_id: $ \#randomnumber .text!
+            fixed_flag: $ \#fixed_flag .text!
+        )
+        
+        promise = $.ajax(
+            dataType: \json,
+            method: \POST,
+            contentType: 'application/json',
+            url: \/sampleSizeRest/,
+            data: input,
+            timeout: to_value
+        )
+        
+        promise.then(clean_data, (jqXHR, textStatus, errorThrown) !->
+            $ \#spinner .remove-class \show
+            $ \#spinner .add-class \hide
+            console.log "header: #{jqXHR} \n Status: #{textStatus} \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later."
+            message = "Service Unavailable: #{textStatus} <br>"
+            message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>"
+            $ \#message-content .empty!append message
+            $ \#message .removeClass \hide
+            $ \#message .addClass \show
         )
         false
 
@@ -175,7 +181,6 @@ $ !->
         $ \#ss .0.reset!
         $ \#message .remove-class \show
         $ \#message .add-class \hide
-#        reset_code!
 
     $ \#add-test-data .click !->
         example_code!
