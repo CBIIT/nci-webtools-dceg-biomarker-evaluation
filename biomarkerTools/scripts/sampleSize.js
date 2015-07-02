@@ -33,7 +33,7 @@ enable_calculate = function(){
 };
 generate_tabs = function(iterate, randomnumber){
   var fixed_flag, fixedvals, arrayLength, tabheaders, tabcontent, pimagename, cimagename, fixedtype, i$, x$, ref$, i, len$, tabs;
-  fixed_flag = $(fixed_flag + "").text();
+  fixed_flag = $('#fixed_flag').text();
   fixedvals = iterate.split(',');
   arrayLength = fixedvals.length;
   $('#output_graph').empty();
@@ -43,7 +43,7 @@ generate_tabs = function(iterate, randomnumber){
   cimagename = 'cNPVkSensSpec-';
   fixedtype = $('#fixed_flag').text();
   console.log("Fixed flag is " + fixedtype);
-  if (deepEq$(fixedtype, "Sensitivity", '===')) {
+  if (deepEq$(fixedtype, 'Sensitivity', '===')) {
     pimagename = 'PPVkSpecSens-';
     cimagename = 'cNPVkSpecSens-';
   }
@@ -53,31 +53,31 @@ generate_tabs = function(iterate, randomnumber){
     tabheaders += '<li><a href="#tab' + (i + 1) + '">' + fixed_flag + '<br />' + fixedvals[i] + '</a></li>';
     tabcontent += '<div id="tab' + (i + 1) + '"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';
   }
-  tabheaders += "</ul>";
+  tabheaders += '</ul>';
   tabs = $("<div id='tabs'> </div>");
   $('#output_graph').append(tabs);
   $('#tabs').append(tabheaders);
   $('#tabs').append(tabcontent);
-  $(tabs + "").tabs();
+  $('#tabs').tabs();
 };
 change_ff = function(){
-  $('#fixed_flag').text($(fixed_dropdown + " option:selected").text());
+  $('#fixed_flag').text($('#fixed_dropdown option:selected').text());
 };
 lock_fixed_options = function(){
   var contour;
-  contour = $(contour_dropdown + " option:selected").text();
-  $(fixed_dropdown + "").empty();
+  contour = $('#contour_dropdown option:selected').text();
+  $('#fixed_dropdown').empty();
   if (deepEq$(contour, 'Specificity', '===')) {
     $('#fixed_dropdown').append('<option value="specificity" disabled="disabled">Specificity</a>');
     $('#fixed_dropdown').append('<option value="sensitivity" selected>Sensitivity</a>');
-    $('#specificity_val').text($(contour + "")).val();
-    $('#sensitivity_val').text($(fixed + "")).val();
+    $('#specificity_val').text($('#contour')).val();
+    $('#sensitivity_val').text($('#fixed')).val();
   }
   if (deepEq$(contour, 'Sensitivity', '===')) {
-    $(fixed_dropdown + "").append('<option value="specificity" selected>Specificity</a>');
-    $(fixed_dropdown + "").append('<option value="sensitivity" disabled="disabled">Sensitivity</a>');
-    $(sensitivity_val + "").text($(contour + "")).val();
-    $(specificity_val + "").text($(fixed + "")).val();
+    $('#fixed_dropdown').append('<option value="specificity" selected>Specificity</a>');
+    $('#fixed_dropdown').append('<option value="sensitivity" disabled="disabled">Sensitivity</a>');
+    $('#sensitivity_val').text($('#contour')).val();
+    $('#specificity_val').text($('#fixed')).val();
   }
   change_ff();
 };
@@ -102,9 +102,9 @@ example_code = function(){
   $('#message').addClass('hide');
   $('#minInput').val('0');
   $('#maxInput').val('1');
-  $('#contour').val("0.8,0.9,0.95,0.995");
+  $('#contour').val('0.8,0.9,0.95,0.995');
   $('#contour_dropdown').val('sensitivity');
-  $('#fixed').val("0.7,0.8,0.9");
+  $('#fixed').val('0.7,0.8,0.9');
   $('#fixed_dropdown').val('specificity');
   $('#prevalence').val('0.001');
   $('#n_value').val('1');
@@ -114,10 +114,10 @@ example_code = function(){
   enable_calculate();
 };
 reset_code = function(){
-  $('#independent').val("0,1");
-  $(contour + "," + contour_dropdown + "," + fixed + "," + fixed_dropdow + "," + prevalencen + "," + n_value).val('');
+  $('#independent').val('0,1');
+  $('#contour,#contour_dropdown,#fixed,#fixed_dropdow,#prevalencen,#n_value').val('');
   $('#fixed_flag').text('');
-  $(output_graph + ", " + message + ", " + messageContent).empty();
+  $('#output_graph, #message, #message-content').empty();
   $('#message').removeClass('show');
   $('#message').addClass('hide');
   disable_calculate();
@@ -131,7 +131,8 @@ $(function(){
   random_gen();
   disable_calculate();
   $('.post').click(function(){
-    $('#spinner').show();
+    $('#spinner').removeClass('hide');
+    $('#spinner').addClass('show');
     $('#message').removeClass('show');
     $('#message').addClass('hide');
     $.ajax({
@@ -160,7 +161,8 @@ $(function(){
       },
       error: function(jqXHR, textStatus, errorThrown){
         var message;
-        $('#spinner').hide();
+        $('#spinner').removeClass('show');
+        $('#spinner').addClass('hide');
         console.log("header: " + jqXHR + " \n Status: " + textStatus + " \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
         message = "Service Unavailable: " + textStatus + " <br>";
         message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
@@ -175,6 +177,7 @@ $(function(){
 $(function(){
   $('.reset').click(function(){
     $('#ss')[0].reset();
+    reset_code();
   });
   $('#add-test-data').click(function(){
     example_code();
