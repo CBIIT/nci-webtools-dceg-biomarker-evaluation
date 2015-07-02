@@ -3,11 +3,11 @@ source ('./DrawCompRecVark.R')
 
 imageDirectory="./tmp/" 
 
-saveAllSensGraphs <- function(minVal, maxVal, sens, spec, prev, N, uniqueId) {
+saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId) {
   specTabs=1:length(spec)
   allSensData= list()
   for (i in specTabs) {
-    data=saveSensContours(minVal, maxVal, sens, spec[i], prev, N, uniqueId, i)
+    data=saveSensContours(k, sens, spec[i], prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
     allSensData[[tab]]=data
   }
@@ -16,11 +16,11 @@ saveAllSensGraphs <- function(minVal, maxVal, sens, spec, prev, N, uniqueId) {
 }
 
 
-saveAllSpecGraphs <- function(minVal, maxVal, sens, spec, prev, N, uniqueId) {
+saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId) {
   sensTabs=1:length(sens)
   allSpecData= list()
   for (i in sensTabs) {
-    data=saveSpecContours(minVal, maxVal, sens[i], spec, prev, N, uniqueId, i)
+    data=saveSpecContours(k, sens[i], spec, prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
     allSpecData[[tab]]=data
   }
@@ -37,7 +37,7 @@ saveAllSpecGraphs <- function(minVal, maxVal, sens, spec, prev, N, uniqueId) {
 #N=1
 
 #saveSensContours <- function()
-saveSensContours <- function(minVal, maxVal, sens, spec, prev, N, uniqueId, tabvalue)
+saveSensContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
 {
   #k=c(0,1)
   #sens=c(0.8, 0.9, 0.95, 0.995)
@@ -47,14 +47,14 @@ saveSensContours <- function(minVal, maxVal, sens, spec, prev, N, uniqueId, tabv
   #uniqueId=1
   #save the PPV graph
   prepareSaveGraph(imageDirectory, "PPVkSensSpec-", uniqueId, tabvalue)
-  DrawCompRecVarkSensSpec(minVal, maxVal, sens, spec, prev, N)
+  DrawCompRecVarkSensSpec(k, sens, spec, prev, N)
   dev.off()
   
   ppvData=CompRecVarkSensSpec(sens, spec, prev, N)
   
   #save the cNPV graph
   prepareSaveGraph(imageDirectory, "cNPVkSensSpec-", uniqueId, tabvalue)
-  DrawCompRecVarcNPVkSensSpec(minVal, maxVal, sens, spec, prev, N)
+  DrawCompRecVarcNPVkSensSpec(k, sens, spec, prev, N)
   dev.off()
   
   cnpvData=CompRecVarcNPVkSensSpec(sens, spec, prev, N)
@@ -71,18 +71,18 @@ saveSensContours <- function(minVal, maxVal, sens, spec, prev, N, uniqueId, tabv
 #prev=0.001
 #N=1
 
-saveSpecContours <- function(minVal, maxVal, sens, spec, prev, N, uniqueId, tabvalue)
+saveSpecContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
 {
   #save the PPV graph
   prepareSaveGraph(imageDirectory, "PPVkSpecSens-", uniqueId, tabvalue)
-  DrawCompRecVarkSpecSens(minVal, maxVal, spec, sens, prev, N)
+  DrawCompRecVarkSpecSens(k, spec, sens, prev, N)
   dev.off()
   
   ppvData=CompRecVarkSpecSens(spec, sens, prev, N)
     
   #save the cNPV graph
   prepareSaveGraph(imageDirectory, "cNPVkSpecSens-", uniqueId, tabvalue)
-  DrawCompRecVarcNPVkSpecSens(minVal, maxVal, spec, sens, prev, N)
+  DrawCompRecVarcNPVkSpecSens(k, spec, sens, prev, N)
   dev.off();
   
   cnpvData=CompRecVarcNPVkSpecSens(spec, sens, prev, N)
