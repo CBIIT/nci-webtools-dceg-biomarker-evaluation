@@ -29,10 +29,7 @@ def sampleSizeRest():
     data = request.json
     #print(json)
 
-    #k=data["k"].split(',')
-    maxVal=data["max"].split(',')
-    minVal=data["min"].split(',')
-    
+    k=data["k"].split(',')
     prev=data["prev"]
     N=data["N"]
     unique_id=data["unique_id"]
@@ -44,11 +41,9 @@ def sampleSizeRest():
     print "Starting Benchmark"
   
     if fixed_flag == "Specificity":
-    	# jsonrtn = (wrapper.saveAllSensGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-        jsonrtn = (wrapper.saveAllSensGraphs(IntVector(minVal),IntVector(maxVal), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    	jsonrtn = (wrapper.saveAllSensGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
     else:
-        jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(minVal),IntVector(maxVal), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-        # jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+        jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
 
     #end=time.time()
     #print "Seconds"
