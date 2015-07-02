@@ -98,7 +98,7 @@ gulp.task 'template' <[index]> ->
 gulp.task 'index' ->
   pretty = 'yes' if gutil.env.env isnt \production
 
-  gulp.src ['app/jade/**/*.jade','!app/jade/partials{,/**}']
+  gulp.src ['app/jade/*.jade' ]
     .pipe gulp-jade do
       pretty: pretty
       basedir: parentDir
