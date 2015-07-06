@@ -108,12 +108,19 @@ example_code = !->
     enable_calculate!
 
 reset_code = !->
-    $ \#independent .val '0,1'
-    $ '#contour,#contour_dropdown,#fixed,#fixed_dropdow,#prevalencen,#n_value' .val ''
+    $ \#minInput .val "0"
+    $ \#maxInput .val "1"
+    $ '#contour,#fixed,#prevalence,#n_value' .val ''
+    
+    $ '#contour_dropdown' .0.selected-index = 2
+    $ '#fixed_dropdown' .0.selected-index = 1
+    
     $ \#fixed_flag .text ''
     $ '#output_graph, #message, #message-content' .empty!
+    
     $ \#message .removeClass \show
     $ \#message .addClass \hide
+    
     disable_calculate!
 
 random_gen = !->
@@ -183,7 +190,8 @@ $ !->
 
 $ !->
     $ \.reset .click !->
-        $ \#ss .0.reset!
+        #$ \#ss .0.reset!
+        reset_code!
         $ \#message .remove-class \show
         $ \#message .add-class \hide
 
