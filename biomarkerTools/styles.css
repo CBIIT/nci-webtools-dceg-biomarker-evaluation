@@ -25,6 +25,3 @@ body {
 #contentTabs #sampleSize .row {
   margin: 1em auto;
 }
-#contentTabs #sampleSize input[type="number"] {
-  width: 75%;
-}
