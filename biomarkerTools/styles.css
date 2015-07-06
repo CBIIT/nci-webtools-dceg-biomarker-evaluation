@@ -25,3 +25,76 @@ body {
 #contentTabs #sampleSize .row {
   margin: 1em auto;
 }
+#bm_compare .example-image,
+#bm_compare float left,
+#bm_compare .explanation {
+  float: left;
+  padding-left: 15px;
+  width: 600px;
+}
+#bm_compare .reference_row {
+  background-color: #ff0;
+}
+#bm_compare td {
+  text-align: center;
+}
+#bm_compare .top-header {
+  text-align: center;
+  background-color: #444;
+  color: #fff;
+}
+#bm_compare .header {
+  background-color: #aaa;
+  color: #444;
+}
+#bm_compare #output {
+  width: 500px;
+}
+#bm_compare #inputdata {
+  width: 500px;
+}
+#bm_compare h2 {
+  background-color: #aaa;
+  color: #444;
+  padding: 5px;
+}
+#bm_compare .prevalence_label {
+  font-weight: bold;
+  background-color: #aaa;
+  color: #444;
+  padding: 2px 25px 2px 25px;
+}
+#bm_compare .bibliography {
+  width: 950px;
+  clear: both;
+  float: left;
+  margin: 50px;
+}
+#bm_compare .bib-author {
+  float: left;
+}
+#bm_compare .bib-year {
+  float: left;
+}
+#bm_compare .bib-title {
+  float: left;
+  font-style: italic;
+}
+#bm_compare .bib-journal {
+  float: left;
+}
+#bm_compare .bib-ref {
+  float: left;
+}
+#bm_compare .bib-pages {
+  float: left;
+}
+#bm_compare .bib-doi {
+  float: left;
+}
+#bm_compare .bibliography_entry {
+  width: 300px;
+}
+#bm_compare .bibliography_link {
+  width: 50px;
+}
