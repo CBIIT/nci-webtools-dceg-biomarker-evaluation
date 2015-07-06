@@ -1,17 +1,17 @@
 #sampleSize.tab-pane.fade(title="Power and Sample Size Calculation", role='tabpanel')
     h3.title.text-center Power and Sample Size for Biomarker Case Control Studies
     form#ss
-        .col-md-12.well.well-lg
+        .col-md-9.col-md-offset-2.well.well-lg
             #message.col-sm-7.col-sm-offset-2.hide
                 .panel.panel-danger
                     .panel-heading
                     #message-content.panel-body
             .tablevars
                 .row
-                    .col-md-4
+                    .col-md-3
                         label.pull-right Independent Variable
-                    .col-md-8
-                        .col-md-4
+                    .col-md-9
+                        .col-md-6
                             label.pull-right Proportion of Assays in Cases (k)
                         .col-md-6
                             .col-md-6
@@ -19,63 +19,62 @@
                             .col-md-6
                                 label.pull-left Max Value
                 .row
-                    .col-md-4 
+                    .col-md-3
                         label.pull-right
-                    .col-md-8
-                        .col-md-4
+                    .col-md-9
+                        .col-md-6
                         .col-md-6
                             .col-md-6
-                                input#minInput.input-sm.pull-right.col-md-5(type="number", min="0", max="1", step=".0001", title="Must be a floating point number between 0 and 1")
+                                input.form-control#minInput.input-sm.pull-right.col-md-5(type="number", min="0", max="1", step=".0001", title="Must be a floating point number between 0 and 1")
                             .col-md-6
-                                input#maxInput.input-sm.pull-left.col-md-5(type="number", min="0", max="1",  step=".0001", title="Must be a floating point number between 0 and 1")
+                                input.form-control#maxInput.input-sm.pull-left.col-md-5(type="number", min="0", max="1",  step=".0001", title="Must be a floating point number between 0 and 1")
                 .row
-                    .col-md-4                
+                    .col-md-3                
                         label.pull-right(for='contour_dropdown') Contour
-                    .col-md-8
-                        .col-md-4
+                    .col-md-9
+                        .col-md-6
                             select#contour_dropdown.input-sm.pull-right(name='contour_dropdown', onchange='lock_fixed_options();')
                                 option(value='', selected='')
                                 option(value='specificity') Specificity
                                 option(value='sensitivity') Sensitivity
-                        .col-md-4
-                            label(for='contour')
-                                input#contour.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
+                        .col-md-6
+                            label.sr-only(for='contour') Contour
+                            input.form-control#contour.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
                 .row
-                    .col-md-4
+                    .col-md-3
                         label.pull-right(for='fixed_dropdown') Fixed Values
-                    .col-md-8
-                        .col-md-4
+                    .col-md-9
+                        .col-md-6
                             select#fixed_dropdown.input-sm.pull-right(name='fixed_dropdown')
                                 option(value='', selected='')
                                 option(value='specificity', disabled='disabled') Specificity
                                 option(value='sensitivity', disabled='disabled') Sensitivity
-                        .col-md-4
-                            label(for='fixed')
-                                input#fixed.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
+                        .col-md-6
+                            label.sr-only(for='fixed') Fixed
+                            input.form-control#fixed.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
                 .row
-                    .col-md-4
+                    .col-md-3
                         label.pull-right Parameters
-                    .col-md-8
-                        .col-md-4
+                    .col-md-9
+                        .col-md-6
                             label.pull-right(for='prevalence') Prevalence
-                        .col-md-4
-                            input#prevalence.fontnormal.input-sm.pull-left.col-md-5(type='number', size='10', value='0.001',step="0.001", title='A floating point number between 0 and 1', required='')
+                        .col-md-6
+                            input.form-control#prevalence.fontnormal.input-sm.pull-left.col-md-5(type='number', size='10',min="0",max="1", value='0.001',step="0.001", title='A floating point number between 0 and 1', required='')
                 .row
-                    .col-md-4
-                    .col-md-8
-                        .col-md-4
+                    .col-md-3
+                    .col-md-9
+                        .col-md-6
                             label.pull-right(for='n_value') Sample Size
-                        .col-md-4
-                            label(for='n_value')
-                                input#n_value.fontnormal.input-sm.pull-left(type='text', size='10', value='1', pattern='(^[0-9]$)+', title='Number must be an integer', required='')
+                        .col-md-6
+                            input.form-control#n_value.fontnormal.input-sm.pull-left(type='text', size='10', value='1', min="1" pattern='(^[0-9]$)+', title='Number must be an integer', required='')
                 .row
                     .col-md-4.pull-left
                         .col-md-4
                             button.post(type='submit') Calculate
                         .col-md-4
-                            button.reset Reset
-                    .col-md-4.pull-right
-                        .col-md-4.example
+                            button.reset(type='reset') Reset
+                    .pull-right
+                        .example
                             a#add-test-data(title='Populate variables with working example', href='#') Example
     div
         .hide
