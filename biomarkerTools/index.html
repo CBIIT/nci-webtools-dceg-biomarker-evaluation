@@ -59,7 +59,7 @@
             <div id="sampleSize" title="Power and Sample Size Calculation" role="tabpanel" class="tab-pane fade">
               <h3 class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
               <form id="ss">
-                <div class="col-md-12 well well-lg">
+                <div class="col-md-9 col-md-offset-2 well well-lg">
                   <div id="message" class="col-sm-7 col-sm-offset-2 hide">
                     <div class="panel panel-danger">
                       <div class="panel-heading"></div>
@@ -68,11 +68,11 @@
                   </div>
                   <div class="tablevars">
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label class="pull-right">Independent Variable</label>
                       </div>
-                      <div class="col-md-8">
-                        <div class="col-md-4">
+                      <div class="col-md-9">
+                        <div class="col-md-6">
                           <label class="pull-right">Proportion of Assays in Cases (k)</label>
                         </div>
                         <div class="col-md-6">
@@ -86,82 +86,78 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4"> 
+                      <div class="col-md-3">
                         <label class="pull-right"></label>
                       </div>
-                      <div class="col-md-8">
-                        <div class="col-md-4"></div>
+                      <div class="col-md-9">
+                        <div class="col-md-6"></div>
                         <div class="col-md-6">
                           <div class="col-md-6">
-                            <input id="minInput" type="number" min="0" max="1" step=".0001" title="Must be a floating point number between 0 and 1" class="input-sm pull-right col-md-5">
+                            <input id="minInput" type="number" min="0" max="1" step=".0001" title="Must be a floating point number between 0 and 1" class="form-control input-sm pull-right col-md-5">
                           </div>
                           <div class="col-md-6">
-                            <input id="maxInput" type="number" min="0" max="1" step=".0001" title="Must be a floating point number between 0 and 1" class="input-sm pull-left col-md-5">
+                            <input id="maxInput" type="number" min="0" max="1" step=".0001" title="Must be a floating point number between 0 and 1" class="form-control input-sm pull-left col-md-5">
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">               
+                      <div class="col-md-3">               
                         <label for="contour_dropdown" class="pull-right">Contour</label>
                       </div>
-                      <div class="col-md-8">
-                        <div class="col-md-4">
+                      <div class="col-md-9">
+                        <div class="col-md-6">
                           <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="input-sm pull-right">
                             <option value="" selected=""></option>
                             <option value="specificity">Specificity</option>
                             <option value="sensitivity">Sensitivity</option>
                           </select>
                         </div>
-                        <div class="col-md-4">
-                          <label for="contour">
-                            <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal input-sm pull-left">
-                          </label>
+                        <div class="col-md-6">
+                          <label for="contour" class="sr-only">Contour</label>
+                          <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="form-control fontnormal input-sm pull-left">
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label for="fixed_dropdown" class="pull-right">Fixed Values</label>
                       </div>
-                      <div class="col-md-8">
-                        <div class="col-md-4">
+                      <div class="col-md-9">
+                        <div class="col-md-6">
                           <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm pull-right">
                             <option value="" selected=""></option>
                             <option value="specificity" disabled="disabled">Specificity</option>
                             <option value="sensitivity" disabled="disabled">Sensitivity</option>
                           </select>
                         </div>
-                        <div class="col-md-4">
-                          <label for="fixed">
-                            <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal input-sm pull-left">
-                          </label>
+                        <div class="col-md-6">
+                          <label for="fixed" class="sr-only">Fixed</label>
+                          <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="form-control fontnormal input-sm pull-left">
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label class="pull-right">Parameters</label>
                       </div>
-                      <div class="col-md-8">
-                        <div class="col-md-4">
+                      <div class="col-md-9">
+                        <div class="col-md-6">
                           <label for="prevalence" class="pull-right">Prevalence</label>
                         </div>
-                        <div class="col-md-4">
-                          <input id="prevalence" type="number" size="10" value="0.001" step="0.001" title="A floating point number between 0 and 1" required="" class="fontnormal input-sm pull-left col-md-5">
+                        <div class="col-md-6">
+                          <input id="prevalence" type="number" size="10" min="0" max="1" value="0.001" step="0.001" title="A floating point number between 0 and 1" required="" class="form-control fontnormal input-sm pull-left col-md-5">
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4"></div>
-                      <div class="col-md-8">
-                        <div class="col-md-4">
+                      <div class="col-md-3"></div>
+                      <div class="col-md-9">
+                        <div class="col-md-6">
                           <label for="n_value" class="pull-right">Sample Size</label>
                         </div>
-                        <div class="col-md-4">
-                          <label for="n_value">
-                            <input id="n_value" type="text" size="10" value="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="fontnormal input-sm pull-left">
-                          </label>
+                        <div class="col-md-6">
+                          <input id="n_value" type="text" size="10" value="1" min="1" pattern="(^[0-9]$)+" title="Number must be an integer" required="" class="form-control fontnormal input-sm pull-left">
                         </div>
                       </div>
                     </div>
@@ -171,11 +167,11 @@
                           <button type="submit" class="post">Calculate</button>
                         </div>
                         <div class="col-md-4">
-                          <button class="reset">Reset</button>
+                          <button type="reset" class="reset">Reset</button>
                         </div>
                       </div>
-                      <div class="col-md-4 pull-right">
-                        <div class="col-md-4 example"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
+                      <div class="pull-right">
+                        <div class="example"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
                       </div>
                     </div>
                   </div>
