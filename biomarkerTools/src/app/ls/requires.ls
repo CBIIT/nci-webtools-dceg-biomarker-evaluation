@@ -5,6 +5,7 @@ requirejs.config(
     \jquery.ui : "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min"
     bootstrap : "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min"
     sampleSize: \sampleSize
+    bm_compare: \bm_compare
     glossary : '/common/js/meansToRiskGlossary'
     app : \app
     routes : \routes
@@ -18,7 +19,7 @@ requirejs.config(
     sampleSize :
       deps: <[ jquery.ui bootstrap ]>
     routes :
-      deps : <[ bootstrap glossary ]>
+      deps : <[ bootstrap glossary ]>  
 )
 
 require <[ routes ]> ->
