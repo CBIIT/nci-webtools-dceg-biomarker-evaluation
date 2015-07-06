@@ -114,8 +114,11 @@ example_code = function(){
   enable_calculate();
 };
 reset_code = function(){
-  $('#independent').val('0,1');
-  $('#contour,#contour_dropdown,#fixed,#fixed_dropdow,#prevalencen,#n_value').val('');
+  $('#minInput').val("0");
+  $('#maxInput').val("1");
+  $('#contour,#fixed,#prevalence,#n_value').val('');
+  $('#contour_dropdown')[0].selectedIndex = 2;
+  $('#fixed_dropdown')[0].selectedIndex = 1;
   $('#fixed_flag').text('');
   $('#output_graph, #message, #message-content').empty();
   $('#message').removeClass('show');
@@ -184,7 +187,7 @@ $(function(){
 });
 $(function(){
   $('.reset').click(function(){
-    $('#ss')[0].reset();
+    reset_code();
     $('#message').removeClass('show');
     $('#message').addClass('hide');
   });
