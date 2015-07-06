@@ -4,7 +4,7 @@ generate_tables = function(jsonrtn){
   for (i$ = 0, len$ = jsonrtn.length; i$ < len$; ++i$) {
     i = jsonrtn[i$];
     console.log(i);
-    tablesvar = "<TABLE class='table_data'><TBODY>";
+    tablesvar = "<table class='table_data'><TBODY>";
     tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
     ppvtabledata = tablesvar;
     cnpvtabledata = tablesvar;
@@ -19,8 +19,8 @@ generate_tables = function(jsonrtn){
       cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n]["Optimal k"] + "</TD>";
       cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5'] + "</TD></TR>";
     }
-    ppvtabledata += "</TBODY></TABLE>";
-    cnpvtabledata += "</TBODY></TABLE>";
+    ppvtabledata += "</TBODY></table>";
+    cnpvtabledata += "</TBODY></table>";
     $("#" + i + "ppvdata").append(ppvtabledata);
     $("#" + i + "cnpvdata").append(cnpvtabledata);
   }
@@ -32,7 +32,7 @@ enable_calculate = function(){
   $('.post').removeAttr('disabled');
 };
 generate_tabs = function(iterate, randomnumber){
-  var fixed_flag, fixedvals, arrayLength, tabheaders, tabcontent, pimagename, cimagename, fixedtype, i$, i, tabs;
+  var fixed_flag, fixedvals, arrayLength, tabheaders, tabcontent, pimagename, cimagename, fixedtype, i$, to$, i, tabs;
   fixed_flag = $('#fixed_flag').text();
   fixedvals = iterate.split(',');
   arrayLength = fixedvals.length;
@@ -47,11 +47,11 @@ generate_tabs = function(iterate, randomnumber){
     pimagename = 'PPVkSpecSens-';
     cimagename = 'cNPVkSpecSens-';
   }
-  for (i$ = 0; i$ <= arrayLength; ++i$) {
+  for (i$ = 0, to$ = arrayLength - 1; i$ <= to$; ++i$) {
     i = i$;
     console.log(fixedvals[i]);
     tabheaders += '<li><a href="#tab' + (i + 1) + '">' + fixed_flag + '<br />' + fixedvals[i] + '</a></li>';
-    tabcontent += '<div id="tab' + (i + 1) + '"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="/sampleSize/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';
+    tabcontent += '<div id="tab' + (i + 1) + '"><table><TR><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR><TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></table></TD><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></table></TD></TR></table></div>';
   }
   tabheaders += '</ul>';
   tabs = $("<div id='tabs'> </div>");
@@ -140,7 +140,7 @@ $(function(){
   random_gen();
   disable_calculate();
   $('.post').click(function(){
-    var to_value, input, promise;
+    var to_value, input, service, promise;
     $('#spinner').removeClass('hide');
     $('#spinner').addClass('show');
     $('#message').removeClass('show');
@@ -155,11 +155,16 @@ $(function(){
       unique_id: $('#randomnumber').text(),
       fixed_flag: $('#fixed_flag').text()
     });
+    if (window.location.hostname === 'localhost') {
+      service = 'scripts/test-data.json';
+    } else {
+      service = '/sampleSizeRest/';
+    }
     promise = $.ajax({
       dataType: 'json',
       method: 'POST',
       contentType: 'application/json',
-      url: '/sampleSizeRest/',
+      url: service,
       data: input,
       timeout: to_value
     });
