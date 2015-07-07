@@ -227,7 +227,7 @@ function isNumberBetweenZeroAndOne(n)
     
 function refreshGraph(drawgraph)
     if drawgraph == 1
-        graph_file = "./tmp/SensSpecLR-#{uniqueKey}.png?"
+        graph_file = "../bc/tmp/SensSpecLR-#{uniqueKey}.png?"
     else graph_file = "/common/images/fail-message.jpg?"
     d = new Date!
     $ \#graph .attr \src, graph_file+d.getTime!
