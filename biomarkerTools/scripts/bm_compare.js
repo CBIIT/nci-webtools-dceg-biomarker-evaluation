@@ -233,7 +233,7 @@ function isNumberBetweenZeroAndOne(n){
 function refreshGraph(drawgraph){
   var graph_file, d;
   if (drawgraph === 1) {
-    graph_file = "./tmp/SensSpecLR-" + uniqueKey + ".png?";
+    graph_file = "../bc/tmp/SensSpecLR-" + uniqueKey + ".png?";
   } else {
     graph_file = "/common/images/fail-message.jpg?";
   }
