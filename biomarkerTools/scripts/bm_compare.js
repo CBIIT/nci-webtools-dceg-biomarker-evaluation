@@ -1,9 +1,4 @@
-var oTable, outputTable, giRedraw, aData, numberOfRows, uniqueKey, old_value, editing, row, col, validPrevValue;
-oTable = null;
-outputTable = null;
-giRedraw = false;
-aData = null;
-numberOfRows = null;
+var uniqueKey, old_value, editing, row, col, validPrevValue;
 uniqueKey = null;
 old_value = null;
 editing = false;
@@ -44,7 +39,7 @@ function bind_reference_row(){
 }
 function bind_input(){
   $('.input').click(function(e){
-    var row, col, val, old_value, inp, editing;
+    var row, col, val, inp;
     if (!editing) {
       row = $(this).attr('row');
       col = $(this).attr('col');
@@ -74,7 +69,6 @@ function bind_text_change(inp){
   });
 }
 function change_value(field, new_value){
-  var editing;
   if (!new_value || new_value === '') {
     field.parent().empty().text(old_value);
     editing = false;
@@ -128,7 +122,7 @@ function remove_row(el){
   }
 }
 function do_calculation(){
-  var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, uniqueKey, hostname;
+  var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, hostname;
   refSens = "";
   refSpec = "";
   sensArray = "";
