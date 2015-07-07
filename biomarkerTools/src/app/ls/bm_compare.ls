@@ -1,8 +1,3 @@
-oTable = null
-outputTable = null
-giRedraw = false
-aData = null
-numberOfRows = null
 uniqueKey = null
 old_value = null
 editing = false
@@ -47,13 +42,13 @@ function bind_input
             row = $ @ .attr \row
             col = $ @ .attr \col
             val = $ @ .text!
-            old_value = val;
+            old_value := val
             inp = $ "<INPUT id='new_value' type='text' size='5' class='new_value' value=''> </INPUT>"
             $ @ .empty!
             $ @ .append inp
             bind_text_change inp
             inp.focus!
-            editing = true
+            editing := true
     return
 
 function bind_text_change(inp)
@@ -71,14 +66,14 @@ function bind_text_change(inp)
 function change_value(field, new_value)
     if !new_value || new_value == ''
         field.parent!empty!text old_value
-        editing = false
+        editing := false
     if isNumberBetweenZeroAndOne(new_value)
         field.parent!empty!text new_value
-        editing = false
+        editing := false
     else
       alert "Valid Values are between 0 and 1 inclusive, you tried: #{new_value}"
       field.parent!empty!text old_value
-      editing = false
+      editing := false
     return
     
 function clear_reference_row
@@ -174,7 +169,7 @@ function do_calculation
         alert "Error with input data.  Not all values are numbers between Zero and One"
         return
         
-    uniqueKey = (new Date!).getTime!
+    uniqueKey := (new Date!).getTime!
     hostname = window.location.hostname
     
     if validPrevValue
