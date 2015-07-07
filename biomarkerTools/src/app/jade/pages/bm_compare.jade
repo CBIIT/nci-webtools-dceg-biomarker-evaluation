@@ -45,7 +45,7 @@
             br
             br
       .table-and-graph
-        .pull-left
+        .col-md-6
           // Left Side
           table#inputdata
             thead
@@ -102,11 +102,9 @@
                   input#prevalence(type='text')
           button#calculate_button Calculate
           table#output
-      // table-and-graph
-      // Left Side
-      .pull-left
-        // Right Side
-        img.pull-right#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
+        .col-md-6
+            // Right Side
+            img#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
       .bibliography
         p
           b References:
@@ -115,21 +113,16 @@
           i
             | Comparing Two Medical Tests
             | When Results of Reference Standard Are Unavailable for Those
-            | Negative via Both Tests,
-          |  Journal of Biopharmaceutical Statistics,
-          | 					18:1, 145-166, 
+            | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, 
           a(target='_blank', href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670')
             | DOI: 10.1080/10543400701668308
         p
           b Where do I go for technical support?
           |  Please send an 
           a(href='mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Comparison Tool Support', title='Biomarker Comparision Tool Technical Support') e-mail
-          |  to
-          | 					our technical support team.
+          |  to our technical support team.
         p
           b What browsers does the web tool support?
-          |  The web tool has
-          | 					been tested to work with Internet Explorer versions 10, 9 and 8,
-          | 					Firefox and Chrome.
+          |  The web tool has been tested to work with Internet Explorer versions 10, 9 and 8, Firefox and Chrome.
   // columns float END
 // main
