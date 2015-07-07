@@ -325,7 +325,7 @@ function createOutputTable(jsondata){
   $('#output').append(header_row);
   for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
     each = jsondata[i$];
-    jsonToCell(jsondata[each]);
+    jsonToCell(each);
   }
 }
 function createOutputTableWithPrev(jsondata){
