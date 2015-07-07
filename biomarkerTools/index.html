@@ -57,9 +57,9 @@
                 likelihood ratio negative (LR-) for a reference test with indicated
                 sensitivity and specificity pairs (see the example plot below). The
                 likelihood ratio contours define four areas: 
-                <div class="center">
-                  <div class="example-image"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
-                  <div class="explanation">
+                <div class="row">
+                  <div class="col-md-5"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
+                  <div class="col-md-5 explanation">
                     <ul id="ulForLRAreas">
                       <li class="liForLRArea">
                         Area A shows combinations of
@@ -76,15 +76,15 @@
                         predictive value (cNPV).
                       </li>
                       <li class="liForLRArea">
-                        Area C shows combinations of
-                        sensitivity and specificity with lower LR+ and higher LR-
-                        compared to the reference test. This corresponds to a lower
-                        positive predictive value (PPV) and lower complement of the
+                        Area C shows combinations of sensitivity and specificity 
+                        with lower LR+ and higher LR- compared to the reference 
+                        test. This corresponds to a lower positive
+                        predictive value (PPV) and lower complement of the
                         negative predictive value (cNPV).
                       </li>
                       <li class="liForLRArea">
-                        Area D shows combinations of
-                        sensitivity and specificity with lower LR+ and lower LR- compared
+                        Area D shows combinations of sensitivity and 
+                        specificity with lower LR+ and lower LR- compared
                         to the reference test. This corresponds to a lower positive
                         predictive value (PPV) and higher complement of the negative
                         predictive value (cNPV)
@@ -97,88 +97,84 @@
                       estimated in one population will be the same in another
                       population, whenever sensitivities and specificities are the same
                       in the 2 populations, even when disease prevalences are much
-                      different. To calculate PPV and cNPV, provide a prevalence value.<br><br>
+                      different. To calculate PPV and cNPV, provide a prevalence value.
                     </p>
                   </div>
                 </div>
-                <div class="table-and-graph">
-                  <div class="col-md-6">
-                    <!-- Left Side-->
-                    <table id="inputdata">
-                      <thead>
-                        <tr class="non-data-row">
-                          <th colspan="5" class="top-header">Input Information</th>
-                        </tr>
-                        <tr class="non-data-row">
-                          <th class="header">#</th>
-                          <th class="header">Reference</th>
-                          <th class="header">
-                            <div id="Sens" data-term="Sens" class="termToDefine">Sensitivity</div>
-                            <div id="SensDefinition" class="popupDefinition"></div>
-                          </th>
-                          <th class="header">
-                            <div id="Spec" data-term="Spec" class="termToDefine">Specificity</div>
-                            <div id="SpecDefinition" class="popupDefinition"></div>
-                          </th>
-                          <th class="header"> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr row="0" class="reference_row">
-                          <th>1</th>
-                          <td row="0" col="reference" class="reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></td>
-                          <td row="0" col="sensitivity" class="input sensitivity">0.8</td>
-                          <td row="0" col="specificity" class="input specificity">0.7</td>
-                          <td> </td>
-                        </tr>
-                        <tr row="1">
-                          <th>2</th>
-                          <td row="1" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                          <td row="1" col="sensitivity" class="input sensitivity">0.85</td>
-                          <td row="1" col="specificity" class="input specificity">0.68</td>
-                          <td>
-                            <button class="remove_row_button">Remove</button>
-                          </td>
-                        </tr>
-                        <tr row="2">
-                          <th>3</th>
-                          <td row="2" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                          <td row="2" col="sensitivity" class="input sensitivity">0.9</td>
-                          <td row="2" col="specificity" class="input specificity">0.5</td>
-                          <td>
-                            <button class="remove_row_button">Remove</button>
-                          </td>
-                        </tr>
-                        <tr class="non-data-row">
-                          <th> </th>
-                          <td> </td>
-                          <td> </td>
-                          <td> </td>
-                          <td>
-                            <button id="new_row_button">New Row</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table>
-                      <tr>
-                        <td class="prevalence_label">
-                          <div id="DP" data-term="DP" class="termToDefine">Prevalence</div>
-                          <div id="DPDefinition" class="popupDefinition"></div>
-                        </td>
+                <div class="col-md-6 table-and-graph">
+                  <!-- Left Side-->
+                  <table id="inputdata">
+                    <thead>
+                      <tr class="non-data-row">
+                        <th colspan="5" class="top-header">Input Information</th>
+                      </tr>
+                      <tr class="non-data-row">
+                        <th class="header">#</th>
+                        <th class="header">Reference</th>
+                        <th class="header">
+                          <div id="Sens" data-term="Sens" class="termToDefine">Sensitivity</div>
+                          <div id="SensDefinition" class="popupDefinition"></div>
+                        </th>
+                        <th class="header">
+                          <div id="Spec" data-term="Spec" class="termToDefine">Specificity</div>
+                          <div id="SpecDefinition" class="popupDefinition"></div>
+                        </th>
+                        <th class="header"> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr row="0" class="reference_row">
+                        <th>1</th>
+                        <td row="0" col="reference" class="reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></td>
+                        <td row="0" col="sensitivity" class="input sensitivity">0.8</td>
+                        <td row="0" col="specificity" class="input specificity">0.7</td>
+                        <td> </td>
+                      </tr>
+                      <tr row="1">
+                        <th>2</th>
+                        <td row="1" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
+                        <td row="1" col="sensitivity" class="input sensitivity">0.85</td>
+                        <td row="1" col="specificity" class="input specificity">0.68</td>
                         <td>
-                          <label for="prevalence">
-                            <input id="prevalence" type="text">
-                          </label>
+                          <button class="remove_row_button">Remove</button>
                         </td>
                       </tr>
-                    </table>
-                    <button id="calculate_button">Calculate</button>
-                    <table id="output"></table>
-                  </div>
-                  <div class="col-md-6">
-                    <!-- Right Side--><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400">
-                  </div>
+                      <tr row="2">
+                        <th>3</th>
+                        <td row="2" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
+                        <td row="2" col="sensitivity" class="input sensitivity">0.9</td>
+                        <td row="2" col="specificity" class="input specificity">0.5</td>
+                        <td>
+                          <button class="remove_row_button">Remove</button>
+                        </td>
+                      </tr>
+                      <tr class="non-data-row">
+                        <th> </th>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                          <button id="new_row_button">New Row</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table>
+                    <tr>
+                      <td class="prevalence_label">
+                        <div id="DP" data-term="DP" for="prevalence" class="termToDefine">Prevalence</div>
+                        <div id="DPDefinition" class="popupDefinition"></div>
+                      </td>
+                      <td>
+                        <input id="prevalence" type="text">
+                      </td>
+                    </tr>
+                  </table>
+                  <button id="calculate_button">Calculate</button>
+                  <table id="output"></table>
+                </div>
+                <div class="col-md-6">
+                  <!-- Right Side--><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail">
                 </div>
                 <div class="bibliography">
                   <p><b>References:</b></p>
