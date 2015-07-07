@@ -1,3 +1,15 @@
+oTable = null
+outputTable = null
+giRedraw = false
+aData = null
+numberOfRows = null
+uniqueKey = null
+old_value = null
+editing = false
+row = null
+col = null
+validPrevValue = false
+
 $ document .ready !->
   bind_reference_row!
   bind_input!
