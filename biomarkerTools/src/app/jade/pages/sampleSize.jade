@@ -76,13 +76,14 @@
                     .pull-right
                         .example
                             a#add-test-data(title='Populate variables with working example', href='#') Example
+                .row
+                    p#spinner.hide.col-md-offset-4
+                        i.fa.fa-spinner.fa-spin.fa-2x
+                        span#spinnerText Calculating
     .col-md-12
         .hide
             #specificity_val.dom_valref
             #sensitivity_val.dom_valref
             #fixed_flag.dom_valref
             #randomnumber.dom_valref
-        p#spinner.hide
-            i.fa.fa-spinner.fa-spin.fa-2x
-            span#spinnerText Calculating
         #output_graph
