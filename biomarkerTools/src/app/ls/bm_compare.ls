@@ -247,7 +247,7 @@ function set_data(dt)
     return
     
 function jsonToCell(obj)
-    for key in obj
+    for key, value of obj
         if obj.hasOwnProperty(key)
             value = obj[key]
         if key == \Specificity 
