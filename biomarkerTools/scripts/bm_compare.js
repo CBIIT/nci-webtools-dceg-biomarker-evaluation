@@ -116,9 +116,9 @@ function remove_row(el){
   }
 }
 function do_calculation(){
-  var refSpec, refSens, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, uniqueKey, hostname;
-  refSpec = "";
+  var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, uniqueKey, hostname;
   refSens = "";
+  refSpec = "";
   sensArray = "";
   specArray = "";
   prev = "";
@@ -135,7 +135,7 @@ function do_calculation(){
   }
   hasNoErrors = true;
   $('#inputdata > tbody > tr').each(function(i, el){
-    var refSens, refSpec, hasNoErrors, labels;
+    var hasNoErrors;
     if ($(this).hasClass('reference_row')) {
       refSens = parseFloat($(this).find('.sensitivity').text());
       refSpec = parseFloat($(this).find('.specificity').text());
@@ -150,7 +150,7 @@ function do_calculation(){
       specArrayWithRef += parseFloat($(this).find('.specificity').text()) + ",";
       hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity').text()));
       hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity').text()));
-      labels = labels + ((i + 1) + ",");
+      labels += (i + 1) + ",";
     }
   });
   sensArray = sensArray.slice(0, -1);
