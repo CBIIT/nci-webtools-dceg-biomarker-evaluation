@@ -1,3 +1,15 @@
+var oTable, outputTable, giRedraw, aData, numberOfRows, uniqueKey, old_value, editing, row, col, validPrevValue;
+oTable = null;
+outputTable = null;
+giRedraw = false;
+aData = null;
+numberOfRows = null;
+uniqueKey = null;
+old_value = null;
+editing = false;
+row = null;
+col = null;
+validPrevValue = false;
 $(document).ready(function(){
   bind_reference_row();
   bind_input();
