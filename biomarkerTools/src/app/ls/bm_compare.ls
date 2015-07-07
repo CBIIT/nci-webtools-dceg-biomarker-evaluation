@@ -312,7 +312,7 @@ function createOutputTable(jsondata)
     $ \#output .append header_row
     
     for each in jsondata
-        jsonToCell jsondata[each]
+        jsonToCell each
     
     return
     
