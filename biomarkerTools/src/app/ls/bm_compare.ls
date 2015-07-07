@@ -111,8 +111,8 @@ function remove_row(el)
     return
     
 function do_calculation
-    refSpec = ""
     refSens = ""
+    refSpec = ""
     sensArray = ""
     specArray = ""
     prev = ""
@@ -133,8 +133,8 @@ function do_calculation
     
     $ '#inputdata > tbody > tr' .each (i, el) !->
         if $ @ .has-class \reference_row
-            refSens = parseFloat( $ @ .find \.sensitivity .text!)
-            refSpec = parseFloat( $ @ .find \.specificity .text!)
+            refSens := parseFloat( $ @ .find \.sensitivity .text!)
+            refSpec := parseFloat( $ @ .find \.specificity .text!)
             sensArrayWithRef += "#{refSens},"
             specArrayWithRef += "#{refSpec},"
 
@@ -149,7 +149,7 @@ function do_calculation
             specArrayWithRef += "#{parseFloat($ @ .find \.specificity .text!)},"
             hasNoErrors = isNumberBetweenZeroAndOne parseFloat( $ @ .find \.sensitivity .text!)
             hasNoErrors = isNumberBetweenZeroAndOne parseFloat( $ @ .find \.specificity .text!)
-            labels = labels + "#{(i+1)},"
+            labels += "#{i + 1},"
             
     sensArray = sensArray.slice 0, -1
     specArray = specArray.slice 0, -1
@@ -158,7 +158,7 @@ function do_calculation
     
     labels = labels.slice 0, -1
 
-    if  !hasNoErrors
+    if !hasNoErrors
         alert "Error with input data.  Not all values are numbers between Zero and One"
         return
         
@@ -219,7 +219,7 @@ function isNumberBetweenZeroAndOne(n)
     
 function refreshGraph(drawgraph)
     if drawgraph == 1
-        graph_file = "./tmp/SensSpecLR-"+uniqueKey+".png?"
+        graph_file = "./tmp/SensSpecLR-#{uniqueKey}.png?"
     else graph_file = "/common/images/fail-message.jpg?"
     d = new Date!
     $ \#graph .attr \src, graph_file+d.getTime!
@@ -266,15 +266,15 @@ function jsonToCellWithPrev(obj)
             if key == \Specificity 
                 Specificity = value
             else if key == \Sensitivity
-                Sensitivity=value;
+                Sensitivity = value
             else if key== \LRplus
-                LRplus=value;
+                LRplus = value
             else if key == \LRminus
-                LRminus=value;
+                LRminus = value
             else if key == \PPV
-                PPV = value;
+                PPV = value
             else if key == \cNPV
-                cNPV=value;
+                cNPV = value
 
     new_row = $ "<tr>"
     new_row.append "<td>#{Sensitivity}</td>"
