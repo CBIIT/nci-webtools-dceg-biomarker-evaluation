@@ -316,7 +316,7 @@ function createOutputTable(jsondata){
   $('#output').empty();
   top_header_row = $("<tr>");
   top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
-  $(output + "").append(top_header_row);
+  $('#output').append(top_header_row);
   header_row = $("<tr>");
   header_row.append("<th class='header'><div class='termToDefine' id='Sens2' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens2Definition'></div></th>");
   header_row.append("<th class='header'><div class='termToDefine' id='Spec2' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec2Definition'></div></th>");
@@ -330,7 +330,7 @@ function createOutputTable(jsondata){
 }
 function createOutputTableWithPrev(jsondata){
   var top_header_row, header_row, i$, len$, each;
-  $(output + "").empty();
+  $('#output').empty();
   top_header_row = $("<tr>");
   top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
   $('#output').append(top_header_row);
