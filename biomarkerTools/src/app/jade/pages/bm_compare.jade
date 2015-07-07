@@ -5,10 +5,10 @@
       | likelihood ratio negative (LR-) for a reference test with indicated
       | sensitivity and specificity pairs (see the example plot below). The
       | likelihood ratio contours define four areas: 
-      div.center
-        .example-image
+      .row
+        .col-md-5
           img(src='images/exampleLRPlot.jpg', alt='sample LR plot', height='350')
-        .explanation
+        .col-md-5.explanation
           ul#ulForLRAreas
             li.liForLRArea
               | Area A shows combinations of
@@ -23,29 +23,24 @@
               | predictive value (PPV) and higher complement of the negative
               | predictive value (cNPV).
             li.liForLRArea
-              | Area C shows combinations of
-              | sensitivity and specificity with lower LR+ and higher LR-
-              | compared to the reference test. This corresponds to a lower
-              | positive predictive value (PPV) and lower complement of the
+              | Area C shows combinations of sensitivity and specificity 
+              | with lower LR+ and higher LR- compared to the reference 
+              | test. This corresponds to a lower positive
+              | predictive value (PPV) and lower complement of the
               | negative predictive value (cNPV).
-            li.liForLRArea
-              | Area D shows combinations of
-              | sensitivity and specificity with lower LR+ and lower LR- compared
+            li.liForLRArea Area D shows combinations of sensitivity and 
+              | specificity with lower LR+ and lower LR- compared
               | to the reference test. This corresponds to a lower positive
               | predictive value (PPV) and higher complement of the negative
               | predictive value (cNPV)
-          p
-            | LR+ and LR- measures provide test-specific characteristics of risk
+          p LR+ and LR- measures provide test-specific characteristics of risk
             | stratification that yield estimates of absolute risk (PPV and NPV)
             | when multiplied with the specific disease prevalence. LR+ and LR-
             | estimated in one population will be the same in another
             | population, whenever sensitivities and specificities are the same
             | in the 2 populations, even when disease prevalences are much
             | different. To calculate PPV and cNPV, provide a prevalence value.
-            br
-            br
-      .table-and-graph
-        .col-md-6
+      .col-md-6.table-and-graph
           // Left Side
           table#inputdata
             thead
@@ -86,25 +81,24 @@
                 td
                   button.remove_row_button Remove
               tr.non-data-row
-                th  
-                td  
-                td  
-                td  
+                th 
+                td 
+                td 
+                td 
                 td
                   button#new_row_button New Row
           table
             tr
               td.prevalence_label
-                #DP.termToDefine(data-term='DP') Prevalence
+                #DP.termToDefine(data-term='DP',for='prevalence') Prevalence
                 #DPDefinition.popupDefinition
               td
-                label(for='prevalence')
-                  input#prevalence(type='text')
+                input#prevalence(type='text')
           button#calculate_button Calculate
           table#output
         .col-md-6
             // Right Side
-            img#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
+            img.thumbnail#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
       .bibliography
         p
           b References:
