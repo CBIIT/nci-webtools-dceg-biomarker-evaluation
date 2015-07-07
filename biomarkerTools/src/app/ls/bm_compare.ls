@@ -301,7 +301,7 @@ function createOutputTable(jsondata)
     top_header_row = $ "<tr>"
     top_header_row.append "<th class='top-header' colspan='7'>Output Data</th>"
     
-    $ "#output" .append top_header_row
+    $ \#output .append top_header_row
     header_row = $ "<tr>"
     
     header_row.append "<th class='header'><div class='termToDefine' id='Sens2' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens2Definition'></div></th>"
@@ -317,7 +317,7 @@ function createOutputTable(jsondata)
     return
     
 function createOutputTableWithPrev(jsondata)
-    $ "#output" .empty!
+    $ \#output .empty!
     top_header_row = $ "<tr>"
     top_header_row.append "<th class='top-header' colspan='7'>Output Data</th>"
     $ \#output .append top_header_row
