@@ -1,24 +1,29 @@
 generate_tables = (jsonrtn) !->
-    for i in jsonrtn
-        console.log i
-        tablesvar = "<table class='table_data'><TBODY>"
-        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>"
+    for key, kValue of jsonrtn
+        console.log key
+        tablesvar = "<table class='table_data table-condensed table-striped table-bordered'><TBODY>"
+        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH>"
+        tablesvar += "<TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>"
         ppvtabledata = tablesvar
         cnpvtabledata = tablesvar
-        for n from 0 to jsonrtn[i].PPVData.length by 1
+        
+        for j, jValue of kValue.PPVData
             console.log \PPVData
-            ppvtabledata += "<TR><TD>" + jsonrtn[i].PPVData[n].Sensitivity + "</TD>"
-            ppvtabledata += "<TD>" + jsonrtn[i].PPVData[n]["Optimal k"] + "</TD>"
-            ppvtabledata += "<TD>" + jsonrtn[i].PPVData[n]['Relative efficiency gain or loss compared to k = 0.5'] + "</TD>"
+            ppvtabledata += "<TR><TD>#{jValue['Sensitivity']}</TD>"
+            ppvtabledata += "<TD>#{jValue['Optimal k']}</TD>"
+            ppvtabledata += "<TD>#{jValue['Relative efficiency gain or loss compared to k = 0.5']}</TD>"
+        
+        for l, mValue of kValue.cNPVData
             console.log \cNPVData
-            cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n].Sensitivity + "</TD>"
-            cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n]["Optimal k"] + "</TD>"
-            cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5'] + "</TD></TR>"
-
+            cnpvtabledata += "<TD>#{mValue.Sensitivity}</TD>"
+            cnpvtabledata += "<TD>#{mValue['Optimal k']}</TD>"
+            cnpvtabledata += "<TD>#{mValue['Relative efficiency gain or loss compared to k = 0.5']}</TD></TR>"
+            
         ppvtabledata += "</TBODY></table>"
         cnpvtabledata += "</TBODY></table>"
-        $ "#" + i + "ppvdata" .append ppvtabledata
-        $ "#" + i + "cnpvdata" .append cnpvtabledata
+        
+        $ "##{key}ppvdata" .append ppvtabledata
+        $ "##{key}cnpvdata" .append cnpvtabledata
         
 disable_calculate = !-> $ \.post .prop \disabled yes
 
