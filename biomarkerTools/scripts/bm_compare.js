@@ -215,15 +215,14 @@ function do_calculation(){
 }
 function isNumberBetweenZeroAndOne(n){
   if (isNaN(parseFloat(n))) {
-    false;
+    return false;
+  } else if (n > 1) {
+    return false;
+  } else if (n < 0) {
+    return false;
+  } else {
+    return true;
   }
-  if (n > 1) {
-    false;
-  }
-  if (n < 0) {
-    false;
-  }
-  return true;
 }
 function refreshGraph(drawgraph){
   var graph_file, d;
