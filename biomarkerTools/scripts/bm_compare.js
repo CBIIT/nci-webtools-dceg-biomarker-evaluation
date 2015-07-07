@@ -254,9 +254,9 @@ function set_data(dt){
   bindTermToDefine();
 }
 function jsonToCell(obj){
-  var i$, len$, key, value, Specificity, Sensitivity, LRplus, LRminus, new_row;
-  for (i$ = 0, len$ = obj.length; i$ < len$; ++i$) {
-    key = obj[i$];
+  var key, value, Specificity, Sensitivity, LRplus, LRminus, new_row;
+  for (key in obj) {
+    value = obj[key];
     if (obj.hasOwnProperty(key)) {
       value = obj[key];
     }
