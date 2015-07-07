@@ -112,7 +112,7 @@ function remove_row(el)
     
 function do_calculation
     refSpec = ""
-    refSense= ""
+    refSens = ""
     sensArray = ""
     specArray = ""
     prev = ""
