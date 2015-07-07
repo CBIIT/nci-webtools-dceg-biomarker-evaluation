@@ -45,9 +45,8 @@
             br
             br
       .table-and-graph
-        div
+        .pull-left
           // Left Side
-          br
           table#inputdata
             thead
               tr.non-data-row
@@ -105,9 +104,9 @@
           table#output
       // table-and-graph
       // Left Side
-      div(style='float: left;')
+      .pull-left
         // Right Side
-        img#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
+        img.pull-right#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
       .bibliography
         p
           b References:
