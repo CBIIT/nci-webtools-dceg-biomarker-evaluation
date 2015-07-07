@@ -124,10 +124,10 @@ function do_calculation
     
     if !isNumberBetweenZeroAndOne prevalence
         validPrevValue = false
-        prev = 0
+        prev := 0
     else
         validPrevValue = true
-        prev = prevalence
+        prev := prevalence
     
     hasNoErrors = true
     
@@ -147,14 +147,14 @@ function do_calculation
             specArray += "#{parseFloat($ @ .find \.specificity .text!)},"
             sensArrayWithRef += "#{parseFloat($ @ .find \.sensitivity .text!)},"
             specArrayWithRef += "#{parseFloat($ @ .find \.specificity .text!)},"
-            hasNoErrors = isNumberBetweenZeroAndOne parseFloat( $ @ .find \.sensitivity .text!)
-            hasNoErrors = isNumberBetweenZeroAndOne parseFloat( $ @ .find \.specificity .text!)
+            hasNoErrors := isNumberBetweenZeroAndOne parseFloat( $ @ .find \.sensitivity .text!)
+            hasNoErrors := isNumberBetweenZeroAndOne parseFloat( $ @ .find \.specificity .text!)
             labels += "#{i + 1},"
             
-    sensArray = sensArray.slice 0, -1
-    specArray = specArray.slice 0, -1
-    sensArrayWithRef = sensArrayWithRef.slice 0, -1
-    specArrayWithRef = specArrayWithRef.slice 0, -1
+    sensArray := sensArray.slice 0, -1
+    specArray := specArray.slice 0, -1
+    sensArrayWithRef := sensArrayWithRef.slice 0, -1
+    specArrayWithRef := specArrayWithRef.slice 0, -1
     
     labels = labels.slice 0, -1
 
@@ -211,11 +211,12 @@ function do_calculation
 function isNumberBetweenZeroAndOne(n)
     if isNaN parseFloat(n)
         false
-    if n > 1
+    else if n > 1
         false
-    if n < 0
+    else if n < 0
         false
-    true
+    else
+        true
     
 function refreshGraph(drawgraph)
     if drawgraph == 1
