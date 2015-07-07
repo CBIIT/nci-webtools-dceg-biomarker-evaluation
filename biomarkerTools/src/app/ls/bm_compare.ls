@@ -237,7 +237,7 @@ function set_data(dt)
     jsonObject=JSON.parse JSON.stringify dt
     refreshGraph 1
     $ \#output .empty!
-    $ "#output th" .remove!
+    $ '#output th' .remove!
     if validPrevValue
         createOutputTableWithPrev jsonObject
     else
