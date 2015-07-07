@@ -101,7 +101,7 @@ function add_new_row
     # Need to rebind events on the new row
     if num_rows == 2
         $ \#inputdata .find \tr .each !->
-            if !$ @ .has-class \non-data-row &&  !$ @ .has-class \reference_row
+            if !$ @ .has-class \non-data-row && !$ @ .has-class \reference_row
                 $ @ .children!last!empty!html "<BUTTON class='remove_row_button'>Remove</BUTTON>"
                 
                 bind_remove_row!
