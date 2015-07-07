@@ -116,9 +116,9 @@ function remove_row(el){
   }
 }
 function do_calculation(){
-  var refSpec, refSense, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, uniqueKey, hostname;
+  var refSpec, refSens, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, uniqueKey, hostname;
   refSpec = "";
-  refSense = "";
+  refSens = "";
   sensArray = "";
   specArray = "";
   prev = "";
