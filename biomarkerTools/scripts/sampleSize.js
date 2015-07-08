@@ -3,7 +3,6 @@ generate_tables = function(jsonrtn){
   var key, kValue, tablesvar, ppvtabledata, cnpvtabledata, j, ref$, jValue, l, mValue;
   for (key in jsonrtn) {
     kValue = jsonrtn[key];
-    console.log(key);
     tablesvar = "<table class='table_data table-condensed table-striped table-bordered'><TBODY>";
     tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH>";
     tablesvar += "<TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
@@ -11,14 +10,12 @@ generate_tables = function(jsonrtn){
     cnpvtabledata = tablesvar;
     for (j in ref$ = kValue.PPVData) {
       jValue = ref$[j];
-      console.log('PPVData');
       ppvtabledata += "<TR><TD>" + jValue['Sensitivity'] + "</TD>";
       ppvtabledata += "<TD>" + jValue['Optimal k'] + "</TD>";
       ppvtabledata += "<TD>" + jValue['Relative efficiency gain or loss compared to k = 0.5'] + "</TD>";
     }
     for (l in ref$ = kValue.cNPVData) {
       mValue = ref$[l];
-      console.log('cNPVData');
       cnpvtabledata += "<TD>" + mValue.Sensitivity + "</TD>";
       cnpvtabledata += "<TD>" + mValue['Optimal k'] + "</TD>";
       cnpvtabledata += "<TD>" + mValue['Relative efficiency gain or loss compared to k = 0.5'] + "</TD></TR>";
@@ -46,14 +43,12 @@ generate_tabs = function(iterate, randomnumber){
   pimagename = 'PPVkSensSpec-';
   cimagename = 'cNPVkSensSpec-';
   fixedtype = $('#fixed_flag').text();
-  console.log("Fixed flag is " + fixedtype);
   if (deepEq$(fixedtype, 'Sensitivity', '===')) {
     pimagename = 'PPVkSpecSens-';
     cimagename = 'cNPVkSpecSens-';
   }
   for (i$ = 0, to$ = arrayLength - 1; i$ <= to$; ++i$) {
     i = i$;
-    console.log(fixedvals[i]);
     tabheaders += '<li><a href="#tab' + (i + 1) + '">' + fixed_flag + '<br />' + fixedvals[i] + '</a></li>';
     tabcontent += '<div id="tab' + (i + 1) + '"><table><TR><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR><TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></table></TD><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></table></TD></TR></table></div>';
   }
@@ -136,9 +131,8 @@ random_gen = function(){
 };
 clean_data = function(ret){
   ret = JSON.parse(JSON.stringify(ret));
-  $('#spinner').removeClass('show');
-  $('#spinner').addClass('hide');
   $('#output_graph').empty();
+  $('#spinner').addClass('hide');
   generate_tabs($('#fixed').val(), $('#randomnumber').text());
   generate_tables(ret);
   random_gen();
@@ -149,7 +143,6 @@ $(function(){
   $('.post').click(function(){
     var to_value, input, service, promise;
     $('#spinner').removeClass('hide');
-    $('#spinner').addClass('show');
     $('#message').removeClass('show');
     $('#message').addClass('hide');
     to_value = 15 * 1000;
@@ -177,9 +170,7 @@ $(function(){
     });
     promise.then(clean_data, function(jqXHR, textStatus, errorThrown){
       var message;
-      $('#spinner').removeClass('show');
       $('#spinner').addClass('hide');
-      console.log("header: " + jqXHR + " \n Status: " + textStatus + " \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
       message = "Service Unavailable: " + textStatus + " <br>";
       message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
       $('#message-content').empty().append(message);
