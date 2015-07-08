@@ -43,7 +43,7 @@ function bind_input
             col = $ @ .attr \col
             val = $ @ .text!
             old_value := val
-            inp = $ "<INPUT id='new_value' type='text' size='5' class='new_value' value=''> </INPUT>"
+            inp = $ "<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>"
             $ @ .empty!
             $ @ .append inp
             bind_text_change inp
@@ -54,19 +54,23 @@ function bind_input
 function bind_text_change(inp)
     # When user clicks without changing the value
     inp.on \blur (e) !->
+        $this = $ @
         new_value = $ \#new_value .val!
-        change_value $ @, new_value	
+        change_value $this, new_value
 
     inp.on \keypress (e) !->
+        $this = $ @
         if e.which is 13
             new_value = $ \#new_value .val!
-            change_value $ @ new_value
+            change_value $this, new_value
     return
 
 function change_value(field, new_value)
     if !new_value || new_value == ''
         field.parent!empty!text old_value
         editing := false
+        return
+        
     if isNumberBetweenZeroAndOne(new_value)
         field.parent!empty!text new_value
         editing := false
@@ -104,9 +108,9 @@ function add_new_row
             if !$ @ .has-class \non-data-row && !$ @ .has-class \reference_row
                 $ @ .children!last!empty!html "<BUTTON class='remove_row_button'>Remove</BUTTON>"
                 
-                bind_remove_row!
-                bind_reference_row!
-                bind_input!
+    bind_remove_row!
+    bind_reference_row!
+    bind_input!
     return
     
 function remove_row(el)
