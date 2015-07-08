@@ -45,7 +45,7 @@ function bind_input(){
       col = $(this).attr('col');
       val = $(this).text();
       old_value = val;
-      inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''> </INPUT>");
+      inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
       $(this).empty();
       $(this).append(inp);
       bind_text_change(inp);
@@ -56,15 +56,17 @@ function bind_input(){
 }
 function bind_text_change(inp){
   inp.on('blur', function(e){
-    var new_value;
+    var $this, new_value;
+    $this = $(this);
     new_value = $('#new_value').val();
-    change_value($(this, new_value));
+    change_value($this, new_value);
   });
   inp.on('keypress', function(e){
-    var new_value;
+    var $this, new_value;
+    $this = $(this);
     if (e.which === 13) {
       new_value = $('#new_value').val();
-      change_value($(this(new_value)));
+      change_value($this, new_value);
     }
   });
 }
@@ -72,6 +74,7 @@ function change_value(field, new_value){
   if (!new_value || new_value === '') {
     field.parent().empty().text(old_value);
     editing = false;
+    return;
   }
   if (isNumberBetweenZeroAndOne(new_value)) {
     field.parent().empty().text(new_value);
@@ -105,12 +108,12 @@ function add_new_row(){
     $('#inputdata').find('tr').each(function(){
       if (!$(this).hasClass('non-data-row' && !$(this)).hasClass('reference_row')) {
         $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
-        bind_remove_row();
-        bind_reference_row();
-        bind_input();
       }
     });
   }
+  bind_remove_row();
+  bind_reference_row();
+  bind_input();
 }
 function remove_row(el){
   var row_to_remove, num_rows;
