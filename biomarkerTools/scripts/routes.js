@@ -1,3 +1,4 @@
+var default_ajax_error;
 $(document).ready(function(){
   document.title = "Biomarker Tools: Home";
 });
@@ -8,3 +9,14 @@ $(document).on('show.bs.tab', function(el){
   title = "Biomarker Tools: " + el.target.text;
   document.title = title;
 });
+$('.goToTab').on('click', function(el){
+  var ref;
+  $('.nav li.active').removeClass('active');
+  ref = $(this).attr('data-target');
+  $(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active');
+  window.scrollTo(0, 0);
+});
+default_ajax_error = function(request, status, error){
+  $('#spinner').addClass('hide');
+  alert(request.responseText);
+};
