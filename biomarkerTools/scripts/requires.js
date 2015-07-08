@@ -6,6 +6,8 @@ requirejs.config({
     bootstrap: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min",
     sampleSize: 'sampleSize',
     bm_compare: 'bm_compare',
+    m2rs: 'meanstorisk',
+    rs_advanced: 'riskStratAdv',
     glossary: '/common/js/meansToRiskGlossary',
     app: 'app',
     routes: 'routes'
@@ -21,6 +23,12 @@ requirejs.config({
       deps: ['jquery']
     },
     sampleSize: {
+      deps: ['jquery.ui', 'bootstrap']
+    },
+    m2rs: {
+      deps: ['jquery.ui', 'bootstrap']
+    },
+    rs_advanced: {
       deps: ['jquery.ui', 'bootstrap']
     },
     routes: {
