@@ -76,11 +76,8 @@
                     .pull-right
                         .example
                             a#add-test-data(title='Populate variables with working example', href='#') Example
-                .row
-                    p#spinner.hide.col-md-offset-4
-                        i.fa.fa-spinner.fa-spin.fa-2x
-                        span#spinnerText Calculating
     .col-md-12
+        include ../partials/loader
         .hide
             #specificity_val.dom_valref
             #sensitivity_val.dom_valref
