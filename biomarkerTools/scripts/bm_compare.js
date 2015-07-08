@@ -125,7 +125,7 @@ function remove_row(el){
   }
 }
 function do_calculation(){
-  var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, hostname;
+  var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, hostname, promise;
   refSens = "";
   refSpec = "";
   sensArray = "";
@@ -174,7 +174,7 @@ function do_calculation(){
   uniqueKey = new Date().getTime();
   hostname = window.location.hostname;
   if (validPrevValue) {
-    $.ajax({
+    promise = $.ajax({
       type: 'POST',
       url: "http://" + hostname + "/bcRest/",
       data: {
@@ -189,16 +189,10 @@ function do_calculation(){
         labels: labels,
         unique_key: uniqueKey
       },
-      dataType: 'json',
-      success: function(data){
-        set_data(data);
-      },
-      error: function(request, status, error){
-        alert(request.responseText);
-      }
+      dataType: 'json'
     });
   } else {
-    $.ajax({
+    promise = $.ajax({
       type: 'POST',
       url: "http://" + hostname + "/bcRest/",
       data: {
@@ -212,15 +206,11 @@ function do_calculation(){
         labels: labels,
         unique_key: uniqueKey
       },
-      dataType: 'json',
-      success: function(data){
-        set_data(data);
-      },
-      error: function(request, status, error){
-        alert(request.responseText);
-      }
+      dataType: 'json'
     });
   }
+  $('#spinner').removeClass('hide');
+  promise.then(set_data, default_ajax_error);
 }
 function isNumberBetweenZeroAndOne(n){
   if (isNaN(parseFloat(n))) {
@@ -255,6 +245,7 @@ function set_data(dt){
     createOutputTable(jsonObject);
   }
   bindTermToDefine();
+  $('#spinner').addClass('hide');
 }
 function jsonToCell(obj){
   var key, value, Specificity, Sensitivity, LRplus, LRminus, new_row;
