@@ -1,2 +1,137 @@
 #m2rs.tab-pane.fade(title="Means to Risk Stratification", role='tabpanel') 
     h3.title.text-center Means to Risk Stratification
+    #helpGlossaryLinks
+      a(href='#', onclick="openHelpWindow('help.html')") Help
+      a(href='#', onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')") Glossary
+    br
+    .input_panel
+      div(style='margin: 5px; font-weight: bold;')
+        | Choose how to
+        | enter the data
+      form
+        #accordion
+          h3.input_accordion
+            | User Defined Distribution (from
+            | File)
+          .input_accordion
+            p.indent.data_entry_by_file
+              | Upload a raw case and control biomarker data file in csv format
+              a(href='p16-ELISA-sample-data.csv')
+                i (Example)
+            p.indent
+              label(for='input_file_upload')
+                input#input_file_upload.data_entry_by_file(type='file')
+          h3.input_accordion Normal Distribution
+          .input_accordion
+            p.indent.data_entry_by_input
+              | Enter Mean, Standard
+              | Error, and N for Cases and Controls
+            table.table_data(style='margin: 5px; margin-left: 20px; padding: 2px;')
+              tr.table_data.header
+                th.table_data.header
+                th.table_data.header Cases
+                th.table_data.header Controls
+              tr.table_data
+                th.table_data.col1 Mean
+                td.table_data
+                  label(for='mean_cases_input')  
+                  input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
+                td.table_data
+                  label(for='mean_controls_input')  
+                  input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
+              tr.table_data
+                th.table_data.col1 Standard Error
+                td.table_data
+                  label(for='stderr_cases_input')  
+                  input#stderr_cases_input.data_entry_by_input(type='text', value='0.1', size='4')
+                td.table_data
+                  label(for='stderr_controls_input')  
+                  input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
+              tr.table_data
+                th.table_data.col1 N
+                td.table_data
+                  label(for='N_cases_input')  
+                  input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
+                td.table_data
+                  label(for='N_controls_input')  
+                  input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
+        br
+        br
+        table.table_data(style='margin-left: 5px;')
+          tr
+            th
+              #Spec.termToDefine(data-term='Spec') Specificity:
+              #SpecDefinition.popupDefinition
+            td
+              label(for='specificity')
+                input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999')
+          tr
+            th
+              #DP.termToDefine(data-term='DP') Prevalence:
+              #DPDefinition.popupDefinition
+            td
+              label(for='prevalence')
+                input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001')
+        input#calculate_button(type='button', value='Calculate', style='margin: 10px; float: left;')
+        input#download_button(type='button', value='Download Excel File', style='margin: 10px; float: right;')
+    .table_panel
+      table#inputs_card.table_data
+        tr.table_data.header
+          th.table_data.header
+          th.table_data.header  Cases 
+          th.table_data.header  Controls 
+          th.table_data.header  Overall 
+        tr.table_data
+          th.table_data.col1 Mean
+          td#mean_cases.table_data
+          td#mean_controls.table_data
+          td#mean_overall.table_data
+        tr.table_data
+          th.table_data.col1 Standard Error
+          td#stderr_cases.table_data
+          td#stderr_controls.table_data
+          td#stderr_overall.table_data
+        tr.table_data
+          th.table_data.col1 N
+          td#N_cases.table_data
+          td#N_controls.table_data
+          td#N_overall.table_data
+        tr.table_data.line-above
+          th.table_data.col1 Standard Deviation
+          td#deviation_cases.table_data
+          td#deviation_controls.table_data
+          td#deviation_overall.table_data
+        tr.table_data
+          th.table_data.col1 Variance
+          td#variance_cases.table_data
+          td#variance_controls.table_data
+          td#variance_overall.table_data
+        tr.table_data
+          th.table_data.col1
+            #CV.termToDefine(data-term='CV') Coefficient of Variation (CV)
+            #CVDefinition.popupDefinition
+          td#cv_cases.table_data
+          td#cv_controls.table_data
+          td#cv_overall.table_data
+        tr.table_data
+          th.table_data.col1 Difference in Mean
+          td#diff_cases.table_data
+          td#diff_controls.table_data
+          td#diff_overall.table_data
+        tr.table_data
+          th.table_data.col1
+            #Delta.termToDefine(data-term='Delta') Delta
+            #DeltaDefinition.popupDefinition
+          td#delta_cases.table_data
+          td#delta_controls.table_data
+          td#delta_overall.table_data
+        tr.table_data
+          th.table_data.col1
+            #AUC.termToDefine(data-term='AUC') AUC
+            #AUCDefinition.popupDefinition
+          td#auc_cases.table_data
+          td#auc_controls.table_data
+          td#auc_overall.table_data
+    .graph_panel
+  .bottom_section
+    .tabbed_output_panel
