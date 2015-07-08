@@ -49,6 +49,179 @@
             </div>
             <div id="m2rs" title="Means to Risk Stratification" role="tabpanel" class="tab-pane fade"> 
               <h3 class="title text-center">Means to Risk Stratification</h3>
+              <div id="helpGlossaryLinks"><a href="#" onclick="openHelpWindow('help.html')">Help</a><a href="#" onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')">Glossary</a></div><br>
+              <div class="input_panel">
+                <div style="margin: 5px; font-weight: bold;">
+                  Choose how to
+                  enter the data
+                </div>
+                <form>
+                  <div id="accordion">
+                    <h3 class="input_accordion">
+                      User Defined Distribution (from
+                      File)
+                    </h3>
+                    <div class="input_accordion">
+                      <p class="indent data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="p16-ELISA-sample-data.csv"><i>(Example)</i></a></p>
+                      <p class="indent">
+                        <label for="input_file_upload">
+                          <input id="input_file_upload" type="file" class="data_entry_by_file">
+                        </label>
+                      </p>
+                    </div>
+                    <h3 class="input_accordion">Normal Distribution</h3>
+                    <div class="input_accordion">
+                      <p class="indent data_entry_by_input">
+                        Enter Mean, Standard
+                        Error, and N for Cases and Controls
+                      </p>
+                      <table style="margin: 5px; margin-left: 20px; padding: 2px;" class="table_data">
+                        <tr class="table_data header">
+                          <th class="table_data header"></th>
+                          <th class="table_data header">Cases</th>
+                          <th class="table_data header">Controls</th>
+                        </tr>
+                        <tr class="table_data">
+                          <th class="table_data col1">Mean</th>
+                          <td class="table_data">
+                            <label for="mean_cases_input"> </label>
+                            <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
+                          </td>
+                          <td class="table_data">
+                            <label for="mean_controls_input"> </label>
+                            <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
+                          </td>
+                        </tr>
+                        <tr class="table_data">
+                          <th class="table_data col1">Standard Error</th>
+                          <td class="table_data">
+                            <label for="stderr_cases_input"> </label>
+                            <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
+                          </td>
+                          <td class="table_data">
+                            <label for="stderr_controls_input"> </label>
+                            <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
+                          </td>
+                        </tr>
+                        <tr class="table_data">
+                          <th class="table_data col1">N</th>
+                          <td class="table_data">
+                            <label for="N_cases_input"> </label>
+                            <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
+                          </td>
+                          <td class="table_data">
+                            <label for="N_controls_input"> </label>
+                            <input id="N_controls_input" type="text" value="200" size="4" class="data_entry_by_input">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div><br><br>
+                  <table style="margin-left: 5px;" class="table_data">
+                    <tr>
+                      <th>
+                        <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
+                        <div id="SpecDefinition" class="popupDefinition"></div>
+                      </th>
+                      <td>
+                        <label for="specificity">
+                          <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <div id="DP" data-term="DP" class="termToDefine">Prevalence:</div>
+                        <div id="DPDefinition" class="popupDefinition"></div>
+                      </th>
+                      <td>
+                        <label for="prevalence">
+                          <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                  <input id="calculate_button" type="button" value="Calculate" style="margin: 10px; float: left;">
+                  <input id="download_button" type="button" value="Download Excel File" style="margin: 10px; float: right;">
+                </form>
+              </div>
+              <div class="table_panel">
+                <table id="inputs_card" class="table_data">
+                  <tr class="table_data header">
+                    <th class="table_data header"></th>
+                    <th class="table_data header"> Cases </th>
+                    <th class="table_data header"> Controls </th>
+                    <th class="table_data header"> Overall </th>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">Mean</th>
+                    <td id="mean_cases" class="table_data"></td>
+                    <td id="mean_controls" class="table_data"></td>
+                    <td id="mean_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">Standard Error</th>
+                    <td id="stderr_cases" class="table_data"></td>
+                    <td id="stderr_controls" class="table_data"></td>
+                    <td id="stderr_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">N</th>
+                    <td id="N_cases" class="table_data"></td>
+                    <td id="N_controls" class="table_data"></td>
+                    <td id="N_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data line-above">
+                    <th class="table_data col1">Standard Deviation</th>
+                    <td id="deviation_cases" class="table_data"></td>
+                    <td id="deviation_controls" class="table_data"></td>
+                    <td id="deviation_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">Variance</th>
+                    <td id="variance_cases" class="table_data"></td>
+                    <td id="variance_controls" class="table_data"></td>
+                    <td id="variance_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">
+                      <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
+                      <div id="CVDefinition" class="popupDefinition"></div>
+                    </th>
+                    <td id="cv_cases" class="table_data"></td>
+                    <td id="cv_controls" class="table_data"></td>
+                    <td id="cv_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">Difference in Mean</th>
+                    <td id="diff_cases" class="table_data"></td>
+                    <td id="diff_controls" class="table_data"></td>
+                    <td id="diff_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">
+                      <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
+                      <div id="DeltaDefinition" class="popupDefinition"></div>
+                    </th>
+                    <td id="delta_cases" class="table_data"></td>
+                    <td id="delta_controls" class="table_data"></td>
+                    <td id="delta_overall" class="table_data"></td>
+                  </tr>
+                  <tr class="table_data">
+                    <th class="table_data col1">
+                      <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
+                      <div id="AUCDefinition" class="popupDefinition"></div>
+                    </th>
+                    <td id="auc_cases" class="table_data"></td>
+                    <td id="auc_controls" class="table_data"></td>
+                    <td id="auc_overall" class="table_data"></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="graph_panel"></div>
+            </div>
+            <div class="bottom_section">
+              <div class="tabbed_output_panel"></div>
             </div>
             <div id="bm_compare" title="Biomarker Comparison" role="tabpanel" class="tab-pane fade"> 
               <h3 class="title text-center">Biomarker Comparison Tool</h3>
@@ -171,6 +344,9 @@
                     </tr>
                   </table>
                   <button id="calculate_button">Calculate</button>
+                  <div class="row">
+                    <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  </div>
                   <table id="output"></table>
                 </div>
                 <div class="col-md-6">
@@ -191,6 +367,117 @@
             <!-- main-->
             <div id="rs_advanced" title="Risk Stratification Adnvanced Analysis" role="tabpanel" class="tab-pane fade"> 
               <h3 class="title text-center">Risk Stratification Advanced Analysis</h3>
+              <form>
+                <table>
+                  <tr>
+                    <td>
+                      <label for="independent_dropdown">Independent Variable</label>
+                    </td>
+                    <td>
+                      <select id="independent_dropdown" name="independent_dropdown">
+                        <option value="" selected=""></option>
+                        <option value="specificity">Specificity</option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="ppv">PPV</option>
+                        <option value="delta">Delta</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </td>
+                    <td>
+                      <label for="independent">
+                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
+                      </label>
+                    </td>
+                    <td>
+                      <div id="indDef"></div>
+                    </td>
+                    <td><span class="variable-example"></span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="contour_dropdown">Contour</label>
+                    </td>
+                    <td>
+                      <select id="contour_dropdown" name="contour_dropdown">
+                        <option value="" selected=""></option>
+                        <option value="ppv">PPV</option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="specificity">Specificity</option>
+                        <option value="delta">Delta</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </td>
+                    <td>
+                      <label for="contour">
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
+                      </label>
+                    </td>
+                    <td>
+                      <div id="contourDef"></div>
+                    </td>
+                    <td><span class="variable-example"></span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="fixed_dropdown">Fixed Values</label>
+                    </td>
+                    <td>
+                      <select id="fixed_dropdown" name="fixed_dropdown">
+                        <option value="" selected=""></option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="delta">Delta</option>
+                        <option value="ppv">PPV</option>
+                        <option value="specificity">Specificity</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </td>
+                    <td>
+                      <label for="fixed">
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="">
+                      </label>
+                    </td>
+                    <td>
+                      <div id="fvDef"></div>
+                    </td>
+                    <td><span class="variable-example"></span></td>
+                  </tr>
+                </table><br>
+                <div style="width: 450px;">
+                  <button id="calculate" disabled="">Calculate</button>
+                  <button id="reset" type="reset">Reset</button><a id="add-test-data" href="#" title="Populate variables with a working example">Example</a>
+                </div>
+                <div id="status-bar">Status Bar</div>
+              </form><br>
+              <div id="dialog-confirm" title="Rules Violation">
+                <p><span style="float: left; margin: 0 7px 20px 0;" class="ui-icon ui-icon-alert"></span>
+                  <div>One or more of the following rules have been violated:</div>
+                  <ul>
+                    <li class="rule rule1">
+                      Specificity, Sensitivity, PPV, cNPV, and
+                      Prevalence can only be 0 to 1
+                    </li>
+                    <li style="font-weight: bold;" class="rule rule2">
+                      Delta can be
+                      0 to 5
+                    </li>
+                    <li class="rule rule3">cNPV < Prevalence</li>
+                    <li class="rule rule3">
+                      For arrays: max(cNPV) <
+                      min(Prevalence)
+                    </li>
+                    <li class="rule rule4">Prevalence < PPV</li>
+                    <li class="rule rule4">For arrays: max(prev) < min(PPV)</li>
+                    <li class="rule rule5">Sensitivity+Specificity-1 > 0</li>
+                  </ul><span style="font-weight: bold;">
+                    Do you wish to continue with
+                    calculation anyway?</span>
+                </p>
+              </div>
+              <div id="output"></div>
+              <div id="output1"></div>
             </div>
             <div id="sampleSize" title="Power and Sample Size Calculation" role="tabpanel" class="tab-pane fade">
               <h3 class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
@@ -310,13 +597,13 @@
                         <div class="example"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
                       </div>
                     </div>
-                    <div class="row">
-                      <p id="spinner" class="hide col-md-offset-4"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
-                    </div>
                   </div>
                 </div>
               </form>
               <div class="col-md-12">
+                <div class="row">
+                  <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                </div>
                 <div class="hide">
                   <div id="specificity_val" class="dom_valref"></div>
                   <div id="sensitivity_val" class="dom_valref"></div>
