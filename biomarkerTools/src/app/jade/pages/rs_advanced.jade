@@ -1,2 +1,91 @@
 #rs_advanced.tab-pane.fade(title="Risk Stratification Adnvanced Analysis", role='tabpanel') 
     h3.title.text-center Risk Stratification Advanced Analysis
+    form
+      table
+        tr
+          td
+            label(for='independent_dropdown') Independent Variable
+          td
+            select#independent_dropdown(name='independent_dropdown')
+              option(value='', selected='')
+              option(value='specificity') Specificity
+              option(value='prevalence') Prevalence
+              option(value='ppv') PPV
+              option(value='delta') Delta
+              option(value='sensitivity') Sensitivity
+              option(value='cnpv') cNPV
+          td
+            label(for='independent')
+              input#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
+          td
+            #indDef
+          td
+            span.variable-example
+        tr
+          td
+            label(for='contour_dropdown') Contour
+          td
+            select#contour_dropdown(name='contour_dropdown')
+              option(value='', selected='')
+              option(value='ppv') PPV
+              option(value='prevalence') Prevalence
+              option(value='specificity') Specificity
+              option(value='delta') Delta
+              option(value='sensitivity') Sensitivity
+              option(value='cnpv') cNPV
+          td
+            label(for='contour')
+              input#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
+          td
+            #contourDef
+          td
+            span.variable-example
+        tr
+          td
+            label(for='fixed_dropdown') Fixed Values
+          td
+            select#fixed_dropdown(name='fixed_dropdown')
+              option(value='', selected='')
+              option(value='prevalence') Prevalence
+              option(value='delta') Delta
+              option(value='ppv') PPV
+              option(value='specificity') Specificity
+              option(value='sensitivity') Sensitivity
+              option(value='cnpv') cNPV
+          td
+            label(for='fixed')
+              input#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required='')
+          td
+            #fvDef
+          td
+            span.variable-example
+      br
+      div(style='width: 450px;')
+        button#calculate(disabled='') Calculate
+        button#reset(type='reset') Reset
+        a#add-test-data(href='#', title='Populate variables with a working example') Example
+      #status-bar Status Bar
+    br
+    #dialog-confirm(title='Rules Violation')
+      p
+        span.ui-icon.ui-icon-alert(style='float: left; margin: 0 7px 20px 0;')
+        div One or more of the following rules have been violated:
+        ul
+          li.rule.rule1
+            | Specificity, Sensitivity, PPV, cNPV, and
+            | Prevalence can only be 0 to 1
+          li.rule.rule2(style='font-weight: bold;')
+            | Delta can be
+            | 0 to 5
+          li.rule.rule3 cNPV < Prevalence
+          li.rule.rule3
+            | For arrays: max(cNPV) <
+            | min(Prevalence)
+          li.rule.rule4 Prevalence < PPV
+          li.rule.rule4 For arrays: max(prev) < min(PPV)
+          li.rule.rule5 Sensitivity+Specificity-1 > 0
+        span(style='font-weight: bold;')
+          | Do you wish to continue with
+          | calculation anyway?
+    #output
+    #output1
