@@ -7,10 +7,12 @@ $ document .on 'show.bs.tab' (el) !->
   title = "Biomarker Tools: #{el.target.text}"
   document.title = title 
   
-#$ 'a[data-toggle="tab"]' .on \click (el) !->
-#  ref = $ @ .attr \data-target
-#  
-#  $ '.nav li' find \.active .remove-class \active
-#  target = 'a[data-target="' + ref + '"]'
-#  $ '.nav li' .find target .parent!add-class \active 
-#  $ ref .tab \show
+$ '.goToTab' .on \click (el) !->
+  $ '.nav li.active' .remove-class \active
+  ref = $ @ .attr \data-target
+  $ ".nav a[data-target='#{ref}']" .tab \show .parent!add-class \active
+  window.scroll-to 0, 0
+  
+default_ajax_error = (request, status, error) !->
+  $ \#spinner .add-class \hide
+  alert request.responseText
