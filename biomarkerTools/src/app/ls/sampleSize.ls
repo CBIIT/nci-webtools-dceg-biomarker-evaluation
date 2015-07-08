@@ -1,6 +1,6 @@
 generate_tables = (jsonrtn) !->
     for key, kValue of jsonrtn
-        console.log key
+        # console.log key
         tablesvar = "<table class='table_data table-condensed table-striped table-bordered'><TBODY>"
         tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH>"
         tablesvar += "<TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>"
@@ -8,13 +8,13 @@ generate_tables = (jsonrtn) !->
         cnpvtabledata = tablesvar
         
         for j, jValue of kValue.PPVData
-            console.log \PPVData
+            # console.log \PPVData
             ppvtabledata += "<TR><TD>#{jValue['Sensitivity']}</TD>"
             ppvtabledata += "<TD>#{jValue['Optimal k']}</TD>"
             ppvtabledata += "<TD>#{jValue['Relative efficiency gain or loss compared to k = 0.5']}</TD>"
         
         for l, mValue of kValue.cNPVData
-            console.log \cNPVData
+            # console.log \cNPVData
             cnpvtabledata += "<TD>#{mValue.Sensitivity}</TD>"
             cnpvtabledata += "<TD>#{mValue['Optimal k']}</TD>"
             cnpvtabledata += "<TD>#{mValue['Relative efficiency gain or loss compared to k = 0.5']}</TD></TR>"
@@ -40,14 +40,14 @@ generate_tabs = (iterate, randomnumber) !->
     cimagename = \cNPVkSensSpec-
 
     fixedtype = $ \#fixed_flag .text!
-    console.log "Fixed flag is #{fixedtype}"
+    # console.log "Fixed flag is #{fixedtype}"
     
     if fixedtype === \Sensitivity
         pimagename = \PPVkSpecSens-
         cimagename = \cNPVkSpecSens-
         
     for i from 0 to arrayLength-1
-        console.log fixedvals[i]
+        # console.log fixedvals[i]
         tabheaders += '<li><a href="#tab' + (i + 1) + '">' + fixed_flag + '<br />' + fixedvals[i] + '</a></li>'
         tabcontent += '<div id="tab' + (i + 1) + '"><table><TR><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + pimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR><TR><TD><div id="tab' + (i + 1) + 'ppvdata"><div></TD></TR></table></TD><TD><table><TR><TD><img src="/biomarkerTools/tmp/' + cimagename + randomnumber + '-' + (i + 1) + '.png"></TD></TR> <TR><TD><div id="tab' + (i + 1) + 'cnpvdata"></div></TD></TR></table></TD></TR></table></div>'
         #Do something
@@ -134,11 +134,9 @@ random_gen = !->
 
 clean_data = (ret) !->
     ret = JSON.parse JSON.stringify ret
-    
-    $ \#spinner .remove-class \show
-    $ \#spinner .add-class \hide
     $ \#output_graph .empty!
     
+    $ \#spinner .add-class \hide
     generate_tabs($ \#fixed .val!, $ \#randomnumber .text!)
     generate_tables ret
     random_gen!
@@ -150,8 +148,6 @@ $ !->
     # Post json to server
     $ \.post .click ->
         $ \#spinner .remove-class \hide
-        $ \#spinner .add-class \show
-        
         $ \#message .remove-class \show
         $ \#message .add-class \hide
         
@@ -182,9 +178,8 @@ $ !->
         )
         
         promise.then(clean_data, (jqXHR, textStatus, errorThrown) !->
-            $ \#spinner .remove-class \show
             $ \#spinner .add-class \hide
-            console.log "header: #{jqXHR} \n Status: #{textStatus} \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later."
+            # console.log "header: #{jqXHR} \n Status: #{textStatus} \n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later."
             message = "Service Unavailable: #{textStatus} <br>"
             message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>"
             $ \#message-content .empty!append message
