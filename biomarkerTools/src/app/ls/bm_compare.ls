@@ -177,7 +177,7 @@ function do_calculation
     hostname = window.location.hostname
     
     if validPrevValue
-        $.ajax(
+        promise = $.ajax(
             type: \POST
             url: "http://#{hostname}/bcRest/"
             data: 
@@ -192,13 +192,9 @@ function do_calculation
                 labels: labels
                 unique_key: uniqueKey
             dataType: \json
-            success: (data) !->
-                set_data data
-            error: (request, status, error) !->
-                alert request.responseText
         )
     else
-        $.ajax(
+        promise = $.ajax(
             type: \POST
             url: "http://#{hostname}/bcRest/"
             data:
@@ -212,11 +208,9 @@ function do_calculation
                 labels: labels
                 unique_key: uniqueKey
             dataType: \json
-            success: (data) !->
-                set_data data
-            error: (request, status, error) !->
-                alert request.responseText
         )
+    $ \#spinner .remove-class \hide
+    promise.then set_data, default_ajax_error
     return
     
 function isNumberBetweenZeroAndOne(n)
@@ -248,6 +242,7 @@ function set_data(dt)
         createOutputTable jsonObject
     #from glossary.js for term definition popup in the output
     bindTermToDefine!
+    $ \#spinner .add-class \hide
     return
     
 function jsonToCell(obj)
