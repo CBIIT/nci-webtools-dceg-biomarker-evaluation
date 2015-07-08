@@ -143,7 +143,7 @@ gulp.task 'css' <[bower]> ->
 
   styl = gulp.src 'app/stylus/**/*.styl'
     .pipe gulp-filter -> it.path isnt /\/_[^/]+\.styl$/
-    .pipe gulp-stylus use: [nib!]
+    .pipe gulp-stylus use: [nib!] import: <[ nib ]>
     .pipe gulp-concat 'styles.css'
     .pipe gulp.dest parentDir
 
