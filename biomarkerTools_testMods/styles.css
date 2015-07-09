@@ -1,0 +1,263 @@
+body {
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff";
+}
+#main {
+  width: 1100px;
+  margin: 0 auto;
+  font-size: small;
+}
+.title {
+  color: #000;
+}
+#contentTabs {
+  margin: 1.5em auto;
+}
+#contentTabs ul.nav.nav-tabs {
+  border-bottom: none;
+}
+#contentTabs ul.nav.nav-tabs > li a {
+  color: #000;
+}
+#contentTabs ul.nav.nav-tabs > li.active a {
+  text-decoration: underline;
+  font-weight: bold;
+  background: rgba(225,220,245,0.1);
+}
+#contentTabs ul.nav.nav-tabs after {
+  border: solid transparent;
+  margin-left: -10px;
+  top: 100%;
+  left: 50%;
+}
+#contentTabs .tab-content {
+  line-height: 1.42857143;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 1.5em;
+  background: rgba(225,220,245,0.1);
+}
+/* sample size styles */
+#sampleSize .row {
+  margin: 1em auto;
+}
+#bm_compare .example-image {
+  float: left;
+}
+#bm_compare .explanation {
+  float: left;
+  padding-left: 15px;
+  width: 600px;
+}
+#bm_compare .reference_row {
+  background-color: #ff0;
+}
+#bm_compare td {
+  text-align: center;
+}
+#bm_compare .top-header {
+  text-align: center;
+  background-color: #444;
+  color: #fff;
+}
+#bm_compare .header {
+  background-color: #aaa;
+  color: #444;
+}
+#bm_compare #output {
+  width: 500px;
+}
+#bm_compare #inputdata {
+  width: 500px;
+}
+#bm_compare h2 {
+  background-color: #aaa;
+  color: #444;
+  padding: 5px;
+}
+#bm_compare .prevalence_label {
+  font-weight: bold;
+  background-color: #aaa;
+  color: #444;
+  padding: 2px 25px 2px 25px;
+}
+#bm_compare .bibliography {
+  width: 950px;
+  clear: both;
+  float: left;
+  margin: 50px;
+}
+#bm_compare .bib-author {
+  float: left;
+}
+#bm_compare .bib-year {
+  float: left;
+}
+#bm_compare .bib-title {
+  float: left;
+  font-style: italic;
+}
+#bm_compare .bib-journal {
+  float: left;
+}
+#bm_compare .bib-ref {
+  float: left;
+}
+#bm_compare .bib-pages {
+  float: left;
+}
+#bm_compare .bib-doi {
+  float: left;
+}
+#bm_compare .bibliography_entry {
+  width: 300px;
+}
+#bm_compare .bibliography_link {
+  width: 50px;
+}
+#m2rs .top_section {
+  height: 400px;
+}
+#m2rs .bottom_section {
+  clear: left;
+  height: 400px;
+}
+#m2rs .input_panel {
+  position: relative;
+  float: left;
+  width: 400px;
+  background: #ddd;
+  border: 1px #bbb solid;
+}
+#m2rs div.input_accordion {
+  background: #fff url("");
+}
+#m2rs H3.input_accordion {
+background-color
+  background: #ddd url("");
+}
+#m2rs .table_panel {
+  float: left;
+  width: 300px;
+  height: 99%;
+}
+#m2rs .graph_panel {
+  height: 99%;
+}
+#m2rs .output_graph {
+  max-width: 38%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#m2rs .key_output_panel {
+  float: left;
+  width: 300px;
+  background-color: #faf;
+  height: 99%;
+}
+#m2rs .tabbed_output_panel {
+  height: 99%;
+}
+#m2rs .indent {
+  margin-left: 30px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+#m2rs .highlight {
+  background-color: #ff0;
+}
+#m2rs .col1 {
+  padding: 6px;
+  text-align: right;
+}
+#m2rs .maincard {
+  width: 800px;
+  height: 750px;
+  border: 2px #000 solid;
+}
+#m2rs .highlight {
+  background-color: #ff0;
+}
+#m2rs table.table_data {
+  width: 90%;
+  background-color: #fff;
+  border-collapse: collapse;
+  border: 1px #bbb solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  float: left;
+}
+#m2rs table.output_data {
+  background-color: #fff;
+  border-collapse: collapse;
+  border: 2px #000 solid;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#m2rs td.table_data {
+  font-family: sans-serif;
+  text-align: center;
+}
+#m2rs th.table_data {
+  font-family: sans-serif;
+  padding: 2px;
+}
+#m2rs th.header {
+  border-bottom: 1px #bbb solid;
+  background-color: #d3d3d3;
+}
+#m2rs th.col1 {
+  text-align: right;
+}
+#m2rs tr.table_data_header {
+  border-bottom: 1px #000 solid;
+  background-color: #a0a0a0;
+}
+#m2rs tr.line-above {
+  border-top: 1px #bbb solid;
+}
+#m2rs .main-title {
+  text-align: center;
+}
+#m2rs .PPV_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #b080ff;
+}
+#m2rs .cNPV_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #8080ff;
+}
+#m2rs .PPVcNPV_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #ffaa80;
+}
+#m2rs .ProgramBased_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #ffb0d0;
+}
+#m2rs .PPVBased_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #a0a0a0;
+}
+#m2rs .SensitivityBased_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #808080;
+}
+#m2rs .DominatedByRareDisease_stripe {
+  border-bottom: 1px #000 solid;
+  background-color: #f0f0f0;
+}
+#m2rs .ui-accordion {
+  overflow: hidden;
+}
+#m2rs .ui-widget {
+  font-size: 12px;
+}
+#help section h5 {
+  font-weight: bold;
+  text-decoration: underline;
+}
