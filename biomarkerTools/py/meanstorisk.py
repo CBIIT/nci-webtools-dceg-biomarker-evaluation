@@ -44,7 +44,7 @@ def setRWorkingDirectory():
 @jsonp
 def callRFunction():
     print "Data Start Time: " + str(time.time());
-    robjects.r('''source('./R/meanstoriskWrapper.R')''')
+    robjects.r('''source('../R/meanstoriskWrapper.R')''')
     r_getname_getApcData = robjects.globalenv['getDataJSON']
     stream = request.stream.read()
     jsondata = r_getname_getApcData(stream)
