@@ -10,7 +10,7 @@ from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
 
-with open ('./R/sampleSizeWrapper.R') as fh:
+with open ('../R/sampleSizeWrapper.R') as fh:
         rcode = os.linesep.join(fh.readlines())
         wrapper = SignatureTranslatedAnonymousPackage(rcode,"wrapper")
 
@@ -20,7 +20,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     # Render template
-    return render_template('./index.html')
+    return render_template('../index.html')
 
 # This route will return a list in JSON format
 @app.route('/sampleSizeRest/', methods=['POST'])
