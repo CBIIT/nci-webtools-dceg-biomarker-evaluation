@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+    head
+        title
+        meta(http-equiv='content-type', content='text/html; charset=utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        link(rel='stylesheet', href='/common/css/font-awesome.css', type='text/css')
+        link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css')
+        link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', type='text/css')
+        link(rel='stylesheet', href='/common/css/style.css')
+        link(rel='stylesheet', href='resources/styles.css')
+    body
+        .sr-only
+            a(href="#contentTabs") Skip to Content
+        .center-block
+            include header
+            #main
+                #banners
+                    #left
+                        img(src='/common/images/DCEG-BB-HREB.png',
+                        alt='Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal ' +
+                        'and Reproductive Epidemiology Branch ',
+                        height='43')
+                    br
+                #contentTabs.col-md-12
+                    ul.nav.nav-tabs(role='tablist')
+                        li.active(role='presentation')
+                            a(data-target='#home', role='tab', data-toggle='tab') Home
+                        li(role='presentation')
+                            a(data-target='#m2rs', role='tab', data-toggle='tab') Means to Risk Stratification
+                        li(role='presentation')
+                            a(data-target='#bm_compare', role='tab', data-toggle='tab') Biomarker Comparison
+                        li(role='presentation')
+                            a(data-target='#rs_advanced', role='tab', data-toggle='tab') Risk Stratification Advanced Analysis
+                        li(role='presentation')
+                            a(data-target='#sampleSize', role='tab', data-toggle='tab') Power and Sample Size Calculation
+                        li(role='presentation')
+                            a(data-target='#help', role='tab', data-toggle='tab') Help
+                    .tab-content.col-md-12
+                        include ../pages/home
+                        include ../pages/m2rs
+                        include ../pages/bm_compare
+                        include ../pages/rs_advanced
+                        include ../pages/sampleSize
+                        include ../pages/help
+        include footer
+        script(data-main="resources/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js")
