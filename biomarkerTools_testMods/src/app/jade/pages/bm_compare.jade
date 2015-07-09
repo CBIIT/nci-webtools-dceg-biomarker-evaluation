@@ -1,0 +1,123 @@
+#bm_compare.tab-pane.fade(role='tabpanel') 
+    h3.title.text-center(title="Biomarker Comparison") Biomarker Comparison Tool
+    p
+      | This tool plots contours of likelihood ratio positive (LR+) and
+      | likelihood ratio negative (LR-) for a reference test with indicated
+      | sensitivity and specificity pairs (see the example plot below). The
+      | likelihood ratio contours define four areas: 
+      .row
+        .col-md-5
+          img(src='images/exampleLRPlot.jpg', alt='sample LR plot', height='350')
+        .col-md-5.explanation
+          ul#ulForLRAreas
+            li.liForLRArea
+              | Area A shows combinations of
+              | sensitivity and specificity with higher LR+ and LR- than the
+              | reference test. This corresponds to a higher positive predictive
+              | value (PPV) and lower complement of the negative predictive value
+              | (cNPV)
+            li.liForLRArea
+              | Area B shows combinations of
+              | sensitivity and specificity with higher LR+ and lower LR- than
+              | the reference test. This corresponds to a higher positive
+              | predictive value (PPV) and higher complement of the negative
+              | predictive value (cNPV).
+            li.liForLRArea
+              | Area C shows combinations of sensitivity and specificity 
+              | with lower LR+ and higher LR- compared to the reference 
+              | test. This corresponds to a lower positive
+              | predictive value (PPV) and lower complement of the
+              | negative predictive value (cNPV).
+            li.liForLRArea Area D shows combinations of sensitivity and 
+              | specificity with lower LR+ and lower LR- compared
+              | to the reference test. This corresponds to a lower positive
+              | predictive value (PPV) and higher complement of the negative
+              | predictive value (cNPV)
+          p LR+ and LR- measures provide test-specific characteristics of risk
+            | stratification that yield estimates of absolute risk (PPV and NPV)
+            | when multiplied with the specific disease prevalence. LR+ and LR-
+            | estimated in one population will be the same in another
+            | population, whenever sensitivities and specificities are the same
+            | in the 2 populations, even when disease prevalences are much
+            | different. To calculate PPV and cNPV, provide a prevalence value.
+      .col-md-6.table-and-graph
+          // Left Side
+          table#inputdata
+            thead
+              tr.non-data-row
+                th.top-header(colspan='5') Input Information
+              tr.non-data-row
+                th.header #
+                th.header Reference
+                th.header
+                  #Sens.termToDefine(data-term='Sens') Sensitivity
+                  #SensDefinition.popupDefinition
+                th.header
+                  #Spec.termToDefine(data-term='Spec') Specificity
+                  #SpecDefinition.popupDefinition
+                th.header  
+            tbody
+              tr.reference_row(row='0')
+                th 1
+                td.reference(row='0', col='reference')
+                  img(src='/common/images/checkbox.png', height='18', width='18', alt='check')
+                td.input.sensitivity(row='0', col='sensitivity') 0.8
+                td.input.specificity(row='0', col='specificity') 0.7
+                td  
+              tr(row='1')
+                th 2
+                td.reference(row='1', col='reference')
+                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
+                td.input.sensitivity(row='1', col='sensitivity') 0.85
+                td.input.specificity(row='1', col='specificity') 0.68
+                td
+                  button.remove_row_button Remove
+              tr(row='2')
+                th 3
+                td.reference(row='2', col='reference')
+                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
+                td.input.sensitivity(row='2', col='sensitivity') 0.9
+                td.input.specificity(row='2', col='specificity') 0.5
+                td
+                  button.remove_row_button Remove
+              tr.non-data-row
+                th 
+                td 
+                td 
+                td 
+                td
+                  button#new_row_button New Row
+          table
+            tr
+              td.prevalence_label
+                #DP.termToDefine(data-term='DP',for='prevalence') Prevalence
+                #DPDefinition.popupDefinition
+              td
+                input#prevalence(type='text')
+          button#calculate_button Calculate
+          include ../partials/loader
+          table#output
+        .col-md-6
+            // Right Side
+            img.thumbnail#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
+      .bibliography
+        p
+          b References:
+        p
+          | Marina V. Kondratovich, (2007), 
+          i
+            | Comparing Two Medical Tests
+            | When Results of Reference Standard Are Unavailable for Those
+            | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, 
+          a(target='_blank', href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670')
+            | DOI: 10.1080/10543400701668308
+        p
+          b Where do I go for technical support?
+          |  Please send an 
+          a(href='mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Comparison Tool Support', title='Biomarker Comparision Tool Technical Support') e-mail
+          |  to our technical support team.
+        p
+          b What browsers does the web tool support?
+          |  The web tool has been tested to work with Internet Explorer versions 10, 9 and 8, Firefox and Chrome.
+  // columns float END
+// main
