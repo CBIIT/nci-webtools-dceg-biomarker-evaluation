@@ -4,9 +4,10 @@ requirejs.config(
     \jquery.ui : "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min"
     bootstrap : "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min"
     sampleSize: \sampleSize/sampleSize
-    bm_compare: \bm_compare/bm_compare
+    bc: \bc/bc
     m2rs: \m2rs/meanstorisk
-    rs_advanced: \rs_advanced/riskStratAdv
+    riskStratAdvanced: \riskStratAdvanced/riskStratAdvanced
+    meanRiskStratification: \meanRiskStratification/meanRiskStratification
     glossary : '/common/js/meansToRiskGlossary'
     routes : \routes
   shim :
@@ -20,7 +21,7 @@ requirejs.config(
       deps: <[ jquery.ui bootstrap ]>
     m2rs :
       deps: <[ jquery.ui bootstrap ]>
-    rs_advanced :
+    riskStratAdvanced :
       deps: <[ jquery.ui bootstrap ]>
     routes :
       deps : <[ bootstrap glossary ]>  
