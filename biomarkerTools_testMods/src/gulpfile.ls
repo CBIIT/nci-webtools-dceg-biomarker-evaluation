@@ -5,12 +5,15 @@ require 'matchdep'
 
 strip-comments = require \gulp-strip-comments
 notifier = require \node-notifier
+gulp-ignore = require \gulp-ignore
+
 parent-dir = \..
 
-require! <[ gulp gulp-util gulp-jshint gulp-stylus gulp-livereload gulp-livescript streamqueue gulp-if gulp-plumber nib ]>
+require! <[ gulp gulp-concat gulp-util gulp-jshint gulp-stylus gulp-livereload gulp-livescript streamqueue gulp-if gulp-plumber nib ]>
 
 jshint = require \gulp-jshint
 gutil = gulp-util
+del =  require \del
 
 dev = gutil.env._.0 is \dev
 plumber = ->
@@ -24,49 +27,23 @@ plumber = ->
 var http-server
 production = true if gutil.env.env is \production
 
-#gulp.task 'webdriver_update' webdriver_update
-
-#gulp.task 'protractor' <[webdriver_update httpServer]> ->
-#  gulp.src ["./test/e2e/app/*.ls"]
-#    .pipe protractor configFile: "./test/protractor.conf.ls"
-#    .on 'error' ->
-#      throw it
-
-#gulp.task 'test:e2e' <[protractor]> ->
-#  httpServer.close!
-
-#gulp.task 'protractor:sauce' <[webdriver_update build httpServer]> ->
-#  args =
-#    '--selenium-address'
-#    ''
-#    '--sauce-user'
-#    process.env.SAUCE_USERNAME
-#    '--sauce-key'
-#    process.env.SAUCE_ACCESS_KEY
-#    '--capabilities.build'
-#    process.env.TRAVIS_BUILD_NUMBER
-#  if process.env.TRAVIS_JOB_NUMBER
-#    #args['capabilities.tunnel-identifier'] = that
-#    args.push '--capabilities.tunnel-identifier'
-#    args.push that
-#
-#  gulp.src ["./test/e2e/app/*.ls"]
-#    .pipe protractor do
-#      configFile: "./test/protractor.conf.ls"
-#      args: args
-#    .on 'error' ->
-#      throw it
-
-#gulp.task 'test:sauce' <[protractor:sauce]> ->
-#  httpServer.close!
-
 # to compile, run command 'npm run build'
-gulp.task 'build' <[ template bower py:copy js:copy js:app css ]> !->
+gulp.task 'build' <[ clean:scripts template bower py:copy js:copy ls:app css ]> !->
 
   notifier.notify(
     title: 'Compilation Complete',
     message: "The code has been compiled in the project's root directory")
 
+#clean files before running the build
+gulp.task \clean:scripts ->
+  del [ 
+  '../bc/*.js' '../bc/*.py' 
+  '../meanRiskStratification/*.js' '../meanRiskStratification/*.py'
+  '../meanstorisk/*.js' '../meanstorisk/*.py'
+  '../riskStratificationAdvanced/*.js' '../riskStratificationAdvanced/*.py'
+  '../sampleSize/*.js' '../sampleSize/*.py'
+  ] force: true
+  
 # gulp.task 'test:unit' <[build]> ->
 #  gulp.start 'test:karma' ->
 #    process.exit!
@@ -77,16 +54,10 @@ gulp.task 'build' <[ template bower py:copy js:copy js:app css ]> !->
 #    single-run: true
 #  }, done
 
-gulp.task 'dev' <[template js:copy js:app css]> (done) ->
-#  gulp.start 'httpServer'
+gulp.task 'dev' <[template js:copy ls:app css]> (done) ->
   gulp.watch ['app/jade/**/*.jade'] <[template]>
-  gulp.watch ['app/ls/**/*.ls'] <[js:app]>
+  gulp.watch ['app/ls/**/*.ls'] <[ls:app]>
   gulp.watch 'app/stylus/**/*.styl' <[css]>
-#  require 'karma' .server.start {
-#    config-file: __dirname + '/test/karma.conf.ls',
-#  }, ->
-#    done!
-#    process.exit!
 
 require! <[ gulp-jade]>
 gulp.task 'template' <[index]> ->
@@ -111,30 +82,36 @@ require! <[gulp-concat gulp-json-editor gulp-commonjs gulp-insert]>
 gulp.task 'bower' ->
   gulp-bower!
 
-gulp.task 'js:app' ->
-  #copy json files
-  gulp.src 'public/js/*.json'
-    .pipe gulp.dest parentDir
-
-  env = gulp.src 'public/js/**/*.jsenv'
-    .pipe gulp-json-editor (json) ->
-      for key of json when process.env[key]?
-        json[key] = that
-      json
-
-  app = gulp.src 'app/ls/**/*.ls'
-    .pipe gulp-if dev, plumber!
-    .pipe gulp-livescript({+bare}).on 'error', gutil.log
-    .pipe gulp.dest parentDir
-
-gulp.task 'js:copy' <[bower]> ->
-  
+gulp.task 'ls:app' ->
   s = streamqueue { +objectMode }
 
+  s.queue gulp.src <[ app/ls/**/*.ls ]>
+    .pipe gulp-if dev, plumber!
+    .pipe gulp-livescript({+bare}).on 'error', gutil.log
+    .pipe gulp.dest 'app/scripts'
+
+  s.done!
+  
+gulp.task 'js:copy' <[bower]> ->
+  s = streamqueue { +objectMode }
+
+  #copy json files
+  s.queue gulp.src \app/scripts/**/*.json
+    .pipe gulp.dest parentDir
+  
   # run js file through jshint, report errors, strip the comments, then place the files in a root scripts folder 
-  s.queue gulp.src 'scripts/**/*.js', base: 'scripts'
+  s.queue gulp.src <[ app/scripts/**/*.js ]>
+    .pipe gulp-ignore.exclude \app/scripts/meanRiskStratification
+    .pipe gulp-ignore.exclude \app/scripts/meanRiskStratification/*.js
+    .pipe strip-comments!
     .pipe jshint!
     .pipe jshint.reporter \jshint-stylish
+    .pipe gulp-if dev, livereload!
+    .pipe gulp.dest parentDir
+      
+  #merge scripts for mrs
+  s.queue gulp.src \app/scripts/meanRiskStratification/*.js
+    .pipe gulp-concat \meanRiskStratification/mrs.js
     .pipe strip-comments!
     .pipe gulp-if dev, livereload!
     .pipe gulp.dest parentDir
@@ -145,11 +122,11 @@ gulp.task 'py:copy' ->
   s = streamqueue { +objectMode }
   
   # copy python scripts
-  s.queue gulp.src 'scripts/**/*.py', base: 'scripts'
+  s.queue gulp.src \app/scripts/**/*.py
     .pipe gulp.dest parentDir
   
   s.done!
-  
+
 gulp.task 'css' <[bower]> ->
   bower = gulp.src main-bower-files!
     .pipe gulp-filter -> it.path is /\.css$/
@@ -161,7 +138,7 @@ gulp.task 'css' <[bower]> ->
     .pipe gulp.dest parentDir
 
   s = streamqueue { +objectMode }
-    .done bower, styl, gulp.src 'public/css/**/*.css'
+    .done bower, styl, gulp.src 'app/css/**/*.css'
     .pipe gulp-if production, gulp-csso!
     .pipe gulp.dest parentDir
     .pipe gulp-if dev, livereload!
