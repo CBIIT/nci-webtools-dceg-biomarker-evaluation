@@ -1,0 +1,245 @@
+#meanRiskStratification.tab-pane.fade(role='tabpanel') 
+    h3.title.text-center(title="Mean Risk Stratification") Mean Risk Stratification
+    .col-md-5.col-sm-5
+        .col-md-12.well
+          form#markers.panel-group
+            .marker.panel.panel-default.marker-1
+              .bg-primary
+                .text-center.marker-title Biomarker #1
+              .extra-padding
+                label(for='name-input') Biomarker Name
+                input.name-input.input.input-sm(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9]*$')
+              .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-1')
+                h6.panel-title
+                  a.accordion-toggle(title='Input: 2x2 Table') Input: 2x2 Table
+                  span.glyphicon.glyphicon-chevron-down
+              #marker-1-option-1.panel-collapse.collapse.in
+                .option-1.panel-body
+                  table.table.table-condensed
+                    thead
+                      tr.active
+                        th.col-md-2.header
+                          .sr-only Empty cell
+                            a(href='#prob_m') Skip to Content
+                        th#prob_m.termToDefine.header Marker Positive (M+)
+                        th#m_neg.termToDefine.header Marker Negative (M-)
+                    tbody
+                      tr
+                        th#prob_d.termToDefine.header.active Disease Positive (D+)    
+                        td
+                          label.sr-only(for='a') A
+                          input#a.input.input-sm(name='a', type='number', maxlength='30')    
+                        td
+                          label.sr-only(for='b') B
+                          input#b.input.input-sm(name='b', type='number', maxlength='30')
+                      tr
+                        th#d_neg.termToDefine.header.active Disease Negative (D-)    
+                        td
+                          label.sr-only(for='c') C
+                          input#c.input.input-sm(name='c', type='number', maxlength='30')    
+                        td
+                          label.sr-only(for='d') D
+                          input#d.input.input-sm(name='d', type='number', maxlength='30')
+              .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-2')
+                h6.panel-title
+                  a.accordion-toggle(title='Input: PPV, NPV, Sensitivity,Specificity, etc.') Input: PPV, NPV, Sensitivity,Specificity, etc.
+                    span.glyphicon.glyphicon-chevron-down
+              #marker-1-option-2.panel-collapse.collapse
+                .option-2.panel-body.extra-padding.table-responsive
+                  .extra-padding
+                    label(for='sampsize') Sample Size
+                    input.input.input-sm(name='sampsize', type='number', maxlength='30', min='1')
+                  table.option-2.table.table-condensed.table-responsive
+                    thead
+                      tr.active
+                        th.header(title='Parameter Type Column') Parameter
+                        th.header(title='Parameter Proportion Column') Proportion
+                    tbody
+                      tr(row='0')
+                        td
+                          select.input.input-sm(name='param_1')
+                            option(value='ppv') PPV
+                            option(value='sens') Sensitivity
+                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                        td
+                          input.input.input-sm(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
+                      tr(row='1')
+                        td
+                          select.input.input-sm(name='param_2')
+                            option(value='npv') NPV
+                            option(value='spec') Specificity
+                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                        td
+                          input.input.input-sm(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
+                      tr(row='2')
+                        td
+                          select.input.input-sm(name='param_3')
+                            option(value='prob_m') Marker Positivity (P(M+))
+                            option(value='prob_d') Disease Prevalence (P(D+))
+                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                        td
+                          input.input.input-sm(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
+          #control-group.col-md-12
+            .row
+              .pull-left
+                button#add-marker
+                  span.glyphicon.glyphicon-plus-sign(alt='Add(+)', title='Add biomarker') &nbsp;
+                  span Add
+                button#delete-marker(title='Delete biomarker')
+                  span.glyphicon.glyphicon-minus-sign(alt='Delete(-)') &nbsp;
+                  span Delete
+                button#reset(type='reset', title='Reset') Reset
+                button#calculate(type='button', title='Calculate') Calculate
+              .pull-right
+                .row
+                  a#test1(href='javascript:void(0);', title='Populate 1 biomarker using test data') Example 1
+                .row
+                  a#test2(href='javascript:void(0);', title='Populate 1 biomarker using test data') Example 2     
+      .col-md-7.col-sm-7
+        include ../partials/loader.jade        
+        #results
+          table.table.table-bordered.table-condensed
+            thead
+              tr
+                th.active Calculations
+                th.bm_1.marker_name.active
+                th.bm_2.marker_name.active
+                th.bm_3.marker_name.active
+            |                 
+            tr
+              td.concern.termToDefine Concern = PPV-P(D+)
+              td#concern_result.output.bm_1
+              td#concern_result.output.bm_2
+              td#concern_result.output.bm_3
+            |                 
+            tr
+              td.reassurance.termToDefine Reassurance = P(D+)-cNPV
+              td#reassurance_result.output.bm_1
+              td#reassurance_result.output.bm_2
+              td#reassurance_result.output.bm_3
+            |                 
+            tr
+              td.q_sens.termToDefine Concentration = Sensitivity - P(M+)
+              td#q_sens_result.output.bm_1
+              td#q_sens_result.output.bm_2
+              td#q_sens_result.output.bm_3
+            |                 
+            tr
+              td.q_spec.termToDefine Reduction = P(M+) - cSpec
+              td#q_spec_result.output.bm_1
+              td#q_spec_result.output.bm_2
+              td#q_spec_result.output.bm_3
+            |                 
+            tr
+              td.mrs.termToDefine Mean Risk Stratification = 2(ad-bc)
+              td#mrs_result.output.bm_1
+              td#mrs_result.output.bm_2
+              td#mrs_result.output.bm_3
+            |                 
+            tr
+              td.max_mrs.termToDefine Maximum possible MRS for a disease with this prevalence
+              td#max_mrs_result.output.bm_1
+              td#max_mrs_result.output.bm_2
+              td#max_mrs_result.output.bm_3
+            |                 
+            tr
+              td.pbs.termToDefine Population Burden Stratification (PBS) = a-b
+              td#pbs_result.output.bm_1
+              td#pbs_result.output.bm_2
+              td#pbs_result.output.bm_3
+            |                 
+            tr
+              td.nnr.termToDefine Number Needed to Recruit (NNR) = 1/PBS
+              td#nnr_result.output.bm_1
+              td#nnr_result.output.bm_2
+              td#nnr_result.output.bm_3
+            |                 
+            tr
+              td.nns.termToDefine Number Needed to Screen (NNS) =1/RD
+              td#nns_result.output.bm_1
+              td#nns_result.output.bm_2
+              td#nns_result.output.bm_3
+          br
+          table.table.table-bordered.table-condensed
+            thead
+              tr
+                th.active Parameters
+                th.bm_1.marker_name.active
+                th.bm_2.marker_name.active
+                th.bm_3.marker_name.active
+            tbody
+              tr
+                td.test.termToDefine True Positive Fraction = a
+                td#d_pos_result.output.bm_1
+                td#d_pos_result.output.bm_2
+                td#d_pos_result.output.bm_3
+              tr
+                td.test.termToDefine False Negative Fraction = b
+                td#pos_d_neg_m_result.output.bm_1
+                td#pos_d_neg_m_result.output.bm_2
+                td#pos_d_neg_m_result.output.bm_3
+              tr
+                td.test.termToDefine False Positive Fraction = c
+                td#neg_d_pos_m_result.output.bm_1
+                td#neg_d_pos_m_result.output.bm_2
+                td#neg_d_pos_m_result.output.bm_3
+              tr
+                td.test.termToDefine True Negative Fraction = d
+                td#m_neg_result.output.bm_1
+                td#m_neg_result.output.bm_2
+                td#m_neg_result.output.bm_3
+              tr
+                td.termToDefine.prob_m Marker Positivity
+                td#prob_m_result.output.bm_1
+                td#prob_m_result.output.bm_2
+                td#prob_m_result.output.bm_3
+              tr
+                td.prob_d.termToDefine Disease Prevalence
+                td#prob_d_result.output.bm_1
+                td#prob_d_result.output.bm_2
+                td#prob_d_result.output.bm_3
+              tr
+                td.termToDefine.ppv Positive Predictive Value (PPV)
+                td#ppv_result.output.bm_1
+                td#ppv_result.output.bm_2
+                td#ppv_result.output.bm_3
+              tr
+                td.cnpv.termToDefine Complement of Negative Predictive Value (cNPV)
+                td#c_npv_result.output.bm_1
+                td#c_npv_result.output.bm_2
+                td#c_npv_result.output.bm_3
+              tr
+                td.termToDefine.sens Sensitivity
+                td#sens_result.output.bm_1
+                td#sens_result.output.bm_2
+                td#sens_result.output.bm_3
+              tr
+                td.termToDefine.spec Specificity
+                td#spec_result.output.bm_1
+                td#spec_result.output.bm_2
+                td#spec_result.output.bm_3
+              tr
+                td.test.termToDefine Complement of Specificity (cSpec)
+                td#c_spec_result.output.bm_1
+                td#c_spec_result.output.bm_2
+                td#c_spec_result.output.bm_3
+              tr
+                td.test.termToDefine Relative Risk
+                td#rr_result.output.bm_1
+                td#rr_result.output.bm_2
+                td#rr_result.output.bm_3
+              tr
+                td.test.termToDefine Risk Difference (RD)
+                td#r_diff_result.output.bm_1
+                td#r_diff_result.output.bm_2
+                td#r_diff_result.output.bm_3
+              tr
+                td.test.termToDefine Youden's Index (YI)
+                td#youden_result.output.bm_1
+                td#youden_result.output.bm_2
+                td#youden_result.output.bm_3
+              tr
+                td.auc.termToDefine AUC = (1+YI)/2
+                td#auc_result.output.bm_1
+                td#auc_result.output.bm_2
+                td#auc_result.output.bm_3
