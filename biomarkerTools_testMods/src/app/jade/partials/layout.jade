@@ -27,21 +27,24 @@ html(lang="en")
                         li.active(role='presentation')
                             a(data-target='#home', role='tab', data-toggle='tab') Home
                         li(role='presentation')
-                            a(data-target='#m2rs', role='tab', data-toggle='tab') Means to Risk Stratification
+                            a(data-target='#meanstorisk', role='tab', data-toggle='tab') Means to Risk Stratification
                         li(role='presentation')
-                            a(data-target='#bm_compare', role='tab', data-toggle='tab') Biomarker Comparison
+                            a(data-target='#bc', role='tab', data-toggle='tab') Biomarker Comparison
                         li(role='presentation')
-                            a(data-target='#rs_advanced', role='tab', data-toggle='tab') Risk Stratification Advanced Analysis
+                            a(data-target='#riskStratAdvanced', role='tab', data-toggle='tab') Risk Stratification Advanced Analysis
                         li(role='presentation')
                             a(data-target='#sampleSize', role='tab', data-toggle='tab') Power and Sample Size Calculation
+                        li(role='presentation')
+                            a(data-target='#meanRiskStratification', role='tab', data-toggle='tab') Mean Risk Stratification
                         li(role='presentation')
                             a(data-target='#help', role='tab', data-toggle='tab') Help
                     .tab-content.col-md-12
                         include ../pages/home
-                        include ../pages/m2rs
-                        include ../pages/bm_compare
-                        include ../pages/rs_advanced
+                        include ../pages/meanstorisk
+                        include ../pages/bc
+                        include ../pages/riskStratAdvanced
                         include ../pages/sampleSize
+                        include ../pages/meanRiskStratification
                         include ../pages/help
         include footer
         script(data-main="resources/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js")
