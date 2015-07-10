@@ -43,146 +43,146 @@ body {
 #sampleSize .row {
   margin: 1em auto;
 }
-#bm_compare .example-image {
+#bc .example-image {
   float: left;
 }
-#bm_compare .explanation {
+#bc .explanation {
   float: left;
   padding-left: 15px;
   width: 600px;
 }
-#bm_compare .reference_row {
+#bc .reference_row {
   background-color: #ff0;
 }
-#bm_compare td {
+#bc td {
   text-align: center;
 }
-#bm_compare .top-header {
+#bc .top-header {
   text-align: center;
   background-color: #444;
   color: #fff;
 }
-#bm_compare .header {
+#bc .header {
   background-color: #aaa;
   color: #444;
 }
-#bm_compare #output {
+#bc #output {
   width: 500px;
 }
-#bm_compare #inputdata {
+#bc #inputdata {
   width: 500px;
 }
-#bm_compare h2 {
+#bc h2 {
   background-color: #aaa;
   color: #444;
   padding: 5px;
 }
-#bm_compare .prevalence_label {
+#bc .prevalence_label {
   font-weight: bold;
   background-color: #aaa;
   color: #444;
   padding: 2px 25px 2px 25px;
 }
-#bm_compare .bibliography {
+#bc .bibliography {
   width: 950px;
   clear: both;
   float: left;
   margin: 50px;
 }
-#bm_compare .bib-author {
+#bc .bib-author {
   float: left;
 }
-#bm_compare .bib-year {
+#bc .bib-year {
   float: left;
 }
-#bm_compare .bib-title {
+#bc .bib-title {
   float: left;
   font-style: italic;
 }
-#bm_compare .bib-journal {
+#bc .bib-journal {
   float: left;
 }
-#bm_compare .bib-ref {
+#bc .bib-ref {
   float: left;
 }
-#bm_compare .bib-pages {
+#bc .bib-pages {
   float: left;
 }
-#bm_compare .bib-doi {
+#bc .bib-doi {
   float: left;
 }
-#bm_compare .bibliography_entry {
+#bc .bibliography_entry {
   width: 300px;
 }
-#bm_compare .bibliography_link {
+#bc .bibliography_link {
   width: 50px;
 }
-#m2rs .top_section {
+#meanstorisk .top_section {
   height: 400px;
 }
-#m2rs .bottom_section {
+#meanstorisk .bottom_section {
   clear: left;
   height: 400px;
 }
-#m2rs .input_panel {
+#meanstorisk .input_panel {
   position: relative;
   float: left;
   width: 400px;
   background: #ddd;
   border: 1px #bbb solid;
 }
-#m2rs div.input_accordion {
+#meanstorisk div.input_accordion {
   background: #fff url("");
 }
-#m2rs H3.input_accordion {
+#meanstorisk H3.input_accordion {
 background-color
   background: #ddd url("");
 }
-#m2rs .table_panel {
+#meanstorisk .table_panel {
   float: left;
   width: 300px;
   height: 99%;
 }
-#m2rs .graph_panel {
+#meanstorisk .graph_panel {
   height: 99%;
 }
-#m2rs .output_graph {
+#meanstorisk .output_graph {
   max-width: 38%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-#m2rs .key_output_panel {
+#meanstorisk .key_output_panel {
   float: left;
   width: 300px;
   background-color: #faf;
   height: 99%;
 }
-#m2rs .tabbed_output_panel {
+#meanstorisk .tabbed_output_panel {
   height: 99%;
 }
-#m2rs .indent {
+#meanstorisk .indent {
   margin-left: 30px;
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
-#m2rs .highlight {
+#meanstorisk .highlight {
   background-color: #ff0;
 }
-#m2rs .col1 {
+#meanstorisk .col1 {
   padding: 6px;
   text-align: right;
 }
-#m2rs .maincard {
+#meanstorisk .maincard {
   width: 800px;
   height: 750px;
   border: 2px #000 solid;
 }
-#m2rs .highlight {
+#meanstorisk .highlight {
   background-color: #ff0;
 }
-#m2rs table.table_data {
+#meanstorisk table.table_data {
   width: 90%;
   background-color: #fff;
   border-collapse: collapse;
@@ -191,73 +191,124 @@ background-color
   margin-right: 20px;
   float: left;
 }
-#m2rs table.output_data {
+#meanstorisk table.output_data {
   background-color: #fff;
   border-collapse: collapse;
   border: 2px #000 solid;
   margin-left: 20px;
   margin-right: 20px;
 }
-#m2rs td.table_data {
+#meanstorisk td.table_data {
   font-family: sans-serif;
   text-align: center;
 }
-#m2rs th.table_data {
+#meanstorisk th.table_data {
   font-family: sans-serif;
   padding: 2px;
 }
-#m2rs th.header {
+#meanstorisk th.header {
   border-bottom: 1px #bbb solid;
   background-color: #d3d3d3;
 }
-#m2rs th.col1 {
+#meanstorisk th.col1 {
   text-align: right;
 }
-#m2rs tr.table_data_header {
+#meanstorisk tr.table_data_header {
   border-bottom: 1px #000 solid;
   background-color: #a0a0a0;
 }
-#m2rs tr.line-above {
+#meanstorisk tr.line-above {
   border-top: 1px #bbb solid;
 }
-#m2rs .main-title {
+#meanstorisk .main-title {
   text-align: center;
 }
-#m2rs .PPV_stripe {
+#meanstorisk .PPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #b080ff;
 }
-#m2rs .cNPV_stripe {
+#meanstorisk .cNPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #8080ff;
 }
-#m2rs .PPVcNPV_stripe {
+#meanstorisk .PPVcNPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #ffaa80;
 }
-#m2rs .ProgramBased_stripe {
+#meanstorisk .ProgramBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #ffb0d0;
 }
-#m2rs .PPVBased_stripe {
+#meanstorisk .PPVBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #a0a0a0;
 }
-#m2rs .SensitivityBased_stripe {
+#meanstorisk .SensitivityBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #808080;
 }
-#m2rs .DominatedByRareDisease_stripe {
+#meanstorisk .DominatedByRareDisease_stripe {
   border-bottom: 1px #000 solid;
   background-color: #f0f0f0;
 }
-#m2rs .ui-accordion {
+#meanstorisk .ui-accordion {
   overflow: hidden;
 }
-#m2rs .ui-widget {
+#meanstorisk .ui-widget {
   font-size: 12px;
 }
 #help section h5 {
   font-weight: bold;
   text-decoration: underline;
+}
+#meanRiskStratification .red {
+  background-color: #a90002;
+}
+#meanRiskStratification .panel-title,
+#meanRiskStratification .panel-title a {
+  font-size: small;
+}
+#meanRiskStratification table input[type="text"] {
+  width: 50px;
+}
+#meanRiskStratification .top-header {
+  text-align: center;
+  color: #fff;
+}
+#meanRiskStratification .extra-padding {
+  padding: 1em;
+}
+#meanRiskStratification .extra-vertical-margin {
+  margin: 10px 0;
+}
+#meanRiskStratification .panel-toggle a,
+#meanRiskStratification .panel-title a {
+  color: #000;
+  font-weight: bold;
+}
+#meanRiskStratification label {
+  font-weight: bold;
+}
+#meanRiskStratification .well,
+#meanRiskStratification #results {
+  min-height: 645px;
+}
+#meanRiskStratification .termToDefine,
+#meanRiskStratification th {
+  font-weight: bold;
+}
+#meanRiskStratification .termToDefine.glyphicon {
+  text-decoration: none;
+}
+#meanRiskStratification .loader {
+  background-image: url("/common/images/loading.gif") no-repeat;
+  margin: 0 auto;
+  height: 300px;
+  width: 100%;
+}
+#meanRiskStratification input[type="number"] {
+  width: 10rem;
+}
+#meanRiskStratification .input:invalid {
+  background-color: #ff0;
 }
