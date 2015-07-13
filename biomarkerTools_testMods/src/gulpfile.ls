@@ -88,7 +88,7 @@ gulp.task 'ls:app' ->
   s.queue gulp.src <[ app/ls/**/*.ls ]>
     .pipe gulp-if dev, plumber!
     .pipe gulp-livescript({+bare}).on 'error', gutil.log
-    .pipe gulp.dest 'app/scripts'
+    .pipe gulp.dest parentDir
 
   s.done!
   
@@ -96,25 +96,21 @@ gulp.task 'js:copy' <[bower]> ->
   s = streamqueue { +objectMode }
 
   #copy json files
-  s.queue gulp.src \app/scripts/**/*.json
+  gulp.src \app/scripts/**/*.json
     .pipe gulp.dest parentDir
   
   # run js file through jshint, report errors, strip the comments, then place the files in a root scripts folder 
-  s.queue gulp.src <[ app/scripts/**/*.js ]>
-    .pipe gulp-ignore.exclude \app/scripts/meanRiskStratification
-    .pipe gulp-ignore.exclude \app/scripts/meanRiskStratification/*.js
+  gulp.src <[ !app/scripts/meanRiskStratification/**/* app/scripts/**/*.js ]>
     .pipe strip-comments!
     .pipe jshint!
     .pipe jshint.reporter \jshint-stylish
-    .pipe gulp-if dev, livereload!
     .pipe gulp.dest parentDir
-      
+    
   #merge scripts for mrs
   s.queue gulp.src \app/scripts/meanRiskStratification/*.js
-    .pipe gulp-concat \meanRiskStratification/mrs.js
-    .pipe strip-comments!
+    .pipe gulp-concat \meanRiskStratification.js
     .pipe gulp-if dev, livereload!
-    .pipe gulp.dest parentDir
+    .pipe gulp.dest "#{parentDir}/meanRiskStratification"
     
   s.done!
     
