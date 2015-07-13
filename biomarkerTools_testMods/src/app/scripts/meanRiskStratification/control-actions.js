@@ -1,25 +1,25 @@
 // keep track of the number of marker elements, to use the number as the id,
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
-
+var thisTool = $("#meanRiskStratification");
 $(document).ready(function () {
-    $(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
     bind_control_events();
     create_popover();
 
-    $('.termToDefine, .dd.termToDefine').on('click', display_definition);
+    thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 });
 
 function bind_control_events() {
-    $("#errors").alert();
+    thisTool.find("#errors").alert();
     // testing
-    $('a#test1,a#test2').on('click', test);
+    thisTool.find('a#test1,a#test2').on('click', test);
 
-    $('#reset').on('click', reset);
-    $('#add-marker').on('click', new_marker);
-    $('#delete-marker').on('click', delete_marker);
-    $('#calculate').on('click', calculate);
+    thisTool.find('#reset').on('click', reset);
+    thisTool.find('#add-marker').on('click', new_marker);
+    thisTool.find('#delete-marker').on('click', delete_marker);
+    thisTool.find('#calculate').on('click', calculate);
 
     bind_accordion_action($('#markers').children().first());
 }
@@ -36,23 +36,23 @@ function bind_accordion_action(el) {
 function controls_visibility(numElements) {
     // controls the visibility of the add/remove marker buttons
     if (numElements == 2) {
-        $('#delete-marker').show();
-        $('#add-marker').show();
+        thisTool.find('#delete-marker').show();
+        thisTool.find('#add-marker').show();
     }
     if (numElements > 2) {
-        $('#delete-marker').show();
-        $('#add-marker').hide();
+        thisTool.find('#delete-marker').show();
+        thisTool.find('#add-marker').hide();
     }
     if (numElements < 2) {
-        $('#delete-marker').hide();
-        $('#add-marker').show();
+        thisTool.find('#delete-marker').hide();
+        thisTool.find('#add-marker').show();
     }
 }
 
 function new_marker() {
     var counter = currentMarkers + 1;
     if (currentMarkers <= 3) {
-        var markerTemplate = $('#markers').find('.marker').first();
+        var markerTemplate = thisTool.find('#markers').find('.marker').first();
 
         // clone controls
         var newElement = markerTemplate.clone();
@@ -98,16 +98,16 @@ function new_marker() {
 
         // add new marker to #markers element
         //$('#markers').append(newElement);
-        $(newElement[0]).insertAfter($('#markers').children().last());
+        $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
     }
 }
 
 function delete_marker() {
     if (currentMarkers > 1) {
         // remove last child
-        $('#markers').children().last().empty();
-        $('#markers').children().last().remove();
-        $('.bm_'+currentMarkers).hide();
+        thisTool.find('#markers').children().last().empty();
+        thisTool.find('#markers').children().last().remove();
+        thisTool.find('.bm_'+currentMarkers).hide();
         currentMarkers--;
     }
     controls_visibility(currentMarkers);
@@ -124,7 +124,7 @@ function calculate() {
         var host = window.location.hostname;
         if (host == 'localhost') {
             // call json file instead of service
-            service = 'output_example.json';
+            service = 'meanRiskStratification/output_example.json';
         } else {
             service = "http://" + host + "/mrsRest/";
         }
@@ -144,7 +144,7 @@ function calculate() {
         });
 
         promise.then(clean_data, function (error) {
-            $("#results, .bm_1, .bm_2, .bm_3").hide();
+            thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
             display_errors("The service call has failed with the following status: " + error.statusText);
         });
 
@@ -168,7 +168,7 @@ function return_data(data) {
     i = 0;
 
     // hide all again before showing
-    $("#results, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
 
     do {
         i++;
@@ -242,8 +242,8 @@ function return_data(data) {
         });
     });
 
-    $("#results").show();
-    $("#loader").hide();
+    thisTool.find("#results").show();
+    thisTool.find("#loader").hide();
 }
 
 function append_name() {
@@ -251,7 +251,7 @@ function append_name() {
     var name;
     do {
         i++;
-        var thisNameInputElement = $('.marker-' + i + ' .name-input');
+        var thisNameInputElement = thisTool.find('.marker-' + i + ' .name-input');
         // append biomarker Name to results table header
         if ((thisNameInputElement.val()).length > 0)
             name = thisNameInputElement.val() + " (CI Low, CI High)";
@@ -259,7 +259,7 @@ function append_name() {
             name = "Biomarker " + i + " (CI Low, CI High)";
 
         // find the element to append the text to
-        $('#results').find('table thead tr .bm_' + i).attr('title', name).text(name);
+        thisTool.find('#results').find('table thead tr .bm_' + i).attr('title', name).text(name);
     } while (i != currentMarkers);
 }
 
@@ -272,7 +272,7 @@ function extract_values(valid) {
         i++;
 
         values["bm_" + i] = {};
-        var thisMarker = $('.marker-' + i);
+        var thisMarker = thisTool.find('.marker-' + i);
 
         // inside this marker find inputs by group
         var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
@@ -351,18 +351,18 @@ function joinObjects(parentObj, obj1, obj2) {
 
 function reset() {
     // resets form to initial state
-    var markerChildren = $('#markers').children();
+    var markerChildren = thisTool.find('#markers').children();
 
     // reset drop downs then, text boxes, hide results, then clear the cells
-    $('select').find('option:first').attr('selected', 'selected');
-    $('input').val('');
+    thisTool.find('select').find('option:first').attr('selected', 'selected');
+    thisTool.find('input').val('');
 
     // clear all output cells
-    $('.output').text('');
-    $("#results, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find('.output').text('');
+    thisTool.find('#results, .bm_1, .bm_2, .bm_3').hide();
 
     // close errors if showing
-    $("#errors").fadeOut();
+    thisTool.find('#errors').fadeOut();
 
     // remove generated markers first, .remove() doesn't remove element from DOM
     markerChildren.not(':first').each(function () {
