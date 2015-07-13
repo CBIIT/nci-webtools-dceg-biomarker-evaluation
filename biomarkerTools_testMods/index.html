@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/common/css/style.css">
-    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="sr-only"><a href="#contentTabs">Skip to Content</a></div>
@@ -25,13 +25,13 @@
         </div>
         <div id="contentTabs" class="col-md-12">
           <ul role="tablist" class="nav nav-tabs">
-            <li role="presentation" class="active"><a data-target="#home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a data-target="#meanstorisk" role="tab" data-toggle="tab">Means to Risk Stratification</a></li>
-            <li role="presentation"><a data-target="#bc" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
-            <li role="presentation"><a data-target="#riskStratAdvanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
-            <li role="presentation"><a data-target="#sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
-            <li role="presentation"><a data-target="#meanRiskStratification" role="tab" data-toggle="tab">Mean Risk Stratification</a></li>
-            <li role="presentation"><a data-target="#help" role="tab" data-toggle="tab">Help</a></li>
+            <li role="presentation" title="Home" class="active"><a data-target="#home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li role="presentation" title="Means to Risk Stratification"><a data-target="#meanstorisk" role="tab" data-toggle="tab">Means to Risk Stratification</a></li>
+            <li role="presentation" title="Biomarker Comparison"><a data-target="#bc" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
+            <li role="presentation" title="Risk Stratification Advanced Analysis"><a data-target="#riskStratAdvanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
+            <li role="presentation" title="Power and Sample Size Calculation"><a data-target="#sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
+            <li role="presentation" title="Mean Risk Stratification"><a data-target="#meanRiskStratification" role="tab" data-toggle="tab">Mean Risk Stratification</a></li>
+            <li role="presentation" title="Help"><a data-target="#help" role="tab" data-toggle="tab"> <span class="glyphicon glyphicon-question-sign"></span></a></li>
           </ul>
           <div class="tab-content col-md-12">
             <div id="home" title="Home" role="tabpanel" class="tab-pane fade in active">
@@ -48,20 +48,14 @@
                 <li><a title="Power and Sample Size Calculation Tool" data-target="#sampleSize" data-toggle="tab" class="goToTab">Power and Sample Size Calculation Tool</a></li>
               </ul>
             </div>
-            <div id="m2rs" role="tabpanel" class="tab-pane fade"> 
+            <div id="meanstorisk" role="tabpanel" class="tab-pane fade"> 
               <h3 title="From Difference in Means to Risk Stratification A Web Tool" class="title text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
-              <div id="helpGlossaryLinks"><a data-target="help_m2rs" class="goToHelp">Help</a><a data-target="glossary" class="goToGlossary">Glossary</a></div><br>
-              <div class="input_panel">
-                <div style="margin: 5px; font-weight: bold;">
-                  Choose how to
-                  enter the data
-                </div>
+              <div id="helpGlossaryLinks"><a data-target="help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a data-target="glossary" class="goToGlossary">Glossary</a></div><br>
+              <div class="input_panel pull-left">
+                <div style="margin: 5px; font-weight: bold;">Choose how to enter the data</div>
                 <form>
                   <div id="accordion">
-                    <h3 class="input_accordion">
-                      User Defined Distribution (from
-                      File)
-                    </h3>
+                    <h3 class="input_accordion">User Defined Distribution (from File)</h3>
                     <div class="input_accordion">
                       <p class="indent data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="p16-ELISA-sample-data.csv"><i>(Example)</i></a></p>
                       <p class="indent">
@@ -72,11 +66,8 @@
                     </div>
                     <h3 class="input_accordion">Normal Distribution</h3>
                     <div class="input_accordion">
-                      <p class="indent data_entry_by_input">
-                        Enter Mean, Standard
-                        Error, and N for Cases and Controls
-                      </p>
-                      <table style="margin: 5px; margin-left: 20px; padding: 2px;" class="table_data">
+                      <p class="indent data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</p>
+                      <table class="table_data">
                         <tr class="table_data header">
                           <th class="table_data header"></th>
                           <th class="table_data header">Cases</th>
@@ -117,33 +108,29 @@
                         </tr>
                       </table>
                     </div>
-                  </div><br><br>
-                  <table style="margin-left: 5px;" class="table_data">
+                  </div>
+                  <table style="margin-left:0;" class="table_data">
                     <tr>
                       <th>
-                        <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
+                        <label id="Spec" for="specificity" data-term="Spec" class="termToDefine">Specificity:</label>
                         <div id="SpecDefinition" class="popupDefinition"></div>
                       </th>
                       <td>
-                        <label for="specificity">
-                          <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
-                        </label>
+                        <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
                       </td>
                     </tr>
                     <tr>
                       <th>
-                        <div id="DP" data-term="DP" class="termToDefine">Prevalence:</div>
+                        <label id="DP" for="prevalence" data-term="DP" class="termToDefine">Prevalence:</label>
                         <div id="DPDefinition" class="popupDefinition"></div>
                       </th>
                       <td>
-                        <label for="prevalence">
-                          <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
-                        </label>
+                        <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
                       </td>
                     </tr>
                   </table>
-                  <button id="calculate_button" type="button" value="Calculate" style="margin: 10px; float: left;">Calculate</button>
-                  <button id="download_button" type="button" value="Download Excel File" style="margin: 10px; float: right;">Download Excel File</button>
+                  <button id="calculate_button" type="button" value="Calculate" style="margin: 10px;" class="pull-left">Calculate</button>
+                  <button id="download_button" type="button" value="Download Excel File" class="pull-right">Download Excel File</button>
                 </form>
               </div>
               <div class="table_panel">
@@ -226,6 +213,7 @@
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
               <h3 title="Biomarker Comparison" class="title text-center">Biomarker Comparison Tool</h3>
+              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a data-target="help_bc" class="goToHelp">Help</a>&nbsp;<a data-target="glossary" class="goToGlossary">Glossary</a></div>
               <p>
                 This tool plots contours of likelihood ratio positive (LR+) and
                 likelihood ratio negative (LR-) for a reference test with indicated
@@ -368,14 +356,15 @@
             <!-- main-->
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Adnvanced Analysis" class="title text-center">Risk Stratification Advanced Analysis</h3>
-              <form>
+              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a data-target="help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a data-target="glossary" class="goToGlossary">Glossary</a></div>
+              <form class="col-md-6">
                 <table>
                   <tr>
                     <td>
                       <label for="independent_dropdown">Independent Variable</label>
                     </td>
                     <td>
-                      <select id="independent_dropdown" name="independent_dropdown">
+                      <select id="independent_dropdown" name="independent_dropdown" class="input-sm">
                         <option value="" selected=""></option>
                         <option value="specificity">Specificity</option>
                         <option value="prevalence">Prevalence</option>
@@ -386,9 +375,8 @@
                       </select>
                     </td>
                     <td>
-                      <label for="independent">
-                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
-                      </label>
+                      <label for="independent" class="sr-only">Independent Variable Value</label>
+                      <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
                     </td>
                     <td>
                       <div id="indDef"></div>
@@ -400,7 +388,7 @@
                       <label for="contour_dropdown">Contour</label>
                     </td>
                     <td>
-                      <select id="contour_dropdown" name="contour_dropdown">
+                      <select id="contour_dropdown" name="contour_dropdown" class="input-sm">
                         <option value="" selected=""></option>
                         <option value="ppv">PPV</option>
                         <option value="prevalence">Prevalence</option>
@@ -411,9 +399,8 @@
                       </select>
                     </td>
                     <td>
-                      <label for="contour">
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
-                      </label>
+                      <label for="contour" class="sr-only">Contour Value</label>
+                      <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
                     </td>
                     <td>
                       <div id="contourDef"></div>
@@ -425,7 +412,7 @@
                       <label for="fixed_dropdown">Fixed Values</label>
                     </td>
                     <td>
-                      <select id="fixed_dropdown" name="fixed_dropdown">
+                      <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm">
                         <option value="" selected=""></option>
                         <option value="prevalence">Prevalence</option>
                         <option value="delta">Delta</option>
@@ -436,52 +423,49 @@
                       </select>
                     </td>
                     <td>
-                      <label for="fixed">
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="">
-                      </label>
+                      <label for="fixed" class="sr-only">Fixed Value</label>
+                      <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="" class="input-sm">
                     </td>
                     <td>
                       <div id="fvDef"></div>
                     </td>
                     <td><span class="variable-example"></span></td>
                   </tr>
-                </table><br>
-                <div style="width: 450px;">
-                  <button id="calculate" disabled="">Calculate</button>
-                  <button id="reset" type="reset">Reset</button><a id="add-test-data" href="#" title="Populate variables with a working example">Example</a>
+                </table>
+                <div>
+                  <div class="pull-left">
+                    <button id="calculate" disabled="">Calculate</button>
+                    <button id="reset" type="reset">Reset</button>
+                  </div>
+                  <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
                 </div>
                 <div id="status-bar">Status Bar</div>
-              </form><br>
-              <div id="dialog-confirm" title="Rules Violation">
-                <p><span style="float: left; margin: 0 7px 20px 0;" class="ui-icon ui-icon-alert"></span>
-                  <div>One or more of the following rules have been violated:</div>
-                  <ul>
-                    <li class="rule rule1">
-                      Specificity, Sensitivity, PPV, cNPV, and
-                      Prevalence can only be 0 to 1
-                    </li>
-                    <li style="font-weight: bold;" class="rule rule2">
-                      Delta can be
-                      0 to 5
-                    </li>
-                    <li class="rule rule3">cNPV < Prevalence</li>
-                    <li class="rule rule3">
-                      For arrays: max(cNPV) <
-                      min(Prevalence)
-                    </li>
-                    <li class="rule rule4">Prevalence < PPV</li>
-                    <li class="rule rule4">For arrays: max(prev) < min(PPV)</li>
-                    <li class="rule rule5">Sensitivity+Specificity-1 > 0</li>
-                  </ul><span style="font-weight: bold;">
-                    Do you wish to continue with
-                    calculation anyway?</span>
-                </p>
+              </form>
+              <div id="dialog-confirm" title="Rules Violation" class="modal fade">
+                <div class="modal-dialog"></div>
+                <div class="modal-content">
+                  <div class="modal-header">One or more of the following rules have been violated:</div>
+                  <div class="modal-body">
+                    <ul class="list-unstyled">
+                      <li class="rule rule1">Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</li>
+                      <li class="rule rule2"><strong>Delta can be 0 to 5</strong></li>
+                      <li class="rule rule3"> <strong>cNPV < Prevalence</strong></li>
+                      <li class="rule rule3"> <strong>For arrays: max(cNPV) < min(Prevalence)</strong></li>
+                      <li class="rule rule4"> <strong>Prevalence < PPV</strong></li>
+                      <li class="rule rule4"><strong>For arrays: max(prev) < min(PPV)</strong></li>
+                      <li class="rule rule5"><strong>Sensitivity+Specificity-1 > 0</strong></li>
+                    </ul><strong>Do you wish to continue with calculation anyway?</strong>
+                  </div>
+                </div>
               </div>
               <div id="output"></div>
               <div id="output1"></div>
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
+              <div class="row col-md-offset-11">
+                <div id="helpGlossaryLinks" class="extra-padding"></div><a data-target="help_sampleSize" class="goToHelp">Help</a>&nbsp;<a data-target="glossary" class="goToGlossary">Glossary</a>
+              </div>
               <form id="ss">
                 <div class="col-md-9 col-md-offset-2 well well-lg">
                   <div id="message" class="col-sm-7 col-sm-offset-2 hide">
@@ -501,7 +485,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="col-md-6">
-                            <label class="pull-right">Min Value</label>
+                            <label>Min Value</label>
                           </div>
                           <div class="col-md-6">
                             <label class="pull-left">Max Value</label>
@@ -616,7 +600,10 @@
             </div>
             <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
               <h3 title="Mean Risk Stratification" class="title text-center">Mean Risk Stratification</h3>
-              <div class="col-md-5 col-sm-5">
+              <div class="row pull-right col-md-2">
+                <div id="helpGlossaryLinks" class="extra-padding"></div><a data-target="help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;<a data-target="glossary" class="goToGlossary">Glossary</a>
+              </div>
+              <div class="col-md-6 col-sm-6">
                 <div class="col-md-12 well">
                   <form id="markers" class="panel-group">
                     <div class="marker panel panel-default marker-1">
@@ -741,7 +728,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-7 col-sm-7">
+              <div class="col-md-6 col-sm-6">
                 <div class="row">
                   <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
@@ -919,13 +906,12 @@
               <h3 title="Help" class="text-center">Help</h3>
               <h4 class="text-center">Tools Help</h4>
               <section>
-                <h5 id="help_m2rs">Means to Risk Stratification</h5>
+                <h5 id="help_meanstorisk">Means to Risk Stratification</h5>
                 <h5 id="help_bc">Biomarker Comparison</h5>
                 <h5 id="help_riskStratAdvanced">Risk Stratification Advanced Analysis</h5>
-                <p><b>Instructions for Input</b><br> This tool calculates values
-                  				and creates a graph for valid combinations of given PPV, cNPV,
-                  				delta, specificity, sensitivity, and prevalence values. Click on the
-                  				'Example' link for an example input combination.
+                <p><b>Instructions for Input</b><br>This tool calculates values and creates a graph for valid combinations of given PPV, cNPV,
+                  delta, specificity, sensitivity, and prevalence values. Click on the 'Example' link 
+                  for an example input combination.
                   <ol>
                     <li>
                       Choose which values you would like to input as the
@@ -947,10 +933,7 @@
                 </p>
                 <p><b>Input Validation Rules</b>
                   <ul>
-                    <li>
-                      Specificity, Sensitivity, PPV, cNPV, and Prevalence can
-                      only be 0 to 1
-                    </li>
+                    <li>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</li>
                     <li>Delta can be 0 to 5</li>
                     <li>cNPV < Prevalence</li>
                     <li>For arrays: max(cNPV) < min(Prevalence)</li>
@@ -959,12 +942,12 @@
                     <li>Sensitivity+Specificity-1 > 0</li>
                     <li>
                       PPV and cNPV; Sensitivity, Specificity, and Delta; PPV,
-                      Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid
-                      combinations of input
+                      Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid combinations of input
                     </li>
                   </ul>
                 </p>
-                <h5>Power and Sample Size Calculation</h5>
+                <h5 id="help_sampleSize">Power and Sample Size Calculation</h5>
+                <h5 id="help_meanRiskStratification">Mean Risk Stratification</h5>
               </section>
               <h4 id="faq" class="text-center">FAQ</h4>
               <p><b>Where do I go for technical support?</b> Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Advanced Risk Stratification Tool Support" title="Advanced Risk Stratification Support">e-mail </a>to our technical support team.</p>
@@ -983,6 +966,6 @@
           Department of Health and
           Human Services</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
     </div>
-    <script data-main="resources/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
+    <script data-main="requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
   </body>
 </html>
