@@ -9,10 +9,17 @@ body {
 .title {
   color: #000;
 }
+.extra-padding {
+  padding: 1em;
+}
+.extra-vertical-margin {
+  margin: 10px 0;
+}
 #contentTabs {
   margin: 1.5em auto;
 }
 #contentTabs ul.nav.nav-tabs {
+  font-size: 9pt;
   border-bottom: none;
 }
 #contentTabs ul.nav.nav-tabs > li a {
@@ -117,6 +124,9 @@ body {
 #bc .bibliography_link {
   width: 50px;
 }
+#meanstorisk #download_button {
+  margin: 10px;
+}
 #meanstorisk .top_section {
   height: 400px;
 }
@@ -134,7 +144,7 @@ body {
 #meanstorisk div.input_accordion {
   background: #fff url("");
 }
-#meanstorisk H3.input_accordion {
+#meanstorisk h3.input_accordion {
 background-color
   background: #ddd url("");
 }
@@ -274,12 +284,6 @@ background-color
 #meanRiskStratification .top-header {
   text-align: center;
   color: #fff;
-}
-#meanRiskStratification .extra-padding {
-  padding: 1em;
-}
-#meanRiskStratification .extra-vertical-margin {
-  margin: 10px 0;
 }
 #meanRiskStratification .panel-toggle a,
 #meanRiskStratification .panel-title a {
