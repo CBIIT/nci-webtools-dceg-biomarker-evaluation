@@ -5,7 +5,7 @@ requirejs.config(
     bootstrap : "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min"
     sampleSize: \sampleSize/sampleSize
     bc: \bc/bc
-    m2rs: \m2rs/meanstorisk
+    meanstorisk: \meanstorisk/meanstorisk
     riskStratAdvanced: \riskStratAdvanced/riskStratAdvanced
     meanRiskStratification: \meanRiskStratification/meanRiskStratification
     glossary : '/common/js/meansToRiskGlossary'
@@ -18,11 +18,11 @@ requirejs.config(
     glossary :
       deps: <[ jquery ]>
     sampleSize :
-      deps: <[ jquery.ui bootstrap ]>
-    m2rs :
-      deps: <[ jquery.ui bootstrap ]>
+      deps: <[ bootstrap ]>
+    meanstorisk :
+      deps: <[ bootstrap ]>
     riskStratAdvanced :
-      deps: <[ jquery.ui bootstrap ]>
+      deps: <[ bootstrap ]>
     routes :
       deps : <[ bootstrap glossary ]>  
 )
