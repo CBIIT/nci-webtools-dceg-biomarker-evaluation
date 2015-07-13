@@ -9,11 +9,10 @@ app = Flask(__name__, static_folder='', static_url_path='/')
 @app.route('/biomarkerToolsRest')
 
 def index():
-    return render_template('../index.html')
+    return render_template('index.html')
 
 def api_tool_calls():
     return 'List of calls: '
-
 
 @app.route('/biomarkerToolsRest/')
 @app.route('/biomarkerToolsRest/<toolName>/<methodCall>', methods = ['GET','POST'])
@@ -22,14 +21,14 @@ def api_tool_calls():
 def api_tunnel(toolName, methodCall)
     if toolName == 'bc'
         bc.jsonp()
-    if toolName == 'rsa'
+    if toolName == 'riskStratAdvanced'
         rsa.riskStratAdvRest()
     if toolName == 'meanstorisk'
         meanstorisk.jsonp()
-    if toolName == 'ss'
+    if toolName == 'sampleSize'
         ss.sampleSizeRest()
-#    if toolName == 'mrs'
-#        mrs.mrsRest()
+    if toolName == 'meanRiskStratification'
+        mrs.mrsRest()
         
 
 import argparse
