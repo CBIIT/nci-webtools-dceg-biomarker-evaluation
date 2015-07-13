@@ -2,35 +2,30 @@
     h3.text-center(title="Help") Help
     h4.text-center Tools Help
     section
-        h5#help_m2rs Means to Risk Stratification
+        h5#help_meanstorisk Means to Risk Stratification
         h5#help_bc Biomarker Comparison
         h5#help_riskStratAdvanced Risk Stratification Advanced Analysis
         p
           b Instructions for Input
           br
-          |  This tool calculates values
-          | 				and creates a graph for valid combinations of given PPV, cNPV,
-          | 				delta, specificity, sensitivity, and prevalence values. Click on the
-          | 				'Example' link for an example input combination.
+          | This tool calculates values and creates a graph for valid combinations of given PPV, cNPV,
+          | delta, specificity, sensitivity, and prevalence values. Click on the 'Example' link 
+          | for an example input combination.
           ol
-            li
-              | Choose which values you would like to input as the
+            li Choose which values you would like to input as the
               | independent variable, or for the x-axis of the output graph, from
               | the drop-down menu next to 'Independent Variable'. Then enter your
               | values as decimals separated by commas.
-            li
-              | Choose which values you would like to input as the contours
+            li Choose which values you would like to input as the contours
               | of the output graph from the drop-down menu next to 'Contour'. Then
               | enter your values as decimals separated by commas.
-            li
-              | Choose which values you would like to input as fixed
+            li Choose which values you would like to input as fixed
               | values. Then enter your values as decimals separated by commas.
             li Click 'Calculate'
         p
           b Input Validation Rules
           ul
-            li Specificity, Sensitivity, PPV, cNPV, and Prevalence can
-              | only be 0 to 1
+            li Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1
             li Delta can be 0 to 5
             li cNPV < Prevalence
             li For arrays: max(cNPV) < min(Prevalence)
@@ -38,9 +33,9 @@
             li For arrays: max(prev) < min(PPV)
             li Sensitivity+Specificity-1 > 0
             li PPV and cNPV; Sensitivity, Specificity, and Delta; PPV,
-              | Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid
-              | combinations of input
-        h5 Power and Sample Size Calculation
+              | Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid combinations of input
+        h5#help_sampleSize Power and Sample Size Calculation
+        h5#help_meanRiskStratification Mean Risk Stratification
     h4#faq.text-center FAQ
     p
       b Where do I go for technical support?
