@@ -5,7 +5,7 @@ requirejs.config({
     bootstrap: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min",
     sampleSize: 'sampleSize/sampleSize',
     bc: 'bc/bc',
-    m2rs: 'm2rs/meanstorisk',
+    meanstorisk: 'meanstorisk/meanstorisk',
     riskStratAdvanced: 'riskStratAdvanced/riskStratAdvanced',
     meanRiskStratification: 'meanRiskStratification/meanRiskStratification',
     glossary: '/common/js/meansToRiskGlossary',
@@ -24,17 +24,18 @@ requirejs.config({
     sampleSize: {
       deps: ['jquery.ui', 'bootstrap']
     },
-    m2rs: {
+    meanstorisk: {
       deps: ['jquery.ui', 'bootstrap']
     },
     riskStratAdvanced: {
-      deps: ['jquery.ui', 'bootstrap']
+      deps: ['bootstrap']
     },
     routes: {
       deps: ['bootstrap', 'glossary']
     }
   }
 });
+
 require(['routes'], function(){
   console.log("default scripts loaded");
   return {};
