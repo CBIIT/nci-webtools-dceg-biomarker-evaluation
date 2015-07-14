@@ -20,7 +20,7 @@ $('.goToTab').on('click', function(el){
   window.scrollTo(0, 0);
 });
 
-$('.goToHelp').on('click', function(el){
+$('.goToHelp,.goToGlossary').on('click', function(el){
   var ref;
   $('.nav li.active').removeClass('active');
   ref = '#' + $(this).attr('data-target');
