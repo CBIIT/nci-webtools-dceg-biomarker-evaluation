@@ -25,8 +25,7 @@ html(lang="en")
                 #contentTabs.col-md-12
                     ul.nav.nav-tabs(role='tablist')
                         li.active(role='presentation', title="Home")
-                            a(data-target='#home', role='tab', data-toggle='tab')
-                                span.glyphicon.glyphicon-home
+                            a(data-target='#home', role='tab', data-toggle='tab') Home
                         li(role='presentation', title="Means to Risk Stratification")
                             a(data-target='#meanstorisk', role='tab', data-toggle='tab') Means to Risk Stratification
                         li(role='presentation', title="Biomarker Comparison")
@@ -38,8 +37,7 @@ html(lang="en")
                         li(role='presentation', title="Mean Risk Stratification")
                             a(data-target='#meanRiskStratification', role='tab', data-toggle='tab') Mean Risk Stratification
                         li(role='presentation', title="Help")
-                            a(data-target='#help', role='tab', data-toggle='tab') 
-                                span.glyphicon.glyphicon-question-sign
+                            a(data-target='#help', role='tab', data-toggle='tab') Help
                     .tab-content.col-md-12
                         include ../pages/home
                         include ../pages/meanstorisk
