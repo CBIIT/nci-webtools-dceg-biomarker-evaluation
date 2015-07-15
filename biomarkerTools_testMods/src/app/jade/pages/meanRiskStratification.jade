@@ -2,11 +2,11 @@
     h3.title.text-center(title="Mean Risk Stratification") Mean Risk Stratification
     .row.pull-right.col-md-2
         #helpGlossaryLinks.extra-padding
-        a.goToHelp(data-target="help_meanRiskStratification") Help
+        a.goToHelp(data-target="#help_meanRiskStratification") Help
         | &nbsp;
-        a.goToGlossary(data-target="glossary") Glossary
-    .col-md-6.col-sm-6
-        .col-md-12.well
+        a.goToGlossary(data-target="#glossary") Glossary
+    .col-md-4.col-sm-4
+        .col-md-12
           form#markers.panel-group
             .marker.panel.panel-default.marker-1
               .bg-primary
@@ -100,7 +100,7 @@
                   a#test1(href='javascript:void(0);', title='Populate 1 biomarker using test data') Example 1
                 .row
                   a#test2(href='javascript:void(0);', title='Populate 1 biomarker using test data') Example 2     
-      .col-md-6.col-sm-6
+      .col-md-8.col-sm-8
         include ../partials/loader.jade        
         #results
           table.table.table-bordered.table-condensed
