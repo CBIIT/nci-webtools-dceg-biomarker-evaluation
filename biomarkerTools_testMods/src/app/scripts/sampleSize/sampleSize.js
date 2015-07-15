@@ -181,7 +181,8 @@ function trim_spaces(varstring){
 
 function example_code(){
     thisTool.find("#message").hide();
-    thisTool.find("#independent").val("0,1");
+    thisTool.find("#minInput").val(0);
+    thisTool.find("#maxInput").val(1);
     thisTool.find("#contour").val("0.8,0.9,0.95,0.995");
     thisTool.find("#contour_dropdown").val("sensitivity");
     thisTool.find("#fixed").val("0.7,0.8,0.9");
