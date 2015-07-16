@@ -2,7 +2,7 @@
     .top_section
       h3.text-center From Difference in Means to Risk Stratification: A Web Tool
       #helpGlossaryLinks
-        a.goToHelp(data-target="#help") Help
+        a.goToHelp(data-target="#help_meanstorisk") Help
         | &nbsp;
         a.goToGlossary(data-target="#glossary") Glossary
       br
@@ -26,33 +26,33 @@
                     .glyphicon.glyphicon-chevron-down
             #cases_control.panel-body.collapse
               strong.indent.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
-              table.table_data
-                tr.table_data.header
-                  th.table_data.header
-                  th.table_data.header Cases
-                  th.table_data.header Controls
-                tr.table_data
-                  th.table_data.text-right Mean
-                  td.table_data
+              .panel.panel-default.table_data
+                .row.table_data.header
+                  .col-md-4.header.text-right.table_data.header
+                  .col-md-4.header.text-right.table_data.header Cases
+                  .col-md-4.header.text-right.table_data.header Controls
+                .row.table_data
+                  .col-md-6.header.text-right.table_data.text-right Mean
+                  .col-md-6.header.text-right.table_data
                     label(for='mean_cases_input')
                     input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
-                  td.table_data
+                  .col-md-12.header.text-right.table_data
                     label(for='mean_controls_input')
                     input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
-                tr.table_data
-                  th.table_data.text-right Standard Error
-                  td.table_data
+                .row.table_data
+                  .col-md-4.header.text-right.table_data.text-right Standard Error
+                  .col-md-4.header.text-right.table_data
                     label(for='stderr_cases_input')
                     input#stderr_cases_input.data_entry_by_input(type='text', value='0.1', size='4')
-                  td.table_data
+                  .col-md-4.header.text-right.table_data
                     label(for='stderr_controls_input')
                     input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
-                tr.table_data
-                  th.table_data.text-right N
-                  td.table_data
+                .row.table_data
+                  .col-md-4.header.text-right.table_data.text-right N
+                  .col-md-4.header.text-right.table_data
                     label(for='N_cases_input')
                     input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
-                  td.table_data
+                  .col-md-4.header.text-right.table_data
                     label(for='N_controls_input')
                     input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
             .panel.indent
@@ -66,64 +66,63 @@
                   input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001')
           input#calculate_button.pull-left(type='button', value='Calculate')
           input#download_button.pull-right(type='button', value='Download Excel File')
-      .col-md-4.table_panel
-        table#inputs_card.table_data
-          tr.table_data.header
-            th.table_data.header
-            th.table_data.header  Cases 
-            th.table_data.header  Controls 
-            th.table_data.header  Overall 
-          tr.table_data
-            th.table_data.text-right Mean
-            td#mean_cases.table_data
-            td#mean_controls.table_data
-            td#mean_overall.table_data
-          tr.table_data
-            th.table_data.text-right Standard Error
-            td#stderr_cases.table_data
-            td#stderr_controls.table_data
-            td#stderr_overall.table_data
-          tr.table_data
-            th.table_data.text-right N
-            td#N_cases.table_data
-            td#N_controls.table_data
-            td#N_overall.table_data
-          tr.table_data.line-above
-            th.table_data.text-right Standard Deviation
-            td#deviation_cases.table_data
-            td#deviation_controls.table_data
-            td#deviation_overall.table_data
-          tr.table_data
-            th.table_data.text-right Variance
-            td#variance_cases.table_data
-            td#variance_controls.table_data
-            td#variance_overall.table_data
-          tr.table_data
-            th.table_data.text-right
+      .panel.panel-default.col-md-4.table_panel
+        .row
+            strong.col-md-3.header.text-center &nbsp;
+            strong.col-md-3.header.text-center Cases
+            strong.col-md-3.header.text-center Controls
+            strong.col-md-3.header.text-center Overall
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4 Mean
+            #mean_cases.col-md-4.table_data.text-rcenterght
+            #mean_controls.col-md-4.table_data.text-center
+            #mean_overall.col-md-4.table_data.text-center
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4 Standard Error
+            #stderr_cases.col-md-4.table_data.text-center
+            #stderr_controls.col-md-4.table_data.text-center
+            #stderr_overall.col-md-4.table_data.text-center
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4 N
+            #N_cases.col-md-4.table_data.text-center
+            #N_controls.col-md-4.table_data.text-center
+            #N_overall.col-md-4.table_data.text-center
+        .row.table_data.line-above
+            strong.header.table_data.text-center.col-md-4 Standard Deviation
+            #deviation_cases.col-md-4.table_data
+            #deviation_controls.col-md-4.table_data
+            #deviation_overall.col-md-4.table_data
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4 Variance
+            #variance_cases.col-md-4.table_data
+            #variance_controls.col-md-4.table_data
+            #variance_overall.col-md-4.table_data
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4
               #CV.termToDefine(data-term='CV') Coefficient of Variation (CV)
               #CVDefinition.popupDefinition
-            td#cv_cases.table_data
-            td#cv_controls.table_data
-            td#cv_overall.table_data
-          tr.table_data
-            th.table_data.text-right Difference in Mean
-            td#diff_cases.table_data
-            td#diff_controls.table_data
-            td#diff_overall.table_data
-          tr.table_data
-            th.table_data.text-right
+            #cv_cases.col-md-4.table_data
+            #cv_controls.col-md-4.table_data
+            #cv_overall.col-md-4.table_data
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4 Difference in Mean
+            #diff_cases.col-md-4.table_data
+            #diff_controls.col-md-4.table_data
+            #diff_overall.col-md-4.table_data
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4
               #Delta.termToDefine(data-term='Delta') Delta
               #DeltaDefinition.popupDefinition
-            td#delta_cases.table_data
-            td#delta_controls.table_data
-            td#delta_overall.table_data
-          tr.table_data
-            th.table_data.text-right
+            #delta_cases.col-md-4.table_data
+            #delta_controls.col-md-4.table_data
+            #delta_overall.col-md-4.table_data
+        .row.table_data
+            strong.header.table_data.text-center.col-md-4
               #AUC.termToDefine(data-term='AUC') AUC
               #AUCDefinition.popupDefinition
-            td#auc_cases.table_data
-            td#auc_controls.table_data
-            td#auc_overall.table_data
-      .col-md-4.graph_panel
+            #auc_cases.col-md-4.table_data
+            #auc_controls.col-md-4.table_data
+            #auc_overall.col-md-4.table_data
+      .graph_panel.col-md-4
     .bottom_section
       .tabbed_output_panel
