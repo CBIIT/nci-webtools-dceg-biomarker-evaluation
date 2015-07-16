@@ -31,17 +31,18 @@ body #contentTabs {
 }
 body #contentTabs ul.nav.nav-tabs {
   font-size: 9pt;
-  border-bottom: none;
 }
-body #contentTabs ul.nav.nav-tabs > li a {
+body #contentTabs ul.nav.nav-tabs > li {
+  border-bottom: 1px solid #ddd;
+}
+body #contentTabs ul.nav.nav-tabs a {
   color: #000;
 }
 body #contentTabs ul.nav.nav-tabs > li.active a {
   text-decoration: underline;
   font-weight: bold;
-  background: rgba(225,220,245,0.1);
 }
-body #contentTabs ul.nav.nav-tabs after {
+body #contentTabs ul.nav.nav-tabs :after {
   border: solid transparent;
   margin-left: -10px;
   top: 100%;
@@ -55,7 +56,6 @@ body #contentTabs .tab-content {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   padding: 1.5em;
-  background: rgba(225,220,245,0.1);
 }
 body #contentTabs #sampleSize .row {
   margin: 1em auto;
@@ -252,6 +252,10 @@ body #contentTabs #meanstorisk .SensitivityBased_stripe {
 body #contentTabs #meanstorisk .DominatedByRareDisease_stripe {
   border-bottom: 1px #000 solid;
   background-color: #f0f0f0;
+}
+body #contentTabs #help h4 a {
+  color: #fff;
+  font-size: smaller;
 }
 body #contentTabs #help section h5 {
   font-weight: bold;
