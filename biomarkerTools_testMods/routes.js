@@ -5,11 +5,14 @@ $(document).ready(function(){
 });
 
 $.fn.goTo = function() {
-    var selector = this.selector.replace("#","");
 
-   
-    document.getElementById(selector).scrollTop = $(this).offset().top + 'px';
-
+    if($(this).attr('id') == "glossary"){
+        document.getElementById($(this).attr('id')).scrollIntoView(true);
+    }
+    else { 
+        var selector = $(this).attr('data-target').replace("#","");
+        document.getElementById(selector).scrollIntoView(true);
+    }
     return this;
 };
 
@@ -25,28 +28,33 @@ $('.goToTab').on('click', function(el){
     var ref;
     $('.nav li.active').removeClass('active');
     ref = $(this).attr('data-target');
-    $.when($(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active')).done(goToTarget(this));
+    $.when($(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active'));
 });
 
 $('.goToHelp,.goToGlossary').on('click', function(el){
+    var $this = this;
+    $(".nav a[data-target='#help']").on('shown.bs.tab',function(){
+        goToTarget($this);
+    });
     $('.nav li.active').removeClass('active');
     $(".nav a[data-target='#help']").tab('show').parent().addClass('active');
 
-    $($(this).attr('data-target')).goTo();
 });
 
 function goToTarget(tar){
-    var ref = $(tar).attr('data-target');
-    
-    if(!$(tar).hasClass('goToGlossary')){
+    var ref = "";
 
-        if($(tar).attr('data-target').indexOf("#") > -1)
-            ref = "#" + ref;
+    if(!$(tar).hasClass('goToGlossary')){
+        ref = tar;
+    }
+    else if(!$(tar).hasClass('goToHelp')){
+        ref = $(tar).attr('data-target');
     }
     else{
         ref = "glossary";
-        $(ref).goTo();
     }
+
+    $(ref).goTo();
 }
 
 function default_ajax_error(request, status, error){
