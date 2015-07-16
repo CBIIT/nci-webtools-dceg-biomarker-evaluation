@@ -1,11 +1,12 @@
 var default_ajax_error;
-
+var custom_po_tmpl = '<div class="popover bg-popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>';
 $(document).ready(function(){
     document.title = "Biomarker Tools: Home";
 });
 
+// applying new function to base jquery to scroll to 
+// specific element using data-target attribute
 $.fn.goTo = function() {
-
     if($(this).attr('id') == "glossary"){
         document.getElementById($(this).attr('id')).scrollIntoView(true);
     }
@@ -57,6 +58,8 @@ function goToTarget(tar){
     $(ref).goTo();
 }
 
+
+// misc functions
 function default_ajax_error(request, status, error){
     $('#spinner').addClass('hide');
     alert(request.responseText);
