@@ -16,7 +16,7 @@
                     | User Defined Distribution (from File)
                     .glyphicon.glyphicon-chevron-down
             #file_upload.panel-body.collapse.in
-              strong.indent.data_entry_by_file Upload a raw case and control biomarker data file in csv format
+              strong.data_entry_by_file Upload a raw case and control biomarker data file in csv format
                 a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
               p.indent
                 label(for='input_file_upload')
@@ -27,7 +27,7 @@
             #cases_control.panel-body.collapse
               strong.indent.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
               .panel.panel-default.table_data
-                .row.table_data.header
+                .row.table_data
                   .col-md-4.header.text-right.table_data.header
                   .col-md-4.header.text-right.table_data.header Cases
                   .col-md-4.header.text-right.table_data.header Controls
@@ -55,7 +55,7 @@
                   .col-md-4.header.text-right.table_data
                     label(for='N_controls_input')
                     input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
-            .panel.indent
+            .panel
                 #Spec.termToDefine(data-term='Spec') Specificity:
                 #SpecDefinition.popupDefinition
                 label(for='specificity')
@@ -68,56 +68,56 @@
           input#download_button.pull-right(type='button', value='Download Excel File')
       .panel.panel-default.col-md-4.table_panel
         .row
-            strong.col-md-3.header.text-center &nbsp;
-            strong.col-md-3.header.text-center Cases
-            strong.col-md-3.header.text-center Controls
-            strong.col-md-3.header.text-center Overall
+            strong.col-md-4.header &nbsp;
+            strong.col-md-2.header Cases
+            strong.col-md-3.header Controls
+            strong.col-md-3.header Overall
         .row.table_data
-            strong.header.table_data.text-center.col-md-4 Mean
+            strong.header.table_data.col-md-4 Mean
             #mean_cases.col-md-4.table_data.text-rcenterght
             #mean_controls.col-md-4.table_data.text-center
             #mean_overall.col-md-4.table_data.text-center
         .row.table_data
-            strong.header.table_data.text-center.col-md-4 Standard Error
+            strong.header.table_data.col-md-4 Standard Error
             #stderr_cases.col-md-4.table_data.text-center
             #stderr_controls.col-md-4.table_data.text-center
             #stderr_overall.col-md-4.table_data.text-center
         .row.table_data
-            strong.header.table_data.text-center.col-md-4 N
+            strong.header.table_data.col-md-4 N
             #N_cases.col-md-4.table_data.text-center
             #N_controls.col-md-4.table_data.text-center
             #N_overall.col-md-4.table_data.text-center
         .row.table_data.line-above
-            strong.header.table_data.text-center.col-md-4 Standard Deviation
+            strong.header.table_data.col-md-4 Standard Deviation
             #deviation_cases.col-md-4.table_data
             #deviation_controls.col-md-4.table_data
             #deviation_overall.col-md-4.table_data
         .row.table_data
-            strong.header.table_data.text-center.col-md-4 Variance
+            strong.header.table_data.col-md-4 Variance
             #variance_cases.col-md-4.table_data
             #variance_controls.col-md-4.table_data
             #variance_overall.col-md-4.table_data
         .row.table_data
-            strong.header.table_data.text-center.col-md-4
+            strong.header.table_data.col-md-4
               #CV.termToDefine(data-term='CV') Coefficient of Variation (CV)
               #CVDefinition.popupDefinition
             #cv_cases.col-md-4.table_data
             #cv_controls.col-md-4.table_data
             #cv_overall.col-md-4.table_data
         .row.table_data
-            strong.header.table_data.text-center.col-md-4 Difference in Mean
+            strong.header.table_data.col-md-4 Difference in Mean
             #diff_cases.col-md-4.table_data
             #diff_controls.col-md-4.table_data
             #diff_overall.col-md-4.table_data
         .row.table_data
-            strong.header.table_data.text-center.col-md-4
+            strong.header.table_data.col-md-4
               #Delta.termToDefine(data-term='Delta') Delta
               #DeltaDefinition.popupDefinition
             #delta_cases.col-md-4.table_data
             #delta_controls.col-md-4.table_data
             #delta_overall.col-md-4.table_data
         .row.table_data
-            strong.header.table_data.text-center.col-md-4
+            strong.header.table_data.col-md-4
               #AUC.termToDefine(data-term='AUC') AUC
               #AUCDefinition.popupDefinition
             #auc_cases.col-md-4.table_data
