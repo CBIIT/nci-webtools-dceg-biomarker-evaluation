@@ -129,6 +129,15 @@ body {
 #bc .bibliography_link {
   width: 50px;
 }
+#meanstorisk .table_panel .header {
+  background-color: #f5f5f5;
+  padding: 0.45em 0;
+}
+#meanstorisk .table_panel .row {
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
 #meanstorisk #download_button {
   margin: 10px;
 }
@@ -148,14 +157,6 @@ body {
 #meanstorisk h3.input_accordion {
 background-color
   background: #ddd url("");
-}
-#meanstorisk .table_panel {
-  float: left;
-  width: 300px;
-  height: 99%;
-}
-#meanstorisk .graph_panel {
-  height: 99%;
 }
 #meanstorisk .output_graph {
   max-width: 38%;
@@ -246,12 +247,6 @@ background-color
 #meanstorisk .DominatedByRareDisease_stripe {
   border-bottom: 1px #000 solid;
   background-color: #f0f0f0;
-}
-#meanstorisk .ui-accordion {
-  overflow: hidden;
-}
-#meanstorisk .ui-widget {
-  font-size: 12px;
 }
 #help section h5 {
   font-weight: bold;
