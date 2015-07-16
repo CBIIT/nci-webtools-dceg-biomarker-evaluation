@@ -62,7 +62,7 @@
                           <div class="glyphicon glyphicon-chevron-down"></div>
                         </div>
                       </div>
-                      <div id="file_upload" class="panel-body collapse in"><strong class="indent data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></strong>
+                      <div id="file_upload" class="panel-body collapse in"><strong class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></strong>
                         <p class="indent">
                           <label for="input_file_upload">
                             <input id="input_file_upload" type="file" class="data_entry_by_file">
@@ -76,7 +76,7 @@
                       </div>
                       <div id="cases_control" class="panel-body collapse"><strong class="indent data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</strong>
                         <div class="panel panel-default table_data">
-                          <div class="row table_data header">
+                          <div class="row table_data">
                             <div class="col-md-4 header text-right table_data header"></div>
                             <div class="col-md-4 header text-right table_data header">Cases</div>
                             <div class="col-md-4 header text-right table_data header">Controls</div>
@@ -116,7 +116,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="panel indent">
+                      <div class="panel">
                         <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
                         <div id="SpecDefinition" class="popupDefinition"></div>
                         <label for="specificity">
@@ -134,52 +134,52 @@
                   </form>
                 </div>
                 <div class="panel panel-default col-md-4 table_panel">
-                  <div class="row"><strong class="col-md-3 header text-center">&nbsp;</strong><strong class="col-md-3 header text-center">Cases</strong><strong class="col-md-3 header text-center">Controls</strong><strong class="col-md-3 header text-center">Overall</strong></div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Mean</strong>
+                  <div class="row"><strong class="col-md-4 header">&nbsp;</strong><strong class="col-md-2 header">Cases</strong><strong class="col-md-3 header">Controls</strong><strong class="col-md-3 header">Overall</strong></div>
+                  <div class="row table_data"><strong class="header table_data col-md-4">Mean</strong>
                     <div id="mean_cases" class="col-md-4 table_data text-rcenterght"></div>
                     <div id="mean_controls" class="col-md-4 table_data text-center"></div>
                     <div id="mean_overall" class="col-md-4 table_data text-center"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Standard Error</strong>
+                  <div class="row table_data"><strong class="header table_data col-md-4">Standard Error</strong>
                     <div id="stderr_cases" class="col-md-4 table_data text-center"></div>
                     <div id="stderr_controls" class="col-md-4 table_data text-center"></div>
                     <div id="stderr_overall" class="col-md-4 table_data text-center"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">N</strong>
+                  <div class="row table_data"><strong class="header table_data col-md-4">N</strong>
                     <div id="N_cases" class="col-md-4 table_data text-center"></div>
                     <div id="N_controls" class="col-md-4 table_data text-center"></div>
                     <div id="N_overall" class="col-md-4 table_data text-center"></div>
                   </div>
-                  <div class="row table_data line-above"><strong class="header table_data text-center col-md-4">Standard Deviation</strong>
+                  <div class="row table_data line-above"><strong class="header table_data col-md-4">Standard Deviation</strong>
                     <div id="deviation_cases" class="col-md-4 table_data"></div>
                     <div id="deviation_controls" class="col-md-4 table_data"></div>
                     <div id="deviation_overall" class="col-md-4 table_data"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Variance</strong>
+                  <div class="row table_data"><strong class="header table_data col-md-4">Variance</strong>
                     <div id="variance_cases" class="col-md-4 table_data"></div>
                     <div id="variance_controls" class="col-md-4 table_data"></div>
                     <div id="variance_overall" class="col-md-4 table_data"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                  <div class="row table_data"><strong class="header table_data col-md-4">
                       <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
                       <div id="CVDefinition" class="popupDefinition"></div></strong>
                     <div id="cv_cases" class="col-md-4 table_data"></div>
                     <div id="cv_controls" class="col-md-4 table_data"></div>
                     <div id="cv_overall" class="col-md-4 table_data"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Difference in Mean</strong>
+                  <div class="row table_data"><strong class="header table_data col-md-4">Difference in Mean</strong>
                     <div id="diff_cases" class="col-md-4 table_data"></div>
                     <div id="diff_controls" class="col-md-4 table_data"></div>
                     <div id="diff_overall" class="col-md-4 table_data"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                  <div class="row table_data"><strong class="header table_data col-md-4">
                       <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
                       <div id="DeltaDefinition" class="popupDefinition"></div></strong>
                     <div id="delta_cases" class="col-md-4 table_data"></div>
                     <div id="delta_controls" class="col-md-4 table_data"></div>
                     <div id="delta_overall" class="col-md-4 table_data"></div>
                   </div>
-                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                  <div class="row table_data"><strong class="header table_data col-md-4">
                       <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
                       <div id="AUCDefinition" class="popupDefinition"></div></strong>
                     <div id="auc_cases" class="col-md-4 table_data"></div>
