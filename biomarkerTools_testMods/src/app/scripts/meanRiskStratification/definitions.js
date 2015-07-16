@@ -29,7 +29,9 @@ function display_definition() {
 
     if (definition || term) {
         $self.popover(
-            {container: 'body',
+            {
+                template: custom_po_tmpl,
+                container: 'body',
                 trigger: 'manual',
                 placement: 'top',
                 title: term,
