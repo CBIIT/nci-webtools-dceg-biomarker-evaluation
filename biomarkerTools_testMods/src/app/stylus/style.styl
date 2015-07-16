@@ -2,272 +2,273 @@ common-blue = #4e5669
 red = #a90002
 light-red = #CD5C5C
 tan = #F3EFE0
+higlight = #FFFFEB
+higlight-compl = #DBDBB8
 
 body
     font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
+    #main
+        width 1280px
+        margin 0 auto
+        font-size small
 
-#main
-    width 1280px
-    margin 0 auto
-    font-size small
+    .title
+        color black
+    .bg-popover
+        background-color highlight
+        .popover-title
+            background-color higlight-compl
+    .subheader
+        font-weight bold
+        color white
+        background-color slategray
 
-.title
-    color black
-    
-.subheader
-    font-weight bold
-    color white
-    background-color slategray
+    .extra-padding
+        padding 1em
 
-.extra-padding
-    padding 1em
-
-.extra-vertical-margin
-    margin 10px 0
-#contentTabs
-    margin 1.5em auto
-    ul.nav.nav-tabs
-        font-size 9pt
-        border-bottom none
-        > li a
-            color black
-        > li.active a
-            text-decoration underline
-            font-weight bold
+    .extra-vertical-margin
+        margin 10px 0
+    #contentTabs
+        margin 1.5em auto
+        ul.nav.nav-tabs
+            font-size 9pt
+            border-bottom none
+            > li a
+                color black
+            > li.active a
+                text-decoration underline
+                font-weight bold
+                background rgba(225, 220, 245,0.1)
+             after
+                border solid transparent
+                margin-left -10px
+                top 100%
+                left 50%
+        .tab-content
+            line-height 1.42857143
+            border-right 1px solid #ddd
+            border-bottom 1px solid #ddd
+            border-left 1px solid #ddd
+            border-radius 4px
+            padding 1.5em
             background rgba(225, 220, 245,0.1)
-         after
-            border solid transparent
-            margin-left -10px
-            top 100%
-            left 50%
-    .tab-content
-        line-height 1.42857143
-        border-right 1px solid #ddd
-        border-bottom 1px solid #ddd
-        border-left 1px solid #ddd
-        border-radius 4px
-        padding 1.5em
-        background rgba(225, 220, 245,0.1)
-        
-  /* sample size styles */
-    #sampleSize
-        .row
-            margin 1em auto
-    #bc
-        .example-image
-            float left
-        .explanation 
-            float left
-            padding-left 15px
-            width 600px
-        .reference_row 
-            background-color  yellow
-        td 
-            text-align center
-
-        .top-header 
-            text-align center
-            background-color #444
-            color #FFF
-        .header 
-            background-color #AAA
-            color #444
-        #output 
-            width 500px
-        #inputdata 
-            width 500px
-        h2 
-            background-color #AAA
-            color #444
-            padding 5px
-        .prevalence_label 
-            font-weight bold
-            background-color #AAA
-            color #444
-            padding 2px 25px 2px 25px
-        .bibliography 
-            width 950px
-            clear both
-            float left
-            margin 50px
-        .bib-author 
-            float left
-        .bib-year 
-            float left
-        .bib-title 
-            float left
-            font-style italic
-        .bib-journal 
-            float left
-        .bib-ref 
-            float left
-        .bib-pages 
-            float left
-        .bib-doi 
-            float left
-        .bibliography_entry 
-            width 300px
-        .bibliography_link 
-            width 50px
-    #meanstorisk
-        .table_panel
-            .header
-                background-color #f5f5f5
-                padding 0.45em 0
+        #sampleSize
             .row
-                border 1px solid #ddd
-                border-radius 4px
-        #download_button
-            margin 10px
-        .top_section 
-            height 400px
+                margin 1em auto
+        #bc
+            .example-image
+                float left
+            .explanation 
+                float left
+                padding-left 15px
+                width 600px
+            .reference_row 
+                background-color  yellow
+            td 
+                text-align center
 
-        .bottom_section 
-            clear left
-            height 400px
+            .top-header 
+                text-align center
+                background-color #444
+                color #FFF
+            .header 
+                background-color #AAA
+                color #444
+            #output 
+                width 500px
+            #inputdata 
+                width 500px
+            h2 
+                background-color #AAA
+                color #444
+                padding 5px
+            .prevalence_label 
+                font-weight bold
+                background-color #AAA
+                color #444
+                padding 2px 25px 2px 25px
+            .bibliography 
+                width 950px
+                clear both
+                float left
+                margin 50px
+            .bib-author 
+                float left
+            .bib-year 
+                float left
+            .bib-title 
+                float left
+                font-style italic
+            .bib-journal 
+                float left
+            .bib-ref 
+                float left
+            .bib-pages 
+                float left
+            .bib-doi 
+                float left
+            .bibliography_entry 
+                width 300px
+            .bibliography_link 
+                width 50px
+        #meanstorisk
+            .table_panel
+                .header
+                    background-color #f5f5f5
+                    padding 0.45em 0
+                .row
+                    border 1px solid #ddd
+                    border-radius 4px
+            #download_button
+                margin 10px
+            .top_section 
+                height 400px
 
-        .input_panel
-            border  1px #BBB solid
+            .bottom_section 
+                clear left
+                height 400px
 
-        div.input_accordion 
-            background  #FFF url()
+            .input_panel
+                border  1px #BBB solid
 
-        h3.input_accordion 
-            background-color ;
-            background  #DDD url()
+            div.input_accordion 
+                background  #FFF url()
 
-        .output_graph
-            max-width 38%
-            display block
-            margin-left  auto
-            margin-right  auto
+            h3.input_accordion 
+                background-color ;
+                background  #DDD url()
 
-        .key_output_panel 
-            float left
-            width 300px
-            background-color #faf
-            height 99%
+            .output_graph
+                max-width 38%
+                display block
+                margin-left  auto
+                margin-right  auto
 
-        .tabbed_output_panel 
-            height 99%
-        .indent
-            margin-left 30px
-            margin-right 20px
-            margin-top 10px
-            margin-bottom 5px
+            .key_output_panel 
+                float left
+                width 300px
+                background-color #faf
+                height 99%
 
-        .highlight
-            background-color yellow
+            .tabbed_output_panel 
+                height 99%
+            .indent
+                margin-left 30px
+                margin-right 20px
+                margin-top 10px
+                margin-bottom 5px
 
-        .col1 
-            padding 6px
-            text-align right
+            .highlight
+                background-color yellow
 
-        .maincard 
-            width 800px
-            height 750px
-            border 2px black solid
+            .col1 
+                padding 6px
+                text-align right
 
-        .highlight
-            background-color yellow
+            .maincard 
+                width 800px
+                height 750px
+                border 2px black solid
 
-        table.table_data 
-            width 90%
-            background-color white
-            border 1px #BBB solid
+            .highlight
+                background-color yellow
 
-        table.output_data 
-            background-color white
-            border-collapse collapse
-            border 2px black solid
+            table.table_data 
+                width 90%
+                background-color white
+                border 1px #BBB solid
 
-        th.table_data
-            padding 2px
+            table.output_data 
+                background-color white
+                border-collapse collapse
+                border 2px black solid
 
-        th.header 
-            border-bottom  1px #BBB solid
-        tr.table_data_header 
-            border-bottom  1px black solid
-            background-color #A0A0A0
+            th.table_data
+                padding 2px
 
-        tr.line-above 
-            border-top 1px #BBB solid
+            th.header 
+                border-bottom  1px #BBB solid
+            tr.table_data_header 
+                border-bottom  1px black solid
+                background-color #A0A0A0
 
-        .main-title
-            text-align center
+            tr.line-above 
+                border-top 1px #BBB solid
 
-        .PPV_stripe
-            border-bottom 1px black solid
-            background-color #B080FF
+            .main-title
+                text-align center
 
-        .cNPV_stripe 
-            border-bottom 1px black solid
-            background-color #8080FF
+            .PPV_stripe
+                border-bottom 1px black solid
+                background-color #B080FF
 
-        .PPVcNPV_stripe 
-            border-bottom 1px black solid
-            background-color #FFAA80
+            .cNPV_stripe 
+                border-bottom 1px black solid
+                background-color #8080FF
 
-        .ProgramBased_stripe 
-            border-bottom 1px black solid
-            background-color #FFB0D0
+            .PPVcNPV_stripe 
+                border-bottom 1px black solid
+                background-color #FFAA80
 
-        .PPVBased_stripe 
-            border-bottom 1px black solid
-            background-color #A0A0A0
+            .ProgramBased_stripe 
+                border-bottom 1px black solid
+                background-color #FFB0D0
 
-        .SensitivityBased_stripe 
-            border-bottom 1px black solid
-            background-color #808080
+            .PPVBased_stripe 
+                border-bottom 1px black solid
+                background-color #A0A0A0
 
-        .DominatedByRareDisease_stripe 
-            border-bottom 1px black solid
-            background-color #F0F0F0
+            .SensitivityBased_stripe 
+                border-bottom 1px black solid
+                background-color #808080
 
-//        .ui-accordion 
-//            overflow hidden
-//
-//        .ui-widget 
-//            font-size 12px
-    #help
-        section h5
-            font-weight bold
-            text-decoration underline
-    #meanRiskStratification
-        .red
-            background-color red
-        .panel-title, .panel-title a
-            font-size small
-        table input[type="text"]
-            width 50px
+            .DominatedByRareDisease_stripe 
+                border-bottom 1px black solid
+                background-color #F0F0F0
+            //        .ui-accordion 
+            //            overflow hidden
+            //
+            //        .ui-widget 
+            //            font-size 12px
+        #help
+            section h5
+                font-weight bold
+                text-decoration underline
+        #meanRiskStratification
+            .red
+                background-color red
+            .panel-title, .panel-title a
+                font-size small
+            table input[type="text"]
+                width 50px
 
-        .top-header
-            text-align center
-            color #FFF
+            .top-header
+                text-align center
+                color #FFF
 
-        .panel-toggle a, .panel-title a
-            color black
-            font-weight bold
-        label
-            font-weight bold
+            .panel-toggle a, .panel-title a
+                color black
+                font-weight bold
+            label
+                font-weight bold
 
-        .well, #results
-            min-height 645px
+            .well, #results
+                min-height 645px
 
-        .termToDefine, th
-            font-weight bold
+            .termToDefine, th
+                font-weight bold
 
-        .termToDefine.glyphicon
-            text-decoration none
+            .termToDefine.glyphicon
+                text-decoration none
 
-        .loader
-            background-image url("/common/images/loading.gif") no-repeat;
-            margin 0 auto;
-            height 300px
-            width 100%
+            .loader
+                background-image url("/common/images/loading.gif") no-repeat;
+                margin 0 auto;
+                height 300px
+                width 100%
 
-        input[type="number"]
-            width 10rem
-        
-        .input:invalid
-            background-color yellow
+            input[type="number"]
+                width 10rem
+
+            .input:invalid
+                background-color yellow
