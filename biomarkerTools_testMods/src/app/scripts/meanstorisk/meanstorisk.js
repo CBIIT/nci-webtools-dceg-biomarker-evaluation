@@ -41,7 +41,7 @@ $(document).ready(function() {
             $('#file_upload').collapse('hide');
         }
 
-        $('.panel-body').not( document.getElementById(this.id) )
+        thisTool.find('.panel-body').not( document.getElementById(this.id) )
             .removeClass('in')
             .addClass('collapse');
     });
