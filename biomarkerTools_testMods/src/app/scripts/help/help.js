@@ -24,3 +24,12 @@ function tableOfContentsList(){
 $('.goToTopic').on('click', function(){
     goToTarget(this);
 });
+
+thisTool.find('h4').each(toTop);
+
+function toTop(){
+    var el = $("<a class='pull-right' data-target='#top'>Top</a>").on('click', function(){
+        document.getElementById("wrapper").scrollIntoView(true);
+    });
+    $(this).append(el);
+}
