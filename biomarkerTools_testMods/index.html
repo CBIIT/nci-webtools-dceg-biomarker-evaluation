@@ -52,7 +52,7 @@
             <div id="meanstorisk" role="tabpanel" class="tab-pane fade">
               <div class="top_section">
                 <h3 class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
-                <div id="helpGlossaryLinks"><a data-target="#help" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div><br>
+                <div id="helpGlossaryLinks"><a data-target="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div><br>
                 <div class="col-md-4">
                   <p class="text-center"><strong>Choose how to enter the data</strong></p>
                   <form>
@@ -75,46 +75,46 @@
                         </div>
                       </div>
                       <div id="cases_control" class="panel-body collapse"><strong class="indent data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</strong>
-                        <table class="table_data">
-                          <tr class="table_data header">
-                            <th class="table_data header"></th>
-                            <th class="table_data header">Cases</th>
-                            <th class="table_data header">Controls</th>
-                          </tr>
-                          <tr class="table_data">
-                            <th class="table_data text-right">Mean</th>
-                            <td class="table_data">
+                        <div class="panel panel-default table_data">
+                          <div class="row table_data header">
+                            <div class="col-md-4 header text-right table_data header"></div>
+                            <div class="col-md-4 header text-right table_data header">Cases</div>
+                            <div class="col-md-4 header text-right table_data header">Controls</div>
+                          </div>
+                          <div class="row table_data">
+                            <div class="col-md-6 header text-right table_data text-right">Mean</div>
+                            <div class="col-md-6 header text-right table_data">
                               <label for="mean_cases_input"></label>
                               <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
-                            </td>
-                            <td class="table_data">
+                            </div>
+                            <div class="col-md-12 header text-right table_data">
                               <label for="mean_controls_input"></label>
                               <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
-                            </td>
-                          </tr>
-                          <tr class="table_data">
-                            <th class="table_data text-right">Standard Error</th>
-                            <td class="table_data">
+                            </div>
+                          </div>
+                          <div class="row table_data">
+                            <div class="col-md-4 header text-right table_data text-right">Standard Error</div>
+                            <div class="col-md-4 header text-right table_data">
                               <label for="stderr_cases_input"></label>
                               <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
-                            </td>
-                            <td class="table_data">
+                            </div>
+                            <div class="col-md-4 header text-right table_data">
                               <label for="stderr_controls_input"></label>
                               <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
-                            </td>
-                          </tr>
-                          <tr class="table_data">
-                            <th class="table_data text-right">N</th>
-                            <td class="table_data">
+                            </div>
+                          </div>
+                          <div class="row table_data">
+                            <div class="col-md-4 header text-right table_data text-right">N</div>
+                            <div class="col-md-4 header text-right table_data">
                               <label for="N_cases_input"></label>
                               <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
-                            </td>
-                            <td class="table_data">
+                            </div>
+                            <div class="col-md-4 header text-right table_data">
                               <label for="N_controls_input"></label>
                               <input id="N_controls_input" type="text" value="200" size="4" class="data_entry_by_input">
-                            </td>
-                          </tr>
-                        </table>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="panel indent">
                         <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
@@ -133,80 +133,61 @@
                     <input id="download_button" type="button" value="Download Excel File" class="pull-right">
                   </form>
                 </div>
-                <div class="col-md-4 table_panel">
-                  <table id="inputs_card" class="table_data">
-                    <tr class="table_data header">
-                      <th class="table_data header"></th>
-                      <th class="table_data header"> Cases </th>
-                      <th class="table_data header"> Controls </th>
-                      <th class="table_data header"> Overall </th>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">Mean</th>
-                      <td id="mean_cases" class="table_data"></td>
-                      <td id="mean_controls" class="table_data"></td>
-                      <td id="mean_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">Standard Error</th>
-                      <td id="stderr_cases" class="table_data"></td>
-                      <td id="stderr_controls" class="table_data"></td>
-                      <td id="stderr_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">N</th>
-                      <td id="N_cases" class="table_data"></td>
-                      <td id="N_controls" class="table_data"></td>
-                      <td id="N_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data line-above">
-                      <th class="table_data text-right">Standard Deviation</th>
-                      <td id="deviation_cases" class="table_data"></td>
-                      <td id="deviation_controls" class="table_data"></td>
-                      <td id="deviation_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">Variance</th>
-                      <td id="variance_cases" class="table_data"></td>
-                      <td id="variance_controls" class="table_data"></td>
-                      <td id="variance_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">
-                        <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
-                        <div id="CVDefinition" class="popupDefinition"></div>
-                      </th>
-                      <td id="cv_cases" class="table_data"></td>
-                      <td id="cv_controls" class="table_data"></td>
-                      <td id="cv_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">Difference in Mean</th>
-                      <td id="diff_cases" class="table_data"></td>
-                      <td id="diff_controls" class="table_data"></td>
-                      <td id="diff_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">
-                        <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
-                        <div id="DeltaDefinition" class="popupDefinition"></div>
-                      </th>
-                      <td id="delta_cases" class="table_data"></td>
-                      <td id="delta_controls" class="table_data"></td>
-                      <td id="delta_overall" class="table_data"></td>
-                    </tr>
-                    <tr class="table_data">
-                      <th class="table_data text-right">
-                        <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
-                        <div id="AUCDefinition" class="popupDefinition"></div>
-                      </th>
-                      <td id="auc_cases" class="table_data"></td>
-                      <td id="auc_controls" class="table_data"></td>
-                      <td id="auc_overall" class="table_data"></td>
-                    </tr>
-                  </table>
+                <div class="panel panel-default col-md-4 table_panel">
+                  <div class="row"><strong class="col-md-3 header text-center">&nbsp;</strong><strong class="col-md-3 header text-center">Cases</strong><strong class="col-md-3 header text-center">Controls</strong><strong class="col-md-3 header text-center">Overall</strong></div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Mean</strong>
+                    <div id="mean_cases" class="col-md-4 table_data text-rcenterght"></div>
+                    <div id="mean_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="mean_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Standard Error</strong>
+                    <div id="stderr_cases" class="col-md-4 table_data text-center"></div>
+                    <div id="stderr_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">N</strong>
+                    <div id="N_cases" class="col-md-4 table_data text-center"></div>
+                    <div id="N_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="N_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data line-above"><strong class="header table_data text-center col-md-4">Standard Deviation</strong>
+                    <div id="deviation_cases" class="col-md-4 table_data"></div>
+                    <div id="deviation_controls" class="col-md-4 table_data"></div>
+                    <div id="deviation_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Variance</strong>
+                    <div id="variance_cases" class="col-md-4 table_data"></div>
+                    <div id="variance_controls" class="col-md-4 table_data"></div>
+                    <div id="variance_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                      <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
+                      <div id="CVDefinition" class="popupDefinition"></div></strong>
+                    <div id="cv_cases" class="col-md-4 table_data"></div>
+                    <div id="cv_controls" class="col-md-4 table_data"></div>
+                    <div id="cv_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">Difference in Mean</strong>
+                    <div id="diff_cases" class="col-md-4 table_data"></div>
+                    <div id="diff_controls" class="col-md-4 table_data"></div>
+                    <div id="diff_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                      <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
+                      <div id="DeltaDefinition" class="popupDefinition"></div></strong>
+                    <div id="delta_cases" class="col-md-4 table_data"></div>
+                    <div id="delta_controls" class="col-md-4 table_data"></div>
+                    <div id="delta_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><strong class="header table_data text-center col-md-4">
+                      <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
+                      <div id="AUCDefinition" class="popupDefinition"></div></strong>
+                    <div id="auc_cases" class="col-md-4 table_data"></div>
+                    <div id="auc_controls" class="col-md-4 table_data"></div>
+                    <div id="auc_overall" class="col-md-4 table_data"></div>
+                  </div>
                 </div>
-                <div class="col-md-4 graph_panel"></div>
+                <div class="graph_panel col-md-4"></div>
               </div>
               <div class="bottom_section">
                 <div class="tabbed_output_panel"></div>
@@ -962,7 +943,7 @@
                 <article class="extra-padding">
                   <dl>
                     <dt>Where do I go for technical support? </dt>
-                    <dl>Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Evaluation Tools" title="iomarker Evaluation Tools">e-mail </a>to our technical support team.</dl>
+                    <dl>Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Evaluation Tools" title="Biomarker Evaluation Tools">e-mail</a> to our technical support team.</dl>
                   </dl>
                   <dl>
                     <dt>What browsers does the web tool support? </dt>
