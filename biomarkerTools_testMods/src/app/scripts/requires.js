@@ -3,6 +3,7 @@ requirejs.config({
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         'jquery.ui': "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min",
         bootstrap: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min",
+        datatables:"http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min",
         help: 'help/help',
         sampleSize: 'sampleSize/sampleSize',
         bc: 'bc/bc',
@@ -29,7 +30,7 @@ requirejs.config({
             deps: ['jquery.ui', 'bootstrap']
         },
         riskStratAdvanced: {
-            deps: ['bootstrap']
+            deps: ['datatables','bootstrap']
         },
         routes: {
             deps: ['bootstrap', 'glossary']
