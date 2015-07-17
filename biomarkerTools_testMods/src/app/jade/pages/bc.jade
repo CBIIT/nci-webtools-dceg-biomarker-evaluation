@@ -46,82 +46,71 @@
             | different. To calculate PPV and cNPV, provide a prevalence value.
       .col-md-6.table-and-graph
           // Left Side
-          table#inputdata
-            thead
-              tr.non-data-row
-                th.top-header(colspan='5') Input Information
-              tr.non-data-row
-                th.header #
-                th.header Reference
-                th.header
-                  #Sens.termToDefine(data-term='Sens') Sensitivity
-                  #SensDefinition.popupDefinition
-                th.header
-                  #Spec.termToDefine(data-term='Spec') Specificity
-                  #SpecDefinition.popupDefinition
-                th.header  
-            tbody
-              tr.reference_row(row='0')
-                th 1
-                td.reference(row='0', col='reference')
+          #inputdata.panel.panel-default
+            .panel-heading.text-center
+                b Input Information
+            .panel-body
+              .row.non-data-row
+                .col-md-1.bg-primary 
+                    b #
+                .col-md-3.bg-primary
+                    b Reference
+                .col-md-3.bg-primary
+                  #Sens.termToDefine(data-term='Sens')
+                    b Sensitivity
+                #SensDefinition.popupDefinition
+                .col-md-5.bg-primary
+                  #Spec.termToDefine(data-term='Spec') 
+                    b Specificity
+                #SpecDefinition.popupDefinition
+              .row.reference_row(row='0')
+                .col-md-1 1
+                .col-md-3.reference(row='0', col='reference')
                   img(src='/common/images/checkbox.png', height='18', width='18', alt='check')
-                td.input.sensitivity(row='0', col='sensitivity') 0.8
-                td.input.specificity(row='0', col='specificity') 0.7
-                td  
-              tr(row='1')
-                th 2
-                td.reference(row='1', col='reference')
+                .col-md-3.input.sensitivity(row='0', col='sensitivity') 0.8
+                .col-md-2.input.specificity(row='0', col='specificity') 0.7
+                .col-md-3  
+              .row(row='1')
+                .col-md-1 2
+                .col-md-3.reference(row='1', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
-                td.input.sensitivity(row='1', col='sensitivity') 0.85
-                td.input.specificity(row='1', col='specificity') 0.68
-                td
+                .col-md-3.input.sensitivity(row='1', col='sensitivity') 0.85
+                .col-md-2.input.specificity(row='1', col='specificity') 0.68
+                .col-md-3
                   button.remove_row_button Remove
-              tr(row='2')
-                th 3
-                td.reference(row='2', col='reference')
+              .row(row='2')
+                .col-md-1 3
+                .col-md-3.reference(row='2', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
-                td.input.sensitivity(row='2', col='sensitivity') 0.9
-                td.input.specificity(row='2', col='specificity') 0.5
-                td
+                .col-md-3.input.sensitivity(row='2', col='sensitivity') 0.9
+                .col-md-2.input.specificity(row='2', col='specificity') 0.5
+                .col-md-3
                   button.remove_row_button Remove
-              tr.non-data-row
-                th 
-                td 
-                td 
-                td 
-                td
+              .row.non-data-row
+                .col-md-1 
+                .col-md-3 
+                .col-md-3 
+                .col-md-2 
+                .col-md-3
                   button#new_row_button New Row
-          table
-            tr
-              td.prevalence_label
-                #DP.termToDefine(data-term='DP',for='prevalence') Prevalence
-                #DPDefinition.popupDefinition
-              td
+            .panel-footer
+                .prevalence_label.col-md-3
+                    #DP.termToDefine(data-term='DP',for='prevalence') Prevalence
+                    #DPDefinition.popupDefinition
                 input#prevalence(type='text')
-          button#calculate_button Calculate
+                button#calculate_button Calculate
           include ../partials/loader
           table#output
         .col-md-6
-            // Right Side
             img.thumbnail#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
       .bibliography
         p
-          b References:
-        p
-          | Marina V. Kondratovich, (2007), 
+          strong References:
+        p Marina V. Kondratovich, (2007), 
           i
             | Comparing Two Medical Tests
             | When Results of Reference Standard Are Unavailable for Those
             | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, 
-          a(target='_blank', href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670')
+          a(target='_blank',
+          href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670') 
             | DOI: 10.1080/10543400701668308
-        p
-          b Where do I go for technical support?
-          |  Please send an 
-          a(href='mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Comparison Tool Support', title='Biomarker Comparision Tool Technical Support') e-mail
-          |  to our technical support team.
-        p
-          b What browsers does the web tool support?
-          |  The web tool has been tested to work with Internet Explorer versions 10, 9 and 8, Firefox and Chrome.
-  // columns float END
-// main
