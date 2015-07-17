@@ -1,6 +1,7 @@
-var thisTool = $("#sampleSize");
+var thisTool;
 
 $(function(){
+    thisTool = $("#sampleSize");
     random_gen();
     disable_calculate();
 
