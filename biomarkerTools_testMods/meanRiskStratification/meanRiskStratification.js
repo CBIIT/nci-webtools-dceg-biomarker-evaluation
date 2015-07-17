@@ -1,8 +1,9 @@
 // keep track of the number of marker elements, to use the number as the id,
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
-var thisTool = $("#meanRiskStratification");
+var thisTool;
 $(document).ready(function () {
+    thisTool = $("#meanRiskStratification");
     thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
     bind_control_events();
@@ -277,7 +278,7 @@ function extract_values(valid) {
         // inside this marker find inputs by group
         var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
         var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray(); // option 2
-        
+
         var append_values = function (element) {
             // don't add empty values to object
             if (element.value.length > 0) {
@@ -285,7 +286,7 @@ function extract_values(valid) {
                 values["bm_" + i][element.name] = element.value;
             }
         };
-        
+
         option_1_controls.forEach(append_values);
 
         // check option variable
@@ -313,9 +314,9 @@ function extract_values(valid) {
                     param_4.push(obj);
                 }
             };
-            
+
             option_2_controls.filter(mapping_pairs);
-            
+
             if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
                 // sample size
                 values["bm_" + i][param_4[0].name] = param_4[0].value;
