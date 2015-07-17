@@ -7,17 +7,17 @@
         a.goToGlossary(data-target="#glossary") Glossary
       br
       .col-md-4
-        p.text-center
-            strong Choose how to enter the data
         form
           #accordion.panel.panel-default
+            .panel-heading.text-center 
+                strong Choose how to enter the data
             .panel-heading
                 .panel-title(data-toggle="collapse", data-target="#file_upload")
                     | User Defined Distribution (from File)
                     .glyphicon.glyphicon-chevron-down
             #file_upload.panel-body.collapse.in
               strong.data_entry_by_file Upload a raw case and control biomarker data file in csv format
-                a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
+                a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example) 
               p.indent
                 label(for='input_file_upload')
                   input#input_file_upload.data_entry_by_file(type='file')
@@ -25,14 +25,18 @@
                 .panel-title(data-toggle="collapse", data-target="#cases_control") Normal Distribution
                     .glyphicon.glyphicon-chevron-down
             #cases_control.panel-body.collapse
-              strong.indent.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
               .panel.panel-default.table_data
+                .panel-heading
+                    strong.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
                 .row.table_data
-                  .col-md-4.header.text-right.table_data.header
-                  .col-md-4.header.text-right.table_data.header Cases
-                  .col-md-4.header.text-right.table_data.header Controls
+                  .col-md-4.header.text-right.table_data
+                  .col-md-4.header.text-right.table_data 
+                    b Cases
+                  .col-md-4.header.text-right.table_data
+                    b Controls
                 .row.table_data
-                  .col-md-4.header.text-right.table_data.text-right Mean
+                  .col-md-4.header.text-right.table_data.text-right
+                    b Mean
                   .col-md-4.header.text-right.table_data
                     label(for='mean_cases_input')
                     input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
@@ -40,7 +44,8 @@
                     label(for='mean_controls_input')
                     input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
                 .row.table_data
-                  .col-md-4.header.text-right.table_data.text-right Standard Error
+                  .col-md-4.header.text-right.table_data.text-right
+                    b Standard Error
                   .col-md-4.header.text-right.table_data
                     label(for='stderr_cases_input')
                     input#stderr_cases_input.data_entry_by_input(type='text', value='0.1', size='4')
@@ -48,14 +53,15 @@
                     label(for='stderr_controls_input')
                     input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
                 .row.table_data
-                  .col-md-4.header.text-right.table_data.text-right N
+                  .col-md-4.header.text-right.table_data.text-right
+                    b N
                   .col-md-4.header.text-right.table_data
                     label(for='N_cases_input')
                     input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
                   .col-md-4.header.text-right.table_data
                     label(for='N_controls_input')
                     input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
-            .panel
+            .panel-footer
                 #Spec.termToDefine(data-term='Spec') Specificity:
                 #SpecDefinition.popupDefinition
                 label(for='specificity')
