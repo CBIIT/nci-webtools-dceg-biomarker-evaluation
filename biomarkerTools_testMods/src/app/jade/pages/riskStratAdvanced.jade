@@ -4,72 +4,71 @@
       a.goToHelp(data-target="#help_riskStratAdvanced") Help
       | &nbsp;
       a.goToGlossary(data-target="#glossary") Glossary
-    form.col-md-6
-      table
-        tr
-          td
-            label(for='independent_dropdown') Independent Variable
-          td
-            select.input-sm#independent_dropdown(name='independent_dropdown')
-              option(value='', selected='')
-              option(value='specificity') Specificity
-              option(value='prevalence') Prevalence
-              option(value='ppv') PPV
-              option(value='delta') Delta
-              option(value='sensitivity') Sensitivity
-              option(value='cnpv') cNPV
-          td
-            label.sr-only(for='independent') Independent Variable Value
-            input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
-          td
-            #indDef
-          td
-            span.variable-example
-        tr
-          td
-            label(for='contour_dropdown') Contour
-          td
-            select.input-sm#contour_dropdown(name='contour_dropdown')
-              option(value='', selected='')
-              option(value='ppv') PPV
-              option(value='prevalence') Prevalence
-              option(value='specificity') Specificity
-              option(value='delta') Delta
-              option(value='sensitivity') Sensitivity
-              option(value='cnpv') cNPV
-          td
-            label.sr-only(for='contour') Contour Value
-            input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
-          td
-            #contourDef
-          td
-            span.variable-example
-        tr
-          td
-            label(for='fixed_dropdown') Fixed Values
-          td
-            select.input-sm#fixed_dropdown(name='fixed_dropdown')
-              option(value='', selected='')
-              option(value='prevalence') Prevalence
-              option(value='delta') Delta
-              option(value='ppv') PPV
-              option(value='specificity') Specificity
-              option(value='sensitivity') Sensitivity
-              option(value='cnpv') cNPV
-          td
-            label.sr-only(for='fixed') Fixed Value
-            input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required='')
-          td
-            #fvDef
-          td
-            span.variable-example
-      div
-        .pull-left
-            button#calculate(disabled='') Calculate
-            button#reset(type='reset') Reset
-        .pull-right
-            a.pull-right#add-test-data(href='#', title='Populate variables with a working example') Example
-      #status-bar Status Bar
+    form.col-md-7
+        .panel.panel-default
+            .panel-body
+                .row
+                  .col-md-4
+                    label(for='independent_dropdown') Independent Variable
+                  .col-md-3
+                    select.input-sm#independent_dropdown(name='independent_dropdown')
+                        option(value='', selected='')
+                        option(value='specificity') Specificity
+                        option(value='prevalence') Prevalence
+                        option(value='ppv') PPV
+                        option(value='delta') Delta
+                        option(value='sensitivity') Sensitivity
+                        option(value='cnpv') cNPV
+                  .col-md-2
+                    label.sr-only(for='independent') Independent Variable Value
+                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
+                  .col-md-1#indDef
+                  .col-md-2
+                    span.variable-example
+                .row
+                  .col-md-4
+                    label(for='contour_dropdown') Contour
+                  .col-md-3    
+                    select.input-sm#contour_dropdown(name='contour_dropdown')
+                        option(value='', selected='')
+                        option(value='ppv') PPV
+                        option(value='prevalence') Prevalence
+                        option(value='specificity') Specificity
+                        option(value='delta') Delta
+                        option(value='sensitivity') Sensitivity
+                        option(value='cnpv') cNPV
+                  .col-md-2
+                    label.sr-only(for='contour') Contour Value
+                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
+                  .col-md-1
+                    #contourDef
+                  .col-md-2
+                    span.variable-example
+                .row
+                  .col-md-4
+                    label(for='fixed_dropdown') Fixed Values
+                  .col-md-3   
+                      select.input-sm#fixed_dropdown(name='fixed_dropdown')
+                        option(value='', selected='')
+                        option(value='prevalence') Prevalence
+                        option(value='delta') Delta
+                        option(value='ppv') PPV
+                        option(value='specificity') Specificity
+                        option(value='sensitivity') Sensitivity
+                        option(value='cnpv') cNPV
+                  .col-md-3
+                    label.sr-only(for='fixed') Fixed Value
+                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required='')
+                  .col-md-1
+                    #fvDef
+                  .col-md-2
+                    span.variable-example
+            .panel-footer
+                button#calculate(disabled='') Calculate
+                button#reset(type='reset') Reset
+                .pull-right
+                    a.pull-right#add-test-data(href='#', title='Populate variables with a working example') Example
+    #status-bar Status Bar
     #dialog-confirm.modal.fade(title='Rules Violation')
         .modal-dialog
         .modal-content
@@ -90,5 +89,5 @@
                   li.rule.rule5
                     strong Sensitivity+Specificity-1 > 0
                 strong Do you wish to continue with calculation anyway?
-    #output
-    #output1
+    .row#output
+    .row#output1
