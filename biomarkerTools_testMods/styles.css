@@ -86,19 +86,17 @@ body #contentTabs #bc .header {
 body #contentTabs #bc #output {
   width: 500px;
 }
-body #contentTabs #bc #inputdata {
-  width: 500px;
+body #contentTabs #bc #inputdata .input {
+  cursor: text;
+}
+body #contentTabs #bc #inputdata .panel-body {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 body #contentTabs #bc h2 {
   background-color: #aaa;
   color: #444;
   padding: 5px;
-}
-body #contentTabs #bc .prevalence_label {
-  font-weight: bold;
-  background-color: #aaa;
-  color: #444;
-  padding: 2px 25px 2px 25px;
 }
 body #contentTabs #bc .bibliography {
   width: 950px;
