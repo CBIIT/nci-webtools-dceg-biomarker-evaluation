@@ -54,15 +54,15 @@
                 <h3 class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div id="helpGlossaryLinks"><a data-target="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div><br>
                 <div class="col-md-4">
-                  <p class="text-center"><strong>Choose how to enter the data</strong></p>
                   <form>
                     <div id="accordion" class="panel panel-default">
+                      <div class="panel-heading text-center"> <strong>Choose how to enter the data</strong></div>
                       <div class="panel-heading">
                         <div data-toggle="collapse" data-target="#file_upload" class="panel-title">User Defined Distribution (from File)
                           <div class="glyphicon glyphicon-chevron-down"></div>
                         </div>
                       </div>
-                      <div id="file_upload" class="panel-body collapse in"><strong class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></strong>
+                      <div id="file_upload" class="panel-body collapse in"><strong class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example) </a></strong>
                         <p class="indent">
                           <label for="input_file_upload">
                             <input id="input_file_upload" type="file" class="data_entry_by_file">
@@ -74,15 +74,16 @@
                           <div class="glyphicon glyphicon-chevron-down"></div>
                         </div>
                       </div>
-                      <div id="cases_control" class="panel-body collapse"><strong class="indent data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</strong>
+                      <div id="cases_control" class="panel-body collapse">
                         <div class="panel panel-default table_data">
+                          <div class="panel-heading"><strong class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</strong></div>
                           <div class="row table_data">
-                            <div class="col-md-4 header text-right table_data header"></div>
-                            <div class="col-md-4 header text-right table_data header">Cases</div>
-                            <div class="col-md-4 header text-right table_data header">Controls</div>
+                            <div class="col-md-4 header text-right table_data"></div>
+                            <div class="col-md-4 header text-right table_data"> <b>Cases</b></div>
+                            <div class="col-md-4 header text-right table_data"><b>Controls</b></div>
                           </div>
                           <div class="row table_data">
-                            <div class="col-md-4 header text-right table_data text-right">Mean</div>
+                            <div class="col-md-4 header text-right table_data text-right"><b>Mean</b></div>
                             <div class="col-md-4 header text-right table_data">
                               <label for="mean_cases_input"></label>
                               <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
@@ -93,7 +94,7 @@
                             </div>
                           </div>
                           <div class="row table_data">
-                            <div class="col-md-4 header text-right table_data text-right">Standard Error</div>
+                            <div class="col-md-4 header text-right table_data text-right"><b>Standard Error</b></div>
                             <div class="col-md-4 header text-right table_data">
                               <label for="stderr_cases_input"></label>
                               <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
@@ -104,7 +105,7 @@
                             </div>
                           </div>
                           <div class="row table_data">
-                            <div class="col-md-4 header text-right table_data text-right">N</div>
+                            <div class="col-md-4 header text-right table_data text-right"><b>N</b></div>
                             <div class="col-md-4 header text-right table_data">
                               <label for="N_cases_input"></label>
                               <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
@@ -116,7 +117,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="panel">
+                      <div class="panel-footer">
                         <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
                         <div id="SpecDefinition" class="popupDefinition"></div>
                         <label for="specificity">
@@ -247,182 +248,167 @@
                 </div>
                 <div class="col-md-6 table-and-graph">
                   <!-- Left Side-->
-                  <table id="inputdata">
-                    <thead>
-                      <tr class="non-data-row">
-                        <th colspan="5" class="top-header">Input Information</th>
-                      </tr>
-                      <tr class="non-data-row">
-                        <th class="header">#</th>
-                        <th class="header">Reference</th>
-                        <th class="header">
-                          <div id="Sens" data-term="Sens" class="termToDefine">Sensitivity</div>
-                          <div id="SensDefinition" class="popupDefinition"></div>
-                        </th>
-                        <th class="header">
-                          <div id="Spec" data-term="Spec" class="termToDefine">Specificity</div>
-                          <div id="SpecDefinition" class="popupDefinition"></div>
-                        </th>
-                        <th class="header"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr row="0" class="reference_row">
-                        <th>1</th>
-                        <td row="0" col="reference" class="reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></td>
-                        <td row="0" col="sensitivity" class="input sensitivity">0.8</td>
-                        <td row="0" col="specificity" class="input specificity">0.7</td>
-                        <td> </td>
-                      </tr>
-                      <tr row="1">
-                        <th>2</th>
-                        <td row="1" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                        <td row="1" col="sensitivity" class="input sensitivity">0.85</td>
-                        <td row="1" col="specificity" class="input specificity">0.68</td>
-                        <td>
+                  <div id="inputdata" class="panel panel-default">
+                    <div class="panel-heading text-center"><b>Input Information</b></div>
+                    <div class="panel-body">
+                      <div class="row non-data-row">
+                        <div class="col-md-1 bg-primary"> <b>#</b></div>
+                        <div class="col-md-3 bg-primary"><b>Reference</b></div>
+                        <div class="col-md-3 bg-primary">
+                          <div id="Sens" data-term="Sens" class="termToDefine"><b>Sensitivity</b></div>
+                        </div>
+                        <div id="SensDefinition" class="popupDefinition"></div>
+                        <div class="col-md-5 bg-primary">
+                          <div id="Spec" data-term="Spec" class="termToDefine"> <b>Specificity</b></div>
+                        </div>
+                        <div id="SpecDefinition" class="popupDefinition"></div>
+                      </div>
+                      <div row="0" class="row reference_row">
+                        <div class="col-md-1">1</div>
+                        <div row="0" col="reference" class="col-md-3 reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></div>
+                        <div row="0" col="sensitivity" class="col-md-3 input sensitivity">0.8</div>
+                        <div row="0" col="specificity" class="col-md-2 input specificity">0.7</div>
+                        <div class="col-md-3"> </div>
+                      </div>
+                      <div row="1" class="row">
+                        <div class="col-md-1">2</div>
+                        <div row="1" col="reference" class="col-md-3 reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></div>
+                        <div row="1" col="sensitivity" class="col-md-3 input sensitivity">0.85</div>
+                        <div row="1" col="specificity" class="col-md-2 input specificity">0.68</div>
+                        <div class="col-md-3">
                           <button class="remove_row_button">Remove</button>
-                        </td>
-                      </tr>
-                      <tr row="2">
-                        <th>3</th>
-                        <td row="2" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                        <td row="2" col="sensitivity" class="input sensitivity">0.9</td>
-                        <td row="2" col="specificity" class="input specificity">0.5</td>
-                        <td>
+                        </div>
+                      </div>
+                      <div row="2" class="row">
+                        <div class="col-md-1">3</div>
+                        <div row="2" col="reference" class="col-md-3 reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></div>
+                        <div row="2" col="sensitivity" class="col-md-3 input sensitivity">0.9</div>
+                        <div row="2" col="specificity" class="col-md-2 input specificity">0.5</div>
+                        <div class="col-md-3">
                           <button class="remove_row_button">Remove</button>
-                        </td>
-                      </tr>
-                      <tr class="non-data-row">
-                        <th> </th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>
+                        </div>
+                      </div>
+                      <div class="row non-data-row">
+                        <div class="col-md-1"> </div>
+                        <div class="col-md-3"> </div>
+                        <div class="col-md-3"> </div>
+                        <div class="col-md-2"> </div>
+                        <div class="col-md-3">
                           <button id="new_row_button">New Row</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table>
-                    <tr>
-                      <td class="prevalence_label">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      <div class="prevalence_label col-md-3">
                         <div id="DP" data-term="DP" for="prevalence" class="termToDefine">Prevalence</div>
                         <div id="DPDefinition" class="popupDefinition"></div>
-                      </td>
-                      <td>
-                        <input id="prevalence" type="text">
-                      </td>
-                    </tr>
-                  </table>
-                  <button id="calculate_button">Calculate</button>
+                      </div>
+                      <input id="prevalence" type="text">
+                      <button id="calculate_button">Calculate</button>
+                    </div>
+                  </div>
                   <div class="row">
                     <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                   <table id="output"></table>
                 </div>
-                <div class="col-md-6">
-                  <!-- Right Side--><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail">
-                </div>
+                <div class="col-md-6"><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail"></div>
                 <div class="bibliography">
-                  <p><b>References:</b></p>
+                  <p><strong>References:</strong></p>
                   <p>Marina V. Kondratovich, (2007), <i>
                       Comparing Two Medical Tests
                       When Results of Reference Standard Are Unavailable for Those
-                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
-                  <p><b>Where do I go for technical support?</b> Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Comparison Tool Support" title="Biomarker Comparision Tool Technical Support">e-mail</a> to our technical support team.</p>
-                  <p><b>What browsers does the web tool support?</b> The web tool has been tested to work with Internet Explorer versions 10, 9 and 8, Firefox and Chrome.</p>
+                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">
+                       
+                      DOI: 10.1080/10543400701668308</a></p>
                 </div>
               </p>
             </div>
-            <!-- columns float END-->
-            <!-- main-->
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Adnvanced Analysis" class="title text-center">Risk Stratification Advanced Analysis</h3>
               <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a data-target="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div>
-              <form class="col-md-6">
-                <table>
-                  <tr>
-                    <td>
-                      <label for="independent_dropdown">Independent Variable</label>
-                    </td>
-                    <td>
-                      <select id="independent_dropdown" name="independent_dropdown" class="input-sm">
-                        <option value="" selected=""></option>
-                        <option value="specificity">Specificity</option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="ppv">PPV</option>
-                        <option value="delta">Delta</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="independent" class="sr-only">Independent Variable Value</label>
-                      <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
-                    </td>
-                    <td>
-                      <div id="indDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label for="contour_dropdown">Contour</label>
-                    </td>
-                    <td>
-                      <select id="contour_dropdown" name="contour_dropdown" class="input-sm">
-                        <option value="" selected=""></option>
-                        <option value="ppv">PPV</option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="specificity">Specificity</option>
-                        <option value="delta">Delta</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="contour" class="sr-only">Contour Value</label>
-                      <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
-                    </td>
-                    <td>
-                      <div id="contourDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label for="fixed_dropdown">Fixed Values</label>
-                    </td>
-                    <td>
-                      <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm">
-                        <option value="" selected=""></option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="delta">Delta</option>
-                        <option value="ppv">PPV</option>
-                        <option value="specificity">Specificity</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="fixed" class="sr-only">Fixed Value</label>
-                      <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="" class="input-sm">
-                    </td>
-                    <td>
-                      <div id="fvDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                </table>
-                <div>
-                  <div class="pull-left">
+              <form class="col-md-7">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="independent_dropdown">Independent Variable</label>
+                      </div>
+                      <div class="col-md-3">
+                        <select id="independent_dropdown" name="independent_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="specificity">Specificity</option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="ppv">PPV</option>
+                          <option value="delta">Delta</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="independent" class="sr-only">Independent Variable Value</label>
+                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                      </div>
+                      <div id="indDef" class="col-md-1"></div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="contour_dropdown">Contour</label>
+                      </div>
+                      <div class="col-md-3">   
+                        <select id="contour_dropdown" name="contour_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="ppv">PPV</option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="specificity">Specificity</option>
+                          <option value="delta">Delta</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="contour" class="sr-only">Contour Value</label>
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                      </div>
+                      <div class="col-md-1">
+                        <div id="contourDef"></div>
+                      </div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="fixed_dropdown">Fixed Values</label>
+                      </div>
+                      <div class="col-md-3">  
+                        <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="delta">Delta</option>
+                          <option value="ppv">PPV</option>
+                          <option value="specificity">Specificity</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label for="fixed" class="sr-only">Fixed Value</label>
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="" class="input-sm">
+                      </div>
+                      <div class="col-md-1">
+                        <div id="fvDef"></div>
+                      </div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
                     <button id="calculate" disabled="">Calculate</button>
                     <button id="reset" type="reset">Reset</button>
+                    <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
                   </div>
-                  <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
                 </div>
-                <div id="status-bar">Status Bar</div>
               </form>
+              <div id="status-bar">Status Bar</div>
               <div id="dialog-confirm" title="Rules Violation" class="modal fade">
                 <div class="modal-dialog"></div>
                 <div class="modal-content">
@@ -440,8 +426,8 @@
                   </div>
                 </div>
               </div>
-              <div id="output"></div>
-              <div id="output1"></div>
+              <div id="output" class="row"></div>
+              <div id="output1" class="row"></div>
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
