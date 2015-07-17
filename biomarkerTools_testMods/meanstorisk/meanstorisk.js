@@ -1,10 +1,9 @@
 var uniqueKey;
-
+var thisTool;
 var valuesFromFile = [];
 var numberOfRows;
 var numberOfCols;
 
-var thisTool = $("#meanstorisk");
 
 var ppv_tabs = {
     "PPV": "PPV = Positive Predictive Value (PPV)",
@@ -17,6 +16,7 @@ var ppv_tabs = {
 
 
 $(document).ready(function() {
+    thisTool = $("#meanstorisk");
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
