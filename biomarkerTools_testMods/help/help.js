@@ -1,8 +1,10 @@
-
-requirejs(['routes', 'glossary' ]);
-var thisTool = $('#help');
-
-thisTool.find('h4, h5').each(tableOfContentsList);
+var thisTool;
+$(document).ready(function(){
+   
+    requirejs(['routes', 'glossary' ]);
+    thisTool = $('#help');
+    thisTool.find('h4, h5').each(tableOfContentsList);
+});
 
 
 function tableOfContentsList(){
