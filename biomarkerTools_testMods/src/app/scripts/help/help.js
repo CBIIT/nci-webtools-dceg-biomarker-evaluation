@@ -1,8 +1,10 @@
-// pull in glossary js file
-requirejs(['routes', 'glossary' ]);
-var thisTool = $('#help');
-
-thisTool.find('h4, h5').each(tableOfContentsList);
+var thisTool;
+$(document).ready(function(){
+    // pull in glossary js file
+    requirejs(['routes', 'glossary' ]);
+    thisTool = $('#help');
+    thisTool.find('h4, h5').each(tableOfContentsList);
+});
 
 // used to construct links list for table of contents section
 function tableOfContentsList(){
