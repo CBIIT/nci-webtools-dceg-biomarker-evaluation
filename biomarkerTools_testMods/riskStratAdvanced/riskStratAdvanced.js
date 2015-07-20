@@ -28,19 +28,25 @@ var activeSelectionChange = false;
 var validCombo = false;
 var rulesViolationMsg = "";
 
-var keysforfunction = [ {
+var keysforfunction = [{
     1 : "Sens"
-}, {
-    2 : "Spec"
-}, {
-    3 : "PPV"
-}, {
-    4 : "cNPV"
-}, {
-    5 : "Prev"
-}, {
-    6 : "Delta"
-} ];
+},
+                       {
+                           2 : "Spec"
+                       }, 
+                       {
+                           3 : "PPV"
+                       }, 
+                       {
+                           4 : "cNPV"
+                       }, 
+                       {
+                           5 : "Prev"
+                       }, 
+                       {
+                           6 : "Delta"
+                       }];
+
 var keysforfunction = [ {
     1 : "sensitivity"
 }, {
@@ -54,6 +60,7 @@ var keysforfunction = [ {
 }, {
     6 : "delta"
 } ];
+
 var rfunctions = [ "SensPPVDelta", "SensPPVPrev", "SensSpecPPV",
                   "SensPrevDelta", "SenscNPVDelta", "SenscNPVPrev", "SensSpeccNPV",
                   "SensSpecPrev", "SpecPPVDelta", "SpecPPVPrev", "SpecPrevDelta",
@@ -145,18 +152,20 @@ var keyLong = [
         1 : "Delta given desired cNPV, prevalence, and specificity",
         2 : "Sensitivity given desired cNPV, prevalence, and specificity"
     } ];
+var thisTool;
 
 $(document).ready(function() {
-    $('body').bind('beforeunload', function() {
+    thisTool = $('#riskStratAdvanced');
+    thisTool.bind('beforeunload', function() {
        
         alert("We gonna clear some things up.");
     });
 
    
    
-   
+    createRulesDialog();
 
-    $("#riskStratAdvanced select").change(function() {
+    thisTool.find("select").change(function() {
         makeSelectionsUnique(functionnames, this.id);
     });
 
@@ -165,20 +174,14 @@ $(document).ready(function() {
             return this.replace(/^\s+|\s+$/g, '');
         };
     }
-    $("#riskStratAdvanced #reset").button().click(function() {
-        resetPage();
-    });
+    thisTool.find("#reset").button().click(resetPage);
 
-    $("#riskStratAdvanced input").keyup(function() {
-        checkInputFields();
-    });
+    thisTool.find("input").keyup(checkInputFields);
 
-    $("#riskStratAdvanced input").change(function() {
-        checkInputFields();
-    });
+    thisTool.find("input").change(checkInputFields);
 
    
-    $("#riskStratAdvanced input").bind("mouseup", function(e) {
+    thisTool.find("input").bind("mouseup", function(e) {
         var $input = $(this);
         var oldValue = $input.val();
 
@@ -196,17 +199,16 @@ $(document).ready(function() {
             }
         }, 1);
     });
-    $("#riskStratAdvanced #calculate").button().click(function(e) {
+    thisTool.find("#calculate").button().click(function(e) {
         e.preventDefault();
         if (checkRules() == "Fail") {
-            createRulesDialog();
             $("#dialog-confirm").modal("open");
             return false;
         } else {
             calculate();
         }
     });
-    $("#riskStratAdvanced #add-test-data").click(function(e) {
+    thisTool.find("#add-test-data").click(function(e) {
         e.preventDefault();
         addTestData();
     });
@@ -216,16 +218,16 @@ $(document).ready(function() {
 
 function addTestData() {
    
-    $("#riskStratAdvanced #independent_dropdown").val("specificity");
-    $("#riskStratAdvanced #contour_dropdown").val("prevalence");
-    $("#riskStratAdvanced #fixed_dropdown").val("delta");
+    thisTool.find("#independent_dropdown").val("specificity");
+    thisTool.find("#contour_dropdown").val("prevalence");
+    thisTool.find("#fixed_dropdown").val("delta");
 
     makeSelectionsUnique(functionnames, "independent_dropdown");
-    $("#riskStratAdvanced #independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
-    $("#riskStratAdvanced #contour").val("0.01, 0.05, 0.1");
-    $("#riskStratAdvanced #fixed").val("1, 1.5, 2, 3");
-    $("#riskStratAdvanced #calculate").button("option", "disabled", false);
-    $("#riskStratAdvanced .variable-example").text("");
+    thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
+    thisTool.find("#contour").val("0.01, 0.05, 0.1");
+    thisTool.find("#fixed").val("1, 1.5, 2, 3");
+    thisTool.find("#calculate").button("option", "disabled", false);
+    thisTool.find(".variable-example").text("");
     addPopupDefinition();
 }
 
@@ -239,66 +241,64 @@ var termLookup = {
 };
 
 function addPopupDefinition() {
-    var independent = $('#riskStratAdvanced #independent_dropdown').val();
-    var contour = $('#riskStratAdvanced #contour_dropdown').val();
-    var fixedValue = $('#riskStratAdvanced #fixed_dropdown').val();
+    var independent = thisTool.find('#independent_dropdown').val();
+    var contour = thisTool.find('#contour_dropdown').val();
+    var fixedValue = thisTool.find('#fixed_dropdown').val();
     if (!!independent) {
         var independentTerm = termLookup[independent];
         createPopupDefinitionElement("indDef", independentTerm, independentTerm);
     }
     else {
-        $("#riskStratAdvanced #indDef").html("");
+        thisTool.find("#indDef").html("");
     }
     if (!!contour) {
         var contourTerm = termLookup[contour];
         createPopupDefinitionElement("contourDef", contourTerm, contourTerm);
     }
     else {
-        $("#riskStratAdvanced #contourDef").html("");
+        $("#contourDef").html("");
     }
     if (!!fixedValue) {
         var fixedValueTerm = termLookup[fixedValue];
         createPopupDefinitionElement("fvDef", fixedValueTerm, fixedValueTerm);
     }
     else {
-        $("#riskStratAdvanced #fvDef").html("");
+        thisTool.find("#fvDef").html("");
     }
     bindTermToDefine();
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
     $("#" + elementId)
-        .html("<div class='termToDefine' id='" +
-              termId + "' data-term='" +
-              dataTerm +
-              "'><img src='/common/images/info.png' alt='pop up definition'></div><div class='popupDefinition' id='" +
-              termId + "Definition'></div>");
+        .html("<div class='define' id='" + 
+              termId + 
+              "' data-term='" + 
+              dataTerm + 
+              "'><img src='/common/images/info.png' alt='pop up definition'></div>");
 }
 
 function resetPopupDefinition() {
    
-    $("#riskStratAdvanced #indDef").html("");
-    $("#riskStratAdvanced #contourDef").html("");
-    $("#riskStratAdvanced #fvDef").html("");
+    thisTool.find("#indDef").html("");
+    thisTool.find("#contourDef").html("");
+    thisTool.find("#fvDef").html("");
 }
 
 function resetPage() {
     makeSelectionsUnique(functionnames, "independent_dropdown");
-    $("span.variable-example").text("");
-    $("option").removeAttr("disabled");
-    $("#status-bar").css("visibility", "hidden");
+    thisTool.find("span.variable-example").text("");
+    thisTool.find("option").removeAttr("disabled");
+    thisTool.find("#status-bar").addClass('hide');
    
-   
-   
-    $("#riskStratAdvanced select").val("");
-    $("#riskStratAdvanced input").val("");
-    $("#riskStratAdvanced #output").empty();
+    thisTool.find("select").val("");
+    thisTool.find("input").val("");
+    thisTool.find("#output").empty();
     resetPopupDefinition();
 }
 
 function createRulesDialog() {
     $(function() {
-        $("#riskStratAdvanced #dialog-confirm").modal({
+        $("#dialog-confirm").modal({
             resizable : false,
             height : 375,
             width : 400,
@@ -306,10 +306,12 @@ function createRulesDialog() {
             buttons : {
                 Yes : function() {
                     $(this).modal("close");
+                    $(this).modal("close");
                    
                     calculate();
                 },
                 Cancel : function() {
+                    $(this).modal("close");
                     $(this).modal("close");
                    
                 }
@@ -331,22 +333,20 @@ function checkRules() {
     var values = [];
     var min = [];
     var max = [];
-    rulesViolationMsg = "";
     var ids;
+    rulesViolationMsg = "";
 
    
-    ids = $("#riskStratAdvanced select").map(function() {
-        if(this.id.length > 0)
-            return this.id;
+    ids = thisTool.find("select").map(function() {
+        return this.id;
     }).get();
    
     $.each(ids, function(key, elementId) {
-        selectedVars.push($('#' + elementId).val());
+        selectedVars.push(thisTool.find('#' + elementId).val());
     });
    
-    ids = $("#riskStratAdvanced input").map(function() {
-        if(this.id.length > 0)
-            return this.id;
+    ids = thisTool.find("input").map(function() {
+        return this.id;
     }).get();
    
     $.each(ids, function(key, elementId) {
@@ -363,7 +363,7 @@ function checkRules() {
         max[key] = sorted[sorted.length - 1];
     });
 
-    $("#riskStratAdvanced .rule").removeAttr("style");
+    thisTool.find(".rule").removeAttr("style");
     for (var ruleId = 1; ruleId <= numberOfRules; ruleId++) {
         if (checkRule(ruleId, selectedVars, values, min, max) == "Fail") {
             ruleClass = "rule" + ruleId;
@@ -386,7 +386,8 @@ function checkRule(ruleId, vars, values, min, max) {
            
             minValue = 0;
             maxValue = 1;
-            $.each(
+            $
+                .each(
                 vars,
                 function(key, selectedVar) {
                     if (selectedVar != "delta") {
@@ -420,8 +421,7 @@ function checkRule(ruleId, vars, values, min, max) {
            
            
            
-
-            cnpvPostion = $.inArray("cnpv", vars);
+           
             prevalencePostion = $.inArray("prevalence", vars);
             if (cnpvPostion >= 0 && prevalencePostion >= 0) {
                 if (max[cnpvPostion] >= min[prevalencePostion]) {
@@ -466,19 +466,18 @@ function checkRule(ruleId, vars, values, min, max) {
 function checkInputFields() {
     var selectedValues = [];
    
-    var ids = $("#riskStratAdvanced input").map(function() {
-        if(this.id.length > 0)
-            return this.id;
+    var ids = thisTool.find("input").map(function() {
+        return this.id
     }).get();
    
     $.each(ids, function(key, elementId) {
-        selectedValues.push($('#' + elementId).val().length);
+        selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
-        $("#riskStratAdvanced #calculate").button("option", "disabled", false);
+        thisTool.find("#calculate").removeAttr("disabled");
     } else {
-        $("#riskStratAdvanced #calculate").button("option", "disabled", true);
-    }
+        thisTool.find("#calculate").attr("disabled", true);
+    };
 
 }
 
@@ -493,46 +492,46 @@ function calculate() {
     checkInput.push(document.getElementById("contour").checkValidity());
     checkInput.push(document.getElementById("fixed").checkValidity());
     if ($.inArray(false, checkInput) >= 0) {
-        $("#riskStratAdvanced #status-bar").css("visibility", "visible");
-        $("#riskStratAdvanced #status-bar")
+        thisTool.find("#status-bar").removeClass('hide');
+        thisTool.find$thisTool.find("#status-bar")
             .html(
             "Invalid input array.  Enter a valid array of floating point values.");
         return;
     }
 
    
-    $("#riskStratAdvanced #status-bar").text("");
+    $("#status-bar").text("");
     if (rulesViolationMsg.length > 0) {
-        $("#riskStratAdvanced #status-bar").html(rulesViolationMsg);
-        $("#riskStratAdvanced #status-bar").css("visibility", "visible");
+        thisTool.find("#status-bar").html(rulesViolationMsg);
+        thisTool.find("#status-bar").removeClass('hide');
     } else {
-        $("#riskStratAdvanced #status-bar").css("visibility", "hidden");
+        thisTool.find("#status-bar").addClass('hide');
     }
 
     var fixedArray = "";
     var contourArray = "";
     var independentArray = "";
 
-    independentArray = $("#riskStratAdvanced #independent").val();
+    independentArray = thisTool.find("#independent").val();
    
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
-    var independentval = $("#riskStratAdvanced #independent_dropdown").val();
+    var independentval = thisTool.find("#independent_dropdown").val();
     independentArraySplit = independentArray.split(",");
-    var independentMin = Math.min.apply(Math, independentArraySplit);
-    var independentMax = Math.max.apply(Math, independentArraySplit);
-    contourArray = $("#riskStratAdvanced #contour").val();
+    var independentMin = Math.min.apply(Math, independentArraySplit)
+    var independentMax = Math.max.apply(Math, independentArraySplit)
+    var contourArray = thisTool.find("#contour").val();
    
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
-    var contourval = $("#riskStratAdvanced #contour_dropdown").val();
+    var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
-    fixedArray = $("#riskStratAdvanced #fixed").val();
+    var fixedArray = thisTool.find("#fixed").val();
    
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
-    var fixedval = $("#riskStratAdvanced #fixed_dropdown").val();
+    var fixedval = thisTool.find("#fixed_dropdown").val();
     var fixedArraySplit = fixedArray.split(",");
     var fixedArraySize = fixedArraySplit.length;
 
-    var fixed_dropdown = $("#riskStratAdvanced #fixed_dropdown").val();
+    var fixed_dropdown = thisTool.find("#fixed_dropdown").val();
 
     uniqueKey = (new Date()).getTime();
 
@@ -559,64 +558,50 @@ function calculate() {
         var eContour = document.getElementById("contour_dropdown");
         var selectedContourValue = eContour.options[eContour.selectedIndex].text;
 
-       
-       
         tableFirstRowLabel = selectedIndependentValue;
         tableFirstColLabel = selectedContourValue;
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
 
-        $("#output").empty();
+        thisTool.find("#output").empty();
 
        
-
         tabs = $("<div id='tabs'> </div>");
-        $("#output").append(tabs);
+        thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
         var spacing = "<p></p><p></p><p></p>";
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-" +
-                             (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp " +
+            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"+ 
+                             (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ 
                              fixedArraySplit[i] + "</a></LI>");
-            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1) + 
-                         "' >  </div>");
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)
+                         + "' >  </div>")
             tabs.append(tab_pane);
-           
-           
-           
-           
-           
-            for (key in keyvalueShort) {
-               
-               
-               
-               
-                table_graph_div = $("<div class='set-" +
-                                    keyvalueShort[key] + 
-                                    (i + 1) + 
-                                    "' style='width: 950px; float: left; clear:left;'><p></p></div>");
+
+            for ( var key in keyvalueShort) {
+
+                table_graph_div = $("<div class='set-"
+                                    + keyvalueShort[key]
+                                    + (i + 1)
+                                    + "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side' id='graphic-" +
-                                keyvalueShort[key] + (i + 1) + 
-                                "'><div style='clear:right;padding-top:10px;'> </div></div>");
+                graphic_side = ("<div class='graphic-side' id='graphic-"
+                                + keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side' id='table-" + keyvalueShort[key] + (i + 1) +
-                               "'><br><div class='table-title'>" + keyvalueLong[key] +
-                               "</div></div><br><br>");
+                table_side = $("<div class='table-side' id='table-"
+                               + keyvalueShort[key] + (i + 1)
+                               + "'><br><div class='table-title'>" + keyvalueLong[key]
+                               + "</div></div><br><br>");
                 table_graph_div.append(table_side);
-               
-               
-               
             }
         }
-       
+
         tabs.tabs();
 
         for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
-           
             for ( var shortkey in keyvalueShort) {
                 getData({
                     key : keyvalueShort[shortkey],
@@ -640,14 +625,13 @@ function calculate() {
         }
     }
     else {
-        $("#output").empty();
+        thisTool.find("#output").empty();
     }
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
 
     rfunctionname = getFunctionName(independentvalue, fixedvalue, contourvalue);
-   
 
     for (var functions = 0; functions < rfunctions.length; functions++) {
         if (rfunctions[functions] == rfunctionname)
@@ -678,7 +662,7 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
     hostname = window.location.hostname;
     $.ajax({
         type : "POST",
-        url : "http://" + hostname + "/riskStratAdvRest/cal",
+        url : "http://" + hostname + "/biomarkerToolsRest/riskStratAdvRest/cal",
         data : data,
         dataType : "json",
         success : function(data) {
@@ -691,25 +675,21 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
            
             open_threads--;
             if (open_threads === 0) {
-               
                 if (error_count > 0) {
-                    alert("There were " + error_count + " errors with your request");
+                    alert("There were " + error_count
+                          + " errors with your request");
                     error_count = 0;
                 }
             }
             loadImage(tabnumber, tabValue.trim(), uniqueKey, abbreviatedKey);
-           
         }
     });
 }
 
 function handleError(error, status, request) {
-   
-   
-   
-    $("#riskStratAdvanced #status-bar").text("");
-    $("#riskStratAdvanced #status-bar").html("<div>" + error + "</div>");
-    $("#riskStratAdvanced #status-bar").css("visibility", "visible");
+    thisTool.find("#status-bar").text("");
+    thisTool.find("#status-bar").html("<div>" + error + "</div>");
+    thisTool.find("#status-bar").css("visibility", "visible");
     if (typeof console == "object") {
         console.info("Server AJAX Return Error");
         console.info("Type: " + error);
@@ -720,7 +700,7 @@ function handleError(error, status, request) {
 }
 
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
-    var independentArray = $("#riskStratAdvanced #independent").val();
+    var independentArray = thisTool.find("#independent").val();
     independentArraySplit = independentArray.split(",");
 
     var arr = [];
@@ -731,7 +711,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var graphErrorValue = graphError[0].errortrue;
     if (tableErrorValue != 1) {
         rows = tableData.length;
-        for (i = 0; i < tableData.length; i++) {
+        for (var i = 0; i < tableData.length; i++) {
             var values = [];
             row_entries = tableData[i];
             for ( var key in row_entries) {
@@ -741,20 +721,20 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         }
 
         var headings = [];
-        for (i = 0; i < columnHeadings.length; i++) {
+        for (var i = 0; i < columnHeadings.length; i++) {
             headings.push({
                 "sTitle" : columnHeadings[i]
             });
         }
 
         var tableId = "example-" + abbreviatedKey + tabnumber;
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + tableId + "'></table>");
-        $("#table-" + abbreviatedKey + tabnumber).append(table);
+        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='"
+                      + tableId + "'></table>");
+        thisTool.find("#table-" + abbreviatedKey + tabnumber).append(table);
 
         table.dataTable({
             "aaData" : arr,
             "aoColumns" : headings,
-            "bJQueryUI" : true,
             "bAutoWidth" : false,
             "bFilter" : false,
             "bSearchable" : false,
@@ -765,38 +745,39 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "aaSorting" : [ [ 0, "asc" ] ]
         });
        
-        $("#" + tableId + " tr:first")
-            .prepend("<th class='ui-state-default' colspan='2'></th>");
+        thisTool.find("#" + tableId + " tr:first").prepend(
+            "<th class='ui-state-default' colspan='2'></th>");
         var i = 0;
-        $("#" + tableId + " tr:not(:first)")
-            .each(
+        thisTool.find("#" + tableId + " tr:not(:first)").each(
             function() {
                 $(this).prepend(
-                    "<th class='ui-state-default sorting_disabled'>" + independentArraySplit[i] + "</th>");
+                    "<th class='ui-state-default sorting_disabled'>"+ 
+                    independentArraySplit[i] + "</th>");
                 i++;
             });
 
        
-        $("#" + tableId + " tr:eq(1)").prepend(
-            "<th class='header' rowspan='" + independentArraySplit.length + "'><div class='vertical-text'>" + tableFirstRowLabel + "</div></th>");
+        thisTool.find("#" + tableId + " tr:eq(1)").prepend(
+            "<th class='header' rowspan='" + independentArraySplit.length+ 
+            "'><div class='vertical-text'>" + tableFirstRowLabel+ 
+            "</div></th>");
 
        
-        $("#" + tableId + " thead").prepend(
-            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" + tableFirstColLabel + "</th></tr>");
+        thisTool.find("#" + tableId + " thead").prepend(
+            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"+ 
+            tableFirstColLabel + "</th></tr>");
     } else {
-        $("#riskStratAdvanced #status-bar").css("visibility", "visible");
-        $("#riskStratAdvanced #status-bar").addClass("status-error");
-        $("#riskStratAdvanced #status-bar").append("<div>" + tableError[1].message + "</div>");
+        thisTool.find("#status-bar").addClass("status-error");
+        thisTool.find("#status-bar").removeClass('hide');
+        thisTool.find("#status-bar").append("<div>" + tableError[1].message + "</div>");
         if (graphErrorValue != 1) {
-            $("#riskStratAdvanced #status-bar").append("<div>" + graphError[1].message + "</div>");
+            thisTool.find("#status-bar").append("<div>" + graphError[1].message + "</div>");
         }
-       
-       
     }
 }
 
 function getColumnHeaderData(columnHeadings) {
-    var columnHeaderData2d = [];
+    var columnHeaderData2d = new Array();
     for ( var key in columnHeadings) {
         var tempObject = {};
         tempObject.mDataProp = columnHeadings[key];
@@ -808,9 +789,9 @@ function getColumnHeaderData(columnHeadings) {
 }
 
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
-    $('#riskStratAdvanced #graphic-' + graphNamePreFix + tabNumber).append(
-        "<img style='height: 400px; text-align: right;' class='center' src='./tmp/" + graphNamePreFix +
-        uniqueId + "-" + tabValue + ".png' alt='output image'>");
+    $('#graphic-' + graphNamePreFix + tabNumber).append(
+        "<img style='height: 400px; text-align: right;' class='center' src='tmp/"
+        + graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
 }
 
 function isNumberBetweenZeroAndOne(n) {
@@ -825,12 +806,12 @@ function isNumberBetweenZeroAndOne(n) {
 
 function refreshGraph(drawgraph) {
     if (drawgraph == 1)
-        graph_file = "./tmp/" + uniqueKey + "SensSpecLR.jpg?";
+        graph_file = "tmp/" + uniqueKey + "SensSpecLR.jpg?";
     else
         graph_file = "./images/fail-message.jpg?";
 
     d = new Date();
-    $("#riskStratAdvanced #graph").attr("src", graph_file + d.getTime());
+    thisTool.find("#graph").attr("src", graph_file + d.getTime());
 }
 
 function ajax_error(jqXHR, exception) {
@@ -843,7 +824,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-    $("#riskStratAdvanced #calculate").button("option", "disabled", true);
+    thisTool.find("#calculate").button("option", "disabled", true);
 
     if (activeSelectionChange === true)
         return;
@@ -851,14 +832,13 @@ function makeSelectionsUnique(originalOptions, elementId) {
     activeSelectionChange = true;
 
    
-    var ids = $("#riskStratAdvanced select").map(function() {
-        if(this.id.length > 0)
-            return this.id;
+    var ids = thisTool.find("select").map(function() {
+        return this.id;
     }).get();
 
    
     $.each(ids, function(key, elementId) {
-        selectedValues.push($('#riskStratAdvanced #' + elementId + ' option:selected').val());
+        selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
    
@@ -875,7 +855,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
        
-        $('#' + dropdownBoxId).val(selectedValues[key]).change();
+        thisTool.find('#' + dropdownBoxId).val(selectedValues[key]).change();
     }
    
    
@@ -910,14 +890,9 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
     }
 }
 
-function checkForValidRange() {
-   
-
-}
-
 function setInitialValue(textboxId) {
 
-    selectedOption = $("#" + textboxId + " option:selected").val();
+    selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
     key = $.inArray(selectedOption, functionnames);
 
     eSelect = document.getElementById(textboxId);
@@ -926,11 +901,11 @@ function setInitialValue(textboxId) {
 
    
    
-    $(eSelect2).find(":input").val("");
-    $(eSelect2).find("span").text(initialData[key]);
+    thisTool.find(eSelect2).find(":input").val("");
+    thisTool.find(eSelect2).find("span").text(initialData[key]);
 
    
-    $('#' + textboxId).val(selectedOption).change();
+    thisTool.find('#' + textboxId).val(selectedOption).change();
     addPopupDefinition();
 
 }
@@ -940,14 +915,13 @@ function checkForInvalidVariableCombo() {
 
    
     var selectedValues = [];
-    var ids = $("#riskStratAdvanced select").map(function() {
-        if(this.id.length > 0)
-            return this.id;
+    var ids = thisTool.find("select").map(function() {
+        return this.id;
     }).get();
 
    
     $.each(ids, function(key, elementId) {
-        selectedValues.push($('#' + elementId + ' option:selected').val());
+        selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
    
@@ -959,29 +933,34 @@ function checkForInvalidVariableCombo() {
 
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
            
-            userSelectedVariables = selectedValues[0].toString() + ", " + selectedValues[1].toString() + ",  and " + selectedValues[2].toString();
-            message = "The variables " + userSelectedVariables + " do not form a valid variable combination for this calculation.  " + "Please select a vaild variable combination.";
-            $("#riskStratAdvanced #status-bar").css("visibility", "visible");
-            $("#riskStratAdvanced #status-bar").addClass("status-error");
-            $("#riskStratAdvanced #status-bar").removeClass("status-info");
-            $("#riskStratAdvanced #status-bar").text(message);
+            userSelectedVariables = selectedValues[0].toString() + ", "+ 
+                selectedValues[1].toString() + ",  and "+ 
+                selectedValues[2].toString();
+            message = "The variables "+ 
+                userSelectedVariables+ 
+                " do not form a valid variable combination for this calculation.  "+ 
+                "Please select a vaild variable combination.";
+            thisTool.find("#status-bar").css("visibility", "visible");
+            thisTool.find("#status-bar").addClass("status-error");
+            thisTool.find("#status-bar").removeClass("status-info");
+            thisTool.find("#status-bar").text(message);
             validCombo = false;
         } else {
            
-            $("#riskStratAdvanced #status-bar").css("visibility", "hidden");
-            $("#riskStratAdvanced #status-bar").addClass("status-error");
-            $("#riskStratAdvanced #status-bar").removeClass("status-info");
-            $("#riskStratAdvanced #status-bar").text("");
+            thisTool.find("#status-bar").css("visibility", "hidden");
+            thisTool.find("#status-bar").addClass("status-error");
+            thisTool.find("#status-bar").removeClass("status-info");
+            thisTool.find("#status-bar").text("");
             validCombo = true;
         }
     } else {
        
-        $("#riskStratAdvanced #status-bar").css("visibility", "hidden");
-        $("#riskStratAdvanced #status-bar").addClass("status-info");
-        $("#riskStratAdvanced #status-bar").removeClass("status-error");
-        $("#riskStratAdvanced #status-bar").text("");
+        thisTool.find("#status-bar").addClass('hide');
+        thisTool.find("#status-bar").addClass("status-info");
+        thisTool.find("#status-bar").removeClass("status-error");
+        thisTool.find("#status-bar").text("");
         validCombo = false;
 
-        return;
+        return
     }
 }
