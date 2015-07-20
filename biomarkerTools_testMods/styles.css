@@ -42,9 +42,6 @@ body #contentTabs {
 body #contentTabs ul.nav.nav-tabs {
   font-size: 9pt;
 }
-body #contentTabs ul.nav.nav-tabs > li {
-  border-bottom: 1px solid #ddd;
-}
 body #contentTabs ul.nav.nav-tabs a {
   color: #000;
 }
