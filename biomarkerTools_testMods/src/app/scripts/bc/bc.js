@@ -184,7 +184,7 @@ function do_calculation(){
     if (validPrevValue) {
         promise = $.ajax({
             type: 'POST',
-            url: "http://" + hostname + "/bcRest/",
+            url: "http://" + hostname + "/biomarkerTools/bcRest/",
             data: {
                 numberOfValues: '8',
                 refSpec: refSpec,
@@ -202,7 +202,7 @@ function do_calculation(){
     } else {
         promise = $.ajax({
             type: 'POST',
-            url: "http://" + hostname + "/bcRest/",
+            url: "http://" + hostname + "/biomarkerTools/bcRest/",
             data: {
                 numberOfValues: '7',
                 refSpec: refSpec,
