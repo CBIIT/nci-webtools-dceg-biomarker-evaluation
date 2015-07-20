@@ -62,12 +62,10 @@
                     label(for='N_controls_input')
                     input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
             .panel-footer
-                #Spec.termToDefine(data-term='Spec') Specificity:
-                #SpecDefinition.popupDefinition
+                #Spec.define(data-term='Spec') Specificity:
                 label(for='specificity')
                   input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999')
-                #DP.termToDefine(data-term='DP') Prevalence:
-                #DPDefinition.popupDefinition
+                #DP.define(data-term='DP') Prevalence:
                 label(for='prevalence')
                   input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001')
           input#calculate_button.pull-left(type='button', value='Calculate')
@@ -105,8 +103,7 @@
             #variance_overall.col-md-4.table_data
         .row.table_data
             strong.header.table_data.col-md-4
-              #CV.termToDefine(data-term='CV') Coefficient of Variation (CV)
-              #CVDefinition.popupDefinition
+              #CV.define(data-term='CV') Coefficient of Variation (CV)
             #cv_cases.col-md-4.table_data
             #cv_controls.col-md-4.table_data
             #cv_overall.col-md-4.table_data
@@ -117,15 +114,13 @@
             #diff_overall.col-md-4.table_data
         .row.table_data
             strong.header.table_data.col-md-4
-              #Delta.termToDefine(data-term='Delta') Delta
-              #DeltaDefinition.popupDefinition
+              #Delta.define(data-term='Delta') Delta
             #delta_cases.col-md-4.table_data
             #delta_controls.col-md-4.table_data
             #delta_overall.col-md-4.table_data
         .row.table_data
             strong.header.table_data.col-md-4
-              #AUC.termToDefine(data-term='AUC') AUC
-              #AUCDefinition.popupDefinition
+              #AUC.define(data-term='AUC') AUC
             #auc_cases.col-md-4.table_data
             #auc_controls.col-md-4.table_data
             #auc_overall.col-md-4.table_data
