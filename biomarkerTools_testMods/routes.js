@@ -1,5 +1,6 @@
 var default_ajax_error;
-var custom_po_tmpl = '<div class="popover bg-popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>';
+var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";
+
 $(document).ready(function(){
     document.title = "Biomarker Tools: Home";
 });
@@ -42,6 +43,8 @@ $('.goToHelp,.goToGlossary').on('click', function(el){
 
 });
 
+$('.define').on('click', termDisplay);
+
 function goToTarget(tar){
     var ref = "";
 
@@ -59,8 +62,35 @@ function goToTarget(tar){
 }
 
 
-
 function default_ajax_error(request, status, error){
     $('#spinner').addClass('hide');
     alert(request.responseText);
+}
+
+function termDisplay(){
+    
+    var $self = $(this);
+    var dTerm = $self.attr('data-term');
+    
+    var definition = Glossary[dTerm].definition;
+    var term = Glossary[dTerm].fullName;
+
+    if (definition || term) {
+        $self.popover(
+            {
+                template: custom_po_tmpl,
+                container: 'body',
+                trigger: 'manual',
+                placement: 'top',
+                title: term,
+                content: definition}
+        ).on('mouseout', function () {
+                $self.popover('hide');
+                $self.popover('destroy');
+            });
+
+        $self.popover();
+        $self.popover('show');
+    }
+    
 }
