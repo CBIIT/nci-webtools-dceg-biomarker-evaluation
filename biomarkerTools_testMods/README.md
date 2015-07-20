@@ -1,19 +1,19 @@
+* Jade
+* stylus
 * LiveScript
 * gulp
 * bower
-* stylus
 
-* js (and later include ls -> js files)are concatenated into `scripts.js`
 * partial templates written in jade are turned into html and included in `index.html`
 * css files are concatenated into `styles.css`
 
 # Usage
-* R scripts should be kept outside of the `src` folder and placed in the folder for the specific tool it is used for.
+* Code and file structure is managed and compiled by the Gulp.js build system (http://gulpjs.com/, https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) 
 * always work inside of the src folder (except when editing R files)
-* store html jade file templates inside jade folder, the pages folder contain the actual content for each page, these are 'included' in the layout.jade and at compilation will be merged in the `index.jade` -> `index.html`
+* R scripts should be kept outside of the `src` folder and placed in the folder for the specific tool it is used for.
+* store html jade file templates inside jade folder, the pages folder contain the actual content for each page, these are 'included' in the layout.jade and at compilation will be merged in the `index.jade` -> `index.html` (review resource @ http://jade-lang.com/)
 * livescript files go inside ls folder (compiles to javascript, review resources at http://livescript.net/)
 * static scripts (js, py, etc.) which won't be precompiled should be stored in the scripts folder and they will be copied as is to the root during code compilation
-* stylus files inside the stylus folder will be merged into one file called styles.css and placed in the root
 
 ## --- DO THIS AT FIRST USE--
 Install required packages:
