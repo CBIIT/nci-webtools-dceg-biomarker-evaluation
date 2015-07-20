@@ -46,7 +46,7 @@ def setRWorkingDirectory():
 
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
 @jsonp
-def callRFunction1():
+def call_rsa_RFunction():
     rSource = robjects.r('source')
     print os.getcwd()
     rSource('riskStratAdvanced/input.R')
