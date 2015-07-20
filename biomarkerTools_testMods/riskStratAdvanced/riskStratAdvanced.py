@@ -46,9 +46,11 @@ def setRWorkingDirectory():
 
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
 @jsonp
-def callRFunction():
+def callRFunction1():
     rSource = robjects.r('source')
-    rSource('../R/input.R')
+    print os.getcwd()
+    rSource('riskStratAdvanced/input.R')
+    print 'aa'
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
