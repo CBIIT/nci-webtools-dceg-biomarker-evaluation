@@ -231,7 +231,7 @@ function make_ajax_call_user_defined_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
     $.ajax({
         type: "POST",
         url: url,
@@ -254,7 +254,7 @@ function make_ajax_call_standard_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
     $.ajax({
         type: "POST",
         url: url,
@@ -277,7 +277,7 @@ function make_excel_call_user_defined_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
     $.ajax({
         type: "POST",
         url: url,
@@ -301,7 +301,7 @@ function make_excel_call_standard_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
     $.ajax({
         type: "POST",
         url: url,
@@ -496,9 +496,9 @@ function draw_graph() {
     url = "http://" + hostname +"/meanstoriskRest/";
 
     if ($( "#accordion" ).collapse("option", "active" ) === 0) {
-        graph_file = "./tmp/CSV"+uniqueKey+".png?";
+        graph_file = "tmp/CSV"+uniqueKey+".png?";
     } else {
-        graph_file = "./tmp/input"+uniqueKey+".png?";
+        graph_file = "tmp/input"+uniqueKey+".png?";
 
     }
 
