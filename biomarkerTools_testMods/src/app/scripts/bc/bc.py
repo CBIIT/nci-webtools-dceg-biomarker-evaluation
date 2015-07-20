@@ -47,9 +47,9 @@ def setRWorkingDirectory():
 
 @app.route('/bcRest/', methods = ['GET','POST'])
 @jsonp
-def callRFunction():
+def call_bc_RFunction():
     rSource = robjects.r('source')
-    rSource('../R/BiomarkerComparisonWrapper.R')
+    rSource('bc/BiomarkerComparisonWrapper.R')
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
