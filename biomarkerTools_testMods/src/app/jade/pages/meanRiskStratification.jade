@@ -22,7 +22,7 @@
                 .option-1.panel-body
                   table.table.table-condensed
                     thead
-                      tr.active
+                      tr
                         th.col-md-2.header
                           .sr-only Empty cell
                             a(href='#prob_m') Skip to Content
@@ -30,7 +30,7 @@
                         th#m_neg.termToDefine.header Marker Negative (M-)
                     tbody
                       tr
-                        th#prob_d.termToDefine.header.active Disease Positive (D+)    
+                        th#prob_d.termToDefine.header Disease Positive (D+)    
                         td
                           label.sr-only(for='a') A
                           input#a.input.input-sm(name='a', type='number', maxlength='30')    
@@ -38,7 +38,7 @@
                           label.sr-only(for='b') B
                           input#b.input.input-sm(name='b', type='number', maxlength='30')
                       tr
-                        th#d_neg.termToDefine.header.active Disease Negative (D-)    
+                        th#d_neg.termToDefine.header Disease Negative (D-)    
                         td
                           label.sr-only(for='c') C
                           input#c.input.input-sm(name='c', type='number', maxlength='30')    
@@ -56,7 +56,7 @@
                     input.input.input-sm(name='sampsize', type='number', maxlength='30', min='1')
                   table.option-2.table.table-condensed.table-responsive
                     thead
-                      tr.active
+                      tr
                         th.header(title='Parameter Type Column') Parameter
                         th.header(title='Parameter Proportion Column') Proportion
                     tbody
@@ -106,10 +106,10 @@
           table.table.table-bordered.table-condensed
             thead
               tr
-                th.active Calculations
-                th.bm_1.marker_name.active
-                th.bm_2.marker_name.active
-                th.bm_3.marker_name.active
+                th Calculations
+                th.bm_1.marker_name
+                th.bm_2.marker_name
+                th.bm_3.marker_name
             |                 
             tr
               td.concern.termToDefine Concern = PPV-P(D+)
@@ -168,10 +168,10 @@
           table.table.table-bordered.table-condensed
             thead
               tr
-                th.active Parameters
-                th.bm_1.marker_name.active
-                th.bm_2.marker_name.active
-                th.bm_3.marker_name.active
+                th Parameters
+                th.bm_1.marker_name
+                th.bm_2.marker_name
+                th.bm_3.marker_name
             tbody
               tr
                 td.test.termToDefine True Positive Fraction = a
