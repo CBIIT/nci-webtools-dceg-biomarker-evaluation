@@ -1,5 +1,5 @@
 library('RJSONIO')
-source('./MRSunconditionalTool.R')
+source('meanRiskStratification/MRSunconditionalTool.R')
 
 imageDirectory = "./tmp"
 
