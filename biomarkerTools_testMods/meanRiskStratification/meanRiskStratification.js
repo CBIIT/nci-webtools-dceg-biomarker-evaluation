@@ -127,7 +127,7 @@ function calculate() {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
-            service = "http://" + host + "/mrsRest/";
+            service = "http://" + host + "biomarkerToolsRest/mrsRest/";
         }
 
         var to_value = 10 * 1000; //ten seconds
