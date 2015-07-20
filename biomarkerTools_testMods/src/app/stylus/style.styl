@@ -2,8 +2,8 @@ common-blue = #4e5669
 red = #a90002
 light-red = #CD5C5C
 tan = #F3EFE0
-higlight = #FFFFEB
-higlight-compl = #DBDBB8
+highlight = lightyellow
+highlight-compl = ivory
 
 body
     font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
@@ -14,10 +14,19 @@ body
 
     .title
         color black
-    .bg-popover
-        background-color highlight
+    .define
+        cursor help
+        font-weight bold
+        text-decoration underline
+    .popover
         .popover-title
-            background-color higlight-compl
+            background-color highlight-compl
+            font-weight bold
+        .popover-content
+            background-color highlight
+    .header 
+        background-color lightslategray
+        color whitesmoke
     .subheader
         font-weight bold
         color white
@@ -70,9 +79,6 @@ body
                 text-align center
                 background-color #444
                 color #FFF
-            .header 
-                background-color #AAA
-                color #444
             #output 
                 width 500px
             #inputdata
@@ -111,12 +117,11 @@ body
                 width 50px
         #meanstorisk
             .table_panel
-                .header
-                    background-color #f5f5f5
-                    padding 0.45em 0
                 .row
-                    border 1px solid #ddd
+                    border .125em solid #ddd
                     border-radius 4px
+                    .header
+                        padding .5em
             #download_button
                 margin 10px
             .top_section 
