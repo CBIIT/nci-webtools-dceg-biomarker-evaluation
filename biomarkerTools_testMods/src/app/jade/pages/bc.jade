@@ -51,18 +51,16 @@
                 b Input Information
             .panel-body
               .row.non-data-row
-                .col-md-1.bg-primary 
+                .col-md-1.header
                     b #
-                .col-md-3.bg-primary
+                .col-md-3.header
                     b Reference
-                .col-md-3.bg-primary
-                  #Sens.termToDefine(data-term='Sens')
+                .col-md-3.header
+                  #Sens.define(data-term='Sens')
                     b Sensitivity
-                #SensDefinition.popupDefinition
-                .col-md-5.bg-primary
-                  #Spec.termToDefine(data-term='Spec') 
+                .col-md-5.header
+                  #Spec.define(data-term='Spec')
                     b Specificity
-                #SpecDefinition.popupDefinition
               .row.reference_row(row='0')
                 .col-md-1 1
                 .col-md-3.reference(row='0', col='reference')
@@ -87,16 +85,12 @@
                 .col-md-3
                   button.remove_row_button Remove
               .row.non-data-row
-                .col-md-1 
-                .col-md-3 
-                .col-md-3 
-                .col-md-2 
+                .col-md-9
                 .col-md-3
                   button#new_row_button New Row
             .panel-footer
                 .prevalence_label.col-md-3
-                    #DP.termToDefine(data-term='DP',for='prevalence') Prevalence
-                    #DPDefinition.popupDefinition
+                    #DP.define(data-term='DP',for='prevalence') Prevalence
                 input#prevalence(type='text')
                 button#calculate_button Calculate
           include ../partials/loader
