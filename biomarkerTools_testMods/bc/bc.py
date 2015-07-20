@@ -49,7 +49,7 @@ def setRWorkingDirectory():
 @jsonp
 def callRFunction():
     rSource = robjects.r('source')
-    rSource('../R/BiomarkerComparisonWrapper.R')
+    rSource('bc/BiomarkerComparisonWrapper.R')
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
