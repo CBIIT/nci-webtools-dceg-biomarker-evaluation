@@ -10,7 +10,7 @@ from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
 
-with open ('../R/sampleSizeWrapper.R') as fh:
+with open ('sampleSize/sampleSizeWrapper.R') as fh:
         rcode = os.linesep.join(fh.readlines())
         wrapper = SignatureTranslatedAnonymousPackage(rcode,"wrapper")
 
