@@ -118,13 +118,11 @@
                         </div>
                       </div>
                       <div class="panel-footer">
-                        <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
-                        <div id="SpecDefinition" class="popupDefinition"></div>
+                        <div id="Spec" data-term="Spec" class="define">Specificity:</div>
                         <label for="specificity">
                           <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
                         </label>
-                        <div id="DP" data-term="DP" class="termToDefine">Prevalence:</div>
-                        <div id="DPDefinition" class="popupDefinition"></div>
+                        <div id="DP" data-term="DP" class="define">Prevalence:</div>
                         <label for="prevalence">
                           <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
                         </label>
@@ -162,8 +160,7 @@
                     <div id="variance_overall" class="col-md-4 table_data"></div>
                   </div>
                   <div class="row table_data"><strong class="header table_data col-md-4">
-                      <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
-                      <div id="CVDefinition" class="popupDefinition"></div></strong>
+                      <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></strong>
                     <div id="cv_cases" class="col-md-4 table_data"></div>
                     <div id="cv_controls" class="col-md-4 table_data"></div>
                     <div id="cv_overall" class="col-md-4 table_data"></div>
@@ -174,15 +171,13 @@
                     <div id="diff_overall" class="col-md-4 table_data"></div>
                   </div>
                   <div class="row table_data"><strong class="header table_data col-md-4">
-                      <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
-                      <div id="DeltaDefinition" class="popupDefinition"></div></strong>
+                      <div id="Delta" data-term="Delta" class="define">Delta</div></strong>
                     <div id="delta_cases" class="col-md-4 table_data"></div>
                     <div id="delta_controls" class="col-md-4 table_data"></div>
                     <div id="delta_overall" class="col-md-4 table_data"></div>
                   </div>
                   <div class="row table_data"><strong class="header table_data col-md-4">
-                      <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
-                      <div id="AUCDefinition" class="popupDefinition"></div></strong>
+                      <div id="AUC" data-term="AUC" class="define">AUC</div></strong>
                     <div id="auc_cases" class="col-md-4 table_data"></div>
                     <div id="auc_controls" class="col-md-4 table_data"></div>
                     <div id="auc_overall" class="col-md-4 table_data"></div>
@@ -252,16 +247,14 @@
                     <div class="panel-heading text-center"><b>Input Information</b></div>
                     <div class="panel-body">
                       <div class="row non-data-row">
-                        <div class="col-md-1 bg-primary"> <b>#</b></div>
-                        <div class="col-md-3 bg-primary"><b>Reference</b></div>
-                        <div class="col-md-3 bg-primary">
-                          <div id="Sens" data-term="Sens" class="termToDefine"><b>Sensitivity</b></div>
+                        <div class="col-md-1 header"><b>#</b></div>
+                        <div class="col-md-3 header"><b>Reference</b></div>
+                        <div class="col-md-3 header">
+                          <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
                         </div>
-                        <div id="SensDefinition" class="popupDefinition"></div>
-                        <div class="col-md-5 bg-primary">
-                          <div id="Spec" data-term="Spec" class="termToDefine"> <b>Specificity</b></div>
+                        <div class="col-md-5 header">
+                          <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
                         </div>
-                        <div id="SpecDefinition" class="popupDefinition"></div>
                       </div>
                       <div row="0" class="row reference_row">
                         <div class="col-md-1">1</div>
@@ -289,10 +282,7 @@
                         </div>
                       </div>
                       <div class="row non-data-row">
-                        <div class="col-md-1"> </div>
-                        <div class="col-md-3"> </div>
-                        <div class="col-md-3"> </div>
-                        <div class="col-md-2"> </div>
+                        <div class="col-md-9"></div>
                         <div class="col-md-3">
                           <button id="new_row_button">New Row</button>
                         </div>
@@ -300,8 +290,7 @@
                     </div>
                     <div class="panel-footer">
                       <div class="prevalence_label col-md-3">
-                        <div id="DP" data-term="DP" for="prevalence" class="termToDefine">Prevalence</div>
-                        <div id="DPDefinition" class="popupDefinition"></div>
+                        <div id="DP" data-term="DP" for="prevalence" class="define">Prevalence</div>
                       </div>
                       <input id="prevalence" type="text">
                       <button id="calculate_button">Calculate</button>
@@ -589,7 +578,7 @@
                         <div class="option-1 panel-body">
                           <table class="table table-condensed">
                             <thead>
-                              <tr class="active">
+                              <tr>
                                 <th class="col-md-2 header">
                                   <div class="sr-only">Empty cell<a href="#prob_m">Skip to Content</a></div>
                                 </th>
@@ -599,7 +588,7 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <th id="prob_d" class="termToDefine header active">Disease Positive (D+)    </th>
+                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)    </th>
                                 <td>
                                   <label for="a" class="sr-only">A</label>
                                   <input id="a" name="a" type="number" maxlength="30" class="input input-sm">
@@ -610,7 +599,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th id="d_neg" class="termToDefine header active">Disease Negative (D-)    </th>
+                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)    </th>
                                 <td>
                                   <label for="c" class="sr-only">C</label>
                                   <input id="c" name="c" type="number" maxlength="30" class="input input-sm">
@@ -635,7 +624,7 @@
                           </div>
                           <table class="option-2 table table-condensed table-responsive">
                             <thead>
-                              <tr class="active">
+                              <tr>
                                 <th title="Parameter Type Column" class="header">Parameter</th>
                                 <th title="Parameter Proportion Column" class="header">Proportion</th>
                               </tr>
@@ -704,10 +693,10 @@
                   <table class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th class="active">Calculations</th>
-                        <th class="bm_1 marker_name active"></th>
-                        <th class="bm_2 marker_name active"></th>
-                        <th class="bm_3 marker_name active"></th>
+                        <th>Calculations</th>
+                        <th class="bm_1 marker_name"></th>
+                        <th class="bm_2 marker_name"></th>
+                        <th class="bm_3 marker_name"></th>
                       </tr>
                     </thead>                
                     <tr>
@@ -768,10 +757,10 @@
                   <table class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th class="active">Parameters</th>
-                        <th class="bm_1 marker_name active"></th>
-                        <th class="bm_2 marker_name active"></th>
-                        <th class="bm_3 marker_name active"></th>
+                        <th>Parameters</th>
+                        <th class="bm_1 marker_name"></th>
+                        <th class="bm_2 marker_name"></th>
+                        <th class="bm_3 marker_name"></th>
                       </tr>
                     </thead>
                     <tbody>
