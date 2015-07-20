@@ -9,11 +9,21 @@ body #main {
 body .title {
   color: #000;
 }
-body .bg-popover {
-  background-color: highlight;
+body .define {
+  cursor: help;
+  font-weight: bold;
+  text-decoration: underline;
 }
-body .bg-popover .popover-title {
-  background-color: #dbdbb8;
+body .popover .popover-title {
+  background-color: #fffff0;
+  font-weight: bold;
+}
+body .popover .popover-content {
+  background-color: #ffffe0;
+}
+body .header {
+  background-color: #789;
+  color: #f5f5f5;
 }
 body .subheader {
   font-weight: bold;
@@ -79,10 +89,6 @@ body #contentTabs #bc .top-header {
   background-color: #444;
   color: #fff;
 }
-body #contentTabs #bc .header {
-  background-color: #aaa;
-  color: #444;
-}
 body #contentTabs #bc #output {
   width: 500px;
 }
@@ -132,14 +138,13 @@ body #contentTabs #bc .bibliography_entry {
 body #contentTabs #bc .bibliography_link {
   width: 50px;
 }
-body #contentTabs #meanstorisk .table_panel .header {
-  background-color: #f5f5f5;
-  padding: 0.45em 0;
-}
 body #contentTabs #meanstorisk .table_panel .row {
-  border: 1px solid #ddd;
+  border: 0.125em solid #ddd;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+}
+body #contentTabs #meanstorisk .table_panel .row .header {
+  padding: 0.5em;
 }
 body #contentTabs #meanstorisk #download_button {
   margin: 10px;
