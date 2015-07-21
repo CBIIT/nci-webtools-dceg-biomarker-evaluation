@@ -26,7 +26,7 @@ $(function(){
             }),
             // This is the type of data expected back from the server.
             dataType: 'json',
-            url: 'biomarkerToolsRest/sampleSizeRest/',
+            url: 'biomarkerToolsRest/sampleSize/',
             success: function (ret) {
                 thisTool.find("#spinner").hide();
                 thisTool.find("#output_graph").empty();
