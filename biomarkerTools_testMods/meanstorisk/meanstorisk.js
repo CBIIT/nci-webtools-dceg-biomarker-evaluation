@@ -491,7 +491,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
         row.appendTo(general_table);
     }	
    
-    bindTermToDefine();
+    general_table.find('.define').on('click', termDisplay);
 }
 
 
