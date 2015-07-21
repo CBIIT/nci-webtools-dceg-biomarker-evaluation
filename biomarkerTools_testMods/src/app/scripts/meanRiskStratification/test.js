@@ -42,7 +42,7 @@ function test() {
     // capture what element triggered test function
     var choice = $(this).prop('id');
 
-    $('#markers').children().each(function (key, markerElement) {
+    thisTool.find('#markers').children().each(function (key, markerElement) {
         var id;
 
         if (choice == "test1") {
