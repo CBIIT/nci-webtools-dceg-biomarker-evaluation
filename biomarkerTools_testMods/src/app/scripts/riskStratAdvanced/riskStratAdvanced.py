@@ -50,12 +50,12 @@ def call_rsa_RFunction():
     rSource = robjects.r('source')
     os.chdir('riskStratAdvanced')
     rSource('input.R')
-    os.chdir('..')
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
     jsondata = r_getname_getData(thestream)
     print "json string >> "+str(jsondata[0]);
+    os.chdir('..')
     return jsondata[0]
 
 
