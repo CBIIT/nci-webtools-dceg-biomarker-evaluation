@@ -7,6 +7,7 @@ from meanRiskStratification.mrs import *
 from flask import Flask, url_for
 app = Flask(__name__, static_folder='', static_url_path='/')
 
+
 @app.route('/')
 @app.route('/biomarkerToolsRest')
 
@@ -35,8 +36,9 @@ def api_tunnel(toolName):
 
 import argparse
 if __name__ == '__main__':
+    # sandbox/dev (9160/8160)
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", dest="port_number", default="<port#>", help="Sets the Port")
+    parser.add_argument("-p", dest="port_number", default="9160", help="Sets the Port")
 
     args = parser.parse_args()
     port_num = int(args.port_number);
