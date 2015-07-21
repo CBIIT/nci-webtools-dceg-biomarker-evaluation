@@ -26,7 +26,7 @@ $(function(){
             }),
            
             dataType: 'json',
-            url: 'biomarkerToolsRest/sampleSizeRest/',
+            url: 'biomarkerToolsRest/sampleSize/',
             success: function (ret) {
                 thisTool.find("#spinner").hide();
                 thisTool.find("#output_graph").empty();
