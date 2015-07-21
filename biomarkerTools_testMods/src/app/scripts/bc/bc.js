@@ -181,8 +181,8 @@ function do_calculation(){
     }
     uniqueKey = new Date().getTime();
     hostname = window.location.hostname;
+    var service = "http://" + hostname + "/" + rest + "/bc/";
     if (validPrevValue) {
-        var service = "http://" + hostname + "/" + rest + "/bc/";
         promise = $.ajax({
             type: 'POST',
             url: service,
@@ -204,7 +204,7 @@ function do_calculation(){
     } else {
         promise = $.ajax({
             type: 'POST',
-            url: "http://" + hostname + "/" + rest + "/bc/",
+            url: service,
             data: {
                 numberOfValues: '7',
                 refSpec: refSpec,
