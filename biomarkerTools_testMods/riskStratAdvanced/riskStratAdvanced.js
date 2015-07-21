@@ -163,7 +163,6 @@ $(document).ready(function() {
 
    
    
-    createRulesDialog();
 
     thisTool.find("select").change(function() {
         makeSelectionsUnique(functionnames, this.id);
@@ -202,7 +201,8 @@ $(document).ready(function() {
     thisTool.find("#calculate").button().click(function(e) {
         e.preventDefault();
         if (checkRules() == "Fail") {
-            $("#dialog-confirm").modal("open");
+            createRulesDialog();
+
             return false;
         } else {
             calculate();
@@ -274,7 +274,8 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
               termId + 
               "' data-term='" + 
               dataTerm + 
-              "'><img src='/common/images/info.png' alt='pop up definition'></div>");
+              "'><img src='/common/images/info.png' alt='pop up definition'></div>").find('.define').on('click', termDisplay);
+
 }
 
 function resetPopupDefinition() {
@@ -662,7 +663,7 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
     hostname = window.location.hostname;
     $.ajax({
         type : "POST",
-        url : "http://" + hostname + "/biomarkerToolsRest/riskStratAdvRest/cal",
+        url : "http://" + hostname + "/biomarkerToolsRest/riskStratAdvanced",
         data : data,
         dataType : "json",
         success : function(data) {
