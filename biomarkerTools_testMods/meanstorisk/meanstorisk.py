@@ -41,9 +41,9 @@ def setRWorkingDirectory():
 
 @app.route('/meanstoriskRest/', methods = ['GET','POST'])
 @jsonp
-def callRFunction():
+def call_mean_RFunction():
     print "Data Start Time: " + str(time.time());
-    robjects.r('''source('./meanstoriskWrapper.R')''')
+    robjects.r('''source('meanstorisk/meanstoriskWrapper.R')''')
     r_getname_getApcData = robjects.globalenv['getDataJSON']
     stream = request.stream.read()
     jsondata = r_getname_getApcData(stream)
