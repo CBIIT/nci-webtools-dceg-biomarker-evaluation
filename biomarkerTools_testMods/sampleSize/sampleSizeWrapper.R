@@ -1,5 +1,5 @@
 library('RJSONIO')
-source ('DrawCompRecVark.R')
+source ('sampleSize/DrawCompRecVark.R')
 
 imageDirectory="../tmp/" 
 
