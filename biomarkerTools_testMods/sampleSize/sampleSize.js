@@ -8,7 +8,9 @@ $(function(){
    
     $('.post').click(function(){
         thisTool.find("#spinner").show(); 
-        thisTool.find("#message").hide(); 
+        thisTool.find("#message").hide();
+        var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
+        
         $.ajax({
             type: 'POST',
            
@@ -26,7 +28,8 @@ $(function(){
             }),
            
             dataType: 'json',
-            url: 'biomarkerToolsRest/sampleSize/',
+            url: service,
+            timeout: 15000,
             success: function (ret) {
                 thisTool.find("#spinner").hide();
                 thisTool.find("#output_graph").empty();
