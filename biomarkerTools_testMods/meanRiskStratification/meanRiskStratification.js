@@ -586,7 +586,7 @@ function test() {
     // capture what element triggered test function
     var choice = $(this).prop('id');
 
-    $('#markers').children().each(function (key, markerElement) {
+    thisTool.find('#markers').children().each(function (key, markerElement) {
         var id;
 
         if (choice == "test1") {
@@ -638,7 +638,7 @@ function validate(values) {
     var valid = true;
     var messages = [];
 
-    $("#errors").empty();
+    thisTool.find("#errors").empty();
 
     var $this = document.getElementsByTagName('form').markers;
     var invalidElements = $($this).find(':invalid');
@@ -686,7 +686,7 @@ function validate(values) {
         valid = false;
         display_errors(messages);
     }
-    else $("#errors").fadeOut();
+    else thisTool.find("#errors").fadeOut();
 
     return valid;
 }
@@ -702,14 +702,14 @@ function display_errors(message) {
     if (typeof message == "string") {
         text = message;
     }
-    if($('#errors').length > 0){
-        $("#errors").empty();
-        $("#errors").remove();
+    if(thisTool.find('#errors').length > 0){
+        thisTool.find("#errors").empty();
+        thisTool.find("#errors").remove();
     }
 
-    $(".title.text-center").after("<div id='errors' class='alert alert-danger fade in'><a href='#' data-dismiss='alert' class='close'>&times;</a>" +
+    thisTool.find(".title.text-center").after("<div id='errors' class='alert alert-danger fade in'><a href='#' data-dismiss='alert' class='close'>&times;</a>" +
         "<ul class='list-unstyled'>" + text + "</ul></div>");
 
-    $('#errors').fadeIn();
+    thisTool.find('#errors').fadeIn();
     scrollTop();
 }
