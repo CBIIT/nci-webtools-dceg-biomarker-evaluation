@@ -226,7 +226,7 @@ function addTestData() {
     thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
     thisTool.find("#contour").val("0.01, 0.05, 0.1");
     thisTool.find("#fixed").val("1, 1.5, 2, 3");
-    thisTool.find("#calculate").button("option", "disabled", false);
+    thisTool.find("#calculate").removeAttr("disabled");
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
 }
@@ -422,7 +422,8 @@ function checkRule(ruleId, vars, values, min, max) {
            
            
            
-           
+
+            var cnpvPostion = $.inArray("cnpv", vars);
             prevalencePostion = $.inArray("prevalence", vars);
             if (cnpvPostion >= 0 && prevalencePostion >= 0) {
                 if (max[cnpvPostion] >= min[prevalencePostion]) {
@@ -448,7 +449,9 @@ function checkRule(ruleId, vars, values, min, max) {
         case 5:
            
            
-           
+
+            
+            sensitivityPosition = $.inArray("sensitivity", vars);
             specificityPosition = $.inArray("specificity", vars);
             if (sensitivityPosition >= 0 && specificityPosition >= 0) {
                
@@ -477,7 +480,7 @@ function checkInputFields() {
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
         thisTool.find("#calculate").removeAttr("disabled");
     } else {
-        thisTool.find("#calculate").attr("disabled", true);
+        thisTool.find("#calculate").attr("disabled", "disabled");
     };
 
 }
