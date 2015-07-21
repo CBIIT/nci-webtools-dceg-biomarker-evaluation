@@ -48,9 +48,9 @@ def setRWorkingDirectory():
 @jsonp
 def call_rsa_RFunction():
     rSource = robjects.r('source')
-    print os.getcwd()
-    rSource('riskStratAdvanced/input.R')
-    print 'aa'
+    os.chdir('riskStratAdvanced')
+    rSource('input.R')
+    os.chdir('..')
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
