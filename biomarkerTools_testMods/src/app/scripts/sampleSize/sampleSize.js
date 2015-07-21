@@ -46,7 +46,6 @@ $(function(){
                 thisTool.find("#message").show();    
             },
         });
-        //alert("After ajax call");
         return false;
     });
 });
