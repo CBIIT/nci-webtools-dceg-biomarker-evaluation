@@ -467,16 +467,15 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     first_header_row.appendTo(general_table);
 
     var second_header_row = $("<tr></tr>");	
-    second_header_row.append("<TH class='table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'><div class='termToDefine' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
+    second_header_row.append("<TH class='table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'><div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
     second_header_row.appendTo(general_table);
 
     var third_header_row = $("<tr></tr>");	
     third_header_row.append("<TH class='table_data header' colspan='4' style='border-right:1px solid black;'>" +
-                            "<div class='termToDefine' id='Sens2-" + tab_id +
-                            "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
-                            "<div class='popupDefinition' id='Sens2-" + tab_id + "Definition'></div></TH>" );
+                            "<div class='define' id='Sens2-" + tab_id +
+                            "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>                         </TH>" );
     third_header_row.append("<TH class='table_data header' colspan='" + prevalence_count + "' >" +
-                            "<div class='termToDefine' id='DP2-" + tab_id + 
+                            "<div class='define' id='DP2-" + tab_id + 
                             "' data-term='DP'>Disease Prevalence</div>" +
                             "<div class='popupDefinition' id='DP2-" + 
                             tab_id + "Definition'></div></TH>");
@@ -484,10 +483,10 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 
     var header_row = $("<tr></tr>");
     header_row.attr('id', type + '_table_row_header');
-    header_row.append("<TH class='table_data header'><div class='termToDefine' id='Spec-"+tab_id+"' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-"+tab_id+"Definition'></div></TD>");
-    header_row.append("<TH class='table_data header'><div class='termToDefine' id='Sens-"+tab_id+"' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-"+tab_id+"Definition'></div></TD>");
-    header_row.append("<TH class='table_data header'><div class='termToDefine' id='LRP-"+tab_id+"' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP-"+tab_id+"Definition'></div></TD>");
-    header_row.append("<TH class='table_data header' style='border-right:1px solid black;'><div class='termToDefine' id='LRN-"+tab_id+"' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN-"+tab_id+"Definition'></div></TD>");
+    header_row.append("<TH class='table_data header'><div class='define' id='Spec-"+tab_id+"' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-"+tab_id+"Definition'></div></TD>");
+    header_row.append("<TH class='table_data header'><div class='define' id='Sens-"+tab_id+"' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-"+tab_id+"Definition'></div></TD>");
+    header_row.append("<TH class='table_data header'><div class='define' id='LRP-"+tab_id+"' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP-"+tab_id+"Definition'></div></TD>");
+    header_row.append("<TH class='table_data header' style='border-right:1px solid black;'><div class='define' id='LRN-"+tab_id+"' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN-"+tab_id+"Definition'></div></TD>");
     for (var x=0;x<prevalence_count;x++) {
         header_row.append("<TH class='table_data header'>" + format_number(prevalence_values[x]) + "</TD>");
     }
