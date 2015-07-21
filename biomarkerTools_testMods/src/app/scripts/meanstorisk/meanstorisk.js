@@ -257,7 +257,7 @@ function make_ajax_call_user_defined_calculation() {
     //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
@@ -280,7 +280,7 @@ function make_ajax_call_standard_calculation() {
     //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
@@ -303,7 +303,7 @@ function make_excel_call_user_defined_calculation() {
     //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
@@ -327,7 +327,7 @@ function make_excel_call_standard_calculation() {
     //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstoriskRest/";
+    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
@@ -519,7 +519,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 
 
 function draw_graph() {
-    url = "http://" + hostname +"/meanstoriskRest/";
+    url = "http://" + hostname +"/meanstorisk/";
 
     if ($( "#accordion" ).collapse("option", "active" ) === 0) {
         graph_file = "tmp/CSV"+uniqueKey+".png?";
