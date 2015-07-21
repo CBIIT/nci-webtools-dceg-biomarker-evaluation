@@ -122,7 +122,7 @@ function calculate() {
     if (valid) {
         var input = JSON.stringify(valuesObj[0]);
 
-        if (host == 'localhost') {
+        if (window.location.hostname == 'localhost') {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
