@@ -7,6 +7,7 @@ from meanRiskStratification.mrs import *
 from flask import Flask, url_for
 app = Flask(__name__, static_folder='', static_url_path='/')
 
+
 @app.route('/')
 @app.route('/biomarkerToolsRest')
 
