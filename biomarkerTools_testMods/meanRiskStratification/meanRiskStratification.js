@@ -122,12 +122,11 @@ function calculate() {
     if (valid) {
         var input = JSON.stringify(valuesObj[0]);
 
-        var host = window.location.hostname;
         if (host == 'localhost') {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
-            service = "http://" + host + "/" + rest + "/meanRiskStratification/";
+            service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
         }
 
         var to_value = 10 * 1000; //ten seconds
