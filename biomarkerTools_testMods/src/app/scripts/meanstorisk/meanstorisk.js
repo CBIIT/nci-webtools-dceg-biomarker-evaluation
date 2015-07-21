@@ -517,7 +517,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
         row.appendTo(general_table);
     }	
     //from glossary.js for term definition popup in the output
-    bindTermToDefine();
+    general_table.find('.define').on('click', termDisplay);
 }
 
 
