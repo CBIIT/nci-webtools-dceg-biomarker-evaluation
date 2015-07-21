@@ -660,12 +660,13 @@ function getFunctionName(independent, fixed, contour) {
 
 function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
-    hostname = window.location.hostname;
+    var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     $.ajax({
         type : "POST",
-        url : "http://" + hostname + "/biomarkerToolsRest/riskStratAdvanced",
+        url : service,
         data : data,
         dataType : "json",
+        timeout: 15000,
         success : function(data) {
             fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
         },
