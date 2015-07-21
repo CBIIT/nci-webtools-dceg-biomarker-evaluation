@@ -182,9 +182,10 @@ function do_calculation(){
     uniqueKey = new Date().getTime();
     hostname = window.location.hostname;
     if (validPrevValue) {
+        var service = "http://" + hostname + "/" + rest + "/bc/";
         promise = $.ajax({
             type: 'POST',
-            url: "http://" + hostname + "/biomarkerTools/bc/",
+            url: service,
             data: {
                 numberOfValues: '8',
                 refSpec: refSpec,
@@ -197,12 +198,13 @@ function do_calculation(){
                 labels: labels,
                 unique_key: uniqueKey
             },
-            dataType: 'json'
+            dataType: 'json',
+            timeout: 15000
         });
     } else {
         promise = $.ajax({
             type: 'POST',
-            url: "http://" + hostname + "/biomarkerTools/bc/",
+            url: "http://" + hostname + "/" + rest + "/bc/",
             data: {
                 numberOfValues: '7',
                 refSpec: refSpec,
