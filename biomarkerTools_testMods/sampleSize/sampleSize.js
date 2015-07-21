@@ -18,7 +18,7 @@ $(function(){
            
            
             data: JSON.stringify({
-                k: thisTool.find("#independent").val(),
+                k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
                 sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
                 spec: trim_spaces(thisTool.find("#specificity_val").text()),
                 prev: thisTool.find("#prevalence").val(),
