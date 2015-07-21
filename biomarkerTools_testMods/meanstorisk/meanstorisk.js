@@ -231,10 +231,11 @@ function make_ajax_call_user_defined_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
+    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
+        timeout: 15000,
         data: {
             option:1,
             spec:specificity_string, 
@@ -254,10 +255,11 @@ function make_ajax_call_standard_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
+    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
+        timeout: 15000,
         data: {
             option:2,
             spec:specificity_string, 
@@ -277,10 +279,11 @@ function make_excel_call_user_defined_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
+    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
+        timeout: 15000,
         data: {
             option:3,
             spec:specificity_string, 
@@ -301,10 +304,11 @@ function make_excel_call_standard_calculation() {
    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
-    url = "http://" + hostname +"/biomarkerToolsRest/meanstorisk/";
+    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
     $.ajax({
         type: "POST",
         url: url,
+        timeout: 15000,
         data: {
             option:4,
             spec:specificity_string, 
