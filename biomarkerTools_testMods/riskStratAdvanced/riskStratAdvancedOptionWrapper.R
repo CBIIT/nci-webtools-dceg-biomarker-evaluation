@@ -1,6 +1,6 @@
 library('RJSONIO')
 library('stringr')
-source ('RiskStratAnalysisOptions.R')
+source ('riskStratAdvanced/RiskStratAnalysisOptions.R')
 
 imageDirectory <- "../tmp/";
 rdirectory <- "";
