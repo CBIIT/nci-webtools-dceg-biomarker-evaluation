@@ -1,247 +1,277 @@
 common-blue = #4e5669
 red = #a90002
 light-red = #CD5C5C
-tan = #F3EFE0
+tan = #f5f5f5
+highlight = lightyellow
+highlight-compl = ivory
 
 body
     font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
+    #main
+        width 1280px
+        margin 0 auto
+        font-size small
 
-#main
-    width 1100px
-    margin 0 auto
-    font-size small
-
-.title
-    color black
-
-#contentTabs
-    margin 1.5em auto
-    ul.nav.nav-tabs 
-        border-bottom none
-        > li a
-            color black
-        > li.active a
-            text-decoration underline
+    .title
+        color black
+    .define,.termToDefine
+        font-weight bold
+        text-decoration underline
+        cursor help
+    .popover
+        .popover-title
+            background-color highlight-compl
             font-weight bold
-            background rgba(225, 220, 245,0.1)
-         after
-            border solid transparent
-            margin-left -10px
-            top 100%
-            left 50%
-    .tab-content
-        line-height 1.42857143
-        border-right 1px solid #ddd
-        border-bottom 1px solid #ddd
-        border-left 1px solid #ddd
-        border-radius 4px
-        padding 1.5em
-        background rgba(225, 220, 245,0.1)
-        
-  /* sample size styles */
-    #sampleSize
-        .row
-            margin 1em auto
-    #bm_compare
-        .example-image
-            float left
-        .explanation 
-            float left
-            padding-left 15px
-            width 600px
-        .reference_row 
-            background-color  yellow
-        td 
-            text-align center
+        .popover-content
+            background-color highlight
+    .header
+        background-color tan
+    .subheader
+        font-weight bold
+        color white
+        background-color slategray
 
-        .top-header 
-            text-align center
-            background-color #444
-            color #FFF
-        .header 
-            background-color #AAA
-            color #444
-        #output 
-            width 500px
-        #inputdata 
-            width 500px
-        h2 
-            background-color #AAA
-            color #444
-            padding 5px
-        .prevalence_label 
-            font-weight bold
-            background-color #AAA
-            color #444
-            padding 2px 25px 2px 25px
-        .bibliography 
-            width 950px
-            clear both
-            float left
-            margin 50px
-        .bib-author 
-            float left
-        .bib-year 
-            float left
-        .bib-title 
-            float left
-            font-style italic
-        .bib-journal 
-            float left
-        .bib-ref 
-            float left
-        .bib-pages 
-            float left
-        .bib-doi 
-            float left
-        .bibliography_entry 
-            width 300px
-        .bibliography_link 
-            width 50px
-    #m2rs
-        .top_section 
-            height 400px
+    .extra-padding
+        padding 1em
 
-        .bottom_section 
-            clear left
-            height 400px
+    .extra-vertical-margin
+        margin 10px 0
+    #contentTabs
+        margin 1.5em auto
+        ul.nav.nav-tabs
+            font-size 9pt
+            a
+                color black
+            > li.active a
+                text-decoration underline
+                font-weight bold
+             :after
+                border solid transparent
+                margin-left -10px
+                top 100%
+                left 50%
+        .tab-content
+            line-height 1.42857143
+            border-right 1px solid #ddd
+            border-bottom 1px solid #ddd
+            border-left 1px solid #ddd
+            border-radius 4px
+            padding 1.5em
+        #sampleSize
+            .row
+                margin 1em auto
+        #bc
+            .example-image
+                float left
+            .explanation 
+                float left
+                padding-left 15px
+                width 600px
+            .reference_row 
+                background-color  yellow
+            td 
+                text-align center
 
-        .input_panel 
-            position relative
-            float left
-            width 400px
-            background #DDD
-            border  1px #BBB solid
+            .top-header 
+                text-align center
+                background-color #444
+                color #FFF
+            #output 
+                width 500px
+            #inputdata
+                .input:hover
+                    cursor text
+                .panel-body
+                    padding-top 0
+                    padding-bottom 0
+            h2 
+                background-color #AAA
+                color #444
+                padding 5px
+            .bibliography 
+                width 950px
+                clear both
+                float left
+                margin 50px
+            .bib-author 
+                float left
+            .bib-year 
+                float left
+            .bib-title 
+                float left
+                font-style italic
+            .bib-journal 
+                float left
+            .bib-ref 
+                float left
+            .bib-pages 
+                float left
+            .bib-doi 
+                float left
+            .bibliography_entry 
+                width 300px
+            .bibliography_link 
+                width 50px
+        #meanstorisk
+            .table_panel
+                .row
+                    border .125em solid #ddd
+                    border-radius 4px
+                    .header
+                        padding .5em
+            #download_button
+                margin 10px
+            .top_section 
+                height 400px
 
+            .bottom_section 
+                clear left
+                height 400px
 
-        div.input_accordion 
-            background  #FFF url()
+            .input_panel
+                border  1px #BBB solid
 
+            div.input_accordion 
+                background  #FFF url()
 
-        H3.input_accordion 
-            background-color ;
-            background  #DDD url()
+            h3.input_accordion 
+                background-color ;
+                background  #DDD url()
 
-        .table_panel 
-            float left
-            width 300px
-            height 99%
+            .output_graph
+                max-width 38%
+                display block
+                margin-left  auto
+                margin-right  auto
 
-        .graph_panel 
-            height  99%
+            .key_output_panel 
+                float left
+                width 300px
+                background-color #faf
+                height 99%
 
-        .output_graph
-            max-width 38%
-            display block
-            margin-left  auto
-            margin-right  auto
+            .tabbed_output_panel 
+                height 99%
+            .indent
+                margin-left 30px
+                margin-right 20px
+                margin-top 10px
+                margin-bottom 5px
 
-        .key_output_panel 
-            float left
-            width 300px
-            background-color #faf
-            height 99%
+            .highlight
+                background-color yellow
 
-        .tabbed_output_panel 
-            height 99%
+            .col1 
+                padding 6px
+                text-align right
 
-        .title 
-            background-color #aaa
+            .maincard 
+                width 800px
+                height 750px
+                border 2px black solid
 
-        .indent
-            margin-left 30px
-            margin-right 20px
-            margin-top 10px
-            margin-bottom 5px
+            .highlight
+                background-color yellow
 
-        .highlight
-            background-color yellow
+            table.table_data 
+                width 90%
+                background-color white
+                border 1px #BBB solid
 
-        .col1 
-            padding 6px
-            text-align right
+            table.output_data 
+                background-color white
+                border-collapse collapse
+                border 2px black solid
 
-        .maincard 
-            width 800px
-            height 750px
-            border 2px black solid
+            th.table_data
+                padding 2px
 
-        .highlight
-            background-color yellow
+            th.header 
+                border-bottom  1px #BBB solid
+            tr.table_data_header 
+                border-bottom  1px black solid
+                background-color #A0A0A0
 
-        table.table_data 
-            width 90%
-            background-color white
-            border-collapse collapse
-            border 1px #BBB solid
-            margin-left 20px
-            margin-right 20px
-            float left
+            tr.line-above 
+                border-top 1px #BBB solid
 
-        table.output_data 
-            background-color white
-            border-collapse collapse
-            border 2px black solid
-            margin-left 20px
-            margin-right 20px
+            .main-title
+                text-align center
 
-        td.table_data
-            font-family sans-serif
-            text-align center
+            .PPV_stripe
+                border-bottom 1px black solid
+                background-color #B080FF
 
-        th.table_data 
-            font-family sans-serif
-            padding 2px
+            .cNPV_stripe 
+                border-bottom 1px black solid
+                background-color #8080FF
 
-        th.header 
-            border-bottom  1px #BBB solid
-            background-color lightgrey
+            .PPVcNPV_stripe 
+                border-bottom 1px black solid
+                background-color #FFAA80
 
-        th.col1 
-            text-align right
+            .ProgramBased_stripe 
+                border-bottom 1px black solid
+                background-color #FFB0D0
 
+            .PPVBased_stripe 
+                border-bottom 1px black solid
+                background-color #A0A0A0
 
-        tr.table_data_header 
-            border-bottom  1px black solid
-            background-color #A0A0A0
+            .SensitivityBased_stripe 
+                border-bottom 1px black solid
+                background-color #808080
 
-        tr.line-above 
-            border-top 1px #BBB solid
+            .DominatedByRareDisease_stripe 
+                border-bottom 1px black solid
+                background-color #F0F0F0
+            //        .ui-accordion 
+            //            overflow hidden
+            //
+            //        .ui-widget 
+            //            font-size 12px
+        #help
+            h4 a
+                color white
+                font-size smaller
+            section h5
+                font-weight bold
+                text-decoration underline
+        #meanRiskStratification
+            .red
+                background-color red
+            .panel-title, .panel-title a
+                font-size small
+            table input[type="text"]
+                width 50px
 
-        .main-title
-            text-align center
+            .top-header
+                text-align center
+                color #FFF
 
-        .PPV_stripe
-            border-bottom 1px black solid
-            background-color #B080FF
+            .panel-toggle a, .panel-title a
+                color black
+                font-weight bold
+            label
+                font-weight bold
 
-        .cNPV_stripe 
-            border-bottom 1px black solid
-            background-color #8080FF
+            .well, #results
+                min-height 645px
 
-        .PPVcNPV_stripe 
-            border-bottom 1px black solid
-            background-color #FFAA80
+            .termToDefine, th
+                font-weight bold
 
-        .ProgramBased_stripe 
-            border-bottom 1px black solid
-            background-color #FFB0D0
+            .termToDefine.glyphicon
+                text-decoration none
 
-        .PPVBased_stripe 
-            border-bottom 1px black solid
-            background-color #A0A0A0
+            .loader
+                background-image url("/common/images/loading.gif") no-repeat;
+                margin 0 auto;
+                height 300px
+                width 100%
 
-        .SensitivityBased_stripe 
-            border-bottom 1px black solid
-            background-color #808080
+            input[type="number"]
+                width 10rem
 
-        .DominatedByRareDisease_stripe 
-            border-bottom 1px black solid
-            background-color #F0F0F0
-
-        .ui-accordion 
-            overflow hidden
-
-        .ui-widget 
-            font-size 12px
-
+            .input:invalid
+                background-color yellow
