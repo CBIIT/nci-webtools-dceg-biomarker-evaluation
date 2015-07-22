@@ -28,7 +28,6 @@ def jsonp(func):
         if callback:
             data = str(func(*args, **kwargs).data)
             content = str(callback) + '(' + data + ')'
-            #mimetype = 'application/javascript'
             mimetype = 'application/json'
             return current_app.response_class(content, mimetype=mimetype)
         else:
@@ -42,13 +41,15 @@ def setRWorkingDirectory():
 
 @app.route('/meanstoriskRest/', methods = ['GET','POST'])
 @jsonp
-def callRFunction():
+def call_mean_RFunction():
     print "Data Start Time: " + str(time.time());
-    robjects.r('''source('./meanstoriskWrapper.R')''')
+    os.chdir('meanstorisk')
+    robjects.r('''source('meanstoriskWrapper.R')''')
     r_getname_getApcData = robjects.globalenv['getDataJSON']
     stream = request.stream.read()
     jsondata = r_getname_getApcData(stream)
     print "After Data Calculation: " + str(time.time());
+    os.chdir('..')
     return jsondata[0]
 
 

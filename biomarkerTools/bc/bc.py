@@ -22,7 +22,7 @@ app = Flask(__name__, static_folder='', static_url_path='/')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('../index.html')
 
 def jsonp(func):
     """Wraps JSONified output for JSONP requests."""
@@ -47,14 +47,16 @@ def setRWorkingDirectory():
 
 @app.route('/bcRest/', methods = ['GET','POST'])
 @jsonp
-def callRFunction():
+def call_bc_RFunction():
     rSource = robjects.r('source')
-    rSource('./BiomarkerComparisonWrapper.R')
+    os.chdir('bc')
+    rSource('BiomarkerComparisonWrapper.R')
     r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
     jsondata = r_getname_getData(thestream)
     print "json string >> "+str(jsondata[0]);
+    os.chdir('..')
     return jsondata[0]
     
 
