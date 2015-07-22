@@ -1,76 +1,78 @@
-
-
+// keep track of the number of marker elements, to use the number as the id,
+// track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
-
+var thisTool;
 $(document).ready(function () {
-    $(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
+    thisTool = $("#meanRiskStratification");
+    thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
     bind_control_events();
     create_popover();
 
-    $('.termToDefine, .dd.termToDefine').on('click', display_definition);
+    thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 });
 
 function bind_control_events() {
-    $("#errors").alert();
-   
-    $('a#test1,a#test2').on('click', test);
+    thisTool.find("#errors").alert();
+    // testing
+    thisTool.find('a#test1,a#test2').on('click', test);
 
-    $('#reset').on('click', reset);
-    $('#add-marker').on('click', new_marker);
-    $('#delete-marker').on('click', delete_marker);
-    $('#calculate').on('click', calculate);
+    thisTool.find('#reset').on('click', reset);
+    thisTool.find('#add-marker').on('click', new_marker);
+    thisTool.find('#delete-marker').on('click', delete_marker);
+    thisTool.find('#calculate').on('click', calculate);
 
     bind_accordion_action($('#markers').children().first());
 }
 
 function bind_accordion_action(el) {
-   
-   
-   
-   
-   
+    // bind action to specific element
+    //$(el).on('show.bs.collapse', function (e) {
+    //    alert('Event fired on #' + e.currentTarget.id);
+    //
+    //     e.target.id
+    //});
 }
 
 function controls_visibility(numElements) {
-   
+    // controls the visibility of the add/remove marker buttons
     if (numElements == 2) {
-        $('#delete-marker').show();
-        $('#add-marker').show();
+        thisTool.find('#delete-marker').show();
+        thisTool.find('#add-marker').show();
     }
     if (numElements > 2) {
-        $('#delete-marker').show();
-        $('#add-marker').hide();
+        thisTool.find('#delete-marker').show();
+        thisTool.find('#add-marker').hide();
     }
     if (numElements < 2) {
-        $('#delete-marker').hide();
-        $('#add-marker').show();
+        thisTool.find('#delete-marker').hide();
+        thisTool.find('#add-marker').show();
     }
 }
 
 function new_marker() {
     var counter = currentMarkers + 1;
     if (currentMarkers <= 3) {
-        var markerTemplate = $('#markers').find('.marker').first();
+        var markerTemplate = thisTool.find('#markers').find('.marker').first();
 
-       
+        // clone controls
         var newElement = markerTemplate.clone();
 
-       
+        // increment included class
         newElement.removeClass('marker-1').addClass("marker-" + counter);
 
-       
+        // make sure previous values don't get copied also
         newElement.find('.input,input').each(function () {
             if ($(this).is("input")) {
                 $(this).val("");
             }
             if ($(this).is("select")) {
-               
+                // set to first selection in dropdown
                 $(this)[0].selectedIndex = 0;
             }
         });
 
-       
+        // dynamically generate the id for the new panel elements
         newElement.find(".panel-heading").each(function (index) {
             var panel_id = '#marker-' + counter + '-option-' + (index + 1);
 
@@ -78,35 +80,35 @@ function new_marker() {
             $(this).attr('data-parent', '.marker-' + counter);
         });
 
-       
+        // generate new Ids for each on of the sub panels within the new generated marker
         newElement.find(".panel-collapse").each(function (index) {
             var newPanelContentId = 'marker-' + counter + '-option-' + (index + 1);
             $(this).attr("id", newPanelContentId);
             bind_accordion_action(this);
         });
 
-       
+        // change title for new marker
         newElement.find('.marker-title').text("Biomarker #" + counter);
         newElement.find('.termToDefine, .dd.termToDefine')
             .on('click', display_definition);
 
         currentMarkers++;
-       
-       
+        // after currentMarkers has been updated make sure panel events
+        // gets to the newly created marker
         controls_visibility(currentMarkers);
 
-       
-       
-        $(newElement[0]).insertAfter($('#markers').children().last());
+        // add new marker to #markers element
+        //$('#markers').append(newElement);
+        $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
     }
 }
 
 function delete_marker() {
     if (currentMarkers > 1) {
-       
-        $('#markers').children().last().empty();
-        $('#markers').children().last().remove();
-        $('.bm_'+currentMarkers).hide();
+        // remove last child
+        thisTool.find('#markers').children().last().empty();
+        thisTool.find('#markers').children().last().remove();
+        thisTool.find('.bm_'+currentMarkers).hide();
         currentMarkers--;
     }
     controls_visibility(currentMarkers);
@@ -116,23 +118,22 @@ function delete_marker() {
 function calculate() {
     var service;
     var valuesObj = extract_values(false);
-    var valid = valuesObj[1];
+    var valid = valuesObj[1]; // get the boolean value that was returned
     if (valid) {
         var input = JSON.stringify(valuesObj[0]);
 
-        var host = window.location.hostname;
-        if (host == 'localhost') {
-           
-            service = 'output_example.json';
+        if (window.location.hostname == 'localhost') {
+            // call json file instead of service
+            service = 'meanRiskStratification/output_example.json';
         } else {
-            service = "http://" + host + "/mrsRest/";
+            service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
         }
 
-        var to_value = 10 * 1000;
+        var to_value = 10 * 1000; //ten seconds
 
         $('#loader').show();
 
-       
+        // ajax call, change to actual service name
         var promise = $.ajax({
             dataType: 'json',
             method: 'POST',
@@ -143,7 +144,7 @@ function calculate() {
         });
 
         promise.then(clean_data, function (error) {
-            $("#results, .bm_1, .bm_2, .bm_3").hide();
+            thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
             display_errors("The service call has failed with the following status: " + error.statusText);
         });
 
@@ -159,19 +160,19 @@ function scrollTop() {
 }
 
 function clean_data(data) {
-   
+    // check to make sure json is in the right format
     return JSON.parse(JSON.stringify(data));
 }
 
 function return_data(data) {
     i = 0;
 
-   
-    $("#results, .bm_1, .bm_2, .bm_3").hide();
+    // hide all again before showing
+    thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
 
     do {
         i++;
-       
+        // propName should be bm_#
         $('.bm_' + i).show();
     } while (i != currentMarkers);
 
@@ -183,7 +184,7 @@ function return_data(data) {
         calc = paramGroup.calculations;
         marker_id = propName;
 
-       
+        // loop through appending data to table
         $.each(params, function (name) {
 
             var lookup_id = lookup[name];
@@ -206,12 +207,12 @@ function return_data(data) {
                     formattedText += " (" + ci_lb + ", " + ci_ub + ")";
                 }
             }
-           
+            // append text to table cell
             cell = $('#' + lookup_id + '_result.' + marker_id + '.output');
             cell.attr('title', lookup_id + " " + formattedText);
             cell.text(formattedText);
         });
-       
+        // same loop but through calculations
         $.each(calc, function (name) {
             var lookup_id = lookup[name];
             var data_item = calc[name];
@@ -241,8 +242,8 @@ function return_data(data) {
         });
     });
 
-    $("#results").show();
-    $("#loader").hide();
+    thisTool.find("#results").show();
+    thisTool.find("#loader").hide();
 }
 
 function append_name() {
@@ -250,54 +251,55 @@ function append_name() {
     var name;
     do {
         i++;
-        var thisNameInputElement = $('.marker-' + i + ' .name-input');
-       
+        var thisNameInputElement = thisTool.find('.marker-' + i + ' .name-input');
+        // append biomarker Name to results table header
         if ((thisNameInputElement.val()).length > 0)
             name = thisNameInputElement.val() + " (CI Low, CI High)";
         else
             name = "Biomarker " + i + " (CI Low, CI High)";
 
-       
-        $('#results').find('table thead tr .bm_' + i).attr('title', name).text(name);
+        // find the element to append the text to
+        thisTool.find('#results').find('table thead tr .bm_' + i).attr('title', name).text(name);
     } while (i != currentMarkers);
 }
 
 function extract_values(valid) {
     var values = {};
 
-   
+    // find biomarkers with values first, use currentMarkers for iteration
     i = 0;
     do {
         i++;
 
         values["bm_" + i] = {};
-        var thisMarker = $('.marker-' + i);
+        var thisMarker = thisTool.find('.marker-' + i);
 
-       
-        var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray();
-        var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray();
+        // inside this marker find inputs by group
+        var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
+        var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray(); // option 2
 
-        option_1_controls.forEach(function (element) {
-           
+        var append_values = function (element) {
+            // don't add empty values to object
             if (element.value.length > 0) {
                 values["bm_" + i].option = 1;
                 values["bm_" + i][element.name] = element.value;
             }
-        });
+        };
 
-       
+        option_1_controls.forEach(append_values);
+
+        // check option variable
         if (!values["bm_" + i].option) {
 
-           
+            // apply option flag
             values["bm_" + i].option = 2;
 
             var param_1 = [];
             var param_2 = [];
             var param_3 = [];
             var param_4 = [];
-
-            option_2_controls.filter(function (obj) {
-               
+            var mapping_pairs = function (obj) {
+                // filter each pair into separate arrays
                 if (obj.name == "param_1" && obj.value.length > 0) {
                     param_1.push(obj);
                 }
@@ -310,10 +312,12 @@ function extract_values(valid) {
                 if (obj.name == "sampsize" && obj.value.length > 0) {
                     param_4.push(obj);
                 }
+            };
 
-            });
+            option_2_controls.filter(mapping_pairs);
+
             if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
-               
+                // sample size
                 values["bm_" + i][param_4[0].name] = param_4[0].value;
 
                 var value_length = [param_1[1].value.length, param_2[1].value.length, param_3[1].value.length];
@@ -321,16 +325,16 @@ function extract_values(valid) {
                 value_length.forEach(function (el) {
                     if (el > 0) {
                         valid = false;
-                       
+                        // manually mapping each value pair
                         joinObjects(values["bm_" + i], param_1[0], param_1[1]);
                         joinObjects(values["bm_" + i], param_2[0], param_2[1]);
                         joinObjects(values["bm_" + i], param_3[0], param_3[1]);
                     }
                 });
             }
-           
-           
-           
+            //else {
+            //    valid = true;
+            //}
         }
     } while (i != currentMarkers);
 
@@ -339,28 +343,28 @@ function extract_values(valid) {
 }
 
 function joinObjects(parentObj, obj1, obj2) {
-   
-   
+    // takes in two objects extracts the value from obj1 as
+    // the new key and the value from obj2 as the new value
     parentObj[obj1.value] = obj2.value;
     return parentObj;
 }
 
 function reset() {
-   
-    var markerChildren = $('#markers').children();
+    // resets form to initial state
+    var markerChildren = thisTool.find('#markers').children();
 
-   
-    $('select').find('option:first').attr('selected', 'selected');
-    $('input').val('');
+    // reset drop downs then, text boxes, hide results, then clear the cells
+    thisTool.find('select').find('option:first').attr('selected', 'selected');
+    thisTool.find('input').val('');
 
-   
-    $('.output').text('');
-    $("#results, .bm_1, .bm_2, .bm_3").hide();
+    // clear all output cells
+    thisTool.find('.output').text('');
+    thisTool.find('#results, .bm_1, .bm_2, .bm_3').hide();
 
-   
-    $("#errors").fadeOut();
+    // close errors if showing
+    thisTool.find('#errors').fadeOut();
 
-   
+    // remove generated markers first, .remove() doesn't remove element from DOM
     markerChildren.not(':first').each(function () {
         $(this).empty();
         $(this).remove();
@@ -376,11 +380,11 @@ function create_popover() {
 }
 
 function display_definition() {
-   
-   
+    // used to identify a specific element, since there will be
+    // multiple popover elements on the page
     var $self = $(this);
     var id;
-   
+    // treat drop down elements different than link/text elements
     if (!$self.hasClass('dd')) {
         if (!$self.hasClass('header') && $self.prop('tagName') != 'TD')
             id = ($self.attr('class')).replace('termToDefine', '').trim();
@@ -390,7 +394,7 @@ function display_definition() {
             id = $self.attr('id');
     }
     else {
-       
+        // value selected in the drop down
         id = $self.prev().val();
     }
 
@@ -399,7 +403,9 @@ function display_definition() {
 
     if (definition || term) {
         $self.popover(
-            {container: 'body',
+            {
+                template: custom_po_tmpl,
+                container: 'body',
                 trigger: 'manual',
                 placement: 'top',
                 title: term,
@@ -414,7 +420,7 @@ function display_definition() {
     }
 }
 
-
+// definitions used for display
 var definitionObj = {
     prob_m: {
         term: "Marker Positivity (M+)",
@@ -569,7 +575,7 @@ function setup_test() {
             reset();
         }
 
-       
+        // add 2 biomarkers
         new_marker();
         new_marker();
     });
@@ -577,20 +583,20 @@ function setup_test() {
 
 function test() {
     setup_test();
-   
+    // capture what element triggered test function
     var choice = $(this).prop('id');
 
-    $('#markers').children().each(function (key, markerElement) {
+    thisTool.find('#markers').children().each(function (key, markerElement) {
         var id;
 
         if (choice == "test1") {
-           
+            // open option 1 for each
             $(this).find('.collapse:first').addClass('in');
             $(this).find('.collapse:last').removeClass('in');
 
             id = $(this).find('.collapse.in').prop('id');
 
-           
+            // then populate with data
             $(markerElement).find('[name="name-input"]').val(values_option_1_bm[key].markerName);
             $('#' + id).find('#a').val(values_option_1_bm[key].a);
             $('#' + id).find('#b').val(values_option_1_bm[key].b);
@@ -599,7 +605,7 @@ function test() {
         }
 
         if (choice == "test2") {
-           
+            // collapse all option 1 panels and expand all option 2 panels
             $(this).find('.collapse:last').addClass('in');
             $(this).find('.collapse:first').removeClass('in');
 
@@ -610,20 +616,20 @@ function test() {
                 values_option_2_bm[1],
                 values_option_2_bm[2]
             ];
-           
+            // marker name
             $(markerElement).find('input[name="name-input"]').val(data[key].markerName);
-           
+            // sample size
             $(markerElement).find('input[name="sampsize"]').val(data[key].sampsize);
 
             var dataItem = data[key];
 
-           
+            //first row
             $(markerElement).find('input[name="param_1"]').val(dataItem.ppv);
 
-           
+            // second row
             $(markerElement).find('input[name="param_2"]').val(dataItem.npv);
 
-           
+            // third row
             $(markerElement).find('input[name="param_3"]').val(dataItem.prob_m);
         }
     });
@@ -632,14 +638,14 @@ function validate(values) {
     var valid = true;
     var messages = [];
 
-    $("#errors").empty();
+    thisTool.find("#errors").empty();
 
     var $this = document.getElementsByTagName('form').markers;
     var invalidElements = $($this).find(':invalid');
 
     for (var item in values) {
         var marker_value_keys = Object.keys(values[item]);
-       
+        // object will always have one option property so check for less than 2
         if (marker_value_keys.length < 2) {
             valid = false;
             messages.push('You must enter values for either option 1 or 2 in each biomarker.');
@@ -651,12 +657,12 @@ function validate(values) {
         valid = invalidElements[i].valid;
         var validityObj = invalidElements[i].validity;
         if (validityObj.badInput) {
-            text = "The value you entered contains an invalid character. "
-                + invalidElements[i].validationMessage;
+            text = "The value you entered contains an invalid character. " +
+                invalidElements[i].validationMessage;
         }
         if (validityObj.patternMismatch) {
-            text = "The value you entered '" + invalidElements[i].value + "' contains an invalid character. "
-                + invalidElements[i].validationMessage;
+            text = "The value you entered '" + invalidElements[i].value + "' contains an invalid character. " +
+                invalidElements[i].validationMessage;
         }
         if (validityObj.rangeOverflow || validityObj.rangeUnderflow) {
             if (invalidElements[i].min && invalidElements[i].max) {
@@ -672,7 +678,7 @@ function validate(values) {
                     invalidElements[i].max;
             }
         }
-       
+        // prevent duplicate messages
         if ($.inArray(text, messages) == -1) messages.push(text);
     }
 
@@ -680,7 +686,7 @@ function validate(values) {
         valid = false;
         display_errors(messages);
     }
-    else $("#errors").fadeOut();
+    else thisTool.find("#errors").fadeOut();
 
     return valid;
 }
@@ -696,14 +702,14 @@ function display_errors(message) {
     if (typeof message == "string") {
         text = message;
     }
-    if($('#errors').length > 0){
-        $("#errors").empty();
-        $("#errors").remove();
+    if(thisTool.find('#errors').length > 0){
+        thisTool.find("#errors").empty();
+        thisTool.find("#errors").remove();
     }
 
-    $(".title.text-center").after("<div id='errors' class='alert alert-danger fade in'><a href='#' data-dismiss='alert' class='close'>&times;</a>" +
+    thisTool.find(".title.text-center").after("<div id='errors' class='alert alert-danger fade in'>" +
         "<ul class='list-unstyled'>" + text + "</ul></div>");
 
-    $('#errors').fadeIn();
+    thisTool.find('#errors').fadeIn();
     scrollTop();
 }
