@@ -1,5 +1,5 @@
-#home.tab-pane.fade.in.active(title="Home", role='tabpanel')
-    h3.title.text-center Biomarker Tools Collection
+#home.tab-pane.fade.in.active(role='tabpanel')
+    h3.title.text-center(title="Home") Biomarker Evaluation Tools
     | This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
     | risk measures indentified case-control studies to clinical or public health applications. The toolset will show
     | quantities for which people's intuition is poor, such as need for a single marker of a rare disease to improve management
@@ -10,10 +10,12 @@
     | &nbsp;
     ul.list-unstyled
         li
-            a.goToTab(title="The Means To Risk Stratification Tool", data-target='#m2rs', data-toggle="tab") The Means To Risk Stratification Tool
+            a.goToTab(title="Means To Risk", data-target='#meanstorisk', data-toggle="tab") Means To Risk
         li
-            a.goToTab(title="Biomarker Comparison Tool",data-target='#bm_compare', data-toggle="tab") Biomarker Comparison Tool
+            a.goToTab(title="Biomarker Comparison",data-target='#bc', data-toggle="tab") Biomarker Comparison
         li  
-            a.goToTab(title="Risk Stratification Advanced Options Tool", data-target='#rs_advanced', data-toggle="tab") Risk Stratification Advanced Options Tool
+            a.goToTab(title="Risk Stratification Advanced Options", data-target='#riskStratAdvanced', data-toggle="tab") Risk Stratification Advanced Options
         li
-            a.goToTab(title="Power and Sample Size Calculation Tool", data-target='#sampleSize', data-toggle="tab") Power and Sample Size Calculation Tool
+            a.goToTab(title="Power and Sample Size Calculation", data-target='#sampleSize', data-toggle="tab") Power and Sample Size Calculation
+        li
+            a.goToTab(title="Mean Risk Stratification", data-target='#meanRiskStratification', data-toggle="tab") Mean Risk Stratification
