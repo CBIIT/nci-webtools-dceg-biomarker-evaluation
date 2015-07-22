@@ -25,206 +25,176 @@
         </div>
         <div id="contentTabs" class="col-md-12">
           <ul role="tablist" class="nav nav-tabs">
-            <li role="presentation" class="active"><a data-target="#home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a data-target="#m2rs" role="tab" data-toggle="tab">Means to Risk Stratification</a></li>
-            <li role="presentation"><a data-target="#bm_compare" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
-            <li role="presentation"><a data-target="#rs_advanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
-            <li role="presentation"><a data-target="#sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
-            <li role="presentation"><a data-target="#help" role="tab" data-toggle="tab">Help</a></li>
+            <li role="presentation" title="Home" class="active"><a data-target="#home" role="tab" data-toggle="tab">Home</a></li>
+            <li role="presentation" title="Means to Risk Stratification"><a data-target="#meanstorisk" role="tab" data-toggle="tab">Means to Risk</a></li>
+            <li role="presentation" title="Biomarker Comparison"><a data-target="#bc" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
+            <li role="presentation" title="Risk Stratification Advanced Analysis"><a data-target="#riskStratAdvanced" role="tab" data-toggle="tab"> </a>Risk Stratification Advanced Analysis</li>
+            <li role="presentation" title="Power and Sample Size Calculation"><a data-target="#sampleSize" role="tab" data-toggle="tab"> </a>Power and Sample Size Calculation</li>
+            <li role="presentation" title="Mean Risk Stratification"><a data-target="#meanRiskStratification" role="tab" data-toggle="tab"></a>Mean Risk Stratification</li>
+            <li role="presentation" title="Help"><a data-target="#help" role="tab" data-toggle="tab">Help</a></li>
           </ul>
           <div class="tab-content col-md-12">
-            <div id="home" title="Home" role="tabpanel" class="tab-pane fade in active">
-              <h3 class="title text-center">Biomarker Tools Collection</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
+            <div id="home" role="tabpanel" class="tab-pane fade in active">
+              <h3 title="Home" class="title text-center">Biomarker Evaluation Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
               quantities for which people's intuition is poor, such as need for a single marker of a rare disease to improve management
               by some serious intervention. The toolset hopless pursuit, wasteful, unethical clinical testing begins. Thus, using
               these strategies will allow focusing on the most promising markers early on, making specific improvements if required,
               or abandoning markers that are most likely to fail.<br>&nbsp;
               <ul class="list-unstyled">
-                <li><a title="The Means To Risk Stratification Tool" data-target="#m2rs" data-toggle="tab" class="goToTab">The Means To Risk Stratification Tool</a></li>
-                <li><a title="Biomarker Comparison Tool" data-target="#bm_compare" data-toggle="tab" class="goToTab">Biomarker Comparison Tool</a></li>
-                <li> <a title="Risk Stratification Advanced Options Tool" data-target="#rs_advanced" data-toggle="tab" class="goToTab">Risk Stratification Advanced Options Tool</a></li>
-                <li><a title="Power and Sample Size Calculation Tool" data-target="#sampleSize" data-toggle="tab" class="goToTab">Power and Sample Size Calculation Tool</a></li>
+                <li><a title="Means To Risk" data-target="#meanstorisk" data-toggle="tab" class="goToTab">Means To Risk</a></li>
+                <li><a title="Biomarker Comparison" data-target="#bc" data-toggle="tab" class="goToTab">Biomarker Comparison</a></li>
+                <li> <a title="Risk Stratification Advanced Options" data-target="#riskStratAdvanced" data-toggle="tab" class="goToTab">Risk Stratification Advanced Options</a></li>
+                <li><a title="Power and Sample Size Calculation" data-target="#sampleSize" data-toggle="tab" class="goToTab">Power and Sample Size Calculation</a></li>
+                <li><a title="Mean Risk Stratification" data-target="#meanRiskStratification" data-toggle="tab" class="goToTab">Mean Risk Stratification</a></li>
               </ul>
             </div>
-            <div id="m2rs" title="Means to Risk Stratification" role="tabpanel" class="tab-pane fade"> 
-              <h3 class="title text-center">Means to Risk Stratification</h3>
-              <div id="helpGlossaryLinks"><a href="#" onclick="openHelpWindow('help.html')">Help</a><a href="#" onclick="openHelpWindow('/common/html/meansToRiskGlossary.html')">Glossary</a></div><br>
-              <div class="input_panel">
-                <div style="margin: 5px; font-weight: bold;">
-                  Choose how to
-                  enter the data
-                </div>
-                <form>
-                  <div id="accordion">
-                    <h3 class="input_accordion">
-                      User Defined Distribution (from
-                      File)
-                    </h3>
-                    <div class="input_accordion">
-                      <p class="indent data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="p16-ELISA-sample-data.csv"><i>(Example)</i></a></p>
-                      <p class="indent">
-                        <label for="input_file_upload">
-                          <input id="input_file_upload" type="file" class="data_entry_by_file">
-                        </label>
-                      </p>
-                    </div>
-                    <h3 class="input_accordion">Normal Distribution</h3>
-                    <div class="input_accordion">
-                      <p class="indent data_entry_by_input">
-                        Enter Mean, Standard
-                        Error, and N for Cases and Controls
-                      </p>
-                      <table style="margin: 5px; margin-left: 20px; padding: 2px;" class="table_data">
-                        <tr class="table_data header">
-                          <th class="table_data header"></th>
-                          <th class="table_data header">Cases</th>
-                          <th class="table_data header">Controls</th>
-                        </tr>
-                        <tr class="table_data">
-                          <th class="table_data col1">Mean</th>
-                          <td class="table_data">
-                            <label for="mean_cases_input"> </label>
-                            <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
-                          </td>
-                          <td class="table_data">
-                            <label for="mean_controls_input"> </label>
-                            <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
-                          </td>
-                        </tr>
-                        <tr class="table_data">
-                          <th class="table_data col1">Standard Error</th>
-                          <td class="table_data">
-                            <label for="stderr_cases_input"> </label>
-                            <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
-                          </td>
-                          <td class="table_data">
-                            <label for="stderr_controls_input"> </label>
-                            <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
-                          </td>
-                        </tr>
-                        <tr class="table_data">
-                          <th class="table_data col1">N</th>
-                          <td class="table_data">
-                            <label for="N_cases_input"> </label>
-                            <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
-                          </td>
-                          <td class="table_data">
-                            <label for="N_controls_input"> </label>
-                            <input id="N_controls_input" type="text" value="200" size="4" class="data_entry_by_input">
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div><br><br>
-                  <table style="margin-left: 5px;" class="table_data">
-                    <tr>
-                      <th>
-                        <div id="Spec" data-term="Spec" class="termToDefine">Specificity:</div>
-                        <div id="SpecDefinition" class="popupDefinition"></div>
-                      </th>
-                      <td>
+            <div id="meanstorisk" role="tabpanel" class="tab-pane fade">
+              <div class="top_section">
+                <h3 class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
+                <div id="helpGlossaryLinks"><a data-target="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div><br>
+                <div class="col-md-4">
+                  <form>
+                    <div id="accordion" class="panel panel-default">
+                      <div class="panel-heading text-center"> <b>Choose how to enter the data</b></div>
+                      <div class="panel-heading">
+                        <div data-toggle="collapse" data-target="#file_upload" class="panel-title">User Defined Distribution (from File)
+                          <div class="glyphicon glyphicon-chevron-down"></div>
+                        </div>
+                      </div>
+                      <div id="file_upload" class="panel-body collapse in"><b class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example) </a></b>
+                        <p class="indent">
+                          <label for="input_file_upload">
+                            <input id="input_file_upload" type="file" class="data_entry_by_file">
+                          </label>
+                        </p>
+                      </div>
+                      <div class="panel-heading">
+                        <div data-toggle="collapse" data-target="#cases_control" class="panel-title">Normal Distribution
+                          <div class="glyphicon glyphicon-chevron-down"></div>
+                        </div>
+                      </div>
+                      <div id="cases_control" class="panel-body collapse">
+                        <div class="panel panel-default table_data">
+                          <div class="panel-heading"><b class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</b></div>
+                          <div>
+                            <div class="row table_data">
+                              <div class="col-md-4 text-right table_data"></div>
+                              <div class="col-md-4 text-right table_data"> <b>Cases</b></div>
+                              <div class="col-md-4 text-right table_data"><b>Controls</b></div>
+                            </div>
+                            <div class="row table_data">
+                              <div class="col-md-4 text-right table_data text-right"><b>Mean</b></div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="mean_cases_input"></label>
+                                <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
+                              </div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="mean_controls_input"></label>
+                                <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
+                              </div>
+                            </div>
+                            <div class="row table_data">
+                              <div class="col-md-4 text-right table_data text-right"><b>Standard Error</b></div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="stderr_cases_input"></label>
+                                <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
+                              </div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="stderr_controls_input"></label>
+                                <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
+                              </div>
+                            </div>
+                            <div class="row table_data">
+                              <div class="col-md-4 text-right table_data text-right"><b>N</b></div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="N_cases_input"></label>
+                                <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
+                              </div>
+                              <div class="col-md-4 text-right table_data">
+                                <label for="N_controls_input"></label>
+                                <input id="N_controls_input" type="text" value="200" size="4" class="data_entry_by_input">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <div id="Spec" data-term="Spec" class="define">Specificity:</div>
                         <label for="specificity">
                           <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
                         </label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>
-                        <div id="DP" data-term="DP" class="termToDefine">Prevalence:</div>
-                        <div id="DPDefinition" class="popupDefinition"></div>
-                      </th>
-                      <td>
+                        <div id="DP" data-term="DP" class="define">Prevalence:</div>
                         <label for="prevalence">
                           <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
                         </label>
-                      </td>
-                    </tr>
-                  </table>
-                  <input id="calculate_button" type="button" value="Calculate" style="margin: 10px; float: left;">
-                  <input id="download_button" type="button" value="Download Excel File" style="margin: 10px; float: right;">
-                </form>
+                      </div>
+                    </div>
+                    <input id="calculate_button" type="button" value="Calculate" class="pull-left">
+                    <input id="download_button" type="button" value="Download Excel File" class="pull-right">
+                  </form>
+                </div>
+                <div class="panel panel-default col-md-4 table_panel">
+                  <div class="row"> <b class="header col-md-4">&nbsp;</b><b class="header col-md-2">Cases</b><b class="header col-md-3">Controls</b><b class="header col-md-3">Overall</b></div>
+                  <div class="row table_data">
+                    <div class="header table_data col-md-4"><b>Mean</b></div>
+                    <div id="mean_cases" class="col-md-4 table_data text-rcenterght"></div>
+                    <div id="mean_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="mean_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">Standard Error</b>
+                    <div id="stderr_cases" class="col-md-4 table_data text-center"></div>
+                    <div id="stderr_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">N</b>
+                    <div id="N_cases" class="col-md-4 table_data text-center"></div>
+                    <div id="N_controls" class="col-md-4 table_data text-center"></div>
+                    <div id="N_overall" class="col-md-4 table_data text-center"></div>
+                  </div>
+                  <div class="row table_data line-above"><b class="header table_data col-md-4">Standard Deviation</b>
+                    <div id="deviation_cases" class="col-md-4 table_data"></div>
+                    <div id="deviation_controls" class="col-md-4 table_data"></div>
+                    <div id="deviation_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">Variance</b>
+                    <div id="variance_cases" class="col-md-4 table_data"></div>
+                    <div id="variance_controls" class="col-md-4 table_data"></div>
+                    <div id="variance_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">
+                      <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
+                    <div id="cv_cases" class="col-md-4 table_data"></div>
+                    <div id="cv_controls" class="col-md-4 table_data"></div>
+                    <div id="cv_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">Difference in Mean</b>
+                    <div id="diff_cases" class="col-md-4 table_data"></div>
+                    <div id="diff_controls" class="col-md-4 table_data"></div>
+                    <div id="diff_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">
+                      <div id="Delta" data-term="Delta" class="define">Delta</div></b>
+                    <div id="delta_cases" class="col-md-4 table_data"></div>
+                    <div id="delta_controls" class="col-md-4 table_data"></div>
+                    <div id="delta_overall" class="col-md-4 table_data"></div>
+                  </div>
+                  <div class="row table_data"><b class="header table_data col-md-4">
+                      <div id="AUC" data-term="AUC" class="define">AUC</div></b>
+                    <div id="auc_cases" class="col-md-4 table_data"></div>
+                    <div id="auc_controls" class="col-md-4 table_data"></div>
+                    <div id="auc_overall" class="col-md-4 table_data"></div>
+                  </div>
+                </div>
+                <div class="graph_panel col-md-4"></div>
               </div>
-              <div class="table_panel">
-                <table id="inputs_card" class="table_data">
-                  <tr class="table_data header">
-                    <th class="table_data header"></th>
-                    <th class="table_data header"> Cases </th>
-                    <th class="table_data header"> Controls </th>
-                    <th class="table_data header"> Overall </th>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">Mean</th>
-                    <td id="mean_cases" class="table_data"></td>
-                    <td id="mean_controls" class="table_data"></td>
-                    <td id="mean_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">Standard Error</th>
-                    <td id="stderr_cases" class="table_data"></td>
-                    <td id="stderr_controls" class="table_data"></td>
-                    <td id="stderr_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">N</th>
-                    <td id="N_cases" class="table_data"></td>
-                    <td id="N_controls" class="table_data"></td>
-                    <td id="N_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data line-above">
-                    <th class="table_data col1">Standard Deviation</th>
-                    <td id="deviation_cases" class="table_data"></td>
-                    <td id="deviation_controls" class="table_data"></td>
-                    <td id="deviation_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">Variance</th>
-                    <td id="variance_cases" class="table_data"></td>
-                    <td id="variance_controls" class="table_data"></td>
-                    <td id="variance_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">
-                      <div id="CV" data-term="CV" class="termToDefine">Coefficient of Variation (CV)</div>
-                      <div id="CVDefinition" class="popupDefinition"></div>
-                    </th>
-                    <td id="cv_cases" class="table_data"></td>
-                    <td id="cv_controls" class="table_data"></td>
-                    <td id="cv_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">Difference in Mean</th>
-                    <td id="diff_cases" class="table_data"></td>
-                    <td id="diff_controls" class="table_data"></td>
-                    <td id="diff_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">
-                      <div id="Delta" data-term="Delta" class="termToDefine">Delta</div>
-                      <div id="DeltaDefinition" class="popupDefinition"></div>
-                    </th>
-                    <td id="delta_cases" class="table_data"></td>
-                    <td id="delta_controls" class="table_data"></td>
-                    <td id="delta_overall" class="table_data"></td>
-                  </tr>
-                  <tr class="table_data">
-                    <th class="table_data col1">
-                      <div id="AUC" data-term="AUC" class="termToDefine">AUC</div>
-                      <div id="AUCDefinition" class="popupDefinition"></div>
-                    </th>
-                    <td id="auc_cases" class="table_data"></td>
-                    <td id="auc_controls" class="table_data"></td>
-                    <td id="auc_overall" class="table_data"></td>
-                  </tr>
-                </table>
+              <div class="bottom_section">
+                <div class="tabbed_output_panel"></div>
               </div>
-              <div class="graph_panel"></div>
             </div>
-            <div class="bottom_section">
-              <div class="tabbed_output_panel"></div>
-            </div>
-            <div id="bm_compare" title="Biomarker Comparison" role="tabpanel" class="tab-pane fade"> 
-              <h3 class="title text-center">Biomarker Comparison Tool</h3>
+            <div id="bc" role="tabpanel" class="tab-pane fade">
+              <h3 title="Biomarker Comparison" class="title text-center">Biomarker Comparison Tool</h3>
+              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a data-target="#help_bc" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div>
               <p>
                 This tool plots contours of likelihood ratio positive (LR+) and
                 likelihood ratio negative (LR-) for a reference test with indicated
@@ -276,211 +246,187 @@
                 </div>
                 <div class="col-md-6 table-and-graph">
                   <!-- Left Side-->
-                  <table id="inputdata">
-                    <thead>
-                      <tr class="non-data-row">
-                        <th colspan="5" class="top-header">Input Information</th>
-                      </tr>
-                      <tr class="non-data-row">
-                        <th class="header">#</th>
-                        <th class="header">Reference</th>
-                        <th class="header">
-                          <div id="Sens" data-term="Sens" class="termToDefine">Sensitivity</div>
-                          <div id="SensDefinition" class="popupDefinition"></div>
-                        </th>
-                        <th class="header">
-                          <div id="Spec" data-term="Spec" class="termToDefine">Specificity</div>
-                          <div id="SpecDefinition" class="popupDefinition"></div>
-                        </th>
-                        <th class="header"> </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr row="0" class="reference_row">
-                        <th>1</th>
-                        <td row="0" col="reference" class="reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></td>
-                        <td row="0" col="sensitivity" class="input sensitivity">0.8</td>
-                        <td row="0" col="specificity" class="input specificity">0.7</td>
-                        <td> </td>
-                      </tr>
-                      <tr row="1">
-                        <th>2</th>
-                        <td row="1" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                        <td row="1" col="sensitivity" class="input sensitivity">0.85</td>
-                        <td row="1" col="specificity" class="input specificity">0.68</td>
-                        <td>
+                  <div id="inputdata" class="panel panel-default">
+                    <div class="panel-heading text-center"><b>Input Information</b></div>
+                    <div class="panel-body">
+                      <div class="row non-data-row">
+                        <div class="col-md-1 header"><b>#</b></div>
+                        <div class="col-md-3 header"><b>Reference</b></div>
+                        <div class="col-md-3 header">
+                          <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
+                        </div>
+                        <div class="col-md-5 header">
+                          <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
+                        </div>
+                      </div>
+                      <div row="0" class="row reference_row">
+                        <div class="col-md-1">1</div>
+                        <div row="0" col="reference" class="col-md-3 reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="check"></div>
+                        <div row="0" col="sensitivity" class="col-md-3 input sensitivity">0.8</div>
+                        <div row="0" col="specificity" class="col-md-2 input specificity">0.7</div>
+                        <div class="col-md-3"> </div>
+                      </div>
+                      <div row="1" class="row">
+                        <div class="col-md-1">2</div>
+                        <div row="1" col="reference" class="col-md-3 reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></div>
+                        <div row="1" col="sensitivity" class="col-md-3 input sensitivity">0.85</div>
+                        <div row="1" col="specificity" class="col-md-2 input specificity">0.68</div>
+                        <div class="col-md-3">
                           <button class="remove_row_button">Remove</button>
-                        </td>
-                      </tr>
-                      <tr row="2">
-                        <th>3</th>
-                        <td row="2" col="reference" class="reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></td>
-                        <td row="2" col="sensitivity" class="input sensitivity">0.9</td>
-                        <td row="2" col="specificity" class="input specificity">0.5</td>
-                        <td>
+                        </div>
+                      </div>
+                      <div row="2" class="row">
+                        <div class="col-md-1">3</div>
+                        <div row="2" col="reference" class="col-md-3 reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="uncheck"></div>
+                        <div row="2" col="sensitivity" class="col-md-3 input sensitivity">0.9</div>
+                        <div row="2" col="specificity" class="col-md-2 input specificity">0.5</div>
+                        <div class="col-md-3">
                           <button class="remove_row_button">Remove</button>
-                        </td>
-                      </tr>
-                      <tr class="non-data-row">
-                        <th> </th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>
+                        </div>
+                      </div>
+                      <div class="row non-data-row">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
                           <button id="new_row_button">New Row</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table>
-                    <tr>
-                      <td class="prevalence_label">
-                        <div id="DP" data-term="DP" for="prevalence" class="termToDefine">Prevalence</div>
-                        <div id="DPDefinition" class="popupDefinition"></div>
-                      </td>
-                      <td>
-                        <input id="prevalence" type="text">
-                      </td>
-                    </tr>
-                  </table>
-                  <button id="calculate_button">Calculate</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      <div class="prevalence_label col-md-3">
+                        <div id="DP" data-term="DP" for="prevalence" class="define">Prevalence</div>
+                      </div>
+                      <input id="prevalence" type="text">
+                      <button id="calculate_button">Calculate</button>
+                    </div>
+                  </div>
                   <div class="row">
                     <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                   <table id="output"></table>
                 </div>
-                <div class="col-md-6">
-                  <!-- Right Side--><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail">
-                </div>
+                <div class="col-md-6"><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail"></div>
                 <div class="bibliography">
-                  <p><b>References:</b></p>
+                  <p><strong>References:</strong></p>
                   <p>Marina V. Kondratovich, (2007), <i>
                       Comparing Two Medical Tests
                       When Results of Reference Standard Are Unavailable for Those
-                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
-                  <p><b>Where do I go for technical support?</b> Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Comparison Tool Support" title="Biomarker Comparision Tool Technical Support">e-mail</a> to our technical support team.</p>
-                  <p><b>What browsers does the web tool support?</b> The web tool has been tested to work with Internet Explorer versions 10, 9 and 8, Firefox and Chrome.</p>
+                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">
+                       
+                      DOI: 10.1080/10543400701668308</a></p>
                 </div>
               </p>
             </div>
-            <!-- columns float END-->
-            <!-- main-->
-            <div id="rs_advanced" title="Risk Stratification Adnvanced Analysis" role="tabpanel" class="tab-pane fade"> 
-              <h3 class="title text-center">Risk Stratification Advanced Analysis</h3>
-              <form>
-                <table>
-                  <tr>
-                    <td>
-                      <label for="independent_dropdown">Independent Variable</label>
-                    </td>
-                    <td>
-                      <select id="independent_dropdown" name="independent_dropdown">
-                        <option value="" selected=""></option>
-                        <option value="specificity">Specificity</option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="ppv">PPV</option>
-                        <option value="delta">Delta</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="independent">
-                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
-                      </label>
-                    </td>
-                    <td>
-                      <div id="indDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label for="contour_dropdown">Contour</label>
-                    </td>
-                    <td>
-                      <select id="contour_dropdown" name="contour_dropdown">
-                        <option value="" selected=""></option>
-                        <option value="ppv">PPV</option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="specificity">Specificity</option>
-                        <option value="delta">Delta</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="contour">
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="">
-                      </label>
-                    </td>
-                    <td>
-                      <div id="contourDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label for="fixed_dropdown">Fixed Values</label>
-                    </td>
-                    <td>
-                      <select id="fixed_dropdown" name="fixed_dropdown">
-                        <option value="" selected=""></option>
-                        <option value="prevalence">Prevalence</option>
-                        <option value="delta">Delta</option>
-                        <option value="ppv">PPV</option>
-                        <option value="specificity">Specificity</option>
-                        <option value="sensitivity">Sensitivity</option>
-                        <option value="cnpv">cNPV</option>
-                      </select>
-                    </td>
-                    <td>
-                      <label for="fixed">
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="">
-                      </label>
-                    </td>
-                    <td>
-                      <div id="fvDef"></div>
-                    </td>
-                    <td><span class="variable-example"></span></td>
-                  </tr>
-                </table><br>
-                <div style="width: 450px;">
-                  <button id="calculate" disabled="">Calculate</button>
-                  <button id="reset" type="reset">Reset</button><a id="add-test-data" href="#" title="Populate variables with a working example">Example</a>
+            <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+            <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
+              <h3 title="Risk Stratification Adnvanced Analysis" class="title text-center">Risk Stratification Advanced Analysis</h3>
+              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a data-target="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div>
+              <form class="col-md-7">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="independent_dropdown">Independent Variable</label>
+                      </div>
+                      <div class="col-md-3">
+                        <select id="independent_dropdown" name="independent_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="specificity">Specificity</option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="ppv">PPV</option>
+                          <option value="delta">Delta</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="independent" class="sr-only">Independent Variable Value</label>
+                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                      </div>
+                      <div id="indDef" class="col-md-1"></div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="contour_dropdown">Contour</label>
+                      </div>
+                      <div class="col-md-3">   
+                        <select id="contour_dropdown" name="contour_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="ppv">PPV</option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="specificity">Specificity</option>
+                          <option value="delta">Delta</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="contour" class="sr-only">Contour Value</label>
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                      </div>
+                      <div class="col-md-1">
+                        <div id="contourDef"></div>
+                      </div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="fixed_dropdown">Fixed Values</label>
+                      </div>
+                      <div class="col-md-3">  
+                        <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm">
+                          <option value="" selected=""></option>
+                          <option value="prevalence">Prevalence</option>
+                          <option value="delta">Delta</option>
+                          <option value="ppv">PPV</option>
+                          <option value="specificity">Specificity</option>
+                          <option value="sensitivity">Sensitivity</option>
+                          <option value="cnpv">cNPV</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label for="fixed" class="sr-only">Fixed Value</label>
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="" class="input-sm">
+                      </div>
+                      <div class="col-md-1">
+                        <div id="fvDef"></div>
+                      </div>
+                      <div class="col-md-2"><span class="variable-example"></span></div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <button id="calculate" disabled="">Calculate</button>
+                    <button id="reset" type="reset">Reset</button>
+                    <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
+                  </div>
                 </div>
-                <div id="status-bar">Status Bar</div>
-              </form><br>
-              <div id="dialog-confirm" title="Rules Violation">
-                <p><span style="float: left; margin: 0 7px 20px 0;" class="ui-icon ui-icon-alert"></span>
-                  <div>One or more of the following rules have been violated:</div>
-                  <ul>
-                    <li class="rule rule1">
-                      Specificity, Sensitivity, PPV, cNPV, and
-                      Prevalence can only be 0 to 1
-                    </li>
-                    <li style="font-weight: bold;" class="rule rule2">
-                      Delta can be
-                      0 to 5
-                    </li>
-                    <li class="rule rule3">cNPV < Prevalence</li>
-                    <li class="rule rule3">
-                      For arrays: max(cNPV) <
-                      min(Prevalence)
-                    </li>
-                    <li class="rule rule4">Prevalence < PPV</li>
-                    <li class="rule rule4">For arrays: max(prev) < min(PPV)</li>
-                    <li class="rule rule5">Sensitivity+Specificity-1 > 0</li>
-                  </ul><span style="font-weight: bold;">
-                    Do you wish to continue with
-                    calculation anyway?</span>
-                </p>
+              </form>
+              <div id="status-bar">Status Bar</div>
+              <div id="dialog-confirm" title="Rules Violation" class="modal fade">
+                <div class="modal-dialog"></div>
+                <div class="modal-content">
+                  <div class="modal-header">One or more of the following rules have been violated:</div>
+                  <div class="modal-body">
+                    <ul class="list-unstyled">
+                      <li class="rule rule1">Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</li>
+                      <li class="rule rule2"><strong>Delta can be 0 to 5</strong></li>
+                      <li class="rule rule3"> <strong>cNPV < Prevalence</strong></li>
+                      <li class="rule rule3"> <strong>For arrays: max(cNPV) < min(Prevalence)</strong></li>
+                      <li class="rule rule4"> <strong>Prevalence < PPV</strong></li>
+                      <li class="rule rule4"><strong>For arrays: max(prev) < min(PPV)</strong></li>
+                      <li class="rule rule5"><strong>Sensitivity+Specificity-1 > 0</strong></li>
+                    </ul><strong>Do you wish to continue with calculation anyway?</strong>
+                  </div>
+                </div>
               </div>
-              <div id="output"></div>
-              <div id="output1"></div>
+              <div id="output" class="row"></div>
+              <div id="output1" class="row"></div>
             </div>
-            <div id="sampleSize" title="Power and Sample Size Calculation" role="tabpanel" class="tab-pane fade">
-              <h3 class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
+            <div id="sampleSize" role="tabpanel" class="tab-pane fade">
+              <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
+              <div class="row col-md-offset-11">
+                <div id="helpGlossaryLinks" class="extra-padding"><a data-target="#help_sampleSize" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a></div>
+              </div>
               <form id="ss">
                 <div class="col-md-9 col-md-offset-2 well well-lg">
                   <div id="message" class="col-sm-7 col-sm-offset-2 hide">
@@ -500,7 +446,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="col-md-6">
-                            <label class="pull-right">Min Value</label>
+                            <label>Min Value</label>
                           </div>
                           <div class="col-md-6">
                             <label class="pull-left">Max Value</label>
@@ -510,7 +456,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        <label class="pull-right"></label>
+                        <div class="pull-right"></div>
                       </div>
                       <div class="col-md-9">
                         <div class="col-md-6"></div>
@@ -613,18 +559,382 @@
                 <div id="output_graph"></div>
               </div>
             </div>
-            <div id="help" title="Help" role="tabpanel" class="tab-pane fade">
-              <h3 class="text-center">Help</h3>
-              <h4 class="text-center">Tools Help</h4>
+            <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
+              <h3 title="Mean Risk Stratification" class="title text-center">Mean Risk Stratification</h3>
+              <div class="row pull-right col-md-2">
+                <div id="helpGlossaryLinks" class="extra-padding"></div><a data-target="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="col-md-12">
+                  <form id="markers" class="panel-group">
+                    <div class="marker panel panel-default marker-1">
+                      <div class="bg-primary">
+                        <div class="text-center marker-title">Biomarker #1</div>
+                      </div>
+                      <div class="extra-padding">
+                        <label for="name-input">Biomarker Name</label>
+                        <input type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9]*$" class="name-input input input-sm">
+                      </div>
+                      <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-1" class="panel-heading">
+                        <h6 class="panel-title"><a title="Input: 2x2 Table" class="accordion-toggle">Input: 2x2 Table</a><span class="glyphicon glyphicon-chevron-down"></span></h6>
+                      </div>
+                      <div id="marker-1-option-1" class="panel-collapse collapse in">
+                        <div class="option-1 panel-body">
+                          <table class="table table-condensed">
+                            <thead>
+                              <tr>
+                                <th class="col-md-2 header">
+                                  <div class="sr-only">Empty cell<a href="#prob_m">Skip to Content</a></div>
+                                </th>
+                                <th id="prob_m" class="termToDefine header">Marker Positive (M+)</th>
+                                <th id="m_neg" class="termToDefine header">Marker Negative (M-)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)    </th>
+                                <td>
+                                  <label for="a" class="sr-only">A</label>
+                                  <input id="a" name="a" type="number" maxlength="30" class="input input-sm">
+                                </td>
+                                <td>
+                                  <label for="b" class="sr-only">B</label>
+                                  <input id="b" name="b" type="number" maxlength="30" class="input input-sm">
+                                </td>
+                              </tr>
+                              <tr>
+                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)    </th>
+                                <td>
+                                  <label for="c" class="sr-only">C</label>
+                                  <input id="c" name="c" type="number" maxlength="30" class="input input-sm">
+                                </td>
+                                <td>
+                                  <label for="d" class="sr-only">D</label>
+                                  <input id="d" name="d" type="number" maxlength="30" class="input input-sm">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-2" class="panel-heading">
+                        <h6 class="panel-title"><a title="Input: PPV, NPV, Sensitivity,Specificity, etc." class="accordion-toggle">Input: PPV, NPV, Sensitivity,Specificity, etc.<span class="glyphicon glyphicon-chevron-down"></span></a></h6>
+                      </div>
+                      <div id="marker-1-option-2" class="panel-collapse collapse">
+                        <div class="option-2 panel-body extra-padding table-responsive">
+                          <div class="extra-padding">
+                            <label for="sampsize">Sample Size</label>
+                            <input name="sampsize" type="number" maxlength="30" min="1" class="input input-sm">
+                          </div>
+                          <table class="option-2 table table-condensed table-responsive">
+                            <thead>
+                              <tr>
+                                <th title="Parameter Type Column" class="header">Parameter</th>
+                                <th title="Parameter Proportion Column" class="header">Proportion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr row="0">
+                                <td>
+                                  <select name="param_1" class="input input-sm">
+                                    <option value="ppv">PPV</option>
+                                    <option value="sens">Sensitivity</option>
+                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                </td>
+                                <td>
+                                  <input type="number" name="param_1" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                </td>
+                              </tr>
+                              <tr row="1">
+                                <td>
+                                  <select name="param_2" class="input input-sm">
+                                    <option value="npv">NPV</option>
+                                    <option value="spec">Specificity</option>
+                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                </td>
+                                <td>
+                                  <input type="number" name="param_2" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                </td>
+                              </tr>
+                              <tr row="2">
+                                <td>
+                                  <select name="param_3" class="input input-sm">
+                                    <option value="prob_m">Marker Positivity (P(M+))</option>
+                                    <option value="prob_d">Disease Prevalence (P(D+))</option>
+                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                </td>
+                                <td>
+                                  <input type="number" name="param_3" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div id="control-group" class="col-md-12">
+                    <div class="row">
+                      <div class="pull-left">
+                        <button id="add-marker"><span alt="Add(+)" title="Add biomarker" class="glyphicon glyphicon-plus-sign">&nbsp;</span><span>Add</span></button>
+                        <button id="delete-marker" title="Delete biomarker"><span alt="Delete(-)" class="glyphicon glyphicon-minus-sign">&nbsp;</span><span>Delete</span></button>
+                        <button id="reset" type="reset" title="Reset">Reset</button>
+                        <button id="calculate" type="button" title="Calculate">Calculate</button>
+                      </div>
+                      <div class="pull-right">
+                        <div class="row"><a id="test1" href="javascript:void(0);" title="Populate 1 biomarker using test data">Example 1</a></div>
+                        <div class="row"><a id="test2" href="javascript:void(0);" title="Populate 1 biomarker using test data">Example 2     </a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8 col-sm-8">
+                <div class="row">
+                  <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                </div>
+                <div id="results">
+                  <table class="table table-bordered table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Calculations</th>
+                        <th class="bm_1 marker_name"></th>
+                        <th class="bm_2 marker_name"></th>
+                        <th class="bm_3 marker_name"></th>
+                      </tr>
+                    </thead>                
+                    <tr>
+                      <td class="concern termToDefine">Concern = PPV-P(D+)</td>
+                      <td id="concern_result" class="output bm_1"></td>
+                      <td id="concern_result" class="output bm_2"></td>
+                      <td id="concern_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="reassurance termToDefine">Reassurance = P(D+)-cNPV</td>
+                      <td id="reassurance_result" class="output bm_1"></td>
+                      <td id="reassurance_result" class="output bm_2"></td>
+                      <td id="reassurance_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="q_sens termToDefine">Concentration = Sensitivity - P(M+)</td>
+                      <td id="q_sens_result" class="output bm_1"></td>
+                      <td id="q_sens_result" class="output bm_2"></td>
+                      <td id="q_sens_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="q_spec termToDefine">Reduction = P(M+) - cSpec</td>
+                      <td id="q_spec_result" class="output bm_1"></td>
+                      <td id="q_spec_result" class="output bm_2"></td>
+                      <td id="q_spec_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="mrs termToDefine">Mean Risk Stratification = 2(ad-bc)</td>
+                      <td id="mrs_result" class="output bm_1"></td>
+                      <td id="mrs_result" class="output bm_2"></td>
+                      <td id="mrs_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="max_mrs termToDefine">Maximum possible MRS for a disease with this prevalence</td>
+                      <td id="max_mrs_result" class="output bm_1"></td>
+                      <td id="max_mrs_result" class="output bm_2"></td>
+                      <td id="max_mrs_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="pbs termToDefine">Population Burden Stratification (PBS) = a-b</td>
+                      <td id="pbs_result" class="output bm_1"></td>
+                      <td id="pbs_result" class="output bm_2"></td>
+                      <td id="pbs_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="nnr termToDefine">Number Needed to Recruit (NNR) = 1/PBS</td>
+                      <td id="nnr_result" class="output bm_1"></td>
+                      <td id="nnr_result" class="output bm_2"></td>
+                      <td id="nnr_result" class="output bm_3"></td>
+                    </tr>                
+                    <tr>
+                      <td class="nns termToDefine">Number Needed to Screen (NNS) =1/RD</td>
+                      <td id="nns_result" class="output bm_1"></td>
+                      <td id="nns_result" class="output bm_2"></td>
+                      <td id="nns_result" class="output bm_3"></td>
+                    </tr>
+                  </table><br>
+                  <table class="table table-bordered table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Parameters</th>
+                        <th class="bm_1 marker_name"></th>
+                        <th class="bm_2 marker_name"></th>
+                        <th class="bm_3 marker_name"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="test termToDefine">True Positive Fraction = a</td>
+                        <td id="d_pos_result" class="output bm_1"></td>
+                        <td id="d_pos_result" class="output bm_2"></td>
+                        <td id="d_pos_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">False Negative Fraction = b</td>
+                        <td id="pos_d_neg_m_result" class="output bm_1"></td>
+                        <td id="pos_d_neg_m_result" class="output bm_2"></td>
+                        <td id="pos_d_neg_m_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">False Positive Fraction = c</td>
+                        <td id="neg_d_pos_m_result" class="output bm_1"></td>
+                        <td id="neg_d_pos_m_result" class="output bm_2"></td>
+                        <td id="neg_d_pos_m_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">True Negative Fraction = d</td>
+                        <td id="m_neg_result" class="output bm_1"></td>
+                        <td id="m_neg_result" class="output bm_2"></td>
+                        <td id="m_neg_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="termToDefine prob_m">Marker Positivity</td>
+                        <td id="prob_m_result" class="output bm_1"></td>
+                        <td id="prob_m_result" class="output bm_2"></td>
+                        <td id="prob_m_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="prob_d termToDefine">Disease Prevalence</td>
+                        <td id="prob_d_result" class="output bm_1"></td>
+                        <td id="prob_d_result" class="output bm_2"></td>
+                        <td id="prob_d_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="termToDefine ppv">Positive Predictive Value (PPV)</td>
+                        <td id="ppv_result" class="output bm_1"></td>
+                        <td id="ppv_result" class="output bm_2"></td>
+                        <td id="ppv_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="cnpv termToDefine">Complement of Negative Predictive Value (cNPV)</td>
+                        <td id="c_npv_result" class="output bm_1"></td>
+                        <td id="c_npv_result" class="output bm_2"></td>
+                        <td id="c_npv_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="termToDefine sens">Sensitivity</td>
+                        <td id="sens_result" class="output bm_1"></td>
+                        <td id="sens_result" class="output bm_2"></td>
+                        <td id="sens_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="termToDefine spec">Specificity</td>
+                        <td id="spec_result" class="output bm_1"></td>
+                        <td id="spec_result" class="output bm_2"></td>
+                        <td id="spec_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">Complement of Specificity (cSpec)</td>
+                        <td id="c_spec_result" class="output bm_1"></td>
+                        <td id="c_spec_result" class="output bm_2"></td>
+                        <td id="c_spec_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">Relative Risk</td>
+                        <td id="rr_result" class="output bm_1"></td>
+                        <td id="rr_result" class="output bm_2"></td>
+                        <td id="rr_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">Risk Difference (RD)</td>
+                        <td id="r_diff_result" class="output bm_1"></td>
+                        <td id="r_diff_result" class="output bm_2"></td>
+                        <td id="r_diff_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="test termToDefine">Youden's Index (YI)</td>
+                        <td id="youden_result" class="output bm_1"></td>
+                        <td id="youden_result" class="output bm_2"></td>
+                        <td id="youden_result" class="output bm_3"></td>
+                      </tr>
+                      <tr>
+                        <td class="auc termToDefine">AUC = (1+YI)/2</td>
+                        <td id="auc_result" class="output bm_1"></td>
+                        <td id="auc_result" class="output bm_2"></td>
+                        <td id="auc_result" class="output bm_3"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div id="help" role="tabpanel" class="tab-pane fade">
+              <h3 title="Help" class="text-center">Help</h3>
+              <ul id="toc" class="list-unstyled extra-padding">
+                <ul class="list-unstyled"></ul>
+              </ul>
+              <h4 id="tools-help" class="text-center bg-primary">Tools Help</h4>
               <section>
-                <h5>Means to Risk Stratification</h5>
-                <h5>Biomarker Comparison</h5>
-                <h5>Risk Stratification Advanced Analysis</h5>
-                <h5>Power and Sample Size Calculation</h5>
+                <article class="extra-padding">
+                  <h5 id="help_meanstorisk">Means to Risk Stratification</h5>
+                  <h5 id="help_bc">Biomarker Comparison</h5>
+                  <h5 id="help_riskStratAdvanced">Risk Stratification Advanced Analysis</h5>
+                  <article class="extra-padding">
+                    <p><b>Instructions for Input</b><br>This tool calculates values and creates a graph for valid combinations of given PPV, cNPV,
+                      delta, specificity, sensitivity, and prevalence values. Click on the 'Example' link 
+                      for an example input combination.
+                      <ol>
+                        <li>
+                          Choose which values you would like to input as the
+                          independent variable, or for the x-axis of the output graph, from
+                          the drop-down menu next to 'Independent Variable'. Then enter your
+                          values as decimals separated by commas.
+                        </li>
+                        <li>
+                          Choose which values you would like to input as the contours
+                          of the output graph from the drop-down menu next to 'Contour'. Then
+                          enter your values as decimals separated by commas.
+                        </li>
+                        <li>
+                          Choose which values you would like to input as fixed
+                          values. Then enter your values as decimals separated by commas.
+                        </li>
+                        <li>Click 'Calculate'</li>
+                      </ol>
+                    </p>
+                    <p><b>Input Validation Rules</b>
+                      <ul>
+                        <li>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</li>
+                        <li>Delta can be 0 to 5</li>
+                        <li>cNPV < Prevalence</li>
+                        <li>For arrays: max(cNPV) < min(Prevalence)</li>
+                        <li>Prevalence < PPV</li>
+                        <li>For arrays: max(prev) < min(PPV)</li>
+                        <li>Sensitivity+Specificity-1 > 0</li>
+                        <li>
+                          PPV and cNPV; Sensitivity, Specificity, and Delta; PPV,
+                          Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid combinations of input
+                        </li>
+                      </ul>
+                    </p>
+                  </article>
+                  <h5 id="help_sampleSize">Power and Sample Size Calculation</h5>
+                  <h5 id="help_meanRiskStratification">Mean Risk Stratification</h5>
+                </article>
               </section>
-              <h4 class="text-center">FAQ</h4>
-              <h4 class="text-center">Glossary of Terms</h4>
-              <div id="glossary"></div>
+              <h4 id="faq" class="text-center bg-primary">FAQ</h4>
+              <section>
+                <article class="extra-padding">
+                  <dl>
+                    <dt>Where do I go for technical support? </dt>
+                    <dl>Please send an <a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov?subject=Biomarker Evaluation Tools" title="Biomarker Evaluation Tools">e-mail</a> to our technical support team.</dl>
+                  </dl>
+                  <dl>
+                    <dt>What browsers does the web tool support? </dt>
+                    <dl>
+                      The web tools have been tested to work with Internet Explorer 10, Firefox and Chrome.
+                      These tools do not support Internet Explorer 9 and below.
+                    </dl>
+                  </dl>
+                </article>
+              </section>
+              <h4 id="header-glossary" class="text-center bg-primary">Glossary of Terms</h4>
+              <section id="glossary" class="extra-padding"></section>
             </div>
           </div>
         </div>
@@ -635,6 +945,6 @@
           Department of Health and
           Human Services</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
     </div>
-    <script data-main="scripts/requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
+    <script data-main="requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
   </body>
 </html>
