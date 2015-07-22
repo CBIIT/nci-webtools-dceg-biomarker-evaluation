@@ -76,19 +76,28 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
             .modal-header One or more of the following rules have been violated:
             .modal-body
                 ul.list-unstyled
-                  li.rule.rule1 Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1
+                  li.rule.rule1
+                    strong
+                        | Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1
                   li.rule.rule2
-                    strong Delta can be 0 to 5
+                    strong 
+                        | Delta can be 0 to 5
                   li.rule.rule3 
-                    strong cNPV < Prevalence
+                    strong
+                        | cNPV < Prevalence
                   li.rule.rule3 
-                    strong For arrays: max(cNPV) < min(Prevalence)
+                    strong 
+                        | For arrays: max(cNPV) < min(Prevalence)
                   li.rule.rule4 
-                    strong Prevalence < PPV
+                    strong
+                        | Prevalence < PPV
                   li.rule.rule4
-                    strong For arrays: max(prev) < min(PPV)
+                    strong 
+                        | For arrays: max(prev) < min(PPV)
                   li.rule.rule5
-                    strong Sensitivity+Specificity-1 > 0
-                strong Do you wish to continue with calculation anyway?
+                    strong
+                        | Sensitivity+Specificity-1 > 0
+                strong 
+                    | Do you wish to continue with calculation anyway?
     .row#output
     .row#output1
