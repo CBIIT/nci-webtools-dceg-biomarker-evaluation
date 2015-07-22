@@ -42,7 +42,7 @@
               these strategies will allow focusing on the most promising markers early on, making specific improvements if required,
               or abandoning markers that are most likely to fail.<br>&nbsp;
               <ul class="list-unstyled">
-                <li><a title="Means To Risk" data-target="#meanstorisk" data-toggle="tab" class="goToTab">Means To Risk</a></li>
+                <li><a title="The Means To Risk" data-target="#meanstorisk" data-toggle="tab" class="goToTab">Means To Risk</a></li>
                 <li><a title="Biomarker Comparison" data-target="#bc" data-toggle="tab" class="goToTab">Biomarker Comparison</a></li>
                 <li> <a title="Risk Stratification Advanced Options" data-target="#riskStratAdvanced" data-toggle="tab" class="goToTab">Risk Stratification Advanced Options</a></li>
                 <li><a title="Power and Sample Size Calculation" data-target="#sampleSize" data-toggle="tab" class="goToTab">Power and Sample Size Calculation</a></li>
@@ -56,7 +56,7 @@
                 <div class="col-md-4">
                   <form>
                     <div id="accordion" class="panel panel-default">
-                      <div class="panel-heading text-center"> <b>Choose how to enter the data</b></div>
+                      <div class="panel-heading"><b>Choose how to enter the data</b></div>
                       <div class="panel-heading">
                         <div data-toggle="collapse" data-target="#file_upload" class="panel-title">User Defined Distribution (from File)
                           <div class="glyphicon glyphicon-chevron-down"></div>
@@ -130,60 +130,61 @@
                         </label>
                       </div>
                     </div>
-                    <input id="calculate_button" type="button" value="Calculate" class="pull-left">
-                    <input id="download_button" type="button" value="Download Excel File" class="pull-right">
+                    <button id="calculate_button" type="button">Calculate</button>
+                    <button id="reset" type="reset">Reset</button>
+                    <button id="download_button" type="button" class="hide">Download Excel File</button>
                   </form>
                 </div>
                 <div class="panel panel-default col-md-4 table_panel">
-                  <div class="row"> <b class="header col-md-4">&nbsp;</b><b class="header col-md-2">Cases</b><b class="header col-md-3">Controls</b><b class="header col-md-3">Overall</b></div>
-                  <div class="row table_data">
-                    <div class="header table_data col-md-4"><b>Mean</b></div>
-                    <div id="mean_cases" class="col-md-4 table_data text-rcenterght"></div>
-                    <div id="mean_controls" class="col-md-4 table_data text-center"></div>
-                    <div id="mean_overall" class="col-md-4 table_data text-center"></div>
+                  <div class="row"> <b class="header col-md-5">&nbsp;</b><b class="header col-md-2">Cases</b><b class="header col-md-3">Controls</b><b class="header col-md-2">Overall</b></div>
+                  <div class="row">
+                    <div class="header col-md-5"><b>Mean</b></div>
+                    <div id="mean_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="mean_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="mean_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">Standard Error</b>
-                    <div id="stderr_cases" class="col-md-4 table_data text-center"></div>
-                    <div id="stderr_controls" class="col-md-4 table_data text-center"></div>
-                    <div id="stderr_overall" class="col-md-4 table_data text-center"></div>
+                  <div class="row"><b class="header col-md-5">Standard Error</b>
+                    <div id="stderr_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="stderr_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">N</b>
-                    <div id="N_cases" class="col-md-4 table_data text-center"></div>
-                    <div id="N_controls" class="col-md-4 table_data text-center"></div>
-                    <div id="N_overall" class="col-md-4 table_data text-center"></div>
+                  <div class="row"><b class="header col-md-5">N</b>
+                    <div id="N_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="N_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="N_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row table_data line-above"><b class="header table_data col-md-4">Standard Deviation</b>
-                    <div id="deviation_cases" class="col-md-4 table_data"></div>
-                    <div id="deviation_controls" class="col-md-4 table_data"></div>
-                    <div id="deviation_overall" class="col-md-4 table_data"></div>
+                  <div class="row line-above"><b class="header col-md-5">Standard Deviation</b>
+                    <div id="deviation_cases" class="col-md-2 table_data"></div>
+                    <div id="deviation_controls" class="col-md-3 table_data"></div>
+                    <div id="deviation_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">Variance</b>
-                    <div id="variance_cases" class="col-md-4 table_data"></div>
-                    <div id="variance_controls" class="col-md-4 table_data"></div>
-                    <div id="variance_overall" class="col-md-4 table_data"></div>
+                  <div class="row"><b class="header col-md-5">Variance</b>
+                    <div id="variance_cases" class="col-md-2 table_data"></div>
+                    <div id="variance_controls" class="col-md-3 table_data"></div>
+                    <div id="variance_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">
+                  <div class="row"><b class="header col-md-5">
                       <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
-                    <div id="cv_cases" class="col-md-4 table_data"></div>
-                    <div id="cv_controls" class="col-md-4 table_data"></div>
-                    <div id="cv_overall" class="col-md-4 table_data"></div>
+                    <div id="cv_cases" class="col-md-2 table_data"></div>
+                    <div id="cv_controls" class="col-md-3 table_data"></div>
+                    <div id="cv_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">Difference in Mean</b>
-                    <div id="diff_cases" class="col-md-4 table_data"></div>
-                    <div id="diff_controls" class="col-md-4 table_data"></div>
-                    <div id="diff_overall" class="col-md-4 table_data"></div>
+                  <div class="row"><b class="header col-md-5">Difference in Mean</b>
+                    <div id="diff_cases" class="col-md-2 table_data"></div>
+                    <div id="diff_controls" class="col-md-3 table_data"></div>
+                    <div id="diff_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">
+                  <div class="row"><b class="header col-md-5">
                       <div id="Delta" data-term="Delta" class="define">Delta</div></b>
-                    <div id="delta_cases" class="col-md-4 table_data"></div>
-                    <div id="delta_controls" class="col-md-4 table_data"></div>
-                    <div id="delta_overall" class="col-md-4 table_data"></div>
+                    <div id="delta_cases" class="col-md-2 table_data"></div>
+                    <div id="delta_controls" class="col-md-3 table_data"></div>
+                    <div id="delta_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row table_data"><b class="header table_data col-md-4">
+                  <div class="row"><b class="header col-md-5">
                       <div id="AUC" data-term="AUC" class="define">AUC</div></b>
-                    <div id="auc_cases" class="col-md-4 table_data"></div>
-                    <div id="auc_controls" class="col-md-4 table_data"></div>
-                    <div id="auc_overall" class="col-md-4 table_data"></div>
+                    <div id="auc_cases" class="col-md-2 table_data"></div>
+                    <div id="auc_controls" class="col-md-3 table_data"></div>
+                    <div id="auc_overall" class="col-md-2 table_data"></div>
                   </div>
                 </div>
                 <div class="graph_panel col-md-4"></div>
@@ -408,14 +409,22 @@
                   <div class="modal-header">One or more of the following rules have been violated:</div>
                   <div class="modal-body">
                     <ul class="list-unstyled">
-                      <li class="rule rule1">Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</li>
-                      <li class="rule rule2"><strong>Delta can be 0 to 5</strong></li>
+                      <li class="rule rule1"><strong>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</strong></li>
+                      <li class="rule rule2"><strong>
+                           
+                          Delta can be 0 to 5</strong></li>
                       <li class="rule rule3"> <strong>cNPV < Prevalence</strong></li>
-                      <li class="rule rule3"> <strong>For arrays: max(cNPV) < min(Prevalence)</strong></li>
+                      <li class="rule rule3"> <strong>
+                           
+                          For arrays: max(cNPV) < min(Prevalence)</strong></li>
                       <li class="rule rule4"> <strong>Prevalence < PPV</strong></li>
-                      <li class="rule rule4"><strong>For arrays: max(prev) < min(PPV)</strong></li>
+                      <li class="rule rule4"><strong>
+                           
+                          For arrays: max(prev) < min(PPV)</strong></li>
                       <li class="rule rule5"><strong>Sensitivity+Specificity-1 > 0</strong></li>
-                    </ul><strong>Do you wish to continue with calculation anyway?</strong>
+                    </ul><strong>
+                       
+                      Do you wish to continue with calculation anyway?</strong>
                   </div>
                 </div>
               </div>
