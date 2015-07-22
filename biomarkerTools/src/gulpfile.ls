@@ -108,7 +108,7 @@ gulp.task 'js:copy' <[bower]> ->
     
   #merge scripts for mrs
   s.queue gulp.src \app/scripts/meanRiskStratification/*.js
-    .pipe gulp-concat \meanRiskStratification.js
+    .pipe gulp-concat \mrs.js
     .pipe gulp-if dev, livereload!
     .pipe gulp.dest "#{parentDir}/meanRiskStratification"
     
