@@ -10,6 +10,7 @@ $(function(){
         thisTool.find("#spinner").removeClass("hide"); 
         thisTool.find("#message").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
+        if(window.location.hostname) service = "sampleSize/test-data.json";
         
         $.ajax({
             type: 'POST',
@@ -73,7 +74,7 @@ $(function(){
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
         console.log(i);
-        var tablesvar = "<TABLE class='table_data'><TBODY>";
+        var tablesvar = "<TABLE class='table table-bordered table-condensed'><TBODY>";
         tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         ppvtabledata = tablesvar;
         cnpvtabledata = tablesvar;
@@ -122,7 +123,6 @@ function generate_tabs(iterate,randomnumber){
     for (var i = 0; i < arrayLength; i++) {
         console.log(fixedvals[i]);
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
-        //tabcontent += '<div id="tabs-'+(i+1)+'"><p>IMAGE'+fixedvals[i]+'</p></div>';
         tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
 
         //Do something
