@@ -26,7 +26,7 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
     var id, title;
     
     // IE10 doesn't support data-attributes
-    if(el.target.dataset == undefined)
+    if(el.target.dataset === undefined)
         id = el.target.attributes.getNamedItem("data-target").nodeValue;
     else
         id = el.target.dataset.target.replace('#', '');
@@ -44,7 +44,7 @@ $('.goToTab').on('click', function(el){
 });
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    if(e.target.dataset == undefined)
+    if(e.target.dataset === undefined)
         previousTab = e.relatedTarget.attributes.getNamedItem("data-target").nodeValue;
     else
         previousTab = e.relatedTarget.dataset.target.replace('#', '');
