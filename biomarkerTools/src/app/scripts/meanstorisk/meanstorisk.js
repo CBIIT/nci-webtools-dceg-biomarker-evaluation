@@ -14,8 +14,13 @@ var ppv_tabs = {
     "Cases per 1000 with Disease": "# of Cases Detected per 1000 with the Disease"
 };
 
+$('a[data-target="#meanstorisk"]').on('shown.bs.tab',function(e){
+    init_meanstorisk();
+});
 
-$(document).ready(function() {
+$(document).ready(init_meanstorisk);
+
+function init_meanstorisk(){
     thisTool = $("#meanstorisk");
     bind_calculate_button();
     bind_download_button();
@@ -45,7 +50,7 @@ $(document).ready(function() {
             .removeClass('in')
             .addClass('collapse');
     });
-});
+}
 
 function prepare_upload (e){
     files = e.target.files;
@@ -330,7 +335,6 @@ function make_excel_call_standard_calculation() {
 }
 
 function set_data(dt) {
-    //	alert ("Success");
     $("#please_wait_calculate").modal("hide");
     $("#download_button").removeClass("hide");
     set_values_table(dt);
@@ -528,15 +532,16 @@ function format_number(num) {
     return num;
 }
 
-function reset(){
+function reset_meanstorisk(){
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find("input").val("");
     thisTool.find("input#specificity").val("0.8, 0.9, 0.95, 0.99, 0.999");
     thisTool.find("input#prevalence").val("0.1, 0.05, 0.01, 0.005, 0.001");
     
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
+    thisTool.find("#download_button").addClass("hide");
 }
-thisTool.find("#reset").on("click", reset);
+thisTool.find("#reset").on("click", reset_meanstorisk);
 //  Below is needed for IE 9 and below and compatibility mode as the older version does not support the Object.keys method
 
 Object.keys = Object.keys || function(o) { 
