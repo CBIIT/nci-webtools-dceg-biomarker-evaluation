@@ -25,13 +25,13 @@ requirejs.config({
             deps: ['jquery']
         },
         sampleSize: {
-            deps: ['jquery.ui', 'bootstrap']
+            deps: ['jquery.ui', 'routes']
         },
         meanstorisk: {
-            deps: ['jquery.ui', 'bootstrap']
+            deps: ['jquery.ui', 'routes']
         },
         riskStratAdvanced: {
-            deps: ['datatables','bootstrap']
+            deps: ['datatables','bootstrap', 'routes']
         },
         routes: {
             deps: ['modernzr','bootstrap', 'glossary']
