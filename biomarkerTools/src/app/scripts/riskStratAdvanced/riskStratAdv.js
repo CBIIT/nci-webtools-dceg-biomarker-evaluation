@@ -1,3 +1,5 @@
+"use strict";
+
 var oTable;
 var outputTable;
 var giRedraw = false;
@@ -154,7 +156,11 @@ var keyLong = [
     } ];
 var thisTool;
 
-$(document).ready(function() {
+$('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
+    init_riskStrat();
+});
+
+function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
     thisTool.bind('beforeunload', function() {
         // do something
@@ -214,7 +220,9 @@ $(document).ready(function() {
     });
 
     resetPage();
-});
+}
+
+$(document).ready(init_riskStrat);
 
 function addTestData() {
     // select dropdown
@@ -226,7 +234,7 @@ function addTestData() {
     thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
     thisTool.find("#contour").val("0.01, 0.05, 0.1");
     thisTool.find("#fixed").val("1, 1.5, 2, 3");
-    thisTool.find("#calculate").removeAttr("disabled");
+    thisTool.find("#calculate").button("enable");
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
 }
@@ -484,10 +492,10 @@ function checkInputFields() {
         selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
-        thisTool.find("#calculate").removeAttr("disabled");
+        thisTool.find("#calculate").button("disable");
     } else {
-        thisTool.find("#calculate").attr("disabled", "disabled");
-    };
+        thisTool.find("#calculate").button("enable");
+    }
 
 }
 
@@ -528,12 +536,12 @@ function calculate() {
     independentArraySplit = independentArray.split(",");
     var independentMin = Math.min.apply(Math, independentArraySplit);
     var independentMax = Math.max.apply(Math, independentArraySplit);
-    var contourArray = thisTool.find("#contour").val();
+    contourArray = thisTool.find("#contour").val();
     // Remove all spaces and non-characters
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
-    var fixedArray = thisTool.find("#fixed").val();
+    fixedArray = thisTool.find("#fixed").val();
     // Remove all spaces and non-characters
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
     var fixedval = thisTool.find("#fixed_dropdown").val();
@@ -737,7 +745,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
 
         var tableId = "example-" + abbreviatedKey + tabnumber;
         var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
-                    tableId + "'></table>");
+                      tableId + "'></table>");
         thisTool.find("#table-" + abbreviatedKey + tabnumber).append(table);
 
         table.dataTable({
@@ -813,12 +821,14 @@ function isNumberBetweenZeroAndOne(n) {
 }
 
 function refreshGraph(drawgraph) {
+    var graph_file;
+
     if (drawgraph == 1)
         graph_file = "tmp/" + uniqueKey + "SensSpecLR.jpg?";
     else
         graph_file = "./images/fail-message.jpg?";
 
-    d = new Date();
+    var d = new Date();
     thisTool.find("#graph").attr("src", graph_file + d.getTime());
 }
 
@@ -832,8 +842,8 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-    thisTool.find("#calculate").button("option", "disabled", true);
-
+    //    thisTool.find("#calculate").button("option", "disabled", true);
+    thisTool.find("#calculate").button('disable');
     if (activeSelectionChange === true)
         return;
 
@@ -858,7 +868,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
             }
         }
 
-        dropdownBoxId = ids[key];
+        var dropdownBoxId = ids[key];
         removeAllOptions(dropdownBoxId);
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
@@ -875,7 +885,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
 }
 
 function removeAllOptions(eid) {
-    element = document.getElementById(eid);
+    var element = document.getElementById(eid);
     var i;
     for (i = element.options.length - 1; i >= 0; i--) {
         element.remove(i);
@@ -884,6 +894,7 @@ function removeAllOptions(eid) {
 
 function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
     for (var optionKey = 0; optionKey < originalOptions.length; optionKey++) {
+        var attribute;
         if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
             attribute = $('#' + dropdownBoxId).append(
                 $("<option></option>").attr("value",
@@ -900,12 +911,12 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
 
 function setInitialValue(textboxId) {
 
-    selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
-    key = $.inArray(selectedOption, functionnames);
+    var selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
+    var key = $.inArray(selectedOption, functionnames);
 
-    eSelect = document.getElementById(textboxId);
+    var eSelect = document.getElementById(textboxId);
     // Get the parent row <tr> of this <select>
-    eSelect2 = $(eSelect).parent().parent()[0];
+    var eSelect2 = $(eSelect).parent().parent()[0];
 
     // This next command removes the selected attribute from options,
     // so we will reselect it later.
@@ -919,6 +930,7 @@ function setInitialValue(textboxId) {
 }
 
 function checkForInvalidVariableCombo() {
+    var validCombo;
     // Get array of variables
 
     // Get ids from select elements
@@ -933,18 +945,18 @@ function checkForInvalidVariableCombo() {
     });
 
     // Make sure all three variables exists else return
-    blankCount = $.inArray("", selectedValues);
+    var blankCount = $.inArray("", selectedValues);
     if ($.inArray("", selectedValues) == -1) {
         // All three variables are slected. Check if it is valid.
-        selectedValuesSorted = selectedValues.sort();
-        selectedValuesSortedString = selectedValues.join("-");
+        var selectedValuesSorted = selectedValues.sort();
+        var selectedValuesSortedString = selectedValues.join("-");
 
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
             // INVALID COMBO FOUND
-            userSelectedVariables = selectedValues[0].toString() + ", "+ 
+            var userSelectedVariables = selectedValues[0].toString() + ", "+ 
                 selectedValues[1].toString() + ",  and "+ 
                 selectedValues[2].toString();
-            message = "The variables "+ 
+            var message = "The variables "+ 
                 userSelectedVariables+ 
                 " do not form a valid variable combination for this calculation.  "+ 
                 "Please select a vaild variable combination.";
@@ -967,7 +979,7 @@ function checkForInvalidVariableCombo() {
         thisTool.find("#status-bar").addClass("status-info");
         thisTool.find("#status-bar").removeClass("status-error");
         thisTool.find("#status-bar").text("");
-        validCombo = false;
+        var validCombo = false;
 
         return;
     }
