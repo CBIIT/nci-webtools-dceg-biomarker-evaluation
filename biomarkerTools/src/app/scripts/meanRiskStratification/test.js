@@ -37,7 +37,8 @@ function setup_test() {
     });
 }
 
-function test() {
+function test(e) {
+    e.preventDefault();
     setup_test();
     // capture what element triggered test function
     var choice = $(this).prop('id');
