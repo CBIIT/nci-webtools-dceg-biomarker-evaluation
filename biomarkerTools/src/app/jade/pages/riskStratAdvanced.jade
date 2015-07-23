@@ -9,9 +9,9 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
         .panel.panel-default
             .panel-body
                 .row
-                  .col-md-4
-                    label(for='independent_dropdown') Independent Variable
                   .col-md-3
+                    label(for='independent_dropdown') Independent Variable
+                  .col-md-2
                     select.input-sm#independent_dropdown(name='independent_dropdown')
                         option(value='', selected='')
                         option(value='specificity') Specificity
@@ -20,16 +20,16 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='delta') Delta
                         option(value='sensitivity') Sensitivity
                         option(value='cnpv') cNPV
-                  .col-md-2
+                  .col-md-5
                     label.sr-only(for='independent') Independent Variable Value
-                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
-                  .col-md-1#indDef
+                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
                   .col-md-2
+                    #indDef
                     span.variable-example
                 .row
-                  .col-md-4
+                  .col-md-3
                     label(for='contour_dropdown') Contour
-                  .col-md-3    
+                  .col-md-2    
                     select.input-sm#contour_dropdown(name='contour_dropdown')
                         option(value='', selected='')
                         option(value='ppv') PPV
@@ -38,17 +38,16 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='delta') Delta
                         option(value='sensitivity') Sensitivity
                         option(value='cnpv') cNPV
-                  .col-md-2
+                  .col-md-5
                     label.sr-only(for='contour') Contour Value
-                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required='')
-                  .col-md-1
-                    #contourDef
+                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
                   .col-md-2
+                    #contourDef
                     span.variable-example
                 .row
-                  .col-md-4
+                  .col-md-3
                     label(for='fixed_dropdown') Fixed Values
-                  .col-md-3   
+                  .col-md-2   
                       select.input-sm#fixed_dropdown(name='fixed_dropdown')
                         option(value='', selected='')
                         option(value='prevalence') Prevalence
@@ -57,12 +56,11 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='specificity') Specificity
                         option(value='sensitivity') Sensitivity
                         option(value='cnpv') cNPV
-                  .col-md-3
+                  .col-md-5
                     label.sr-only(for='fixed') Fixed Value
-                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required='')
-                  .col-md-1
-                    #fvDef
+                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
                   .col-md-2
+                    #fvDef
                     span.variable-example
             .panel-footer
                 button#calculate(disabled='') Calculate
