@@ -2,7 +2,8 @@
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
 var thisTool;
-$(document).ready(function () {
+
+function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
     thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
@@ -10,7 +11,13 @@ $(document).ready(function () {
     create_popover();
 
     thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
+}
+
+$('a[data-target="#meanRiskStratification"]').on('shown.bs.tab',function(e){
+    init_meanRiskStratification();
 });
+
+$(document).ready(init_meanRiskStratification);
 
 function bind_control_events() {
     thisTool.find("#errors").alert();
