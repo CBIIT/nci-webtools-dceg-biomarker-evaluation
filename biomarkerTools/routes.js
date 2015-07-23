@@ -39,7 +39,13 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
 $('.goToTab').on('click', function(el){
     var ref;
     $('.nav li.active').removeClass('active');
-    ref = $(this).attr('data-target');
+    
+   
+    if(el.target.dataset === undefined)
+        ref = el.target.attributes.getNamedItem("data-target").nodeValue;
+    else
+        ref = $(this).attr('data-target');
+    
     $.when($(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active'));
 });
 
@@ -50,7 +56,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         previousTab = e.relatedTarget.dataset.target.replace('#', '');
     
     if(previousTab != "home" && previousTab != "glossary")
-        $($(e.relatedTarget).attr('data-target')).find("#reset").click();        
+        $($(e.relatedTarget).attr('data-target')).find("#reset").click();
 });
 
 $('.goToHelp,.goToGlossary').on('click', function(el){
