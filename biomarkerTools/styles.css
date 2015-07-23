@@ -135,6 +135,10 @@ body #contentTabs #bc .bibliography_entry {
 body #contentTabs #bc .bibliography_link {
   width: 50px;
 }
+body #contentTabs #meanstorisk .vertical-padding {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
 body #contentTabs #meanstorisk .table_panel .row {
   border: 0.125em solid #ddd;
   -webkit-border-radius: 4px;
