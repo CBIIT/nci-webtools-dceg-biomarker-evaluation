@@ -1,3 +1,4 @@
+"use strict";
 var uniqueKey, old_value, editing, row, col, validPrevValue;
 
 uniqueKey = null;
@@ -112,7 +113,7 @@ function clear_reference_row(){
     }
 }
 function add_new_row(){
-    var num_rows, row_1, row_2, row_3, row_4;
+    var num_rows, row_1, row_2, row_3, row_4, row_5;
     num_rows = thisTool.find('#inputdata').find('.row').length - 3;
     row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
     row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
@@ -267,7 +268,6 @@ function set_data(dt){
     } else {
         createOutputTable(jsonObject);
     }
-    bindTermToDefine();
     thisTool.find('.define').on('click',termDisplay);
     thisTool.find('#spinner').addClass('hide');
 }
