@@ -12,7 +12,7 @@ function init_sampleSize(){
         thisTool.find("#spinner").removeClass("hide"); 
         thisTool.find("#message").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-        if(window.location.hostname) service = "sampleSize/test-data.json";
+        if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
 
         $.ajax({
             type: 'POST',
