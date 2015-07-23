@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 var default_ajax_error;
 
 // reuse this variable across tools
