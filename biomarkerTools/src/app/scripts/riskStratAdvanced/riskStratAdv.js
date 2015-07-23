@@ -1,5 +1,4 @@
-"use strict";
-
+//"use strict";
 var oTable;
 var outputTable;
 var giRedraw = false;
