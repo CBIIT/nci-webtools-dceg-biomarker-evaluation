@@ -1,4 +1,5 @@
-"use strict";
+
+
 var uniqueKey, old_value, editing, row, col, validPrevValue;
 
 uniqueKey = null;
