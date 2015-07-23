@@ -1,0 +1,18 @@
+[ {
+ "Specificity":    0.7,
+"Sensitivity":    0.8,
+"LRplus":  2.667,
+"LRminus":    3.5 
+},
+{
+ "Specificity":   0.68,
+"Sensitivity":   0.85,
+"LRplus":  2.656,
+"LRminus":  4.533 
+},
+{
+ "Specificity":    0.5,
+"Sensitivity":    0.9,
+"LRplus":    1.8,
+"LRminus":      5 
+} ]
