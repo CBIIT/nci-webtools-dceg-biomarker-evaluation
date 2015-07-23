@@ -84,8 +84,8 @@ $('a[data-target="#sampleSize"]').on('shown.bs.tab',function(e){
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
 
-        var tablesvar = "<TABLE class='table table-bordered table-condensed'><TBODY>";
-        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
+        var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
+        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         var ppvtabledata = tablesvar;
         var cnpvtabledata = tablesvar;
         for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
