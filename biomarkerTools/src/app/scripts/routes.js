@@ -1,3 +1,4 @@
+"use strict";
 var default_ajax_error;
 
 // reuse this variable across tools
@@ -6,7 +7,7 @@ var rest = "biomarkerToolsRest";
 var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";
 
 $(document).ready(function(){
-    document.title = "Biomarker Tools: Home";
+    this.title = "Biomarker Tools: Home";
 });
 
 // applying new function to base jquery to scroll to 
@@ -49,7 +50,8 @@ $('.goToTab').on('click', function(el){
     $.when($(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active'));
 });
 
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+$('ul.nav-tabs[role="tablist"] li').find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var previousTab;
     if(e.target.dataset === undefined)
         previousTab = e.relatedTarget.attributes.getNamedItem("data-target").nodeValue;
     else
