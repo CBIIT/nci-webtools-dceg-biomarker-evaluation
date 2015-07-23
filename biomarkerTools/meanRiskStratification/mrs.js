@@ -1,3 +1,5 @@
+//"use strict";
+
 // keep track of the number of marker elements, to use the number as the id,
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
@@ -172,7 +174,7 @@ function clean_data(data) {
 }
 
 function return_data(data) {
-    i = 0;
+    var i = 0;
 
     // hide all again before showing
     thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
@@ -274,7 +276,7 @@ function extract_values(valid) {
     var values = {};
 
     // find biomarkers with values first, use currentMarkers for iteration
-    i = 0;
+    var i = 0;
     do {
         i++;
 
@@ -588,7 +590,8 @@ function setup_test() {
     });
 }
 
-function test() {
+function test(e) {
+    e.preventDefault();
     setup_test();
     // capture what element triggered test function
     var choice = $(this).prop('id');
