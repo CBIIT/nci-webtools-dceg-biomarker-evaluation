@@ -1,17 +1,17 @@
 var thisTool;
 
-$(function(){
+function init_sampleSize(){
     thisTool = $("#sampleSize");
     random_gen();
     disable_calculate();
 
    
-    $('.post').click(function(){
+    thisTool.find('.post').click(function(){
         thisTool.find("#spinner").removeClass("hide"); 
         thisTool.find("#message").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(window.location.hostname) service = "sampleSize/test-data.json";
-        
+
         $.ajax({
             type: 'POST',
            
@@ -49,11 +49,11 @@ $(function(){
         });
         return false;
     });
-});
 
-$(function(){
-    $('.reset').click(function(){
-        $('#ss')[0].reset();
+    thisTool.find('.reset').click(function(){
+        thisTool.find('#ss')[0].reset();
+        thisTool.find('input').val("");
+        thisTool.find("#output_graph").empty();
     });
 
     thisTool.find("#add-test-data").click(function() {
@@ -66,24 +66,31 @@ $(function(){
 
     thisTool.find("#fixed").keyup(function(){
         change_hidden('fixed');
-    });
+    });   
 
+}    
+
+$(function(){
+    init_sampleSize();
 });
 
+$('a[data-target="#sampleSize"]').on('shown.bs.tab',function(e){
+    init_sampleSize();
+});
 
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
-        console.log(i);
+
         var tablesvar = "<TABLE class='table table-bordered table-condensed'><TBODY>";
         tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         ppvtabledata = tablesvar;
         cnpvtabledata = tablesvar;
         for (n=0; n<jsonrtn[i].PPVData.length; n++) {
-            console.log("PPVData");
+
             ppvtabledata += "<TR><TD>"+jsonrtn[i].PPVData[n].Sensitivity+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]["Optimal k"]+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD>";
-            console.log("cNPVData");
+
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n].Sensitivity+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]["Optimal k"]+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD></TR>";
@@ -96,11 +103,11 @@ function generate_tables(jsonrtn){
 }
 
 function disable_calculate(){
-    $('.post').prop("disabled", true);
+    thisTool.find('.post').prop("disabled", true);
 }
 
 function enable_calculate(){
-    $('.post').removeAttr("disabled");
+    thisTool.find('.post').removeAttr("disabled");
 }
 
 function generate_tabs(iterate,randomnumber){
@@ -114,14 +121,14 @@ function generate_tabs(iterate,randomnumber){
     var cimagename="cNPVkSensSpec-";
 
     var fixedtype=thisTool.find("#fixed_flag").text();
-    console.log("Fixed flag is "+fixedtype);
+   
     if (fixedtype === "Sensitivity"){
         pimagename="PPVkSpecSens-";
         cimagename="cNPVkSpecSens-";
     }
 
     for (var i = 0; i < arrayLength; i++) {
-        console.log(fixedvals[i]);
+       
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
         tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
 
