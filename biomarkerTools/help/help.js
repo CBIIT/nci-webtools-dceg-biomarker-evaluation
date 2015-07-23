@@ -12,7 +12,7 @@ function tableOfContentsList(){
     if(this.tagName == "H4")
         thisTool.find('#toc').append("<li><strong>" + text + "<strong></li>");
     if(this.tagName == "H5"){
-        var el = $("<li><a class='goToTopic' href='javascript:void(0);' data-target='#" + this.id + "'>" + text + "</a></li>");    
+        var el = $("<li><a class='goToTopic' data-target='#" + this.id + "'>" + text + "</a></li>");    
 
         if(this.id.indexOf("help_") != -1){
             el.find('.goToTopic').on('click', function(){
