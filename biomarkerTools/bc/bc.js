@@ -7,14 +7,22 @@ row = null;
 col = null;
 validPrevValue = false;
 var thisTool;
-$(document).ready(function(){
+
+function init_bc(){
     thisTool = $("#bc");
     bind_reference_row();
     bind_input();
     bind_calculate_button();
     bind_remove_row();
     bind_add_new_row();
+}
+
+$(document).ready(init_bc);
+
+$('a[data-target="#bc"]').on('click', function (e) {
+    init_bc();
 });
+
 function bind_remove_row(){
     thisTool.find('.remove_row_button').on('click', function(){
         remove_row($(this));
@@ -181,12 +189,12 @@ function do_calculation(){
     }
     uniqueKey = new Date().getTime();
     hostname = window.location.hostname;
-    
+
     var service = "http://" + hostname + "/" + rest + "/bc/";
     if(hostname == "localhost"){
         service = "bc/test-data.json";
     }
-    
+
     if (validPrevValue) {
         promise = $.ajax({
             type: 'POST',
