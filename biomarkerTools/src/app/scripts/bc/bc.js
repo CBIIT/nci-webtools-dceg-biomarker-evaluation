@@ -181,7 +181,12 @@ function do_calculation(){
     }
     uniqueKey = new Date().getTime();
     hostname = window.location.hostname;
+    
     var service = "http://" + hostname + "/" + rest + "/bc/";
+    if(hostname == "localhost"){
+        service = "bc/test-data.json";
+    }
+    
     if (validPrevValue) {
         promise = $.ajax({
             type: 'POST',
