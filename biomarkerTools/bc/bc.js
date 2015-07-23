@@ -260,6 +260,7 @@ function set_data(dt){
         createOutputTable(jsonObject);
     }
     bindTermToDefine();
+    thisTool.find('.define').on('click',termDisplay);
     thisTool.find('#spinner').addClass('hide');
 }
 function jsonToCell(obj){
@@ -327,10 +328,10 @@ function createOutputTable(jsondata){
     top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
     thisTool.find('#output').append(top_header_row);
     header_row = $("<tr>");
-    header_row.append("<th class='header'><div class='termToDefine' id='Sens2' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens2Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='Spec2' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec2Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='LRP2' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP2Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='LRN2' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN2Definition'></div></th>");
+    header_row.append("<th class='header'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></th>");
+    header_row.append("<th class='header'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></th>");
+    header_row.append("<th class='header'><div class='define' id='LRP2' data-term='LRP'>LR+</div></th>");
+    header_row.append("<th class='header'><div class='define' id='LRN2' data-term='LRN'>LR-</div></th>");
     thisTool.find('#output').append(header_row);
     for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
         each = jsondata[i$];
@@ -344,12 +345,12 @@ function createOutputTableWithPrev(jsondata){
     top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
     thisTool.find('#output').append(top_header_row);
     header_row = $("<tr>");
-    header_row.append("<th class='header'><div class='termToDefine' id='Sens3' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens3Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='Spec3' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec3Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='LRP3' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP3Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='LRN3' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN3Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='PPV3' data-term='PPV'>PPV</div><div class='popupDefinition' id='PPV3Definition'></div></th>");
-    header_row.append("<th class='header'><div class='termToDefine' id='cNPV3' data-term='cNPV'>cNPV</div><div class='popupDefinition' id='cNPV3Definition'></div></th>");
+    header_row.append("<th class='header'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></th>");
+    header_row.append("<th class='header'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></th>");
+    header_row.append("<th class='header'><div class='define' id='LRP3' data-term='LRP'>LR+</div></th>");
+    header_row.append("<th class='header'><div class='define' id='LRN3' data-term='LRN'>LR-</div></th>");
+    header_row.append("<th class='header'><div class='define' id='PPV3' data-term='PPV'>PPV</div></th>");
+    header_row.append("<th class='header'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></th>");
     thisTool.find('#output').append(header_row);
     for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
         each = jsondata[i$];
