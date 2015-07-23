@@ -1,5 +1,4 @@
 
-
 var oTable;
 var outputTable;
 var giRedraw = false;
