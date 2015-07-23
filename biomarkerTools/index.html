@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Biomarker Tools</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/common/css/font-awesome.css" type="text/css">
@@ -35,7 +35,7 @@
           </ul>
           <div class="tab-content col-md-12">
             <div id="home" role="tabpanel" class="tab-pane fade in active">
-              <h3 title="Home" class="title text-center">Biomarker Evaluation Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
+              <h3 title="Home" class="title text-center">Biomarker Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
               quantities for which people's intuition is poor, such as need for a single marker of a rare disease to improve management
               by some serious intervention. The toolset hopless pursuit, wasteful, unethical clinical testing begins. Thus, using
@@ -56,23 +56,21 @@
                 <div class="col-md-4">
                   <form>
                     <div id="accordion" class="panel panel-default">
-                      <div class="panel-heading"><b>Choose how to enter the data</b></div>
                       <div class="panel-heading">
-                        <div data-toggle="collapse" data-target="#file_upload" class="panel-title">User Defined Distribution (from File)
-                          <div class="glyphicon glyphicon-chevron-down"></div>
-                        </div>
+                        <div class="panel-title"><b>Choose how to enter the data</b></div>
                       </div>
-                      <div id="file_upload" class="panel-body collapse in"><b class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example) </a></b>
+                      <div data-toggle="collapse" data-target="#file_upload" class="panel-heading">
+                        <div class="glyphicon glyphicon-chevron-down"></div>&nbsp; User Defined Distribution (from File)
+                      </div>
+                      <div id="file_upload" class="panel-body collapse in"><b class="data_entry_by_file">Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></b>
                         <p class="indent">
                           <label for="input_file_upload">
                             <input id="input_file_upload" type="file" class="data_entry_by_file">
                           </label>
                         </p>
                       </div>
-                      <div class="panel-heading">
-                        <div data-toggle="collapse" data-target="#cases_control" class="panel-title">Normal Distribution
-                          <div class="glyphicon glyphicon-chevron-down"></div>
-                        </div>
+                      <div data-toggle="collapse" data-target="#cases_control" class="panel-heading">
+                        <div class="glyphicon glyphicon-chevron-down"></div>&nbsp; Normal Distribution
                       </div>
                       <div id="cases_control" class="panel-body collapse">
                         <div class="panel panel-default table_data">
@@ -137,54 +135,53 @@
                 </div>
                 <div class="panel panel-default col-md-4 table_panel">
                   <div class="row"> <b class="header col-md-5">&nbsp;</b><b class="header col-md-2">Cases</b><b class="header col-md-3">Controls</b><b class="header col-md-2">Overall</b></div>
-                  <div class="row">
-                    <div class="header col-md-5"><b>Mean</b></div>
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">Mean</b>
                     <div id="mean_cases" class="col-md-2 table_data text-center"></div>
                     <div id="mean_controls" class="col-md-3 table_data text-center"></div>
                     <div id="mean_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">Standard Error</b>
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">Standard Error</b>
                     <div id="stderr_cases" class="col-md-2 table_data text-center"></div>
                     <div id="stderr_controls" class="col-md-3 table_data text-center"></div>
                     <div id="stderr_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">N</b>
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">N</b>
                     <div id="N_cases" class="col-md-2 table_data text-center"></div>
                     <div id="N_controls" class="col-md-3 table_data text-center"></div>
                     <div id="N_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row line-above"><b class="header col-md-5">Standard Deviation</b>
-                    <div id="deviation_cases" class="col-md-2 table_data"></div>
-                    <div id="deviation_controls" class="col-md-3 table_data"></div>
-                    <div id="deviation_overall" class="col-md-2 table_data"></div>
+                  <div class="row line-above vertical-padding"><b class="col-md-5 text-right">Standard Deviation</b>
+                    <div id="deviation_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="deviation_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="deviation_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">Variance</b>
-                    <div id="variance_cases" class="col-md-2 table_data"></div>
-                    <div id="variance_controls" class="col-md-3 table_data"></div>
-                    <div id="variance_overall" class="col-md-2 table_data"></div>
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">Variance</b>
+                    <div id="variance_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="variance_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="variance_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">
                       <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
                     <div id="cv_cases" class="col-md-2 table_data"></div>
                     <div id="cv_controls" class="col-md-3 table_data"></div>
                     <div id="cv_overall" class="col-md-2 table_data"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">Difference in Mean</b>
-                    <div id="diff_cases" class="col-md-2 table_data"></div>
-                    <div id="diff_controls" class="col-md-3 table_data"></div>
-                    <div id="diff_overall" class="col-md-2 table_data"></div>
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">Difference in Mean</b>
+                    <div id="diff_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="diff_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="diff_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">
                       <div id="Delta" data-term="Delta" class="define">Delta</div></b>
-                    <div id="delta_cases" class="col-md-2 table_data"></div>
-                    <div id="delta_controls" class="col-md-3 table_data"></div>
-                    <div id="delta_overall" class="col-md-2 table_data"></div>
+                    <div id="delta_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="delta_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="delta_overall" class="col-md-2 table_data text-center"></div>
                   </div>
-                  <div class="row"><b class="header col-md-5">
+                  <div class="row vertical-padding"><b class="col-md-5 text-right">
                       <div id="AUC" data-term="AUC" class="define">AUC</div></b>
-                    <div id="auc_cases" class="col-md-2 table_data"></div>
-                    <div id="auc_controls" class="col-md-3 table_data"></div>
-                    <div id="auc_overall" class="col-md-2 table_data"></div>
+                    <div id="auc_cases" class="col-md-2 table_data text-center"></div>
+                    <div id="auc_controls" class="col-md-3 table_data text-center"></div>
+                    <div id="auc_overall" class="col-md-2 table_data text-center"></div>
                   </div>
                 </div>
                 <div class="graph_panel col-md-4"></div>
@@ -325,10 +322,10 @@
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label for="independent_dropdown">Independent Variable</label>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <select id="independent_dropdown" name="independent_dropdown" class="input-sm">
                           <option value="" selected=""></option>
                           <option value="specificity">Specificity</option>
@@ -339,18 +336,19 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-5">
                         <label for="independent" class="sr-only">Independent Variable Value</label>
-                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="input-sm">
                       </div>
-                      <div id="indDef" class="col-md-1"></div>
-                      <div class="col-md-2"><span class="variable-example"></span></div>
+                      <div class="col-md-2">
+                        <div id="indDef"></div><span class="variable-example"></span>
+                      </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label for="contour_dropdown">Contour</label>
                       </div>
-                      <div class="col-md-3">   
+                      <div class="col-md-2">   
                         <select id="contour_dropdown" name="contour_dropdown" class="input-sm">
                           <option value="" selected=""></option>
                           <option value="ppv">PPV</option>
@@ -361,20 +359,19 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-5">
                         <label for="contour" class="sr-only">Contour Value</label>
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required="" class="input-sm">
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="input-sm">
                       </div>
-                      <div class="col-md-1">
-                        <div id="contourDef"></div>
+                      <div class="col-md-2">
+                        <div id="contourDef"></div><span class="variable-example"></span>
                       </div>
-                      <div class="col-md-2"><span class="variable-example"></span></div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label for="fixed_dropdown">Fixed Values</label>
                       </div>
-                      <div class="col-md-3">  
+                      <div class="col-md-2">  
                         <select id="fixed_dropdown" name="fixed_dropdown" class="input-sm">
                           <option value="" selected=""></option>
                           <option value="prevalence">Prevalence</option>
@@ -385,14 +382,13 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <label for="fixed" class="sr-only">Fixed Value</label>
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required="" class="input-sm">
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="input-sm">
                       </div>
-                      <div class="col-md-1">
-                        <div id="fvDef"></div>
+                      <div class="col-md-2">
+                        <div id="fvDef"></div><span class="variable-example"></span>
                       </div>
-                      <div class="col-md-2"><span class="variable-example"></span></div>
                     </div>
                   </div>
                   <div class="panel-footer">
@@ -691,8 +687,8 @@
                         <button id="calculate" type="button" title="Calculate">Calculate</button>
                       </div>
                       <div class="pull-right">
-                        <div class="row"><a id="test1" href="javascript:void(0);" title="Populate 1 biomarker using test data">Example 1</a></div>
-                        <div class="row"><a id="test2" href="javascript:void(0);" title="Populate 1 biomarker using test data">Example 2     </a></div>
+                        <div class="row"><a id="test1" href="#" title="Populate 1 biomarker using test data">Example 1</a></div>
+                        <div class="row"><a id="test2" href="#" title="Populate 1 biomarker using test data">Example 2     </a></div>
                       </div>
                     </div>
                   </div>
