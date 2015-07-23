@@ -10,20 +10,20 @@
         form
           #accordion.panel.panel-default
             .panel-heading
-                b Choose how to enter the data
-            .panel-heading
-                .panel-title(data-toggle="collapse", data-target="#file_upload")
-                    | User Defined Distribution (from File)
-                    .glyphicon.glyphicon-chevron-down
+                .panel-title
+                    b Choose how to enter the data
+            .panel-heading(data-toggle="collapse", data-target="#file_upload")
+                .glyphicon.glyphicon-chevron-down
+                | &nbsp; User Defined Distribution (from File)
             #file_upload.panel-body.collapse.in
               b.data_entry_by_file Upload a raw case and control biomarker data file in csv format
-                a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example) 
+                a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
               p.indent
                 label(for='input_file_upload')
                   input#input_file_upload.data_entry_by_file(type='file')
-            .panel-heading
-                .panel-title(data-toggle="collapse", data-target="#cases_control") Normal Distribution
-                    .glyphicon.glyphicon-chevron-down
+            .panel-heading(data-toggle="collapse", data-target="#cases_control")
+                .glyphicon.glyphicon-chevron-down
+                | &nbsp; Normal Distribution
             #cases_control.panel-body.collapse
               .panel.panel-default.table_data
                 .panel-heading
@@ -78,55 +78,54 @@
             b.header.col-md-2 Cases
             b.header.col-md-3 Controls
             b.header.col-md-2 Overall
-        .row
-           .header.col-md-5
-            b Mean
-           #mean_cases.col-md-2.table_data.text-center
-           #mean_controls.col-md-3.table_data.text-center
-           #mean_overall.col-md-2.table_data.text-center
-        .row
-            b.header.col-md-5 Standard Error
+        .row.vertical-padding
+            b.col-md-5.text-right Mean
+            #mean_cases.col-md-2.table_data.text-center
+            #mean_controls.col-md-3.table_data.text-center
+            #mean_overall.col-md-2.table_data.text-center
+        .row.vertical-padding
+            b.col-md-5.text-right Standard Error
             #stderr_cases.col-md-2.table_data.text-center
             #stderr_controls.col-md-3.table_data.text-center
             #stderr_overall.col-md-2.table_data.text-center
-        .row
-            b.header.col-md-5 N
+        .row.vertical-padding
+            b.col-md-5.text-right N
             #N_cases.col-md-2.table_data.text-center
             #N_controls.col-md-3.table_data.text-center
             #N_overall.col-md-2.table_data.text-center
-        .row.line-above
-            b.header.col-md-5 Standard Deviation
-            #deviation_cases.col-md-2.table_data
-            #deviation_controls.col-md-3.table_data
-            #deviation_overall.col-md-2.table_data
-        .row
-            b.header.col-md-5 Variance
-            #variance_cases.col-md-2.table_data
-            #variance_controls.col-md-3.table_data
-            #variance_overall.col-md-2.table_data
-        .row
-            b.header.col-md-5
+        .row.line-above.vertical-padding
+            b.col-md-5.text-right Standard Deviation
+            #deviation_cases.col-md-2.table_data.text-center
+            #deviation_controls.col-md-3.table_data.text-center
+            #deviation_overall.col-md-2.table_data.text-center
+        .row.vertical-padding
+            b.col-md-5.text-right Variance
+            #variance_cases.col-md-2.table_data.text-center
+            #variance_controls.col-md-3.table_data.text-center
+            #variance_overall.col-md-2.table_data.text-center
+        .row.vertical-padding
+            b.col-md-5.text-right
               #CV.define(data-term='CV') Coefficient of Variation (CV)
             #cv_cases.col-md-2.table_data
             #cv_controls.col-md-3.table_data
             #cv_overall.col-md-2.table_data
-        .row
-            b.header.col-md-5 Difference in Mean
-            #diff_cases.col-md-2.table_data
-            #diff_controls.col-md-3.table_data
-            #diff_overall.col-md-2.table_data
-        .row
-            b.header.col-md-5
+        .row.vertical-padding
+            b.col-md-5.text-right Difference in Mean
+            #diff_cases.col-md-2.table_data.text-center
+            #diff_controls.col-md-3.table_data.text-center
+            #diff_overall.col-md-2.table_data.text-center
+        .row.vertical-padding
+            b.col-md-5.text-right
               #Delta.define(data-term='Delta') Delta
-            #delta_cases.col-md-2.table_data
-            #delta_controls.col-md-3.table_data
-            #delta_overall.col-md-2.table_data
-        .row
-            b.header.col-md-5
+            #delta_cases.col-md-2.table_data.text-center
+            #delta_controls.col-md-3.table_data.text-center
+            #delta_overall.col-md-2.table_data.text-center
+        .row.vertical-padding
+            b.col-md-5.text-right
               #AUC.define(data-term='AUC') AUC
-            #auc_cases.col-md-2.table_data
-            #auc_controls.col-md-3.table_data
-            #auc_overall.col-md-2.table_data
+            #auc_cases.col-md-2.table_data.text-center
+            #auc_controls.col-md-3.table_data.text-center
+            #auc_overall.col-md-2.table_data.text-center
       .graph_panel.col-md-4
     .bottom_section
       .tabbed_output_panel
