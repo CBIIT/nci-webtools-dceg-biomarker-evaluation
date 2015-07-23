@@ -1,3 +1,5 @@
+"use strict";
+
 var thisTool;
 
 function init_sampleSize(){
@@ -41,7 +43,8 @@ function init_sampleSize(){
             error: function(jqXHR, textStatus, errorThrown) {
                 thisTool.find("#spinner").addClass("hide");
                 console.log("header: " + jqXHR + "\n" + "Status: " + textStatus + "\n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
-                message = 'Service Unavailable: ' + textStatus + "<br>";
+                
+                var message = 'Service Unavailable: ' + textStatus + "<br>";
                 message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
                 thisTool.find("#message-content").empty().append(message);	   
                 thisTool.find("#message").removeClass("hide");    
@@ -83,9 +86,9 @@ function generate_tables(jsonrtn){
 //        console.log(i);
         var tablesvar = "<TABLE class='table table-bordered table-condensed'><TBODY>";
         tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal K</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
-        ppvtabledata = tablesvar;
-        cnpvtabledata = tablesvar;
-        for (n=0; n<jsonrtn[i].PPVData.length; n++) {
+        var ppvtabledata = tablesvar;
+        var cnpvtabledata = tablesvar;
+        for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
 //            console.log("PPVData");
             ppvtabledata += "<TR><TD>"+jsonrtn[i].PPVData[n].Sensitivity+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]["Optimal k"]+"</TD>";
@@ -127,7 +130,7 @@ function generate_tabs(iterate,randomnumber){
         cimagename="cNPVkSpecSens-";
     }
 
-    for (var i = 0; i < arrayLength; i++) {
+    for(var i = 0; i < arrayLength; i++) {
         // console.log(fixedvals[i]);
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
         tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
@@ -137,7 +140,7 @@ function generate_tabs(iterate,randomnumber){
     tabheaders += "</ul>";
     // First make the right tabs
 
-    tabs = $("<div id='tabs'> </div>");
+    var tabs = $("<div id='tabs'> </div>");
     thisTool.find("#output_graph").append(tabs);
     thisTool.find("#tabs").append(tabheaders);
     thisTool.find("#tabs").append(tabcontent);
