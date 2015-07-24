@@ -130,14 +130,16 @@ function bind_download_button() {
             if (valuesFromFile.length === 0) {
                 alert("Please Upload a file or pick the normalized option and enter key data first");
             } else {
-                thisTool.find("#please_wait_download").modal("show");
+                thisTool.find("#spinner").removeClass("hide");
                 get_inputs_for_user_defined_calculation();
                 make_excel_call_user_defined_calculation();
+            thisTool.find("#spinner").addClass("hide");
             }
         } else {
-            thisTool.find("#please_wait_download").modal("show");
+            thisTool.find("#spinner").removeClass("hide");
             get_inputs_for_standard_calculation();
-            make_excel_call_standard_calculation();	
+            make_excel_call_standard_calculation();
+            thisTool.find("#spinner").addClass("hide");	
         }
     });
 }
