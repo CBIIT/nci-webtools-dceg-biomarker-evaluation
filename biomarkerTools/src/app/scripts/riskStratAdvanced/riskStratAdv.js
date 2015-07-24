@@ -239,6 +239,8 @@ function addTestData() {
     addPopupDefinition();
 }
 
+function addPopupDefinition() {
+
 var termLookup = {
     ppv : "PPV",
     cnpv : "cNPV",
@@ -247,8 +249,6 @@ var termLookup = {
     delta : "Delta",
     prevalence : "DP"
 };
-
-function addPopupDefinition() {
     var independent = thisTool.find('#independent_dropdown').val();
     var contour = thisTool.find('#contour_dropdown').val();
     var fixedValue = thisTool.find('#fixed_dropdown').val();
@@ -675,7 +675,7 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         url : service,
         data : data,
         dataType : "json",
-        timeout: 15000,
+//        timeout: 15000,
         success : function(data) {
             fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
         },
