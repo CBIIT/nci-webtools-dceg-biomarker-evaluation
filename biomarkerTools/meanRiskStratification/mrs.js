@@ -26,10 +26,10 @@ function bind_control_events() {
     // testing
     thisTool.find('a#test1,a#test2').on('click', test);
 
-    thisTool.find('#reset').on('click', reset);
+    thisTool.find('#reset').on('click', reset_mrs);
     thisTool.find('#add-marker').on('click', new_marker);
     thisTool.find('#delete-marker').on('click', delete_marker);
-    thisTool.find('#calculate').on('click', calculate);
+    thisTool.find('#calculate').on('click', calculate_mrs);
 
     bind_accordion_action(thisTool.find('#markers').children().first());
 }
@@ -124,7 +124,7 @@ function delete_marker() {
     scrollTop();
 }
 
-function calculate() {
+function calculate_mrs() {
     var service;
     var valuesObj = extract_values(false);
     var valid = valuesObj[1]; // get the boolean value that was returned
