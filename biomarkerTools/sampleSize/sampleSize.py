@@ -10,9 +10,11 @@ from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
 
-with open ('sampleSize/sampleSizeWrapper.R') as fh:
+os.chdir('sampleSize')
+with open ('sampleSizeWrapper.R') as fh:
         rcode = os.linesep.join(fh.readlines())
         wrapper = SignatureTranslatedAnonymousPackage(rcode,"wrapper")
+os.chdir('..')
 
 # Initialize the Flask application
 app = Flask(__name__)
