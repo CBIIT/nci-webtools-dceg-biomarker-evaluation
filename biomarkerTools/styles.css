@@ -168,7 +168,7 @@ background-color
   background: #ddd url("");
 }
 body #contentTabs #meanstorisk .output_graph {
-  max-width: 38%;
+  max-width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
