@@ -153,14 +153,7 @@ var keyLong = [
         1 : "Delta given desired cNPV, prevalence, and specificity",
         2 : "Sensitivity given desired cNPV, prevalence, and specificity"
     } ];
-var termLookup = {
-	ppv : "PPV",
-	cnpv : "cNPV",
-	sensitivity : "Sens",
-	specificity : "Spec",
-	delta : "Delta",
-	prevalence : "DP"
-};
+
 var thisTool;
 
 $('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
@@ -280,7 +273,7 @@ function addPopupDefinition() {
     else {
         thisTool.find("#fvDef").html("");
     }
-    bindTermToDefine();
+    thisTool.find('.define').on('click', termDisplay);
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
@@ -305,7 +298,6 @@ function resetPage() {
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr("disabled");
     thisTool.find("#status-bar").addClass('hide');
-   
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
@@ -314,21 +306,19 @@ function resetPage() {
 
 function createRulesDialog() {
     $(function() {
-        $("#dialog-confirm").modal({
+        $("#dialog-confirm").dialog({
             resizable : false,
             height : 375,
             width : 400,
             autoOpen : false,
             buttons : {
                 Yes : function() {
-                    $(this).modal("close");
-                    $(this).modal("close");
+                    $(this).dialog("close");
                    
                     calculate();
                 },
                 Cancel : function() {
-                    $(this).modal("close");
-                    $(this).modal("close");
+                    $(this).dialog("close");
                    
                 }
             },
@@ -349,11 +339,10 @@ function checkRules() {
     var values = [];
     var min = [];
     var max = [];
-    var ids;
     rulesViolationMsg = "";
 
    
-    ids = thisTool.find("select").map(function() {
+    var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
    
@@ -402,8 +391,7 @@ function checkRule(ruleId, vars, values, min, max) {
            
             minValue = 0;
             maxValue = 1;
-            $
-                .each(
+            $.each(
                 vars,
                 function(key, selectedVar) {
                     if (selectedVar != "delta") {
@@ -413,7 +401,6 @@ function checkRule(ruleId, vars, values, min, max) {
                         }
                     }
                 });
-
             break;
         case 2:
            
@@ -439,7 +426,7 @@ function checkRule(ruleId, vars, values, min, max) {
            
 
             var cnpvPostion = $.inArray("cnpv", vars);
-            prevalencePostion = $.inArray("prevalence", vars);
+            var prevalencePostion = $.inArray("prevalence", vars);
             if (cnpvPostion >= 0 && prevalencePostion >= 0) {
                 if (max[cnpvPostion] >= min[prevalencePostion]) {
                     status = "Fail";
@@ -451,7 +438,7 @@ function checkRule(ruleId, vars, values, min, max) {
            
            
            
-            prevalencePostion = $.inArray("prevalence", vars);
+            var prevalencePostion = $.inArray("prevalence", vars);
             ppvPostion = $.inArray("ppv", vars);
             if (prevalencePostion >= 0 && ppvPostion >= 0) {
                 if (max[prevalencePostion] >= min[ppvPostion]) {
@@ -508,11 +495,10 @@ function calculate() {
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
     checkInput.push(thisTool.find("#contour")[0].checkValidity());
     checkInput.push(thisTool.find("#fixed")[0].checkValidity());
-    
+
     if ($.inArray(false, checkInput) >= 0) {
         thisTool.find("#status-bar").removeClass('hide');
-        thisTool.find$thisTool.find("#status-bar")
-            .html(
+        thisTool.find("#status-bar").html(
             "Invalid input array.  Enter a valid array of floating point values.");
         return;
     }
@@ -537,11 +523,13 @@ function calculate() {
     var independentMin = Math.min.apply(Math, independentArraySplit);
     var independentMax = Math.max.apply(Math, independentArraySplit);
     var contourArray = thisTool.find("#contour").val();
+    
    
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
     fixedArray = thisTool.find("#fixed").val();
+    
    
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
     var fixedval = thisTool.find("#fixed_dropdown").val();
@@ -582,7 +570,7 @@ function calculate() {
         thisTool.find("#output").empty();
 
        
-        tabs = $("<div class='col-md-12 row' id='tabs'> </div>");
+        tabs = $("<div class='col-md-12' id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
@@ -602,10 +590,10 @@ function calculate() {
                                     (i + 1) + 
                                     "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side col-md-6' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'></div>");//<div style='clear:right;padding-top:10px;'> </div>
+                graphic_side = ("<div class='graphic-side' id='graphic-" + 
+                                keyvalueShort[key] + (i + 1) + "'></div><div style='clear:right;padding-top:10px;'> </div>");
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side col-md-6' id='table-" + 
+                table_side = $("<div class='table-side' id='table-" + 
                                keyvalueShort[key] + (i + 1) + 
                                "'><br><div class='table-title'>" + keyvalueLong[key] + 
                                "</div></div><br><br>");
@@ -727,7 +715,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableErrorValue = tableError[0].errortrue;
     var graphErrorValue = graphError[0].errortrue;
     if (tableErrorValue != 1) {
-        rows = tableData.length;
+        var rows = tableData.length;
         for (var i = 0; i < tableData.length; i++) {
             var values = [];
             row_entries = tableData[i];
@@ -806,9 +794,15 @@ function getColumnHeaderData(columnHeadings) {
 }
 
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
-    $('#graphic-' + graphNamePreFix + tabNumber).append(
-        "<img style='height: 400px; text-align: right;' class='center' src='tmp/" + 
-        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
+    if(window.location.hostname != "localhost"){
+        $('#graphic-' + graphNamePreFix + tabNumber).append(
+            "<img style='height: 400px; text-align: right;' class='center' src='tmp/" + 
+            graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
+    }
+    else {
+            $('#graphic-' + graphNamePreFix + tabNumber).append(
+            "<img style='height: 400px; text-align: right;' class='center' src='images/exampleLRPlot.jpg' alt='output image'>");
+    }
 }
 
 function isNumberBetweenZeroAndOne(n) {
@@ -899,7 +893,7 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
         if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
             attribute = $('#' + dropdownBoxId).append(
                 $("<option></option>").attr("value",
-                                            originalOptions[optionKey]).attr('disabled',
+                    originalOptions[optionKey]).attr('disabled',
                                                                              'disabled').text(originalOptions[optionKey]));
         } else {
             attribute = $('#' + dropdownBoxId).append(
@@ -914,7 +908,7 @@ function setInitialValue(textboxId) {
 
     var selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
     var key = $.inArray(selectedOption, functionnames);
- 
+
     var eSelect = thisTool.find("#"+textboxId);
    
     var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
@@ -927,11 +921,9 @@ function setInitialValue(textboxId) {
    
     thisTool.find('#' + textboxId).val(selectedOption).change();
     addPopupDefinition();
-
 }
 
 function checkForInvalidVariableCombo() {
-    var validCombo;
    
 
    
