@@ -31,7 +31,7 @@ function bind_control_events() {
     thisTool.find('#delete-marker').on('click', delete_marker);
     thisTool.find('#calculate').on('click', calculate);
 
-    bind_accordion_action($('#markers').children().first());
+    bind_accordion_action(thisTool.find('#markers').children().first());
 }
 
 function bind_accordion_action(el) {
@@ -358,7 +358,7 @@ function joinObjects(parentObj, obj1, obj2) {
     return parentObj;
 }
 
-function reset() {
+function reset_mrs() {
     // resets form to initial state
     var markerChildren = thisTool.find('#markers').children();
 
@@ -579,9 +579,9 @@ var values_option_2_bm = [{
         "sampsize": 30371
     }];
 function setup_test() {
-    $.when(reset).done(function () {
+    $.when(reset_mrs).done(function () {
         if ($('#markers').children().length != 1) {
-            reset();
+            reset_mrs();
         }
 
         // add 2 biomarkers
