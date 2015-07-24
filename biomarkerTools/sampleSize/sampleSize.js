@@ -32,7 +32,7 @@ function init_sampleSize(){
            
             dataType: 'json',
             url: service,
-            timeout: 15000,
+            timeout: 20000,
             success: function (ret) {
                 thisTool.find("#spinner").addClass("hide");
                 thisTool.find("#output_graph").empty();
