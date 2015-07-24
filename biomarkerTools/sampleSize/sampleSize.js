@@ -32,7 +32,7 @@ function init_sampleSize(){
            
             dataType: 'json',
             url: service,
-            timeout: 20000,
+            timeout: 30000,
             success: function (ret) {
                 thisTool.find("#spinner").addClass("hide");
                 thisTool.find("#output_graph").empty();
@@ -57,6 +57,7 @@ function init_sampleSize(){
         thisTool.find('#ss')[0].reset();
         thisTool.find('input').val("");
         thisTool.find("#output_graph").empty();
+        thisTool.find("#message").addClass("hide");
     });
 
     thisTool.find("#add-test-data").click(function() {
