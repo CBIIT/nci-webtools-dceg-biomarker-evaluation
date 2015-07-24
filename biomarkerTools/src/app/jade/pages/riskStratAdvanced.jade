@@ -22,7 +22,8 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='cnpv') cNPV
                   .col-md-5
                     label.sr-only(for='independent') Independent Variable Value
-                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
+                    //, required)
                   .col-md-2
                     #indDef
                     span.variable-example
@@ -40,7 +41,8 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='cnpv') cNPV
                   .col-md-5
                     label.sr-only(for='contour') Contour Value
-                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
+                    //, required)
                   .col-md-2
                     #contourDef
                     span.variable-example
@@ -58,7 +60,8 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         option(value='cnpv') cNPV
                   .col-md-5
                     label.sr-only(for='fixed') Fixed Value
-                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
+                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas')
+                    //, required)
                   .col-md-2
                     #fvDef
                     span.variable-example
@@ -97,5 +100,5 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                         | Sensitivity+Specificity-1 > 0
                 strong 
                     | Do you wish to continue with calculation anyway?
-    .row#output
-    .row#output1
+    .col-md-12.row#output
+    .col-md-12.row#output1
