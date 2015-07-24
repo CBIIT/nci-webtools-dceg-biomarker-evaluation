@@ -1,5 +1,5 @@
 //"use strict";
-
+var cases_string;
 var uniqueKey;
 var thisTool;
 var valuesFromFile = [];
@@ -167,13 +167,11 @@ function get_inputs_for_standard_calculation () {
     var N_cases = parseFloat(thisTool.find("#N_cases_input").val());
     var N_controls = parseFloat(thisTool.find("#N_controls_input").val());
 
-    var cases_string="" +mean_cases+","+stderr_cases+","+N_cases+"";
+    cases_string="" +mean_cases+","+stderr_cases+","+N_cases+"";
     controls_string="" +mean_controls+","+stderr_controls+","+N_controls+"";
     specificity_string="" + thisTool.find("#specificity").val() + "";
     prevalence_string="" + thisTool.find("#prevalence").val() + "";
 
-    //	alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
-    //	set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_controls,N_cases,N_controls);
 }
 
 
@@ -252,7 +250,6 @@ function make_ajax_call_user_defined_calculation() {
     });
 }
 function make_ajax_call_standard_calculation() {
-    //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
@@ -280,7 +277,6 @@ function make_ajax_call_standard_calculation() {
 }
 
 function make_excel_call_user_defined_calculation() {
-    //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
@@ -309,7 +305,6 @@ function make_excel_call_user_defined_calculation() {
 }
 
 function make_excel_call_standard_calculation() {
-    //alert(cases_string + "\n" + controls_string + "\n" + specificity_string + "\n" + prevalence_string);
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
