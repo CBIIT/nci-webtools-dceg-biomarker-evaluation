@@ -213,8 +213,8 @@ function do_calculation(){
                 labels: labels,
                 unique_key: uniqueKey
             },
-            dataType: 'json',
-            timeout: 15000
+            dataType: 'json'
+//           , timeout: 15000
         });
     } else {
         promise = $.ajax({
