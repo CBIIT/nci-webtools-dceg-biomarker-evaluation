@@ -211,7 +211,7 @@ function init_riskStrat(){
 
             return false;
         } else {
-            calculate();
+            calculate_riskStrat();
         }
     });
     thisTool.find("#add-test-data").click(function(e) {
@@ -315,7 +315,7 @@ function createRulesDialog() {
                 Yes : function() {
                     $(this).dialog("close");
                     // alert("calculate");
-                    calculate();
+                    calculate_riskStrat();
                 },
                 Cancel : function() {
                     $(this).dialog("close");
@@ -493,7 +493,7 @@ function checkInputFields() {
 
 }
 
-function calculate() {
+function calculate_riskStrat() {
     // Check pattern for each input box
 
     var checkInput = [];
