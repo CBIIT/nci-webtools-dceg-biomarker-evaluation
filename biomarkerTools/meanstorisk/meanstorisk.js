@@ -16,14 +16,16 @@ var ppv_tabs = {
 };
 
 $('a[data-target="#meanstorisk"]').on('shown.bs.tab',function(e){
+    thisTool = $("#meanstorisk");
+    bind_calculate_button();
     init_meanstorisk();
 });
 
-$(document).ready(init_meanstorisk);
+$(document).ready(function(){
+thisTool = $("#meanstorisk");
+});
 
 function init_meanstorisk(){
-    thisTool = $("#meanstorisk");
-    bind_calculate_button();
     bind_download_button();
     bind_option_choices();
     thisTool.find("#please_wait_calculate").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
@@ -32,6 +34,7 @@ function init_meanstorisk(){
     thisTool.find(".data_entry_by_input").on('click', function () {
         thisTool.find("#download_button").addClass('hide');
     });
+    
     thisTool.find('.panel-heading a').on('click',function(e){
         if($(this).parents('.panel').children('.panel-collapse').hasClass('in')){
             e.preventDefault();
@@ -100,20 +103,21 @@ function bind_option_choices() {
 
 }
 
-
 function bind_calculate_button() {
-    thisTool.find("#calculate_button").click(function() {
+    thisTool.find("#calculate_button").on('click', function() {
         if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")) {	
            
             if (valuesFromFile.length === 0) {
                 alert("Please Upload a file or pick the normalized option and enter key data first");
-            } else {
+            }
+            else {
                 thisTool.find("#spinner").removeClass("hide");
                 get_inputs_for_user_defined_calculation();
                 make_ajax_call_user_defined_calculation();
-                thisTool.find("#spinner").addClass("hide"); 
+                thisTool.find("#spinner").addClass("hide");
             }
-        } else {
+        } 
+        else {
             thisTool.find("#spinner").removeClass("hide");
             get_inputs_for_standard_calculation();
             make_ajax_call_standard_calculation();
@@ -335,10 +339,12 @@ function make_excel_call_standard_calculation() {
 
 function set_data(dt) {
     $("#please_wait_calculate").modal("hide");
-    $("#download_button").removeClass("hide");
+    thisTool.find("#download_button").removeClass("hide");
+    thisTool.find("#spinner").removeClass("hide");
     set_values_table(dt);
     create_tabbed_table(dt);
     draw_graph();
+    thisTool.find("#spinner").addClass("hide");
 }
 
 function set_excel(dt) {
