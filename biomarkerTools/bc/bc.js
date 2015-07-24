@@ -263,7 +263,7 @@ function set_data(dt){
     jsonObject = JSON.parse(JSON.stringify(dt));
     refreshGraph(1);
     thisTool.find('#output').empty();
-    thisTool.find('#output th').remove();
+    thisTool.find('#output .row:first').remove();
     if (validPrevValue) {
         createOutputTableWithPrev(jsonObject);
     } else {
@@ -289,11 +289,11 @@ function jsonToCell(obj){
             LRminus = value;
         }
     }
-    new_row = $("<tr>");
-    new_row.append("<td>" + Sensitivity + "</td>");
-    new_row.append("<td>" + Specificity + "</td>");
-    new_row.append("<td>" + LRplus + "</td>");
-    new_row.append("<td>" + LRminus + "</td>");
+    new_row = $("<div class='row'>");
+    new_row.append("<div class='col-md-3'>" + Sensitivity + "</div>");
+    new_row.append("<div class='col-md-3'>" + Specificity + "</div>");
+    new_row.append("<div class='col-md-3'>" + LRplus + "</div>");
+    new_row.append("<div class='col-md-3'>" + LRminus + "</div>");
     thisTool.find('#output').append(new_row);
 }
 function jsonToCellWithPrev(obj){
@@ -317,30 +317,30 @@ function jsonToCellWithPrev(obj){
             }
         }
     }
-    new_row = $("<tr>");
-    new_row.append("<td>" + Sensitivity + "</td>");
-    new_row.append("<td>" + Specificity + "</td>");
-    new_row.append("<td>" + LRplus + "</td>");
-    new_row.append("<td>" + LRminus + "</td>");
+    new_row = $("<div class='row'>");
+    new_row.append("<div class='col-md-3'>" + Sensitivity + "</div>");
+    new_row.append("<div class='col-md-3'>" + Specificity + "</div>");
+    new_row.append("<div class='col-md-3'>" + LRplus + "</div>");
+    new_row.append("<div class='col-md-3'>" + LRminus + "</div>");
     if (validPrevValue) {
-        new_row.append("<td>" + PPV + "</td>");
+        new_row.append("<div class='col-md-3'>" + PPV + "</div>");
     }
     if (validPrevValue) {
-        new_row.append("<td>" + cNPV + "</td>");
+        new_row.append("<div class='col-md-3'>" + cNPV + "</div>");
     }
     thisTool.find('#output').append(new_row);
 }
 function createOutputTable(jsondata){
     var top_header_row, header_row, i$, len$, each;
     thisTool.find('#output').empty();
-    top_header_row = $("<tr>");
-    top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
+    top_header_row = $("<div class='row'></div>");
+    top_header_row.append("<th class='col-md-12 top-header'>Output Data</div>");
     thisTool.find('#output').append(top_header_row);
-    header_row = $("<tr>");
-    header_row.append("<th class='header'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></th>");
-    header_row.append("<th class='header'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></th>");
-    header_row.append("<th class='header'><div class='define' id='LRP2' data-term='LRP'>LR+</div></th>");
-    header_row.append("<th class='header'><div class='define' id='LRN2' data-term='LRN'>LR-</div></th>");
+    header_row = $("<div class='row'></div>");
+    header_row.append("<div class='col-md-3 header'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></div>");
+    header_row.append("<div class='col-md-3 header'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></div>");
+    header_row.append("<div class='col-md-3 header'><div class='define' id='LRP2' data-term='LRP'>LR+</div></div>");
+    header_row.append("<div class='col-md-3 header'><div class='define' id='LRN2' data-term='LRN'>LR-</div></div>");
     thisTool.find('#output').append(header_row);
     for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
         each = jsondata[i$];
@@ -350,16 +350,16 @@ function createOutputTable(jsondata){
 function createOutputTableWithPrev(jsondata){
     var top_header_row, header_row, i$, len$, each;
     thisTool.find('#output').empty();
-    top_header_row = $("<tr>");
-    top_header_row.append("<th class='top-header' colspan='7'>Output Data</th>");
+    top_header_row = $("<div class='row'></div>");
+    top_header_row.append("<div class='col-md-12 top-header'>Output Data</div>");
     thisTool.find('#output').append(top_header_row);
-    header_row = $("<tr>");
-    header_row.append("<th class='header'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></th>");
-    header_row.append("<th class='header'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></th>");
-    header_row.append("<th class='header'><div class='define' id='LRP3' data-term='LRP'>LR+</div></th>");
-    header_row.append("<th class='header'><div class='define' id='LRN3' data-term='LRN'>LR-</div></th>");
-    header_row.append("<th class='header'><div class='define' id='PPV3' data-term='PPV'>PPV</div></th>");
-    header_row.append("<th class='header'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></th>");
+    header_row = $("<div class='row'></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='LRP3' data-term='LRP'>LR+</div></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='LRN3' data-term='LRN'>LR-</div></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
+    header_row.append("<div class='col-md-2 header'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
     thisTool.find('#output').append(header_row);
     for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
         each = jsondata[i$];
