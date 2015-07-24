@@ -15,17 +15,18 @@ var ppv_tabs = {
     "Cases per 1000 with Disease": "# of Cases Detected per 1000 with the Disease"
 };
 
-$('a[data-target="#meanstorisk"]').on('shown.bs.tab',function(e){
+$(document).ready(function(){
     thisTool = $("#meanstorisk");
-    bind_calculate_button();
+
+    $('a[data-target="#meanstorisk"]').on('shown.bs.tab',function(e){
+        thisTool = $("#meanstorisk");
+    });
+    
     init_meanstorisk();
 });
 
-$(document).ready(function(){
-thisTool = $("#meanstorisk");
-});
-
-function init_meanstorisk(){
+function init_meanstorisk(){ 
+    bind_calculate_button();
     bind_download_button();
     bind_option_choices();
     thisTool.find("#please_wait_calculate").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
@@ -34,7 +35,6 @@ function init_meanstorisk(){
     thisTool.find(".data_entry_by_input").on('click', function () {
         thisTool.find("#download_button").addClass('hide');
     });
-    
     thisTool.find('.panel-heading a').on('click',function(e){
         if($(this).parents('.panel').children('.panel-collapse').hasClass('in')){
             e.preventDefault();
