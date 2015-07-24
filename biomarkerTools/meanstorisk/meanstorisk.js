@@ -235,7 +235,7 @@ function make_ajax_call_user_defined_calculation() {
     $.ajax({
         type: "POST",
         url: url,
-        timeout: 15000,
+
         data: {
             option:1,
             spec:specificity_string, 
@@ -502,10 +502,11 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 }
 
 function draw_graph() {
-
     var graph_file;
-    var activePanelIndex = thisTool.find("#accordion .collapse .in").index();
-    if (activePanelIndex === 0) {
+    
+   
+    var activePanelId = thisTool.find("#accordion .collapse.in").attr('id');
+    if (activePanelId =="file_upload") {
         graph_file = "tmp/CSV"+uniqueKey+".png?";
     } else {
         graph_file = "tmp/input"+uniqueKey+".png?";
