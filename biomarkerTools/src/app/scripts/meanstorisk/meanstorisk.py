@@ -45,11 +45,11 @@ def call_mean_RFunction():
     print "Data Start Time: " + str(time.time());
     os.chdir('meanstorisk')
     robjects.r('''source('meanstoriskWrapper.R')''')
+    os.chdir('..')
     r_getname_getApcData = robjects.globalenv['getDataJSON']
     stream = request.stream.read()
     jsondata = r_getname_getApcData(stream)
     print "After Data Calculation: " + str(time.time());
-    os.chdir('..')
     return jsondata[0]
 
 
