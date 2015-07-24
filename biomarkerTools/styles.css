@@ -135,6 +135,12 @@ body #contentTabs #bc .bibliography_entry {
 body #contentTabs #bc .bibliography_link {
   width: 50px;
 }
+body #contentTabs #meanstorisk .graph-panel {
+  padding-left: 0;
+}
+body #contentTabs #meanstorisk .panel.panel-default.table_panel {
+  width: 28%;
+}
 body #contentTabs #meanstorisk .vertical-padding {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -168,7 +174,7 @@ background-color
   background: #ddd url("");
 }
 body #contentTabs #meanstorisk .output_graph {
-  max-width: 100%;
+  max-width: 125%;
   display: block;
   margin-left: auto;
   margin-right: auto;
