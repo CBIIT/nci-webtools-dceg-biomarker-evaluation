@@ -1,11 +1,12 @@
 #meanRiskStratification.tab-pane.fade(role='tabpanel') 
     h3.title.text-center(title="Mean Risk Stratification") Mean Risk Stratification
-    .row.pull-right.col-md-2
-        #helpGlossaryLinks.extra-padding
-        a.goToHelp(data-target="#help_meanRiskStratification") Help
-        | &nbsp;
-        a.goToGlossary(data-target="#glossary") Glossary
-    .col-md-4.col-sm-4
+    .col-md-12
+        .row.pull-right
+            #helpGlossaryLinks.extra-padding
+            a.goToHelp(data-target="#help_meanRiskStratification") Help
+            | &nbsp;
+            a.goToGlossary(data-target="#glossary") Glossary
+    .col-md-5.col-sm-5
         .col-md-12
           form#markers.panel-group
             .marker.panel.panel-default.marker-1
@@ -16,8 +17,8 @@
                 input.name-input.input.input-sm(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9]*$')
               .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-1')
                 h6.panel-title
-                  a.accordion-toggle(title='Input: 2x2 Table') Input: 2x2 Table
                   span.glyphicon.glyphicon-chevron-down
+                  a.accordion-toggle(title='Input: 2x2 Table') Input: 2x2 Table
               #marker-1-option-1.panel-collapse.collapse.in
                 .option-1.panel-body
                   table.table.table-condensed
@@ -47,8 +48,9 @@
                           input#d.input.input-sm(name='d', type='number', maxlength='30')
               .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-2')
                 h6.panel-title
-                  a.accordion-toggle(title='Input: PPV, NPV, Sensitivity,Specificity, etc.') Input: PPV, NPV, Sensitivity,Specificity, etc.
                     span.glyphicon.glyphicon-chevron-down
+                    | &nbsp;
+                    a.accordion-toggle(title='Input: PPV, NPV, Sensitivity,Specificity, etc.') Input: PPV, NPV, Sensitivity,Specificity, etc.
               #marker-1-option-2.panel-collapse.collapse
                 .option-2.panel-body.extra-padding.table-responsive
                   .extra-padding
@@ -100,7 +102,7 @@
                   a#test1(href='#', title='Populate 1 biomarker using test data') Example 1
                 .row
                   a#test2(href='#', title='Populate 1 biomarker using test data') Example 2     
-      .col-md-8.col-sm-8
+      .col-md-7.col-sm-7
         include ../partials/loader.jade        
         #results
           table.table.table-bordered.table-condensed
