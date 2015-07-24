@@ -540,6 +540,7 @@ function reset_meanstorisk(){
     
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("#download_button").addClass("hide");
+    valuesFromFile = [];
 }
 thisTool.find("#reset").on("click", reset_meanstorisk);
 //  Below is needed for IE 9 and below and compatibility mode as the older version does not support the Object.keys method
