@@ -211,6 +211,9 @@ function init_riskStrat(){
 
             return false;
         } else {
+//                // clear output table
+//    thisTool.find("#output").empty();
+//    thisTool.find("#output").html("");
             calculate_riskStrat();
         }
     });
@@ -494,6 +497,7 @@ function checkInputFields() {
 }
 
 function calculate_riskStrat() {
+    
     // Check pattern for each input box
 
     var checkInput = [];
@@ -601,8 +605,8 @@ function calculate_riskStrat() {
                 table_graph_div.append(graphic_side);
                 table_side = $("<div class='table-side' id='table-" + 
                                keyvalueShort[key] + (i + 1) + 
-                               "'><br><div class='table-title'>" + keyvalueLong[key] + 
-                               "</div></div><br><br>");
+                               "'><br><b class='small table-title'>" + keyvalueLong[key] + 
+                               "</b></div><br><br>");
                 table_graph_div.append(table_side);
             }
         }
@@ -746,6 +750,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         table.dataTable({
             "aaData" : arr,
             "aoColumns" : headings,
+            "bJQueryUI" : true,
             "bAutoWidth" : false,
             "bFilter" : false,
             "bSearchable" : false,
@@ -758,9 +763,8 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         // add a first column as independent values
         thisTool.find("#" + tableId + " tr:first").prepend(
             "<th class='ui-state-default' colspan='2'></th>");
-        var i = 0;
-        thisTool.find("#" + tableId + " tr:not(:first)").each(
-            function() {
+     var i = 0;
+        $("#" + tableId + " tr:gt(0)").each(function() {
                 $(this).prepend(
                     "<th class='ui-state-default sorting_disabled'>"+ 
                     independentArraySplit[i] + "</th>");
@@ -802,12 +806,12 @@ function getColumnHeaderData(columnHeadings) {
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
     if(window.location.hostname != "localhost"){
         $('#graphic-' + graphNamePreFix + tabNumber).append(
-            "<img style='height: 400px; text-align: right;' class='center' src='tmp/" + 
+            "<img style='height: 400px; text-align: right;' class='center pull-right' src='tmp/" + 
             graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
     }
     else {
             $('#graphic-' + graphNamePreFix + tabNumber).append(
-            "<img style='height: 400px; text-align: right;' class='center' src='images/exampleLRPlot.jpg' alt='output image'>");
+            "<img style='height: 400px; text-align: right;' class='center pull-right' src='images/exampleLRPlot.jpg' alt='output image'>");
     }
 }
 
