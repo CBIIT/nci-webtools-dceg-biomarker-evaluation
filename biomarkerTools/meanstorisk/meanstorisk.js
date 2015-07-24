@@ -540,6 +540,7 @@ function reset_meanstorisk(){
     
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("#download_button").addClass("hide");
+    valuesFromFile = [];
 }
 thisTool.find("#reset").on("click", reset_meanstorisk);
 
