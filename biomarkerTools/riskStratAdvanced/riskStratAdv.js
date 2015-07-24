@@ -153,6 +153,14 @@ var keyLong = [
         1 : "Delta given desired cNPV, prevalence, and specificity",
         2 : "Sensitivity given desired cNPV, prevalence, and specificity"
     } ];
+var termLookup = {
+	ppv : "PPV",
+	cnpv : "cNPV",
+	sensitivity : "Sens",
+	specificity : "Spec",
+	delta : "Delta",
+	prevalence : "DP"
+};
 var thisTool;
 
 $('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
@@ -496,12 +504,11 @@ function calculate() {
    
 
     var checkInput = [];
-   
-   
-   
-    checkInput.push(document.getElementById("independent").checkValidity());
-    checkInput.push(document.getElementById("contour").checkValidity());
-    checkInput.push(document.getElementById("fixed").checkValidity());
+
+    checkInput.push(thisTool.find("#independent")[0].checkValidity());
+    checkInput.push(thisTool.find("#contour")[0].checkValidity());
+    checkInput.push(thisTool.find("#fixed")[0].checkValidity());
+    
     if ($.inArray(false, checkInput) >= 0) {
         thisTool.find("#status-bar").removeClass('hide');
         thisTool.find$thisTool.find("#status-bar")
@@ -529,7 +536,7 @@ function calculate() {
     independentArraySplit = independentArray.split(",");
     var independentMin = Math.min.apply(Math, independentArraySplit);
     var independentMax = Math.max.apply(Math, independentArraySplit);
-    contourArray = thisTool.find("#contour").val();
+    var contourArray = thisTool.find("#contour").val();
    
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
@@ -560,10 +567,11 @@ function calculate() {
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
-        var eIndependent = document.getElementById("independent_dropdown");
+       
+        var eIndependent = thisTool.find("#independent_dropdown")[0];
         var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
-        var eContour = document.getElementById("contour_dropdown");
+        var eContour = thisTool.find("#contour_dropdown")[0];
         var selectedContourValue = eContour.options[eContour.selectedIndex].text;
 
         tableFirstRowLabel = selectedIndependentValue;
@@ -878,9 +886,9 @@ function makeSelectionsUnique(originalOptions, elementId) {
 }
 
 function removeAllOptions(eid) {
-    var element = document.getElementById(eid);
-    var i;
-    for (i = element.options.length - 1; i >= 0; i--) {
+   
+    var element = thisTool.find("#"+eid)[0];
+    for (var i = element.options.length - 1; i >= 0; i--) {
         element.remove(i);
     }
 }
@@ -906,10 +914,10 @@ function setInitialValue(textboxId) {
 
     var selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
     var key = $.inArray(selectedOption, functionnames);
-
-    var eSelect = document.getElementById(textboxId);
+ 
+    var eSelect = thisTool.find("#"+textboxId);
    
-    var eSelect2 = $(eSelect).parent().parent()[0];
+    var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
 
    
    
