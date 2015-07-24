@@ -186,7 +186,7 @@
                 </div>
                 <div class="graph_panel col-md-4"></div>
               </div>
-              <div class="bottom_section">
+              <div class="bottom_section small">
                 <div class="tabbed_output_panel"></div>
               </div>
             </div>
@@ -300,7 +300,7 @@
                   <div class="row">
                     <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
-                  <table id="output"></table>
+                  <div id="output" class="col-md-12"></div>
                 </div>
                 <div class="col-md-6"><img id="graph" src="/common/images/initial.jpg" alt="graph" border="1" align="top" height="400" width="400" class="thumbnail"></div>
                 <div class="bibliography">
@@ -338,7 +338,8 @@
                       </div>
                       <div class="col-md-5">
                         <label for="independent" class="sr-only">Independent Variable Value</label>
-                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="input-sm">
+                        <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." class="input-sm">
+                        <!--, required)-->
                       </div>
                       <div class="col-md-2">
                         <div id="indDef"></div><span class="variable-example"></span>
@@ -361,7 +362,8 @@
                       </div>
                       <div class="col-md-5">
                         <label for="contour" class="sr-only">Contour Value</label>
-                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="input-sm">
+                        <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." class="input-sm">
+                        <!--, required)-->
                       </div>
                       <div class="col-md-2">
                         <div id="contourDef"></div><span class="variable-example"></span>
@@ -384,7 +386,8 @@
                       </div>
                       <div class="col-md-5">
                         <label for="fixed" class="sr-only">Fixed Value</label>
-                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="input-sm">
+                        <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" class="input-sm">
+                        <!--, required)-->
                       </div>
                       <div class="col-md-2">
                         <div id="fvDef"></div><span class="variable-example"></span>
@@ -424,8 +427,8 @@
                   </div>
                 </div>
               </div>
-              <div id="output" class="row"></div>
-              <div id="output1" class="row"></div>
+              <div id="output" class="col-md-12 row"></div>
+              <div id="output1" class="col-md-12 row"></div>
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
@@ -566,10 +569,12 @@
             </div>
             <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
               <h3 title="Mean Risk Stratification" class="title text-center">Mean Risk Stratification</h3>
-              <div class="row pull-right col-md-2">
-                <div id="helpGlossaryLinks" class="extra-padding"></div><a data-target="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a>
+              <div class="col-md-12">
+                <div class="row pull-right">
+                  <div id="helpGlossaryLinks" class="extra-padding"></div><a data-target="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;<a data-target="#glossary" class="goToGlossary">Glossary</a>
+                </div>
               </div>
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-5 col-sm-5">
                 <div class="col-md-12">
                   <form id="markers" class="panel-group">
                     <div class="marker panel panel-default marker-1">
@@ -581,7 +586,7 @@
                         <input type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9]*$" class="name-input input input-sm">
                       </div>
                       <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-1" class="panel-heading">
-                        <h6 class="panel-title"><a title="Input: 2x2 Table" class="accordion-toggle">Input: 2x2 Table</a><span class="glyphicon glyphicon-chevron-down"></span></h6>
+                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span><a title="Input: 2x2 Table" class="accordion-toggle">Input: 2x2 Table</a></h6>
                       </div>
                       <div id="marker-1-option-1" class="panel-collapse collapse in">
                         <div class="option-1 panel-body">
@@ -623,7 +628,7 @@
                         </div>
                       </div>
                       <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-2" class="panel-heading">
-                        <h6 class="panel-title"><a title="Input: PPV, NPV, Sensitivity,Specificity, etc." class="accordion-toggle">Input: PPV, NPV, Sensitivity,Specificity, etc.<span class="glyphicon glyphicon-chevron-down"></span></a></h6>
+                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;<a title="Input: PPV, NPV, Sensitivity,Specificity, etc." class="accordion-toggle">Input: PPV, NPV, Sensitivity,Specificity, etc.</a></h6>
                       </div>
                       <div id="marker-1-option-2" class="panel-collapse collapse">
                         <div class="option-2 panel-body extra-padding table-responsive">
@@ -694,7 +699,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-8 col-sm-8">
+              <div class="col-md-7 col-sm-7">
                 <div class="row">
                   <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
