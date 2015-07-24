@@ -580,11 +580,10 @@ function calculate() {
         thisTool.find("#output").empty();
 
         // First make the right tabs
-        tabs = $("<div id='tabs'> </div>");
+        tabs = $("<div class='col-md-12 row' id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
-        var spacing = "<p></p><p></p><p></p>";
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
             tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"+ 
@@ -601,10 +600,10 @@ function calculate() {
                                     (i + 1) + 
                                     "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
+                graphic_side = ("<div class='graphic-side col-md-6' id='graphic-" + 
+                                keyvalueShort[key] + (i + 1) + "'></div>");//<div style='clear:right;padding-top:10px;'> </div>
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side' id='table-" + 
+                table_side = $("<div class='table-side col-md-6' id='table-" + 
                                keyvalueShort[key] + (i + 1) + 
                                "'><br><div class='table-title'>" + keyvalueLong[key] + 
                                "</div></div><br><br>");
@@ -674,6 +673,7 @@ function getFunctionName(independent, fixed, contour) {
 function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
+    if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
     $.ajax({
         type : "POST",
         url : service,
@@ -736,7 +736,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         }
 
         var headings = [];
-        for (var j = 0; i < columnHeadings.length; j++) {
+        for (var j = 0; j < columnHeadings.length; j++) {
             headings.push({
                 "sTitle" : columnHeadings[j]
             });
