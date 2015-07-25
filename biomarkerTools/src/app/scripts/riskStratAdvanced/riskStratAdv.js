@@ -736,9 +736,9 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         }
 
         var headings = [];
-        for (var j = 0; j < columnHeadings.length; j++) {
+        for (var i = 0; i < columnHeadings.length; i++) {
             headings.push({
-                "sTitle" : columnHeadings[j]
+                "sTitle" : columnHeadings[i]
             });
         }
 
@@ -761,10 +761,11 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "aaSorting" : [ [ 0, "asc" ] ]
         });
         // add a first column as independent values
-        thisTool.find("#" + tableId + " tr:first").prepend(
+        $("#" + tableId + " tr:first").prepend(
             "<th class='ui-state-default' colspan='2'></th>");
      var i = 0;
-        $("#" + tableId + " tr:gt(0)").each(function() {
+//        $("#" + tableId + " tr:gt(0)").each(function() {
+        $("#" + tableId + " tr:not(:first)").each(function(){
                 $(this).prepend(
                     "<th class='ui-state-default sorting_disabled'>"+ 
                     independentArraySplit[i] + "</th>");
@@ -784,9 +785,9 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     } else {
         thisTool.find("#status-bar").addClass("status-error");
         thisTool.find("#status-bar").removeClass('hide');
-        thisTool.find("#status-bar").append("<div>" + tableError["1"].message + "</div>");
+        thisTool.find("#status-bar").append("<div>" + tableError[1].message + "</div>");
         if (graphErrorValue != 1) {
-            thisTool.find("#status-bar").append("<div>" + graphError["1"].message + "</div>");
+            thisTool.find("#status-bar").append("<div>" + graphError[1].message + "</div>");
         }
     }
 }
