@@ -601,7 +601,7 @@ function calculate_riskStrat() {
                                     "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
                 graphic_side = ("<div class='graphic-side' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'></div><div style='clear:right;padding-top:10px;'> </div>");
+                                keyvalueShort[key] + (i + 1) + "'></div>");
                 table_graph_div.append(graphic_side);
                 table_side = $("<div class='table-side' id='table-" + 
                                keyvalueShort[key] + (i + 1) + 
