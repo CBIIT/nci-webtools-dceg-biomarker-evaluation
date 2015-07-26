@@ -1,4 +1,4 @@
-//"use strict";
+
 var oTable;
 var outputTable;
 var giRedraw = false;
@@ -17,7 +17,7 @@ var keysforfunctionnames = [ "", "Sens", "Spec", "PPV", "cNPV", "Prev", "Delta" 
 
 var functionnames = [ "", "sensitivity", "specificity", "ppv", "cnpv",
                      "prevalence", "delta" ];
-/* Note: invalidCombos must be entered in alphabetical order per variable. */
+
 var invalidCombos = [ "delta-sensitivity-specificity", "cnpv-delta-ppv",
                      "cnpv-ppv-prevalence", "cnpv-ppv-sensitivity", "cnpv-ppv-specificity",
                      "delta-ppv-prevalence", "cnpv-delta-prevalence" ];
@@ -163,12 +163,10 @@ $('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
 function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
     thisTool.bind('beforeunload', function() {
-        // do something
+       
         alert("We gonna clear some things up.");
     });
-
-    // Create a dialog box to ask user if they would like to continue on rule
-    // violation.
+   
 
     thisTool.find("select").change(function() {
         makeSelectionsUnique(functionnames, this.id);
@@ -185,7 +183,7 @@ function init_riskStrat(){
 
     thisTool.find("input").change(checkInputFields);
 
-    // Mouseup event needed for ie to determine if they hit clear.
+   
     thisTool.find("input").bind("mouseup", function(e) {
         var $input = $(this);
         var oldValue = $input.val();
@@ -193,12 +191,12 @@ function init_riskStrat(){
         if (oldValue === "")
             return;
 
-        // When this event is fired after clicking on the clear button
-        // the value is not cleared yet. We have to wait for it.
+       
+       
         setTimeout(function() {
             var newValue = $input.val();
             if (newValue === "") {
-                // Gotcha
+               
                 $input.trigger("cleared");
                 checkInputFields();
             }
@@ -211,9 +209,9 @@ function init_riskStrat(){
 
             return false;
         } else {
-//                // clear output table
-//    thisTool.find("#output").empty();
-//    thisTool.find("#output").html("");
+
+
+
             calculate_riskStrat();
         }
     });
@@ -228,7 +226,7 @@ function init_riskStrat(){
 $(document).ready(init_riskStrat);
 
 function addTestData() {
-    // select dropdown
+   
     thisTool.find("#independent_dropdown").val("specificity");
     thisTool.find("#contour_dropdown").val("prevalence");
     thisTool.find("#fixed_dropdown").val("delta");
@@ -290,10 +288,11 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
 }
 
 function resetPopupDefinition() {
-    // remove popup definition elements
+   
     thisTool.find("#indDef").html("");
     thisTool.find("#contourDef").html("");
     thisTool.find("#fvDef").html("");
+
 }
 
 function resetPage() {
@@ -304,6 +303,7 @@ function resetPage() {
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
+    thisTool.find("#spinner").addClass('hide');
     resetPopupDefinition();
 }
 
@@ -317,12 +317,12 @@ function createRulesDialog() {
             buttons : {
                 Yes : function() {
                     $(this).dialog("close");
-                    // alert("calculate");
+                   
                     calculate_riskStrat();
                 },
                 Cancel : function() {
                     $(this).dialog("close");
-                    // alert('Cancel');
+                   
                 }
             },
             modal : true
@@ -344,21 +344,21 @@ function checkRules() {
     var max = [];
     rulesViolationMsg = "";
 
-    // Get ids from select elements
+   
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
-    // Save currently selected values
+   
     $.each(ids, function(key, elementId) {
         selectedVars.push(thisTool.find('#' + elementId).val());
     });
-    // Get ids from input elements
+   
     ids = thisTool.find("input").map(function() {
         return this.id;
     }).get();
-    // Save currently selected values
+   
     $.each(ids, function(key, elementId) {
-        // Change user input into array of floating point values
+       
         userInput = $('#' + elementId).val();
         temp = userInput.split(',');
         for (var i; i < temp.length; i++) {
@@ -389,11 +389,9 @@ function checkRule(ruleId, vars, values, min, max) {
     status = "Pass";
     switch (ruleId) {
         case 1:
-            //
-            // Rule 1:
-            // Specificity, Sensitivity, PPV, cNPV, Prevalence can only be 0 to 1
-            //
-            // Test all values except Delta
+           
+           
+           
             minValue = 0;
             maxValue = 1;
             $.each(
@@ -408,11 +406,9 @@ function checkRule(ruleId, vars, values, min, max) {
                 });
             break;
         case 2:
-            //
-            // Rule 2:
-            // Delta can be 0 to 5
-            //
-            // Test only delta
+           
+           
+           
             minValue = 0;
             maxValue = 5;
             $
@@ -428,9 +424,9 @@ function checkRule(ruleId, vars, values, min, max) {
                 });
             break;
         case 3:
-            // Rule 3:
-            // cNPV < Prevalence
-            // For arrays: max(cNPV) < min(Prevalence)
+           
+           
+           
 
             var cnpvPostion = $.inArray("cnpv", vars);
             var prevalencePostion = $.inArray("prevalence", vars);
@@ -442,11 +438,9 @@ function checkRule(ruleId, vars, values, min, max) {
             }
             break;
         case 4:
-            //
-            // Rule 4:
-            // Prevalence < PPV...
-            //
-            // For arrays: max(prev) < min(PPV)</li>
+           
+           
+           
             var prevalencePostion = $.inArray("prevalence", vars);
             ppvPostion = $.inArray("ppv", vars);
             if (prevalencePostion >= 0 && ppvPostion >= 0) {
@@ -458,15 +452,15 @@ function checkRule(ruleId, vars, values, min, max) {
 
             break;
         case 5:
-            // Rule 5:
-            // Sensivitity+Specificity-1>0
+           
+           
 
 
             sensitivityPosition = $.inArray("sensitivity", vars);
             specificityPosition = $.inArray("specificity", vars);
             if (sensitivityPosition >= 0 && specificityPosition >= 0) {
-                // TODO: Need to think through on a sorted array level, go through
-                // each position in array.
+               
+               
                 if (max[sensitivityPosition] + max[specificityPosition] <= 1) {
                     status = "Fail";
                     rulesViolationMsg += "<div>Rule: max(sensitivity) + max(specificity) > 1</div>";
@@ -480,11 +474,11 @@ function checkRule(ruleId, vars, values, min, max) {
 
 function checkInputFields() {
     var selectedValues = [];
-    // Get ids from select elements
+   
     var ids = thisTool.find("input").map(function() {
         return this.id;
     }).get();
-    // Save currently selected values
+   
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
@@ -497,9 +491,6 @@ function checkInputFields() {
 }
 
 function calculate_riskStrat() {
-    
-    // Check pattern for each input box
-
     var checkInput = [];
 
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
@@ -521,12 +512,12 @@ function calculate_riskStrat() {
         thisTool.find("#status-bar").addClass('hide');
     }
 
-    var fixedArray = ""; // prevalence
-    var contourArray = ""; // ppv
-    var independentArray = ""; // specificity
+    var fixedArray = "";
+    var contourArray = "";
+    var independentArray = "";
 
     independentArray = thisTool.find("#independent").val();
-    // Remove all spaces and non-characters
+   
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
     var independentval = thisTool.find("#independent_dropdown").val();
     independentArraySplit = independentArray.split(",");
@@ -534,13 +525,13 @@ function calculate_riskStrat() {
     var independentMax = Math.max.apply(Math, independentArraySplit);
     var contourArray = thisTool.find("#contour").val();
     
-    // Remove all spaces and non-characters
+   
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
     fixedArray = thisTool.find("#fixed").val();
     
-    // Remove all spaces and non-characters
+   
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
     var fixedval = thisTool.find("#fixed_dropdown").val();
     var fixedArraySplit = fixedArray.split(",");
@@ -560,12 +551,16 @@ function calculate_riskStrat() {
 
     var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
     if (keyvalueIndex >= 0) {
+
+        thisTool.find("#calculate").button('disable');
+        thisTool.find("#spinner").removeClass('hide');
+
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
-        // access to options by selecting the 0 index
+       
         var eIndependent = thisTool.find("#independent_dropdown")[0];
         var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
@@ -579,18 +574,18 @@ function calculate_riskStrat() {
 
         thisTool.find("#output").empty();
 
-        // First make the right tabs
+       
         tabs = $("<div class='col-md-12' id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"+ 
+            tab_names.append("<LI><a style='padding:3px;' href='#fixed-"+ 
                              (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ 
                              fixedArraySplit[i] + "</a></LI>");
             tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1) + 
-                         "' >  </div>")
+                         "' > </div>");
             tabs.append(tab_pane);
 
             for ( var key in keyvalueShort) {
@@ -613,10 +608,16 @@ function calculate_riskStrat() {
 
         tabs.tabs();
 
-        for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
+        var promises = [];
+
+        for(var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
+            
             tabindex = fixedValue + 1;
-            for ( var shortkey in keyvalueShort) {
-                getData({
+
+            for( var shortkey in keyvalueShort) {
+                
+                getData(promises,
+                {
                     key : keyvalueShort[shortkey],
                     keyindex : shortkey,
                     independentval : independentval,
@@ -631,15 +632,35 @@ function calculate_riskStrat() {
                     tab : tabindex,
                     tabvalue : fixedArraySplit[fixedValue],
                     abreviatedkey : keyvalueShort[shortkey]
-                }, keyvalueShort[shortkey], tabindex,
-                        fixedArraySplit[fixedValue], uniqueKey,
-                        keyvalueShort[shortkey], columnHeadings);
+                }, 
+                keyvalueShort[shortkey],
+                tabindex,
+                fixedArraySplit[fixedValue],
+                uniqueKey,
+                keyvalueShort[shortkey], 
+                columnHeadings);
             }
         }
-    } // if function mapping is available
+
+        $.when.apply($, promises).done(function(data) {
+            open_threads--;
+            
+            if(open_threads === 0) {
+                if(error_count > 0) {
+                    alert("There were " + error_count + " errors with your request");
+                    error_count = 0;
+                }
+            }
+            
+            loadImage(tabindex, fixedArraySplit[fixedValue], uniqueKey, keyvalueShort[shortkey]);
+            thisTool.find("#calculate").button('enable');
+            thisTool.find("#spinner").addClass('hide');
+        });
+    }
     else {
         thisTool.find("#output").empty();
     }
+    
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
@@ -670,35 +691,32 @@ function getFunctionName(independent, fixed, contour) {
     return (rFileName);
 }
 
-function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
+function getData(promises, data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
-    $.ajax({
-        type : "POST",
-        url : service,
-        data : data,
-        dataType : "json",
-//        timeout: 15000,
-        success : function(data) {
-            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-        },
-        error : function(request, status, error) {
-            handleError(error, status, request);
-        },
-        complete : function(data) {
-            // console.log("Completing: " + tableTitle);
+    
+    promises.push( 
+        $.ajax({
+            type : "POST",
+            url : service,
+            data : data,
+            dataType : "json",
+            contentType: 'application/json'
+        }).then(function(resp, textStatus, jqXHR){
+            console.log(resp);
+            fillTable(resp, columnHeadings, tabnumber, abbreviatedKey);
+        }).done(function(data) {
             open_threads--;
             if (open_threads === 0) {
                 if (error_count > 0) {
-                    alert("There were " + error_count + 
-                          " errors with your request");
+                    alert("There were " + error_count + " errors with your request");
                     error_count = 0;
                 }
             }
             loadImage(tabnumber, tabValue.trim(), uniqueKey, abbreviatedKey);
-        }
-    });
+        })
+    );
 }
 
 function handleError(error, status, request) {
@@ -760,11 +778,11 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "bDestroy" : true,
             "aaSorting" : [ [ 0, "asc" ] ]
         });
-        // add a first column as independent values
+       
         $("#" + tableId + " tr:first").prepend(
             "<th class='ui-state-default' colspan='2'></th>");
      var i = 0;
-//        $("#" + tableId + " tr:gt(0)").each(function() {
+
         $("#" + tableId + " tr:not(:first)").each(function(){
                 $(this).prepend(
                     "<th class='ui-state-default sorting_disabled'>"+ 
@@ -772,13 +790,13 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
                 i++;
             });
 
-        // add another first column for independent type
+       
         thisTool.find("#" + tableId + " tr:eq(1)").prepend(
             "<th class='header' rowspan='" + independentArraySplit.length+ 
             "'><div class='vertical-text'>" + tableFirstRowLabel+ 
             "</div></th>");
 
-        // add a column heading for contour type
+       
         thisTool.find("#" + tableId + " thead").prepend(
             "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"+ 
             tableFirstColLabel + "</th></tr>");
@@ -848,24 +866,24 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-    //    thisTool.find("#calculate").button("option", "disabled", true);
+   
     thisTool.find("#calculate").button('disable');
     if (activeSelectionChange === true)
         return;
 
     activeSelectionChange = true;
 
-    // Get ids from select elements
+   
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
 
-    // Save currently selected values
+   
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
-    // Repopulate each dropdown with the original list and reselect.
+   
     for (var key = 0; key < ids.length; key++) {
         disabledValues = [];
         for (var i = 0; i < selectedValues.length; i++) {
@@ -878,12 +896,12 @@ function makeSelectionsUnique(originalOptions, elementId) {
         removeAllOptions(dropdownBoxId);
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
-        // Reselect User selection
+       
         thisTool.find('#' + dropdownBoxId).val(selectedValues[key]).change();
     }
-    // If sandbox populate with default values
-    // if(window.location.hostname == "analysistools-sandbox.nci.nih.gov" ||
-    // window.location.hostname == "localhost")
+   
+   
+   
     setInitialValue(elementId);
     checkForInvalidVariableCombo(elementId);
     activeSelectionChange = false;
@@ -891,7 +909,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
 }
 
 function removeAllOptions(eid) {
-    // access options by selecting the 0 index
+   
     var element = thisTool.find("#"+eid)[0];
     for (var i = element.options.length - 1; i >= 0; i--) {
         element.remove(i);
@@ -921,42 +939,42 @@ function setInitialValue(textboxId) {
     var key = $.inArray(selectedOption, functionnames);
 
     var eSelect = thisTool.find("#"+textboxId);
-    // Get the parent row <tr> of this <select>
+   
     var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
 
-    // This next command removes the selected attribute from options,
-    // so we will reselect it later.
+   
+   
     thisTool.find(eSelect2).find(":input").val("");
     thisTool.find(eSelect2).find("span").text(initialData[key]);
 
-    // Reselect User selection
+   
     thisTool.find('#' + textboxId).val(selectedOption).change();
     addPopupDefinition();
 }
 
 function checkForInvalidVariableCombo() {
-    // Get array of variables
+   
 
-    // Get ids from select elements
+   
     var selectedValues = [];
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
 
-    // Save currently selected values
+   
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
-    // Make sure all three variables exists else return
+   
     var blankCount = $.inArray("", selectedValues);
     if ($.inArray("", selectedValues) == -1) {
-        // All three variables are slected. Check if it is valid.
+       
         var selectedValuesSorted = selectedValues.sort();
         var selectedValuesSortedString = selectedValues.join("-");
 
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
-            // INVALID COMBO FOUND
+           
             var userSelectedVariables = selectedValues[0].toString() + ", "+ 
                 selectedValues[1].toString() + ",  and "+ 
                 selectedValues[2].toString();
@@ -970,7 +988,7 @@ function checkForInvalidVariableCombo() {
             thisTool.find("#status-bar").text(message);
             validCombo = false;
         } else {
-            // VALID COMBO FOUND
+           
             thisTool.find("#status-bar").addClass('hide');
             thisTool.find("#status-bar").addClass("status-error");
             thisTool.find("#status-bar").removeClass("status-info");
@@ -978,7 +996,7 @@ function checkForInvalidVariableCombo() {
             validCombo = true;
         }
     } else {
-        // Unselected Dropdowns
+       
         thisTool.find("#status-bar").addClass('hide');
         thisTool.find("#status-bar").addClass("status-info");
         thisTool.find("#status-bar").removeClass("status-error");
