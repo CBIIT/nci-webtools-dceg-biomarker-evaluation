@@ -166,8 +166,6 @@ function init_riskStrat(){
        
         alert("We gonna clear some things up.");
     });
-
-   
    
 
     thisTool.find("select").change(function() {
@@ -294,6 +292,7 @@ function resetPopupDefinition() {
     thisTool.find("#indDef").html("");
     thisTool.find("#contourDef").html("");
     thisTool.find("#fvDef").html("");
+
 }
 
 function resetPage() {
@@ -304,6 +303,7 @@ function resetPage() {
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
+    thisTool.find("#spinner").addClass('hide');
     resetPopupDefinition();
 }
 
@@ -491,9 +491,6 @@ function checkInputFields() {
 }
 
 function calculate_riskStrat() {
-    
-   
-
     var checkInput = [];
 
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
@@ -554,6 +551,10 @@ function calculate_riskStrat() {
 
     var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
     if (keyvalueIndex >= 0) {
+
+        thisTool.find("#calculate").button('disable');
+        thisTool.find("#spinner").removeClass('hide');
+
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
         for ( var key in keyvalueShort) {
@@ -580,11 +581,11 @@ function calculate_riskStrat() {
         tabs.append(tab_names);
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"+ 
+            tab_names.append("<LI><a style='padding:3px;' href='#fixed-"+ 
                              (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ 
                              fixedArraySplit[i] + "</a></LI>");
             tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1) + 
-                         "' >  </div>")
+                         "' > </div>");
             tabs.append(tab_pane);
 
             for ( var key in keyvalueShort) {
@@ -607,10 +608,16 @@ function calculate_riskStrat() {
 
         tabs.tabs();
 
-        for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
+        var promises = [];
+
+        for(var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
+            
             tabindex = fixedValue + 1;
-            for ( var shortkey in keyvalueShort) {
-                getData({
+
+            for( var shortkey in keyvalueShort) {
+                
+                getData(promises,
+                {
                     key : keyvalueShort[shortkey],
                     keyindex : shortkey,
                     independentval : independentval,
@@ -625,15 +632,35 @@ function calculate_riskStrat() {
                     tab : tabindex,
                     tabvalue : fixedArraySplit[fixedValue],
                     abreviatedkey : keyvalueShort[shortkey]
-                }, keyvalueShort[shortkey], tabindex,
-                        fixedArraySplit[fixedValue], uniqueKey,
-                        keyvalueShort[shortkey], columnHeadings);
+                }, 
+                keyvalueShort[shortkey],
+                tabindex,
+                fixedArraySplit[fixedValue],
+                uniqueKey,
+                keyvalueShort[shortkey], 
+                columnHeadings);
             }
         }
+
+        $.when.apply($, promises).done(function(data) {
+            open_threads--;
+            
+            if(open_threads === 0) {
+                if(error_count > 0) {
+                    alert("There were " + error_count + " errors with your request");
+                    error_count = 0;
+                }
+            }
+            
+            loadImage(tabindex, fixedArraySplit[fixedValue], uniqueKey, keyvalueShort[shortkey]);
+            thisTool.find("#calculate").button('enable');
+            thisTool.find("#spinner").addClass('hide');
+        });
     }
     else {
         thisTool.find("#output").empty();
     }
+    
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
@@ -664,35 +691,32 @@ function getFunctionName(independent, fixed, contour) {
     return (rFileName);
 }
 
-function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
+function getData(promises, data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
-    $.ajax({
-        type : "POST",
-        url : service,
-        data : data,
-        dataType : "json",
-
-        success : function(data) {
-            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-        },
-        error : function(request, status, error) {
-            handleError(error, status, request);
-        },
-        complete : function(data) {
-           
+    
+    promises.push( 
+        $.ajax({
+            type : "POST",
+            url : service,
+            data : data,
+            dataType : "json",
+            contentType: 'application/json'
+        }).then(function(resp, textStatus, jqXHR){
+            console.log(resp);
+            fillTable(resp, columnHeadings, tabnumber, abbreviatedKey);
+        }).done(function(data) {
             open_threads--;
             if (open_threads === 0) {
                 if (error_count > 0) {
-                    alert("There were " + error_count + 
-                          " errors with your request");
+                    alert("There were " + error_count + " errors with your request");
                     error_count = 0;
                 }
             }
             loadImage(tabnumber, tabValue.trim(), uniqueKey, abbreviatedKey);
-        }
-    });
+        })
+    );
 }
 
 function handleError(error, status, request) {
