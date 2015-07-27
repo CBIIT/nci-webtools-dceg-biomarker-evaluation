@@ -718,7 +718,15 @@ function handleError(error, status, request) {
 }
 
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
-    thisTool.find("#table-" + abbreviatedKey + tabnumber).empty();
+    var tableId = "example-" + abbreviatedKey + tabnumber;
+    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #"+tableId).html("");
+            
+    // check if datatable exists
+    if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
+        thisTool.find('#'+tableId).dataTable().fnDestroy();
+        thisTool.find('#'+tableId).empty();
+    }
+    
     var independentArray = thisTool.find("#independent").val();
     independentArraySplit = independentArray.split(",");
 
@@ -746,18 +754,10 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
                 "sTitle" : columnHeadings[i]
             });
         }
-
-        var tableId = "example-" + abbreviatedKey + tabnumber;
-        thisTool.find("#"+tableId).empty();
+//        thisTool.find("#"+tableId).empty();
 //        thisTool.find("#"+tableId).html("");
 
         var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + tableId + "'> </table>");
-        
-        // check if datatable exists
-        if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
-            table.DataTable().fnDestroy();
-            table.empty();
-        }
         
         thisTool.find("#table-" + abbreviatedKey + tabnumber).append(table);
 
@@ -775,8 +775,8 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "aaSorting" : [ [ 0, "asc" ] ]
         });
 
-        $("#" + tableId + " tr:first").prepend(
-            "<th class='ui-state-default' colspan='2'></th>");
+        $("<th class='ui-state-default' colspan='2'></th>")
+            .prependTo("#" + tableId + " thead tr[role='row']:first");
         var i = 0;
 
         $("#" + tableId + " tr:not(:first)").each(function(){
