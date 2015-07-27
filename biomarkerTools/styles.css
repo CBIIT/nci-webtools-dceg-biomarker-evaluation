@@ -440,6 +440,10 @@ body #contentTabs #riskStratAdvanced #tabs .tab-pane {
   width: 950px;
   height: 950px;
 }
+body #contentTabs #riskStratAdvanced #tabs .tab-pane .header {
+  background-color: #aaa;
+  color: #444;
+}
 body #contentTabs #riskStratAdvanced #tabs .vertical-text {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
