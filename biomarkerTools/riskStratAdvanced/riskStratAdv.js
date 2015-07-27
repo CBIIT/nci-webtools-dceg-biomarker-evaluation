@@ -163,10 +163,10 @@ $('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
 function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
     thisTool.bind('beforeunload', function() {
-       
+
         alert("We gonna clear some things up.");
     });
-   
+
 
     thisTool.find("select").change(function() {
         makeSelectionsUnique(functionnames, this.id);
@@ -183,7 +183,7 @@ function init_riskStrat(){
 
     thisTool.find("input").change(checkInputFields);
 
-   
+
     thisTool.find("input").bind("mouseup", function(e) {
         var $input = $(this);
         var oldValue = $input.val();
@@ -191,12 +191,12 @@ function init_riskStrat(){
         if (oldValue === "")
             return;
 
-       
-       
+
+
         setTimeout(function() {
             var newValue = $input.val();
             if (newValue === "") {
-               
+
                 $input.trigger("cleared");
                 checkInputFields();
             }
@@ -209,9 +209,6 @@ function init_riskStrat(){
 
             return false;
         } else {
-
-
-
             calculate_riskStrat();
         }
     });
@@ -226,7 +223,7 @@ function init_riskStrat(){
 $(document).ready(init_riskStrat);
 
 function addTestData() {
-   
+
     thisTool.find("#independent_dropdown").val("specificity");
     thisTool.find("#contour_dropdown").val("prevalence");
     thisTool.find("#fixed_dropdown").val("delta");
@@ -242,14 +239,14 @@ function addTestData() {
 
 function addPopupDefinition() {
 
-var termLookup = {
-    ppv : "PPV",
-    cnpv : "cNPV",
-    sensitivity : "Sens",
-    specificity : "Spec",
-    delta : "Delta",
-    prevalence : "DP"
-};
+    var termLookup = {
+        ppv : "PPV",
+        cnpv : "cNPV",
+        sensitivity : "Sens",
+        specificity : "Spec",
+        delta : "Delta",
+        prevalence : "DP"
+    };
     var independent = thisTool.find('#independent_dropdown').val();
     var contour = thisTool.find('#contour_dropdown').val();
     var fixedValue = thisTool.find('#fixed_dropdown').val();
@@ -288,7 +285,7 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
 }
 
 function resetPopupDefinition() {
-   
+
     thisTool.find("#indDef").html("");
     thisTool.find("#contourDef").html("");
     thisTool.find("#fvDef").html("");
@@ -317,12 +314,11 @@ function createRulesDialog() {
             buttons : {
                 Yes : function() {
                     $(this).dialog("close");
-                   
                     calculate_riskStrat();
                 },
                 Cancel : function() {
                     $(this).dialog("close");
-                   
+
                 }
             },
             modal : true
@@ -344,21 +340,21 @@ function checkRules() {
     var max = [];
     rulesViolationMsg = "";
 
-   
+
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
-   
+
     $.each(ids, function(key, elementId) {
         selectedVars.push(thisTool.find('#' + elementId).val());
     });
-   
+
     ids = thisTool.find("input").map(function() {
         return this.id;
     }).get();
-   
+
     $.each(ids, function(key, elementId) {
-       
+
         userInput = $('#' + elementId).val();
         temp = userInput.split(',');
         for (var i; i < temp.length; i++) {
@@ -389,9 +385,9 @@ function checkRule(ruleId, vars, values, min, max) {
     status = "Pass";
     switch (ruleId) {
         case 1:
-           
-           
-           
+
+
+
             minValue = 0;
             maxValue = 1;
             $.each(
@@ -406,9 +402,9 @@ function checkRule(ruleId, vars, values, min, max) {
                 });
             break;
         case 2:
-           
-           
-           
+
+
+
             minValue = 0;
             maxValue = 5;
             $
@@ -424,9 +420,9 @@ function checkRule(ruleId, vars, values, min, max) {
                 });
             break;
         case 3:
-           
-           
-           
+
+
+
 
             var cnpvPostion = $.inArray("cnpv", vars);
             var prevalencePostion = $.inArray("prevalence", vars);
@@ -438,9 +434,9 @@ function checkRule(ruleId, vars, values, min, max) {
             }
             break;
         case 4:
-           
-           
-           
+
+
+
             var prevalencePostion = $.inArray("prevalence", vars);
             ppvPostion = $.inArray("ppv", vars);
             if (prevalencePostion >= 0 && ppvPostion >= 0) {
@@ -452,15 +448,15 @@ function checkRule(ruleId, vars, values, min, max) {
 
             break;
         case 5:
-           
-           
+
+
 
 
             sensitivityPosition = $.inArray("sensitivity", vars);
             specificityPosition = $.inArray("specificity", vars);
             if (sensitivityPosition >= 0 && specificityPosition >= 0) {
-               
-               
+
+
                 if (max[sensitivityPosition] + max[specificityPosition] <= 1) {
                     status = "Fail";
                     rulesViolationMsg += "<div>Rule: max(sensitivity) + max(specificity) > 1</div>";
@@ -474,11 +470,11 @@ function checkRule(ruleId, vars, values, min, max) {
 
 function checkInputFields() {
     var selectedValues = [];
-   
+
     var ids = thisTool.find("input").map(function() {
         return this.id;
     }).get();
-   
+
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
@@ -492,11 +488,17 @@ function checkInputFields() {
 
 function calculate_riskStrat() {
     var checkInput = [];
+    var fixedArray = "";
+    var contourArray = "";
+    var independentArray = "";
 
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
     checkInput.push(thisTool.find("#contour")[0].checkValidity());
     checkInput.push(thisTool.find("#fixed")[0].checkValidity());
-
+    
+    thisTool.find("#output").empty();
+    
+    $("#status-bar").text("");
     if ($.inArray(false, checkInput) >= 0) {
         thisTool.find("#status-bar").removeClass('hide');
         thisTool.find("#status-bar").html(
@@ -504,7 +506,6 @@ function calculate_riskStrat() {
         return;
     }
 
-    $("#status-bar").text("");
     if (rulesViolationMsg.length > 0) {
         thisTool.find("#status-bar").html(rulesViolationMsg);
         thisTool.find("#status-bar").removeClass('hide');
@@ -512,46 +513,42 @@ function calculate_riskStrat() {
         thisTool.find("#status-bar").addClass('hide');
     }
 
-    var fixedArray = "";
-    var contourArray = "";
-    var independentArray = "";
-
     independentArray = thisTool.find("#independent").val();
-   
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
+    
     var independentval = thisTool.find("#independent_dropdown").val();
     independentArraySplit = independentArray.split(",");
     var independentMin = Math.min.apply(Math, independentArraySplit);
     var independentMax = Math.max.apply(Math, independentArraySplit);
     var contourArray = thisTool.find("#contour").val();
     
-   
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
-    fixedArray = thisTool.find("#fixed").val();
     
-   
+    fixedArray = thisTool.find("#fixed").val();
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
+    
     var fixedval = thisTool.find("#fixed_dropdown").val();
     var fixedArraySplit = fixedArray.split(",");
     var fixedArraySize = fixedArraySplit.length;
-
     var fixed_dropdown = thisTool.find("#fixed_dropdown").val();
 
     uniqueKey = (new Date()).getTime();
 
     var tabkey = [ "Prevalence_Odds_Length" ];
-    var titlekeys = [
-        "Sensitivity required to achieve specified PPV given prevalence and specificity",
-        "Delta required to achieve specified PPV given prevalence and specificity" ];
+
+
+
 
     var abbreviatedkeys = [ "Sensitivity", "Delta" ];
     var numberOfKeysForCurrentFunction = 0;
-
+    
     var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
-    if (keyvalueIndex >= 0) {
-
+    
+    
+    
+    if (keyvalueIndex >= 0) {    
         thisTool.find("#calculate").button('disable');
         thisTool.find("#spinner").removeClass('hide');
 
@@ -560,7 +557,7 @@ function calculate_riskStrat() {
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
-       
+
         var eIndependent = thisTool.find("#independent_dropdown")[0];
         var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
@@ -572,14 +569,11 @@ function calculate_riskStrat() {
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
 
-        thisTool.find("#output").empty();
-
-       
         tabs = $("<div class='col-md-12' id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
-
+        
         for (var i = 0; i < fixedArraySplit.length; i++) {
             tab_names.append("<LI><a style='padding:3px;' href='#fixed-"+ 
                              (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ 
@@ -587,35 +581,38 @@ function calculate_riskStrat() {
             tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1) + 
                          "' > </div>");
             tabs.append(tab_pane);
-
-            for ( var key in keyvalueShort) {
-
+            
+            
+            for (var key in keyvalueShort) {
+                $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
+                               keyvalueShort[key] + (i + 1)).empty();
+                
                 table_graph_div = $("<div class='set-" + 
                                     keyvalueShort[key] + 
                                     (i + 1) + 
                                     "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
+
+                table_side = $("<div class='table-side' id='table-" + 
+                keyvalueShort[key] + (i + 1) + "'><b class='small table-title'>" + keyvalueLong[key] + "</b><br></div>");
+                table_graph_div.append(table_side);
+                
                 graphic_side = ("<div class='graphic-side' id='graphic-" + 
                                 keyvalueShort[key] + (i + 1) + "'></div>");
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side' id='table-" + 
-                               keyvalueShort[key] + (i + 1) + 
-                               "'><br><b class='small table-title'>" + keyvalueLong[key] + 
-                               "</b></div><br><br>");
-                table_graph_div.append(table_side);
+            
             }
         }
 
         tabs.tabs();
 
         var promises = [];
-
+        
         for(var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
-            
             tabindex = fixedValue + 1;
-
-            for( var shortkey in keyvalueShort) {
-                
+            
+            
+            for(var shortkey in keyvalueShort) {
                 getData(promises,
                 {
                     key : keyvalueShort[shortkey],
@@ -643,24 +640,10 @@ function calculate_riskStrat() {
         }
 
         $.when.apply($, promises).done(function(data) {
-            open_threads--;
-            
-            if(open_threads === 0) {
-                if(error_count > 0) {
-                    alert("There were " + error_count + " errors with your request");
-                    error_count = 0;
-                }
-            }
-            
-            loadImage(tabindex, fixedArraySplit[fixedValue], uniqueKey, keyvalueShort[shortkey]);
             thisTool.find("#calculate").button('enable');
             thisTool.find("#spinner").addClass('hide');
         });
     }
-    else {
-        thisTool.find("#output").empty();
-    }
-    
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
@@ -693,9 +676,12 @@ function getFunctionName(independent, fixed, contour) {
 
 function getData(promises, data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
+    
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
     
+    
+
     promises.push( 
         $.ajax({
             type : "POST",
@@ -704,7 +690,6 @@ function getData(promises, data, tableTitle, tabnumber, tabValue, uniqueKey,
             dataType : "json",
             contentType: 'application/json'
         }).then(function(resp, textStatus, jqXHR){
-            console.log(resp);
             fillTable(resp, columnHeadings, tabnumber, abbreviatedKey);
         }).done(function(data) {
             open_threads--;
@@ -733,6 +718,7 @@ function handleError(error, status, request) {
 }
 
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
+    thisTool.find("#table-" + abbreviatedKey + tabnumber).empty();
     var independentArray = thisTool.find("#independent").val();
     independentArraySplit = independentArray.split(",");
 
@@ -742,6 +728,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var graphError = jsonTableData[0].graph_error;
     var tableErrorValue = tableError[0].errortrue;
     var graphErrorValue = graphError[0].errortrue;
+
     if (tableErrorValue != 1) {
         var rows = tableData.length;
         for (var i = 0; i < tableData.length; i++) {
@@ -761,8 +748,17 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         }
 
         var tableId = "example-" + abbreviatedKey + tabnumber;
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
-                      tableId + "'></table>");
+        thisTool.find("#"+tableId).empty();
+
+
+        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + tableId + "'> </table>");
+        
+       
+        if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
+            table.DataTable().fnDestroy();
+            table.empty();
+        }
+        
         thisTool.find("#table-" + abbreviatedKey + tabnumber).append(table);
 
         table.dataTable({
@@ -778,25 +774,24 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "bDestroy" : true,
             "aaSorting" : [ [ 0, "asc" ] ]
         });
-       
+
         $("#" + tableId + " tr:first").prepend(
             "<th class='ui-state-default' colspan='2'></th>");
-     var i = 0;
+        var i = 0;
 
         $("#" + tableId + " tr:not(:first)").each(function(){
-                $(this).prepend(
-                    "<th class='ui-state-default sorting_disabled'>"+ 
-                    independentArraySplit[i] + "</th>");
-                i++;
-            });
+            $(this).prepend(
+                "<th class='ui-state-default sorting_disabled'>"+ 
+                independentArraySplit[i] + "</th>");
+            i++;
+        });
 
-       
+
         thisTool.find("#" + tableId + " tr:eq(1)").prepend(
             "<th class='header' rowspan='" + independentArraySplit.length+ 
             "'><div class='vertical-text'>" + tableFirstRowLabel+ 
             "</div></th>");
 
-       
         thisTool.find("#" + tableId + " thead").prepend(
             "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"+ 
             tableFirstColLabel + "</th></tr>");
@@ -823,13 +818,16 @@ function getColumnHeaderData(columnHeadings) {
 }
 
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
+    var imageContainer = thisTool.find('#graphic-' + graphNamePreFix + tabNumber);
+    imageContainer.empty();
+    
     if(window.location.hostname != "localhost"){
-        $('#graphic-' + graphNamePreFix + tabNumber).append(
+        imageContainer.append(
             "<img style='height: 400px; text-align: right;' class='center pull-right' src='tmp/" + 
             graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
     }
     else {
-            $('#graphic-' + graphNamePreFix + tabNumber).append(
+        imageContainer.append(
             "<img style='height: 400px; text-align: right;' class='center pull-right' src='images/exampleLRPlot.jpg' alt='output image'>");
     }
 }
@@ -866,24 +864,24 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-   
+
     thisTool.find("#calculate").button('disable');
     if (activeSelectionChange === true)
         return;
 
     activeSelectionChange = true;
 
-   
+
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
 
-   
+
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
-   
+
     for (var key = 0; key < ids.length; key++) {
         disabledValues = [];
         for (var i = 0; i < selectedValues.length; i++) {
@@ -896,12 +894,12 @@ function makeSelectionsUnique(originalOptions, elementId) {
         removeAllOptions(dropdownBoxId);
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
-       
+
         thisTool.find('#' + dropdownBoxId).val(selectedValues[key]).change();
     }
-   
-   
-   
+
+
+
     setInitialValue(elementId);
     checkForInvalidVariableCombo(elementId);
     activeSelectionChange = false;
@@ -909,7 +907,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
 }
 
 function removeAllOptions(eid) {
-   
+
     var element = thisTool.find("#"+eid)[0];
     for (var i = element.options.length - 1; i >= 0; i--) {
         element.remove(i);
@@ -922,7 +920,7 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
         if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
             attribute = $('#' + dropdownBoxId).append(
                 $("<option></option>").attr("value",
-                    originalOptions[optionKey]).attr('disabled',
+                                            originalOptions[optionKey]).attr('disabled',
                                                                              'disabled').text(originalOptions[optionKey]));
         } else {
             attribute = $('#' + dropdownBoxId).append(
@@ -939,42 +937,42 @@ function setInitialValue(textboxId) {
     var key = $.inArray(selectedOption, functionnames);
 
     var eSelect = thisTool.find("#"+textboxId);
-   
+
     var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
 
-   
-   
+
+
     thisTool.find(eSelect2).find(":input").val("");
     thisTool.find(eSelect2).find("span").text(initialData[key]);
 
-   
+
     thisTool.find('#' + textboxId).val(selectedOption).change();
     addPopupDefinition();
 }
 
 function checkForInvalidVariableCombo() {
-   
 
-   
+
+
     var selectedValues = [];
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
 
-   
+
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
 
-   
+
     var blankCount = $.inArray("", selectedValues);
     if ($.inArray("", selectedValues) == -1) {
-       
+
         var selectedValuesSorted = selectedValues.sort();
         var selectedValuesSortedString = selectedValues.join("-");
 
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
-           
+
             var userSelectedVariables = selectedValues[0].toString() + ", "+ 
                 selectedValues[1].toString() + ",  and "+ 
                 selectedValues[2].toString();
@@ -988,7 +986,7 @@ function checkForInvalidVariableCombo() {
             thisTool.find("#status-bar").text(message);
             validCombo = false;
         } else {
-           
+
             thisTool.find("#status-bar").addClass('hide');
             thisTool.find("#status-bar").addClass("status-error");
             thisTool.find("#status-bar").removeClass("status-info");
@@ -996,7 +994,7 @@ function checkForInvalidVariableCombo() {
             validCombo = true;
         }
     } else {
-       
+
         thisTool.find("#status-bar").addClass('hide');
         thisTool.find("#status-bar").addClass("status-info");
         thisTool.find("#status-bar").removeClass("status-error");
