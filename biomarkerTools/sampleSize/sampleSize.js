@@ -13,7 +13,7 @@ function init_sampleSize(){
         thisTool.find("#message").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
-
+        disable_calculate();
         $.ajax({
             type: 'POST',
            
@@ -50,6 +50,7 @@ function init_sampleSize(){
                 thisTool.find("#message").removeClass("hide");    
             },
         });
+        enable_calculate();
         return false;
     });
 
@@ -107,11 +108,13 @@ function generate_tables(jsonrtn){
 }
 
 function disable_calculate(){
-    thisTool.find('.post').prop("disabled", true);
+    thisTool.find('.post').prop("enabled",false);
+    thisTool.find('.post').prop("disabled",true);
 }
 
 function enable_calculate(){
-    thisTool.find('.post').removeAttr("disabled");
+    thisTool.find('.post').prop("disabled",false);
+    thisTool.find('.post').prop("enabled",true);
 }
 
 function generate_tabs(iterate,randomnumber){
