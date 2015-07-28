@@ -6,7 +6,7 @@
             | &nbsp;
             a.goToGlossary(data-target="#glossary") Glossary
     form#ss
-        .panel.panel-default.col-md-9
+        .panel.panel-default.col-md-8
             #message.col-sm-7.col-sm-offset-2.hide
                 .panel.panel-danger
                     .panel-heading
@@ -15,7 +15,7 @@
                 .row
                     .col-md-3
                         label.pull-right Independent Variable
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                             label.pull-right Proportion of Assays in Cases (k)
                         .col-md-6
@@ -26,7 +26,7 @@
                 .row
                     .col-md-3
                         .pull-right
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                         .col-md-6
                             .col-md-6
@@ -36,7 +36,7 @@
                 .row
                     .col-md-3                
                         label.pull-right(for='contour_dropdown') Contour
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                             select#contour_dropdown.input-sm.pull-right(name='contour_dropdown', onchange='lock_fixed_options();')
                                 option(value='', selected='')
@@ -44,11 +44,11 @@
                                 option(value='sensitivity') Sensitivity
                         .col-md-6
                             label.sr-only(for='contour') Contour
-                            input.form-control#contour.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
+                            input.form-control#contour.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-8,. \-])+', title='An array of floating point numbers separated by commas.  Numbers must be between 0 and 1')
                 .row
                     .col-md-3
                         label.pull-right(for='fixed_dropdown') Fixed Values
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                             select#fixed_dropdown.input-sm.pull-right(name='fixed_dropdown')
                                 option(value='', selected='')
@@ -56,22 +56,22 @@
                                 option(value='sensitivity', disabled='disabled') Sensitivity
                         .col-md-6
                             label.sr-only(for='fixed') Fixed
-                            input.form-control#fixed.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
+                            input.form-control#fixed.fontnormal.input-sm.pull-left(type='text', size='30', pattern='([0-8,. \-])+', title='An array of floating point numbers separated by commas. Numbers must be between 0 and 1')
                 .row
                     .col-md-3
                         label.pull-right Parameters
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                             label.pull-right(for='prevalence') Prevalence
                         .col-md-6
                             input.form-control#prevalence.fontnormal.input-sm.pull-left.col-md-5(type='number', size='10',min="0",max="1", value='0.001',step="0.001", title='A floating point number between 0 and 1', required='')
                 .row
                     .col-md-3
-                    .col-md-9
+                    .col-md-8
                         .col-md-6
                             label.pull-right(for='n_value') Sample Size
                         .col-md-6
-                            input.form-control#n_value.fontnormal.input-sm.pull-left(type='text', size='10', value='1', min="1" pattern='(^[0-9]$)+', title='Number must be an integer', required='')
+                            input.form-control#n_value.fontnormal.input-sm.pull-left(type='text', size='10', value='1', min="1" pattern='(^[0-8]$)+', title='Number must be an integer', required='')
                 .row
                     .col-md-4.pull-left
                         .col-md-4
