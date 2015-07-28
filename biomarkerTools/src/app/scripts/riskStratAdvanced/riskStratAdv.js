@@ -232,6 +232,7 @@ function addTestData() {
     thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
     thisTool.find("#contour").val("0.01, 0.05, 0.1");
     thisTool.find("#fixed").val("1, 1.5, 2, 3");
+//    thisTool.find("#fixed").val("1");
     thisTool.find("#calculate").button("enable");
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
@@ -487,10 +488,10 @@ function checkInputFields() {
 }
 
 function calculate_riskStrat() {
+    thisTool.find("#calculate").button('disable');
+    
+    // Check pattern for each input box
     var checkInput = [];
-    var fixedArray = "";
-    var contourArray = "";
-    var independentArray = "";
 
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
     checkInput.push(thisTool.find("#contour")[0].checkValidity());
@@ -498,66 +499,67 @@ function calculate_riskStrat() {
     
     thisTool.find("#output").empty();
     
-    $("#status-bar").text("");
     if ($.inArray(false, checkInput) >= 0) {
-        thisTool.find("#status-bar").removeClass('hide');
-        thisTool.find("#status-bar").html(
+        thisTool.find("#status-bar").css("visibility", "visible");
+        thisTool.find("#status-bar")
+            .html(
             "Invalid input array.  Enter a valid array of floating point values.");
         return;
     }
 
+    // return;
+    $("#status-bar").text("");
     if (rulesViolationMsg.length > 0) {
         thisTool.find("#status-bar").html(rulesViolationMsg);
-        thisTool.find("#status-bar").removeClass('hide');
+        thisTool.find("#status-bar").css("visibility", "visible");
     } else {
-        thisTool.find("#status-bar").addClass('hide');
+        thisTool.find("#status-bar").css("visibility", "hidden");
     }
 
-    independentArray = thisTool.find("#independent").val();
+    var fixedArray = ""; // prevalence
+    var contourArray = ""; // ppv
+    var independentArray = ""; // specificity
+
+    var independentArray = thisTool.find("#independent").val();
+    // Remove all spaces and non-characters
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
-    
     var independentval = thisTool.find("#independent_dropdown").val();
     independentArraySplit = independentArray.split(",");
-    var independentMin = Math.min.apply(Math, independentArraySplit);
-    var independentMax = Math.max.apply(Math, independentArraySplit);
+    var independentMin = Math.min.apply(Math, independentArraySplit)
+    var independentMax = Math.max.apply(Math, independentArraySplit)
     var contourArray = thisTool.find("#contour").val();
-    
+    // Remove all spaces and non-characters
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
-    
-    fixedArray = thisTool.find("#fixed").val();
+    var fixedArray = thisTool.find("#fixed").val();
+    // Remove all spaces and non-characters
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
-    
     var fixedval = thisTool.find("#fixed_dropdown").val();
     var fixedArraySplit = fixedArray.split(",");
     var fixedArraySize = fixedArraySplit.length;
+
     var fixed_dropdown = thisTool.find("#fixed_dropdown").val();
 
     uniqueKey = (new Date()).getTime();
 
     var tabkey = [ "Prevalence_Odds_Length" ];
-//    var titlekeys = [
-//        "Sensitivity required to achieve specified PPV given prevalence and specificity",
-//        "Delta required to achieve specified PPV given prevalence and specificity" ];
+    // var keys = ["Sensitivity",
+    // "Delta"];
+    var titlekeys = [
+        "Sensitivity required to achieve specified PPV given prevalence and specificity",
+        "Delta required to achieve specified PPV given prevalence and specificity" ];
 
     var abbreviatedkeys = [ "Sensitivity", "Delta" ];
     var numberOfKeysForCurrentFunction = 0;
-    
-    var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
-    
-    
-    
-    if (keyvalueIndex >= 0) {    
-        thisTool.find("#calculate").button('disable');
-        thisTool.find("#spinner").removeClass('hide');
 
+    var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
+    if (keyvalueIndex >= 0) {
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
-
         var eIndependent = thisTool.find("#independent_dropdown")[0];
         var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
@@ -569,52 +571,53 @@ function calculate_riskStrat() {
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
 
-        tabs = $("<div class='col-md-12' id='tabs'> </div>");
+        $("#output").empty();
+
+        // First make the right tabs
+
+        tabs = $("<div id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
-        
+        var spacing = "<p></p><p></p><p></p>";
+
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a style='padding:3px;' href='#fixed-"+ 
-                             (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ 
-                             fixedArraySplit[i] + "</a></LI>");
-            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1) + 
-                         "' > </div>");
+            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"
+                             + (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "
+                             + fixedArraySplit[i] + "</a></LI>");
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)
+                         + "' >  </div>")
             tabs.append(tab_pane);
-            
-            
-            for (var key in keyvalueShort) {
+
+            for ( var key in keyvalueShort) {
+                
                 $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
                                keyvalueShort[key] + (i + 1)).empty();
                 
-                table_graph_div = $("<div class='set-" + 
-                                    keyvalueShort[key] + 
-                                    (i + 1) + 
-                                    "' style='width: 950px; float: left; clear:left;'><p></p></div>");
+                table_graph_div = $("<div class='set-"
+                                    + keyvalueShort[key]
+                                    + (i + 1)
+                                    + "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
-
-                table_side = $("<div class='table-side' id='table-" + 
-                keyvalueShort[key] + (i + 1) + "'><b class='small table-title'>" + keyvalueLong[key] + "</b><br></div>");
-                table_graph_div.append(table_side);
-                
-                graphic_side = ("<div class='graphic-side' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'></div>");
+                graphic_side = ("<div class='graphic-side' id='graphic-"
+                                + keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
                 table_graph_div.append(graphic_side);
-            
+                table_side = $("<div class='table-side' id='table-"
+                               + keyvalueShort[key] + (i + 1)
+                               + "'><br><div class='table-title'>" + keyvalueLong[key]
+                               + "</div></div><br><br>");
+                table_graph_div.append(table_side);
             }
         }
-
         tabs.tabs();
 
-        var promises = [];
-        
-        for(var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
+        var promises = [];//store promises in an array
+
+        for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
-            
-            
-            for(var shortkey in keyvalueShort) {
-                getData(promises,
-                {
+            // for (var keyIndex=0; keyIndex < keys.length; keyIndex++)
+            for ( var shortkey in keyvalueShort) {
+                var promise = getData({
                     key : keyvalueShort[shortkey],
                     keyindex : shortkey,
                     independentval : independentval,
@@ -629,21 +632,21 @@ function calculate_riskStrat() {
                     tab : tabindex,
                     tabvalue : fixedArraySplit[fixedValue],
                     abreviatedkey : keyvalueShort[shortkey]
-                }, 
-                keyvalueShort[shortkey],
-                tabindex,
-                fixedArraySplit[fixedValue],
-                uniqueKey,
-                keyvalueShort[shortkey], 
-                columnHeadings);
+                }, keyvalueShort[shortkey], tabindex,
+                                      fixedArraySplit[fixedValue], uniqueKey,
+                                      keyvalueShort[shortkey], columnHeadings);
+                promises.push([promise, tabindex, keyvalueShort[shortkey]]);
             }
         }
 
-        $.when.apply($, promises).done(function(data) {
-            thisTool.find("#calculate").button('enable');
-            thisTool.find("#spinner").addClass('hide');
-        });
+        // use when.apply() to run all promises
+        $.when.apply($, promises);
+    } // if function mapping is available
+    else {
+        thisTool.find("#output").empty();
     }
+    
+    thisTool.find("#calculate").button('enable');
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
@@ -674,34 +677,28 @@ function getFunctionName(independent, fixed, contour) {
     return (rFileName);
 }
 
-function getData(promises, data, tableTitle, tabnumber, tabValue, uniqueKey,
+function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
-    
+
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
-    
-    
 
-    promises.push( 
-        $.ajax({
-            type : "POST",
-            url : service,
-            data : data,
-            dataType : "json",
-            contentType: 'application/json'
-        }).then(function(resp, textStatus, jqXHR){
-            fillTable(resp, columnHeadings, tabnumber, abbreviatedKey);
-        }).done(function(data) {
-            open_threads--;
-            if (open_threads === 0) {
-                if (error_count > 0) {
-                    alert("There were " + error_count + " errors with your request");
-                    error_count = 0;
-                }
-            }
-            loadImage(tabnumber, tabValue.trim(), uniqueKey, abbreviatedKey);
-        })
-    );
+    return $.ajax({
+        type : "POST",
+        url : service,
+        data : data,
+        dataType : "json",
+        contentType: 'application/json',
+        success : function (data) {
+            console.log(arguments);
+            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
+            thisTool.find("#calculate").button('enable');
+            thisTool.find("#spinner").addClass('hide');
+        },
+        error: function(request, status, error) {
+            handleError(error, status, request);
+        }
+    });
 }
 
 function handleError(error, status, request) {
@@ -721,11 +718,12 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableId = "example-" + abbreviatedKey + tabnumber;
     thisTool.find("#table-" + abbreviatedKey + tabnumber + " #"+tableId).html("");
             
-    // check if datatable exists
+   
     if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
         thisTool.find('#'+tableId).dataTable().fnDestroy();
         thisTool.find('#'+tableId).empty();
     }
+    
     
     var independentArray = thisTool.find("#independent").val();
     independentArraySplit = independentArray.split(",");
@@ -736,9 +734,8 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var graphError = jsonTableData[0].graph_error;
     var tableErrorValue = tableError[0].errortrue;
     var graphErrorValue = graphError[0].errortrue;
-
     if (tableErrorValue != 1) {
-        var rows = tableData.length;
+        rows = tableData.length;
         for (var i = 0; i < tableData.length; i++) {
             var values = [];
             row_entries = tableData[i];
@@ -754,12 +751,11 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
                 "sTitle" : columnHeadings[i]
             });
         }
-//        thisTool.find("#"+tableId).empty();
-//        thisTool.find("#"+tableId).html("");
 
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + tableId + "'> </table>");
-        
-        thisTool.find("#table-" + abbreviatedKey + tabnumber).append(table);
+        var tableId = "example-" + abbreviatedKey + tabnumber;
+        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='"
+                      + tableId + "'></table>");
+        $("#table-" + abbreviatedKey + tabnumber).append(table);
 
         table.dataTable({
             "aaData" : arr,
@@ -774,30 +770,31 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "bDestroy" : true,
             "aaSorting" : [ [ 0, "asc" ] ]
         });
-
-        $("<th class='ui-state-default' colspan='2'></th>")
-            .prependTo("#" + tableId + " thead tr[role='row']:first");
+        // add a first column as independent values
+        thisTool.find("#" + tableId + " tr:first").prepend(
+            "<th class='ui-state-default' colspan='2'></th>");
         var i = 0;
+        thisTool.find("#" + tableId + " tr:not(:first)").each(
+            function() {
+                $(this).prepend(
+                    "<th class='ui-state-default sorting_disabled'>"
+                    + independentArraySplit[i] + "</th>");
+                i++;
+            });
 
-        $("#" + tableId + " tr:not(:first)").each(function(){
-            $(this).prepend(
-                "<th class='ui-state-default sorting_disabled'>"+ 
-                independentArraySplit[i] + "</th>");
-            i++;
-        });
-
-
+        // add another first column for independent type
         thisTool.find("#" + tableId + " tr:eq(1)").prepend(
-            "<th class='header' rowspan='" + independentArraySplit.length+ 
-            "'><div class='vertical-text'>" + tableFirstRowLabel+ 
-            "</div></th>");
+            "<th class='header' rowspan='" + independentArraySplit.length
+            + "'><div class='vertical-text'>" + tableFirstRowLabel
+            + "</div></th>");
 
+        // add a column heading for contour type
         thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"+ 
-            tableFirstColLabel + "</th></tr>");
+            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"
+            + tableFirstColLabel + "</th></tr>");
     } else {
+        thisTool.find("#status-bar").css("visibility", "visible");
         thisTool.find("#status-bar").addClass("status-error");
-        thisTool.find("#status-bar").removeClass('hide');
         thisTool.find("#status-bar").append("<div>" + tableError[1].message + "</div>");
         if (graphErrorValue != 1) {
             thisTool.find("#status-bar").append("<div>" + graphError[1].message + "</div>");
@@ -820,7 +817,7 @@ function getColumnHeaderData(columnHeadings) {
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
     var imageContainer = thisTool.find('#graphic-' + graphNamePreFix + tabNumber);
     imageContainer.empty();
-    
+
     if(window.location.hostname != "localhost"){
         imageContainer.append(
             "<img style='height: 400px; text-align: right;' class='center pull-right' src='tmp/" + 
@@ -898,8 +895,6 @@ function makeSelectionsUnique(originalOptions, elementId) {
         thisTool.find('#' + dropdownBoxId).val(selectedValues[key]).change();
     }
 
-
-
     setInitialValue(elementId);
     checkForInvalidVariableCombo(elementId);
     activeSelectionChange = false;
@@ -940,8 +935,6 @@ function setInitialValue(textboxId) {
 
     var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
 
-
-
     thisTool.find(eSelect2).find(":input").val("");
     thisTool.find(eSelect2).find("span").text(initialData[key]);
 
@@ -952,18 +945,14 @@ function setInitialValue(textboxId) {
 
 function checkForInvalidVariableCombo() {
 
-
-
     var selectedValues = [];
     var ids = thisTool.find("select").map(function() {
         return this.id;
     }).get();
 
-
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
-
 
     var blankCount = $.inArray("", selectedValues);
     if ($.inArray("", selectedValues) == -1) {
