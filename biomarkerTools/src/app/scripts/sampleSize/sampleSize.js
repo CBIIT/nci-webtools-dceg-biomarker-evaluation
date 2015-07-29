@@ -55,7 +55,6 @@ function init_sampleSize(){
     });
 
     thisTool.find('.reset').click(function(){
-        thisTool.find('#ss')[0].reset();
         thisTool.find('input').val("");
         thisTool.find("#output_graph").empty();
         thisTool.find("#message").addClass("hide");
@@ -79,7 +78,7 @@ $(function(){
     init_sampleSize();
 });
 
-$('a[data-target="#sampleSize"]').on('shown.bs.tab',function(e){
+$('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
     init_sampleSize();
 });
 
@@ -137,7 +136,7 @@ function generate_tabs(iterate,randomnumber){
     for(var i = 0; i < arrayLength; i++) {
         // console.log(fixedvals[i]);
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
-        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
+        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
 
         //Do something
     }    
@@ -213,17 +212,10 @@ function example_code(){
 }
 
 function reset_code(){
-    thisTool.find("#independent").val("0,1");
-    thisTool.find("#contour").val("");
-    thisTool.find("#contour_dropdown").val("");
-    thisTool.find("#fixed").val("");
-    thisTool.find("#fixed_dropdown").val("");
-    thisTool.find("#prevalence").val("");
-    thisTool.find("#n_value").val("");
-    thisTool.find("#fixed_flag").text("");
-    thisTool.find("#output_graph").empty();
-    thisTool.find("#message").empty();
-    thisTool.find("#message-content").empty();
+    thisTool.find("#minInput").val(0);
+    thisTool.find("#maxInput").val(1);
+ thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#prevalence,#n_value,#fixed_flag").val("");
+    thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#message").addClass("hide");
     disable_calculate();
     //        change_hidden("contour");
