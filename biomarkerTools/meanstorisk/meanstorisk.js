@@ -25,6 +25,11 @@ $(document).ready(function(){
     init_meanstorisk();
 });
 
+
+$('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
+    init_meanstorisk();
+});
+
 function init_meanstorisk(){ 
     bind_calculate_button();
     bind_download_button();
