@@ -21,7 +21,7 @@ function init_bc(){
 
 $(document).ready(init_bc);
 
-$('a[data-target="#bc"]').on('click', function (e) {
+$('a[href="#bc"]').on('click', function (e) {
     init_bc();
 });
 
