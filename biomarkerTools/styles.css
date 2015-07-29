@@ -64,8 +64,17 @@ body #contentTabs .tab-content {
   border-radius: 4px;
   padding: 1.5em;
 }
+body #contentTabs #sampleSize .tablevars {
+  padding: 0;
+}
+body #contentTabs #sampleSize #ss {
+  width: 50%;
+}
 body #contentTabs #sampleSize .row {
   margin: 1em auto;
+}
+body #contentTabs #sampleSize input {
+  padding: 1px !important;
 }
 body #contentTabs #bc .example-image {
   float: left;
@@ -311,7 +320,7 @@ body #contentTabs #meanRiskStratification .loader {
   width: 100%;
 }
 body #contentTabs #meanRiskStratification input[type="number"] {
-  width: 10rem;
+  width: 8em;
 }
 body #contentTabs #meanRiskStratification .input:invalid {
   background-color: #ff0;
