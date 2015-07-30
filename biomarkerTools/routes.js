@@ -58,7 +58,7 @@ $('.goToGlossary').on('click', function(el){
 $('.define').on('click', termDisplay);
 
 function goToTarget(tar) {
-    document.getElementById(tar.hash)[0].scrollIntoView(true);
+    document.getElementById(tar.hash.replace("#","")).scrollIntoView(true);
 }
 
 
