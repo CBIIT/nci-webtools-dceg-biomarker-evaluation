@@ -2,9 +2,9 @@
     .top_section
       h3.text-center From Difference in Means to Risk Stratification: A Web Tool
       #helpGlossaryLinks
-        a.goToHelp(data-target="#help_meanstorisk") Help
+        a.goToHelp(href="#help_meanstorisk") Help
         | &nbsp;
-        a.goToGlossary(data-target="#glossary") Glossary
+        a.goToGlossary(href="#") Glossary
       br
       .col-md-4
         form
@@ -15,12 +15,13 @@
             .panel-heading(data-toggle="collapse", data-target="#file_upload")
                 .glyphicon.glyphicon-chevron-down
                 | &nbsp; User Defined Distribution (from File)
-            #file_upload.panel-body.collapse.in
-              b.data_entry_by_file Upload a raw case and control biomarker data file in csv format
-                a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
-              p.indent
-                label(for='input_file_upload')
-                  input#input_file_upload.data_entry_by_file(type='file')
+            #file_upload.panel-body.collapse.in              
+                p.indent
+                    b.data_entry_by_file Upload a raw case and control biomarker data file in csv format
+                        a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
+                p.indent    
+                    label(for='input_file_upload')
+                      input#input_file_upload.data_entry_by_file(type='file')
             .panel-heading(data-toggle="collapse", data-target="#cases_control")
                 .glyphicon.glyphicon-chevron-down
                 | &nbsp; Normal Distribution
