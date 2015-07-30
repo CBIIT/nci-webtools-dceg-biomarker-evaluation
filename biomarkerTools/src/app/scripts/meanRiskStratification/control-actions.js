@@ -359,6 +359,7 @@ function joinObjects(parentObj, obj1, obj2) {
 }
 
 function reset_mrs() {
+    thisTool.find("#spinner").addClass('hide');
     // resets form to initial state
     var markerChildren = thisTool.find('#markers').children();
 
