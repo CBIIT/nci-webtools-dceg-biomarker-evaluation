@@ -6,6 +6,11 @@ $(document).ready(function(){
     thisTool.find('h4, h5').each(tableOfContentsList);
 });
 
+$('a[href="#help"]').on('shown.bs.tab',function(e){
+    thisTool = $("#help");
+    require([ 'help']);
+});
+
 // used to construct links list for table of contents section
 function tableOfContentsList(){
     var text = this.innerHTML;
