@@ -1,6 +1,6 @@
 link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css")
 #riskStratAdvanced.tab-pane.fade(role='tabpanel')
-    h3.title.text-center(title="Risk Stratification Adnvanced Analysis") Risk Stratification Advanced Analysis
+    h3.title.text-center(title="Risk Stratification Advanced Analysis") Risk Stratification Advanced Analysis
     #helpGlossaryLinks.col-md-offset-11.extra-padding
       a.goToHelp(data-target="#help_riskStratAdvanced") Help
       | &nbsp;
@@ -9,62 +9,57 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
         .panel.panel-default
             .panel-body
                 .row
-                  .col-md-3
-                    label(for='independent_dropdown') Independent Variable
-                  .col-md-2
-                    select.input-sm#independent_dropdown(name='independent_dropdown')
-                        option(value='', selected='')
-                        option(value='specificity') Specificity
-                        option(value='prevalence') Prevalence
-                        option(value='ppv') PPV
-                        option(value='delta') Delta
-                        option(value='sensitivity') Sensitivity
-                        option(value='cnpv') cNPV
-                  .col-md-5
+                    .col-md-3
+                        label(for='independent_dropdown') Independent Variable
+                    .col-md-2
+                        select#independent_dropdown(name='independent_dropdown')
+                            option(value='', selected='')
+                            option(value='specificity') Specificity
+                            option(value='prevalence') Prevalence
+                            option(value='ppv') PPV
+                            option(value='delta') Delta
+                            option(value='sensitivity') Sensitivity
+                            option(value='cnpv') cNPV
                     label.sr-only(for='independent') Independent Variable Value
-                    input.input-sm#independent(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
-                    //, required)
-                  .col-md-2
-                    #indDef
-                    span.variable-example
+                    input#independent.col-md-5(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
+                    div
+                        #indDef
+                        span.variable-example
                 .row
-                  .col-md-3
-                    label(for='contour_dropdown') Contour
-                  .col-md-2    
-                    select.input-sm#contour_dropdown(name='contour_dropdown')
-                        option(value='', selected='')
-                        option(value='ppv') PPV
-                        option(value='prevalence') Prevalence
-                        option(value='specificity') Specificity
-                        option(value='delta') Delta
-                        option(value='sensitivity') Sensitivity
-                        option(value='cnpv') cNPV
-                  .col-md-5
+                    .col-md-3
+                        label(for='contour_dropdown') Contour
+                    .col-md-2    
+                        select#contour_dropdown(name='contour_dropdown')
+                            option(value='', selected='')
+                            option(value='ppv') PPV
+                            option(value='prevalence') Prevalence
+                            option(value='specificity') Specificity
+                            option(value='delta') Delta
+                            option(value='sensitivity') Sensitivity
+                            option(value='cnpv') cNPV
                     label.sr-only(for='contour') Contour Value
-                    input.input-sm#contour(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
-                    //, required)
-                  .col-md-2
-                    #contourDef
-                    span.variable-example
+                    input#contour.col-md-5(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    div
+                        #contourDef
+                        span.variable-example
                 .row
-                  .col-md-3
-                    label(for='fixed_dropdown') Fixed Values
-                  .col-md-2   
-                      select.input-sm#fixed_dropdown(name='fixed_dropdown')
-                        option(value='', selected='')
-                        option(value='prevalence') Prevalence
-                        option(value='delta') Delta
-                        option(value='ppv') PPV
-                        option(value='specificity') Specificity
-                        option(value='sensitivity') Sensitivity
-                        option(value='cnpv') cNPV
-                  .col-md-5
+                    .col-md-3
+                        label(for='fixed_dropdown') Fixed Values
+                    .col-md-2   
+                        select#fixed_dropdown(name='fixed_dropdown')
+                            option(value='', selected='')
+                            option(value='prevalence') Prevalence
+                            option(value='delta') Delta
+                            option(value='ppv') PPV
+                            option(value='specificity') Specificity
+                            option(value='sensitivity') Sensitivity
+                            option(value='cnpv') cNPV
                     label.sr-only(for='fixed') Fixed Value
-                    input.input-sm#fixed(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas')
+                    input#fixed.col-md-5(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas')
                     //, required)
-                  .col-md-2
-                    #fvDef
-                    span.variable-example
+                    div
+                        #fvDef
+                        span.variable-example
             .panel-footer
                 button#calculate(disabled='') Calculate
                 button#reset(type='reset') Reset
