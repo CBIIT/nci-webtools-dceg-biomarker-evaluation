@@ -17,31 +17,26 @@ var ppv_tabs = {
 
 $(document).ready(function(){
     thisTool = $("#meanstorisk");
-
-    $('a[data-target="#meanstorisk"]').on('shown.bs.tab',function(e){
-        thisTool = $("#meanstorisk");
-    });
     
-    init_meanstorisk();
+    bind_calculate_button();
+    bind_download_button();
+    bind_option_choices();
 });
 
-
 $('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
+    thisTool = $("#meanstorisk");
     init_meanstorisk();
 });
 
 function init_meanstorisk(){ 
-    bind_calculate_button();
-    bind_download_button();
-    bind_option_choices();
     thisTool.find("#please_wait_calculate").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
     thisTool.find("#please_wait_download").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
     thisTool.find("#download_button").addClass('hide');
     thisTool.find(".data_entry_by_input").on('click', function () {
         thisTool.find("#download_button").addClass('hide');
     });
-    thisTool.find('.panel-heading a').on('click',function(e){
-        if($(this).parents('.panel').children('.panel-collapse').hasClass('in')){
+    thisTool.find('.panel-heading a').on('click',function(e) {
+        if($(this).parents('.panel').children('.panel-collapse').hasClass('in')) {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -61,7 +56,7 @@ function init_meanstorisk(){
     });
 }
 
-function prepare_upload (e){
+function prepare_upload (e) {
     var files = e.target.files;
     if ( window.FileReader ) {
         var fr = new FileReader();
@@ -256,7 +251,7 @@ function make_ajax_call_user_defined_calculation() {
             dataCSV: valuesFromFile.join()
         },
         dataType: "json",
-        success: set_data,
+        success: set_data_meanstorisk,
         error: ajax_error
     });
 }
@@ -282,7 +277,7 @@ function make_ajax_call_standard_calculation() {
             graphkey:'input'
         },
         dataType: "json",
-        success: set_data,
+        success: set_data_meanstorisk,
         error: ajax_error
     });
 }
@@ -329,10 +324,10 @@ function make_excel_call_standard_calculation() {
         timeout: 15000,
         data: {
             option:4,
-            spec:specificity_string, 
-            prev: prevalence_string, 
-            cases: cases_string, 
-            controls: controls_string, 
+            spec:specificity_string,
+            prev: prevalence_string,
+            cases: cases_string,
+            controls: controls_string,
             unique_key: uniqueKey,
             graphkey:'input'
         },
@@ -342,7 +337,7 @@ function make_excel_call_standard_calculation() {
     });
 }
 
-function set_data(dt) {
+function set_data_meanstorisk(dt) {
     $("#please_wait_calculate").modal("hide");
     thisTool.find("#download_button").removeClass("hide");
     thisTool.find("#spinner").removeClass("hide");
@@ -499,11 +494,9 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
         row.append("<TD class='table_data col1' style='border-right:1px solid black;'>" + 
                    format_number(sensitivity_matrix[y]['LR-']) + "</TD>");
 
-
-
        
-        for(var x=0;x<prevalence_count;x++) {
-            var prevalence_value = prevalence_values[x];
+        for(var z = 0; z < prevalence_count; z++) {
+            var prevalence_value = prevalence_values[z];
             row.append("<TD class='table_data col1'>" + format_number(matrix[y][prevalence_value]) + "</TD>");			
         }
         row.appendTo(general_table);
@@ -545,11 +538,10 @@ function format_number(num) {
 
 function reset_meanstorisk(){
     var fileControl = thisTool.find("input#input_file_upload");
+    thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("input").val("");
     thisTool.find("input#specificity").val("0.8, 0.9, 0.95, 0.99, 0.999");
     thisTool.find("input#prevalence").val("0.1, 0.05, 0.01, 0.005, 0.001");
-    
-    thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("#download_button").addClass("hide");
     valuesFromFile = [];
 }
