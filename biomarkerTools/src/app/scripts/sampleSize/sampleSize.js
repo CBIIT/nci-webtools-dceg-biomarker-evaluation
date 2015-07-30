@@ -216,8 +216,7 @@ function reset_code(){
     thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#message").addClass("hide");
     disable_calculate();
-    //        change_hidden("contour");
-    //        change_hidden("fixed");
+    thisTool.find("#spinner").addClass('hide');
 }
 
 
