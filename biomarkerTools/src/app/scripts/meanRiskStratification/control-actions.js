@@ -15,7 +15,7 @@ function init_meanRiskStratification(){
     thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 }
 
-$('a[href="#meanRiskStratification"]').on('shown.bs.tab',function(e){
+$('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
     init_meanRiskStratification();
 });
 
