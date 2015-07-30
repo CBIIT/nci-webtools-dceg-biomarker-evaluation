@@ -325,6 +325,10 @@ body #contentTabs #meanRiskStratification input[type="number"] {
 body #contentTabs #meanRiskStratification .input:invalid {
   background-color: #ff0;
 }
+body #contentTabs #riskStratAdvanced input,
+body #contentTabs #riskStratAdvanced select {
+  padding: initial;
+}
 body #contentTabs #riskStratAdvanced .ui-widget {
   font-size: 12px;
 }
