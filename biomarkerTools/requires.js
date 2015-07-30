@@ -37,7 +37,7 @@ requirejs.config({
             deps: [ 'datatables','bootstrap', 'routes']
         },
         routes: {
-            deps: ['modernzr','bootstrap', 'glossary']
+            deps: ['modernzr','jquery.ui','bootstrap', 'glossary']
         },
         help:{
             deps: ['glossary']
