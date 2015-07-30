@@ -74,13 +74,14 @@ function init_sampleSize(){
 
 }    
 
+$('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
+    init_sampleSize();
+});
+
 $(function(){
     init_sampleSize();
 });
 
-$('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
-    init_sampleSize();
-});
 
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
