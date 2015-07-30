@@ -156,52 +156,32 @@ var keyLong = [
 
 var thisTool;
 
-$('a[data-target="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
-    init_riskStrat();
-});
-
 function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
-    thisTool.bind('beforeunload', function() {
-
-        alert("We gonna clear some things up.");
-    });
-
-
-    thisTool.find("select").change(function() {
-        makeSelectionsUnique(functionnames, this.id);
-    });
 
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
             return this.replace(/^\s+|\s+$/g, '');
         };
     }
-    thisTool.find("#reset").button().click(resetPage);
+}
 
-    thisTool.find("input").keyup(checkInputFields);
+$('a[href="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
+    init_riskStrat();
+});
 
-    thisTool.find("input").change(checkInputFields);
-
-
-    thisTool.find("input").bind("mouseup", function(e) {
-        var $input = $(this);
-        var oldValue = $input.val();
-
-        if (oldValue === "")
-            return;
-
-
-
-        setTimeout(function() {
-            var newValue = $input.val();
-            if (newValue === "") {
-
-                $input.trigger("cleared");
-                checkInputFields();
-            }
-        }, 1);
+$(document).ready(function(){    
+    init_riskStrat();
+    
+    thisTool.find("select").change(function() {
+        makeSelectionsUnique(functionnames, this.id);
     });
+    
+    thisTool.find("#reset").button().click(resetPage);
+    thisTool.find("input").keyup(checkInputFields);
+    thisTool.find("input").change(checkInputFields);
+    thisTool.find("#add-test-data").click(addTestData);
+    
     thisTool.find("#calculate").button().click(function(e) {
         e.preventDefault();
         if (checkRules() == "Fail") {
@@ -212,15 +192,26 @@ function init_riskStrat(){
             calculate_riskStrat();
         }
     });
-    thisTool.find("#add-test-data").click(function(e) {
-        e.preventDefault();
-        addTestData();
-    });
-
-    resetPage();
-}
-
-$(document).ready(init_riskStrat);
+    
+//    thisTool.find("input").bind("mouseup", function(e) {
+//        var $input = $(this);
+//        var oldValue = $input.val();
+//
+//        if (oldValue === "")
+//            return;
+//
+//
+//
+//        setTimeout(function() {
+//            var newValue = $input.val();
+//            if (newValue === "") {
+//
+//                $input.trigger("cleared");
+//                checkInputFields();
+//            }
+//        }, 1);
+//    });
+});
 
 function addTestData() {
 
@@ -232,10 +223,9 @@ function addTestData() {
     thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
     thisTool.find("#contour").val("0.01, 0.05, 0.1");
     thisTool.find("#fixed").val("1, 1.5, 2, 3");
-//    thisTool.find("#fixed").val("1");
-    thisTool.find("#calculate").button("enable");
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
+    thisTool.find("#calculate").button('option','disabled', false);
 }
 
 function addPopupDefinition() {
@@ -263,7 +253,7 @@ function addPopupDefinition() {
         createPopupDefinitionElement("contourDef", contourTerm, contourTerm);
     }
     else {
-        $("#contourDef").html("");
+        thisTool.find("#contourDef").html("");
     }
     if (!!fixedValue) {
         var fixedValueTerm = termLookup[fixedValue];
@@ -276,7 +266,7 @@ function addPopupDefinition() {
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
-    $("#" + elementId)
+    thisTool.find("#" + elementId)
         .html("<div class='define' id='" + 
               termId + 
               "' data-term='" + 
@@ -296,7 +286,7 @@ function resetPopupDefinition() {
 function resetPage() {
     makeSelectionsUnique(functionnames, "independent_dropdown");
     thisTool.find("span.variable-example").text("");
-    thisTool.find("option").removeAttr("disabled");
+    thisTool.find("option").removeAttr('disabled');
     thisTool.find("#status-bar").addClass('hide');
     thisTool.find("select").val("");
     thisTool.find("input").val("");
@@ -307,7 +297,7 @@ function resetPage() {
 
 function createRulesDialog() {
     $(function() {
-        $("#dialog-confirm").dialog({
+        thisTool.find("#dialog-confirm").dialog({
             resizable : false,
             height : 375,
             width : 400,
@@ -480,25 +470,25 @@ function checkInputFields() {
         selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
-        thisTool.find("#calculate").button("disable");
+        thisTool.find("#calculate").button('option','disabled', false);
     } else {
-        thisTool.find("#calculate").button("enable");
+        thisTool.find("#calculate").button('option','disabled', 'disabled');
     }
 
 }
 
 function calculate_riskStrat() {
-    thisTool.find("#calculate").button('disable');
-    
+
     // Check pattern for each input box
     var checkInput = [];
 
     checkInput.push(thisTool.find("#independent")[0].checkValidity());
     checkInput.push(thisTool.find("#contour")[0].checkValidity());
     checkInput.push(thisTool.find("#fixed")[0].checkValidity());
-    
+
+    thisTool.find("#calculate").button('option','disabled', 'disabled');
     thisTool.find("#output").empty();
-    
+
     if ($.inArray(false, checkInput) >= 0) {
         thisTool.find("#status-bar").css("visibility", "visible");
         thisTool.find("#status-bar")
@@ -511,9 +501,9 @@ function calculate_riskStrat() {
     $("#status-bar").text("");
     if (rulesViolationMsg.length > 0) {
         thisTool.find("#status-bar").html(rulesViolationMsg);
-        thisTool.find("#status-bar").css("visibility", "visible");
+        thisTool.find("#status-bar").removeClass("hide");
     } else {
-        thisTool.find("#status-bar").css("visibility", "hidden");
+        thisTool.find("#status-bar").addClass("hide");
     }
 
     var fixedArray = ""; // prevalence
@@ -590,10 +580,10 @@ function calculate_riskStrat() {
             tabs.append(tab_pane);
 
             for ( var key in keyvalueShort) {
-                
+
                 $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
-                               keyvalueShort[key] + (i + 1)).empty();
-                
+                  keyvalueShort[key] + (i + 1)).empty();
+
                 table_graph_div = $("<div class='set-"
                                     + keyvalueShort[key]
                                     + (i + 1)
@@ -640,13 +630,15 @@ function calculate_riskStrat() {
         }
 
         // use when.apply() to run all promises
-        $.when.apply($, promises);
+        //        $.when.apply($, promises);
+        Promise.all(promises).then(function(){
+            thisTool.find("#calculate").button('option','disabled', false);
+        });
     } // if function mapping is available
     else {
         thisTool.find("#output").empty();
     }
-    
-    thisTool.find("#calculate").button('enable');
+
 }
 
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
@@ -692,7 +684,8 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         success : function (data) {
             console.log(arguments);
             fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-            thisTool.find("#calculate").button('enable');
+            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
+            thisTool.find("#calculate").button('option','disabled', false);
             thisTool.find("#spinner").addClass('hide');
         },
         error: function(request, status, error) {
@@ -717,14 +710,14 @@ function handleError(error, status, request) {
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableId = "example-" + abbreviatedKey + tabnumber;
     thisTool.find("#table-" + abbreviatedKey + tabnumber + " #"+tableId).html("");
-            
-   
+
+
     if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
         thisTool.find('#'+tableId).dataTable().fnDestroy();
         thisTool.find('#'+tableId).empty();
     }
-    
-    
+
+
     var independentArray = thisTool.find("#independent").val();
     independentArraySplit = independentArray.split(",");
 
@@ -861,8 +854,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-
-    thisTool.find("#calculate").button('disable');
+    thisTool.find("#calculate").button('option','disabled', 'disabled');
     if (activeSelectionChange === true)
         return;
 
@@ -877,7 +869,6 @@ function makeSelectionsUnique(originalOptions, elementId) {
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
     });
-
 
     for (var key = 0; key < ids.length; key++) {
         disabledValues = [];
