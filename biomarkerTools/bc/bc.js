@@ -12,14 +12,16 @@ var thisTool;
 
 function init_bc(){
     thisTool = $("#bc");
+}
+
+$(document).ready(function(){
+    init_bc();
     bind_reference_row();
     bind_input();
     bind_calculate_button();
     bind_remove_row();
     bind_add_new_row();
-}
-
-$(document).ready(init_bc);
+});
 
 $('a[href="#bc"]').on('click', function (e) {
     init_bc();
