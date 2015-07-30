@@ -7,32 +7,32 @@ var thisTool;
 
 function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
-    thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
-    controls_visibility(currentMarkers);
-    bind_control_events();
+    
+    //bind_control_events();
     create_popover();
 
-    thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 }
 
-$('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
-    init_meanRiskStratification();
-});
+
 
 $(document).ready(init_meanRiskStratification);
 
-function bind_control_events() {
-    thisTool.find("#errors").alert();
-    // testing
-    thisTool.find('a#test1,a#test2').on('click', test);
+$('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
+    thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
+    controls_visibility(currentMarkers);
+    init_meanRiskStratification();
+});
 
-    thisTool.find('#reset').on('click', reset_mrs);
-    thisTool.find('#add-marker').on('click', new_marker);
-    thisTool.find('#delete-marker').on('click', delete_marker);
-    thisTool.find('#calculate').on('click', calculate_mrs);
+thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
+thisTool.find("#errors").alert();
+// testing
+thisTool.find('a#test1,a#test2').on('click', test);
+thisTool.find('#reset').on('click', reset_mrs);
+thisTool.find('#add-marker').on('click', new_marker);
+thisTool.find('#delete-marker').on('click', delete_marker);
+thisTool.find('#calculate').on('click', calculate_mrs);
 
-    bind_accordion_action(thisTool.find('#markers').children().first());
-}
+bind_accordion_action(thisTool.find('#markers').children().first());
 
 function bind_accordion_action(el) {
     // bind action to specific element
@@ -138,7 +138,7 @@ function calculate_mrs() {
             service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
         }
 
-        var to_value = 10 * 1000; //ten seconds
+        var to_value = 10 * 2500; //25 seconds
 
         $('#loader').show();
 
