@@ -1,4 +1,3 @@
-
 var default_ajax_error;
 
 
@@ -10,83 +9,56 @@ $(document).ready(function(){
     this.title = "Biomarker Tools: Home";
 });
 
-
-
-$.fn.goTo = function() {
-    if($(this).attr('id') == "glossary"){
-        document.getElementById($(this).attr('id')).scrollIntoView(true);
-    }
-    else { 
-        var selector = $(this).attr('data-target').replace("#","");
-        document.getElementById(selector).scrollIntoView(true);
-    }
-    return this;
-};
-
 $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
-    var id, title;
-    
-   
-    if(el.target.dataset === undefined)
-        id = el.target.attributes.getNamedItem("data-target").nodeValue;
-    else
-        id = el.target.dataset.target.replace('#', '');
-    
+    var id = el.target.hash.toString().replace('#', '');
+
     require([id]);
-    title = "Biomarker Tools: " + el.target.text;
+    var title = "Biomarker Tools: " + el.target.text;
     document.title = title;
 });
 
+$(document).on('shown.bs.tab', function (e) {
+    if(e.relatedTarget !== undefined){
+        var previousTab = e.relatedTarget.hash.toString().replace('#', '');
+
+        if(previousTab != "home" && previousTab != "glossary")
+            $($(e.relatedTarget).attr('href')).find("#reset").click();
+
+        var id = e.target.hash.toString().replace('#', '');
+        require([ id ]);
+    }
+});
+
 $('.goToTab').on('click', function(el){
-    var ref;
+    var ref = $(this).attr('href');
+
     $('.nav li.active').removeClass('active');
-    
-   
-    if(el.target.dataset === undefined)
-        ref = el.target.attributes.getNamedItem("data-target").nodeValue;
-    else
-        ref = $(this).attr('data-target');
-    
-    $.when($(".nav a[data-target='" + ref + "']").tab('show').parent().addClass('active'));
+    $(".nav a[href='" + ref + "']").tab('show').parent().addClass('active');
 });
-
-$('ul.nav-tabs[role="tablist"] li').find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    var previousTab;
-    if(e.target.dataset === undefined)
-        previousTab = e.relatedTarget.attributes.getNamedItem("data-target").nodeValue;
-    else
-        previousTab = e.relatedTarget.dataset.target.replace('#', '');
-    
-    if(previousTab != "home" && previousTab != "glossary")
-        $($(e.relatedTarget).attr('data-target')).find("#reset").click();
-});
-
-$('.goToHelp,.goToGlossary').on('click', function(el){
+$('.goToHelp').on('click', function(el){
     var $this = this;
-    $(".nav a[data-target='#help']").on('shown.bs.tab',function(){
-        goToTarget($this);
+    $(".nav a[href='#help']").tab('show');
+    $(".nav a[href='#help']").on('shown.bs.tab', function(){
+        var selector = $($this).attr('href').toString().replace("#","");
+        document.getElementById(selector).scrollIntoView(true);
     });
-    $('.nav li.active').removeClass('active');
-    $(".nav a[data-target='#help']").tab('show').parent().addClass('active');
+});
+
+$('.goToGlossary').on('click', function(el){
+    var id = el.target.hash;
+    var $this = this;
+    
+    $(".nav a[href='#help']").tab('show');
+    $(".nav a[href='#help']").on('shown.bs.tab', function(){
+        document.getElementById("header-glossary").scrollIntoView(true);
+    });
 
 });
 
 $('.define').on('click', termDisplay);
 
-function goToTarget(tar){
-    var ref = "";
-
-    if(!$(tar).hasClass('goToGlossary')){
-        ref = tar;
-    }
-    else if(!$(tar).hasClass('goToHelp')){
-        ref = $(tar).attr('data-target');
-    }
-    else{
-        ref = "glossary";
-    }
-
-    $(ref).goTo();
+function goToTarget(tar) {
+    document.getElementById(tar.hash)[0].scrollIntoView(true);
 }
 
 
@@ -96,10 +68,9 @@ function default_ajax_error(request, status, error){
 }
 
 function termDisplay(){
-    
     var $self = $(this);
     var dTerm = $self.attr('data-term');
-    
+
     var definition = Glossary[dTerm].definition;
     var term = Glossary[dTerm].fullName;
 
@@ -113,12 +84,12 @@ function termDisplay(){
                 title: term,
                 content: definition}
         ).on('mouseout', function () {
-                $self.popover('hide');
-                $self.popover('destroy');
-            });
+            $self.popover('hide');
+            $self.popover('destroy');
+        });
 
         $self.popover();
         $self.popover('show');
     }
-    
+
 }
