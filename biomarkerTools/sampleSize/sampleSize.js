@@ -5,10 +5,20 @@ var thisTool;
 function init_sampleSize(){
     thisTool = $("#sampleSize");
     random_gen();
-    disable_calculate();
+    disable_calculate(); 
+}    
 
-   
-    thisTool.find('.post').click(function(){
+$('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
+    init_sampleSize();
+});
+
+$(function(){
+    init_sampleSize();
+
+});
+    
+
+thisTool.find('.post').click(function(){
         thisTool.find("#spinner").removeClass("hide"); 
         thisTool.find("#message").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
@@ -18,8 +28,6 @@ function init_sampleSize(){
             type: 'POST',
            
             contentType: 'application/json',
-           
-           
             data: JSON.stringify({
                 k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
                 sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
@@ -70,18 +78,7 @@ function init_sampleSize(){
 
     thisTool.find("#fixed").keyup(function(){
         change_hidden('fixed');
-    });   
-
-}    
-
-$('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
-    init_sampleSize();
-});
-
-$(function(){
-    init_sampleSize();
-});
-
+    });
 
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
