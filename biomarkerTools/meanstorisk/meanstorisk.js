@@ -105,23 +105,21 @@ function bind_option_choices() {
 
 function bind_calculate_button() {
     thisTool.find("#calculate_button").on('click', function() {
+        
         if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")) {	
            
             if (valuesFromFile.length === 0) {
                 alert("Please Upload a file or pick the normalized option and enter key data first");
             }
             else {
-                thisTool.find("#spinner").removeClass("hide");
                 get_inputs_for_user_defined_calculation();
                 make_ajax_call_user_defined_calculation();
-                thisTool.find("#spinner").addClass("hide");
+
             }
         } 
         else {
-            thisTool.find("#spinner").removeClass("hide");
             get_inputs_for_standard_calculation();
             make_ajax_call_standard_calculation();
-            thisTool.find("#spinner").addClass("hide"); 
         }
     });
 }
@@ -134,16 +132,12 @@ function bind_download_button() {
             if (valuesFromFile.length === 0) {
                 alert("Please Upload a file or pick the normalized option and enter key data first");
             } else {
-                thisTool.find("#spinner").removeClass("hide");
                 get_inputs_for_user_defined_calculation();
                 make_excel_call_user_defined_calculation();
-            thisTool.find("#spinner").addClass("hide");
             }
         } else {
-            thisTool.find("#spinner").removeClass("hide");
             get_inputs_for_standard_calculation();
             make_excel_call_standard_calculation();
-            thisTool.find("#spinner").addClass("hide");	
         }
     });
 }
@@ -229,12 +223,15 @@ function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_contro
 }
 
 function make_ajax_call_user_defined_calculation() {
+    thisTool.find("#spinner").removeClass("hide"); 
     uniqueKey = (new Date()).getTime();	
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
     
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
+    
+    thisTool.find("#spinner").removeClass("hide"); 
     
     $.ajax({
         type: "POST",
@@ -254,8 +251,12 @@ function make_ajax_call_user_defined_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     });
+    
+    thisTool.find("#spinner").addClass("hide"); 
 }
 function make_ajax_call_standard_calculation() {
+    thisTool.find("#spinner").removeClass("hide"); 
+    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
@@ -266,7 +267,7 @@ function make_ajax_call_standard_calculation() {
     $.ajax({
         type: "POST",
         url: url,
-        timeout: 15000,
+       
         data: {
             option:2,
             spec:specificity_string, 
@@ -280,6 +281,8 @@ function make_ajax_call_standard_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     });
+    
+    thisTool.find("#spinner").addClass("hide"); 
 }
 
 function make_excel_call_user_defined_calculation() {
@@ -290,10 +293,12 @@ function make_excel_call_user_defined_calculation() {
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
     
+    thisTool.find("#spinner").removeClass("hide"); 
+    
     $.ajax({
         type: "POST",
         url: url,
-        timeout: 15000,
+       
         data: {
             option:3,
             spec:specificity_string, 
@@ -318,10 +323,12 @@ function make_excel_call_standard_calculation() {
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
     
+    thisTool.find("#spinner").removeClass("hide"); 
+    
     $.ajax({
         type: "POST",
         url: url,
-        timeout: 15000,
+       
         data: {
             option:4,
             spec:specificity_string,
@@ -340,7 +347,6 @@ function make_excel_call_standard_calculation() {
 function set_data_meanstorisk(dt) {
     $("#please_wait_calculate").modal("hide");
     thisTool.find("#download_button").removeClass("hide");
-    thisTool.find("#spinner").removeClass("hide");
     set_values_table(dt);
     create_tabbed_table(dt);
     draw_graph();
@@ -349,7 +355,6 @@ function set_data_meanstorisk(dt) {
 
 function set_excel(dt) {
     $("#please_wait_download").modal("hide");
-
    
     if(dt.length > 0)
         window.open(dt);
@@ -358,6 +363,7 @@ function set_excel(dt) {
         console.log("problem generating excel file");
         
    
+    thisTool.find("#spinner").addClass("hide"); 
 }
 
 function ajax_error(dt) {
