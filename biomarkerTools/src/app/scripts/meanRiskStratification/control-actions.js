@@ -18,7 +18,7 @@ function init_meanRiskStratification(){
 $(document).ready(init_meanRiskStratification);
 
 $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
-    thisTool.find(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find("#spinner,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
     init_meanRiskStratification();
 });
@@ -135,12 +135,12 @@ function calculate_mrs() {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
-            service = "http://" + window.location.hostname + "/" + rest + "/mrsRest/";
+            service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
         }
 
         var to_value = 10 * 2500; //25 seconds
 
-        $('#loader').show();
+        $('#spinner').show();
 
         // ajax call, change to actual service name
         var promise = $.ajax({
@@ -148,8 +148,7 @@ function calculate_mrs() {
             method: 'POST',
             contentType: 'application/json',
             url: service,
-            data: input,
-            timeout: to_value
+            data: input
         });
 
         promise.then(clean_data, function (error) {
@@ -252,7 +251,7 @@ function return_data(data) {
     });
 
     thisTool.find("#results").show();
-    thisTool.find("#loader").hide();
+    thisTool.find("#spinner").hide();
 }
 
 function append_name() {
