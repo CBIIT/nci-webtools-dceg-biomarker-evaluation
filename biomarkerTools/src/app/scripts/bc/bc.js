@@ -312,15 +312,15 @@ function jsonToCellWithPrev(obj){
 	    }
 	}
     var new_row = $("<div class='row'>");
-    new_row.append("<div class='col-md-3'>" + Sensitivity + "</div>");
-    new_row.append("<div class='col-md-3'>" + Specificity + "</div>");
-    new_row.append("<div class='col-md-3'>" + LRplus + "</div>");
-    new_row.append("<div class='col-md-3'>" + LRminus + "</div>");
+    new_row.append("<div class='col-md-2'>" + Sensitivity + "</div>");
+    new_row.append("<div class='col-md-2'>" + Specificity + "</div>");
+    new_row.append("<div class='col-md-2'>" + LRplus + "</div>");
+    new_row.append("<div class='col-md-2'>" + LRminus + "</div>");
     if (validPrevValue) {
-        new_row.append("<div class='col-md-3'>" + PPV + "</div>");
+        new_row.append("<div class='col-md-2'>" + PPV + "</div>");
     }
     if (validPrevValue) {
-        new_row.append("<div class='col-md-3'>" + cNPV + "</div>");
+        new_row.append("<div class='col-md-2'>" + cNPV + "</div>");
     }
     thisTool.find('#output').append(new_row);
 }
@@ -342,12 +342,11 @@ function createOutputTable(jsondata){
     }
 }
 function createOutputTableWithPrev(jsondata){
-    var top_header_row, header_row, i$, len$, each;
     thisTool.find('#output').empty();
     top_header_row = $("<div class='row'></div>");
     top_header_row.append("<div class='col-md-12 top-header'>Output Data</div>");
     thisTool.find('#output').append(top_header_row);
-    header_row = $("<div class='row'></div>");
+    var header_row = $("<div class='row'></div>");
     header_row.append("<div class='col-md-2 header'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></div>");
     header_row.append("<div class='col-md-2 header'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></div>");
     header_row.append("<div class='col-md-2 header'><div class='define' id='LRP3' data-term='LRP'>LR+</div></div>");
@@ -355,9 +354,8 @@ function createOutputTableWithPrev(jsondata){
     header_row.append("<div class='col-md-2 header'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
     header_row.append("<div class='col-md-2 header'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
     thisTool.find('#output').append(header_row);
-    for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
-        each = jsondata[i$];
-        jsonToCellWithPrev(jsondata[each]);
+	for (var each in jsondata) {
+		jsonToCellWithPrev(jsondata[each]);
     }
 }
 function ajax_error(jqXHR, exception){
