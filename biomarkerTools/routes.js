@@ -18,15 +18,30 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
 });
 
 $(document).on('shown.bs.tab', function (e) {
-    if(e.relatedTarget !== undefined){
-        var previousTab = e.relatedTarget.hash.toString().replace('#', '');
-
-        if(previousTab != "home" && previousTab != "glossary")
-            $($(e.relatedTarget).attr('href')).find("#reset").click();
-
+    if(e.target.hash !== undefined){
         var id = e.target.hash.toString().replace('#', '');
         require([ id ]);
     }
+});
+
+
+$(document).on('hide.bs.tab', function (e) {
+   
+    var previousTab = e.target.hash.toString().replace('#', '');
+    if($(e.target.hash).find("button[type='reset']") > 0)
+        $(e.target.hash).find("button[type='reset']").click();
+    
+    if(e.target.hash == "#bc")
+        $(e.target.hash).find('input').val("");
+        
+});
+
+$(document).on('hide.bs.tab', function (e) {
+    var id = e.relatedTarget.hash;
+    var currentTab = id.toString().replace('#', '');
+   
+    if(currentTab != "home" && currentTab != "help")
+        thisTool = $(id);
 });
 
 $('.goToTab').on('click', function(el){
