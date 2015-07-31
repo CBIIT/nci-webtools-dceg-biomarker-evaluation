@@ -114,7 +114,8 @@ function clear_reference_row(){
 }
 function add_new_row(){
     var num_rows, row_1, row_2, row_3, row_4, row_5;
-    num_rows = thisTool.find('#inputdata').find('.row').length - 3;
+    // 2 non-data rows, add new row and headers row
+    num_rows = thisTool.find('#inputdata').find('.row').length - 2;
     row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
     row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
@@ -163,7 +164,6 @@ function do_calculation(){
     }
     var hasNoErrors = true;
     thisTool.find('#inputdata .row').each(function(i, el){
-        var hasNoErrors;
         if ($(this).hasClass('reference_row')) {
             refSens = parseFloat($(this).find('.sensitivity').text());
             refSpec = parseFloat($(this).find('.specificity').text());
