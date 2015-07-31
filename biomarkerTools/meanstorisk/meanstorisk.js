@@ -251,8 +251,6 @@ function make_ajax_call_user_defined_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     });
-    
-    thisTool.find("#spinner").addClass("hide"); 
 }
 function make_ajax_call_standard_calculation() {
     thisTool.find("#spinner").removeClass("hide"); 
@@ -281,8 +279,6 @@ function make_ajax_call_standard_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     });
-    
-    thisTool.find("#spinner").addClass("hide"); 
 }
 
 function make_excel_call_user_defined_calculation() {
