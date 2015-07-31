@@ -1,17 +1,14 @@
-
-
-var uniqueKey, old_value, editing, row, col, validPrevValue;
-
-uniqueKey = null;
-old_value = null;
-editing = false;
-row = null;
-col = null;
-validPrevValue = false;
+var uniqueKey = null;
+var old_value = null;
+var editing = false;
+var row = null;
+var col = null;
+var validPrevValue = false;
 var thisTool;
 
 function init_bc(){
     thisTool = $("#bc");
+    thisTool.find("input#prevalence").val('');
 }
 
 $(document).ready(function(){
@@ -145,16 +142,18 @@ function remove_row(el){
     }
 }
 function do_calculation(){
-    var refSens, refSpec, sensArray, specArray, prev, sensArrayWithRef, specArrayWithRef, labels, prevalence, validPrevValue, hasNoErrors, hostname, promise;
-    refSens = "";
-    refSpec = "";
-    sensArray = "";
-    specArray = "";
-    prev = "";
-    sensArrayWithRef = "";
-    specArrayWithRef = "";
-    labels = "";
-    prevalence = thisTool.find('#prevalence').val();
+   
+    var promise;
+    var refSens = "";
+    var refSpec = "";
+    var sensArray = "";
+    var specArray = "";
+    var prev = "";
+    var sensArrayWithRef = "";
+    var specArrayWithRef = "";
+    var labels = "";
+    var prevalence = thisTool.find('#prevalence').val();
+    
     if (!isNumberBetweenZeroAndOne(prevalence)) {
         validPrevValue = false;
         prev = 0;
@@ -162,7 +161,7 @@ function do_calculation(){
         validPrevValue = true;
         prev = prevalence;
     }
-    hasNoErrors = true;
+    var hasNoErrors = true;
     thisTool.find('#inputdata .row').each(function(i, el){
         var hasNoErrors;
         if ($(this).hasClass('reference_row')) {
@@ -192,7 +191,7 @@ function do_calculation(){
         return;
     }
     uniqueKey = new Date().getTime();
-    hostname = window.location.hostname;
+    var hostname = window.location.hostname;
 
     var service = "http://" + hostname + "/" + rest + "/bc/";
     if(hostname == "localhost"){
