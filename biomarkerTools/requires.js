@@ -34,7 +34,7 @@ requirejs.config({
             deps: ['jquery.ui', 'routes']
         },
         riskStratAdvanced: {
-            deps: [ 'datatables','bootstrap', 'routes']
+            deps: [ 'jquery.ui', 'datatables','bootstrap', 'routes']
         },
         routes: {
             deps: ['modernzr','jquery.ui','bootstrap', 'glossary']
