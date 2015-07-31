@@ -135,7 +135,7 @@ function calculate_mrs() {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
-            service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
+            service = "http://" + window.location.hostname + "/" + rest + "/mrsRest/";
         }
 
         var to_value = 10 * 2500; //25 seconds
