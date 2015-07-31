@@ -298,27 +298,20 @@ function jsonToCell(obj){
     thisTool.find('#output').append(new_row);
 }
 function jsonToCellWithPrev(obj){
-    var i$, len$, key, value, Specificity, Sensitivity, LRplus, LRminus, PPV, cNPV, new_row;
-    for (i$ = 0, len$ = obj.length; i$ < len$; ++i$) {
-        key = obj[i$];
-        if (obj.hasOwnProperty(key)) {
-            value = obj[key];
-            if (key === 'Specificity') {
-                Specificity = value;
-            } else if (key === 'Sensitivity') {
-                Sensitivity = value;
-            } else if (key === 'LRplus') {
-                LRplus = value;
-            } else if (key === 'LRminus') {
-                LRminus = value;
-            } else if (key === 'PPV') {
-                PPV = value;
-            } else if (key === 'cNPV') {
-                cNPV = value;
-            }
-        }
-    }
-    new_row = $("<div class='row'>");
+	for (var key in obj)
+	{
+	    if (obj.hasOwnProperty(key))
+	    {
+	        value = obj[key];
+	        if (key== 'Specificity') var Specificity=value;
+			else if (key== 'Sensitivity') var Sensitivity=value;
+			else if (key== 'LRplus') var LRplus=value;
+			else if (key== 'LRminus') var LRminus=value;
+			else if (key== 'PPV') var PPV=value;
+			else if (key== 'cNPV') var cNPV=value;
+	    }
+	}
+    var new_row = $("<div class='row'>");
     new_row.append("<div class='col-md-3'>" + Sensitivity + "</div>");
     new_row.append("<div class='col-md-3'>" + Specificity + "</div>");
     new_row.append("<div class='col-md-3'>" + LRplus + "</div>");
