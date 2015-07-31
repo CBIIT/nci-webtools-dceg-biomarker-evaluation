@@ -605,13 +605,11 @@ function calculate_riskStrat() {
                 promises.push([promise, tabindex, keyvalueShort[shortkey]]);
             }
         }
-
-       
-       
-        Promise.all(promises).then(function(){
+        
+        $.when.apply($, promises).done(function(){
+            thisTool.find("#spinner").addClass('hide');
             thisTool.find("#calculate").button('enable');
             thisTool.find("#calculate").removeAttr('disabled');
-            thisTool.find("#spinner").addClass('hide');
         });
     }
     else {
@@ -660,15 +658,14 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         data : data,
         dataType : "json",
         contentType: 'application/json',
-        success : function (data) {
-            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
-            thisTool.find("#calculate").button('enable');
-            thisTool.find("#calculate").removeAttr('disabled');
-        },
         error: function(request, status, error) {
             handleError(error, status, request);
         }
+    }).then(function(data){
+        return JSON.parse(JSON.stringify(data));
+    }).done(function(data) {
+        fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
+        loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
     });
 }
 
@@ -688,7 +685,6 @@ function handleError(error, status, request) {
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableId = "example-" + abbreviatedKey + tabnumber;
     thisTool.find("#table-" + abbreviatedKey + tabnumber + " #"+tableId).html("");
-
 
     if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
         thisTool.find('#'+tableId).dataTable().fnDestroy();
