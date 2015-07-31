@@ -158,7 +158,7 @@ var thisTool;
 
 function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
-
+    thisTool.find("#calculate").button();
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
             return this.replace(/^\s+|\s+$/g, '');
@@ -170,19 +170,19 @@ $('a[href="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
     init_riskStrat();
 });
 
-$(document).ready(function(){    
+$(document).ready(function(){
     init_riskStrat();
     
     thisTool.find("select").change(function() {
         makeSelectionsUnique(functionnames, this.id);
     });
     
-    thisTool.find("#reset").button().click(resetPage);
+    thisTool.find("#reset").on('click', resetPage);
     thisTool.find("input").keyup(checkInputFields);
     thisTool.find("input").change(checkInputFields);
     thisTool.find("#add-test-data").click(addTestData);
     
-    thisTool.find("#calculate").button().click(function(e) {
+    thisTool.find("#calculate").on('click', function(e) {
         e.preventDefault();
         if (checkRules() == "Fail") {
             createRulesDialog();
@@ -225,7 +225,9 @@ function addTestData() {
     thisTool.find("#fixed").val("1, 1.5, 2, 3");
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
-    thisTool.find("#calculate").button('option','disabled', false);
+    thisTool.find("#calculate").button();
+    thisTool.find("#calculate").button('enable');
+    thisTool.find("#calculate").removeAttr('disabled');
 }
 
 function addPopupDefinition() {
@@ -376,9 +378,6 @@ function checkRule(ruleId, vars, values, min, max) {
     status = "Pass";
     switch (ruleId) {
         case 1:
-
-
-
             minValue = 0;
             maxValue = 1;
             $.each(
@@ -393,28 +392,18 @@ function checkRule(ruleId, vars, values, min, max) {
                 });
             break;
         case 2:
-
-
-
             minValue = 0;
             maxValue = 5;
-            $
-                .each(
-                vars,
-                function(key, selectedVar) {
+            $.each(vars, function(key, selectedVar) {
                     if (selectedVar == "delta") {
                         if (min[key] < minValue || max[key] > maxValue) {
                             status = "Fail";
                             rulesViolationMsg += "<div>Rule: Delta can be 0 to 5</div>";
                         }
                     }
-                });
+            });
             break;
         case 3:
-
-
-
-
             var cnpvPostion = $.inArray("cnpv", vars);
             var prevalencePostion = $.inArray("prevalence", vars);
             if (cnpvPostion >= 0 && prevalencePostion >= 0) {
@@ -425,9 +414,6 @@ function checkRule(ruleId, vars, values, min, max) {
             }
             break;
         case 4:
-
-
-
             var prevalencePostion = $.inArray("prevalence", vars);
             ppvPostion = $.inArray("ppv", vars);
             if (prevalencePostion >= 0 && ppvPostion >= 0) {
@@ -439,10 +425,6 @@ function checkRule(ruleId, vars, values, min, max) {
 
             break;
         case 5:
-
-
-
-
             sensitivityPosition = $.inArray("sensitivity", vars);
             specificityPosition = $.inArray("specificity", vars);
             if (sensitivityPosition >= 0 && specificityPosition >= 0) {
@@ -455,13 +437,11 @@ function checkRule(ruleId, vars, values, min, max) {
             }
             break;
     }
-
     return status;
 }
 
 function checkInputFields() {
     var selectedValues = [];
-
     var ids = thisTool.find("input").map(function() {
         return this.id;
     }).get();
@@ -469,12 +449,13 @@ function checkInputFields() {
     $.each(ids, function(key, elementId) {
         selectedValues.push(thisTool.find('#' + elementId).val().length);
     });
+    
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
-        thisTool.find("#calculate").button('option','disabled', false);
-    } else {
-        thisTool.find("#calculate").button('option','disabled', 'disabled');
+        thisTool.find("#calculate").button('enable');
+        thisTool.find("#calculate").removeAttr('disabled');
     }
-
+    else
+        thisTool.find("#calculate").button('disable');
 }
 
 function calculate_riskStrat() {
@@ -486,7 +467,7 @@ function calculate_riskStrat() {
     checkInput.push(thisTool.find("#contour")[0].checkValidity());
     checkInput.push(thisTool.find("#fixed")[0].checkValidity());
 
-    thisTool.find("#calculate").button('option','disabled', 'disabled');
+    thisTool.find("#calculate").button('disable');
     thisTool.find("#output").empty();
 
     if ($.inArray(false, checkInput) >= 0) {
@@ -632,7 +613,8 @@ function calculate_riskStrat() {
         // use when.apply() to run all promises
         //        $.when.apply($, promises);
         Promise.all(promises).then(function(){
-            thisTool.find("#calculate").button('option','disabled', false);
+            thisTool.find("#calculate").button('enable');
+            thisTool.find("#calculate").removeAttr('disabled');
         });
     } // if function mapping is available
     else {
@@ -682,10 +664,10 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         dataType : "json",
         contentType: 'application/json',
         success : function (data) {
-            console.log(arguments);
             fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
             loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
-            thisTool.find("#calculate").button('option','disabled', false);
+            thisTool.find("#calculate").button('enable');
+            thisTool.find("#calculate").removeAttr('disabled');
             thisTool.find("#spinner").addClass('hide');
         },
         error: function(request, status, error) {
@@ -854,7 +836,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
     var selectedValues = [];
     var disabledValues = [];
 
-    thisTool.find("#calculate").button('option','disabled', 'disabled');
+//    thisTool.find("#calculate").button('option','disabled', 'disabled');
     if (activeSelectionChange === true)
         return;
 
@@ -904,12 +886,12 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
     for (var optionKey = 0; optionKey < originalOptions.length; optionKey++) {
         var attribute;
         if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
-            attribute = $('#' + dropdownBoxId).append(
+            attribute = thisTool.find('#' + dropdownBoxId).append(
                 $("<option></option>").attr("value",
                                             originalOptions[optionKey]).attr('disabled',
                                                                              'disabled').text(originalOptions[optionKey]));
         } else {
-            attribute = $('#' + dropdownBoxId).append(
+            attribute = thisTool.find('#' + dropdownBoxId).append(
                 $("<option></option>").attr("value",
                                             originalOptions[optionKey]).text(
                     originalOptions[optionKey]));
