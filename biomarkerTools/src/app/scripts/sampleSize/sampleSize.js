@@ -24,6 +24,8 @@ thisTool.find('.post').click(function(){
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
         disable_calculate();
+        // scroll down to loader image
+        document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
         $.ajax({
             type: 'POST',
             // Provide correct Content-Type, so that Flask will know how to process it.
@@ -210,9 +212,11 @@ function example_code(){
 }
 
 function reset_code(){
+ thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#fixed_flag").val("");
+    thisTool.find("#prevalence").val(0.001);
+    thisTool.find("#n_value").val("1");
     thisTool.find("#minInput").val(0);
     thisTool.find("#maxInput").val(1);
- thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#prevalence,#n_value,#fixed_flag").val("");
     thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#message").addClass("hide");
     disable_calculate();
