@@ -583,7 +583,7 @@ function calculate_riskStrat() {
         tabs.tabs();
 
         var promises = [];//store promises in an array
-
+        thisTool.find("#spinner").removeClass('hide');
         for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
             // for (var keyIndex=0; keyIndex < keys.length; keyIndex++)
@@ -615,6 +615,7 @@ function calculate_riskStrat() {
         Promise.all(promises).then(function(){
             thisTool.find("#calculate").button('enable');
             thisTool.find("#calculate").removeAttr('disabled');
+            thisTool.find("#spinner").addClass('hide');
         });
     } // if function mapping is available
     else {
@@ -668,7 +669,6 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
             loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
             thisTool.find("#calculate").button('enable');
             thisTool.find("#calculate").removeAttr('disabled');
-            thisTool.find("#spinner").addClass('hide');
         },
         error: function(request, status, error) {
             handleError(error, status, request);
