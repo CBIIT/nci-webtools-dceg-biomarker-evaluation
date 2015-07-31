@@ -1,7 +1,7 @@
 
 var cases_string;
 var uniqueKey;
-var thisTool;
+var thisTool = $("#meanstorisk");
 var valuesFromFile = [];
 var numberOfRows;
 var numberOfCols;
@@ -44,10 +44,10 @@ function init_meanstorisk(){
    
     thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
         if(this.id == "file_upload"){
-            $('#cases_control').collapse('hide');
+            thisTool.find('#cases_control').collapse('hide');
         }
         else{
-            $('#file_upload').collapse('hide');
+            thisTool.find('#file_upload').collapse('hide');
         }
 
         thisTool.find('.panel-body').not( document.getElementById(this.id) )
@@ -76,7 +76,7 @@ function prepare_upload (e) {
         fr.readAsText(files[0]);
     }
     else {
-        var filePath = $("#input_file_upload").val();
+        var filePath = thisTool.find("#input_file_upload").val();
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         var textStream = fso.OpenTextFile(filePath);
         var fileData = textStream.ReadAll();
@@ -99,7 +99,7 @@ function bind_option_choices() {
         toggle: false
     });
 
-    $( "#input_file_upload" ).on('change', prepare_upload);
+    thisTool.find( "#input_file_upload" ).on('change', prepare_upload);
 
 }
 
@@ -345,7 +345,7 @@ function make_excel_call_standard_calculation() {
 }
 
 function set_data_meanstorisk(dt) {
-    $("#please_wait_calculate").modal("hide");
+    thisTool.find("#please_wait_calculate").modal("hide");
     thisTool.find("#download_button").removeClass("hide");
     set_values_table(dt);
     create_tabbed_table(dt);
@@ -354,7 +354,7 @@ function set_data_meanstorisk(dt) {
 }
 
 function set_excel(dt) {
-    $("#please_wait_download").modal("hide");
+    thisTool.find("#please_wait_download").modal("hide");
    
     if(dt.length > 0)
         window.open(dt);
@@ -460,18 +460,19 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     $("#"+tab_id).empty().append(general_table);
 
     var first_header_row = $("<tr></tr>");	
-    first_header_row.append("<TH class='table_data header text-center' colspan='" +  (prevalence_count + 4) + 
-                            "'>" + table_name + "</TH>");
+    first_header_row.append("<TH class='table_data header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + "</TH>");
     first_header_row.appendTo(general_table);
 
     var second_header_row = $("<tr></tr>");	
-    second_header_row.append("<TH class='text-center table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'><div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
+    second_header_row.append("<TH class='text-center table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) + 
+                             "'><div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + 
+                             "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
     second_header_row.appendTo(general_table);
 
     var third_header_row = $("<tr></tr>");	
     third_header_row.append("<TH class='table_data header text-center' colspan='4' style='border-right:1px solid black;'>" +
                             "<div class='define' id='Sens2-" + tab_id +
-                            "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>                         </TH>" );
+                            "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div></TH>" );
     third_header_row.append("<TH class='table_data header text-center' colspan='" + prevalence_count + "' >" +
                             "<div class='define' id='DP2-" + tab_id + 
                             "' data-term='DP'>Disease Prevalence</div>" +
@@ -494,16 +495,16 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
         var row = $("<tr></tr>");
        
         row.attr('id', type + '_table_row_' + x);
-        row.append("<TD class='table_data col1'>" + format_number(sensitivity_matrix[y].Specificity) + "</TD>");
-        row.append("<TD class='table_data col1'>" + format_number(sensitivity_matrix[y].Sensitivity) + "</TD>");
-        row.append("<TD class='table_data col1'>" + format_number(sensitivity_matrix[y]['LR+']) + "</TD>");
-        row.append("<TD class='table_data col1' style='border-right:1px solid black;'>" + 
+        row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y].Specificity) + "</TD>");
+        row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y].Sensitivity) + "</TD>");
+        row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y]['LR+']) + "</TD>");
+        row.append("<TD class='table_data col1 text-center' style='border-right:1px solid black;'>" + 
                    format_number(sensitivity_matrix[y]['LR-']) + "</TD>");
 
        
         for(var z = 0; z < prevalence_count; z++) {
             var prevalence_value = prevalence_values[z];
-            row.append("<TD class='table_data col1'>" + format_number(matrix[y][prevalence_value]) + "</TD>");			
+            row.append("<TD class='table_data col1 text-center'>" + format_number(matrix[y][prevalence_value]) + "</TD>");			
         }
         row.appendTo(general_table);
     }	
@@ -527,10 +528,10 @@ function draw_graph() {
 }
 
 function set_value(field, value) {
-    $(field).text("" + value);
-    $(field).addClass('highlight');
+    thisTool.find(field).text("" + value);
+    thisTool.find(field).addClass('highlight');
     setTimeout(
-        function() { $(field).removeClass('highlight'); }, 
+        function() { thisTool.find(field).removeClass('highlight'); }, 
         2000
     );		
 }
