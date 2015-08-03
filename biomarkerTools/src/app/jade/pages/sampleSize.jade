@@ -31,7 +31,7 @@
                         .col-md-4               
                             label.pull-right(for='contour_dropdown') Contour
                         .col-md-4
-                            select#contour_dropdown.pull-right(name='contour_dropdown', onchange='lock_fixed_options();')
+                            select#contour_dropdown.pull-left(name='contour_dropdown', onchange='lock_fixed_options();')
                                 option(value='', selected='')
                                 option(value='specificity') Specificity
                                 option(value='sensitivity') Sensitivity
@@ -41,7 +41,7 @@
                         .col-md-4
                             label.pull-right(for='fixed_dropdown') Fixed Values
                         .col-md-4
-                            select#fixed_dropdown.pull-right(name='fixed_dropdown')
+                            select#fixed_dropdown.pull-left(name='fixed_dropdown')
                                 option(value='', selected='')
                                 option(value='specificity', disabled='disabled') Specificity
                                 option(value='sensitivity', disabled='disabled') Sensitivity
