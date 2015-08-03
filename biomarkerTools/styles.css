@@ -406,10 +406,6 @@ body #contentTabs #riskStratAdvanced .status-info {
 body #contentTabs #riskStratAdvanced .status-error {
   color: #a90002;
 }
-body #contentTabs #riskStratAdvanced .variable-example {
-  padding-left: 10px;
-  text-align: left;
-}
 body #contentTabs #riskStratAdvanced a#add-test-data {
   text-decoration: underline;
   float: right;
