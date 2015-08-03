@@ -24,7 +24,6 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                     input#independent.col-md-5(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.')
                     div
                         #indDef
-                        span.variable-example
                 .row
                     .col-md-3
                         label(for='contour_dropdown') Contour
@@ -41,7 +40,6 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                     input#contour.col-md-5(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
                     div
                         #contourDef
-                        span.variable-example
                 .row
                     .col-md-3
                         label(for='fixed_dropdown') Fixed Values
@@ -59,12 +57,18 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                     //, required)
                     div
                         #fvDef
-                        span.variable-example
             .panel-footer
                 button#calculate(disabled='') Calculate
                 button#reset(type='reset') Reset
                 .pull-right
                     a.pull-right#add-test-data(href='#', title='Populate variables with a working example') Example
+    #examples.col-md-4
+        .row.vertical-padding
+            span.variable-example
+        .row.vertical-padding
+            span.variable-example
+        .row.vertical-padding
+            span.variable-example
     #status-bar Status Bar
     #dialog-confirm.modal.fade(title='Rules Violation')
         .modal-dialog
