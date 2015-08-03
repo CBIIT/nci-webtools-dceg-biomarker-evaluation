@@ -197,8 +197,8 @@ function trim_spaces(varstring){
 
 function example_code(){
     thisTool.find("#message").addClass("hide");
-    thisTool.find("#minInput").val(0);
-    thisTool.find("#maxInput").val(1);
+    thisTool.find("#minInput").val("0");
+    thisTool.find("#maxInput").val("1");
     thisTool.find("#contour").val("0.8,0.9,0.95,0.995");
     thisTool.find("#contour_dropdown").val("sensitivity");
     thisTool.find("#fixed").val("0.7,0.8,0.9");
@@ -215,8 +215,8 @@ function reset_code(){
  thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#fixed_flag").val("");
     thisTool.find("#prevalence").val(0.001);
     thisTool.find("#n_value").val("1");
-    thisTool.find("#minInput").val(0);
-    thisTool.find("#maxInput").val(1);
+    thisTool.find("#minInput").val(0.0);
+    thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#message").addClass("hide");
     disable_calculate();
