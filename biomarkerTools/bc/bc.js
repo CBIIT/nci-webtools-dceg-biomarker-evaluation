@@ -176,7 +176,7 @@ function do_calculation(){
             specArrayWithRef += parseFloat($(this).find('.specificity').text()) + ",";
             hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity').text()));
             hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity').text()));
-            labels += (i + 1) + ",";
+            labels += i + ",";
         }
     });
     sensArray = sensArray.slice(0, -1);
