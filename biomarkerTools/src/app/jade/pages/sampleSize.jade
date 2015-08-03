@@ -51,12 +51,12 @@
                         .col-md-4
                             label.pull-right Parameters
                         .col-md-4
-                            .pull-right(for='prevalence') Prevalence
+                            .pull-left(for='prevalence') Prevalence
                         input#prevalence.col-md-3(type='number', size='10',min="0",max="1", value='0.001',step="0.001", title='A floating point number between 0 and 1', required='')
                     .row
                         .col-md-4
                         .col-md-4
-                            .pull-right(for='n_value') Sample Size
+                            .pull-left(for='n_value') Sample Size
                         input#n_value.fontnormal.col-md-3(type='text', size='10', value='1', min="1" pattern='(^[0-8]$)+', title='Number must be an integer', required='')
                 .panel-footer
                     button.post(type='submit') Calculate
