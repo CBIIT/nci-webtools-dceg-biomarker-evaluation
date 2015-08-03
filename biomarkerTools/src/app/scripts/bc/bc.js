@@ -113,14 +113,13 @@ function clear_reference_row(){
     }
 }
 function add_new_row(){
-    var num_rows, row_1, row_2, row_3, row_4, row_5;
     // 2 non-data rows, add new row and headers row
-    num_rows = thisTool.find('#inputdata').find('.row').length - 2;
-    row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
-    row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
-    row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
-    row_4 = "<div class='col-md-2 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
-    row_5 ="<div class='col-md-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+    var num_rows = thisTool.find('#inputdata').find('.row').length - 2;
+    var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
+    var row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
+    var row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
+    var row_4 = "<div class='col-md-2 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
+    var row_5 ="<div class='col-md-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
     thisTool.find('#inputdata').find('.row').last().prev().after(row_1 + row_2 + row_3 + row_4 +row_5);
     if (num_rows === 2) {
         thisTool.find('#inputdata').find('.row').each(function(){
@@ -134,10 +133,9 @@ function add_new_row(){
     bind_input();
 }
 function remove_row(el){
-    var row_to_remove, num_rows;
-    row_to_remove = el.parent().parent();
+    var row_to_remove = el.parent().parent();
     row_to_remove.remove();
-    num_rows = thisTool.find('#inputdata').find('.row').length - 3;
+    var num_rows = thisTool.find('#inputdata').find('.row').length - 2;
     if (num_rows <= 2) {
         thisTool.find('#inputdata').find('.remove_row_button').remove();
     }
