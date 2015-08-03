@@ -905,7 +905,8 @@ function setInitialValue(textboxId) {
     var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
 
     thisTool.find(eSelect2).find(":input").val("");
-    thisTool.find(eSelect2).find("span").text(initialData[key]);
+    var dropdownIndex = $(eSelect2).index();
+    thisTool.find("#examples .row:eq(" + dropdownIndex + ") span").text(initialData[key]);
 
 
     thisTool.find('#' + textboxId).val(selectedOption).change();
