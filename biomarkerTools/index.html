@@ -75,13 +75,13 @@
                         <div class="glyphicon glyphicon-chevron-down"></div>&nbsp; Normal Distribution
                       </div>
                       <div id="cases_control" class="panel-body collapse">
-                        <div class="panel panel-default table_data">
+                        <div class="panel panel-default table_data indent">
                           <div class="panel-heading"><b class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</b></div>
                           <div>
                             <div class="row table_data">
                               <div class="col-md-5 text-right table_data"></div>
                               <div class="col-md-2 table_data"> <b>Cases</b></div>
-                              <div class="table_data"><b>Controls</b></div>
+                              <div class="col-md-2 table_data"><b>Controls</b></div>
                             </div>
                             <div class="row table_data">
                               <div class="col-md-5 text-right table_data"><b>Mean</b></div>
@@ -346,7 +346,7 @@
                       <label for="independent" class="sr-only">Independent Variable Value</label>
                       <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." class="col-md-5">
                       <div>
-                        <div id="indDef"></div><span class="variable-example"></span>
+                        <div id="indDef"></div>
                       </div>
                     </div>
                     <div class="row">
@@ -367,7 +367,7 @@
                       <label for="contour" class="sr-only">Contour Value</label>
                       <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-5">
                       <div>
-                        <div id="contourDef"></div><span class="variable-example"></span>
+                        <div id="contourDef"></div>
                       </div>
                     </div>
                     <div class="row">
@@ -389,7 +389,7 @@
                       <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" class="col-md-5">
                       <!--, required)-->
                       <div>
-                        <div id="fvDef"></div><span class="variable-example"></span>
+                        <div id="fvDef"></div>
                       </div>
                     </div>
                   </div>
@@ -400,6 +400,11 @@
                   </div>
                 </div>
               </form>
+              <div id="examples" class="col-md-4">
+                <div class="row vertical-padding"><span class="variable-example"></span></div>
+                <div class="row vertical-padding"><span class="variable-example"></span></div>
+                <div class="row vertical-padding"><span class="variable-example"></span></div>
+              </div>
               <div id="status-bar">Status Bar</div>
               <div id="dialog-confirm" title="Rules Violation" class="modal fade">
                 <div class="modal-dialog"></div>
@@ -502,14 +507,14 @@
                           <label class="pull-right">Parameters</label>
                         </div>
                         <div class="col-md-4">
-                          <div for="prevalence" class="pull-right">Prevalence</div>
+                          <div for="prevalence" class="pull-left">Prevalence</div>
                         </div>
                         <input id="prevalence" type="number" size="10" min="0" max="1" value="0.001" step="0.001" title="A floating point number between 0 and 1" required="" class="col-md-3">
                       </div>
                       <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
-                          <div for="n_value" class="pull-right">Sample Size</div>
+                          <div for="n_value" class="pull-left">Sample Size</div>
                         </div>
                         <input id="n_value" type="text" size="10" value="1" min="1" pattern="(^[0-8]$)+" title="Number must be an integer" required="" class="fontnormal col-md-3">
                       </div>
@@ -551,7 +556,7 @@
                       </div>
                       <div class="extra-padding">
                         <label for="name-input">Biomarker Name</label>
-                        <input type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9]*$" class="name-input input input-sm">
+                        <input type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9]*$" class="name-input input">
                       </div>
                       <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-1" class="panel-heading">
                         <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;<a title="Input: 2x2 Table" class="accordion-toggle">Input: 2x2 Table</a></h6>
@@ -573,22 +578,22 @@
                                 <th id="prob_d" class="termToDefine header">Disease Positive (D+)    </th>
                                 <td>
                                   <label for="a" class="sr-only">A</label>
-                                  <input id="a" name="a" type="number" maxlength="30" class="input input-sm">
+                                  <input id="a" name="a" type="number" maxlength="30" class="input">
                                 </td>
                                 <td>
                                   <label for="b" class="sr-only">B</label>
-                                  <input id="b" name="b" type="number" maxlength="30" class="input input-sm">
+                                  <input id="b" name="b" type="number" maxlength="30" class="input">
                                 </td>
                               </tr>
                               <tr>
                                 <th id="d_neg" class="termToDefine header">Disease Negative (D-)    </th>
                                 <td>
                                   <label for="c" class="sr-only">C</label>
-                                  <input id="c" name="c" type="number" maxlength="30" class="input input-sm">
+                                  <input id="c" name="c" type="number" maxlength="30" class="input">
                                 </td>
                                 <td>
                                   <label for="d" class="sr-only">D</label>
-                                  <input id="d" name="d" type="number" maxlength="30" class="input input-sm">
+                                  <input id="d" name="d" type="number" maxlength="30" class="input">
                                 </td>
                               </tr>
                             </tbody>
@@ -602,7 +607,7 @@
                         <div class="option-2 panel-body extra-padding table-responsive">
                           <div class="extra-padding">
                             <label for="sampsize">Sample Size</label>
-                            <input name="sampsize" type="number" maxlength="30" min="1" class="input input-sm">
+                            <input name="sampsize" type="number" maxlength="30" min="1" class="input">
                           </div>
                           <table class="option-2 table table-condensed table-responsive">
                             <thead>
@@ -614,35 +619,35 @@
                             <tbody>
                               <tr row="0">
                                 <td>
-                                  <select name="param_1" class="input input-sm">
+                                  <select name="param_1" class="input">
                                     <option value="ppv">PPV</option>
                                     <option value="sens">Sensitivity</option>
                                   </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
                                 </td>
                                 <td>
-                                  <input type="number" name="param_1" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                  <input type="number" name="param_1" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
                               <tr row="1">
                                 <td>
-                                  <select name="param_2" class="input input-sm">
+                                  <select name="param_2" class="input">
                                     <option value="npv">NPV</option>
                                     <option value="spec">Specificity</option>
                                   </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
                                 </td>
                                 <td>
-                                  <input type="number" name="param_2" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                  <input type="number" name="param_2" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
                               <tr row="2">
                                 <td>
-                                  <select name="param_3" class="input input-sm">
+                                  <select name="param_3" class="input">
                                     <option value="prob_m">Marker Positivity (P(M+))</option>
                                     <option value="prob_d">Disease Prevalence (P(D+))</option>
                                   </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
                                 </td>
                                 <td>
-                                  <input type="number" name="param_3" min="0" max="1" maxlength="30" step="0.0001" class="input input-sm">
+                                  <input type="number" name="param_3" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
                             </tbody>
