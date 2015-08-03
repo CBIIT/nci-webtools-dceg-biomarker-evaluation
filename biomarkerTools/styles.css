@@ -6,6 +6,10 @@ body #main {
   margin: 0 auto;
   font-size: small;
 }
+body .vertical-padding {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
 body .no-pad {
   padding: 0;
 }
@@ -152,10 +156,6 @@ body #contentTabs #meanstorisk .graph_panel {
 }
 body #contentTabs #meanstorisk .panel.panel-default.table_panel {
   width: 28%;
-}
-body #contentTabs #meanstorisk .vertical-padding {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
 }
 body #contentTabs #meanstorisk .table_panel .row {
   border: 0.125em solid #ddd;
@@ -333,7 +333,7 @@ body #contentTabs #meanRiskStratification .input:invalid {
 }
 body #contentTabs #riskStratAdvanced input,
 body #contentTabs #riskStratAdvanced select {
-  padding: initial;
+  padding: 1px;
 }
 body #contentTabs #riskStratAdvanced .ui-widget {
   font-size: 12px;
