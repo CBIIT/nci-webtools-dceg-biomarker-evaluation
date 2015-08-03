@@ -6,6 +6,9 @@ body #main {
   margin: 0 auto;
   font-size: small;
 }
+body .no-pad {
+  padding: 0;
+}
 body .title {
   color: #000;
 }
