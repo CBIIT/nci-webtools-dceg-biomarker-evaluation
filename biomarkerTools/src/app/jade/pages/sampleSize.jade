@@ -25,8 +25,8 @@
                         .col-md-4
                         .col-md-4
                         .col-md-3.no-pad
-                            input#minInput.col-md-5.pull-left(type="number", min="0", max="1", step=".0001", title="Must be a floating point number between 0 and 1")
-                            input#maxInput.col-md-6.pull-right(type="number", min="0", max="1",  step=".0001", title="Must be a floating point number between 0 and 1")
+                            input#minInput.col-md-5.pull-left(type="number", min="0", max="1", step=".01", title="Must be a floating point number between 0 and 1")
+                            input#maxInput.col-md-6.pull-right(type="number", min="0", max="1",  step=".01", title="Must be a floating point number between 0 and 1")
                     .row
                         .col-md-4               
                             label.pull-right(for='contour_dropdown') Contour
@@ -52,7 +52,7 @@
                             label.pull-right Parameters
                         .col-md-4
                             .pull-left(for='prevalence') Prevalence
-                        input#prevalence.col-md-3(type='number', size='10',min="0",max="1", value='0.001',step="0.001", title='A floating point number between 0 and 1', required='')
+                        input#prevalence.col-md-3(type='number', size='10',min="0",max="1", value='0.001',step="0.01", title='A floating point number between 0 and 1', required='')
                     .row
                         .col-md-4
                         .col-md-4
