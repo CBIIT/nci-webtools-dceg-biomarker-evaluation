@@ -98,7 +98,6 @@ function change_value(field, new_value){
     }
 }
 function clear_reference_row(){
-    var num_rows;
     thisTool.find('#inputdata').find('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='uncheck'/>");
     thisTool.find('#inputdata').find('.row').each(function(){
         $(this).removeClass('reference_row');
@@ -107,14 +106,16 @@ function clear_reference_row(){
         }
     });
     bind_remove_row();
-    num_rows = thisTool.find('#inputdata').find('.row').length - 3;
+
+      var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
     if (num_rows <= 2) {
         thisTool.find('#inputdata').find('.remove_row_button').remove();
     }
 }
 function add_new_row(){
    
-    var num_rows = thisTool.find('#inputdata').find('.row').length - 2;
+   
+      var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
     var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
     var row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
@@ -135,7 +136,8 @@ function add_new_row(){
 function remove_row(el){
     var row_to_remove = el.parent().parent();
     row_to_remove.remove();
-    var num_rows = thisTool.find('#inputdata').find('.row').length - 2;
+  
+      var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
     if (num_rows <= 2) {
         thisTool.find('#inputdata').find('.remove_row_button').remove();
     }
@@ -152,7 +154,7 @@ function do_calculation(){
     var specArrayWithRef = "";
     var labels = "";
     var prevalence = thisTool.find('#prevalence').val();
-    
+
     if (!isNumberBetweenZeroAndOne(prevalence)) {
         validPrevValue = false;
         prev = 0;
@@ -296,19 +298,19 @@ function jsonToCell(obj){
     thisTool.find('#output').append(new_row);
 }
 function jsonToCellWithPrev(obj){
-	for (var key in obj)
-	{
-	    if (obj.hasOwnProperty(key))
-	    {
-	        value = obj[key];
-	        if (key== 'Specificity') var Specificity=value;
-			else if (key== 'Sensitivity') var Sensitivity=value;
-			else if (key== 'LRplus') var LRplus=value;
-			else if (key== 'LRminus') var LRminus=value;
-			else if (key== 'PPV') var PPV=value;
-			else if (key== 'cNPV') var cNPV=value;
-	    }
-	}
+      for (var key in obj)
+      {
+          if (obj.hasOwnProperty(key))
+          {
+              value = obj[key];
+              if (key== 'Specificity') var Specificity=value;
+                  else if (key== 'Sensitivity') var Sensitivity=value;
+                  else if (key== 'LRplus') var LRplus=value;
+                  else if (key== 'LRminus') var LRminus=value;
+                  else if (key== 'PPV') var PPV=value;
+                  else if (key== 'cNPV') var cNPV=value;
+          }
+      }
     var new_row = $("<div class='row'>");
     new_row.append("<div class='col-md-2'>" + Sensitivity + "</div>");
     new_row.append("<div class='col-md-2'>" + Specificity + "</div>");
@@ -352,8 +354,8 @@ function createOutputTableWithPrev(jsondata){
     header_row.append("<div class='col-md-2 header'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
     header_row.append("<div class='col-md-2 header'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
     thisTool.find('#output').append(header_row);
-	for (var each in jsondata) {
-		jsonToCellWithPrev(jsondata[each]);
+      for (var each in jsondata) {
+            jsonToCellWithPrev(jsondata[each]);
     }
 }
 function ajax_error(jqXHR, exception){
