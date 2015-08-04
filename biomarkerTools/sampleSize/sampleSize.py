@@ -41,11 +41,16 @@ def sampleSizeRest():
     
     start = time.time()
     print "Starting Benchmark"
-  
+    
     if fixed_flag == "Specificity":
-    	jsonrtn = (wrapper.saveAllSensGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    	jsonrtn = (wrapper.saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
     else:
-        jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+        jsonrtn = (wrapper.saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+
+    #    if fixed_flag == "Specificity":
+    #    	jsonrtn = (wrapper.saveAllSensGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    #    else:
+    #        jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
 
     #end=time.time()
     #print "Seconds"
