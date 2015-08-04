@@ -114,8 +114,7 @@ function clear_reference_row(){
 }
 function add_new_row(){
    
-   
-      var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
+    var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
     var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
     var row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
@@ -132,15 +131,35 @@ function add_new_row(){
     bind_remove_row();
     bind_reference_row();
     bind_input();
+    
+    thisTool.find('#inputdata .row:not(".non-data-row")').each(update_row_index);
 }
+
+function update_row_index(i, row){
+    var ind = i + 1;
+    if(!$(row).hasClass('reference_row'))
+        $(row.firstElementChild).html(ind);
+    else
+        $(row.firstElementChild).html("<b>" + ind + "</b>");
+    
+   
+    $(row).attr("row", i);
+    
+    $(row).find("div:gt(0)").each(function(j, el){
+        if($(el).attr('row') != undefined){
+            $(el).attr('row', i);
+        }
+    });
+}
+
 function remove_row(el){
     var row_to_remove = el.parent().parent();
     row_to_remove.remove();
-  
       var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
     if (num_rows <= 2) {
         thisTool.find('#inputdata').find('.remove_row_button').remove();
     }
+    thisTool.find('#inputdata .row:not(".non-data-row")').each(update_row_index);
 }
 function do_calculation(){
    
