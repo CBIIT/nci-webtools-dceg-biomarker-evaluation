@@ -63,9 +63,9 @@ def mrsRest():
 		    probM = data[currData]['prob_m']
 		    total = data[currData]['sampsize']
 		    
-		    #sens = data[currData]['sens']
-		    #spec = data[currData]['spec']
-		    #probD = data[currData]['prob_d']
+		    sens = data[currData]['sens']
+		    spec = data[currData]['spec']
+		    probD = data[currData]['prob_d']
 
 		    if ppv is not None:
 
