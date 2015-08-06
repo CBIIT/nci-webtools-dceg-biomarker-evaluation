@@ -58,61 +58,93 @@ def mrsRest():
 		    
 	    elif data[currData]['option'] == 2:
 
-		    ppv = data[currData]['ppv']
-		    npv = data[currData]['npv']
-		    probM = data[currData]['prob_m']
-		    total = data[currData]['sampsize']
-		    
-		    #sens = data[currData]['sens']
-            #spec = data[currData]['spec']
-            #probD = data[currData]['prob_d']
+		    # if for example prob_m is not defind in the UI
+		    # then data[currData]['prob_m'] will throw a KeyError
+		    # when attempting to store the value to a reference variable (probM)
+		    # do a brute force check for all possible values that are not null (not None)
 
+		    # set variables to NULL (None) instead of a value because
+		    # further below we check for None
+		    ppv = None
+		    npv = None
+		    total = None
+		    sens = None
+		    spec = None
+		    probM = None
+		    probD = None
+
+		    # save value to variable for all given keys
+
+		    for key in data[currData].keys():
+			    if key == 'ppv':
+				    ppv = data[currData]['ppv']
+			    if key == 'npv':
+				    npv = data[currData]['npv']
+			    if key == 'sampsize':
+				    total = data[currData]['sampsize']
+                            if key == 'sens':
+				    sens = data[currData]['sens']
+			    if key == 'spec':
+				    spec = data[currData]['spec']
+			    if key == 'prob_m':
+				    probM = data[currData]['prob_m']
+			    if key == 'prob_d':
+				    probD = data[currData]['prob_d']
+
+		    
+		    
+
+				    
 		    if ppv is not None:
 
 			    if npv is not None:
 				    
-
-				    if probM is not None:
+				    # probM != NULL && probD == NULL
+				    if probM is not None and probD is None:
 
 					    fromR = (wrapper.getJSON_PPVNPVprobM(float(ppv),float(npv),float(probM),int(total)))
 					    fromRlist = list(fromR)
 					    fromRstr = ''.join(fromRlist)
 
+					    # using json.loads
 					    biomar[currData] = json.loads(fromRstr)
-
-				    elif probD is not None:
+		    
+				    # probD != NULL && probM == NULL
+				    elif probD is not None and probM is None:
 
 					    fromR = (wrapper.getJSON_PPVNPVprobD(float(ppv),float(npv),float(probD),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
 
-					    biomar[currData] = fromRstr
+					    biomar[currData] = json.loads(fromRstr)
 
 		    elif sens is not None:
 			
 			    if spec is not None:
 				    
-				    if probM is not None:
+				    if probM is not None and probD is None:
 
-					    fromR = (wrapper.getJSON_PPVNPVprobM(float(ppv),float(npv),float(probM),int(total)))                                    
+					    # calling correct R wrapper
+					    fromR = (wrapper.getJSON_sensspecprobM(float(sens),float(spec),float(probM),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
 
-					    biomar[currData] = fromRstr
+					    biomar[currData] = json.loads(fromRstr)
 
-                                    elif probD is not None:
+                                    elif probD is not None and probM is None:
 
-					    fromR = (wrapper.getJSON_PPVNPVprobD(float(ppv),float(npv),float(probD),int(total)))
+					    # calling correct R wrapper
+					    fromR = (wrapper.getJSON_sensspecprobD(float(sens),float(spec),float(probD),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
 
-					    biomar[currData] = fromRstr
+					    biomar[currData] = json.loads(fromRstr)
 
 
 				    
-    
+
+
     return json.dumps(biomar)
-    
 
 import argparse
 if __name__ == '__main__':
