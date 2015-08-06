@@ -44,29 +44,25 @@ function test(e) {
     var choice = $(this).prop('id');
 
     thisTool.find('#markers').children().each(function (key, markerElement) {
-        var id;
-
+        var id = $(this).find('.collapse.in').prop('id');
+        var index = key + 1; // biomarker ids are not zero based
+        
         if (choice == "test1") {
             // open option 1 for each
-            $(this).find('.collapse:first').addClass('in');
-            $(this).find('.collapse:last').removeClass('in');
+            thisTool.find('#marker-' + index + '-option-1').collapse('show');
 
-            id = $(this).find('.collapse.in').prop('id');
 
             // then populate with data
             $(markerElement).find('[name="name-input"]').val(values_option_1_bm[key].markerName);
-            $('#' + id).find('#a').val(values_option_1_bm[key].a);
-            $('#' + id).find('#b').val(values_option_1_bm[key].b);
-            $('#' + id).find('#c').val(values_option_1_bm[key].c);
-            $('#' + id).find('#d').val(values_option_1_bm[key].d);
+            $(markerElement).find('#a').val(values_option_1_bm[key].a);
+            $(markerElement).find('#b').val(values_option_1_bm[key].b);
+            $(markerElement).find('#c').val(values_option_1_bm[key].c);
+            $(markerElement).find('#d').val(values_option_1_bm[key].d);
         }
 
         if (choice == "test2") {
-            // collapse all option 1 panels and expand all option 2 panels
-            $(this).find('.collapse:last').addClass('in');
-            $(this).find('.collapse:first').removeClass('in');
-
-            id = $(this).find('.collapse.in').prop('id');
+            // open option 2 for each
+            thisTool.find('#marker-' + index + '-option-2').collapse('show');
 
             var data = [
                 values_option_2_bm[0],
