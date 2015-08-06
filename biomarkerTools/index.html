@@ -122,11 +122,11 @@
                       <div class="panel-footer">
                         <div id="Spec" data-term="Spec" class="define">Specificity:</div>
                         <label for="specificity">
-                          <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999">
+                          <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999" required>
                         </label>
                         <div id="DP" data-term="DP" class="define">Prevalence:</div>
                         <label for="prevalence">
-                          <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001">
+                          <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001" required>
                         </label>
                       </div>
                     </div>
@@ -622,7 +622,7 @@
                                   <select name="param_1" class="input">
                                     <option value="ppv">PPV</option>
                                     <option value="sens">Sensitivity</option>
-                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
                                 </td>
                                 <td>
                                   <input type="number" name="param_1" min="0" max="1" maxlength="30" step="0.0001" class="input">
@@ -633,7 +633,7 @@
                                   <select name="param_2" class="input">
                                     <option value="npv">NPV</option>
                                     <option value="spec">Specificity</option>
-                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
                                 </td>
                                 <td>
                                   <input type="number" name="param_2" min="0" max="1" maxlength="30" step="0.0001" class="input">
@@ -644,7 +644,7 @@
                                   <select name="param_3" class="input">
                                     <option value="prob_m">Marker Positivity (P(M+))</option>
                                     <option value="prob_d">Disease Prevalence (P(D+))</option>
-                                  </select><span class="dd termToDefine glyphicon glyphicon-info-sign"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
                                 </td>
                                 <td>
                                   <input type="number" name="param_3" min="0" max="1" maxlength="30" step="0.0001" class="input">
@@ -847,14 +847,14 @@
               </div>
             </div>
             <div id="help" role="tabpanel" class="tab-pane fade">
-              <h3 title="Help" class="text-center">Help</h3>
+              <h3 title="Help" class="text-left">Help</h3>
               <ul id="toc" class="list-unstyled extra-padding">
                 <ul class="list-unstyled"></ul>
               </ul>
-              <h4 id="tools-help" class="text-center bg-primary">Tools Help</h4>
+              <h4 id="tools-help" class="text-left bg-primary">Tools Help</h4>
               <section>
                 <article class="extra-padding">
-                  <h5 id="help_meanstorisk">Means to Risk Stratification</h5>
+                  <h5 id="help_meanstorisk">Means to Risk</h5>
                   <h5 id="help_bc">Biomarker Comparison</h5>
                   <h5 id="help_riskStratAdvanced">Risk Stratification Advanced Analysis</h5>
                   <article class="extra-padding">
@@ -900,7 +900,7 @@
                   <h5 id="help_meanRiskStratification">Mean Risk Stratification</h5>
                 </article>
               </section>
-              <h4 id="faq" class="text-center bg-primary">FAQ</h4>
+              <h4 id="faq" class="text-left bg-primary">FAQ</h4>
               <section>
                 <article class="extra-padding">
                   <dl>
@@ -916,7 +916,7 @@
                   </dl>
                 </article>
               </section>
-              <h4 id="header-glossary" class="text-center bg-primary">Glossary of Terms</h4>
+              <h4 id="header-glossary" class="text-left bg-primary">Glossary of Terms</h4>
               <section id="glossary" class="extra-padding"></section>
             </div>
           </div>
