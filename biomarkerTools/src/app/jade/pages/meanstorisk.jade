@@ -66,10 +66,10 @@
             .panel-footer
                 #Spec.define(data-term='Spec') Specificity:
                 label(for='specificity')
-                  input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999')
+                  input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
                 #DP.define(data-term='DP') Prevalence:
                 label(for='prevalence')
-                  input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001')
+                  input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
           button#calculate_button(type='button') Calculate
           button#reset(type='reset') Reset
           button#download_button.hide(type='button') Download Excel File
