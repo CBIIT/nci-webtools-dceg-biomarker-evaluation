@@ -199,7 +199,9 @@
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
               <h3 title="Biomarker Comparison" class="title text-center">Biomarker Comparison Tool</h3>
-              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a href="#help_bc" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              <div class="col-md-12 vertical-padding">
+                <div id="helpGlossaryLinks"><a href="#help_bc" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              </div>
               <p>
                 This tool plots contours of likelihood ratio positive (LR+) and
                 likelihood ratio negative (LR-) for a reference test with indicated
@@ -324,7 +326,9 @@
             <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Advanced Analysis" class="title text-center">Risk Stratification Advanced Analysis</h3>
-              <div id="helpGlossaryLinks" class="col-md-offset-11 extra-padding"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              <div class="col-md-12">
+                <div id="helpGlossaryLinks"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              </div>
               <form class="col-md-7">
                 <div class="panel panel-default">
                   <div class="panel-body">
@@ -344,7 +348,7 @@
                         </select>
                       </div>
                       <label for="independent" class="sr-only">Independent Variable Value</label>
-                      <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." class="col-md-6">
+                      <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
                       <div>
                         <div id="indDef"></div>
                       </div>
@@ -386,15 +390,14 @@
                         </select>
                       </div>
                       <label for="fixed" class="sr-only">Fixed Value</label>
-                      <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" class="col-md-6">
-                      <!--, required)-->
+                      <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-md-6">
                       <div>
                         <div id="fvDef"></div>
                       </div>
                     </div>
                   </div>
                   <div class="panel-footer">
-                    <button id="calculate" disabled="">Calculate</button>
+                    <button id="calculate">Calculate</button>
                     <button id="reset" type="reset">Reset</button>
                     <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
                   </div>
@@ -441,10 +444,10 @@
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
+              <div class="col-md-12">
+                <div id="helpGlossaryLinks"><a href="#help_sampleSize" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              </div>
               <div class="container">
-                <div class="row col-md-offset-11">
-                  <div id="helpGlossaryLinks" class="extra-padding"><a href="#help_sampleSize" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
-                </div>
                 <form id="ss" class="col-md-8 row">
                   <div id="message" class="col-sm-7 col-sm-offset-2 hide">
                     <div class="panel panel-danger">
@@ -543,9 +546,7 @@
             <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
               <h3 title="Mean Risk Stratification" class="title text-center">Mean Risk Stratification</h3>
               <div class="col-md-12">
-                <div class="row pull-right">
-                  <div id="helpGlossaryLinks" class="extra-padding"></div><a href="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;&nbsp;<a href="#" class="goToGlossary">Glossary</a>
-                </div>
+                <div id="helpGlossaryLinks"><a href="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
               <div class="col-md-5 col-sm-5">
                 <div class="col-md-12">
