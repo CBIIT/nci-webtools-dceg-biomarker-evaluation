@@ -726,26 +726,3 @@ function validate(values) {
 
     return valid;
 }
-
-function display_errors(message) {
-    var text = "";
-
-    if ($.isArray(message) && message.length > 0) {
-        $(message).each(function (i, v) {
-            text += "<li>" + v + "</li>";
-        });
-    }
-    if (typeof message == "string") {
-        text = message;
-    }
-    if(thisTool.find('#errors').length > 0){
-        thisTool.find("#errors").empty();
-        thisTool.find("#errors").remove();
-    }
-
-    thisTool.find(".title.text-center").after("<div id='errors' class='alert alert-danger fade in'>" +
-        "<ul class='list-unstyled'>" + text + "</ul></div>");
-
-    thisTool.find('#errors').fadeIn();
-    scrollTop();
-}
