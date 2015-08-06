@@ -17,7 +17,7 @@ var ppv_tabs = {
 
 $(document).ready(function(){
     thisTool = $("#meanstorisk");
-
+    thisTool.find("#errors").alert();
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
@@ -31,7 +31,7 @@ $('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
 function init_meanstorisk(){ 
     thisTool.find("#please_wait_calculate").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
     thisTool.find("#please_wait_download").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
-    thisTool.find("#download_button").addClass('hide');
+    thisTool.find("#download_button, #errors").addClass('hide');
     thisTool.find(".data_entry_by_input").on('click', function () {
         thisTool.find("#download_button").addClass('hide');
     });
@@ -107,12 +107,13 @@ function bind_calculate_button() {
     thisTool.find("#calculate_button").on('click', function() {
         var validation_check = validate_input(false);
         if(!validation_check[0]){
-            var message_string = "";
-            for(var i = 0; i != validation_check[1].length; i++) {
-                message_string += validation_check[1][i] + "\n";
-            }
-            
-            alert(message_string);
+            display_errors(validation_check[1]);
+
+
+
+
+
+
 
         }
         else{
@@ -152,8 +153,10 @@ function validate_input(valid){
     
     if(messages.length > 0)
         valid = false;
-    else
+    else{
         valid = true;
+        thisTool.find("#errors").fadeOut;
+    }
 
     return [valid, messages];
 }
@@ -599,6 +602,9 @@ function format_number(num) {
 }
 
 function reset_meanstorisk(){
+   
+    thisTool.find('#errors').fadeOut();
+    
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("input").val("");
