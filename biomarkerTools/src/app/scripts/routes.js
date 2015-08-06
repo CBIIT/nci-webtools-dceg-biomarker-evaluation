@@ -82,6 +82,29 @@ function default_ajax_error(request, status, error){
     alert(request.responseText);
 }
 
+function display_errors(message) {
+    var text = "";
+
+    if ($.isArray(message) && message.length > 0) {
+        $(message).each(function (i, v) {
+            text += "<li>" + v + "</li>";
+        });
+    }
+    if (typeof message == "string") {
+        text = message;
+    }
+    if(thisTool.find('#errors').length > 0){
+        thisTool.find("#errors").empty();
+        thisTool.find("#errors").remove();
+    }
+
+    thisTool.find("#helpGlossaryLinks").after("<div id='errors' class='col-md-12 alert alert-danger fade in'>" +
+        "<ul class='list-unstyled'>" + text + "</ul></div>");
+
+    thisTool.find('#errors').fadeIn();
+    document.querySelector('#banners').scrollIntoView(true);
+}
+
 function termDisplay(){
     var $self = $(this);
     var dTerm = $self.attr('data-term');
