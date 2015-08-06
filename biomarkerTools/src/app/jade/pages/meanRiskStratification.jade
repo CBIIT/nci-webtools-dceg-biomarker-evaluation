@@ -68,7 +68,8 @@
                           select.input(name='param_1')
                             option(value='ppv') PPV
                             option(value='sens') Sensitivity
-                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                          span.dd.termToDefine
+                            img(src="/common/images/info.png",alt="pop up definition")
                         td
                           input.input(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
                       tr(row='1')
@@ -76,7 +77,8 @@
                           select.input(name='param_2')
                             option(value='npv') NPV
                             option(value='spec') Specificity
-                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                          span.dd.termToDefine
+                            img(src="/common/images/info.png",alt="pop up definition")
                         td
                           input.input(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
                       tr(row='2')
@@ -84,7 +86,8 @@
                           select.input(name='param_3')
                             option(value='prob_m') Marker Positivity (P(M+))
                             option(value='prob_d') Disease Prevalence (P(D+))
-                          span.dd.termToDefine.glyphicon.glyphicon-info-sign
+                          span.dd.termToDefine
+                            img(src="/common/images/info.png",alt="pop up definition")
                         td
                           input.input(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
           #control-group.col-md-12
