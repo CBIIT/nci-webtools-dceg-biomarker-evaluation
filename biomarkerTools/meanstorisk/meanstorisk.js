@@ -17,7 +17,7 @@ var ppv_tabs = {
 
 $(document).ready(function(){
     thisTool = $("#meanstorisk");
-    
+
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
@@ -105,29 +105,76 @@ function bind_option_choices() {
 
 function bind_calculate_button() {
     thisTool.find("#calculate_button").on('click', function() {
-        
-        if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")) {	
-           
-            if (valuesFromFile.length === 0) {
-                alert("Please Upload a file or pick the normalized option and enter key data first");
+        var validation_check = validate_input(false);
+        if(!validation_check[0]){
+            var message_string = "";
+            for(var i = 0; i != validation_check[1].length; i++) {
+                message_string += validation_check[1][i] + "\n";
             }
-            else {
-                get_inputs_for_user_defined_calculation();
-                make_ajax_call_user_defined_calculation();
+            
+            alert(message_string);
 
+        }
+        else{
+            make_call();
+        }
+
+    });
+}
+function validate_input(valid){
+    var messages = [];
+    if(thisTool.find("input#specificity")[0].validity.valueMissing){
+        messages.push("Specificity is required");
+    }
+
+    if(thisTool.find("input#prevalence")[0].validity.valueMissing){
+        messages.push("Prevalence is required");
+    }
+
+    if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in") && valuesFromFile.length === 0) {
+        messages.push("Please Upload a file or pick the normalized option and enter key data first");
+    }
+    if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")){
+       
+        var inputs = thisTool.find("#accordion").find(".panel-body:nth(1) input");
+        
+        var empty = false;
+
+        inputs.each(function(){
+            if(this.value.length === 0){
+                empty = true;
             }
-        } 
-        else {
+        });
+        
+        if(empty)
+            messages.push("Please enter input values for normal distribution.");
+    }
+    
+    if(messages.length > 0)
+        valid = false;
+    else
+        valid = true;
+
+    return [valid, messages];
+}
+
+function make_call() {
+    if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")){	
+            get_inputs_for_user_defined_calculation();
+            make_ajax_call_user_defined_calculation();
+    }
+
+   
+    if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")) {
             get_inputs_for_standard_calculation();
             make_ajax_call_standard_calculation();
-        }
-    });
+    }
 }
 
 function bind_download_button() {
     thisTool.find("#download_button").click(function() {
         var activePanelIndex = thisTool.find("#accordion .collapse.in").index() - 2;
-        if (activePanelIndex === 0	) {			
+        if (activePanelIndex === 0) {			
            
             if (valuesFromFile.length === 0) {
                 alert("Please Upload a file or pick the normalized option and enter key data first");
@@ -227,16 +274,16 @@ function make_ajax_call_user_defined_calculation() {
     uniqueKey = (new Date()).getTime();	
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-    
+
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
-    
+
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     $.ajax({
         type: "POST",
         url: url,
-
+       
         data: {
             option:1,
             spec:specificity_string, 
@@ -254,14 +301,14 @@ function make_ajax_call_user_defined_calculation() {
 }
 function make_ajax_call_standard_calculation() {
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-    
+
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -285,12 +332,12 @@ function make_excel_call_user_defined_calculation() {
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-    
+
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
-    
+
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -315,12 +362,12 @@ function make_excel_call_standard_calculation() {
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-    
+
     if(hostname == "localhost")
         url = "meanstorisk/test_data.json";
-    
+
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -356,14 +403,15 @@ function set_excel(dt) {
         window.open(dt);
     else
         alert("There was a problem generating or downloading the excel file.");
-        console.log("problem generating excel file");
-        
+    console.log("problem generating excel file");
+
    
     thisTool.find("#spinner").addClass("hide"); 
 }
 
 function ajax_error(dt) {
     alert("There was some problem getting the data. " + JSON.stringify(dt) ); 	
+    thisTool.find("#spinner").addClass("hide"); 
 }
 
 function set_values_table(dt) {
@@ -430,7 +478,8 @@ function create_tabbed_table(dt) {
 }
 
 function make_tabs() {
-    var tabs = $("<div id='tabs' style='width:1180px;margin:5px;'> </div>");
+   
+    var tabs = $("<div id='tabs'> </div>");
     $(".tabbed_output_panel").empty().append(tabs);
     var tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
@@ -438,8 +487,12 @@ function make_tabs() {
     var index = 0;
     for(var key in ppv_tabs) {
         index++;
-        tab_names.append("<LI><a  style='padding:3px;' href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
-        tabs.append("<DIV style='width:1180px;height:325px;' id='tab-" + index + "' > " + ppv_tabs[key] + " </div>"); 
+       
+       
+
+       
+        tab_names.append("<LI><a href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
+        tabs.append("<DIV id='tab-" + index + "' > " + ppv_tabs[key] + " </div>"); 
     }
 
     tabs.tabs();
@@ -452,7 +505,9 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     var specificity_count = matrix.length;
 
 
-    var general_table = $("<TABLE class='table_data' style='width:94%;'></TABLE>");
+   
+   
+    var general_table = $("<TABLE class='table_data'></TABLE>");
     $("#"+tab_id).empty().append(general_table);
 
     var first_header_row = $("<tr></tr>");	
@@ -510,7 +565,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 
 function draw_graph() {
     var graph_file;
-    
+
    
     var activePanelId = thisTool.find("#accordion .collapse.in").attr('id');
     if (activePanelId =="file_upload") {
@@ -518,6 +573,10 @@ function draw_graph() {
     } else {
         graph_file = "tmp/input"+uniqueKey+".png?";
 
+    }
+
+    if(window.location.hostname == "localhost"){
+        graph_file ="images/CSV.png";
     }
 
     $(".graph_panel").empty().append("<IMG alt='graph' class='output_graph' src='" + graph_file+"'/>");
