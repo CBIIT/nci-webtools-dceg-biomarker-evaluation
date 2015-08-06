@@ -13,11 +13,21 @@ function init_bc(){
 
 $(document).ready(function(){
     init_bc();
+    thisTool.find("#errors").alert();
     bind_reference_row();
     bind_input();
     bind_calculate_button();
     bind_remove_row();
     bind_add_new_row();
+});
+
+$('a[href="#bc"]').on('shown.bs.tab',function(e){
+    thisTool = $("#bc");
+    thisTool.find("#errors").addClass("hide");
+});
+
+$('a[href="#bc"]').on('hide.bs.tab',function(e){
+    $("#bc #errors").addClass("hide");
 });
 
 $('a[href="#bc"]').on('click', function (e) {
@@ -83,16 +93,18 @@ function bind_text_change(inp){
     });
 }
 function change_value(field, new_value){
+    
     if (!new_value || new_value === '') {
         field.parent().empty().text(old_value);
         editing = false;
         return;
     }
     if (isNumberBetweenZeroAndOne(new_value)) {
+        $("#errors").addClass("hide");
         field.parent().empty().text(new_value);
         editing = false;
     } else {
-        alert("Valid Values are between 0 and 1 inclusive, you tried: " + new_value);
+        display_errors("Valid Values are between 0 and 1 inclusive, you tried: " + new_value);
         field.parent().empty().text(old_value);
         editing = false;
     }
@@ -206,8 +218,12 @@ function do_calculation(){
     specArrayWithRef = specArrayWithRef.slice(0, -1);
     labels = labels.slice(0, -1);
     if (!hasNoErrors) {
-        alert("Error with input data.  Not all values are numbers between Zero and One");
+        display_errors("Error with input data.  Not all values are numbers between Zero and One");
         return;
+    }
+    else {
+        $("#errors").addClass("hide");
+    
     }
     uniqueKey = new Date().getTime();
     var hostname = window.location.hostname;
@@ -379,5 +395,5 @@ function createOutputTableWithPrev(jsondata){
 }
 function ajax_error(jqXHR, exception){
     refreshGraph(1);
-    alert("ajax problem");
+    display_errors("ajax problem");
 }
