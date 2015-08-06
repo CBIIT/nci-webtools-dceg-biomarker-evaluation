@@ -7,13 +7,25 @@ var thisTool;
 
 function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
-    
+
     //bind_control_events();
     create_popover();
 
 }
 
+// on panel show
+thisTool.find('#marker-1-option-1, #marker-1-option-2').on('show.bs.collapse', function(){
+    if(this.id == "marker-1-option-1") {
+        thisTool.find('#marker-1-option-2').collapse('hide');
+    }
+    else {
+        thisTool.find('#marker-1-option-1').collapse('hide');
+    }
 
+    thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
+        .removeClass('in')
+        .addClass('collapse');
+});
 
 $(document).ready(init_meanRiskStratification);
 
@@ -109,6 +121,24 @@ function new_marker() {
         // add new marker to #markers element
         //$('#markers').append(newElement);
         $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
+        
+        var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
+        var panel_2 = '.marker-' + counter + ' #marker-' + counter + '-option-2';
+        
+        // on panel show
+        thisTool.find(panel_1+" , "+ panel_2).on('show.bs.collapse', function(){
+            // keep one panel open per group
+            if(this.id == "marker-" + counter + "-option-1") {
+                thisTool.find('#marker-' + counter + '-option-2').collapse('hide');
+            }
+            else {
+                thisTool.find('#marker-' + counter + '-option-1').collapse('hide');
+            }
+
+            thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
+                .removeClass('in')
+                .addClass('collapse');
+        });
     }
 }
 
@@ -597,29 +627,25 @@ function test(e) {
     var choice = $(this).prop('id');
 
     thisTool.find('#markers').children().each(function (key, markerElement) {
-        var id;
-
+        var id = $(this).find('.collapse.in').prop('id');
+        var index = key + 1; // biomarker ids are not zero based
+        
         if (choice == "test1") {
             // open option 1 for each
-            $(this).find('.collapse:first').addClass('in');
-            $(this).find('.collapse:last').removeClass('in');
+            thisTool.find('#marker-' + index + '-option-1').collapse('show');
 
-            id = $(this).find('.collapse.in').prop('id');
 
             // then populate with data
             $(markerElement).find('[name="name-input"]').val(values_option_1_bm[key].markerName);
-            $('#' + id).find('#a').val(values_option_1_bm[key].a);
-            $('#' + id).find('#b').val(values_option_1_bm[key].b);
-            $('#' + id).find('#c').val(values_option_1_bm[key].c);
-            $('#' + id).find('#d').val(values_option_1_bm[key].d);
+            $(markerElement).find('#a').val(values_option_1_bm[key].a);
+            $(markerElement).find('#b').val(values_option_1_bm[key].b);
+            $(markerElement).find('#c').val(values_option_1_bm[key].c);
+            $(markerElement).find('#d').val(values_option_1_bm[key].d);
         }
 
         if (choice == "test2") {
-            // collapse all option 1 panels and expand all option 2 panels
-            $(this).find('.collapse:last').addClass('in');
-            $(this).find('.collapse:first').removeClass('in');
-
-            id = $(this).find('.collapse.in').prop('id');
+            // open option 2 for each
+            thisTool.find('#marker-' + index + '-option-2').collapse('show');
 
             var data = [
                 values_option_2_bm[0],
