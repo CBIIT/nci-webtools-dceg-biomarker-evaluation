@@ -108,13 +108,6 @@ function bind_calculate_button() {
         var validation_check = validate_input(false);
         if(!validation_check[0]){
             display_errors(validation_check[1]);
-
-
-
-
-
-
-
         }
         else{
             make_call();
@@ -180,7 +173,7 @@ function bind_download_button() {
         if (activePanelIndex === 0) {			
            
             if (valuesFromFile.length === 0) {
-                alert("Please Upload a file or pick the normalized option and enter key data first");
+                display_errors("Please Upload a file or pick the normalized option and enter key data first");
             } else {
                 get_inputs_for_user_defined_calculation();
                 make_excel_call_user_defined_calculation();
@@ -195,7 +188,7 @@ function bind_download_button() {
 function ajax_error(jqXHR, exception)
 {	
     refreshGraph(1);
-    alert("ajax problem");
+    display_errors("ajax problem");
 }
 
 
@@ -401,11 +394,10 @@ function set_data_meanstorisk(dt) {
 
 function set_excel(dt) {
     thisTool.find("#please_wait_download").modal("hide");
-   
     if(dt.length > 0)
         window.open(dt);
     else
-        alert("There was a problem generating or downloading the excel file.");
+        display_errors("There was a problem generating or downloading the excel file.");
     console.log("problem generating excel file");
 
    
@@ -413,7 +405,7 @@ function set_excel(dt) {
 }
 
 function ajax_error(dt) {
-    alert("There was some problem getting the data. " + JSON.stringify(dt) ); 	
+    display_errors("There was some problem getting the data. " + JSON.stringify(dt) ); 	
     thisTool.find("#spinner").addClass("hide"); 
 }
 
