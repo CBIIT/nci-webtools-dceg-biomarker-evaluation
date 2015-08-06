@@ -7,13 +7,25 @@ var thisTool;
 
 function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
-    
+
     //bind_control_events();
     create_popover();
 
 }
 
+// on panel show
+thisTool.find('#marker-1-option-1, #marker-1-option-2').on('show.bs.collapse', function(){
+    if(this.id == "marker-1-option-1") {
+        thisTool.find('#marker-1-option-2').collapse('hide');
+    }
+    else {
+        thisTool.find('#marker-1-option-1').collapse('hide');
+    }
 
+    thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
+        .removeClass('in')
+        .addClass('collapse');
+});
 
 $(document).ready(init_meanRiskStratification);
 
@@ -109,6 +121,24 @@ function new_marker() {
         // add new marker to #markers element
         //$('#markers').append(newElement);
         $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
+        
+        var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
+        var panel_2 = '.marker-' + counter + ' #marker-' + counter + '-option-2';
+        
+        // on panel show
+        thisTool.find(panel_1+" , "+ panel_2).on('show.bs.collapse', function(){
+            // keep one panel open per group
+            if(this.id == "marker-" + counter + "-option-1") {
+                thisTool.find('#marker-' + counter + '-option-2').collapse('hide');
+            }
+            else {
+                thisTool.find('#marker-' + counter + '-option-1').collapse('hide');
+            }
+
+            thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
+                .removeClass('in')
+                .addClass('collapse');
+        });
     }
 }
 
