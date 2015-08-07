@@ -17,7 +17,7 @@ var ppv_tabs = {
 
 $(document).ready(function(){
     thisTool = $("#meanstorisk");
-    thisTool.find("#errors").alert();
+    thisTool.find('#errors').alert();
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
@@ -104,8 +104,10 @@ function bind_option_choices() {
 }
 
 function bind_calculate_button() {
-    thisTool.find("#calculate_button").on('click', function() {
-        var validation_check = validate_input(false);
+    thisTool.find('#errors').fadeOut();
+    thisTool.find("#calculate_button").on('click', function() {    
+        var validation_check = [false];
+        validation_check = validate_input(false);
         if(!validation_check[0]){
             display_errors(validation_check[1]);
         }
@@ -148,9 +150,7 @@ function validate_input(valid){
         valid = false;
     else{
         valid = true;
-        thisTool.find("#errors").fadeOut;
     }
-
     return [valid, messages];
 }
 
@@ -266,7 +266,9 @@ function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_contro
 }
 
 function make_ajax_call_user_defined_calculation() {
-    thisTool.find("#spinner").removeClass("hide"); 
+    thisTool.find("#spinner").removeClass("hide");
+    thisTool.find('#errors').addClass("hide");
+    
     uniqueKey = (new Date()).getTime();	
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
@@ -297,7 +299,7 @@ function make_ajax_call_user_defined_calculation() {
 }
 function make_ajax_call_standard_calculation() {
     thisTool.find("#spinner").removeClass("hide"); 
-
+    thisTool.find('#errors').addClass("hide");
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
@@ -596,7 +598,6 @@ function format_number(num) {
 function reset_meanstorisk(){
     // close errors if showing
     thisTool.find('#errors').fadeOut();
-    
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
     thisTool.find("input").val("");
