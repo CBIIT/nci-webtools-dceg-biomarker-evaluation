@@ -28,7 +28,7 @@ $(document).on('shown.bs.tab', function (e) {
 $(document).on('hide.bs.tab', function (e) {
     // reset content of previous tab, before showing new tab
     var previousTab = e.target.hash.toString().replace('#', '');
-    if($(e.target.hash).find("button[type='reset']") > 0)
+    if($(e.target.hash).find("button[type='reset']").length > 0)
         $(e.target.hash).find("button[type='reset']").click();
     
     if(e.target.hash == "#bc")
@@ -80,6 +80,16 @@ function goToTarget(tar) {
 function default_ajax_error(request, status, error){
     $('#spinner').addClass('hide');
     alert(request.responseText);
+}
+
+function isNumberBetweenZeroAndOne(n) {
+    if (isNaN(parseFloat(n)))
+        return false;
+    if (n > 1)
+        return false;
+    if (n < 0)
+        return false;
+    return true;
 }
 
 function display_errors(message) {
