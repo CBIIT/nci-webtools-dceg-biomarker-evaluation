@@ -25,6 +25,7 @@ $(document).ready(function(){
 
 $('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
     thisTool = $("#meanstorisk");
+    reset_meanstorisk();
     init_meanstorisk();
 });
 
