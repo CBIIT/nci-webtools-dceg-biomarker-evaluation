@@ -473,8 +473,8 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4"></div>
                         <div class="col-md-3 no-pad">
-                          <input id="minInput" type="number" min="0" max="1" step=".01" title="Must be a floating point number between 0 and 1" class="col-md-5 pull-left">
-                          <input id="maxInput" type="number" min="0" max="1" step=".01" title="Must be a floating point number between 0 and 1" class="col-md-6 pull-right">
+                          <input id="minInput" type="number" min="0" max="1" step=".01" title="Minimum value must be a floating point number between 0 and 1" required class="col-md-5 pull-left">
+                          <input id="maxInput" type="number" min="0" max="1" step=".01" title="Maximum value must be a floating point number between 0 and 1" required class="col-md-6 pull-right">
                         </div>
                       </div>
                       <div class="row">
@@ -482,28 +482,28 @@
                           <label for="contour_dropdown" class="pull-right">Contour</label>
                         </div>
                         <div class="col-md-4">
-                          <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" class="pull-left">
+                          <select id="contour_dropdown" name="contour_dropdown" onchange="lock_fixed_options();" required class="pull-left">
                             <option value="" selected=""></option>
                             <option value="specificity">Specificity</option>
                             <option value="sensitivity">Sensitivity</option>
                           </select>
                         </div>
                         <label for="contour" class="sr-only">Contour</label>
-                        <input id="contour" type="text" size="30" pattern="([0-8,. -])+" title="An array of floating point numbers separated by commas.  Numbers must be between 0 and 1" class="fontnormal col-md-3">
+                        <input id="contour" type="text" size="30" title="Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1" required class="fontnormal col-md-3">
                       </div>
                       <div class="row">
                         <div class="col-md-4">
                           <label for="fixed_dropdown" class="pull-right">Fixed Values</label>
                         </div>
                         <div class="col-md-4">
-                          <select id="fixed_dropdown" name="fixed_dropdown" class="pull-left">
+                          <select id="fixed_dropdown" name="fixed_dropdown" required class="pull-left">
                             <option value="" selected=""></option>
                             <option value="specificity" disabled="disabled">Specificity</option>
                             <option value="sensitivity" disabled="disabled">Sensitivity</option>
                           </select>
                         </div>
                         <label for="fixed" class="sr-only">Fixed</label>
-                        <input id="fixed" type="text" size="30" pattern="([0-8,. -])+" title="An array of floating point numbers separated by commas. Numbers must be between 0 and 1" class="fontnormal col-md-3">
+                        <input id="fixed" type="text" size="30" title="Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1." required class="fontnormal col-md-3">
                       </div>
                       <div class="row">
                         <div class="col-md-4">
@@ -512,14 +512,14 @@
                         <div class="col-md-4">
                           <div for="prevalence" class="pull-left">Prevalence</div>
                         </div>
-                        <input id="prevalence" type="number" size="10" min="0" max="1" value="0.001" step="0.01" title="A floating point number between 0 and 1" required="" class="col-md-3">
+                        <input id="prevalence" type="number" min="0" max="1" step="0.01" title="Prevalence is required and must be floating point number between 0 and 1" required class="col-md-3">
                       </div>
                       <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
                           <div for="n_value" class="pull-left">Sample Size</div>
                         </div>
-                        <input id="n_value" type="text" size="10" value="1" min="1" pattern="(^[0-8]$)+" title="Number must be an integer" required="" class="fontnormal col-md-3">
+                        <input id="n_value" type="text" size="10" value="1" min="1" pattern="(^[0-8]$)+" title="Sample Size is required and must be an integer" required class="fontnormal col-md-3">
                       </div>
                     </div>
                     <div class="panel-footer">
