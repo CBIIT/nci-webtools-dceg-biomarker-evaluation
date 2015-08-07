@@ -2,6 +2,8 @@ var default_ajax_error;
 
 // reuse this variable across tools
 var rest = "biomarkerToolsRest";
+var local = window.location.hostname == "localhost" ? true : false;
+
 
 var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";
 
@@ -27,12 +29,12 @@ $(document).on('shown.bs.tab', function (e) {
 // this event executes before 'hidden'
 $(document).on('hide.bs.tab', function (e) {
     // reset content of previous tab, before showing new tab
-    var previousTab = e.target.hash.toString().replace('#', '');
-    if($(e.target.hash).find("button[type='reset']").length > 0)
-        $(e.target.hash).find("button[type='reset']").click();
-    
-    if(e.target.hash == "#bc")
-        $(e.target.hash).find('input').val("");
+//    var previousTab = e.target.hash.toString().replace('#', '');
+//    if($(e.target.hash).find("button[type='reset']").length > 0)
+//        $(e.target.hash).find("button[type='reset']").click();
+//    
+//    if(e.target.hash == "#bc")
+//        $(e.target.hash).find('input').val("");
         
 });
 
