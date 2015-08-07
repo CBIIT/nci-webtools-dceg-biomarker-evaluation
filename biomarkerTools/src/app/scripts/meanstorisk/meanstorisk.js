@@ -134,7 +134,7 @@ function validate_input(valid){
     if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")){
         // check all inputs for values
         var inputs = thisTool.find("#accordion").find(".panel-body:nth(1) input");
-        
+
         var empty = false;
 
         inputs.each(function(){
@@ -142,11 +142,11 @@ function validate_input(valid){
                 empty = true;
             }
         });
-        
+
         if(empty)
             messages.push("Please enter input values for normal distribution.");
     }
-    
+
     if(messages.length > 0)
         valid = false;
     else{
@@ -155,16 +155,31 @@ function validate_input(valid){
     return [valid, messages];
 }
 
-function make_call() {
-    if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")){	
-            get_inputs_for_user_defined_calculation();
+function make_call() {  
+    thisTool.find("#spinner").removeClass("hide"); 
+    thisTool.find('#errors').addClass("hide");
+    thisTool.find("#calculate_button").text("Please Wait....");
+    thisTool.find("#calculate_button").attr('disabled', '');
+    
+    if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")){
+
+        get_inputs_for_user_defined_calculation();
+
+        if(window.location.hostname == "localhost")
+            setTimeout(make_ajax_call_user_defined_calculation, 5000);
+        else
             make_ajax_call_user_defined_calculation();
     }
 
     // zero indexed, looking for if second panel is open
-    if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")) {
-            get_inputs_for_standard_calculation();
-            make_ajax_call_standard_calculation();
+    else if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")) {
+
+        get_inputs_for_standard_calculation();
+
+        if(window.location.hostname == "localhost")
+            setTimeout(make_ajax_call_standard_calculation, 5000);
+        else
+            make_ajax_call_standard_calculation(); 
     }
 }
 
@@ -267,18 +282,13 @@ function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_contro
 }
 
 function make_ajax_call_user_defined_calculation() {
-    thisTool.find("#spinner").removeClass("hide");
-    thisTool.find('#errors').addClass("hide");
-    
     uniqueKey = (new Date()).getTime();	
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
-    if(hostname == "localhost")
+    if(local)
         url = "meanstorisk/test_data.json";
-
-    thisTool.find("#spinner").removeClass("hide"); 
-
+    
     $.ajax({
         type: "POST",
         url: url,
@@ -298,14 +308,12 @@ function make_ajax_call_user_defined_calculation() {
         error: ajax_error
     });
 }
-function make_ajax_call_standard_calculation() {
-    thisTool.find("#spinner").removeClass("hide"); 
-    thisTool.find('#errors').addClass("hide");
+function make_ajax_call_standard_calculation() {    
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
-    if(hostname == "localhost")
+    if(local)
         url = "meanstorisk/test_data.json";
 
     $.ajax({
@@ -332,7 +340,7 @@ function make_excel_call_user_defined_calculation() {
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
-    if(hostname == "localhost")
+    if(local)
         url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
@@ -387,11 +395,12 @@ function make_excel_call_standard_calculation() {
 }
 
 function set_data_meanstorisk(dt) {
-    thisTool.find("#please_wait_calculate").modal("hide");
-    thisTool.find("#download_button").removeClass("hide");
     set_values_table(dt);
     create_tabbed_table(dt);
     draw_graph();
+    thisTool.find("#calculate_button").text("Calculate");
+    thisTool.find("#download_button").removeClass("hide");
+    thisTool.find("#calculate_button").removeAttr('disabled');
     thisTool.find("#spinner").addClass("hide");
 }
 
@@ -573,7 +582,7 @@ function draw_graph() {
 
     }
 
-    if(window.location.hostname == "localhost"){
+    if(local){
         graph_file ="images/CSV.png";
     }
 
@@ -586,7 +595,7 @@ function set_value(field, value) {
     setTimeout(
         function() { thisTool.find(field).removeClass('highlight'); }, 
         2000
-    );		
+    );
 }
 
 function format_number(num) {
@@ -607,6 +616,7 @@ function reset_meanstorisk(){
     thisTool.find("#spinner").addClass('hide');
     valuesFromFile = [];
 }
+
 thisTool.find("#reset").on("click", reset_meanstorisk);
 //  Below is needed for IE 9 and below and compatibility mode as the older version does not support the Object.keys method
 
