@@ -23,6 +23,7 @@ $(document).ready(function(){
 
 $('a[href="#bc"]').on('shown.bs.tab',function(e){
     thisTool = $("#bc");
+    thisTool.find("#prevalence").val("");
     thisTool.find("#errors").addClass("hide");
 });
 
