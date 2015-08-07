@@ -100,7 +100,7 @@ function change_value(field, new_value){
         return;
     }
     if (isNumberBetweenZeroAndOne(new_value)) {
-        $("#errors").addClass("hide");
+       thisTool.find("#errors").addClass("hide");
         field.parent().empty().text(new_value);
         editing = false;
     } else {
@@ -222,8 +222,7 @@ function do_calculation(){
         return;
     }
     else {
-        $("#errors").addClass("hide");
-    
+       thisTool.find("#errors").addClass("hide");
     }
     uniqueKey = new Date().getTime();
     var hostname = window.location.hostname;
