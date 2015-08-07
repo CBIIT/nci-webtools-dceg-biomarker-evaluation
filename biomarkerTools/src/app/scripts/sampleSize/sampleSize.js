@@ -5,7 +5,7 @@ var thisTool;
 function init_sampleSize(){
     thisTool = $("#sampleSize");
     random_gen();
-    disable_calculate(); 
+    //disable_calculate(); 
 }    
 
 $('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
@@ -16,11 +16,49 @@ $(function(){
     init_sampleSize();
 
 });
+
+function checkValidity(){
+    var isValid;
+    var messages = [];
+    thisTool.find("input, select").each(function(ind, el) {
+        valObject = $(el)[0].validity;
+        if(!valObject.valid && (valObject.stepMismatch !== true)){
+            messages.push($(el)[0].title); 
+        }
+        
+        if($(el).id == "prevalence" || $(el).id == "contour" || $(el).id == "fixed") {
+            var values = $(el).val().split(',');
+            
+            for(var i = 0; i != values.length; i++) {
+                isValid = isNumberBetweenZeroAndOne(values[i]);
+            }
+            
+            if(!isValid) {
+                messages.push($(el)[0].title);
+            }
+        }
+        
+    });
     
+    if(messages.length > 0)
+        isValid = false;
+    else
+        isValid = true;
+        
+    
+    return [ isValid, messages ];
+}
+
 // Post json to server
 thisTool.find('.post').click(function(){
+    var valid = checkValidity();
+    
+    if(!valid[0]){
+        display_errors(valid[1]);
+    }
+    else {
         thisTool.find("#spinner").removeClass("hide"); 
-        thisTool.find("#message").addClass("hide");
+        thisTool.find("#errors").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
         disable_calculate();
@@ -56,18 +94,20 @@ thisTool.find('.post').click(function(){
                 
                 var message = 'Service Unavailable: ' + textStatus + "<br>";
                 message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
-                thisTool.find("#message-content").empty().append(message);	   
-                thisTool.find("#message").removeClass("hide");    
+                display_errors([message]);    
             },
+        }).done(function(){
+            enable_calculate();
         });
-        enable_calculate();
+        
         return false;
+    }
     });
 
     thisTool.find('.reset').click(function(){
         thisTool.find('input').val("");
         thisTool.find("#output_graph").empty();
-        thisTool.find("#message").addClass("hide");
+        thisTool.find("#message, #errors").addClass("hide");
     });
 
     thisTool.find("#add-test-data").click(function() {
@@ -218,9 +258,8 @@ function reset_code(){
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph,#message,#message-content").empty();
-    thisTool.find("#message").addClass("hide");
-    disable_calculate();
-    thisTool.find("#spinner").addClass('hide');
+    thisTool.find("#spinner, #message, #error").addClass("hide");
+//    disable_calculate();
 }
 
 
