@@ -49,6 +49,8 @@ $('.goToTab').on('click', function(el){
 
     $('.nav li.active').removeClass('active');
     $(".nav a[href='" + ref + "']").tab('show').parent().addClass('active');
+    var id = ref.replace("#","");
+    require([id]);
 });
 $('.goToHelp').on('click', function(el){
     var $this = this;
