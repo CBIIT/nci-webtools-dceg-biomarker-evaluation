@@ -601,7 +601,6 @@ function reset_meanstorisk(){
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
-    thisTool.find("input").val("");
     thisTool.find("input#specificity").val("0.8, 0.9, 0.95, 0.99, 0.999");
     thisTool.find("input#prevalence").val("0.1, 0.05, 0.01, 0.005, 0.001");
     thisTool.find("#download_button").addClass("hide");
