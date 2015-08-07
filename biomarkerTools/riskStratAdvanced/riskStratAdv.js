@@ -296,11 +296,10 @@ function resetPage() {
     makeSelectionsUnique(functionnames, "independent_dropdown");
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr('disabled');
-    thisTool.find("#status-bar, #errors").addClass('hide');
+    thisTool.find("#status-bar, #errors,#spinner").addClass('hide');
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
-    thisTool.find("#spinner").addClass('hide');
     resetPopupDefinition();
 }
 
@@ -804,16 +803,6 @@ function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
         imageContainer.append(
             "<img style='height: 400px; text-align: right;' class='center pull-right' src='images/exampleLRPlot.jpg' alt='output image'>");
     }
-}
-
-function isNumberBetweenZeroAndOne(n) {
-    if (isNaN(parseFloat(n)))
-        return false;
-    if (n > 1)
-        return false;
-    if (n < 0)
-        return false;
-    return true;
 }
 
 function refreshGraph(drawgraph) {
