@@ -23,7 +23,8 @@ function checkValidity(){
     thisTool.find("input, select").each(function(ind, el) {
         valObject = $(el)[0].validity;
         if(!valObject.valid && (valObject.stepMismatch !== true)){
-            messages.push($(el)[0].title); 
+            if($(el)[0].title != "")
+                messages.push($(el)[0].title); 
         }
         
         if($(el).id == "prevalence" || $(el).id == "contour" || $(el).id == "fixed") {
@@ -51,6 +52,7 @@ function checkValidity(){
 
 // Post json to server
 thisTool.find('.post').click(function(){
+    thisTool.find("#errors").addClass("hide");
     var valid = checkValidity();
     
     if(!valid[0]){
@@ -58,7 +60,6 @@ thisTool.find('.post').click(function(){
     }
     else {
         thisTool.find("#spinner").removeClass("hide"); 
-        thisTool.find("#errors").addClass("hide");
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
         disable_calculate();
@@ -98,10 +99,9 @@ thisTool.find('.post').click(function(){
             },
         }).done(function(){
             enable_calculate();
-        });
-        
-        return false;
-    }
+        }); 
+    } 
+    return false;
     });
 
     thisTool.find('.reset').click(function(){
