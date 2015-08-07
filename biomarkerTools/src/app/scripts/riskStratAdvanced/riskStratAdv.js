@@ -193,13 +193,13 @@ $(document).ready(function(){
 
     thisTool.find("#calculate").on('click', function(e) {
         e.preventDefault();
+        $("#errors").fadeOut().addClass("hide");
         if (checkRules() == "Fail") {
             display_errors(validation_rules);
 //            createRulesDialog();
             return false;
         }
         else {
-            $("#errors").addClass("hide");
             calculate_riskStrat();
         }
     });
@@ -488,7 +488,7 @@ function calculate_riskStrat() {
     if (rulesViolationMsg.length > 0) {
         display_errors(rulesViolationMsg);
     } else {
-        thisTool.find("#errors").addClass("hide");
+        thisTool.find("#errors").fadeOut().addClass("hide");
     }
 
     var fixedArray = ""; // prevalence
