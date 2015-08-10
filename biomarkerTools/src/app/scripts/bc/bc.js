@@ -281,11 +281,13 @@ function do_calculation(){
 }
 
 function pre_request() {
+    disableAll()
     thisTool.find('#spinner').removeClass('hide');
     thisTool.find("#calculate_button").attr("disabled","").text("Please Wait...");
 }
 
 function post_request() {
+    enableAll();
     thisTool.find('#spinner').addClass('hide');
     thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
 }
