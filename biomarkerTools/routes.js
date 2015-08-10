@@ -3,12 +3,33 @@ var default_ajax_error;
 
 var rest = "biomarkerToolsRest";
 var local = window.location.hostname == "localhost" ? true : false;
-
+var activeRequest = false;
 
 var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";
 
 $(document).ready(function(){
     this.title = "Biomarker Tools: Home";
+});
+
+function disableAll(){
+   
+    activeRequest = true;
+    $("a, button,select,input").attr("disabled","").addClass("disable_control");
+    $("a[data-toggle='tab']").attr("data-toggle", "disabledTab");
+    $("a[data-toggle='collapse']").attr("data-toggle", "disabledCollapse");
+}
+
+function enableAll() {
+   
+    activeRequest = false;
+    $("a, button,select,input").removeAttr("disabled").removeClass("disable_control");
+    $(".disable_control").unbind("click");
+    $("a[data-toggle='disabledTab']").attr("data-toggle", "tab");
+    $("a[data-toggle='disabledCollapse']").attr("data-toggle", "collapse");
+}
+
+$('.disable_control').on('click',function(e){
+    e.preventDefault();
 });
 
 $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
@@ -28,14 +49,6 @@ $(document).on('shown.bs.tab', function (e) {
 
 
 $(document).on('hide.bs.tab', function (e) {
-   
-
-
-
-
-
-
-        
 });
 
 $(document).on('hide.bs.tab', function (e) {
@@ -66,7 +79,7 @@ $('.goToHelp').on('click', function(el){
 $('.goToGlossary').on('click', function(el){
     var id = el.target.hash;
     var $this = this;
-    
+
     $(".nav a[href='#help']").tab('show');
     $(".nav a[href='#help']").on('shown.bs.tab', function(){
         document.getElementById("header-glossary").scrollIntoView(true);
@@ -113,7 +126,7 @@ function display_errors(message) {
     }
 
     thisTool.find("#helpGlossaryLinks").after("<div id='errors' class='col-md-12 alert alert-danger fade in'>" +
-        "<ul class='list-unstyled'>" + text + "</ul></div>");
+                                              "<ul class='list-unstyled'>" + text + "</ul></div>");
 
     thisTool.find('#errors').fadeIn();
     document.querySelector('#banners').scrollIntoView(true);
