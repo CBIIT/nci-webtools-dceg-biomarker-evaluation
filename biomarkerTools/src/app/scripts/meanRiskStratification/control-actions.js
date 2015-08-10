@@ -7,8 +7,6 @@ var thisTool;
 
 function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
-
-    //bind_control_events();
     create_popover();
 
 }
@@ -30,7 +28,7 @@ thisTool.find('#marker-1-option-1, #marker-1-option-2').on('show.bs.collapse', f
 $(document).ready(init_meanRiskStratification);
 
 $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
-    thisTool.find("#spinner,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find("#spinner").addClass("hide");
     controls_visibility(currentMarkers);
     init_meanRiskStratification();
 });
@@ -44,30 +42,19 @@ thisTool.find('#add-marker').on('click', new_marker);
 thisTool.find('#delete-marker').on('click', delete_marker);
 thisTool.find('#calculate').on('click', calculate_mrs);
 
-bind_accordion_action(thisTool.find('#markers').children().first());
-
-function bind_accordion_action(el) {
-    // bind action to specific element
-    //$(el).on('show.bs.collapse', function (e) {
-    //    alert('Event fired on #' + e.currentTarget.id);
-    //
-    //     e.target.id
-    //});
-}
-
 function controls_visibility(numElements) {
     // controls the visibility of the add/remove marker buttons
     if (numElements == 2) {
-        thisTool.find('#delete-marker').show();
-        thisTool.find('#add-marker').show();
+        thisTool.find('#delete-marker').removeClass("hide");
+        thisTool.find('#add-marker').removeClass("hide");
     }
     if (numElements > 2) {
-        thisTool.find('#delete-marker').show();
-        thisTool.find('#add-marker').hide();
+        thisTool.find('#delete-marker').removeClass("hide");
+        thisTool.find('#add-marker').addClass("hide");
     }
     if (numElements < 2) {
-        thisTool.find('#delete-marker').hide();
-        thisTool.find('#add-marker').show();
+        thisTool.find('#delete-marker').addClass("hide");
+        thisTool.find('#add-marker').removeClass("hide");
     }
 }
 
@@ -105,7 +92,6 @@ function new_marker() {
         newElement.find(".panel-collapse").each(function (index) {
             var newPanelContentId = 'marker-' + counter + '-option-' + (index + 1);
             $(this).attr("id", newPanelContentId);
-            bind_accordion_action(this);
         });
 
         // change title for new marker
@@ -121,10 +107,10 @@ function new_marker() {
         // add new marker to #markers element
         //$('#markers').append(newElement);
         $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
-        
+
         var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
         var panel_2 = '.marker-' + counter + ' #marker-' + counter + '-option-2';
-        
+
         // on panel show
         thisTool.find(panel_1+" , "+ panel_2).on('show.bs.collapse', function(){
             // keep one panel open per group
@@ -147,7 +133,7 @@ function delete_marker() {
         // remove last child
         thisTool.find('#markers').children().last().empty();
         thisTool.find('#markers').children().last().remove();
-        thisTool.find('.bm_'+currentMarkers).hide();
+        thisTool.find('.bm_'+currentMarkers).addClass("hide");
         currentMarkers--;
     }
     controls_visibility(currentMarkers);
@@ -170,7 +156,8 @@ function calculate_mrs() {
 
         var to_value = 10 * 2500; //25 seconds
 
-        $('#spinner').show();
+        thisTool.find('#spinner').removeClass("hide");
+        thisTool.find("#calculate").attr("disabled", "").text("Please Wait....");
 
         // ajax call, change to actual service name
         var promise = $.ajax({
@@ -180,14 +167,27 @@ function calculate_mrs() {
             url: service,
             data: input
         });
-
-        promise.then(clean_data, function (error) {
-            thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
-            display_errors("The service call has failed with the following status: " + error.statusText);
-        });
-
-        promise.done(return_data);
         scrollTop();
+        thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
+        if(local) {    
+            setTimeout(function(){
+                promise.then(clean_data, function (error) {
+                    display_errors("The service call has failed with the following status: " + error.statusText);
+                }).done(return_data).always(function(){
+                    thisTool.find('#spinner').addClass("hide");
+                    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+                });
+            },5000);
+        }
+        else {
+            promise.then(clean_data, function (error) {
+                display_errors("The service call has failed with the following status: " + error.statusText);
+            }).done(return_data).always(function(){
+                thisTool.find('#spinner').addClass("hide");
+                thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+            });            
+        }
+
     }
 }
 
@@ -206,12 +206,12 @@ function return_data(data) {
     var i = 0;
 
     // hide all again before showing
-    thisTool.find("#results, .bm_1, .bm_2, .bm_3").hide();
+    thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
 
     do {
         i++;
         // propName should be bm_#
-        $('.bm_' + i).show();
+        $('.bm_' + i).removeClass("hide");
     } while (i != currentMarkers);
 
     $.each(data, function (propName, paramGroup) {
@@ -274,14 +274,14 @@ function return_data(data) {
                 }
             }
 
-            cell = $('#' + lookup_id + '_result.' + marker_id + '.output');
+            cell = thisTool.find('#' + lookup_id + '_result.' + marker_id + '.output');
             cell.attr('title', lookup_id + " " + formattedText);
             cell.text(formattedText);
         });
     });
 
-    thisTool.find("#results").show();
-    thisTool.find("#spinner").hide();
+    thisTool.find("#results").removeClass("hide");
+    thisTool.find("#spinner").addClass("hide");
 }
 
 function append_name() {
@@ -398,13 +398,17 @@ function reset_mrs() {
 
     // clear all output cells
     thisTool.find('.output').text('');
-    thisTool.find('#results, .bm_1, .bm_2, .bm_3').hide();
+    thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
 
     // close errors if showing
     thisTool.find('#errors').fadeOut();
+    reset_markers();
 
+}
+
+function reset_markers(){
     // remove generated markers first, .remove() doesn't remove element from DOM
-    markerChildren.not(':first').each(function () {
+    thisTool.find('#markers').children().not(':first').each(function () {
         $(this).empty();
         $(this).remove();
     });
