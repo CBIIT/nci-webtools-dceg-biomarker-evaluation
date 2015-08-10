@@ -293,6 +293,7 @@ function resetPopupDefinition() {
 }
 
 function resetPage() {
+    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
     makeSelectionsUnique(functionnames, "independent_dropdown");
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr('disabled');
@@ -382,6 +383,8 @@ function checkRules() {
 function checkRule(ruleId, vars, values, min, max) {
 
     status = "Pass";
+    var prevalencePostion;
+    var cnpvPosition;
     switch (ruleId) {
         case 1:
             minValue = 0;
@@ -410,8 +413,8 @@ function checkRule(ruleId, vars, values, min, max) {
             });
             break;
         case 3:
-            var cnpvPostion = $.inArray("cnpv", vars);
-            var prevalencePostion = $.inArray("prevalence", vars);
+            cnpvPostion = $.inArray("cnpv", vars);
+            prevalencePostion = $.inArray("prevalence", vars);
             if (cnpvPostion >= 0 && prevalencePostion >= 0) {
                 if (max[cnpvPostion] >= min[prevalencePostion]) {
                     status = "Fail";
@@ -420,7 +423,7 @@ function checkRule(ruleId, vars, values, min, max) {
             }
             break;
         case 4:
-            var prevalencePostion = $.inArray("prevalence", vars);
+            prevalencePostion = $.inArray("prevalence", vars);
             ppvPostion = $.inArray("ppv", vars);
             if (prevalencePostion >= 0 && ppvPostion >= 0) {
                 if (max[prevalencePostion] >= min[ppvPostion]) {
@@ -612,11 +615,14 @@ function calculate_riskStrat() {
                 promises.push([promise, tabindex, keyvalueShort[shortkey]]);
             }
         }
+        
+        disableAll();
         if(local){
             setTimeout(function(){
                 $.when.apply($, promises).always(function() {
                     thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
                     thisTool.find("#spinner").addClass("hide");
+                    enableAll();
                 });
             }, 5000);
         }
@@ -624,6 +630,7 @@ function calculate_riskStrat() {
             $.when.apply($, promises).always(function() {
                 thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
                 thisTool.find("#spinner").addClass("hide");
+                enableAll();
             });
         }
 
@@ -666,7 +673,7 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
 
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
-    if(window.location.hostname == "localhost") service = "riskStratAdvanced/test_result.json";
+    if(local) service = "riskStratAdvanced/test_result.json";
 
     return $.ajax({
         type : "POST",
@@ -802,7 +809,7 @@ function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
     var imageContainer = thisTool.find('#graphic-' + graphNamePreFix + tabNumber);
     imageContainer.empty();
 
-    if(window.location.hostname != "localhost"){
+    if(!local){
         imageContainer.append(
             "<img style='height: 400px; text-align: right;' class='center pull-right' src='tmp/" + 
             graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
