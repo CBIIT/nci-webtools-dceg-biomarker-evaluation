@@ -55,7 +55,8 @@ thisTool.find('.post').click(function(){
     if(!valid[0]){
         display_errors(valid[1]);
     }
-    else { 
+    else {
+        disableAll();
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
         if(local) service = "sampleSize/test-data.json";
         thisTool.find("#spinner").removeClass("hide");
@@ -97,6 +98,7 @@ thisTool.find('.post').click(function(){
                 message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
                 display_errors([message]);
             }).always(function(){
+                enableAll();
                 thisTool.find(".post").removeAttr('disabled').text("Calculate");
                 thisTool.find("#spinner").addClass("hide");
             });
@@ -267,6 +269,7 @@ function reset_code(){
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#spinner, #message, #error").addClass("hide");
+    thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
 
 
