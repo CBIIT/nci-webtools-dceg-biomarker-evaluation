@@ -28,7 +28,7 @@ var http-server
 production = true if gutil.env.env is \production
 
 # to compile, run command 'npm run build'
-gulp.task 'build' <[ clean:scripts template bower py:copy js:copy ls:app css ]> !->
+gulp.task 'build' <[ clean:scripts template bower js:copy ls:app css ]> !->
 
   notifier.notify(
     title: 'Compilation Complete',
@@ -37,11 +37,11 @@ gulp.task 'build' <[ clean:scripts template bower py:copy js:copy ls:app css ]> 
 #clean files before running the build
 gulp.task \clean:scripts ->
   del [ 
-  '../bc/*.js' '../bc/*.py' 
-  '../meanRiskStratification/*.js' '../meanRiskStratification/*.py'
-  '../meanstorisk/*.js' '../meanstorisk/*.py'
-  '../riskStratificationAdvanced/*.js' '../riskStratificationAdvanced/*.py'
-  '../sampleSize/*.js' '../sampleSize/*.py'
+  '../bc/*.js'
+  '../meanRiskStratification/*.js'
+  '../meanstorisk/*.js'
+  '../riskStratificationAdvanced/*.js'
+  '../sampleSize/*.js'
   ] force: true
   
 # gulp.task 'test:unit' <[build]> ->
@@ -112,15 +112,6 @@ gulp.task 'js:copy' <[bower]> ->
     .pipe gulp-if dev, livereload!
     .pipe gulp.dest "#{parentDir}/meanRiskStratification"
     
-  s.done!
-    
-gulp.task 'py:copy' ->
-  s = streamqueue { +objectMode }
-  
-  # copy python scripts
-  s.queue gulp.src \app/scripts/**/*.py
-    .pipe gulp.dest parentDir
-  
   s.done!
 
 gulp.task 'css' <[bower]> ->
