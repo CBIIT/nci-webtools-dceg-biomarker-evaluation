@@ -59,7 +59,7 @@
                         .col-md-4
                         .col-md-4
                             .pull-left(for='n_value') Sample Size
-                        input#n_value.fontnormal.col-md-3(type='text', size='10', value='1', min="1" pattern='(^[0-8]$)+', title='Sample Size is required and must be an integer', required)
+                        input#n_value.fontnormal.col-md-3(type='number', value='1', min="1", step="1", title='Sample Size is required and must be an integer', required)
                 .panel-footer
                     button.post(type='submit') Calculate
                     button.reset(type='reset') Reset
