@@ -159,12 +159,13 @@ function make_call() {
     thisTool.find('#errors').addClass("hide");
     thisTool.find("#calculate_button").text("Please Wait....");
     thisTool.find("#calculate_button").attr('disabled', '');
+    disableAll();
     
     if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")){
 
         get_inputs_for_user_defined_calculation();
 
-        if(window.location.hostname == "localhost")
+        if(local)
             setTimeout(make_ajax_call_user_defined_calculation, 5000);
         else
             make_ajax_call_user_defined_calculation();
@@ -175,7 +176,7 @@ function make_call() {
 
         get_inputs_for_standard_calculation();
 
-        if(window.location.hostname == "localhost")
+        if(local)
             setTimeout(make_ajax_call_standard_calculation, 5000);
         else
             make_ajax_call_standard_calculation(); 
@@ -185,7 +186,7 @@ function make_call() {
 function bind_download_button() {
     thisTool.find("#download_button").click(function() {
         var activePanelIndex = thisTool.find("#accordion .collapse.in").index() - 2;
-        if (activePanelIndex === 0) {			
+        if (activePanelIndex === 0) {
             // Quick check to make sure there a file.
             if (valuesFromFile.length === 0) {
                 display_errors("Please Upload a file or pick the normalized option and enter key data first");
@@ -291,7 +292,6 @@ function make_ajax_call_user_defined_calculation() {
     $.ajax({
         type: "POST",
         url: url,
-        //        timeout: 15000,
         data: {
             option:1,
             spec:specificity_string, 
@@ -305,6 +305,8 @@ function make_ajax_call_user_defined_calculation() {
         dataType: "json",
         success: set_data_meanstorisk,
         error: ajax_error
+    }).always(function(){
+        enableAll();
     });
 }
 function make_ajax_call_standard_calculation() {    
@@ -314,11 +316,10 @@ function make_ajax_call_standard_calculation() {
 
     if(local)
         url = "meanstorisk/test_data.json";
-
+    
     $.ajax({
         type: "POST",
         url: url,
-        //timeout: 15000,
         data: {
             option:2,
             spec:specificity_string, 
@@ -331,6 +332,8 @@ function make_ajax_call_standard_calculation() {
         dataType: "json",
         success: set_data_meanstorisk,
         error: ajax_error
+    }).always(function(){
+        enableAll();
     });
 }
 
@@ -343,11 +346,12 @@ function make_excel_call_user_defined_calculation() {
         url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
-
+    
+    disableAll();
+    
     $.ajax({
         type: "POST",
         url: url,
-        //timeout: 15000,
         data: {
             option:3,
             spec:specificity_string, 
@@ -361,6 +365,8 @@ function make_excel_call_user_defined_calculation() {
         dataType: "json",
         success: set_excel,
         error: ajax_error
+    }).always(function(){
+        enableAll();
     });
 }
 
@@ -369,15 +375,16 @@ function make_excel_call_standard_calculation() {
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
-    if(hostname == "localhost")
+    if(local)
         url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
-
+    
+    disableAll();
+    
     $.ajax({
         type: "POST",
         url: url,
-        //timeout: 15000,
         data: {
             option:4,
             spec:specificity_string,
@@ -390,6 +397,8 @@ function make_excel_call_standard_calculation() {
         dataType: "json",
         success: set_excel,
         error: ajax_error
+    }).always(function(){
+        enableAll();
     });
 }
 
@@ -457,12 +466,6 @@ function set_values_table(dt) {
 }
 
 function create_tabbed_table(dt) {
-    //	var jsonString;
-    //	for (property in dt) {
-    //  		jsonString = dt[property];
-    //	}	
-    //	var jsonObject = $.parseJSON(jsonString);
-    //	display_errors("DT:[" + jsonObject + "]" );
 
     make_tabs();
 
@@ -578,7 +581,6 @@ function draw_graph() {
         graph_file = "tmp/CSV"+uniqueKey+".png?";
     } else {
         graph_file = "tmp/input"+uniqueKey+".png?";
-
     }
 
     if(local){
@@ -605,6 +607,8 @@ function format_number(num) {
 }
 
 function reset_meanstorisk(){
+    thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
+    
     // close errors if showing
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");
