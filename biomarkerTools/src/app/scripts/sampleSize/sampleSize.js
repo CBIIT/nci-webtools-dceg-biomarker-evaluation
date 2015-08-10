@@ -1,11 +1,8 @@
-//"use strict";
-
 var thisTool;
 
 function init_sampleSize(){
     thisTool = $("#sampleSize");
     random_gen();
-    //disable_calculate(); 
 }    
 
 $('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
@@ -23,30 +20,30 @@ function checkValidity(){
     thisTool.find("input, select").each(function(ind, el) {
         valObject = $(el)[0].validity;
         if(!valObject.valid && (valObject.stepMismatch !== true)){
-            if($(el)[0].title != "")
+            if($(el)[0].title !== "")
                 messages.push($(el)[0].title); 
         }
-        
+
         if($(el).id == "prevalence" || $(el).id == "contour" || $(el).id == "fixed") {
             var values = $(el).val().split(',');
-            
+
             for(var i = 0; i != values.length; i++) {
                 isValid = isNumberBetweenZeroAndOne(values[i]);
             }
-            
+
             if(!isValid) {
                 messages.push($(el)[0].title);
             }
         }
-        
+
     });
-    
+
     if(messages.length > 0)
         isValid = false;
     else
         isValid = true;
-        
-    
+
+
     return [ isValid, messages ];
 }
 
@@ -54,87 +51,99 @@ function checkValidity(){
 thisTool.find('.post').click(function(){
     thisTool.find("#errors").addClass("hide");
     var valid = checkValidity();
-    
+
     if(!valid[0]){
         display_errors(valid[1]);
     }
-    else {
-        thisTool.find("#spinner").removeClass("hide"); 
+    else { 
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-        if(window.location.hostname == "localhost") service = "sampleSize/test-data.json";
-        disable_calculate();
+        if(local) service = "sampleSize/test-data.json";
+        thisTool.find("#spinner").removeClass("hide");
+
         // scroll down to loader image
         document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
-        $.ajax({
-            type: 'POST',
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            data: JSON.stringify({
-                k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
-                sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
-                spec: trim_spaces(thisTool.find("#specificity_val").text()),
-                prev: thisTool.find("#prevalence").val(),
-                N: thisTool.find("#n_value").val(),
-                unique_id: thisTool.find("#randomnumber").text(),
-                fixed_flag:thisTool.find("#fixed_flag").text() 
-            }),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: service,
-//            timeout: 30000,
-            success: function (ret) {
+
+        thisTool.find(".post").attr('disabled','').text("Please Wait....");
+        thisTool.find("#spinner").removeClass("hide");
+
+        var request = function(){ 
+            $.ajax({
+                type: 'POST',
+                // Provide correct Content-Type, so that Flask will know how to process it.
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
+                    sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
+                    spec: trim_spaces(thisTool.find("#specificity_val").text()),
+                    prev: thisTool.find("#prevalence").val(),
+                    N: thisTool.find("#n_value").val(),
+                    unique_id: thisTool.find("#randomnumber").text(),
+                    fixed_flag:thisTool.find("#fixed_flag").text() 
+                }),
+                // This is the type of data expected back from the server.
+                dataType: 'json',
+                url: service
+            }).then(function (ret) {
                 thisTool.find("#spinner").addClass("hide");
                 thisTool.find("#output_graph").empty();
                 generate_tabs(thisTool.find("#fixed").val(),thisTool.find("#randomnumber").text());
                 generate_tables(ret);
                 random_gen();
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                thisTool.find("#spinner").addClass("hide");
+                         function(jqXHR, textStatus, errorThrown) {
                 console.log("header: " + jqXHR + "\n" + "Status: " + textStatus + "\n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
-                
+
                 var message = 'Service Unavailable: ' + textStatus + "<br>";
                 message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
-                display_errors([message]);    
-            },
-        }).done(function(){
-            enable_calculate();
-        }); 
+                display_errors([message]);
+            }).always(function(){
+                thisTool.find(".post").removeAttr('disabled').text("Calculate");
+                thisTool.find("#spinner").addClass("hide");
+            });
+        };
+
+        if(local) {
+            setTimeout(
+                request, 5000);
+        }
+        else {
+            request();
+        }
     } 
     return false;
-    });
+});
 
-    thisTool.find('.reset').click(function(){
-        thisTool.find('input').val("");
-        thisTool.find("#output_graph").empty();
-        thisTool.find("#message, #errors").addClass("hide");
-    });
+thisTool.find('.reset').click(function(){
+    thisTool.find('input').val("");
+    thisTool.find("#output_graph").empty();
+    thisTool.find("#message, #errors").addClass("hide");
+});
 
-    thisTool.find("#add-test-data").click(function() {
-        example_code();
-    });	
+thisTool.find("#add-test-data").click(function() {
+    example_code();
+});	
 
-    thisTool.find("#contour").keyup(function(){
-        change_hidden('contour');
-    });
+thisTool.find("#contour").keyup(function(){
+    change_hidden('contour');
+});
 
-    thisTool.find("#fixed").keyup(function(){
-        change_hidden('fixed');
-    });
+thisTool.find("#fixed").keyup(function(){
+    change_hidden('fixed');
+});
 
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
-//        console.log(i);
+        //        console.log(i);
         var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
         tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         var ppvtabledata = tablesvar;
         var cnpvtabledata = tablesvar;
         for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
-//            console.log("PPVData");
+            //            console.log("PPVData");
             ppvtabledata += "<TR><TD>"+jsonrtn[i].PPVData[n].Sensitivity+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]["Optimal k"]+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD>";
-//            console.log("cNPVData");
+            //            console.log("cNPVData");
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n].Sensitivity+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]["Optimal k"]+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD></TR>";
@@ -147,13 +156,12 @@ function generate_tables(jsonrtn){
 }
 
 function disable_calculate(){
-    thisTool.find('.post').prop("enabled",false);
-    thisTool.find('.post').prop("disabled",true);
+    thisTool.find('.post').attr("disabled","");
 }
 
 function enable_calculate(){
-    thisTool.find('.post').prop("disabled",false);
-    thisTool.find('.post').prop("enabled",true);
+    thisTool.find('.post').removeAttr("disabled");
+
 }
 
 function generate_tabs(iterate,randomnumber){
@@ -252,14 +260,13 @@ function example_code(){
 }
 
 function reset_code(){
- thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#fixed_flag").val("");
+    thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#fixed_flag").val("");
     thisTool.find("#prevalence").val(0.001);
     thisTool.find("#n_value").val("1");
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph,#message,#message-content").empty();
     thisTool.find("#spinner, #message, #error").addClass("hide");
-//    disable_calculate();
 }
 
 
