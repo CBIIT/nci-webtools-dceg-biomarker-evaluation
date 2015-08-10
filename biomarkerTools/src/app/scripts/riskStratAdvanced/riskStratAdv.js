@@ -55,7 +55,8 @@ var keysforfunction = [{
                        }, 
                        {
                            6 : "Delta"
-                       }];
+                       }
+                      ];
 
 var keysforfunction = [ {
     1 : "sensitivity"
@@ -167,7 +168,6 @@ var thisTool;
 
 function init_riskStrat(){  
     thisTool = $('#riskStratAdvanced');
-    thisTool.find("#calculate").button();
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
             return this.replace(/^\s+|\s+$/g, '');
@@ -196,7 +196,7 @@ $(document).ready(function(){
         $("#errors").fadeOut().addClass("hide");
         if (checkRules() == "Fail") {
             display_errors(validation_rules);
-//            createRulesDialog();
+            //            createRulesDialog();
             return false;
         }
         else {
@@ -585,11 +585,10 @@ function calculate_riskStrat() {
             }
         }
         tabs.tabs();
-        
+
         var promises = [];//store promises in an array
-        
-        thisTool.find("#calculate").attr('disabled','');
-        thisTool.find("#calculate").button('disable');
+
+        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
         thisTool.find("#spinner").removeClass('hide');
         for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
@@ -613,15 +612,25 @@ function calculate_riskStrat() {
                 }, keyvalueShort[shortkey], tabindex,
                                       fixedArraySplit[fixedValue], uniqueKey,
                                       keyvalueShort[shortkey], columnHeadings);
+
                 promises.push([promise, tabindex, keyvalueShort[shortkey]]);
             }
         }
+        if(local){
+            setTimeout(function(){
+                $.when.apply($, promises).always(function() {
+                    thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+                    thisTool.find("#spinner").addClass("hide");
+                });
+            }, 5000);
+        }
+        else {
+            $.when.apply($, promises).always(function() {
+                thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+                thisTool.find("#spinner").addClass("hide");
+            });
+        }
 
-        $.when.apply($, promises).done(function(){
-            thisTool.find("#spinner").addClass('hide');
-            thisTool.find("#calculate").button('enable');
-            thisTool.find("#calculate").removeAttr('disabled');
-        });
     } // if function mapping is available
     else {
         thisTool.find("#output").empty();
@@ -668,15 +677,14 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         url : service,
         data : data,
         dataType : "json",
-        contentType: 'application/json',
-        error: function(request, status, error) {
-            thisTool.find("#calculate").button('enable');
-            thisTool.find("#spinner").addClass("hide");
+        contentType: 'application/json'
+    }).then(
+        function(data){
+            return JSON.parse(JSON.stringify(data));
+        }, 
+        function(request, status, error) {
             handleError(error, status, request);
-        }
-    }).then(function(data){
-        return JSON.parse(JSON.stringify(data));
-    }).done(function(data) {
+        }).done(function(data) {
         fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
         loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
     });
