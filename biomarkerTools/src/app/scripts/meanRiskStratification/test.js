@@ -26,9 +26,9 @@ var values_option_2_bm = [{
         "sampsize": 30371
     }];
 function setup_test() {
-    $.when(reset_mrs).done(function () {
+    $.when(reset_markers).done(function () {
         if ($('#markers').children().length != 1) {
-            reset_mrs();
+            reset_markers();
         }
 
         // add 2 biomarkers
