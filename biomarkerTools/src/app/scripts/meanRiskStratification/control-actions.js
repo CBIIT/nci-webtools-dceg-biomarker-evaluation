@@ -147,7 +147,7 @@ function calculate_mrs() {
     if (valid) {
         var input = JSON.stringify(valuesObj[0]);
 
-        if (window.location.hostname == 'localhost') {
+        if (local) {
             // call json file instead of service
             service = 'meanRiskStratification/output_example.json';
         } else {
@@ -158,7 +158,7 @@ function calculate_mrs() {
 
         thisTool.find('#spinner').removeClass("hide");
         thisTool.find("#calculate").attr("disabled", "").text("Please Wait....");
-
+        disableAll();
         // ajax call, change to actual service name
         var promise = $.ajax({
             dataType: 'json',
@@ -174,6 +174,7 @@ function calculate_mrs() {
                 promise.then(clean_data, function (error) {
                     display_errors("The service call has failed with the following status: " + error.statusText);
                 }).done(return_data).always(function(){
+                    enableAll();
                     thisTool.find('#spinner').addClass("hide");
                     thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
                 });
@@ -183,6 +184,7 @@ function calculate_mrs() {
             promise.then(clean_data, function (error) {
                 display_errors("The service call has failed with the following status: " + error.statusText);
             }).done(return_data).always(function(){
+                enableAll();
                 thisTool.find('#spinner').addClass("hide");
                 thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
             });            
@@ -402,6 +404,9 @@ function reset_mrs() {
 
     // close errors if showing
     thisTool.find('#errors').fadeOut();
+    
+    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+    
     reset_markers();
 
 }
