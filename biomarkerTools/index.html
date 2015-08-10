@@ -519,7 +519,7 @@
                         <div class="col-md-4">
                           <div for="n_value" class="pull-left">Sample Size</div>
                         </div>
-                        <input id="n_value" type="text" size="10" value="1" min="1" pattern="(^[0-8]$)+" title="Sample Size is required and must be an integer" required class="fontnormal col-md-3">
+                        <input id="n_value" type="number" value="1" min="1" step="1" title="Sample Size is required and must be an integer" required class="fontnormal col-md-3">
                       </div>
                     </div>
                     <div class="panel-footer">
@@ -667,7 +667,7 @@
                       </div>
                       <div class="pull-right">
                         <div class="row"><a id="test1" href="#" title="Populate 1 biomarker using test data">Example 1</a></div>
-                        <div class="row"><a id="test2" href="#" title="Populate 1 biomarker using test data">Example 2     </a></div>
+                        <div class="row"><a id="test2" href="#" title="Populate 1 biomarker using test data">Example 2</a></div>
                       </div>
                     </div>
                   </div>
@@ -677,7 +677,7 @@
                 <div class="row">
                   <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
-                <div id="results">
+                <div id="results" class="hide">
                   <table class="table table-bordered table-condensed">
                     <thead>
                       <tr>
