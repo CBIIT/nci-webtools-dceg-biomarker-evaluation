@@ -8,7 +8,6 @@ var thisTool;
 
 function init_bc(){
     thisTool = $("#bc");
-    thisTool.find("input#prevalence").val('');
 }
 
 $(document).ready(function(){
@@ -23,7 +22,6 @@ $(document).ready(function(){
 
 $('a[href="#bc"]').on('shown.bs.tab',function(e){
     thisTool = $("#bc");
-    thisTool.find("#prevalence").val("");
     thisTool.find("#errors").addClass("hide");
 });
 
@@ -159,7 +157,7 @@ function update_row_index(i, row){
     $(row).attr("row", i);
 
     $(row).find("div:gt(0)").each(function(j, el){
-        if($(el).attr('row') != undefined){
+        if($(el).attr('row') !== undefined){
             $(el).attr('row', i);
         }
     });
@@ -185,7 +183,7 @@ function do_calculation(){
     var sensArrayWithRef = "";
     var specArrayWithRef = "";
     var labels = "";
-    var prevalence = thisTool.find('#prevalence').val();
+    var prevalence = thisTool.find('#prevalence_bc').val();
 
     if (!isNumberBetweenZeroAndOne(prevalence)) {
         validPrevValue = false;
@@ -281,7 +279,7 @@ function do_calculation(){
 }
 
 function pre_request() {
-    disableAll()
+    disableAll();
     thisTool.find('#spinner').removeClass('hide');
     thisTool.find("#calculate_button").attr("disabled","").text("Please Wait...");
 }
@@ -362,7 +360,7 @@ function jsonToCellWithPrev(obj){
         if (obj.hasOwnProperty(key))
         {
             value = obj[key];
-            if (key== 'Specificity') var Specificity=value;
+            if (key == 'Specificity') var Specificity=value;
             else if (key== 'Sensitivity') var Sensitivity=value;
             else if (key== 'LRplus') var LRplus=value;
             else if (key== 'LRminus') var LRminus=value;
