@@ -306,7 +306,9 @@ function make_ajax_call_user_defined_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
         enableAll();
+        thisTool.find("#spinner").addClass("hide");
     });
 }
 function make_ajax_call_standard_calculation() {    
@@ -333,7 +335,9 @@ function make_ajax_call_standard_calculation() {
         success: set_data_meanstorisk,
         error: ajax_error
     }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
         enableAll();
+        thisTool.find("#spinner").addClass("hide");
     });
 }
 
@@ -366,7 +370,9 @@ function make_excel_call_user_defined_calculation() {
         success: set_excel,
         error: ajax_error
     }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
         enableAll();
+        thisTool.find("#spinner").addClass("hide");
     });
 }
 
@@ -398,7 +404,9 @@ function make_excel_call_standard_calculation() {
         success: set_excel,
         error: ajax_error
     }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
         enableAll();
+        thisTool.find("#spinner").addClass("hide");
     });
 }
 
@@ -406,10 +414,8 @@ function set_data_meanstorisk(dt) {
     set_values_table(dt);
     create_tabbed_table(dt);
     draw_graph();
-    thisTool.find("#calculate_button").text("Calculate");
+    
     thisTool.find("#download_button").removeClass("hide");
-    thisTool.find("#calculate_button").removeAttr('disabled');
-    thisTool.find("#spinner").addClass("hide");
 }
 
 function set_excel(dt) {
@@ -421,12 +427,10 @@ function set_excel(dt) {
     console.log("problem generating excel file");
 
     //	$("#download_link").attr("href", dt);
-    thisTool.find("#spinner").addClass("hide"); 
 }
 
 function ajax_error(dt) {
-    display_errors("There was some problem getting the data. " + JSON.stringify(dt) ); 	
-    thisTool.find("#spinner").addClass("hide"); 
+    display_errors("There was some problem getting the data. " + dt.statusText ); 	
 }
 
 function set_values_table(dt) {
