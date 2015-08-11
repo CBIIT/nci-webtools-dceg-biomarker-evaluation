@@ -593,6 +593,8 @@ function calculate_riskStrat() {
 
         thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
         thisTool.find("#spinner").removeClass('hide');
+        disableAll();
+
         for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
             // for (var keyIndex=0; keyIndex < keys.length; keyIndex++)
@@ -620,7 +622,6 @@ function calculate_riskStrat() {
             }
         }
         
-        disableAll();
         if(local){
             setTimeout(function(){
                 $.when.apply($, promises).always(function() {
@@ -637,7 +638,6 @@ function calculate_riskStrat() {
                 enableAll();
             });
         }
-
     } // if function mapping is available
     else {
         thisTool.find("#output").empty();
@@ -698,15 +698,12 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
 }
 
 function handleError(error, status, request) {
-    thisTool.find("#status-bar").text("");
-    thisTool.find("#status-bar").html("<div>" + error + "</div>");
-    thisTool.find("#status-bar").removeClass('hide');
+    display_errors([error, request.responseText]);
     if (typeof console == "object") {
         console.info("Server AJAX Return Error");
         console.info("Type: " + error);
         console.info("Status: " + status);
         console.info("request object:");
-        console.log(request.responseText);
     }
 }
 
