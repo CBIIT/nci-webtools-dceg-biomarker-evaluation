@@ -297,7 +297,7 @@ function resetPage() {
     makeSelectionsUnique(functionnames, "independent_dropdown");
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr('disabled');
-    thisTool.find("#status-bar, #errors,#spinner").addClass('hide');
+    thisTool.find("#errors, #spinner").addClass('hide');
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
@@ -483,30 +483,33 @@ function calculate_riskStrat() {
         display_errors(rulesViolationMsg);
         return;
     }
-    $("#status-bar").text("");
+
     if (rulesViolationMsg.length > 0) {
         display_errors(rulesViolationMsg);
     } else {
         thisTool.find("#errors").fadeOut().addClass("hide");
+        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
+        thisTool.find("#spinner").removeClass('hide');
+        disableAll();
     }
 
     var fixedArray = "";
     var contourArray = "";
     var independentArray = "";
 
-    var independentArray = thisTool.find("#independent").val();
+    independentArray = thisTool.find("#independent").val();
    
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
     var independentval = thisTool.find("#independent_dropdown").val();
     independentArraySplit = independentArray.split(",");
-    var independentMin = Math.min.apply(Math, independentArraySplit)
-    var independentMax = Math.max.apply(Math, independentArraySplit)
-    var contourArray = thisTool.find("#contour").val();
+    var independentMin = Math.min.apply(Math, independentArraySplit);
+    var independentMax = Math.max.apply(Math, independentArraySplit);
+    contourArray = thisTool.find("#contour").val();
    
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
     var contourval = thisTool.find("#contour_dropdown").val();
     var columnHeadings = contourArray.split(",");
-    var fixedArray = thisTool.find("#fixed").val();
+    fixedArray = thisTool.find("#fixed").val();
    
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
     var fixedval = thisTool.find("#fixed_dropdown").val();
@@ -553,14 +556,13 @@ function calculate_riskStrat() {
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
-        var spacing = "<p></p><p></p><p></p>";
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-"
-                             + (i + 1) + "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "
-                             + fixedArraySplit[i] + "</a></LI>");
-            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)
-                         + "' >  </div>")
+            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-" + (i + 1) +
+                             "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ fixedArraySplit[i] +
+                             "</a></LI>");
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)+ 
+                         "' >  </div>");
             tabs.append(tab_pane);
 
             for ( var key in keyvalueShort) {
@@ -568,18 +570,18 @@ function calculate_riskStrat() {
                 $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
                   keyvalueShort[key] + (i + 1)).empty();
 
-                table_graph_div = $("<div class='set-"
-                                    + keyvalueShort[key]
-                                    + (i + 1)
-                                    + "' style='width: 950px; float: left; clear:left;'><p></p></div>");
+                table_graph_div = $("<div class='set-" + 
+                                    keyvalueShort[key] + 
+                                    (i + 1) + 
+                                    "' style='width: 950px; float: left; clear:left;'><p></p></div>");
                 tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side' id='graphic-"
-                                + keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
+                graphic_side = ("<div class='graphic-side' id='graphic-" + 
+                                keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side' id='table-"
-                               + keyvalueShort[key] + (i + 1)
-                               + "'><br><div class='table-title'>" + keyvalueLong[key]
-                               + "</div></div><br><br>");
+                table_side = $("<div class='table-side' id='table-" + 
+                               keyvalueShort[key] + (i + 1) + 
+                               "'><br><div class='table-title'>" + keyvalueLong[key] + 
+                               "</div></div><br><br>");
                 table_graph_div.append(table_side);
             }
         }
@@ -587,13 +589,9 @@ function calculate_riskStrat() {
 
         var promises = [];//store promises in an array
 
-        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
-        thisTool.find("#spinner").removeClass('hide');
-        disableAll();
-
         for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
             tabindex = fixedValue + 1;
-           
+
             for ( var shortkey in keyvalueShort) {
                 var promise = getData({
                     key : keyvalueShort[shortkey],
@@ -617,7 +615,7 @@ function calculate_riskStrat() {
                 promises.push([promise, tabindex, keyvalueShort[shortkey]]);
             }
         }
-        
+
         if(local){
             setTimeout(function(){
                 $.when.apply($, promises).done(function() {
@@ -687,9 +685,10 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         }, 
         function(request, status, error) {
             handleError(error, status, request);
-        }).done(function(data) {
-        fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-        loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
+        })
+        .done(function(data) {
+            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
+            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
     });
 }
 
@@ -740,9 +739,8 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             });
         }
 
-        var tableId = "example-" + abbreviatedKey + tabnumber;
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='"
-                      + tableId + "'></table>");
+        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
+                      tableId + "'></table>");
         $("#table-" + abbreviatedKey + tabnumber).append(table);
 
         table.dataTable({
@@ -765,21 +763,21 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         thisTool.find("#" + tableId + " tr:not(:first)").each(
             function() {
                 $(this).prepend(
-                    "<th class='ui-state-default sorting_disabled'>"
-                    + independentArraySplit[i] + "</th>");
+                    "<th class='ui-state-default sorting_disabled'>" + 
+                    independentArraySplit[i] + "</th>");
                 i++;
             });
 
        
         thisTool.find("#" + tableId + " tr:eq(1)").prepend(
-            "<th class='header' rowspan='" + independentArraySplit.length
-            + "'><div class='vertical-text'>" + tableFirstRowLabel
-            + "</div></th>");
+            "<th class='header' rowspan='" + independentArraySplit.length + 
+            "'><div class='vertical-text'>" + tableFirstRowLabel + 
+            "</div></th>");
 
        
         thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"
-            + tableFirstColLabel + "</th></tr>");
+            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" + 
+            tableFirstColLabel + "</th></tr>");
     } else {
         if (graphErrorValue != 1) {
             display_errors([tableError[1].message, graphError[1].message ]);
@@ -938,11 +936,11 @@ function checkForInvalidVariableCombo() {
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
 
             var userSelectedVariables = selectedValues[0].toString() + ", "+ 
-                selectedValues[1].toString() + ",  and "+ 
+                selectedValues[1].toString() + ",  and " + 
                 selectedValues[2].toString();
-            var message = "The variables "+ 
-                userSelectedVariables+ 
-                " do not form a valid variable combination for this calculation.  "+ 
+            var message = "The variables " + 
+                userSelectedVariables + 
+                " do not form a valid variable combination for this calculation.  " + 
                 "Please select a vaild variable combination.";
             display_errors([message]);
             validCombo = false;
