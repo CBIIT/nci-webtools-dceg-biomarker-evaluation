@@ -624,7 +624,7 @@ function calculate_riskStrat() {
         
         if(local){
             setTimeout(function(){
-                $.when.apply($, promises).always(function() {
+                $.when.apply($, promises).done(function() {
                     thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
                     thisTool.find("#spinner").addClass("hide");
                     enableAll();
@@ -632,7 +632,7 @@ function calculate_riskStrat() {
             }, 5000);
         }
         else {
-            $.when.apply($, promises).always(function() {
+            $.when.apply($, promises).done(function() {
                 thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
                 thisTool.find("#spinner").addClass("hide");
                 enableAll();
@@ -785,12 +785,11 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
             "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>"
             + tableFirstColLabel + "</th></tr>");
     } else {
-        thisTool.find("#status-bar").css("visibility", "visible");
-        thisTool.find("#status-bar").addClass("status-error");
-        thisTool.find("#status-bar").append("<div>" + tableError[1].message + "</div>");
         if (graphErrorValue != 1) {
-            thisTool.find("#status-bar").append("<div>" + graphError[1].message + "</div>");
+            display_errors([tableError[1].message, graphError[1].message ]);
         }
+        else
+            display_errors([tableError[1].message]);
     }
 }
 
@@ -957,7 +956,7 @@ function checkForInvalidVariableCombo() {
         }
     } else {
         thisTool.find("#errors").addClass("hide");
-        var validCombo = false;
+        validCombo = false;
 
         return;
     }
