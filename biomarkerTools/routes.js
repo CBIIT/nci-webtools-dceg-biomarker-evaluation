@@ -15,8 +15,10 @@ function disableAll(){
    
     activeRequest = true;
     $("a, button,select,input").attr("disabled","").addClass("disable_control");
-    $("a[data-toggle='tab']").attr("data-toggle", "disabledTab");
-    $("a[data-toggle='collapse']").attr("data-toggle", "disabledCollapse");
+    
+   
+    $("[data-toggle='tab']").attr("data-toggle", "disabledTab");
+    $("[data-toggle='collapse']").attr("data-toggle", "disabledCollapse");
 }
 
 function enableAll() {
@@ -24,8 +26,10 @@ function enableAll() {
     activeRequest = false;
     $("a, button,select,input").removeAttr("disabled").removeClass("disable_control");
     $(".disable_control").unbind("click");
-    $("a[data-toggle='disabledTab']").attr("data-toggle", "tab");
-    $("a[data-toggle='disabledCollapse']").attr("data-toggle", "collapse");
+    
+   
+    $("[data-toggle='disabledTab']").attr("data-toggle", "tab");
+    $("[data-toggle='disabledCollapse']").attr("data-toggle", "collapse");
 }
 
 $('.disable_control').on('click',function(e){
@@ -95,8 +99,8 @@ function goToTarget(tar) {
 
 
 function default_ajax_error(request, status, error){
-    $('#spinner').addClass('hide');
-    alert(request.responseText);
+    display_errors([error]);
+    console.log(request.responseText);
 }
 
 function isNumberBetweenZeroAndOne(n) {
