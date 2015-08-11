@@ -200,6 +200,10 @@ $(document).ready(function(){
             return false;
         }
         else {
+            thisTool.find("#errors").fadeOut().addClass("hide");
+            thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
+            thisTool.find("#spinner").removeClass('hide');
+            disableAll();
             calculate_riskStrat();
         }
     });
@@ -490,11 +494,9 @@ function calculate_riskStrat() {
 
     if (rulesViolationMsg.length > 0) {
         display_errors(rulesViolationMsg);
-    } else {
-        thisTool.find("#errors").fadeOut().addClass("hide");
-        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
-        thisTool.find("#spinner").removeClass('hide');
-        disableAll();
+        thisTool.find("#calculate").removeAttr('disabled').text('Calculate');
+        thisTool.find("#spinner").addClass('hide');
+        enableAll();
     }
 
     var fixedArray = ""; // prevalence
@@ -639,6 +641,9 @@ function calculate_riskStrat() {
     } // if function mapping is available
     else {
         thisTool.find("#output").empty();
+        thisTool.find("#calculate").removeAttr('disabled').text('Calculate');
+        thisTool.find("#spinner").addClass('hide');
+        enableAll();
     }
 
 }
@@ -683,7 +688,8 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         data : data,
         dataType : "json",
         contentType: 'application/json'
-    }).then(
+    })
+        .then(
         function(data){
             return JSON.parse(JSON.stringify(data));
         }, 
@@ -691,8 +697,8 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
             handleError(error, status, request);
         })
         .done(function(data) {
-            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
+        fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
+        loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
     });
 }
 
