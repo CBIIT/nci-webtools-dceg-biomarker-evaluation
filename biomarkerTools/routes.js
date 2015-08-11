@@ -24,7 +24,7 @@ function disableAll(){
 function enableAll() {
    
     activeRequest = false;
-    $("a, button,select,input").removeAttr("disabled").removeClass("disable_control");
+    $("a, button, select, input").removeAttr("disabled").removeClass("disable_control");
     $(".disable_control").unbind("click");
     
    
