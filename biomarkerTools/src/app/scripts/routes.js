@@ -24,7 +24,7 @@ function disableAll(){
 function enableAll() {
     // Enable all controls for use after ajax request completes
     activeRequest = false;
-    $("a, button,select,input").removeAttr("disabled").removeClass("disable_control");
+    $("a, button, select, input").removeAttr("disabled").removeClass("disable_control");
     $(".disable_control").unbind("click");
     
     // enabling tabs and collapse elements
