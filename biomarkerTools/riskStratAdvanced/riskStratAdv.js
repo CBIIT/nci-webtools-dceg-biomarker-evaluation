@@ -620,23 +620,11 @@ function calculate_riskStrat() {
 
         if(local){
             setTimeout(function(){
-                $.when.apply($, promises).always(function() {
-                    if($.active == 0){
-                        thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
-                        enableAll();
-                        thisTool.find("#spinner").addClass("hide");
-                    }
-                });
+                $.when.apply($, promises).then(after_requests);
             }, 5000);
         }
         else {
-            $.when.apply($, promises).always(function() {
-                if($.active == 0){
-                    thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
-                    enableAll();
-                    thisTool.find("#spinner").addClass("hide");
-                }
-            });
+            $.when.apply($, promises).then(after_requests);
         }
     }
     else {
@@ -647,7 +635,16 @@ function calculate_riskStrat() {
     }
 
 }
-
+function after_requests(){
+    for(var i= 0;i != arguments.length;i++) {
+        console.log(arguments[i][0].progress().state());
+    }
+    if($.active == 0){
+        thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+        enableAll();
+        thisTool.find("#spinner").addClass("hide");
+    }
+}
 function getKeyValueIndex(independentvalue, fixedvalue, contourvalue) {
 
     rfunctionname = getFunctionName(independentvalue, fixedvalue, contourvalue);
@@ -695,9 +692,9 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         }, 
         function(request, status, error) {
             handleError(error, status, request);
-    });
-    
-    return request.done(function(data) {
+        });
+
+    return $.when(request).done(function(data) {
         fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
         loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
     });
