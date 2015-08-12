@@ -1,7 +1,7 @@
 var thisTool;
 $(document).ready(function(){
     // pull in glossary js file
-    requirejs(['routes', 'glossary' ]);
+    requirejs(['main', 'glossary' ]);
     thisTool = $('#help');
     thisTool.find('h4, h5').each(tableOfContentsList);
 });
