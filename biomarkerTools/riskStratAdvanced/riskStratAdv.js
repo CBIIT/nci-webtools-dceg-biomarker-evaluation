@@ -618,14 +618,7 @@ function calculate_riskStrat() {
             }
         }
 
-        if(local){
-            setTimeout(function(){
-                $.when.apply($, promises).then(after_requests);
-            }, 5000);
-        }
-        else {
-            $.when.apply($, promises).then(after_requests);
-        }
+        $.when.apply($, promises);
     }
     else {
         thisTool.find("#output").empty();
@@ -636,10 +629,7 @@ function calculate_riskStrat() {
 
 }
 function after_requests(){
-    for(var i= 0;i != arguments.length;i++) {
-        console.log(arguments[i][0].progress().state());
-    }
-    if($.active == 0){
+    if($.active == 1){
         thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
         enableAll();
         thisTool.find("#spinner").addClass("hide");
@@ -679,24 +669,23 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
     if(local) service = "riskStratAdvanced/test_result.json";
 
-    var request = $.ajax({
+    $.ajax({
         type : "POST",
         url : service,
         data : data,
         dataType : "json",
-        contentType: 'application/json'
-    })
-    .then(
-        function(data){
-            return JSON.parse(JSON.stringify(data));
-        }, 
-        function(request, status, error) {
+        contentType: 'application/json',
+        success: function(data){
+            JSON.parse(JSON.stringify(data));
+        },
+        error:function(request, status, error) {
             handleError(error, status, request);
-        });
-
-    return $.when(request).done(function(data) {
+        }
+    }).done(function(data) {
         fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
         loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
+        after_requests();
+        return data;
     });
 }
 
