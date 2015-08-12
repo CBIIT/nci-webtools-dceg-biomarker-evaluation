@@ -200,10 +200,6 @@ $(document).ready(function(){
             return false;
         }
         else {
-            thisTool.find("#errors").fadeOut().addClass("hide");
-            thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
-            thisTool.find("#spinner").removeClass('hide');
-            disableAll();
             calculate_riskStrat();
         }
     });
@@ -475,10 +471,14 @@ function calculate_riskStrat() {
 
    
     var checkInput = [];
+    thisTool.find("input, select").each(function(){
+        checkInput.push($(this)[0].checkValidity());
+    });
 
-    checkInput.push(thisTool.find("#independent")[0].checkValidity());
-    checkInput.push(thisTool.find("#contour")[0].checkValidity());
-    checkInput.push(thisTool.find("#fixed")[0].checkValidity());
+
+   
+   
+   
 
     thisTool.find("#output").empty();
 
@@ -493,6 +493,12 @@ function calculate_riskStrat() {
         thisTool.find("#calculate").removeAttr('disabled').text('Calculate');
         thisTool.find("#spinner").addClass('hide');
         enableAll();
+    }
+    else {
+        thisTool.find("#errors").fadeOut().addClass("hide");
+        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
+        thisTool.find("#spinner").removeClass('hide');
+        disableAll();  
     }
 
     var fixedArray = "";
@@ -549,8 +555,8 @@ function calculate_riskStrat() {
         tableFirstColLabel = selectedContourValue;
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
-
-        $("#output").empty();
+        thisTool.find("#output").addClass("hide");
+        thisTool.find("#output").empty();
 
        
 
@@ -630,6 +636,7 @@ function calculate_riskStrat() {
 }
 function after_requests(){
     if($.active == 1){
+        thisTool.find("#output").removeClass("hide");
         thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
         enableAll();
         thisTool.find("#spinner").addClass("hide");
