@@ -331,9 +331,13 @@ function set_data(dt){
     thisTool.find('.define').on('click', termDisplay);
 }
 function jsonToCell(obj){
-    var key, value, Specificity, Sensitivity, LRplus, LRminus, new_row;
-    for (key in obj) {
-        value = obj[key];
+    var Specificity;
+    var Sensitivity;
+    var LRplus;
+    var LRminus;
+
+    for (var key in obj) {
+        var value = obj[key];
         if (obj.hasOwnProperty(key)) {
             value = obj[key];
         }
@@ -347,7 +351,7 @@ function jsonToCell(obj){
             LRminus = value;
         }
     }
-    new_row = $("<div class='row'>");
+    var new_row = $("<div class='row'>");
     new_row.append("<div class='col-md-3'>" + Sensitivity + "</div>");
     new_row.append("<div class='col-md-3'>" + Specificity + "</div>");
     new_row.append("<div class='col-md-3'>" + LRplus + "</div>");
@@ -355,17 +359,23 @@ function jsonToCell(obj){
     thisTool.find('#output').append(new_row);
 }
 function jsonToCellWithPrev(obj){
+    var Specificity;
+    var Sensitivity;
+    var LRplus;
+    var LRminus;
+    var PPV;
+    var cNPV;
     for (var key in obj)
     {
         if (obj.hasOwnProperty(key))
         {
             value = obj[key];
-            if (key == 'Specificity') var Specificity=value;
-            else if (key== 'Sensitivity') var Sensitivity=value;
-            else if (key== 'LRplus') var LRplus=value;
-            else if (key== 'LRminus') var LRminus=value;
-            else if (key== 'PPV') var PPV=value;
-            else if (key== 'cNPV') var cNPV=value;
+            if (key == 'Specificity') Specificity=value;
+            else if (key== 'Sensitivity') Sensitivity=value;
+            else if (key== 'LRplus') LRplus=value;
+            else if (key== 'LRminus') LRminus=value;
+            else if (key== 'PPV') PPV=value;
+            else if (key== 'cNPV') cNPV=value;
         }
     }
     var new_row = $("<div class='row'>");
