@@ -625,17 +625,21 @@ function calculate_riskStrat() {
         if(local){
             setTimeout(function(){
                 $.when.apply($, promises).done(function() {
-                    thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
-                    thisTool.find("#spinner").addClass("hide");
-                    enableAll();
+                    if($.active == 0){
+                        thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+                        enableAll();
+                        thisTool.find("#spinner").addClass("hide");
+                    }
                 });
             }, 5000);
         }
         else {
             $.when.apply($, promises).done(function() {
-                thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
-                thisTool.find("#spinner").addClass("hide");
-                enableAll();
+                if($.active == 0){
+                    thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+                    enableAll();
+                    thisTool.find("#spinner").addClass("hide");
+                }
             });
         }
     } // if function mapping is available
