@@ -6,6 +6,7 @@ import re
 import time
 import json
 from flask import Flask, render_template, request, jsonify
+import rpy2.robjects as robjects
 from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
@@ -13,7 +14,7 @@ from socket import gethostname
 # Initialize the Flask application
 app = Flask(__name__)
 
-r_saveAllSensGraphs = robjects.globalenv['SS$saveAllSensGraphs']
+r_saveAllSensGraphs = robjects.globalenv['SS']['saveAllSensGraphs']
 
 @app.route('/')
 def index():

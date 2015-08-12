@@ -20,7 +20,7 @@ import urllib
 app = Flask(__name__, static_folder='', static_url_path='/')
 #app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-r_getname_getData = robjects.globalenv['RSA$getDataJSON']
+r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
 
 @app.route('/')
 def index():

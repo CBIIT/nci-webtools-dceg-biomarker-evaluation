@@ -4,7 +4,7 @@ from functools import wraps
 from flask import current_app
 
 import rpy2.robjects as robjects
-from robjects import r
+from rpy2.robjects import r
 import cgi
 import shutil
 import os
@@ -20,7 +20,7 @@ import time
 
 app = Flask(__name__)
 
-r_getname_getApcData = robjects.globalenv['MTR$getDataJSON']
+r_getname_getApcData = robjects.globalenv['MTR']['getDataJSON']
 
 def jsonp(func):
     """Wraps JSONified output for JSONP requests."""

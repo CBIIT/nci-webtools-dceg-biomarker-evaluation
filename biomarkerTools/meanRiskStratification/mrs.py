@@ -1,4 +1,4 @@
-+# We need to import the jsonify object, it will let us
+# We need to import the jsonify object, it will let us
 # output json, and it will take care of the right string
 # data conversion, the headers for the response, etc
 import os
@@ -10,11 +10,12 @@ import rpy2.robjects as robjects
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
 
-r_getJSON_abcd = robjects.globalenv['MRS$getJSON_abcd']
-r_getJSON_PPVNPVprobM = robjects.globalenv['MRS$getJSON_PPVNPVprobM']
-r_getJSON_PPVNPVprobD = robjects.globalenv['MRS$getJSON_PPVNPVprobD']
-r_getJSON_sensspecprobM = robjects.globalenv['MRS$getJSON_sensspecprobM']
-r_getJSON_sensspecprobD = robjects.globalenv['MRS$getJSON_sensspecprobD']
+r_mrs_env = robjects.globalenv['MRS']
+r_getJSON_abcd = r_mrs_env['getJSON_abcd']
+r_getJSON_PPVNPVprobM = r_mrs_env['getJSON_PPVNPVprobM']
+r_getJSON_PPVNPVprobD = r_mrs_env['getJSON_PPVNPVprobD']
+r_getJSON_sensspecprobM = r_mrs_env['getJSON_sensspecprobM']
+r_getJSON_sensspecprobD = r_mrs_env['getJSON_sensspecprobD']
 
 # Initialize the Flask application
 app = Flask(__name__)

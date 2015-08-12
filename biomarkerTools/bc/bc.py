@@ -2,7 +2,6 @@
 from flask import Flask, render_template, Response, abort, request, make_response, url_for, jsonify
 from functools import wraps
 from flask import current_app
-
 import rpy2.robjects as robjects
 from rpy2.robjects import r
 import cgi
@@ -20,7 +19,7 @@ import urllib
 app = Flask(__name__, static_folder='', static_url_path='/')
 #app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-r_getname_getData = robjects.globalenv['BC$getDataJSON']
+r_getname_getData = robjects.globalenv['BC']['getDataJSON']
 
 @app.route('/')
 def index():
