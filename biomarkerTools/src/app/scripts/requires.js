@@ -12,7 +12,7 @@ requirejs.config({
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
         meanRiskStratification: 'meanRiskStratification/mrs',
         glossary: '/common/js/meansToRiskGlossary',
-        routes: 'routes'
+        main: 'main'
     },
     shim: {
         'jquery.ui': {
@@ -28,15 +28,15 @@ requirejs.config({
             deps: ['jquery']
         },
         sampleSize: {
-            deps: ['jquery.ui', 'routes']
+            deps: ['jquery.ui', 'main']
         },
         meanstorisk: {
-            deps: ['jquery.ui', 'routes']
+            deps: ['jquery.ui', 'main']
         },
         riskStratAdvanced: {
-            deps: [ 'jquery.ui', 'datatables','bootstrap', 'routes']
+            deps: [ 'jquery.ui', 'datatables','bootstrap', 'main']
         },
-        routes: {
+        main: {
             deps: ['modernzr','jquery.ui','bootstrap', 'glossary']
         },
         help:{
@@ -45,7 +45,8 @@ requirejs.config({
     }
 });
 
-require(['routes'], function(){
+// start off the application by loading main and all its dependencies
+require(['main'], function(){
     console.log("default scripts loaded");
     return {};
 });
