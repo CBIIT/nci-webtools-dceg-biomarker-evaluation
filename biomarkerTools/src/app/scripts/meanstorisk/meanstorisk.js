@@ -21,6 +21,20 @@ $(document).ready(function(){
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
+
+    // on panel show
+    thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
+        if(this.id == "file_upload"){
+            thisTool.find('#cases_control').collapse('hide');
+        }
+        else{
+            thisTool.find('#file_upload').collapse('hide');
+        }
+
+        thisTool.find('.panel-body').not( document.getElementById(this.id) )
+            .removeClass('in')
+            .addClass('collapse');
+    });
 });
 
 $('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
@@ -41,55 +55,68 @@ function init_meanstorisk(){
             e.stopPropagation();
         }
     });
-    // on panel show
-    thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
-        if(this.id == "file_upload"){
-            thisTool.find('#cases_control').collapse('hide');
-        }
-        else{
-            thisTool.find('#file_upload').collapse('hide');
-        }
-
-        thisTool.find('.panel-body').not( document.getElementById(this.id) )
-            .removeClass('in')
-            .addClass('collapse');
-    });
 }
 
 function prepare_upload (e) {
+    thisTool.find("#errors").addClass("hide").empty();
+
+    var file_types = [
+        "application/vnd.ms-excel", 
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv" ];
+
     var files = e.target.files;
-    if ( window.FileReader ) {
-        var fr = new FileReader();
-        fr.onload = function(e) {
-            var txt = e.target.result;
-            var lines = txt.split("\n");
-            if (lines.length > 0) numberOfCols = lines[0].split(",").length;
-            numberOfRows = 0;
-            for (var count = 0; count < lines.length;count++) {
-                var arr = lines[count].split(",");
-                if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
-                    valuesFromFile = valuesFromFile.concat(arr);
-                    numberOfRows++;
+    if(files.length > 0){
+        var correct_type = ($.inArray(files[0].type, file_types) > -1) ? true : false;
+
+        if(correct_type){
+            if ( window.FileReader ) {
+                var fr = new FileReader();
+                fr.onload = function(e) {
+                    var txt = e.target.result;
+                    var lines = txt.split("\n");
+                    if (lines.length > 0) numberOfCols = lines[0].split(",").length;
+                    numberOfRows = 0;
+                    if(numberOfCols != 2) {
+                        display_errors([ " 2 columns of data expected in CSV file. Found " + numberOfCols + " columns." ]);
+                    }
+                    else {
+                        for (var count = 0; count < lines.length;count++) {
+                            var arr = lines[count].split(",");
+                            if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
+                                valuesFromFile = valuesFromFile.concat(arr);
+                                numberOfRows++;
+                            }
+                        }
+                    }
+                };
+                fr.readAsText(files[0]);
+            }
+            else {
+                var filePath = thisTool.find("#input_file_upload").val();
+                var fso = new ActiveXObject("Scripting.FileSystemObject");
+                var textStream = fso.OpenTextFile(filePath);
+                var fileData = textStream.ReadAll();
+                var lines = fileData.split("\n");
+                numberOfRows = lines.length;
+                if (numberOfRows > 0) numberOfCols = lines[0].split(",").length;
+
+                if(numberOfCols != 2){
+                    display_errors([ "2 columns of data expected in CSV file. Found " + 
+                                    numberOfCols + " columns." ]);
+                }
+                else {
+                    for (count = 0; count < lines.length;count++) {
+                        var arr = lines[count].split(",");
+                        if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
+                            valuesFromFile = valuesFromFile.concat(arr);
+                        }
+                    }
                 }
             }
-        };
-        fr.readAsText(files[0]);
-    }
-    else {
-        var filePath = thisTool.find("#input_file_upload").val();
-        var fso = new ActiveXObject("Scripting.FileSystemObject");
-        var textStream = fso.OpenTextFile(filePath);
-        var fileData = textStream.ReadAll();
-        var lines = fileData.split("\n");
-        numberOfRows = lines.length;
-        if (numberOfRows > 0) numberOfCols = lines[0].split(",").length;
-
-        for (count = 0; count < lines.length;count++) {
-
-            var arr = lines[count].split(",");
-            if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
-                valuesFromFile = valuesFromFile.concat(arr);
-            }
+        }
+        else {
+            display_errors(["Incorrect file type detected. Please upload a csv file."]);
         }
     }
 }
@@ -104,8 +131,9 @@ function bind_option_choices() {
 }
 
 function bind_calculate_button() {
-    thisTool.find('#errors').fadeOut();
-    thisTool.find("#calculate_button").on('click', function() {    
+
+    thisTool.find("#calculate_button").on('click', function() {
+        thisTool.find('#errors').fadeOut(); 
         var validation_check = [false];
         validation_check = validate_input(false);
         if(!validation_check[0]){
@@ -156,11 +184,10 @@ function validate_input(valid){
 
 function make_call() {  
     thisTool.find("#spinner").removeClass("hide"); 
-    thisTool.find('#errors').addClass("hide");
     thisTool.find("#calculate_button").text("Please Wait....");
     thisTool.find("#calculate_button").attr('disabled', '');
     disableAll();
-    
+
     if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in")){
 
         get_inputs_for_user_defined_calculation();
@@ -288,7 +315,7 @@ function make_ajax_call_user_defined_calculation() {
 
     if(local)
         url = "meanstorisk/test_data.json";
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -318,7 +345,7 @@ function make_ajax_call_standard_calculation() {
 
     if(local)
         url = "meanstorisk/test_data.json";
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -350,9 +377,9 @@ function make_excel_call_user_defined_calculation() {
         url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     disableAll();
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -385,9 +412,9 @@ function make_excel_call_standard_calculation() {
         url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
-    
+
     disableAll();
-    
+
     $.ajax({
         type: "POST",
         url: url,
@@ -414,7 +441,7 @@ function set_data_meanstorisk(dt) {
     set_values_table(dt);
     create_tabbed_table(dt);
     draw_graph();
-    
+
     thisTool.find("#download_button").removeClass("hide");
 }
 
@@ -612,7 +639,7 @@ function format_number(num) {
 
 function reset_meanstorisk(){
     thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
-    
+
     // close errors if showing
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");
