@@ -229,10 +229,6 @@ function randomDecimalValue() {
 }
 
 function addTestData() {
-    var exampleIndependent = [];
-    var exampleContour = [];
-    var exampleFixed = [];
-    var randInterator = Math.round(Math.random() * 10) + 1;
 
     thisTool.find("#independent_dropdown").val("specificity");
     thisTool.find("#contour_dropdown").val("prevalence");
@@ -240,22 +236,9 @@ function addTestData() {
 
     makeSelectionsUnique(functionnames, "independent_dropdown");
 
-    for(var i = 0; i != randInterator; i++) {
-        exampleIndependent.push(randomDecimalValue());
-        exampleContour.push(randomDecimalValue());
-        
-        var randVal = Math.round(Math.random() * 4) + 1;
-        
-        if(exampleFixed.indexOf(randVal) == -1) exampleFixed.push(randVal);
-    }
-    
-       
-       
-       
-
-        thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
-        thisTool.find("#contour").val("0.01, 0.05, 0.1");
-        thisTool.find("#fixed").val("1, 1.5, 2, 3");
+    thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
+    thisTool.find("#contour").val("0.01, 0.05, 0.1");
+    thisTool.find("#fixed").val("1, 1.5, 2, 3");
 
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
