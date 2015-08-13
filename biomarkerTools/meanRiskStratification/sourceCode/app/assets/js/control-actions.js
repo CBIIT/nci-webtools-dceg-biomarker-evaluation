@@ -331,9 +331,6 @@ function extract_values(valid) {
 
                 value_length.forEach(map_value_pairs);
             }
-            //else {
-            //    valid = true;
-            //}
         }
     } while (i != currentMarkers);
 

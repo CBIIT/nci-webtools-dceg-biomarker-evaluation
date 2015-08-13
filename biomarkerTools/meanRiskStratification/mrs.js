@@ -330,9 +330,7 @@ function extract_values(valid) {
 
                 value_length.forEach(map_value_pairs);
             }
-           
-           
-           
+        }
     } while (i != currentMarkers);
 
     valid = validate(values);
