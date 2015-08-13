@@ -19,9 +19,7 @@ function bind_control_events() {
     thisTool.self.find('a#test1,a#test2').on('click', test);
 
     thisTool.self.find('#reset').on('click', reset);
-	thisTool.addMarker = thisTool.self.find('#add-marker');
     thisTool.addMarker('#add-marker').on('click', new_marker);
-	thisTool.deleteMarker = thisTool.self.find('#delete-marker');
     thisTool.deleteMarker.on('click', delete_marker);
     thisTool.find('#calculate').on('click', calculate);
 
@@ -38,6 +36,8 @@ function bind_accordion_action(el) {
 }
 
 function controls_visibility(numElements) {
+	thisTool.addMarker = thisTool.self.find('#add-marker');
+	thisTool.deleteMarker = thisTool.self.find('#delete-marker');
     // controls the visibility of the add/remove marker buttons
     if (numElements == 2) {
         thisTool.deleteMarker.show();
