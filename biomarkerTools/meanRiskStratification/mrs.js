@@ -1,8 +1,10 @@
 
 
 var currentMarkers = 1;
+var thisTool = {};
 
 $(document).ready(function () {
+	thisTool.self = $('#meanRiskStratification')
     $(".loader,#results,#errors, .bm_1, .bm_2, .bm_3").hide();
     controls_visibility(currentMarkers);
     bind_control_events();
@@ -12,16 +14,18 @@ $(document).ready(function () {
 });
 
 function bind_control_events() {
-    $("#errors").alert();
+    thisTool.self.find("#errors").alert();
    
-    $('a#test1,a#test2').on('click', test);
+    thisTool.self.find('a#test1,a#test2').on('click', test);
 
-    $('#reset').on('click', reset);
-    $('#add-marker').on('click', new_marker);
-    $('#delete-marker').on('click', delete_marker);
-    $('#calculate').on('click', calculate);
+    thisTool.self.find('#reset').on('click', reset);
+	thisTool.addMarker = thisTool.self.find('#add-marker');
+    thisTool.addMarker('#add-marker').on('click', new_marker);
+	thisTool.deleteMarker = thisTool.self.find('#delete-marker');
+    thisTool.deleteMarker.on('click', delete_marker);
+    thisTool.find('#calculate').on('click', calculate);
 
-    bind_accordion_action($('#markers').children().first());
+    bind_accordion_action(thisTool.find('#markers').children().first());
 }
 
 function bind_accordion_action(el) {
@@ -35,16 +39,16 @@ function bind_accordion_action(el) {
 function controls_visibility(numElements) {
    
     if (numElements == 2) {
-        $('#delete-marker').show();
-        $('#add-marker').show();
+        thisTool.deleteMarker.show();
+        thisTool.addMarker.show();
     }
     if (numElements > 2) {
-        $('#delete-marker').show();
-        $('#add-marker').hide();
+        thisTool.deleteMarker.show();
+        thisTool.addMarker.hide();
     }
     if (numElements < 2) {
-        $('#delete-marker').hide();
-        $('#add-marker').show();
+        thisTool.deleteMarker.hide();
+        thisTool.addMarker.show();
     }
 }
 
