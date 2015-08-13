@@ -224,10 +224,6 @@ function checkInputs(ind, el){
 
 }
 
-function randomDecimalValue() {
-    return Math.floor((Math.random() * 100) +1)/ 100;
-}
-
 function addTestData() {
 
     thisTool.find("#independent_dropdown").val("specificity");
