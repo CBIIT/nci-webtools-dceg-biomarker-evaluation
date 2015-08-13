@@ -81,6 +81,7 @@ function prepare_upload (e) {
                         display_errors([ " 2 columns of data expected in CSV file. Found " + numberOfCols + " columns." ]);
                     }
                     else {
+                        valuesFromFile = [];
                         for (var count = 0; count < lines.length;count++) {
                             var arr = lines[count].split(",");
                             if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
@@ -106,6 +107,7 @@ function prepare_upload (e) {
                                     numberOfCols + " columns." ]);
                 }
                 else {
+                    valuesFromFile = []; // remove previous values
                     for (count = 0; count < lines.length;count++) {
                         var arr = lines[count].split(",");
                         if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
