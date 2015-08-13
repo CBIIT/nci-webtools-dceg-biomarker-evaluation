@@ -2,7 +2,6 @@
 from flask import Flask, render_template, Response, abort, request, make_response, url_for, jsonify
 from functools import wraps
 from flask import current_app
-
 import rpy2.robjects as robjects
 from rpy2.robjects import r
 import cgi
@@ -19,6 +18,8 @@ import urllib
 
 app = Flask(__name__, static_folder='', static_url_path='/')
 #app = Flask(__name__, static_folder='static', static_url_path='/static')
+
+r_getname_getData = robjects.globalenv['BC']['getDataJSON']
 
 @app.route('/')
 def index():
@@ -40,26 +41,15 @@ def jsonp(func):
             return func(*args, **kwargs)
     return decorated_function
 
-
-def setRWorkingDirectory():
-    sourceReturn1 = robjects.r("path")
-    return ""
-
 @app.route('/bcRest/', methods = ['GET','POST'])
 @jsonp
 def call_bc_RFunction():
     rSource = robjects.r('source')
-    os.chdir('bc')
-    rSource('BiomarkerComparisonWrapper.R')
-    os.chdir('..')
-    r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
     jsondata = r_getname_getData(thestream)
     print "json string >> "+str(jsondata[0]);
     return jsondata[0]
-    
-
 
 import argparse
 if __name__ == '__main__':

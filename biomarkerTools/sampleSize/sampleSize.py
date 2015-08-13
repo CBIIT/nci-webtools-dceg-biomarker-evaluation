@@ -6,18 +6,15 @@ import re
 import time
 import json
 from flask import Flask, render_template, request, jsonify
+import rpy2.robjects as robjects
 from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 from rpy2.robjects.vectors import IntVector, FloatVector
 from socket import gethostname
 
-os.chdir('sampleSize')
-with open ('sampleSizeWrapper.R') as fh:
-        rcode = os.linesep.join(fh.readlines())
-        wrapper = SignatureTranslatedAnonymousPackage(rcode,"wrapper")
-os.chdir('..')
-
 # Initialize the Flask application
 app = Flask(__name__)
+
+r_saveAllSensGraphs = robjects.globalenv['SS']['saveAllSensGraphs']
 
 @app.route('/')
 def index():
@@ -43,18 +40,9 @@ def sampleSizeRest():
     print "Starting Benchmark"
     
     if fixed_flag == "Specificity":
-    	jsonrtn = (wrapper.saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    	jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
     else:
-        jsonrtn = (wrapper.saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-
-    #    if fixed_flag == "Specificity":
-    #    	jsonrtn = (wrapper.saveAllSensGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-    #    else:
-    #        jsonrtn = (wrapper.saveAllSpecGraphs(IntVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-
-    #end=time.time()
-    #print "Seconds"
-    #print end - start
+        jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
 
     jsonlist=list(jsonrtn)
 
@@ -62,21 +50,6 @@ def sampleSizeRest():
     jsonstring=''.join(jsonlist)
     print jsonstring
     return jsonstring 
-    
-
-    #1print "--------------------------------------------------"
-    #1print json.dumps(jsonlist)
-    #1print "--------------------------------------------------"
-
-    #1renderjson = json.dumps(jsonlist)
-    #1return renderjson
- 
-#TEST DATA
-    #with open ("testjson3.txt", "r") as myfile:
-    #	testjson=myfile.read().replace('\n', '')
-
-    #return testjson
-
 
 import argparse
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 library('RJSONIO')
 library('stringr')
-source ('./RiskFromROC.R')
-source ('./writeToExcel.R')
+source ('./RiskFromROC.R',local=environment())
+source ('./writeToExcel.R',local=environment())
 
 imageDirectory <- "./tmp/";
 

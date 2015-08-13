@@ -1,6 +1,6 @@
 library('RJSONIO')
 library('stringr')
-source ('riskStratAdvancedOptionWrapper.R')
+source ('riskStratAdvancedOptionWrapper.R', local=RSA)
 
 rdirectory <- "";
 drawfunctionprefix = "Draw"

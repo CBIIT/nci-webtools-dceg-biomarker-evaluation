@@ -20,6 +20,8 @@ import urllib
 app = Flask(__name__, static_folder='', static_url_path='/')
 #app = Flask(__name__, static_folder='static', static_url_path='/static')
 
+r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
+
 @app.route('/')
 def index():
     return render_template('../index.html')
@@ -39,19 +41,9 @@ def jsonp(func):
             return func(*args, **kwargs)
     return decorated_function
 
-
-def setRWorkingDirectory():
-    sourceReturn1 = robjects.r("path")
-    return ""
-
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
 @jsonp
 def call_rsa_RFunction():
-    rSource = robjects.r('source')
-    os.chdir('riskStratAdvanced')
-    rSource('input.R')
-    os.chdir('..')
-    r_getname_getData = robjects.globalenv['getDataJSON']
     thestream=request.stream.read();
     print " input stream "+str(thestream);
     jsondata = r_getname_getData(thestream)

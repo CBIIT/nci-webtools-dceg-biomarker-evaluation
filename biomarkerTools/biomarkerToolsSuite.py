@@ -1,16 +1,18 @@
-from meanstorisk.meanstorisk import *
+import rpy2.robjects as robjects
+
+robjects.r('''source('biomarkerToolsSuite.R')''')
+
 from bc.bc import *
-from sampleSize.sampleSize import *
-from riskStratAdvanced.riskStratAdvanced import *
 from meanRiskStratification.mrs import *
+from meanstorisk.meanstorisk import *
+from riskStratAdvanced.riskStratAdvanced import *
+from sampleSize.sampleSize import *
 
 from flask import Flask, url_for
 app = Flask(__name__, static_folder='', static_url_path='/')
 
-
 @app.route('/')
 @app.route('/biomarkerToolsRest')
-
 def index():
     return render_template('index.html')
 

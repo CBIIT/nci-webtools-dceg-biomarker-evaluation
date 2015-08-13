@@ -1,6 +1,6 @@
 library('RJSONIO')
 library('stringr')
-source ('./BiomarkerComparison.R')
+source ('./BiomarkerComparison.R',local=environment())
 
 imageDirectory="./tmp/"  
 #######

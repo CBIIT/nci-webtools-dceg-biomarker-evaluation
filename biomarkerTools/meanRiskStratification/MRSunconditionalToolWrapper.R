@@ -1,5 +1,5 @@
 library('RJSONIO')
-source('./MRSunconditionalTool.R')
+source('./MRSunconditionalTool.R', local=environment())
 
 imageDirectory = "./tmp"
 
