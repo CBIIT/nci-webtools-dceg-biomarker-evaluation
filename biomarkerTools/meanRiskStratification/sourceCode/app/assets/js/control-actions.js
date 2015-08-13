@@ -268,6 +268,37 @@ function extract_values(valid) {
 
     // find biomarkers with values first, use currentMarkers for iteration
     i = 0;
+	var reset_selects = function (element) {
+            // don't add empty values to object
+            if (element.value.length > 0) {
+                values["bm_" + i].option = 1;
+                values["bm_" + i][element.name] = element.value;
+            }
+        };
+	var filter_pairs = function (obj) {
+			// filter each pair into separate arrays
+			if (obj.name == "param_1" && obj.value.length > 0) {
+				param_1.push(obj);
+			}
+			if (obj.name == "param_2" && obj.value.length > 0) {
+				param_2.push(obj);
+			}
+			if (obj.name == "param_3" && obj.value.length > 0) {
+				param_3.push(obj);
+			}
+			if (obj.name == "sampsize" && obj.value.length > 0) {
+				param_4.push(obj);
+			}
+		};
+	var map_value_pairs = function (el) {
+			if (el > 0) {
+				valid = false;
+				// manually mapping each value pair
+				joinObjects(values["bm_" + i], param_1[0], param_1[1]);
+				joinObjects(values["bm_" + i], param_2[0], param_2[1]);
+				joinObjects(values["bm_" + i], param_3[0], param_3[1]);
+			}
+		};
     do {
         i++;
 
@@ -278,13 +309,7 @@ function extract_values(valid) {
         var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
         var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray(); // option 2
 
-        option_1_controls.forEach(function (element) {
-            // don't add empty values to object
-            if (element.value.length > 0) {
-                values["bm_" + i].option = 1;
-                values["bm_" + i][element.name] = element.value;
-            }
-        });
+        option_1_controls.forEach(reset_selects);
 
         // check option variable
         if (!values["bm_" + i].option) {
@@ -297,37 +322,14 @@ function extract_values(valid) {
             var param_3 = [];
             var param_4 = [];
 
-            option_2_controls.filter(function (obj) {
-                // filter each pair into separate arrays
-                if (obj.name == "param_1" && obj.value.length > 0) {
-                    param_1.push(obj);
-                }
-                if (obj.name == "param_2" && obj.value.length > 0) {
-                    param_2.push(obj);
-                }
-                if (obj.name == "param_3" && obj.value.length > 0) {
-                    param_3.push(obj);
-                }
-                if (obj.name == "sampsize" && obj.value.length > 0) {
-                    param_4.push(obj);
-                }
-
-            });
+            option_2_controls.filter(filter_pairs);
             if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
                 // sample size
                 values["bm_" + i][param_4[0].name] = param_4[0].value;
 
                 var value_length = [param_1[1].value.length, param_2[1].value.length, param_3[1].value.length];
 
-                value_length.forEach(function (el) {
-                    if (el > 0) {
-                        valid = false;
-                        // manually mapping each value pair
-                        joinObjects(values["bm_" + i], param_1[0], param_1[1]);
-                        joinObjects(values["bm_" + i], param_2[0], param_2[1]);
-                        joinObjects(values["bm_" + i], param_3[0], param_3[1]);
-                    }
-                });
+                value_length.forEach(map_value_pairs);
             }
             //else {
             //    valid = true;

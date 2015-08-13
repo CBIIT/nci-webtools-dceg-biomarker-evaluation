@@ -21,12 +21,12 @@ function validate(values) {
         valid = invalidElements[i].valid;
         var validityObj = invalidElements[i].validity;
         if (validityObj.badInput) {
-            text = "The value you entered contains an invalid character. "
-                + invalidElements[i].validationMessage;
+            text = "The value you entered contains an invalid character. " +
+			  invalidElements[i].validationMessage;
         }
         if (validityObj.patternMismatch) {
-            text = "The value you entered '" + invalidElements[i].value + "' contains an invalid character. "
-                + invalidElements[i].validationMessage;
+            text = "The value you entered '" + invalidElements[i].value + "' contains an invalid character. " +
+			  invalidElements[i].validationMessage;
         }
         if (validityObj.rangeOverflow || validityObj.rangeUnderflow) {
             if (invalidElements[i].min && invalidElements[i].max) {
