@@ -419,18 +419,8 @@ body #contentTabs #riskStratAdvanced a#add-test-data :hover {
 body #contentTabs #riskStratAdvanced .table-title {
   word-wrap: normal;
   font-weight: bold;
-  padding: 5 5 5 5px;
-  margin: 10px;
   text-align: center;
   background-color: #f8fafa;
-}
-body #contentTabs #riskStratAdvanced .table-side {
-  float: left;
-  width: 450px;
-}
-body #contentTabs #riskStratAdvanced .graphic-side {
-  float: right;
-  width: 410px;
 }
 body #contentTabs #riskStratAdvanced #inputdata {
   width: 500px;
@@ -451,14 +441,7 @@ body #contentTabs #riskStratAdvanced #status-bar {
   width: 100%;
   visibility: hidden;
 }
-body #contentTabs #riskStratAdvanced #tabs {
-  width: 994px;
-}
-body #contentTabs #riskStratAdvanced #tabs .tab-pane {
-  width: 950px;
-  height: 950px;
-}
-body #contentTabs #riskStratAdvanced #tabs .tab-pane .header {
+body #contentTabs #riskStratAdvanced #tabs .header {
   background-color: #aaa;
   color: #444;
 }

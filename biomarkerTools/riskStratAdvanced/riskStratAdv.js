@@ -223,16 +223,40 @@ function checkInputs(ind, el){
     console.log(ind);
 
 }
+
+function randomDecimalValue() {
+    return Math.floor((Math.random() * 100) +1)/ 100;
+}
+
 function addTestData() {
+    var exampleIndependent = [];
+    var exampleContour = [];
+    var exampleFixed = [];
+    var randInterator = Math.round(Math.random() * 10) + 1;
 
     thisTool.find("#independent_dropdown").val("specificity");
     thisTool.find("#contour_dropdown").val("prevalence");
     thisTool.find("#fixed_dropdown").val("delta");
 
     makeSelectionsUnique(functionnames, "independent_dropdown");
-    thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
-    thisTool.find("#contour").val("0.01, 0.05, 0.1");
-    thisTool.find("#fixed").val("1, 1.5, 2, 3");
+
+    for(var i = 0; i != randInterator; i++) {
+        exampleIndependent.push(randomDecimalValue());
+        exampleContour.push(randomDecimalValue());
+        
+        var randVal = Math.round(Math.random() * 4) + 1;
+        
+        if(exampleFixed.indexOf(randVal) == -1) exampleFixed.push(randVal);
+    }
+    
+       
+       
+       
+
+        thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
+        thisTool.find("#contour").val("0.01, 0.05, 0.1");
+        thisTool.find("#fixed").val("1, 1.5, 2, 3");
+
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
 }
@@ -475,11 +499,6 @@ function calculate_riskStrat() {
         checkInput.push($(this)[0].checkValidity());
     });
 
-
-   
-   
-   
-
     thisTool.find("#output").empty();
 
     if ($.inArray(false, checkInput) >= 0) {
@@ -566,8 +585,8 @@ function calculate_riskStrat() {
         tabs.append(tab_names);
 
         for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  style='padding:3px;' href='#fixed-" + (i + 1) +
-                             "'>" + fixed_dropdown + "<br>&nbsp&nbsp&nbsp "+ fixedArraySplit[i] +
+            tab_names.append("<LI><a  class='extra-padding' href='#fixed-" + (i + 1) +
+                             "'>" + fixed_dropdown + " "+ fixedArraySplit[i] +
                              "</a></LI>");
             tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)+ 
                          "' >  </div>");
@@ -578,18 +597,18 @@ function calculate_riskStrat() {
                 $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
                   keyvalueShort[key] + (i + 1)).empty();
 
-                table_graph_div = $("<div class='set-" + 
+                table_graph_div = $("<div class='row set-" + 
                                     keyvalueShort[key] + 
                                     (i + 1) + 
-                                    "' style='width: 950px; float: left; clear:left;'><p></p></div>");
+                                    "' class='pull-left'></div>");
                 tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'><div style='clear:right;padding-top:10px;'> </div></div>");
+                graphic_side = ("<div class='graphic-side pull-right' id='graphic-" + 
+                                keyvalueShort[key] + (i + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
                 table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side' id='table-" + 
+                table_side = $("<div class='table-side col-md-6 pull-left' id='table-" + 
                                keyvalueShort[key] + (i + 1) + 
-                               "'><br><div class='table-title'>" + keyvalueLong[key] + 
-                               "</div></div><br><br>");
+                               "'><div class='table-title extra-padding'>" + keyvalueLong[key] + 
+                               "</div></div>");
                 table_graph_div.append(table_side);
             }
         }
@@ -809,12 +828,12 @@ function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
 
     if(!local){
         imageContainer.append(
-            "<img style='height: 400px; text-align: right;' class='center pull-right' src='tmp/" + 
+            "<img class='img-responsive' src='tmp/" + 
             graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
     }
     else {
         imageContainer.append(
-            "<img style='height: 400px; text-align: right;' class='center pull-right' src='images/exampleLRPlot.jpg' alt='output image'>");
+            "<img class='img-responsive' src='images/exampleLRPlot.jpg' alt='output image'>");
     }
 }
 
