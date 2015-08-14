@@ -19,11 +19,11 @@ function bind_control_events() {
     thisTool.self.find('a#test1,a#test2').on('click', test);
 
     thisTool.self.find('#reset').on('click', reset);
-    thisTool.addMarker('#add-marker').on('click', new_marker);
+    thisTool.addMarker.on('click', new_marker);
     thisTool.deleteMarker.on('click', delete_marker);
-    thisTool.find('#calculate').on('click', calculate);
+    thisTool.self.find('#calculate').on('click', calculate);
 
-    bind_accordion_action(thisTool.find('#markers').children().first());
+    bind_accordion_action(thisTool.self.find('#markers').children().first());
 }
 
 function bind_accordion_action(el) {
@@ -130,7 +130,7 @@ function calculate() {
             // call json file instead of service
             service = 'output_example.json';
         } else {
-            service = "http://" + host + "/mrsRest/";
+            service = "http://" + host + "/biomarkerToolsRest/meanRiskStratification/";
         }
 
         var to_value = 10 * 1000; //ten seconds
@@ -272,13 +272,18 @@ function extract_values(valid) {
 
     // find biomarkers with values first, use currentMarkers for iteration
     i = 0;
-	var reset_selects = function (element) {
+	var eliminate_empties = function (index, element) {
             // don't add empty values to object
             if (element.value.length > 0) {
                 values["bm_" + i].option = 1;
                 values["bm_" + i][element.name] = element.value;
             }
         };
+
+    var param_1 = [];
+    var param_2 = [];
+    var param_3 = [];
+    var param_4 = [];
 	var filter_pairs = function (obj) {
 			// filter each pair into separate arrays
 			if (obj.name == "param_1" && obj.value.length > 0) {
@@ -307,11 +312,10 @@ function extract_values(valid) {
         i++;
 
         values["bm_" + i] = {};
-        var thisMarker = $('.marker-' + i);
+        var thisMarker = thisTool.self.find('.marker-' + i);
 
         // inside this marker find inputs by group
-        var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
-        var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray(); // option 2
+        var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').each(eliminate_empties); // option 1
 
         option_1_controls.forEach(reset_selects);
 
@@ -321,12 +325,12 @@ function extract_values(valid) {
             // apply option flag
             values["bm_" + i].option = 2;
 
-            var param_1 = [];
-            var param_2 = [];
-            var param_3 = [];
-            var param_4 = [];
+			param_1 = [];
+			param_2 = [];
+			param_3 = [];
+			param_4 = [];
 
-            option_2_controls.filter(filter_pairs);
+			thisMarker.find('#marker-' + i + '-option-2 .input').each(filter_pairs); // option 2
             if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
                 // sample size
                 values["bm_" + i][param_4[0].name] = param_4[0].value;
