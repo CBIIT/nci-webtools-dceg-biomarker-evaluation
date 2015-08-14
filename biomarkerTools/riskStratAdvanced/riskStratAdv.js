@@ -571,7 +571,7 @@ function calculate_riskStrat() {
                          "' >  </div>");
             tabs.append(tab_pane);
 
-            for ( var key in keyvalueShort) {
+            for ( key in keyvalueShort) {
 
                 $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
                   keyvalueShort[key] + (i + 1)).empty();
@@ -735,7 +735,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         }
 
         var headings = [];
-        for (var i = 0; i < columnHeadings.length; i++) {
+        for ( i = 0; i < columnHeadings.length; i++) {
             headings.push({
                 "sTitle" : columnHeadings[i]
             });
@@ -761,7 +761,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
        
         thisTool.find("#" + tableId + " tr:first").prepend(
             "<th class='ui-state-default' colspan='2'></th>");
-        var i = 0;
+        i = 0;
         thisTool.find("#" + tableId + " tr:not(:first)").each(
             function() {
                 $(this).prepend(
@@ -790,7 +790,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
 }
 
 function getColumnHeaderData(columnHeadings) {
-    var columnHeaderData2d = new Array();
+    var columnHeaderData2d = [];
     for ( var key in columnHeadings) {
         var tempObject = {};
         tempObject.mDataProp = columnHeadings[key];
