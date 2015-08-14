@@ -395,8 +395,8 @@ function reset_mrs() {
     var markerChildren = thisTool.find('#markers').children();
 
     // reset drop downs then, text boxes, hide results, then clear the cells
-    thisTool.find('select').find('option:first').attr('selected', 'selected');
-    thisTool.find('input').val('');
+    markerChildren.find('select').find('option:first').attr('selected', 'selected');
+    markerChildren.find('input').val('');
 
     // clear all output cells
     thisTool.find('.output').text('');
@@ -618,15 +618,11 @@ var values_option_2_bm = [{
         "sampsize": 30371
     }];
 function setup_test() {
-    $.when(reset_markers).done(function () {
-        if ($('#markers').children().length != 1) {
-            reset_markers();
-        }
+	reset_mrs();
 
-        // add 2 biomarkers
-        new_marker();
-        new_marker();
-    });
+	// add 2 biomarkers
+	new_marker();
+	new_marker();
 }
 
 function test(e) {
