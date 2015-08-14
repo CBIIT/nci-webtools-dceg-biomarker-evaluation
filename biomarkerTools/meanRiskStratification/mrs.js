@@ -599,21 +599,21 @@ var values_option_1_bm = [
 var values_option_2_bm = [{
     "markerName": "HPV",
     "ppv": 0.0914,
-    "npv": 0.95,
+    "npv": 0.9995,
     "prob_m": 0.1696,
     "sampsize": 30371
 },
     {
         "markerName": "Pap",
-        "ppv": 0.0842,
-        "npv": 0.9,
+        "ppv": 0.0941,
+        "npv": 0.9990,
         "prob_m": 0.163,
         "sampsize": 30371
     },
     {
         "markerName": "VIA",
         "ppv": 0.0834,
-        "npv": 0.17,
+        "npv": 0.9917,
         "prob_m": 0.1066,
         "sampsize": 30371
     }];
