@@ -15,7 +15,7 @@ from socket import gethostname
 app = Flask(__name__)
 
 r_saveAllSensGraphs = robjects.globalenv['SS']['saveAllSensGraphs']
-
+r_saveAllSpecGraphs = robjects.globalenv['SS']['saveAllSpecGraphs']
 @app.route('/')
 def index():
     # Render template
