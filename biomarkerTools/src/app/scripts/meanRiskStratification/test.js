@@ -12,25 +12,26 @@ var values_option_2_bm = [{
     "sampsize": 30371
 },
 {
-    "markerName": "Pap",
-    "ppv": 0.0941,
-    "npv": 0.999,
-    "prob_m": 0.163,
-    "sampsize": 30371
+  "markerName": "Pap",
+  "ppv": 0.0941,
+  "npv": 0.9990,
+  "prob_m": 0.163,
+  "sampsize": 30371
 },
 {
-    "markerName": "VIA",
-    "ppv": 0.0834,
-    "npv": 0.9917,
-    "prob_m": 0.1066,
-    "sampsize": 30371
+  "markerName": "VIA",
+  "ppv": 0.0834,
+  "npv": 0.9917,
+  "prob_m": 0.1066,
+  "sampsize": 30371
 }];
-function setup_test() {
-	reset_mrs();
 
-	// add 2 biomarkers
-	new_marker();
-	new_marker();
+function setup_test() {
+    reset_mrs();
+
+    // add 2 biomarkers
+    new_marker();
+    new_marker();
 }
 
 function test(e) {
@@ -42,7 +43,7 @@ function test(e) {
     thisTool.find('#markers').children().each(function (key, markerElement) {
         var id = $(this).find('.collapse.in').prop('id');
         var index = key + 1; // biomarker ids are not zero based
-        
+
         if (choice == "test1") {
             // open option 1 for each
             thisTool.find('#marker-' + index + '-option-1').collapse('show');
