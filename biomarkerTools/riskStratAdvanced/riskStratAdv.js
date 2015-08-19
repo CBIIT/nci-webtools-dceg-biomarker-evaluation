@@ -219,10 +219,6 @@ $(document).ready(function(){
    
    
 });
-function checkInputs(ind, el){
-    console.log(ind);
-
-}
 
 function addTestData() {
 
@@ -527,8 +523,6 @@ function calculate_riskStrat() {
     uniqueKey = (new Date()).getTime();
 
     var tabkey = [ "Prevalence_Odds_Length" ];
-   
-   
     var titlekeys = [
         "Sensitivity required to achieve specified PPV given prevalence and specificity",
         "Delta required to achieve specified PPV given prevalence and specificity" ];
@@ -553,11 +547,10 @@ function calculate_riskStrat() {
         tableFirstColLabel = selectedContourValue;
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
-        thisTool.find("#output").addClass("hide");
-        thisTool.find("#output").empty();
+        
+        thisTool.find("#output").addClass("hide").empty();
 
        
-
         tabs = $("<div id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
@@ -679,34 +672,28 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         url : service,
         data : data,
         dataType : "json",
-        contentType: 'application/json',
-        success: function(data){
-            JSON.parse(JSON.stringify(data));
-        },
-        error:function(request, status, error) {
-            handleError(error, status, request);
-        }
+        contentType: 'application/json'
     }).done(function(data) {
-        fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-        loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
-        after_requests();
+        if (data.length > 0){
+            data = JSON.parse(JSON.stringify(data));
+            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
+            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
+        }
+        else {
+            display_errors("No data to display for tab " + tabnumber);
+        }
         return data;
+    }).fail(function(request, status, error){
+        default_ajax_error(request, status, error);
+        thisTool.find("#tabs").addClass("hide").empty().html("");
+    }).always(function(){
+        if($.active <= 1) after_requests();
     });
-}
-
-function handleError(error, status, request) {
-    display_errors([error, request.responseText]);
-    if (typeof console == "object") {
-        console.info("Server AJAX Return Error");
-        console.info("Type: " + error);
-        console.info("Status: " + status);
-        console.info("request object:");
-    }
 }
 
 function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableId = "example-" + abbreviatedKey + tabnumber;
-    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #"+tableId).html("");
+    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
 
     if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
         thisTool.find('#'+tableId).dataTable().fnDestroy();
