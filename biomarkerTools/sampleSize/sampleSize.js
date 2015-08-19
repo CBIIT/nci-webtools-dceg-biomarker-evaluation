@@ -91,7 +91,7 @@ thisTool.find('.post').click(function(){
                 generate_tables(ret);
                 random_gen();
             },
-                         function(jqXHR, textStatus, errorThrown) {
+                    function(jqXHR, textStatus, errorThrown) {
                 console.log("header: " + jqXHR + "\n" + "Status: " + textStatus + "\n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
 
                 var message = 'Service Unavailable: ' + textStatus + "<br>";
@@ -118,7 +118,7 @@ thisTool.find('.post').click(function(){
 thisTool.find('.reset').click(function(){
     thisTool.find('input').val("");
     thisTool.find("#output_graph").empty();
-    thisTool.find("#message, #errors").addClass("hide");
+    thisTool.find("#errors").addClass("hide");
 });
 
 thisTool.find("#add-test-data").click(function() {
@@ -132,6 +132,27 @@ thisTool.find("#contour").keyup(function(){
 thisTool.find("#fixed").keyup(function(){
     change_hidden('fixed');
 });
+
+thisTool.find("#minInput, #maxInput").on('change', function() {
+    var thisVal = this.value;
+    var compareVal;
+
+    if(this.id == "minInput") {
+        compareVal = thisTool.find("#maxInput").val();
+    }
+    else {
+        compareVal = thisTool.find("#minInput").val();
+    }
+
+    if((thisVal.length + compareVal.length >= 2) && thisVal == compareVal) {
+        display_errors("Min Value and Max Value of k cannot be equal");
+    }
+    else {
+        thisTool.find("#errors").empty().addClass("hide");
+    }
+});
+
+thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
     for(var i in jsonrtn) {
@@ -207,27 +228,31 @@ function change_ff(){
 }
 
 function lock_fixed_options(){
-    var contour = thisTool.find("#contour_dropdown option:selected").text();
-    thisTool.find("#fixed_dropdown").empty();
-    if (contour === "Specificity"){
-        thisTool.find("#fixed_dropdown").append('<option value="specificity" disabled="disabled">Specificity</a>');
-        thisTool.find("#fixed_dropdown").append('<option value="sensitivity" selected>Sensitivity</a>');
-        thisTool.find("#specificity_val").text(thisTool.find("#contour").val());
-        thisTool.find("#sensitivity_val").text(thisTool.find("#fixed").val());
+    var contour = thisTool.find("#" + this.id + " option:selected").text();
+
+    if(contour.length > 0){
+        if (contour == "Specificity"){
+            thisTool.find("#fixed_dropdown option:not([value='sensitivity'])").removeAttr("disabled").removeAttr("selected").prop("disabled",true);
+            thisTool.find("#fixed_dropdown option[value='sensitivity']").removeAttr("disabled").prop("selected", true).prop("disabled",true);
+            thisTool.find("#specificity_val").text(thisTool.find("#contour").val());
+            thisTool.find("#sensitivity_val").text(thisTool.find("#fixed").val());
+        }
+        else if (contour == "Sensitivity"){
+            thisTool.find("#fixed_dropdown option:not([value='specificity'])").removeAttr("disabled").removeAttr("selected").prop("disabled",true);
+            thisTool.find("#fixed_dropdown option[value='specificity']").removeAttr("disabled").prop("selected", true).prop("disabled",true);
+            thisTool.find("#sensitivity_val").text(thisTool.find("#contour").val());
+            thisTool.find("#specificity_val").text(thisTool.find("#fixed").val());
+        }
     }
-    if (contour === "Sensitivity"){
-        thisTool.find("#fixed_dropdown").append('<option value="specificity" selected>Specificity</a>');
-        thisTool.find("#fixed_dropdown").append('<option value="sensitivity" disabled="disabled">Sensitivity</a>');
-        thisTool.find("#sensitivity_val").text(thisTool.find("#contour").val());
-        thisTool.find("#specificity_val").text(thisTool.find("#fixed").val());
+    else {
+        thisTool.find("#fixed_dropdown option").removeAttr("selected");
+        thisTool.find("#fixed_dropdown").val(" ");
     }
+
     change_ff();
 }
 
-
-
-
-function change_hidden(callingbox){
+function change_hidden(callingbox) {
     if (((callingbox == "contour")) && (thisTool.find("#contour_dropdown option:selected").text() == "Specificity")) {   
         thisTool.find("#specificity_val").text(trim_spaces(thisTool.find("#contour").val()));
     }else if (((callingbox == "contour")) && (thisTool.find("#contour_dropdown option:selected").text() == "Sensitivity")){
@@ -241,12 +266,11 @@ function change_hidden(callingbox){
     }
 }
 
-function trim_spaces(varstring){
+function trim_spaces(varstring) {
     return varstring.replace(/\s/g, '');	
 }
 
 function example_code(){
-    thisTool.find("#message").addClass("hide");
     thisTool.find("#minInput").val("0");
     thisTool.find("#maxInput").val("1");
     thisTool.find("#contour").val("0.8,0.9,0.95,0.995");
@@ -262,17 +286,16 @@ function example_code(){
 }
 
 function reset_code(){
-    thisTool.find("#contour,#contour_dropdown,#fixed,#fixed_dropdown,#fixed_flag").val("");
+    thisTool.find("#contour_dropdown option:first, #fixed_dropdown option:first").attr("selected");
+    thisTool.find("#contour,#fixed,#fixed_flag").val("");
     thisTool.find("#prevalence").val(0.001);
     thisTool.find("#n_value").val("1");
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
-    thisTool.find("#output_graph,#message,#message-content").empty();
-    thisTool.find("#spinner, #message, #error").addClass("hide");
+    thisTool.find("#output_graph").empty();
+    thisTool.find("#spinner, #error").addClass("hide");
     thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
-
-
 
 function random_gen(){
     var randomno = Math.floor((Math.random() * 1000) + 1);
