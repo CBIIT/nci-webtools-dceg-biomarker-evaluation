@@ -17,10 +17,10 @@
                 | &nbsp; User Defined Distribution (from file)
             #file_upload.panel-body.collapse.in              
                 p.indent
-                    b.data_entry_by_file Upload a raw case and control biomarker data file in csv format 
-                        a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
-                p.indent    
-                    label(for='input_file_upload')
+                    label.data_entry_by_file(for='input_file_upload')
+                        b Upload a raw case and control biomarker data file in csv format 
+                            a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
+                p.indent
                       input#input_file_upload.data_entry_by_file(type='file')
             .panel-heading(data-toggle="collapse", data-target="#cases_control")
                 .glyphicon.glyphicon-chevron-down
@@ -38,38 +38,39 @@
                             b Controls
                     .row.table_data
                         .col-md-5.text-right.table_data
-                            b Mean
-                        .pull-left.table_data
                             label(for='mean_cases_input')
+                                b Mean
+                        .pull-left.table_data
                             input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
                         .pull-left.table_data
-                            label(for='mean_controls_input')
+                            label.sr-only(for='mean_controls_input') 
+                                b Mean Controls
                             input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
                     .row.table_data
                         .col-md-5.text-right.table_data
-                            b Standard Error
-                        .pull-left.table_data
                             label(for='stderr_cases_input')
+                                b Standard Error
+                        .pull-left.table_data
                             input#stderr_cases_input.data_entry_by_input(type='text', value='0.1', size='4')
                         .pull-left.table_data
-                            label(for='stderr_controls_input')
+                            label.sr-only(for='stderr_controls_input') 
+                                b Standard Error Controls
                             input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
                     .row.table_data
                         .col-md-5.text-right.table_data
-                            b N
-                        .pull-left.table_data
                             label(for='N_cases_input')
+                                b N
+                        .pull-left.table_data
                             input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
                         .pull-left.table_data
-                            label(for='N_controls_input')
+                            label.sr-only(for='N_controls_input') 
+                                b N Controls
                             input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
             .panel-footer
-                #Spec.define(data-term='Spec') Specificity:
-                label(for='specificity')
-                  input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
-                #DP.define(data-term='DP') Prevalence:
-                label(for='prevalence')
-                  input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
+                label#Spec.define(for='specificity',data-term='Spec') Specificity:
+                input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
+                label#DP.define(data-term='DP', for='prevalence') Prevalence:
+                input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
           button#calculate_button(type='button') Calculate
           button#reset(type='reset') Reset
           button#download_button.hide(type='button') Download Excel File

@@ -751,7 +751,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         });
         // add a first column as independent values
         thisTool.find("#" + tableId + " tr:first").prepend(
-            "<th class='ui-state-default' colspan='2'></th>");
+            "<td class='ui-state-default' colspan='2'></td>");
         i = 0;
         thisTool.find("#" + tableId + " tr:not(:first)").each(
             function() {
@@ -769,7 +769,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
 
         // add a column heading for contour type
         thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" + 
+            "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
             tableFirstColLabel + "</th></tr>");
     } else {
         if (graphErrorValue != 1) {

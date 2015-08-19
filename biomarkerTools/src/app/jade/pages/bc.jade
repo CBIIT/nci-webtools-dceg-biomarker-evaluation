@@ -65,14 +65,14 @@
               .row.reference_row(row='0')
                 .col-md-1 1
                 .col-md-3.reference(row='0', col='reference')
-                  img(src='/common/images/checkbox.png', height='18', width='18', alt='check')
+                  img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
                 .col-md-3.input.sensitivity(row='0', col='sensitivity') 0.8
                 .col-md-2.input.specificity(row='0', col='specificity') 0.7
                 .col-md-3  
               .row(row='1')
                 .col-md-1 2
                 .col-md-3.reference(row='1', col='reference')
-                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
+                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
                 .col-md-3.input.sensitivity(row='1', col='sensitivity') 0.85
                 .col-md-2.input.specificity(row='1', col='specificity') 0.68
                 .col-md-3
@@ -80,7 +80,7 @@
               .row(row='2')
                 .col-md-1 3
                 .col-md-3.reference(row='2', col='reference')
-                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='uncheck')
+                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
                 .col-md-3.input.sensitivity(row='2', col='sensitivity') 0.9
                 .col-md-2.input.specificity(row='2', col='specificity') 0.5
                 .col-md-3
@@ -90,14 +90,14 @@
                 .col-md-3
                   button#new_row_button New Row
             .panel-footer
-                .prevalence_label.col-md-3
-                    #DP.define(data-term='DP',for='prevalence') Prevalence
+                label#DP.define.prevalence_label.col-md-3(data-term='DP',for='prevalence_bc') Prevalence
                 input#prevalence_bc(type='text')
                 button#calculate_button Calculate
+                button#reset Reset
           include ../partials/loader
           .col-md-12#output
         .col-md-6
-            img.thumbnail#graph(src='/common/images/initial.jpg', alt='graph', border='1', align='top', height='400', width='400')
+            img.thumbnail#graph(src='/common/images/initial.jpg', alt='image of example output after calculation', border='1', align='top', height='400', width='400')
       .bibliography
         p
           strong References:

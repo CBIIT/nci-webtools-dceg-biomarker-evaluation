@@ -747,7 +747,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
         });
        
         thisTool.find("#" + tableId + " tr:first").prepend(
-            "<th class='ui-state-default' colspan='2'></th>");
+            "<td class='ui-state-default' colspan='2'></td>");
         i = 0;
         thisTool.find("#" + tableId + " tr:not(:first)").each(
             function() {
@@ -765,7 +765,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
 
        
         thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" + 
+            "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
             tableFirstColLabel + "</th></tr>");
     } else {
         if (graphErrorValue != 1) {

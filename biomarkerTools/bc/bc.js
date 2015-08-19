@@ -18,6 +18,8 @@ $(document).ready(function(){
     bind_calculate_button();
     bind_remove_row();
     bind_add_new_row();
+
+    thisTool.find("#reset").on('click', reset_bc);
 });
 
 $('a[href="#bc"]').on('shown.bs.tab',function(e){
@@ -425,7 +427,23 @@ function createOutputTableWithPrev(jsondata){
         jsonToCellWithPrev(jsondata[each]);
     }
 }
-function ajax_error(jqXHR, exception){
-    refreshGraph(1);
-    display_errors("ajax problem");
+function reset_bc(){
+    thisTool.find(".reference:first").click();
+    thisTool.find("#inputdata .panel-body .row:not('.non-data-row,.reference_row')").each(function(i, el) {
+        if(i > 1){
+            $(el).remove();
+        }
+
+
+    });
+
+    thisTool.find("[row='0'] .sensitivity").text("0.8");
+    thisTool.find("[row='0'] .specificity").text("0.7");
+
+    thisTool.find("[row='1'] .sensitivity").text("0.85");
+    thisTool.find("[row='1'] .specificity").text("0.68");
+    
+    thisTool.find("[row='2'] .sensitivity").text("0.9");
+    thisTool.find("[row='2'] .specificity").text("0.5");
+
 }

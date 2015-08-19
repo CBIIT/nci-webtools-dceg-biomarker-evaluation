@@ -31,7 +31,7 @@
                         .col-md-4               
                             label.pull-right(for='contour_dropdown') Contour
                         .col-md-4
-                            select#contour_dropdown.pull-left(name='contour_dropdown', onchange='lock_fixed_options();', required)
+                            select#contour_dropdown.pull-left(name='contour_dropdown', required)
                                 option(value='', selected='')
                                 option(value='specificity') Specificity
                                 option(value='sensitivity') Sensitivity
@@ -43,7 +43,7 @@
                             label.pull-right(for='fixed_dropdown') Fixed Values
                         .col-md-4
                             select#fixed_dropdown.pull-left(name='fixed_dropdown', required)
-                                option(value='', selected='')
+                                option(value='', selected='', disabled='disabled')
                                 option(value='specificity', disabled='disabled') Specificity
                                 option(value='sensitivity', disabled='disabled') Sensitivity
                         label.sr-only(for='fixed') Fixed
@@ -59,7 +59,7 @@
                         .col-md-4
                         .col-md-4
                             .pull-left(for='n_value') Sample Size
-                        input#n_value.fontnormal.col-md-3(type='number', value='1', min="1", step="1", title='Sample Size is required and must be an integer', required)
+                        input#n_value.fontnormal.col-md-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer', required)
                 .panel-footer
                     button.post(type='submit') Calculate
                     button.reset(type='reset') Reset

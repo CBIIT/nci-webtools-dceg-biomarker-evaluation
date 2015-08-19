@@ -286,6 +286,9 @@ body #contentTabs #help section h5 {
 body #contentTabs ul li li {
   text-indent: 1.5em;
 }
+body #contentTabs #meanRiskStratification .marker-title {
+  background-color: #f5f5f5;
+}
 body #contentTabs #meanRiskStratification #results table th {
   background-color: #f5f5f5;
 }

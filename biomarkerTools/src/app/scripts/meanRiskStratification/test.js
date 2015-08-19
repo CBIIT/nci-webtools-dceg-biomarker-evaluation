@@ -7,24 +7,24 @@ var values_option_1_bm = [
 var values_option_2_bm = [{
     "markerName": "HPV",
     "ppv": 0.0914,
-    "npv": 0.95,
+    "npv": 0.995,
     "prob_m": 0.1696,
     "sampsize": 30371
 },
-    {
-        "markerName": "Pap",
-        "ppv": 0.0842,
-        "npv": 0.9,
-        "prob_m": 0.163,
-        "sampsize": 30371
-    },
-    {
-        "markerName": "VIA",
-        "ppv": 0.0834,
-        "npv": 0.17,
-        "prob_m": 0.1066,
-        "sampsize": 30371
-    }];
+{
+    "markerName": "Pap",
+    "ppv": 0.0842,
+    "npv": 0.999,
+    "prob_m": 0.163,
+    "sampsize": 30371
+},
+{
+    "markerName": "VIA",
+    "ppv": 0.0834,
+    "npv": 0.9917,
+    "prob_m": 0.1066,
+    "sampsize": 30371
+}];
 function setup_test() {
 	reset_mrs();
 

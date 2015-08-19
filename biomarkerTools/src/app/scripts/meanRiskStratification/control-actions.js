@@ -5,6 +5,9 @@
 var currentMarkers = 1;
 var thisTool;
 
+
+$(document).ready(init_meanRiskStratification);
+
 function init_meanRiskStratification(){    
     thisTool = $("#meanRiskStratification");
     create_popover();
@@ -24,8 +27,6 @@ thisTool.find('#marker-1-option-1, #marker-1-option-2').on('show.bs.collapse', f
         .removeClass('in')
         .addClass('collapse');
 });
-
-$(document).ready(init_meanRiskStratification);
 
 $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
     thisTool.find("#spinner").addClass("hide");
@@ -95,7 +96,7 @@ function new_marker() {
         });
 
         // change title for new marker
-        newElement.find('.marker-title').text("Biomarker #" + counter);
+        newElement.find('.marker-title b').text("Biomarker #" + counter);
         newElement.find('.termToDefine, .dd.termToDefine')
             .on('click', display_definition);
 
@@ -169,27 +170,14 @@ function calculate_mrs() {
         });
         scrollTop();
         thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
-        if(local) {    
-            setTimeout(function(){
-                promise.then(clean_data, function (error) {
-                    display_errors("The service call has failed with the following status: " + error.statusText);
-                }).done(return_data).always(function(){
-                    enableAll();
-                    thisTool.find('#spinner').addClass("hide");
-                    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-                });
-            },5000);
-        }
-        else {
-            promise.then(clean_data, function (error) {
-                display_errors("The service call has failed with the following status: " + error.statusText);
-            }).done(return_data).always(function(){
-                enableAll();
-                thisTool.find('#spinner').addClass("hide");
-                thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-            });            
-        }
 
+        promise.then(clean_data, function (error) {
+            display_errors("The service call has failed with the following status: " + error.statusText);
+        }).done(return_data).always(function(){
+            enableAll();
+            thisTool.find('#spinner').addClass("hide");
+            thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+        });
     }
 }
 
@@ -291,7 +279,7 @@ function append_name() {
     var name;
     do {
         i++;
-        var thisNameInputElement = thisTool.find('.marker-' + i + ' .name-input');
+        var thisNameInputElement = thisTool.find('.marker-' + i + ' #name-input');
         // append biomarker Name to results table header
         if ((thisNameInputElement.val()).length > 0)
             name = thisNameInputElement.val() + " (CI Low, CI High)";
@@ -404,11 +392,10 @@ function reset_mrs() {
 
     // close errors if showing
     thisTool.find('#errors').fadeOut();
-    
-    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-    
-    reset_markers();
 
+    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+
+    reset_markers();
 }
 
 function reset_markers(){
