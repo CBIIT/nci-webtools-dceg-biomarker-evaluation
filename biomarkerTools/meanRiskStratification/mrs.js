@@ -586,13 +586,13 @@ var values_option_1_bm = [
 var values_option_2_bm = [{
     "markerName": "HPV",
     "ppv": 0.0914,
-    "npv": 0.995,
+    "npv": 0.9995,
     "prob_m": 0.1696,
     "sampsize": 30371
 },
 {
     "markerName": "Pap",
-    "ppv": 0.0842,
+    "ppv": 0.0941,
     "npv": 0.999,
     "prob_m": 0.163,
     "sampsize": 30371
