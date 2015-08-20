@@ -161,7 +161,7 @@ thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
     // use this value as a key in the json data
-    var label = $(contour_dropdown.selectedOptions).text();
+    var label = thisTool.find("#contour_dropdown option:selected").text();
     
     for(var i in jsonrtn) {
         //        console.log(i);
