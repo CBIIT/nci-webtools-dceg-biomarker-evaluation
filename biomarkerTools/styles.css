@@ -102,8 +102,9 @@ body #contentTabs #bc .top-header {
   background-color: #444;
   color: #fff;
 }
-body #contentTabs #bc #output {
-  width: 500px;
+body #contentTabs #bc #graph img {
+  height: auto;
+  width: 80%;
 }
 body #contentTabs #bc #inputdata .input:hover {
   cursor: text;
