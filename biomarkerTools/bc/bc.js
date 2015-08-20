@@ -19,6 +19,7 @@ $(document).ready(function(){
     bind_remove_row();
     bind_add_new_row();
 
+    thisTool.find( "#file_upload" ).on('change', uploading_csv);
     thisTool.find("#reset").on('click', reset_bc);
 });
 
@@ -34,6 +35,70 @@ $('a[href="#bc"]').on('hide.bs.tab',function(e){
 $('a[href="#bc"]').on('click', function (e) {
     init_bc();
 });
+
+function uploading_csv(e) {
+
+    thisTool.find("#errors").addClass("hide").empty();
+
+    var files = e.target.files;
+    if(files.length > 0){
+        if(validate_csv(files[0])){
+           
+        }
+    }
+}
+
+function validate_csv(file){
+
+    var file_types = [
+        "application/vnd.ms-excel", 
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv" ];
+   
+    var correct_type = ($.inArray(file.type, file_types) > -1) ? true : false;
+    if(correct_type){
+       
+        if ( window.FileReader ) {
+                var fr = new FileReader();
+                fr.onload = function(e) {
+                    var txt = e.target.result;
+                    var lines = txt.split("\n");
+                    if (lines.length > 0) numberOfCols = lines[0].split(",").length;
+                    numberOfRows = 0;
+                    
+                    if(numberOfCols != 2) {
+                        display_errors("2 columns of data expected in CSV file. Found " + numberOfCols + " columns.");
+                    }
+                    else {
+                        valuesFromFile = [];
+                        for (var count = 1; count < lines.length;count++) {
+                           
+                            var arr = lines[count].split(",");
+                            if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
+                                valuesFromFile = valuesFromFile.concat(arr);
+                                numberOfRows++;
+                            }
+                            else {
+                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" +arr[0]+"' or '" + arr[1] + "' is not a decimal value";
+                                display_errors(error_msg );
+                                break;
+                            }
+                        }
+                        
+                        if(valuesFromFile.length != lines.length ){
+                            return false;
+                        }
+                    }
+                };
+                fr.readAsText(file);
+            }
+        return true;
+    }
+    else{
+        display_errors(["Incorrect file type detected. Please upload a csv file."]);    
+    }
+    return false;
+}
 
 function bind_remove_row(){
     thisTool.find('.remove_row_button').on('click', function(){
@@ -312,7 +377,7 @@ function refreshGraph(drawgraph){
     }
     d = new Date();
 
-    
+
     thisTool.find('#graph').empty();
     if(local){
         graph_file = "images/exampleLRPlot.jpg";
@@ -431,7 +496,7 @@ function createOutputTableWithPrev(jsondata){
 }
 function reset_bc(){
     thisTool.find(".reference:first").click();
-    
+
     thisTool.find("#inputdata .panel-body .row:not('.non-data-row,.reference_row')").each(function(i, el) {
         if(i > 1){
             $(el).remove();
@@ -441,13 +506,13 @@ function reset_bc(){
     });
     thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
     thisTool.find('#output').empty();
-    
+
     thisTool.find("[row='0'] .sensitivity").text("0.8");
     thisTool.find("[row='0'] .specificity").text("0.7");
 
     thisTool.find("[row='1'] .sensitivity").text("0.85");
     thisTool.find("[row='1'] .specificity").text("0.68");
-    
+
     thisTool.find("[row='2'] .sensitivity").text("0.9");
     thisTool.find("[row='2'] .specificity").text("0.5");
 
