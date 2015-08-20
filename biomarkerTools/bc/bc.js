@@ -312,12 +312,14 @@ function refreshGraph(drawgraph){
     }
     d = new Date();
 
+    
+    thisTool.find('#graph').empty();
     if(local){
         graph_file = "images/exampleLRPlot.jpg";
-        thisTool.find('#graph').attr('src', graph_file);
+        thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file+"' />");
     }
     else{
-        thisTool.find('#graph').attr('src', graph_file + d.getTime());
+        thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file + d.getTime()+"' />");
     }
 }
 function set_data(dt){
@@ -429,6 +431,7 @@ function createOutputTableWithPrev(jsondata){
 }
 function reset_bc(){
     thisTool.find(".reference:first").click();
+    
     thisTool.find("#inputdata .panel-body .row:not('.non-data-row,.reference_row')").each(function(i, el) {
         if(i > 1){
             $(el).remove();
@@ -436,7 +439,9 @@ function reset_bc(){
 
 
     });
-
+    thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
+    thisTool.find('#output').empty();
+    
     thisTool.find("[row='0'] .sensitivity").text("0.8");
     thisTool.find("[row='0'] .specificity").text("0.7");
 
