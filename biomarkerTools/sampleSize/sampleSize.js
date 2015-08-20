@@ -144,8 +144,13 @@ thisTool.find("#minInput, #maxInput").on('change', function() {
         compareVal = thisTool.find("#minInput").val();
     }
 
-    if((thisVal.length + compareVal.length >= 2) && thisVal == compareVal) {
-        display_errors("Min Value and Max Value of k cannot be equal");
+    if(thisVal.length + compareVal.length >= 2) {
+        if(thisVal == compareVal) {
+            display_errors("Min Value and Max Value of k cannot be equal");
+        }
+        else if( thisTool.find("#maxInput").val() < thisTool.find("#minInput").val()) {
+            display_errors("Max Value cannot be less than the Min Value");
+        }
     }
     else {
         thisTool.find("#errors").empty().addClass("hide");
@@ -155,6 +160,7 @@ thisTool.find("#minInput, #maxInput").on('change', function() {
 thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
+    
     for(var i in jsonrtn) {
        
         var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
