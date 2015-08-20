@@ -24,9 +24,7 @@
                   table.table.table-condensed
                     thead
                       tr
-                        th.col-md-2.header
-                          .sr-only Empty cell
-                            a(href='#prob_m') Skip to Content
+                        td.col-md-2.header
                         th#prob_m.termToDefine.header Marker Positive (M+)
                         th#m_neg.termToDefine.header Marker Negative (M-)
                     tbody
@@ -69,8 +67,9 @@
                             option(value='ppv') PPV
                             option(value='sens') Sensitivity
                           span.dd.termToDefine
-                            img(src="/common/images/info.png",alt="pop up definition")
+                            img(src="/common/images/info.png",alt="pop up definition for parameter 1 dropdown value")
                         td
+                          label.sr-only(for="param_1_value") Parameter 1 Selections
                           input#param_1_value.input(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
                       tr(row='1')
                         td
@@ -79,8 +78,9 @@
                             option(value='npv') NPV
                             option(value='spec') Specificity
                           span.dd.termToDefine
-                            img(src="/common/images/info.png",alt="pop up definition")
+                            img(src="/common/images/info.png",alt="pop up definition for parameter 2 dropdown value")
                         td
+                          label.sr-only(for="param_2_value") Parameter 2 Selections
                           input#param_2_value.input(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
                       tr(row='2')
                         td
@@ -89,8 +89,9 @@
                             option(value='prob_m') Marker Positivity (P(M+))
                             option(value='prob_d') Disease Prevalence (P(D+))
                           span.dd.termToDefine
-                            img(src="/common/images/info.png",alt="pop up definition")
+                            img(src="/common/images/info.png",alt="pop up definition for parameter 3 dropdown value")
                         td
+                          label.sr-only(for="param_3_value") Parameter 3 Selections
                           input#param_3_value.input(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
           #control-group.col-md-12
             .row
