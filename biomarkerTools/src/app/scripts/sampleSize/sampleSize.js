@@ -144,8 +144,13 @@ thisTool.find("#minInput, #maxInput").on('change', function() {
         compareVal = thisTool.find("#minInput").val();
     }
 
-    if((thisVal.length + compareVal.length >= 2) && thisVal == compareVal) {
-        display_errors("Min Value and Max Value of k cannot be equal");
+    if(thisVal.length + compareVal.length >= 2) {
+        if(thisVal == compareVal) {
+            display_errors("Min Value and Max Value of k cannot be equal");
+        }
+        else if( thisTool.find("#maxInput").val() < thisTool.find("#minInput").val()) {
+            display_errors("Max Value cannot be less than the Min Value");
+        }
     }
     else {
         thisTool.find("#errors").empty().addClass("hide");
@@ -155,19 +160,22 @@ thisTool.find("#minInput, #maxInput").on('change', function() {
 thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
+    // use this value as a key in the json data
+    var label = $(contour_dropdown.selectedOptions).text();
+    
     for(var i in jsonrtn) {
         //        console.log(i);
         var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
-        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
+        tablesvar += "<TR><TH class='table_data header'>" + label + "</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         var ppvtabledata = tablesvar;
         var cnpvtabledata = tablesvar;
         for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
             //            console.log("PPVData");
-            ppvtabledata += "<TR><TD>"+jsonrtn[i].PPVData[n].Sensitivity+"</TD>";
+            ppvtabledata += "<TR><TD>" + jsonrtn[i].PPVData[n][label] + "</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]["Optimal k"]+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD>";
-            //            console.log("cNPVData");
-            cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n].Sensitivity+"</TD>";
+
+            cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n][label] + "</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]["Optimal k"]+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD></TR>";
         }
