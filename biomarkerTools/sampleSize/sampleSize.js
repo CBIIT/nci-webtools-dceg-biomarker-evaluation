@@ -160,20 +160,22 @@ thisTool.find("#minInput, #maxInput").on('change', function() {
 thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
+   
+    var label = $(contour_dropdown.selectedOptions).text();
     
     for(var i in jsonrtn) {
        
         var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
-        tablesvar += "<TR><TH class='table_data header'>Sensitivity</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
+        tablesvar += "<TR><TH class='table_data header'>" + label + "</TH><TH class='table_data header'>Optimal k</TH><TH class='table_data header'>Relative efficiency gain or <br>loss compared to k = 0.5</TH></TR>";
         var ppvtabledata = tablesvar;
         var cnpvtabledata = tablesvar;
         for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
            
-            ppvtabledata += "<TR><TD>"+jsonrtn[i].PPVData[n].Sensitivity+"</TD>";
+            ppvtabledata += "<TR><TD>" + jsonrtn[i].PPVData[n][label] + "</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]["Optimal k"]+"</TD>";
             ppvtabledata += "<TD>"+jsonrtn[i].PPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD>";
-           
-            cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n].Sensitivity+"</TD>";
+
+            cnpvtabledata += "<TD>" + jsonrtn[i].cNPVData[n][label] + "</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]["Optimal k"]+"</TD>";
             cnpvtabledata += "<TD>"+jsonrtn[i].cNPVData[n]['Relative efficiency gain or loss compared to k = 0.5']+"</TD></TR>";
         }
