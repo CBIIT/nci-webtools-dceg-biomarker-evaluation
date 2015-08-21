@@ -261,12 +261,12 @@
                       <div class="indent">
                         <p><b for="input_file_upload" class="data_entry_by_file">Upload CSV file to pre-populate parameters table with data<a href="bc/exampleValues.csv"> (Example)</a></b></p>
                         <p>
-                          <input id="file_upload" type="file">
+                          <input id="file_upload" type="file" accept=".csv">
                         </p>
                       </div>
                     </div>
                     <div class="panel-heading"><b>Parameters</b></div>
-                    <div class="panel-body">
+                    <div id="inputdata" class="panel-body">
                       <div class="row non-data-row">
                         <div class="col-md-1 header"><b>#</b></div>
                         <div class="col-md-3 header"><b>Reference</b></div>
@@ -316,12 +316,14 @@
                       <button id="reset">Reset</button>
                     </div>
                   </div>
-                  <div class="row">
-                    <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating
-                        <div id="output" class="col-md-12"></div></span></p>
-                  </div>
-                  <div id="graph" class="col-md-6"><img src="/common/images/initial.jpg" alt="image of example output after calculation" class="thumbnail"></div>
                 </div>
+                <div id="graph" class="col-md-6"><img src="/common/images/initial.jpg" alt="image of example output after calculation" class="thumbnail"></div>
+                <div class="col-md-12">
+                  <div class="row">
+                    <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  </div>
+                </div>
+                <div id="output" class="col-md-6"></div>
                 <div class="bibliography">
                   <p><strong>References:</strong></p>
                   <p>Marina V. Kondratovich, (2007), <i>
