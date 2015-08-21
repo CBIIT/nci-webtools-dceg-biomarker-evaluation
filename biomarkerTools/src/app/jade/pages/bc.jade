@@ -45,12 +45,25 @@
             | population, whenever sensitivities and specificities are the same
             | in the 2 populations, even when disease prevalences are much
             | different. To calculate PPV and cNPV, provide a prevalence value.
+        // Left Side
       .col-md-6.table-and-graph
-          // Left Side
-          #inputdata.panel.panel-default
-            .panel-heading.text-center
-                b Input Information
-            .panel-body
+        #accordion.panel.panel-default
+            .panel-heading
+                .panel-title.text-center
+                    b Input Information
+            .panel-heading
+                b Import Values
+            #file_upload.panel-body
+                .indent
+                    p
+                        b.data_entry_by_file(for='input_file_upload')
+                            | Upload CSV file to pre-populate parameters table with data
+                            a(href='bc/exampleValues.csv')  (Example)
+                    p
+                        input#file_upload(type='file', accept=".csv")
+            .panel-heading
+                b Parameters
+            #inputdata.panel-body
               .row.non-data-row
                 .col-md-1.header
                     b #
@@ -94,10 +107,11 @@
                 input#prevalence_bc(type='text')
                 button#calculate_button Calculate
                 button#reset Reset
-          include ../partials/loader
-          .col-md-12#output
-        .col-md-6#graph
-            img.thumbnail(src="/common/images/initial.jpg", alt="image of example output after calculation")
+      .col-md-6#graph
+        img.thumbnail(src="/common/images/initial.jpg", alt="image of example output after calculation")
+      .col-md-12
+        include ../partials/loader
+      .col-md-6#output
       .bibliography
         p
           strong References:

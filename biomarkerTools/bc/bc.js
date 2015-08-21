@@ -5,6 +5,9 @@ var row = null;
 var col = null;
 var validPrevValue = false;
 var thisTool;
+var inputElm;
+var errorsElm;
+var valuesFromFile = [];
 
 function init_bc(){
     thisTool = $("#bc");
@@ -12,19 +15,24 @@ function init_bc(){
 
 $(document).ready(function(){
     init_bc();
+    
     thisTool.find("#errors").alert();
+    inputElm = thisTool.find('#inputdata');
+    errorsElm = thisTool.find('#errors');
+    
     bind_reference_row();
     bind_input();
     bind_calculate_button();
     bind_remove_row();
     bind_add_new_row();
 
+    thisTool.find( "#file_upload" ).on('change', uploading_csv);
     thisTool.find("#reset").on('click', reset_bc);
 });
 
 $('a[href="#bc"]').on('shown.bs.tab',function(e){
     thisTool = $("#bc");
-    thisTool.find("#errors").addClass("hide");
+    errorsElm.addClass("hide");
 });
 
 $('a[href="#bc"]').on('hide.bs.tab',function(e){
@@ -34,6 +42,86 @@ $('a[href="#bc"]').on('hide.bs.tab',function(e){
 $('a[href="#bc"]').on('click', function (e) {
     init_bc();
 });
+
+function uploading_csv(e) {
+    errorsElm.addClass("hide").empty();
+
+    var files = e.target.files;
+
+    if(files.length > 0){
+        validate_csv(files[0]);
+    }
+}
+
+function validate_csv(file){
+
+    var file_types = [
+        "application/vnd.ms-excel", 
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv" ];
+   
+    var correct_type = ($.inArray(file.type, file_types) > -1) ? true : false;
+
+    if(correct_type) {
+       
+        if ( window.FileReader ) {
+            var fr = new FileReader();
+
+            fr.onload = function(e) {
+                var valid = false; 
+                var txt = e.target.result;
+                var lines = txt.split("\n").filter(Boolean);
+
+                if (lines.length > 0) numberOfCols = lines[0].split(",").length;
+                numberOfRows = 0;
+
+                if(numberOfCols != 2) {
+                    display_errors("2 columns of data expected in CSV file. Found " + numberOfCols + " columns.");
+                }
+                else {
+                    valuesFromFile = [];
+
+                   
+                    for (var count = 1; count < lines.length;count++) {
+                        var arr = lines[count].split(",");
+                        if(arr.length > 1) {
+                            if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
+                                valuesFromFile.push(arr);
+                                numberOfRows++;
+                            }
+                            else {
+                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" + arr[0] + "' or '" + arr[1] + "' is not a decimal value";
+                                display_errors(error_msg);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if(valuesFromFile.length == lines.length - 1) {
+                    valid = true;
+                   
+                    inputElm.find('.row:not(".non-data-row")').each(function(i, row) {
+                        $(row).remove();
+                    });
+
+                   
+                    valuesFromFile.forEach(import_data_row);
+                }
+                else {
+                    display_errors("There was a problem importing your file.");
+                }
+
+            };
+
+            fr.readAsText(file);
+        }
+    }
+    else{
+        display_errors(["Incorrect file type detected. Please upload a csv file."]);
+    }
+    return false;
+}
 
 function bind_remove_row(){
     thisTool.find('.remove_row_button').on('click', function(){
@@ -101,7 +189,7 @@ function change_value(field, new_value){
         return;
     }
     if (isNumberBetweenZeroAndOne(new_value)) {
-        thisTool.find("#errors").addClass("hide");
+        errorsElm.addClass("hide");
         field.parent().empty().text(new_value);
         editing = false;
     } else {
@@ -111,8 +199,8 @@ function change_value(field, new_value){
     }
 }
 function clear_reference_row(){
-    thisTool.find('#inputdata').find('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='uncheck'/>");
-    thisTool.find('#inputdata').find('.row').each(function(){
+    inputElm.find('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='uncheck'/>");
+    inputElm.find('.row').each(function(){
         $(this).removeClass('reference_row');
         if (!$(this).hasClass('non-data-row')) {
             $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
@@ -120,22 +208,42 @@ function clear_reference_row(){
     });
     bind_remove_row();
    
-    var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
+    var num_rows = inputElm.find('.row:not(".non-data-row")').length;
     if (num_rows <= 2) {
-        thisTool.find('#inputdata').find('.remove_row_button').remove();
+        inputElm.find('.remove_row_button').remove();
     }
 }
+
+function import_data_row(data, ind){
+    var empty_cell ="<div class='col-md-3'>&nbsp;</div>";
+
+    var cell_1 = "<div class='row' row='" + ind + "'><div class='col-md-1'><b>" + (ind + 1) + "</b></div>";
+    var cell_2 ="<div class='col-md-3 reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
+    var cell_3 ="<div class='col-md-3 input sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
+    var cell_4 = "<div class='col-md-2 input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
+    var cell_5 ="<div class='col-md-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+
+    if(ind > 1) $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
+    else
+        $(cell_1 + cell_2 + cell_3 + cell_4 + empty_cell).insertBefore(inputElm.children().last());
+
+    inputElm.find(".row:not(.non-data-row):first").addClass("reference_row");
+    bind_remove_row();
+    bind_reference_row();
+    bind_input();
+}
+
 function add_new_row(){
    
-    var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
+    var num_rows = inputElm.find('.row:not(".non-data-row")').length;
     var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-md-1'><b>" + (num_rows + 1) + "</b></div>";
     var row_2 ="<div class='col-md-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var row_3 ="<div class='col-md-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
     var row_4 = "<div class='col-md-2 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
     var row_5 ="<div class='col-md-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
-    thisTool.find('#inputdata').find('.row').last().prev().after(row_1 + row_2 + row_3 + row_4 +row_5);
+    inputElm.find('.row').last().prev().after(row_1 + row_2 + row_3 + row_4 +row_5);
     if (num_rows === 2) {
-        thisTool.find('#inputdata').find('.row').each(function(){
+        inputElm.find('.row').each(function(){
             if (!$(this).hasClass('non-data-row') && !$(this).hasClass('reference_row')) {
                 $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
             }
@@ -145,7 +253,7 @@ function add_new_row(){
     bind_reference_row();
     bind_input();
 
-    thisTool.find('#inputdata .row:not(".non-data-row")').each(update_row_index);
+    inputElm.find('.row:not(".non-data-row")').each(update_row_index);
 }
 
 function update_row_index(i, row){
@@ -168,12 +276,13 @@ function update_row_index(i, row){
 function remove_row(el){
     var row_to_remove = el.parent().parent();
     row_to_remove.remove();
-    var num_rows = thisTool.find('#inputdata').find('.row:not(".non-data-row")').length;
+    var num_rows = inputElm.find('.row:not(".non-data-row")').length;
     if (num_rows <= 2) {
-        thisTool.find('#inputdata').find('.remove_row_button').remove();
+        inputElm.find('.remove_row_button').remove();
     }
-    thisTool.find('#inputdata .row:not(".non-data-row")').each(update_row_index);
+    inputElm.find('.row:not(".non-data-row")').each(update_row_index);
 }
+
 function do_calculation(){
    
     var promise;
@@ -195,7 +304,7 @@ function do_calculation(){
         prev = prevalence;
     }
     var hasNoErrors = true;
-    thisTool.find('#inputdata .row').each(function(i, el){
+    inputElm.find('.row').each(function(i, el){
         if ($(this).hasClass('reference_row')) {
             refSens = parseFloat($(this).find('.sensitivity').text());
             refSpec = parseFloat($(this).find('.specificity').text());
@@ -223,7 +332,7 @@ function do_calculation(){
         return;
     }
     else {
-        thisTool.find("#errors").addClass("hide");
+        errorsElm.addClass("hide");
     }
     uniqueKey = new Date().getTime();
     var hostname = window.location.hostname;
@@ -303,6 +412,7 @@ function isNumberBetweenZeroAndOne(n){
         return true;
     }
 }
+
 function refreshGraph(drawgraph){
     var graph_file, d;
     if (drawgraph === 1) {
@@ -312,7 +422,7 @@ function refreshGraph(drawgraph){
     }
     d = new Date();
 
-    
+
     thisTool.find('#graph').empty();
     if(local){
         graph_file = "images/exampleLRPlot.jpg";
@@ -322,6 +432,7 @@ function refreshGraph(drawgraph){
         thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file + d.getTime()+"' />");
     }
 }
+
 function set_data(dt){
     var jsonObject = JSON.parse(JSON.stringify(dt));
     refreshGraph(1);
@@ -334,6 +445,7 @@ function set_data(dt){
     }
     thisTool.find('.define').on('click', termDisplay);
 }
+
 function jsonToCell(obj){
     var Specificity;
     var Sensitivity;
@@ -362,6 +474,7 @@ function jsonToCell(obj){
     new_row.append("<div class='col-md-3'>" + LRminus + "</div>");
     thisTool.find('#output').append(new_row);
 }
+
 function jsonToCellWithPrev(obj){
     var Specificity;
     var Sensitivity;
@@ -395,6 +508,7 @@ function jsonToCellWithPrev(obj){
     }
     thisTool.find('#output').append(new_row);
 }
+
 function createOutputTable(jsondata){
     var top_header_row, header_row, i$, len$, each;
     thisTool.find('#output').empty();
@@ -412,6 +526,7 @@ function createOutputTable(jsondata){
         jsonToCell(each);
     }
 }
+
 function createOutputTableWithPrev(jsondata){
     thisTool.find('#output').empty();
     top_header_row = $("<div class='row'></div>");
@@ -429,25 +544,25 @@ function createOutputTableWithPrev(jsondata){
         jsonToCellWithPrev(jsondata[each]);
     }
 }
+
 function reset_bc(){
     thisTool.find(".reference:first").click();
-    
-    thisTool.find("#inputdata .panel-body .row:not('.non-data-row,.reference_row')").each(function(i, el) {
+
+    inputElm.find('.row:not(".non-data-row,.reference_row")').each(function(i, el) {
         if(i > 1){
             $(el).remove();
         }
-
-
     });
+
     thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
     thisTool.find('#output').empty();
-    
+
     thisTool.find("[row='0'] .sensitivity").text("0.8");
     thisTool.find("[row='0'] .specificity").text("0.7");
 
     thisTool.find("[row='1'] .sensitivity").text("0.85");
     thisTool.find("[row='1'] .specificity").text("0.68");
-    
+
     thisTool.find("[row='2'] .sensitivity").text("0.9");
     thisTool.find("[row='2'] .specificity").text("0.5");
 
