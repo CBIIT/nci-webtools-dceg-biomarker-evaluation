@@ -546,6 +546,7 @@ function createOutputTableWithPrev(jsondata){
 }
 
 function reset_bc(){
+    errorsElm.addClass("hide");
     thisTool.find(".reference:first").click();
 
     inputElm.find('.row:not(".non-data-row,.reference_row")').each(function(i, el) {
