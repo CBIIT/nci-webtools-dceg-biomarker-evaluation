@@ -197,11 +197,11 @@ function change_value(field, new_value){
     }
 }
 function clear_reference_row(){
-    inputElm.find('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='uncheck'/>");
+    inputElm.find('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='Click to set this as the reference row'/>");
     inputElm.find('.row').each(function(){
         $(this).removeClass('reference_row');
         if (!$(this).hasClass('non-data-row')) {
-            $(this).children().last().addClass("col-md-3").empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
+            $(this).children().last().empty().addClass("col-md-3").html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
         }
     });
     bind_remove_row();
