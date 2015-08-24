@@ -24,15 +24,13 @@ function checkValidity(){
                 messages.push($(el)[0].title); 
         }
 
-        if($(el).id == "prevalence" || $(el).id == "contour" || $(el).id == "fixed") {
+        if(el.id == "contour" || el.id == "fixed") {
             var values = $(el).val().split(',');
 
             for(var i = 0; i != values.length; i++) {
-                isValid = isNumberBetweenZeroAndOne(values[i]);
-            }
-
-            if(!isValid) {
-                messages.push($(el)[0].title);
+                if(isNaN(values[i])|| !isNumberBetweenZeroAndOne(values[i])) {
+                    messages.push(el.title);
+                }
             }
         }
 
@@ -162,7 +160,7 @@ thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 function generate_tables(jsonrtn){
    
     var label = thisTool.find("#contour_dropdown option:selected").text();
-    
+
     for(var i in jsonrtn) {
        
         var tablesvar = "<TABLE class='table table-bordered table-condensed small'><TBODY>";
