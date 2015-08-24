@@ -6,20 +6,17 @@ var col = null;
 var validPrevValue = false;
 var thisTool;
 var inputElm;
-var errorsElm;
 var valuesFromFile = [];
 
 function init_bc(){
     thisTool = $("#bc");
+    inputElm = thisTool.find('#inputdata');
+    thisTool.find("#errors").alert();
+    thisTool.find('#errors').addClass("hide");
 }
 
 $(document).ready(function(){
     init_bc();
-    
-    thisTool.find("#errors").alert();
-    inputElm = thisTool.find('#inputdata');
-    errorsElm = thisTool.find('#errors');
-    errorsElm.addClass("hide");
     
     bind_reference_row();
     bind_input();
@@ -36,7 +33,7 @@ $('a[href="#bc"]').on('shown.bs.tab',function(e){
 });
 
 $('a[href="#bc"]').on('hide.bs.tab',function(e){
-    $("#bc #errors").addClass("hide");
+    thisTool.find('#errors').addClass("hide");
 });
 
 $('a[href="#bc"]').on('click', function (e) {
@@ -44,7 +41,7 @@ $('a[href="#bc"]').on('click', function (e) {
 });
 
 function uploading_csv(e) {
-    errorsElm.addClass("hide").empty();
+    thisTool.find('#errors').addClass("hide");
 
     var files = e.target.files;
 
@@ -90,7 +87,8 @@ function validate_csv(file){
                                 numberOfRows++;
                             }
                             else {
-                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" + arr[0] + "' or '" + arr[1] + "' is not a decimal value";
+                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" + 
+                                    arr[0] + "' or '" + arr[1] + "' is not a decimal value";
                                 display_errors(error_msg);
                                 break;
                             }
@@ -189,7 +187,7 @@ function change_value(field, new_value){
         return;
     }
     if (isNumberBetweenZeroAndOne(new_value)) {
-        errorsElm.addClass("hide");
+        thisTool.find('#errors').addClass("hide");
         field.parent().empty().text(new_value);
         editing = false;
     } else {
@@ -203,7 +201,7 @@ function clear_reference_row(){
     inputElm.find('.row').each(function(){
         $(this).removeClass('reference_row');
         if (!$(this).hasClass('non-data-row')) {
-            $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
+            $(this).children().last().addClass("col-md-3").empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
         }
     });
     bind_remove_row();
@@ -332,7 +330,7 @@ function do_calculation(){
         return;
     }
     else {
-        errorsElm.addClass("hide");
+        thisTool.find('#errors').addClass("hide");
     }
     uniqueKey = new Date().getTime();
     var hostname = window.location.hostname;
@@ -546,7 +544,7 @@ function createOutputTableWithPrev(jsondata){
 }
 
 function reset_bc(){
-    errorsElm.addClass("hide");
+    thisTool.find('#errors').addClass("hide");
     thisTool.find("#file_upload").val("");
     thisTool.find(".reference:first").click();
 
