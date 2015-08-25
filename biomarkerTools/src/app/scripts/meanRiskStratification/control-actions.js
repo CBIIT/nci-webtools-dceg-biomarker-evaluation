@@ -146,16 +146,10 @@ function calculate_mrs() {
     var valuesObj = extract_values(false);
     var valid = valuesObj[1]; // get the boolean value that was returned
     if (valid) {
+        var to_value = 10 * 2500; //25 seconds
         var input = JSON.stringify(valuesObj[0]);
 
-        if (local) {
-            // call json file instead of service
-            service = 'meanRiskStratification/output_example.json';
-        } else {
-            service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
-        }
-
-        var to_value = 10 * 2500; //25 seconds
+        service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
 
         thisTool.find('#spinner').removeClass("hide");
         thisTool.find("#calculate").attr("disabled", "").text("Please Wait....");

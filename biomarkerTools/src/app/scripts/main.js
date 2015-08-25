@@ -2,7 +2,7 @@ var default_ajax_error;
 
 // reuse this variable across tools
 var rest = "biomarkerToolsRest";
-var local = window.location.hostname == "localhost" ? true : false;
+
 var activeRequest = false; // will be used to detect if requests are running
 
 var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";

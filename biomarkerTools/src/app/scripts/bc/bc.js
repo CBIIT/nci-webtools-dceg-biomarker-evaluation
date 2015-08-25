@@ -336,9 +336,6 @@ function do_calculation(){
     var hostname = window.location.hostname;
 
     var service = "http://" + hostname + "/" + rest + "/bc/";
-    if(local){
-        service = "bc/test-data.json";
-    }
 
     pre_request();
 
@@ -378,13 +375,8 @@ function do_calculation(){
             dataType: 'json'
         });
     }
-    if(local){
-        setTimeout(function() {
-            promise.then(set_data, default_ajax_error).always(post_request);
-        }, 5000);
-    }
-    else
-        promise.then(set_data, default_ajax_error).always(post_request);
+    
+    promise.then(set_data, default_ajax_error).always(post_request);
 }
 
 function pre_request() {
@@ -422,13 +414,8 @@ function refreshGraph(drawgraph){
 
 
     thisTool.find('#graph').empty();
-    if(local){
-        graph_file = "images/exampleLRPlot.jpg";
-        thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file+"' />");
-    }
-    else{
-        thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file + d.getTime()+"' />");
-    }
+
+    thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file + d.getTime()+"' />");
 }
 
 function set_data(dt){
@@ -545,14 +532,17 @@ function createOutputTableWithPrev(jsondata){
 
 function reset_bc(){
     thisTool.find('#errors').addClass("hide");
-    thisTool.find("#file_upload").val("");
-    thisTool.find(".reference:first").click();
+    thisTool.find("#file_upload, #prevalence_bc").val("");
 
-    inputElm.find('.row:not(".non-data-row,.reference_row")').each(function(i, el) {
-        if(i > 1){
-            $(el).remove();
-        }
+    inputElm.find('.row:not(".non-data-row")').each(function(i, el) {
+        $(el).remove();
     });
+    
+    add_new_row();
+    add_new_row();
+    add_new_row();
+    
+    thisTool.find(".reference:first").click();
 
     thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
     thisTool.find('#output').empty();

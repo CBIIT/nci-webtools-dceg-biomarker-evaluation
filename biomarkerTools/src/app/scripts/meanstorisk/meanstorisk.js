@@ -194,10 +194,7 @@ function make_call() {
 
         get_inputs_for_user_defined_calculation();
 
-        if(local)
-            setTimeout(make_ajax_call_user_defined_calculation, 5000);
-        else
-            make_ajax_call_user_defined_calculation();
+        make_ajax_call_user_defined_calculation();
     }
 
     // zero indexed, looking for if second panel is open
@@ -205,10 +202,7 @@ function make_call() {
 
         get_inputs_for_standard_calculation();
 
-        if(local)
-            setTimeout(make_ajax_call_standard_calculation, 5000);
-        else
-            make_ajax_call_standard_calculation(); 
+        make_ajax_call_standard_calculation(); 
     }
 }
 
@@ -315,15 +309,12 @@ function make_ajax_call_user_defined_calculation() {
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
-    if(local)
-        url = "meanstorisk/test_data.json";
-
     $.ajax({
         type: "POST",
         url: url,
         data: {
             option:1,
-            spec:specificity_string, 
+            spec:specificity_string,
             prev: prevalence_string,
             datarowcount: numberOfRows,
             colcount: numberOfCols,
@@ -344,9 +335,6 @@ function make_ajax_call_standard_calculation() {
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-
-    if(local)
-        url = "meanstorisk/test_data.json";
 
     $.ajax({
         type: "POST",
@@ -374,9 +362,6 @@ function make_excel_call_user_defined_calculation() {
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-
-    if(local)
-        url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
 
@@ -409,9 +394,6 @@ function make_excel_call_standard_calculation() {
     uniqueKey = (new Date()).getTime();	
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-
-    if(local)
-        url = "meanstorisk/test_data.json";
 
     thisTool.find("#spinner").removeClass("hide"); 
 
@@ -614,10 +596,6 @@ function draw_graph() {
         graph_file = "tmp/CSV"+uniqueKey+".png?";
     } else {
         graph_file = "tmp/input"+uniqueKey+".png?";
-    }
-
-    if(local){
-        graph_file ="images/CSV.png";
     }
 
     $(".graph_panel").empty().append("<IMG alt='graph' class='output_graph' src='" + graph_file+"'/>");
