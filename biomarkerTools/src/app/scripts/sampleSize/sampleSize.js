@@ -19,18 +19,19 @@ function checkValidity(){
     var messages = [];
     thisTool.find("input, select").each(function(ind, el) {
         valObject = $(el)[0].validity;
-        if(!valObject.valid && (valObject.stepMismatch !== true)){
-            if($(el)[0].title !== "")
-                messages.push($(el)[0].title); 
+        if(el.id == "contour_dropdown" && valObject.valueMissing) {
+            messages.push("Please select an option from the Contour dropdown.");
         }
-
-        if(el.id == "contour" || el.id == "fixed") {
+        else if(!valObject.valid && !valObject.stepMismatch) {
+            if($(el)[0].title !== "") messages.push($(el)[0].title);
+        }
+        
+        else if(el.id == "contour" || el.id == "fixed") {
             var values = $(el).val().split(',');
 
             for(var i = 0; i != values.length; i++) {
-                if(isNaN(values[i])|| !isNumberBetweenZeroAndOne(values[i])) {
+                if(isNaN(values[i])|| !isNumberBetweenZeroAndOne(values[i]))
                     messages.push(el.title);
-                }
             }
         }
 
@@ -56,7 +57,7 @@ thisTool.find('.post').click(function(){
     else {
         disableAll();
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-        if(local) service = "sampleSize/test-data.json";
+        
         thisTool.find("#spinner").removeClass("hide");
 
         // scroll down to loader image
@@ -102,13 +103,7 @@ thisTool.find('.post').click(function(){
             });
         };
 
-        if(local) {
-            setTimeout(
-                request, 5000);
-        }
-        else {
-            request();
-        }
+        request();
     } 
     return false;
 });
