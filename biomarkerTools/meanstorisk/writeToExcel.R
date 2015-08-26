@@ -29,16 +29,16 @@ writeResultsToExcel <- function (risk, graphName) {
                     Alignment(h="ALIGN_CENTER");
   
   cellStyleGray <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-                    Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+                    Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                     Alignment(h="ALIGN_CENTER");
   
   cellStyleGrayBorder <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-                          Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+                          Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                           bottomBorder +
                           Alignment(h="ALIGN_CENTER");
   
   cellStyleGrayRightBorder  <-CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-                              Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+                              Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                               rightBorder +
                               Alignment(h="ALIGN_CENTER");
   
@@ -55,7 +55,8 @@ writeResultsToExcel <- function (risk, graphName) {
   #dominatedSheet        <- createSheet(outwb, sheetName = "Dominated by Specificity for a Rare Disease");
 
   addDataFrame(x = as.data.frame.matrix(risk$Delta), sheet = deltaSheet, row.names=TRUE, col.name=TRUE);
-  setColumnWidth(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$Delta)), -1);
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$Delta)));
+
 #--------------
   rows   <- createRow(ppvSheet, 1:10)
   cells  <- createCell(rows, colIndex=1:10)       
@@ -76,7 +77,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -89,7 +90,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
   
   addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
-  setColumnWidth(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$PPV)), -1);
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$PPV)));
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
   setCellStyle(cells[[4,7]], cellStyleGray);
@@ -117,7 +118,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);  
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = cNpvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -130,7 +131,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$cNPV), sheet = cNpvSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$cNPV)), -1);
+  autoSizeColumn(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$cNPV)));
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
   setCellStyle(cells[[4,7]], cellStyleGray);
@@ -158,7 +159,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvCnpvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -171,7 +172,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
   
   addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-cNPV`)), -1);
+  autoSizeColumn(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-cNPV`)));
   
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -199,7 +200,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = programBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -213,7 +214,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Program-Based`), sheet = programBasedSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Program-Based`)), -1);
+  autoSizeColumn(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Program-Based`)));
 
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -241,7 +242,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -255,7 +256,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`PPV-Based`), sheet = ppvBasedSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
-  setColumnWidth(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-Based`)), -1);
+  autoSizeColumn(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-Based`)));
   
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -283,7 +284,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = sensitivityBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  setColumnWidth(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)), -1);
+  autoSizeColumn(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -297,7 +298,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity-Based`), sheet = sensitivityBasedSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
-  setColumnWidth(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity-Based`)), -1);
+  autoSizeColumn(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity-Based`)));
 
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
