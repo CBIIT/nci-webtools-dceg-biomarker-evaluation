@@ -547,7 +547,7 @@ function calculate_riskStrat() {
         tableFirstColLabel = selectedContourValue;
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
-        
+
         thisTool.find("#output").addClass("hide").empty();
 
        
@@ -665,7 +665,6 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
                   abbreviatedKey, columnHeadings) {
 
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
-    if(local) service = "riskStratAdvanced/test_result.json";
 
     $.ajax({
         type : "POST",
@@ -792,15 +791,9 @@ function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
     var imageContainer = thisTool.find('#graphic-' + graphNamePreFix + tabNumber);
     imageContainer.empty();
 
-    if(!local){
-        imageContainer.append(
-            "<img class='img-responsive' src='tmp/" + 
-            graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
-    }
-    else {
-        imageContainer.append(
-            "<img class='img-responsive' src='images/exampleLRPlot.jpg' alt='output image'>");
-    }
+    imageContainer.append(
+        "<img class='img-responsive' src='tmp/" + 
+        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
 }
 
 function refreshGraph(drawgraph) {

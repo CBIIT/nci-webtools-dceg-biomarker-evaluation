@@ -8,37 +8,37 @@ writeResultsToExcel <- function (risk, graphName) {
   bottomBorder <-  Border(color="black", position=c("BOTTOM"), pen=c("BORDER_THIN"));
   rightBorder <-   Border(color="black", position=c("RIGHT"), pen=c("BORDER_THIN"));
   
-  cellStyleLav <- CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
+  cellStyleLav <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                   Fill(backgroundColor="lavender", foregroundColor="lavender", pattern="SOLID_FOREGROUND") +
                   bottomBorder +
                   Alignment(h="ALIGN_CENTER");
   
-  cellStyleBlue <-  CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
+  cellStyleBlue <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                     Fill(backgroundColor="cornflowerblue", foregroundColor="cornflowerblue", pattern="SOLID_FOREGROUND") +
                     bottomBorder +
                     Alignment(h="ALIGN_CENTER");
   
-  cellStyleOrange <-  CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
+  cellStyleOrange <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                       Fill(backgroundColor="orange", foregroundColor="orange", pattern="SOLID_FOREGROUND") +
                       bottomBorder +
                       Alignment(h="ALIGN_CENTER");
   
-  cellStylePink <-  CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
+  cellStylePink <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                     Fill(backgroundColor="pink", foregroundColor="pink", pattern="SOLID_FOREGROUND") +
                     bottomBorder +
                     Alignment(h="ALIGN_CENTER");
   
-  cellStyleGray <- CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
-                    Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+  cellStyleGray <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
+                    Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                     Alignment(h="ALIGN_CENTER");
   
-  cellStyleGrayBorder <- CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
-                          Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+  cellStyleGrayBorder <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
+                          Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                           bottomBorder +
                           Alignment(h="ALIGN_CENTER");
   
-  cellStyleGrayRightBorder  <-CellStyle(outwb) +  Font(outwb, heightInPoints=20, isBold=TRUE, name="Courier", color="black") + 
-                              Fill(backgroundColor="gray", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
+  cellStyleGrayRightBorder  <-CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
+                              Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
                               rightBorder +
                               Alignment(h="ALIGN_CENTER");
   
@@ -55,8 +55,10 @@ writeResultsToExcel <- function (risk, graphName) {
   #dominatedSheet        <- createSheet(outwb, sheetName = "Dominated by Specificity for a Rare Disease");
 
   addDataFrame(x = as.data.frame.matrix(risk$Delta), sheet = deltaSheet, row.names=TRUE, col.name=TRUE);
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$Delta)));
+
 #--------------
-  rows   <- createRow(ppvSheet, 1:10)              
+  rows   <- createRow(ppvSheet, 1:10)
   cells  <- createCell(rows, colIndex=1:10)       
   addMergedRegion(ppvSheet, startRow=1, endRow=1, startColumn=1, endColumn=9);
   setCellValue(cells[[1,1]], "Risk of Disease after a POSITIVE Test");
@@ -75,7 +77,7 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-  
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -87,8 +89,8 @@ writeResultsToExcel <- function (risk, graphName) {
   setCellStyle(cells[[8,4]], cellStyleRightBorder);
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
   
-addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
-  
+  addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
+  autoSizeColumn(ppvSheet, 1:ncol(x = as.data.frame.matrix(risk$PPV)));
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
   setCellStyle(cells[[4,7]], cellStyleGray);
@@ -116,6 +118,7 @@ addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FAL
   setCellStyle(cells[[3,5]], cellStyleGray);  
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = cNpvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -128,7 +131,7 @@ addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FAL
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$cNPV), sheet = cNpvSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
-
+  autoSizeColumn(cNpvSheet, 1:ncol(x = as.data.frame.matrix(risk$cNPV)));
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
   setCellStyle(cells[[4,7]], cellStyleGray);
@@ -156,7 +159,7 @@ addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FAL
   setCellStyle(cells[[3,5]], cellStyleGray);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvCnpvSheet, startRow=4, row.names=FALSE, col.name=TRUE);
-
+  autoSizeColumn(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
   setCellStyle(cells[[4,3]], cellStyleGray);
@@ -168,7 +171,8 @@ addDataFrame(x = as.data.frame.matrix(risk$PPV), sheet = ppvSheet, row.names=FAL
   setCellStyle(cells[[8,4]], cellStyleRightBorder);
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
   
-addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
+  addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(ppvCnpvSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-cNPV`)));
   
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -196,6 +200,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = programBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -209,6 +214,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Program-Based`), sheet = programBasedSheet, startRow=4, startColumn=5, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(programBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Program-Based`)));
 
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -236,6 +242,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[3,5]], cellStyleGray);
   
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = ppvBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -249,6 +256,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`PPV-Based`), sheet = ppvBasedSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
+  autoSizeColumn(ppvBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`PPV-Based`)));
   
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -276,6 +284,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[3,5]], cellStyleGray);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`), sheet = sensitivityBasedSheet, startRow=4, row.names=FALSE, col.name=TRUE);
+  autoSizeColumn(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity Given Specificity`)));
 
   setCellStyle(cells[[4,1]], cellStyleGray);
   setCellStyle(cells[[4,2]], cellStyleGray);
@@ -289,6 +298,7 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   setCellStyle(cells[[9,4]], cellStyleRightBorder);
 
   addDataFrame(x = as.data.frame.matrix(risk$`Sensitivity-Based`), sheet = sensitivityBasedSheet, row.names=FALSE, col.name=TRUE, startRow=4, startColumn=5);
+  autoSizeColumn(sensitivityBasedSheet, 1:ncol(x = as.data.frame.matrix(risk$`Sensitivity-Based`)));
 
   setCellStyle(cells[[4,5]], cellStyleGray);
   setCellStyle(cells[[4,6]], cellStyleGray);
@@ -308,5 +318,6 @@ addDataFrame(x = as.data.frame.matrix(risk$`PPV-cNPV`), sheet = ppvCnpvSheet, st
   fileName <- paste(excelDirectory, "means_to_risk_analysis_", time, '.xlsx',sep='');
   
   saveWorkbook(outwb, fileName);
+
   fileName;
 }
