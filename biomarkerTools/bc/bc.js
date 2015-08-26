@@ -17,7 +17,7 @@ function init_bc(){
 
 $(document).ready(function(){
     init_bc();
-    
+
     bind_reference_row();
     bind_input();
     bind_calculate_button();
@@ -293,15 +293,20 @@ function do_calculation(){
     var specArrayWithRef = "";
     var labels = "";
     var prevalence = thisTool.find('#prevalence_bc').val();
+    var hasNoErrors = true;
 
-    if (!isNumberBetweenZeroAndOne(prevalence)) {
-        validPrevValue = false;
+    validPrevValue = isNumberBetweenZeroAndOne(prevalence);
+
+    if (prevalence.length === 0) {
         prev = 0;
-    } else {
-        validPrevValue = true;
+    }
+    else if (!validPrevValue && prevalence.length > 0) {
+        hasNoErrors = validPrevValue;
+    }
+    else {
         prev = prevalence;
     }
-    var hasNoErrors = true;
+
     inputElm.find('.row').each(function(i, el){
         if ($(this).hasClass('reference_row')) {
             refSens = parseFloat($(this).find('.sensitivity').text());
@@ -310,7 +315,8 @@ function do_calculation(){
             specArrayWithRef += refSpec + ",";
             hasNoErrors = isNumberBetweenZeroAndOne(refSens);
             hasNoErrors = isNumberBetweenZeroAndOne(refSpec);
-        } else if (!$(this).hasClass('non-data-row')) {
+        }
+        else if (!$(this).hasClass('non-data-row')) {
             sensArray += parseFloat($(this).find('.sensitivity').text()) + ",";
             specArray += parseFloat($(this).find('.specificity').text()) + ",";
             sensArrayWithRef += parseFloat($(this).find('.sensitivity').text()) + ",";
@@ -319,64 +325,69 @@ function do_calculation(){
             hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity').text()));
             labels += i + ",";
         }
+        
+        if(!hasNoErrors)
+            return hasNoErrors;
     });
+    
     sensArray = sensArray.slice(0, -1);
     specArray = specArray.slice(0, -1);
     sensArrayWithRef = sensArrayWithRef.slice(0, -1);
     specArrayWithRef = specArrayWithRef.slice(0, -1);
     labels = labels.slice(0, -1);
+
     if (!hasNoErrors) {
         display_errors("Error with input data.  Not all values are numbers between Zero and One");
         return;
     }
     else {
         thisTool.find('#errors').addClass("hide");
+
+        uniqueKey = new Date().getTime();
+        var hostname = window.location.hostname;
+        var service = "http://" + hostname + "/" + rest + "/bc/";
+
+        pre_request();
+
+        if (validPrevValue) {
+            promise = $.ajax({
+                type: 'POST',
+                url: service,
+                data: {
+                    numberOfValues: '8',
+                    refSpec: refSpec,
+                    refSens: refSens,
+                    specArray: specArray,
+                    specArrayWithRef: specArrayWithRef,
+                    sensArray: sensArray,
+                    sensArrayWithRef: sensArrayWithRef,
+                    prev: prev,
+                    labels: labels,
+                    unique_key: uniqueKey
+                },
+                dataType: 'json'
+            });
+        } else {
+            promise = $.ajax({
+                type: 'POST',
+                url: service,
+                data: {
+                    numberOfValues: '7',
+                    refSpec: refSpec,
+                    refSens: refSens,
+                    specArray: specArray,
+                    specArrayWithRef: specArrayWithRef,
+                    sensArray: sensArray,
+                    sensArrayWithRef: sensArrayWithRef,
+                    labels: labels,
+                    unique_key: uniqueKey
+                },
+                dataType: 'json'
+            });
+        }
+
+        promise.then(set_data, default_ajax_error).always(post_request);
     }
-    uniqueKey = new Date().getTime();
-    var hostname = window.location.hostname;
-
-    var service = "http://" + hostname + "/" + rest + "/bc/";
-
-    pre_request();
-
-    if (validPrevValue) {
-        promise = $.ajax({
-            type: 'POST',
-            url: service,
-            data: {
-                numberOfValues: '8',
-                refSpec: refSpec,
-                refSens: refSens,
-                specArray: specArray,
-                specArrayWithRef: specArrayWithRef,
-                sensArray: sensArray,
-                sensArrayWithRef: sensArrayWithRef,
-                prev: prev,
-                labels: labels,
-                unique_key: uniqueKey
-            },
-            dataType: 'json'
-        });
-    } else {
-        promise = $.ajax({
-            type: 'POST',
-            url: service,
-            data: {
-                numberOfValues: '7',
-                refSpec: refSpec,
-                refSens: refSens,
-                specArray: specArray,
-                specArrayWithRef: specArrayWithRef,
-                sensArray: sensArray,
-                sensArrayWithRef: sensArrayWithRef,
-                labels: labels,
-                unique_key: uniqueKey
-            },
-            dataType: 'json'
-        });
-    }
-    
-    promise.then(set_data, default_ajax_error).always(post_request);
 }
 
 function pre_request() {
@@ -537,11 +548,11 @@ function reset_bc(){
     inputElm.find('.row:not(".non-data-row")').each(function(i, el) {
         $(el).remove();
     });
-    
+
     add_new_row();
     add_new_row();
     add_new_row();
-    
+
     thisTool.find(".reference:first").click();
 
     thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
