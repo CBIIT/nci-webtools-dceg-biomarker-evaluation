@@ -433,10 +433,10 @@ function set_excel(dt) {
     thisTool.find("#please_wait_download").modal("hide");
     if(dt.length > 0)
         window.open(dt);
-    else
+    else {
         display_errors("There was a problem generating or downloading the excel file.");
-    console.log("problem generating excel file");
-
+        console.log("problem generating excel file");
+    }
    
 }
 
