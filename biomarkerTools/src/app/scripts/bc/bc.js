@@ -423,10 +423,9 @@ function refreshGraph(drawgraph){
     }
     d = new Date();
 
+//    thisTool.find('#graph').empty();
 
-    thisTool.find('#graph').empty();
-
-    thisTool.find('#graph').append("<img class='thumbnail' alt='image of example output after calculation' src='" + graph_file + d.getTime()+"' />");
+    thisTool.find('#graph img').attr("alt",'output after calculation').attr('src', graph_file + d.getTime());
 }
 
 function set_data(dt){
@@ -554,8 +553,7 @@ function reset_bc(){
     add_new_row();
 
     thisTool.find(".reference:first").click();
-
-    thisTool.find('#graph').empty().append("<img class='thumbnail' alt='image of example output after calculation' src='/common/images/initial.jpg' />");
+    thisTool.find('#graph img').attr("alt",'image of example output after calculation').attr('src','/common/images/initial.jpg');
     thisTool.find('#output').empty();
 
     thisTool.find("[row='0'] .sensitivity").text("0.8");
