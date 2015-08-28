@@ -1,4 +1,4 @@
-//"use strict";
+
 var cases_string;
 var uniqueKey;
 var thisTool = $("#meanstorisk");
@@ -22,7 +22,7 @@ $(document).ready(function(){
     bind_download_button();
     bind_option_choices();
 
-    // on panel show
+   
     thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
         if(this.id == "file_upload"){
             thisTool.find('#cases_control').collapse('hide');
@@ -107,7 +107,7 @@ function prepare_upload (e) {
                                     numberOfCols + " columns." ]);
                 }
                 else {
-                    valuesFromFile = []; // remove previous values
+                    valuesFromFile = [];
                     for (count = 0; count < lines.length;count++) {
                         var arr = lines[count].split(",");
                         if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
@@ -161,7 +161,7 @@ function validate_input(valid){
         messages.push("Please Upload a file or pick the normalized option and enter key data first");
     }
     if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")){
-        // check all inputs for values
+       
         var inputs = thisTool.find("#accordion").find(".panel-body:nth(1) input");
 
         var empty = false;
@@ -197,7 +197,7 @@ function make_call() {
         make_ajax_call_user_defined_calculation();
     }
 
-    // zero indexed, looking for if second panel is open
+   
     else if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")) {
 
         get_inputs_for_standard_calculation();
@@ -210,7 +210,7 @@ function bind_download_button() {
     thisTool.find("#download_button").click(function() {
         var activePanelIndex = thisTool.find("#accordion .collapse.in").index() - 2;
         if (activePanelIndex === 0) {
-            // Quick check to make sure there a file.
+           
             if (valuesFromFile.length === 0) {
                 display_errors("Please Upload a file or pick the normalized option and enter key data first");
             } else {
@@ -231,8 +231,8 @@ function ajax_error(jqXHR, exception)
 }
 
 
-/// -----------------------------------------------
-/// Computation Functions
+
+
 
 function get_inputs_for_user_defined_calculation () {
     specificity_string="" + thisTool.find("#specificity").val() + ""; 
@@ -257,10 +257,10 @@ function get_inputs_for_standard_calculation () {
 }
 
 
-// The function below is no longer used.  We take the values from the output and no longer compute it going in.
+
 function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_controls,N_cases,N_controls) {
 
-    // First the input values
+   
     set_value("#mean_cases",mean_cases);	
     set_value("#mean_controls",mean_controls);	
     set_value("#stderr_cases",stderr_cases);	
@@ -268,7 +268,7 @@ function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_contro
     set_value("#N_cases",N_cases);	
     set_value("#N_controls",N_controls);	
 
-    // Now the derived values
+   
     var deviation_cases= stderr_cases * Math.sqrt(N_cases);
     set_value("#deviation_cases",deviation_cases.toPrecision(4) );
     var deviation_controls= stderr_controls * Math.sqrt(N_controls);
@@ -433,11 +433,11 @@ function set_excel(dt) {
     thisTool.find("#please_wait_download").modal("hide");
     if(dt.length > 0)
         window.open(dt);
-    else
+    else {
         display_errors("There was a problem generating or downloading the excel file.");
-    console.log("problem generating excel file");
-
-    //	$("#download_link").attr("href", dt);
+        console.log("problem generating excel file");
+    }
+   
 }
 
 function ajax_error(dt) {
@@ -447,7 +447,7 @@ function ajax_error(dt) {
 function set_values_table(dt) {
     var values = dt.Delta;
 
-    // First the input values
+   
     if (values[0].Cases) set_value("#mean_cases",values[0].Cases.toPrecision(2)); else set_value("#mean_cases","");
     if (values[0].Controls) set_value("#mean_controls",values[0].Controls.toPrecision(2));	else set_value("#mean_controls","");
     if (values[0].Overall) set_value("#mean_overall",values[0].Overall.toPrecision(2) ); else set_value("#mean_overall","");
@@ -502,8 +502,8 @@ function create_tabbed_table(dt) {
 }
 
 function make_tabs() {
-    //    var tabs = $("<div id='tabs' style='width:1180px;margin:5px;'> </div>");
-    var tabs = $("<div id='tabs'> </div>"); // remove inline styles
+   
+    var tabs = $("<div id='tabs'> </div>");
     $(".tabbed_output_panel").empty().append(tabs);
     var tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
@@ -511,10 +511,10 @@ function make_tabs() {
     var index = 0;
     for(var key in ppv_tabs) {
         index++;
-        //        tab_names.append("<LI><a  style='padding:3px;' href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
-        //        tabs.append("<DIV style='width:1180px;height:325px;' id='tab-" + index + "' > " + ppv_tabs[key] + " </div>");
+       
+       
 
-        // removing inline styles
+       
         tab_names.append("<LI><a href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
         tabs.append("<DIV id='tab-" + index + "' > " + ppv_tabs[key] + " </div>"); 
     }
@@ -529,8 +529,8 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     var specificity_count = matrix.length;
 
 
-    //    var general_table = $("<TABLE class='table_data' style='width:94%;'></TABLE>");
-    // removing inline styles
+   
+   
     var general_table = $("<TABLE class='table_data'></TABLE>");
     $("#"+tab_id).empty().append(general_table);
 
@@ -568,7 +568,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 
     for(var y=0;y < specificity_count;y++) {
         var row = $("<tr></tr>");
-        // First do the specificity
+       
         row.attr('id', type + '_table_row_' + x);
         row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y].Specificity) + "</TD>");
         row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y].Sensitivity) + "</TD>");
@@ -576,21 +576,21 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
         row.append("<TD class='table_data col1 text-center' style='border-right:1px solid black;'>" + 
                    format_number(sensitivity_matrix[y]['LR-']) + "</TD>");
 
-        // Then do prevalence
+       
         for(var z = 0; z < prevalence_count; z++) {
             var prevalence_value = prevalence_values[z];
             row.append("<TD class='table_data col1 text-center'>" + format_number(matrix[y][prevalence_value]) + "</TD>");			
         }
         row.appendTo(general_table);
     }	
-    //from glossary.js for term definition popup in the output
+   
     general_table.find('.define').on('click', termDisplay);
 }
 
 function draw_graph() {
     var graph_file;
 
-    // find by id instead of index
+   
     var activePanelId = thisTool.find("#accordion .collapse.in").attr('id');
     if (activePanelId =="file_upload") {
         graph_file = "tmp/CSV"+uniqueKey+".png?";
@@ -611,16 +611,16 @@ function set_value(field, value) {
 }
 
 function format_number(num) {
-    //	var intermediate = new Number(num.toPrecision(3));
-    //	if (num < 100 && num > 0.001) return intermediate.toString();
-    //	else return intermediate.toExponential();
+   
+   
+   
     return num;
 }
 
 function reset_meanstorisk(){
     thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
 
-    // close errors if showing
+   
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
@@ -632,7 +632,7 @@ function reset_meanstorisk(){
 }
 
 thisTool.find("#reset").on("click", reset_meanstorisk);
-//  Below is needed for IE 9 and below and compatibility mode as the older version does not support the Object.keys method
+
 
 Object.keys = Object.keys || function(o) { 
     var result = []; 
