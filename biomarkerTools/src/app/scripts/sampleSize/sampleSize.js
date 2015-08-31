@@ -25,7 +25,7 @@ function checkValidity(){
         else if(!valObject.valid && !valObject.stepMismatch) {
             if($(el)[0].title !== "") messages.push($(el)[0].title);
         }
-        
+
         else if(el.id == "contour" || el.id == "fixed") {
             var values = $(el).val().split(',');
 
@@ -57,7 +57,7 @@ thisTool.find('.post').click(function(){
     else {
         disableAll();
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-        
+
         thisTool.find("#spinner").removeClass("hide");
 
         // scroll down to loader image
@@ -297,4 +297,45 @@ function reset_code(){
 function random_gen(){
     var randomno = Math.floor((Math.random() * 1000) + 1);
     thisTool.find("#randomnumber").text(randomno);
+}
+
+
+function retrieve_excel() {
+    uniqueKey = (new Date()).getTime();	
+    hostname = window.location.hostname;
+    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
+
+    thisTool.find("#spinner").removeClass("hide"); 
+
+    disableAll();
+    
+    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
+    var sensLength = sensString.split(",").length;
+    
+    var specString = trim_spaces(thisTool.find("#specificity_val").text());
+    var specLength = specString.split(",").length;
+    
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            export: true,
+            k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
+            sens: sensString,
+            spec: specString,
+            sensLength: sensLength,
+            specLength: specLength,
+            prev: thisTool.find("#prevalence").val(),
+            N: thisTool.find("#n_value").val(),
+            unique_id: thisTool.find("#randomnumber").text(),
+            fixed_flag:thisTool.find("#fixed_flag").text()
+        },
+        dataType: "json",
+        success: set_excel,
+        error: ajax_error
+    }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
+        enableAll();
+        thisTool.find("#spinner").addClass("hide");
+    });
 }

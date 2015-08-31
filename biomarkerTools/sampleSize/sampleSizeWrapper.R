@@ -1,42 +1,67 @@
 library('RJSONIO')
 source ('./DrawCompRecVark.R', local=environment())
+source ('./writeToExcel.R',local=environment())
 
 imageDirectory="./tmp/" 
 
-saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId) {
+#example input values
+k=c(0,1)
+sens=c(0.8, 0.9, 0.95, 0.995)
+spec=c(0.7,0.8,0.9)
+prev=0.001
+N=100
+excel=TRUE
+
+saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   specTabs=1:length(spec)
   allSensData= list()
+  tabsList= list()
+  
   for (i in specTabs) {
     data=saveSensContours(k, sens, spec[i], prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
     allSensData[[tab]]=data
+    tabsList[[i]] <- tab
   }
-#Remove cat
-  return (toJSON(allSensData, .escapeEscape=TRUE))
+  
+  if(exporting == TRUE) {
+    
+    for(i in specTabs) {
+      tab=paste('tab', i, sep='')
+      prepareSaveGraph(imageDirectory, "PPVkSensSpec-", uniqueId, i)
+      prepareSaveGraph(imageDirectory, "cNPVkSensSpec-", uniqueId, i)
+      writeResultsToExcel(tab, allSensData)
+    }
+    
+    jsonString <- toJSON(excelFileName, method="C");
+  }
+
+    return (toJSON(allSensData, .escapeEscape=TRUE))
 }
 
-
-saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId) {
+saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   sensTabs=1:length(sens)
   allSpecData= list()
+  
   for (i in sensTabs) {
-    data=saveSpecContours(k, sens[i], spec, prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
+    data=saveSpecContours(k, sens[i], spec, prev, N, uniqueId, i)
     allSpecData[[tab]]=data
   }
-#Remove cat
-  return (toJSON(allSpecData, .escapeEscape=TRUE))
+  
+  if(exporting == TRUE) {
+    
+    for(i in sensTabs) {
+      tab=paste('tab', i, sep='')
+      prepareSaveGraph(imageDirectory, "PPVkSpecSens-", uniqueId, i)
+      prepareSaveGraph(imageDirectory, "cNPVkSpecSens-", uniqueId, i)
+      imageFileName <- prepareSaveGraph(specmin, specmax, allSpecData[[i]], uniqueId, graphname);
+      writeResultsToExcel(tab, allSpecData)
+    }
+  }
+    return (toJSON(allSpecData, .escapeEscape=TRUE))
 }
 
-
-#example input values
-#k=c(0,1)
-#sens=c(0.8, 0.9, 0.95, 0.995)
-#spec=0.8
-#prev=0.001
-#N=1
-
-#saveSensContours <- function()
 saveSensContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
 {
   #k=c(0,1)
@@ -99,4 +124,15 @@ prepareSaveGraph <- function(imgDir, graphPrefix, uniqueId, tabvalue) {
   }
   graph=paste(imgDir, graphPrefix, uniqueId, "-", as.numeric(tabvalue),".png", sep='')
   png(file=graph)
+}
+
+parseURLEncodedString <- function (urlEncodedString) {
+  #print (urlEncodedString);
+  string <- URLdecode(urlEncodedString);
+  inputList <- lapply(strsplit(string, "&")[[1]], function(x){
+    tmp <- strsplit(x, "=")
+    val <- tmp[[1]][[2]]
+    names(val) <- tmp[[1]][[1]]
+    as.list(val)
+  });
 }
