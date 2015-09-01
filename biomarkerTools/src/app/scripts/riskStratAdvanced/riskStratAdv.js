@@ -226,15 +226,15 @@ $(document).ready(function(){
 
 function addTestData() {
 
-    thisTool.find("#independent_dropdown").val("specificity");
-    thisTool.find("#contour_dropdown").val("prevalence");
-    thisTool.find("#fixed_dropdown").val("delta");
+    thisTool.find("#independent_dropdown_rs").val("specificity");
+    thisTool.find("#contour_dropdown_rs").val("prevalence");
+    thisTool.find("#fixed_dropdown_rs").val("delta");
 
-    makeSelectionsUnique(functionnames, "independent_dropdown");
+    makeSelectionsUnique(functionnames, "independent_dropdown_rs");
 
-    thisTool.find("#independent").val("0.6, 0.75, 0.8, 0.86, 0.92");
-    thisTool.find("#contour").val("0.01, 0.05, 0.1");
-    thisTool.find("#fixed").val("1, 1.5, 2, 3");
+    thisTool.find("#independent_rs").val("0.6, 0.75, 0.8, 0.86, 0.92");
+    thisTool.find("#contour_rs").val("0.01, 0.05, 0.1");
+    thisTool.find("#fixed_rs").val("1, 1.5, 2, 3");
 
     thisTool.find(".variable-example").text("");
     addPopupDefinition();
@@ -297,7 +297,7 @@ function resetPopupDefinition() {
 
 function resetPage() {
     thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-    makeSelectionsUnique(functionnames, "independent_dropdown");
+    makeSelectionsUnique(functionnames, "independent_dropdown_rs");
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr('disabled');
     thisTool.find("#errors, #spinner").addClass('hide');
@@ -503,26 +503,26 @@ function calculate_riskStrat() {
     var contourArray = ""; // ppv
     var independentArray = ""; // specificity
 
-    independentArray = thisTool.find("#independent").val();
+    independentArray = thisTool.find("#independent_rs").val();
     // Remove all spaces and non-characters
     independentArray = independentArray.replace(/[^\d,.-]/g, '');
-    var independentval = thisTool.find("#independent_dropdown").val();
+    var independentval = thisTool.find("#independent_dropdown_rs").val();
     independentArraySplit = independentArray.split(",");
     var independentMin = Math.min.apply(Math, independentArraySplit);
     var independentMax = Math.max.apply(Math, independentArraySplit);
-    contourArray = thisTool.find("#contour").val();
+    contourArray = thisTool.find("#contour_rs").val();
     // Remove all spaces and non-characters
     contourArray = contourArray.replace(/[^\d,.-]/g, '');
-    var contourval = thisTool.find("#contour_dropdown").val();
+    var contourval = thisTool.find("#contour_dropdown_rs").val();
     var columnHeadings = contourArray.split(",");
-    fixedArray = thisTool.find("#fixed").val();
+    fixedArray = thisTool.find("#fixed_rs").val();
     // Remove all spaces and non-characters
     fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
-    var fixedval = thisTool.find("#fixed_dropdown").val();
+    var fixedval = thisTool.find("#fixed_dropdown_rs").val();
     var fixedArraySplit = fixedArray.split(",");
     var fixedArraySize = fixedArraySplit.length;
 
-    var fixed_dropdown = thisTool.find("#fixed_dropdown").val();
+    var fixed_dropdown = thisTool.find("#fixed_dropdown_rs").val();
 
     uniqueKey = (new Date()).getTime();
 
@@ -541,10 +541,10 @@ function calculate_riskStrat() {
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
-        var eIndependent = thisTool.find("#independent_dropdown")[0];
+        var eIndependent = thisTool.find("#independent_dropdown_rs")[0];
         var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
-        var eContour = thisTool.find("#contour_dropdown")[0];
+        var eContour = thisTool.find("#contour_dropdown_rs")[0];
         var selectedContourValue = eContour.options[eContour.selectedIndex].text;
 
         tableFirstRowLabel = selectedIndependentValue;
@@ -704,7 +704,7 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     }
 
 
-    var independentArray = thisTool.find("#independent").val();
+    var independentArray = thisTool.find("#independent_rs").val();
     independentArraySplit = independentArray.split(",");
 
     var arr = [];
