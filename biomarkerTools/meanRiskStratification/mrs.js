@@ -595,20 +595,20 @@ var values_option_2_bm = [{
     "prob_m": 0.1696,
     "sampsize": 30371
 },
-{
-  "markerName": "Pap",
-  "ppv": 0.0941,
-  "npv": 0.9990,
-  "prob_m": 0.163,
-  "sampsize": 30371
-},
-{
-  "markerName": "VIA",
-  "ppv": 0.0834,
-  "npv": 0.9917,
-  "prob_m": 0.1066,
-  "sampsize": 30371
-}];
+                          {
+                              "markerName": "Pap",
+                              "ppv": 0.0941,
+                              "npv": 0.9990,
+                              "prob_m": 0.163,
+                              "sampsize": 30371
+                          },
+                          {
+                              "markerName": "VIA",
+                              "ppv": 0.0834,
+                              "npv": 0.9917,
+                              "prob_m": 0.1066,
+                              "sampsize": 30371
+                          }];
 
 function setup_test() {
     reset_mrs();
@@ -635,10 +635,18 @@ function test(e) {
 
             // then populate with data
             $(markerElement).find('[name="name-input"]').val(values_option_1_bm[key].markerName);
-            $(markerElement).find('#a').val(values_option_1_bm[key].a);
-            $(markerElement).find('#b').val(values_option_1_bm[key].b);
-            $(markerElement).find('#c').val(values_option_1_bm[key].c);
-            $(markerElement).find('#d').val(values_option_1_bm[key].d);
+            if(index > 1){
+                $(markerElement).find('#a-bm-'+ index).val(values_option_1_bm[key].a);
+                $(markerElement).find('#b-bm-'+ index).val(values_option_1_bm[key].b);
+                $(markerElement).find('#c-bm-'+ index).val(values_option_1_bm[key].c);
+                $(markerElement).find('#d-bm-'+ index).val(values_option_1_bm[key].d);
+            }
+            else{
+                $(markerElement).find('#a').val(values_option_1_bm[key].a);
+                $(markerElement).find('#b').val(values_option_1_bm[key].b);
+                $(markerElement).find('#c').val(values_option_1_bm[key].c);
+                $(markerElement).find('#d').val(values_option_1_bm[key].d);
+            }
         }
 
         if (choice == "test2") {
