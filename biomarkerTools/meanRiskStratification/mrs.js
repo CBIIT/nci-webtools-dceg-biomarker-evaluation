@@ -70,14 +70,25 @@ function new_marker() {
         // increment included class
         newElement.removeClass('marker-1').addClass("marker-" + counter);
 
-        // make sure previous values don't get copied also
-        newElement.find('.input,input').each(function () {
-            if ($(this).is("input")) {
-                $(this).val("");
+        // make sure previous values don't get copied also, and change element ids to make them unique
+        newElement.find('input, select, label').each(function () {
+            var newId = this.id + "-bm-"+ counter;
+
+            if ($(this).is("label")) {
+                var newFor = this.control.id + "-bm-"+ counter;
+                $(this).attr("for", newFor);
             }
-            if ($(this).is("select")) {
-                // set to first selection in dropdown
-                $(this)[0].selectedIndex = 0;
+            else{
+                var newId = this.id + "-bm-"+ counter;
+                $(this).attr("id", newId);
+                
+                if ($(this).is("input")) {
+                    $(this).val("");
+                }
+                if ($(this).is("select")) {
+                    // set to first selection in dropdown
+                    $(this)[0].selectedIndex = 0;
+                }
             }
         });
 
@@ -106,7 +117,6 @@ function new_marker() {
         controls_visibility(currentMarkers);
 
         // add new marker to #markers element
-        //$('#markers').append(newElement);
         $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
 
         var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
@@ -273,7 +283,8 @@ function append_name() {
     var name;
     do {
         i++;
-        var thisNameInputElement = thisTool.find('.marker-' + i + ' #name-input');
+        var thisNameInputElement = thisTool.find('.marker-' + i + ' [name="name-input"]');
+
         // append biomarker Name to results table header
         if ((thisNameInputElement.val()).length > 0)
             name = thisNameInputElement.val() + " (CI Low, CI High)";
