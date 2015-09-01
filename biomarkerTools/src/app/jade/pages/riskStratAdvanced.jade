@@ -11,9 +11,9 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
             .panel-body
                 .row
                     .col-md-3
-                        label(for='independent_dropdown') Independent Variable
+                        label(for='independent_dropdown_rs') Independent Variable
                     .col-md-2
-                        select#independent_dropdown(name='independent_dropdown')
+                        select#independent_dropdown_rs(name='independent_dropdown_rs')
                             option(value='', selected='')
                             option(value='specificity') Specificity
                             option(value='prevalence') Prevalence
@@ -21,15 +21,15 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                             option(value='delta') Delta
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
-                    label.sr-only(for='independent') Independent Variable Value
-                    input#independent.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    label.sr-only(for='independent_rs') Independent Variable Value
+                    input#independent_rs.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
                     div
                         #indDef
                 .row
                     .col-md-3
-                        label(for='contour_dropdown') Contour
+                        label(for='contour_dropdown_rs') Contour
                     .col-md-2    
-                        select#contour_dropdown(name='contour_dropdown')
+                        select#contour_dropdown_rs(name='contour_dropdown_rs')
                             option(value='', selected='')
                             option(value='ppv') PPV
                             option(value='prevalence') Prevalence
@@ -37,15 +37,15 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                             option(value='delta') Delta
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
-                    label.sr-only(for='contour') Contour Value
-                    input#contour.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    label.sr-only(for='contour_rs') Contour Value
+                    input#contour_rs.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
                     div
                         #contourDef
                 .row
                     .col-md-3
-                        label(for='fixed_dropdown') Fixed Values
+                        label(for='fixed_dropdown_rs') Fixed Values
                     .col-md-2   
-                        select#fixed_dropdown(name='fixed_dropdown')
+                        select#fixed_dropdown_rs(name='fixed_dropdown_rs')
                             option(value='', selected='')
                             option(value='prevalence') Prevalence
                             option(value='delta') Delta
@@ -53,8 +53,8 @@ link(type="text/css", rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jq
                             option(value='specificity') Specificity
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
-                    label.sr-only(for='fixed') Fixed Value
-                    input#fixed.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
+                    label.sr-only(for='fixed_rs') Fixed Value
+                    input#fixed_rs.col-md-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
                     div
                         #fvDef
             .panel-footer
