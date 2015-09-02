@@ -10,10 +10,11 @@ html(lang="en")
         link(rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css")
         link(rel='stylesheet', href='/common/css/style.css')
         link(rel='stylesheet', href='styles.css')
+        link(rel='icon', href='favicon.ico')
         block styles
     body
         .sr-only
-            a(href="#contentTabs") Skip to Content
+            a#skip(href="#mainTabsContent") Skip to Content
         .center-block
             include header
             #main
@@ -40,7 +41,7 @@ html(lang="en")
                             a(href='#meanRiskStratification', data-toggle='tab') Mean Risk Stratification
                         li(role='tab', title="Help")
                             a(href='#help', data-toggle='tab') Help
-                    .tab-content.col-md-12
+                    #mainTabsContent.tab-content.col-md-12
                         include ../pages/home
                         include ../pages/meanstorisk
                         include ../pages/bc
