@@ -490,7 +490,7 @@ function calculate_riskStrat() {
     }
     else {
         thisTool.find("#errors").fadeOut().addClass("hide");
-        thisTool.find("#calculate").attr("disabled','").text("Please Wait....");
+        thisTool.find("#calculate").attr("disabled","").text("Please Wait....");
         thisTool.find("#spinner").removeClass("hide");
         disableAll();  
     }
