@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/common/css/style.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
   </head>
   <body>
-    <div class="sr-only"><a href="#contentTabs">Skip to Content</a></div>
+    <div class="sr-only"><a id="skip" href="#mainTabsContent">Skip to Content</a></div>
     <div class="center-block">
       <div id="wrapper">
         <div id="logos">
@@ -34,7 +35,7 @@
             <li role="tab" title="Mean Risk Stratification"><a href="#meanRiskStratification" data-toggle="tab">Mean Risk Stratification</a></li>
             <li role="tab" title="Help"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
-          <div class="tab-content col-md-12">
+          <div id="mainTabsContent" class="tab-content col-md-12">
             <div id="home" role="tabpanel" class="tab-pane fade in active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
