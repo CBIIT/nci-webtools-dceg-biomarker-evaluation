@@ -167,15 +167,15 @@ var keyLong = [
 var thisTool;
 
 function init_riskStrat(){  
-    thisTool = $('#riskStratAdvanced');
+    thisTool = $("#riskStratAdvanced");
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
-            return this.replace(/^\s+|\s+$/g, '');
+            return this.replace(/^\s+|\s+$/g, "");
         };
     }
 }
 
-$('a[href="#riskStratAdvanced"]').on('shown.bs.tab',function(e){
+$("a[href='#riskStratAdvanced']").on("shown.bs.tab",function(e){
     init_riskStrat();
 });
 
@@ -186,12 +186,12 @@ $(document).ready(function(){
         makeSelectionsUnique(functionnames, this.id);
     });
 
-    thisTool.find("#reset").on('click', resetPage);
+    thisTool.find("#reset").on("click", resetPage);
     thisTool.find("input").keyup(checkInputFields);
     thisTool.find("input").change(checkInputFields);
     thisTool.find("#add-test-data").click(addTestData);
 
-    thisTool.find("#calculate").on('click', function(e) {
+    thisTool.find("#calculate").on("click", function(e) {
         e.preventDefault();
         $("#errors").fadeOut().addClass("hide");
         if (checkRules() == "Fail") {
@@ -246,9 +246,9 @@ function addPopupDefinition() {
         delta : "Delta",
         prevalence : "DP"
     };
-    var independent = thisTool.find('#independent_dropdown').val();
-    var contour = thisTool.find('#contour_dropdown').val();
-    var fixedValue = thisTool.find('#fixed_dropdown').val();
+    var independent = thisTool.find("#independent_dropdown_rs").val();
+    var contour = thisTool.find("#contour_dropdown_rs").val();
+    var fixedValue = thisTool.find("#fixed_dropdown_rs").val();
     if (!!independent) {
         var independentTerm = termLookup[independent];
         createPopupDefinitionElement("indDef", independentTerm, independentTerm);
@@ -270,7 +270,7 @@ function addPopupDefinition() {
     else {
         thisTool.find("#fvDef").html("");
     }
-    thisTool.find('.define').on('click', termDisplay);
+    thisTool.find(".define").on("click", termDisplay);
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
@@ -279,7 +279,7 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
               termId + 
               "' data-term='" + 
               dataTerm + 
-              "'><img src='/common/images/info.png' alt='pop up definition'></div>").find('.define').on('click', termDisplay);
+              "'><img src='/common/images/info.png' height='20', width='20', alt='pop up definition'></div>").find(".define").on("click", termDisplay);
 
 }
 
@@ -295,8 +295,8 @@ function resetPage() {
     thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
     makeSelectionsUnique(functionnames, "independent_dropdown_rs");
     thisTool.find("span.variable-example").text("");
-    thisTool.find("option").removeAttr('disabled');
-    thisTool.find("#errors, #spinner").addClass('hide');
+    thisTool.find("option").removeAttr("disabled");
+    thisTool.find("#errors, #spinner").addClass("hide");
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
@@ -345,7 +345,7 @@ function checkRules() {
     }).get();
 
     $.each(ids, function(key, elementId) {
-        selectedVars.push(thisTool.find('#' + elementId).val());
+        selectedVars.push(thisTool.find("#" + elementId).val());
     });
 
     ids = thisTool.find("input").map(function() {
@@ -354,8 +354,8 @@ function checkRules() {
 
     $.each(ids, function(key, elementId) {
 
-        userInput = $('#' + elementId).val();
-        temp = userInput.split(',');
+        userInput = $("#" + elementId).val();
+        temp = userInput.split(",");
         for (var i; i < temp.length; i++) {
             values[key].push(parseFloat(temp[i]));
         }
@@ -455,7 +455,7 @@ function checkInputFields() {
     }).get();
 
     $.each(ids, function(key, elementId) {
-        selectedValues.push(thisTool.find('#' + elementId).val().length);
+        selectedValues.push(thisTool.find("#" + elementId).val().length);
     });
 
     if ($.inArray(0, selectedValues) == -1 && validCombo) {
@@ -484,14 +484,14 @@ function calculate_riskStrat() {
 
     if (rulesViolationMsg.length > 0) {
         display_errors(rulesViolationMsg);
-        thisTool.find("#calculate").removeAttr('disabled').text('Calculate');
-        thisTool.find("#spinner").addClass('hide');
+        thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+        thisTool.find("#spinner").addClass("hide");
         enableAll();
     }
     else {
         thisTool.find("#errors").fadeOut().addClass("hide");
-        thisTool.find("#calculate").attr('disabled','').text('Please Wait....');
-        thisTool.find("#spinner").removeClass('hide');
+        thisTool.find("#calculate").attr("disabled','").text("Please Wait....");
+        thisTool.find("#spinner").removeClass("hide");
         disableAll();  
     }
 
@@ -619,8 +619,8 @@ function calculate_riskStrat() {
     }
     else {
         thisTool.find("#output").empty();
-        thisTool.find("#calculate").removeAttr('disabled').text('Calculate');
-        thisTool.find("#spinner").addClass('hide');
+        thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+        thisTool.find("#spinner").addClass("hide");
         enableAll();
     }
 
@@ -628,7 +628,7 @@ function calculate_riskStrat() {
 function after_requests(){
     if($.active == 1){
         thisTool.find("#output").removeClass("hide");
-        thisTool.find("#calculate").removeAttr('disabled').text("Calculate");
+        thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
         enableAll();
         thisTool.find("#spinner").addClass("hide");
     }
@@ -671,7 +671,7 @@ function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
         url : service,
         data : data,
         dataType : "json",
-        contentType: 'application/json'
+        contentType: "application/json"
     }).done(function(data) {
         if (data.length > 0){
             data = JSON.parse(JSON.stringify(data));
@@ -694,9 +694,9 @@ function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
     var tableId = "example-" + abbreviatedKey + tabnumber;
     thisTool.find("#table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
 
-    if( $.fn.DataTable.isDataTable(thisTool.find('#'+tableId)) ){
-        thisTool.find('#'+tableId).dataTable().fnDestroy();
-        thisTool.find('#'+tableId).empty();
+    if( $.fn.DataTable.isDataTable(thisTool.find("#" + tableId)) ){
+        thisTool.find("#" + tableId).dataTable().fnDestroy();
+        thisTool.find("#" + tableId).empty();
     }
 
 
@@ -788,7 +788,7 @@ function getColumnHeaderData(columnHeadings) {
 }
 
 function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
-    var imageContainer = thisTool.find('#graphic-' + graphNamePreFix + tabNumber);
+    var imageContainer = thisTool.find("#graphic-" + graphNamePreFix + tabNumber);
     imageContainer.empty();
 
     imageContainer.append(
@@ -830,7 +830,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
 
 
     $.each(ids, function(key, elementId) {
-        selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
+        selectedValues.push(thisTool.find("#" + elementId + " option:selected").val());
     });
 
     for (var key = 0; key < ids.length; key++) {
@@ -846,7 +846,7 @@ function makeSelectionsUnique(originalOptions, elementId) {
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
 
-        thisTool.find('#' + dropdownBoxId).val(selectedValues[key]).change();
+        thisTool.find("#" + dropdownBoxId).val(selectedValues[key]).change();
     }
 
     setInitialValue(elementId);
@@ -867,12 +867,12 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
     for (var optionKey = 0; optionKey < originalOptions.length; optionKey++) {
         var attribute;
         if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
-            attribute = thisTool.find('#' + dropdownBoxId).append(
+            attribute = thisTool.find("#" + dropdownBoxId).append(
                 $("<option></option>").attr("value",
-                                            originalOptions[optionKey]).attr('disabled',
-                                                                             'disabled').text(originalOptions[optionKey]));
+                                            originalOptions[optionKey]).attr("disabled",
+                                                                             "disabled").text(originalOptions[optionKey]));
         } else {
-            attribute = thisTool.find('#' + dropdownBoxId).append(
+            attribute = thisTool.find("#" + dropdownBoxId).append(
                 $("<option></option>").attr("value",
                                             originalOptions[optionKey]).text(
                     originalOptions[optionKey]));
@@ -894,7 +894,7 @@ function setInitialValue(textboxId) {
     thisTool.find("#examples .row:eq(" + dropdownIndex + ") span").text(initialData[key]);
 
 
-    thisTool.find('#' + textboxId).val(selectedOption).change();
+    thisTool.find("#" + textboxId).val(selectedOption).change();
     addPopupDefinition();
 }
 
@@ -906,7 +906,7 @@ function checkForInvalidVariableCombo() {
     }).get();
 
     $.each(ids, function(key, elementId) {
-        selectedValues.push(thisTool.find('#' + elementId + ' option:selected').val());
+        selectedValues.push(thisTool.find("#" + elementId + " option:selected").val());
     });
 
     var blankCount = $.inArray("", selectedValues);
