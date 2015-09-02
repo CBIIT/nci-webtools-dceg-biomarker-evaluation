@@ -224,16 +224,6 @@ function bind_download_button() {
     });
 }
 
-function ajax_error(jqXHR, exception)
-{	
-    refreshGraph(1);
-    display_errors("ajax problem");
-}
-
-
-
-
-
 function get_inputs_for_user_defined_calculation () {
     specificity_string="" + thisTool.find("#specificity").val() + ""; 
     prevalence_string="" + thisTool.find("#prevalence").val() + ""; 
@@ -255,8 +245,6 @@ function get_inputs_for_standard_calculation () {
     prevalence_string="" + thisTool.find("#prevalence").val() + "";
 
 }
-
-
 
 function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_controls,N_cases,N_controls) {
 
@@ -324,7 +312,9 @@ function make_ajax_call_user_defined_calculation() {
         },
         dataType: "json",
         success: set_data_meanstorisk,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -350,7 +340,9 @@ function make_ajax_call_standard_calculation() {
         },
         dataType: "json",
         success: set_data_meanstorisk,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -382,7 +374,9 @@ function make_excel_call_user_defined_calculation() {
         },
         dataType: "json",
         success: set_excel,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -413,7 +407,9 @@ function make_excel_call_standard_calculation() {
         },
         dataType: "json",
         success: set_excel,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -438,10 +434,6 @@ function set_excel(dt) {
         console.log("problem generating excel file");
     }
    
-}
-
-function ajax_error(dt) {
-    display_errors("There was some problem getting the data. " + dt.statusText ); 	
 }
 
 function set_values_table(dt) {
