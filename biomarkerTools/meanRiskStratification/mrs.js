@@ -175,8 +175,8 @@ function calculate_mrs() {
         scrollTop();
         thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
 
-        promise.then(clean_data, function (error) {
-            display_errors("The service call has failed with the following status: " + error.statusText);
+        promise.then(clean_data, function (request,status, error) {
+            default_ajax_error(request, status, error);
         }).done(return_data).always(function(){
             enableAll();
             thisTool.find('#spinner').addClass("hide");

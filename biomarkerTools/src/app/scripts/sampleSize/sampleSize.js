@@ -90,12 +90,8 @@ thisTool.find('.post').click(function(){
                 generate_tables(ret);
                 random_gen();
             },
-                    function(jqXHR, textStatus, errorThrown) {
-                console.log("header: " + jqXHR + "\n" + "Status: " + textStatus + "\n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
-
-                var message = 'Service Unavailable: ' + textStatus + "<br>";
-                message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
-                display_errors([message]);
+            function(jqXHR, textStatus, errorThrown) {
+                default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
                 thisTool.find(".post").removeAttr('disabled').text("Calculate");
