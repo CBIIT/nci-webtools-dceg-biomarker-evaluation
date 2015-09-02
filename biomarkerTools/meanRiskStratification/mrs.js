@@ -223,12 +223,12 @@ function return_data(data) {
             var data_item = params[name];
             var formattedText = data_item.Value;
             if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "%  ";
+                formattedText += "% ";
                 if (data_item["Confidence Interval (lower bound)"] !== null &&
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + "%, " + ci_ub + "%)";
+                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
                 }
             }
             else {
@@ -236,12 +236,12 @@ function return_data(data) {
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + ", " + ci_ub + ")";
+                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
                 }
             }
             // append text to table cell
-            cell = $('#' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', lookup_id + " " + formattedText);
+            cell = $('.' + lookup_id + '_result.' + marker_id + '.output');
+            cell.attr('title', name + " " + formattedText);
             cell.text(formattedText);
         });
         // same loop but through calculations
@@ -251,12 +251,12 @@ function return_data(data) {
             var formattedText = data_item.Value;
 
             if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "%  ";
+                formattedText += "% ";
                 if (data_item["Confidence Interval (lower bound)"] !== null &&
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + "%, " + ci_ub + "%)";
+                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
                 }
             }
             else {
@@ -264,12 +264,12 @@ function return_data(data) {
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + ", " + ci_ub + ")";
+                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
                 }
             }
 
-            cell = thisTool.find('#' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', lookup_id + " " + formattedText);
+            cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output');
+            cell.attr('title', name + " " + formattedText);
             cell.text(formattedText);
         });
     });
