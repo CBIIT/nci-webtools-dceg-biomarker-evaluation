@@ -21,26 +21,26 @@
                   a.accordion-toggle(title='Input: 2x2 Table') Input: 2x2 Table
               #marker-1-option-1.panel-collapse.collapse.in
                 .option-1.panel-body
-                  table.table.table-condensed
+                  table.table.table-condensed.table-responsive
                     thead
                       tr
                         td.col-md-2.header
-                        th#prob_m.termToDefine.header Marker Positive (M+)
-                        th#m_neg.termToDefine.header Marker Negative (M-)
+                        th#prob_m.termToDefine.header(header="prob_m") Marker Positive (M+)
+                        th#m_neg.termToDefine.header(header="m_neg") Marker Negative (M-)
                     tbody
                       tr
-                        th#prob_d.termToDefine.header Disease Positive (D+)    
+                        th#prob_d.termToDefine.header Disease Positive (D+)
                         td
                           label.sr-only(for='a') A
-                          input#a.input(name='a', type='number', maxlength='30')    
+                          input#a.input(name='a', type='number', maxlength='30')
                         td
                           label.sr-only(for='b') B
                           input#b.input(name='b', type='number', maxlength='30')
                       tr
-                        th#d_neg.termToDefine.header Disease Negative (D-)    
+                        th#d_neg.termToDefine.header Disease Negative (D-)
                         td
                           label.sr-only(for='c') C
-                          input#c.input(name='c', type='number', maxlength='30')    
+                          input#c.input(name='c', type='number', maxlength='30')
                         td
                           label.sr-only(for='d') D
                           input#d.input(name='d', type='number', maxlength='30')
@@ -57,8 +57,8 @@
                   table.option-2.table.table-condensed.table-responsive
                     thead
                       tr
-                        th.header(title='Parameter Type Column') Parameter
-                        th.header(title='Parameter Proportion Column') Proportion
+                        th.header(title='Parameter Type Column', header="Parameter Type Column") Parameter
+                        th.header(title='Parameter Proportion Column', header="Parameter Proportion Column") Proportion
                     tbody
                       tr(row='0')
                         td
@@ -115,10 +115,10 @@
           table.table.table-bordered.table-condensed
             thead
               tr
-                th Calculations
-                th.bm_1.marker_name &nbsp;
-                th.bm_2.marker_name &nbsp;
-                th.bm_3.marker_name &nbsp;
+                th(header="Calculations") Calculations
+                th.bm_1.marker_name(header="Calculations for Biomarker 1") &nbsp;
+                th.bm_2.marker_name(header="Calculations for Biomarker 2") &nbsp;
+                th.bm_3.marker_name(header="Calculations for Biomarker 3") &nbsp;
             |                 
             tr
               td.concern.termToDefine Concern = PPV-P(D+)
@@ -177,10 +177,10 @@
           table.table.table-bordered.table-condensed
             thead
               tr
-                th Parameters
-                th.bm_1.marker_name &nbsp;
-                th.bm_2.marker_name &nbsp;
-                th.bm_3.marker_name &nbsp;
+                th(header="Parameters") Parameters
+                th.bm_1.marker_name(header="Parameters for Biomarker 1") &nbsp;
+                th.bm_2.marker_name(header="Parameters for Biomarker 2") &nbsp;
+                th.bm_3.marker_name(header="Parameters for Biomarker 3") &nbsp;
             tbody
               tr
                 td.test.termToDefine True Positive Fraction = a

@@ -16,8 +16,8 @@
     <div class="center-block">
       <div id="wrapper">
         <div id="logos">
-          <div class="pull-left"><a href="http://www.cancer.gov" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute" title="National Cancer Institute"></a></div>
-          <div class="pull-right"><a href="http://www.cancer.gov" target="_blank"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health" title="at the National Institutes of Health"></a></div>
+          <div class="pull-left"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute" title="National Cancer Institute"></a></div>
+          <div class="pull-right"><a href="http://www.cancer.gov" alt="at the National Institutes of Health" target="_blank"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health" title="at the National Institutes of Health"></a></div>
         </div>
       </div><br>
       <div id="main">
@@ -571,17 +571,17 @@
                       </div>
                       <div id="marker-1-option-1" class="panel-collapse collapse in">
                         <div class="option-1 panel-body">
-                          <table class="table table-condensed">
+                          <table class="table table-condensed table-responsive">
                             <thead>
                               <tr>
                                 <td class="col-md-2 header"></td>
-                                <th id="prob_m" class="termToDefine header">Marker Positive (M+)</th>
-                                <th id="m_neg" class="termToDefine header">Marker Negative (M-)</th>
+                                <th id="prob_m" header="prob_m" class="termToDefine header">Marker Positive (M+)</th>
+                                <th id="m_neg" header="m_neg" class="termToDefine header">Marker Negative (M-)</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)    </th>
+                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)</th>
                                 <td>
                                   <label for="a" class="sr-only">A</label>
                                   <input id="a" name="a" type="number" maxlength="30" class="input">
@@ -592,7 +592,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)    </th>
+                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)</th>
                                 <td>
                                   <label for="c" class="sr-only">C</label>
                                   <input id="c" name="c" type="number" maxlength="30" class="input">
@@ -618,8 +618,8 @@
                           <table class="option-2 table table-condensed table-responsive">
                             <thead>
                               <tr>
-                                <th title="Parameter Type Column" class="header">Parameter</th>
-                                <th title="Parameter Proportion Column" class="header">Proportion</th>
+                                <th title="Parameter Type Column" header="Parameter Type Column" class="header">Parameter</th>
+                                <th title="Parameter Proportion Column" header="Parameter Proportion Column" class="header">Proportion</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -692,10 +692,10 @@
                   <table class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th>Calculations</th>
-                        <th class="bm_1 marker_name">&nbsp;</th>
-                        <th class="bm_2 marker_name">&nbsp;</th>
-                        <th class="bm_3 marker_name">&nbsp;</th>
+                        <th header="Calculations">Calculations</th>
+                        <th header="Calculations for Biomarker 1" class="bm_1 marker_name">&nbsp;</th>
+                        <th header="Calculations for Biomarker 2" class="bm_2 marker_name">&nbsp;</th>
+                        <th header="Calculations for Biomarker 3" class="bm_3 marker_name">&nbsp;</th>
                       </tr>
                     </thead>                
                     <tr>
@@ -756,10 +756,10 @@
                   <table class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th>Parameters</th>
-                        <th class="bm_1 marker_name">&nbsp;</th>
-                        <th class="bm_2 marker_name">&nbsp;</th>
-                        <th class="bm_3 marker_name">&nbsp;</th>
+                        <th header="Parameters">Parameters</th>
+                        <th header="Parameters for Biomarker 1" class="bm_1 marker_name">&nbsp;</th>
+                        <th header="Parameters for Biomarker 2" class="bm_2 marker_name">&nbsp;</th>
+                        <th header="Parameters for Biomarker 3" class="bm_3 marker_name">&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody>
