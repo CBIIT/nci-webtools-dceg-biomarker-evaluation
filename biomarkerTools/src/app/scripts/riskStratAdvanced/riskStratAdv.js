@@ -283,7 +283,7 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
               termId + 
               "' data-term='" + 
               dataTerm + 
-              "'><img src='/common/images/info.png' height='20', width='20', alt='pop up definition'></div>").find(".define").on("click", termDisplay);
+              "'><img src='/common/images/info.png' height='20', width='20', alt='pop up definition for " + dataTerm + "'></div>").find(".define").on("click", termDisplay);
 
 }
 
@@ -797,7 +797,7 @@ function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
 
     imageContainer.append(
         "<img class='img-responsive' src='tmp/" + 
-        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output image'>");
+        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
 }
 
 function refreshGraph(drawgraph) {
