@@ -388,7 +388,7 @@ function reset_mrs() {
     markerChildren.find('input').val('');
 
     // clear all output cells
-    thisTool.find('.output').text('');
+    thisTool.find('.output').text('').attr("title", "");
     thisTool.find('#paramTable th:gt(1), #calcTable th:gt(1)').attr("title", '(Biomarker Title Placeholder)').text('(Biomarker Title Placeholder)');
     thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
 
