@@ -1,5 +1,5 @@
 #meanRiskStratification.tab-pane.fade(role='tabpanel') 
-    h3.title.text-center(title="Mean Risk Stratification") Mean Risk Stratification
+    h3.title.text-center(title="Mean Risk Stratification tool") Mean Risk Stratification
     .col-md-12
         #helpGlossaryLinks
             a.goToHelp(href="#help_meanRiskStratification") Help
@@ -18,7 +18,7 @@
                 h6.panel-title
                   span.glyphicon.glyphicon-chevron-down
                   | &nbsp;&nbsp;
-                  a.accordion-toggle(title='Input: 2x2 Table') Input: 2x2 Table
+                  a.accordion-toggle(title='Input Option 1 2 by 2 Table') Input: 2x2 Table
               #marker-1-option-1.panel-collapse.collapse.in
                 .option-1.panel-body
                   table.table.table-condensed.table-responsive
@@ -48,7 +48,7 @@
                 h6.panel-title
                     span.glyphicon.glyphicon-chevron-down
                     | &nbsp;&nbsp;
-                    a.accordion-toggle(title='Input: PPV, NPV, Sensitivity,Specificity, etc.') Input: PPV, NPV, Sensitivity,Specificity, etc.
+                    a.accordion-toggle(title='Input option 2 PPV, NPV, Sensitivity, Specificity, etc.') Input: PPV, NPV, Sensitivity, Specificity, etc.
               #marker-1-option-2.panel-collapse.collapse
                 .option-2.panel-body.extra-padding.table-responsive
                   .extra-padding
@@ -102,8 +102,8 @@
                 button#delete-marker(title='Delete biomarker')
                   span.glyphicon.glyphicon-minus-sign(alt='Delete(-)') &nbsp;
                   span Delete
-                button#reset(type='reset', title='Reset') Reset
-                button#calculate(type='button', title='Calculate') Calculate
+                button#reset(type='reset') Reset
+                button#calculate(type='button') Calculate
               .pull-right
                 .row
                   a#test1(href='#', title='Populate 1 biomarker using test data') Example 1
