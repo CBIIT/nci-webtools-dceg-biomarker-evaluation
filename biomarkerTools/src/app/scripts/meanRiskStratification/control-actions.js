@@ -73,7 +73,7 @@ function new_marker() {
             var newId = this.id + "-bm-"+ counter;
 
             if ($(this).is("label")) {
-                var newFor = this.control.id + "-bm-"+ counter;
+                var newFor = this.htmlFor + "-bm-"+ counter;
                 $(this).attr("for", newFor);
             }
             else{
