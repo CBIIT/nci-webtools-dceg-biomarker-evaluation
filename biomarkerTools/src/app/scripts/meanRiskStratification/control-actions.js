@@ -1,5 +1,3 @@
-//"use strict";
-
 // keep track of the number of marker elements, to use the number as the id,
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
@@ -365,9 +363,7 @@ function extract_values(valid) {
                     }
                 });
             }
-            //else {
-            //    valid = true;
-            //}
+
         }
     } while (i != currentMarkers);
 
@@ -393,6 +389,7 @@ function reset_mrs() {
 
     // clear all output cells
     thisTool.find('.output').text('');
+    thisTool.find('#paramTable th:gt(1), #calcTable th:gt(1)').attr("title", '(Biomarker Title Placeholder)').text('(Biomarker Title Placeholder)');
     thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
 
     // close errors if showing

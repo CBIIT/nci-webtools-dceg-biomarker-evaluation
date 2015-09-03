@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/common/css/style.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico">
   </head>
   <body>
     <div class="sr-only"><a id="skip" href="#mainTabsContent">Skip to Content</a></div>
@@ -690,13 +689,13 @@
                   <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
                 <div id="results" class="hide">
-                  <table class="table table-bordered table-condensed">
+                  <table id="paramTable" class="table table-bordered table-condensed">
                     <thead>
                       <tr>
                         <th header="Calculations">Calculations</th>
-                        <th header="Calculations for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
-                        <th header="Calculations for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
-                        <th header="Calculations for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Calculations for Biomarker 1" title="Calculations for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Calculations for Biomarker 2" title="Calculations for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Calculations for Biomarker 3" title="Calculations for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                       </tr>
                     </thead>                
                     <tr>
@@ -754,13 +753,13 @@
                       <td class="nns_result output bm_3"></td>
                     </tr>
                   </table><br>
-                  <table class="table table-bordered table-condensed">
+                  <table id="calcTable" class="table table-bordered table-condensed">
                     <thead>
                       <tr>
                         <th header="Parameters">Parameters</th>
-                        <th header="Parameters for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
-                        <th header="Parameters for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
-                        <th header="Parameters for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Parameter results for Biomarker 1" title="Parameter results for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Parameter results for Biomarker 2" title="Parameter results for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Parameter results for Biomarker 3" title="Parameter results for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                       </tr>
                     </thead>
                     <tbody>

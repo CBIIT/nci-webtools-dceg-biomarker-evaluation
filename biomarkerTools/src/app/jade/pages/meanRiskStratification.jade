@@ -112,13 +112,13 @@
       .col-md-7.col-sm-7
         include ../partials/loader.jade
         #results.hide
-          table.table.table-bordered.table-condensed
+          table#paramTable.table.table-bordered.table-condensed
             thead
               tr
                 th(header="Calculations") Calculations
-                th.bm_1.marker_name(header="Calculations for Biomarker 1") (Biomarker Title Placeholder)
-                th.bm_2.marker_name(header="Calculations for Biomarker 2") (Biomarker Title Placeholder)
-                th.bm_3.marker_name(header="Calculations for Biomarker 3") (Biomarker Title Placeholder)
+                th.bm_1.marker_name(header="Calculations for Biomarker 1", title="Calculations for Biomarker 1") (Biomarker Title Placeholder)
+                th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
+                th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
             |                 
             tr
               td.concern.termToDefine Concern = PPV-P(D+)
@@ -174,13 +174,13 @@
               td.nns_result.output.bm_2
               td.nns_result.output.bm_3
           br
-          table.table.table-bordered.table-condensed
+          table#calcTable.table.table-bordered.table-condensed
             thead
               tr
                 th(header="Parameters") Parameters
-                th.bm_1.marker_name(header="Parameters for Biomarker 1") (Biomarker Title Placeholder)
-                th.bm_2.marker_name(header="Parameters for Biomarker 2") (Biomarker Title Placeholder)
-                th.bm_3.marker_name(header="Parameters for Biomarker 3") (Biomarker Title Placeholder)
+                th.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1") (Biomarker Title Placeholder)
+                th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
+                th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
             tbody
               tr
                 td.test.termToDefine True Positive Fraction = a
