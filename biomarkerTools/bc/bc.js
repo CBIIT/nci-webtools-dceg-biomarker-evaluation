@@ -497,10 +497,8 @@ function jsonToCellWithPrev(obj){
     new_row.append("<div class='col-md-2 text-center'>" + LRplus + "</div>");
     new_row.append("<div class='col-md-2 text-center'>" + LRminus + "</div>");
     if (validPrevValue) {
-        new_row.append("<div class='col-md-2'>" + PPV + "</div>");
-    }
-    if (validPrevValue) {
-        new_row.append("<div class='col-md-2'>" + cNPV + "</div>");
+        new_row.append("<div class='col-md-2 text-center'>" + PPV + "</div>");
+        new_row.append("<div class='col-md-2 text-center'>" + cNPV + "</div>");
     }
     thisTool.find('#output').append(new_row);
 }
