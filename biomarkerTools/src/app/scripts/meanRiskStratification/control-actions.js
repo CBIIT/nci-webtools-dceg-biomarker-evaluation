@@ -77,7 +77,6 @@ function new_marker() {
                 $(this).attr("for", newFor);
             }
             else{
-                var newId = this.id + "-bm-"+ counter;
                 $(this).attr("id", newId);
                 
                 if ($(this).is("input")) {
