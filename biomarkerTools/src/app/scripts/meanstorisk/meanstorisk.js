@@ -21,7 +21,10 @@ $(document).ready(function(){
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
-
+    
+    thisTool.find(".data_entry_by_input").on('click', function () {
+        thisTool.find("#download_button").addClass('hide');
+    });
    
     thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
         if(this.id == "file_upload"){
@@ -45,10 +48,8 @@ $('a[href="#meanstorisk"]').on('shown.bs.tab',function(e){
 function init_meanstorisk(){ 
     thisTool.find("#please_wait_calculate").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
     thisTool.find("#please_wait_download").modal({ autoOpen: false, position: 'top', title: "Please Wait", height: 60 });
-    thisTool.find("#download_button, #errors").addClass('hide');
-    thisTool.find(".data_entry_by_input").on('click', function () {
-        thisTool.find("#download_button").addClass('hide');
-    });
+    thisTool.find("#errors").addClass('hide');
+
     thisTool.find('.panel-heading a').on('click',function(e) {
         if($(this).parents('.panel').children('.panel-collapse').hasClass('in')) {
             e.preventDefault();
@@ -224,16 +225,6 @@ function bind_download_button() {
     });
 }
 
-function ajax_error(jqXHR, exception)
-{	
-    refreshGraph(1);
-    display_errors("ajax problem");
-}
-
-
-
-
-
 function get_inputs_for_user_defined_calculation () {
     specificity_string="" + thisTool.find("#specificity").val() + ""; 
     prevalence_string="" + thisTool.find("#prevalence").val() + ""; 
@@ -255,8 +246,6 @@ function get_inputs_for_standard_calculation () {
     prevalence_string="" + thisTool.find("#prevalence").val() + "";
 
 }
-
-
 
 function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_controls,N_cases,N_controls) {
 
@@ -324,7 +313,9 @@ function make_ajax_call_user_defined_calculation() {
         },
         dataType: "json",
         success: set_data_meanstorisk,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -350,7 +341,9 @@ function make_ajax_call_standard_calculation() {
         },
         dataType: "json",
         success: set_data_meanstorisk,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -382,7 +375,9 @@ function make_excel_call_user_defined_calculation() {
         },
         dataType: "json",
         success: set_excel,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -413,7 +408,9 @@ function make_excel_call_standard_calculation() {
         },
         dataType: "json",
         success: set_excel,
-        error: ajax_error
+        error: function(request,status,error){
+        default_ajax_error(request, status, error);
+        }
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
@@ -438,10 +435,6 @@ function set_excel(dt) {
         console.log("problem generating excel file");
     }
    
-}
-
-function ajax_error(dt) {
-    display_errors("There was some problem getting the data. " + dt.statusText ); 	
 }
 
 function set_values_table(dt) {
@@ -619,7 +612,6 @@ function format_number(num) {
 
 function reset_meanstorisk(){
     thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
-
    
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");

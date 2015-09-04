@@ -90,12 +90,8 @@ thisTool.find('.post').click(function(){
                 generate_tables(ret);
                 random_gen();
             },
-                    function(jqXHR, textStatus, errorThrown) {
-                console.log("header: " + jqXHR + "\n" + "Status: " + textStatus + "\n\nThe server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.");
-
-                var message = 'Service Unavailable: ' + textStatus + "<br>";
-                message += "The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.<br>";
-                display_errors([message]);
+            function(jqXHR, textStatus, errorThrown) {
+                default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
                 thisTool.find(".post").removeAttr('disabled').text("Calculate");
@@ -208,7 +204,7 @@ function generate_tabs(iterate,randomnumber){
     for(var i = 0; i < arrayLength; i++) {
        
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
-        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG alt="output graph images for tab '+(i+1)+'" SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG alt="output graph images for tab '+(i+1)+'" SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
+        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG alt="PPV graph image for tab '+(i+1)+'" SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG alt="cNPV graph image for tab '+(i+1)+'" SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
 
        
     }    

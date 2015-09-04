@@ -7,34 +7,34 @@
     <link rel="stylesheet" href="/common/css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/common/css/style.css">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="sr-only"><a href="#contentTabs">Skip to Content</a></div>
+    <div class="sr-only"><a id="skip" href="#mainTabsContent">Skip to Content</a></div>
     <div class="center-block">
       <div id="wrapper">
         <div id="logos">
-          <div id="left"><a href="http://www.cancer.gov" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute" title="National Cancer Institute"></a></div>
-          <div id="right"><a href="http://www.cancer.gov" target="_blank"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health" title="at the National Institutes of Health"></a></div>
+          <div class="pull-left"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
+          <div class="pull-right"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
         </div>
       </div><br>
       <div id="main">
         <div id="banners">
-          <div id="left"><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43"></div><br>
+          <div class="pull-left"><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43"></div><br>
         </div>
         <div id="contentTabs" class="col-md-12">
           <ul role="tablist" class="nav nav-tabs">
-            <li role="presentation" title="Home" class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation" title="Means to Risk Stratification"><a href="#meanstorisk" role="tab" data-toggle="tab">Means to Risk</a></li>
-            <li role="presentation" title="Biomarker Comparison"><a href="#bc" role="tab" data-toggle="tab">Biomarker Comparison</a></li>
-            <li role="presentation" title="Risk Stratification Advanced Analysis"><a href="#riskStratAdvanced" role="tab" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
-            <li role="presentation" title="Power and Sample Size Calculation"><a href="#sampleSize" role="tab" data-toggle="tab">Power and Sample Size Calculation</a></li>
-            <li role="presentation" title="Mean Risk Stratification"><a href="#meanRiskStratification" role="tab" data-toggle="tab">Mean Risk Stratification</a></li>
-            <li role="presentation" title="Help"><a href="#help" role="tab" data-toggle="tab">Help</a></li>
+            <li role="tab" title="Navigate to Home tab" class="active"><a href="#home" data-toggle="tab">Home</a></li>
+            <li role="tab" title="Navigate to Means to Risk Stratification tab"><a href="#meanstorisk" data-toggle="tab">Means to Risk</a></li>
+            <li role="tab" title="Navigate to Biomarker Comparison tab"><a href="#bc" data-toggle="tab">Biomarker Comparison</a></li>
+            <li role="tab" title="Navigate to Risk Stratification Advanced Analysis tab"><a href="#riskStratAdvanced" data-toggle="tab">Risk Stratification Advanced Analysis</a></li>
+            <li role="tab" title="Navigate to Power and Sample Size Calculation tab"><a href="#sampleSize" data-toggle="tab">Power and Sample Size Calculation</a></li>
+            <li role="tab" title="Navigate to Mean Risk Stratification tab"><a href="#meanRiskStratification" data-toggle="tab">Mean Risk Stratification</a></li>
+            <li role="tab" title="Navigate to Help tab"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
-          <div class="tab-content col-md-12">
+          <div id="mainTabsContent" class="tab-content col-md-12">
             <div id="home" role="tabpanel" class="tab-pane fade in active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
@@ -43,16 +43,16 @@
               these strategies will allow focusing on the most promising markers early on, making specific improvements if required,
               or abandoning markers that are most likely to fail.<br>&nbsp;
               <ul class="list-unstyled">
-                <li><a title="The Means To Risk" href="#meanstorisk" class="goToTab">Means To Risk</a></li>
-                <li><a title="Biomarker Comparison" href="#bc" class="goToTab">Biomarker Comparison</a></li>
-                <li><a title="Power and Sample Size Calculation" href="#sampleSize" class="goToTab">Power and Sample Size Calculation</a></li>
-                <li><a title="Mean Risk Stratification" href="#meanRiskStratification" class="goToTab">Mean Risk Stratification</a></li>
-                <li> <a title="Risk Stratification Advanced Options" href="#riskStratAdvanced" class="goToTab">Risk Stratification Advanced Options</a></li>
+                <li><a title="go to the Means To Risk tool" href="#meanstorisk" class="goToTab">Means To Risk</a></li>
+                <li><a title="go to the Biomarker Comparison tool" href="#bc" class="goToTab">Biomarker Comparison</a></li>
+                <li><a title="go to the Power and Sample Size Calculation tool" href="#sampleSize" class="goToTab">Power and Sample Size Calculation</a></li>
+                <li><a title="go to the Mean Risk Stratification tool" href="#meanRiskStratification" class="goToTab">Mean Risk Stratification</a></li>
+                <li> <a title="go to the Risk Stratification Advanced Options tool" href="#riskStratAdvanced" class="goToTab">Risk Stratification Advanced Options</a></li>
               </ul>
             </div>
             <div id="meanstorisk" role="tabpanel" class="tab-pane fade">
               <div class="top_section">
-                <h3 class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
+                <h3 title="Means to Risk Stratification tool" class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div><br>
                 <div class="col-md-4">
                   <form>
@@ -197,7 +197,7 @@
               </div>
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
-              <h3 title="Biomarker Comparison" class="title text-center">Biomarker Comparison Tool</h3>
+              <h3 title="Biomarker Comparison tool" class="title text-center">Biomarker Comparison</h3>
               <div class="col-md-12 vertical-padding">
                 <div id="helpGlossaryLinks"><a href="#help_bc" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
@@ -321,7 +321,7 @@
                   </div>
                   <div id="output"></div>
                 </div>
-                <div id="graph" class="col-md-7"><img src="/common/images/initial.jpg" alt="image of example output after calculation" class="thumbnail"></div>
+                <div id="graph" class="col-md-7"><img src="/common/images/initial.jpg" alt="placeholder image" class="thumbnail"></div>
                 <div class="col-md-12">
                   <div class="row">
                     <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
@@ -338,9 +338,8 @@
                 </div>
               </p>
             </div>
-            <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
-              <h3 title="Risk Stratification Advanced Analysis" class="title text-center">Risk Stratification Advanced Analysis</h3>
+              <h3 title="Risk Stratification Advanced Analysis tool" class="title text-center">Risk Stratification Advanced Analysis</h3>
               <div class="col-md-12">
                 <div id="helpGlossaryLinks"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
@@ -349,10 +348,10 @@
                   <div class="panel-body">
                     <div class="row">
                       <div class="col-md-3">
-                        <label for="independent_dropdown">Independent Variable</label>
+                        <label for="independent_dropdown_rs">Independent Variable</label>
                       </div>
                       <div class="col-md-2">
-                        <select id="independent_dropdown" name="independent_dropdown">
+                        <select id="independent_dropdown_rs" name="independent_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="specificity">Specificity</option>
                           <option value="prevalence">Prevalence</option>
@@ -362,18 +361,18 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <label for="independent" class="sr-only">Independent Variable Value</label>
-                      <input id="independent" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
+                      <label for="independent_rs" class="sr-only">Independent Variable Value</label>
+                      <input id="independent_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
                       <div>
                         <div id="indDef"></div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        <label for="contour_dropdown">Contour</label>
+                        <label for="contour_dropdown_rs">Contour</label>
                       </div>
                       <div class="col-md-2">   
-                        <select id="contour_dropdown" name="contour_dropdown">
+                        <select id="contour_dropdown_rs" name="contour_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="ppv">PPV</option>
                           <option value="prevalence">Prevalence</option>
@@ -383,18 +382,18 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <label for="contour" class="sr-only">Contour Value</label>
-                      <input id="contour" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
+                      <label for="contour_rs" class="sr-only">Contour Value</label>
+                      <input id="contour_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
                       <div>
                         <div id="contourDef"></div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        <label for="fixed_dropdown">Fixed Values</label>
+                        <label for="fixed_dropdown_rs">Fixed Values</label>
                       </div>
                       <div class="col-md-2">  
-                        <select id="fixed_dropdown" name="fixed_dropdown">
+                        <select id="fixed_dropdown_rs" name="fixed_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="prevalence">Prevalence</option>
                           <option value="delta">Delta</option>
@@ -404,8 +403,8 @@
                           <option value="cnpv">cNPV</option>
                         </select>
                       </div>
-                      <label for="fixed" class="sr-only">Fixed Value</label>
-                      <input id="fixed" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-md-6">
+                      <label for="fixed_rs" class="sr-only">Fixed Value</label>
+                      <input id="fixed_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-md-6">
                       <div>
                         <div id="fvDef"></div>
                       </div>
@@ -554,7 +553,7 @@
               </div>
             </div>
             <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
-              <h3 title="Mean Risk Stratification" class="title text-center">Mean Risk Stratification</h3>
+              <h3 title="Mean Risk Stratification tool" class="title text-center">Mean Risk Stratification</h3>
               <div class="col-md-12">
                 <div id="helpGlossaryLinks"><a href="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
@@ -565,26 +564,24 @@
                       <div class="marker-title text-center"><b>Biomarker #1</b></div>
                       <div class="extra-padding">
                         <label for="name-input">Biomarker Name</label>
-                        <input id="name-input" type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9]*$" class="input">
+                        <input id="name-input" type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9_- ]*$" class="input">
                       </div>
                       <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-1" class="panel-heading">
-                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;<a title="Input: 2x2 Table" class="accordion-toggle">Input: 2x2 Table</a></h6>
+                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;<a title="Input Option 1 2 by 2 Table" class="accordion-toggle">Input: 2x2 Table</a></h6>
                       </div>
                       <div id="marker-1-option-1" class="panel-collapse collapse in">
                         <div class="option-1 panel-body">
-                          <table class="table table-condensed">
+                          <table class="table table-condensed table-responsive">
                             <thead>
                               <tr>
-                                <th class="col-md-2 header">
-                                  <div class="sr-only">Empty cell<a href="#prob_m">Skip to Content</a></div>
-                                </th>
-                                <th id="prob_m" class="termToDefine header">Marker Positive (M+)</th>
-                                <th id="m_neg" class="termToDefine header">Marker Negative (M-)</th>
+                                <td class="col-md-2 header"></td>
+                                <th id="prob_m" header="prob_m" class="termToDefine header">Marker Positive (M+)</th>
+                                <th id="m_neg" header="m_neg" class="termToDefine header">Marker Negative (M-)</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)    </th>
+                                <th id="prob_d" class="termToDefine header">Disease Positive (D+)</th>
                                 <td>
                                   <label for="a" class="sr-only">A</label>
                                   <input id="a" name="a" type="number" maxlength="30" class="input">
@@ -595,7 +592,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)    </th>
+                                <th id="d_neg" class="termToDefine header">Disease Negative (D-)</th>
                                 <td>
                                   <label for="c" class="sr-only">C</label>
                                   <input id="c" name="c" type="number" maxlength="30" class="input">
@@ -610,7 +607,7 @@
                         </div>
                       </div>
                       <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-2" class="panel-heading">
-                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;<a title="Input: PPV, NPV, Sensitivity,Specificity, etc." class="accordion-toggle">Input: PPV, NPV, Sensitivity,Specificity, etc.</a></h6>
+                        <h6 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;<a title="Input option 2 PPV, NPV, Sensitivity, Specificity, etc." class="accordion-toggle">Input: PPV, NPV, Sensitivity, Specificity, etc.</a></h6>
                       </div>
                       <div id="marker-1-option-2" class="panel-collapse collapse">
                         <div class="option-2 panel-body extra-padding table-responsive">
@@ -621,8 +618,8 @@
                           <table class="option-2 table table-condensed table-responsive">
                             <thead>
                               <tr>
-                                <th title="Parameter Type Column" class="header">Parameter</th>
-                                <th title="Parameter Proportion Column" class="header">Proportion</th>
+                                <th title="Parameter Type Column" header="Parameter Type Column" class="header">Parameter</th>
+                                <th title="Parameter Proportion Column" header="Parameter Proportion Column" class="header">Proportion</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -632,9 +629,10 @@
                                   <select id="param_1" name="param_1" class="input">
                                     <option value="ppv">PPV</option>
                                     <option value="sens">Sensitivity</option>
-                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 1 dropdown value"></span>
                                 </td>
                                 <td>
+                                  <label for="param_1_value" class="sr-only">Parameter 1 Selections</label>
                                   <input id="param_1_value" type="number" name="param_1" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
@@ -644,9 +642,10 @@
                                   <select id="param_2" name="param_2" class="input">
                                     <option value="npv">NPV</option>
                                     <option value="spec">Specificity</option>
-                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 2 dropdown value"></span>
                                 </td>
                                 <td>
+                                  <label for="param_2_value" class="sr-only">Parameter 2 Selections</label>
                                   <input id="param_2_value" type="number" name="param_2" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
@@ -656,9 +655,10 @@
                                   <select id="param_3" name="param_3" class="input">
                                     <option value="prob_m">Marker Positivity (P(M+))</option>
                                     <option value="prob_d">Disease Prevalence (P(D+))</option>
-                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" alt="pop up definition"></span>
+                                  </select><span class="dd termToDefine"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 3 dropdown value"></span>
                                 </td>
                                 <td>
+                                  <label for="param_3_value" class="sr-only">Parameter 3 Selections</label>
                                   <input id="param_3_value" type="number" name="param_3" min="0" max="1" maxlength="30" step="0.0001" class="input">
                                 </td>
                               </tr>
@@ -673,8 +673,8 @@
                       <div class="pull-left">
                         <button id="add-marker"><span alt="Add(+)" title="Add biomarker" class="glyphicon glyphicon-plus-sign">&nbsp;</span><span>Add</span></button>
                         <button id="delete-marker" title="Delete biomarker"><span alt="Delete(-)" class="glyphicon glyphicon-minus-sign">&nbsp;</span><span>Delete</span></button>
-                        <button id="reset" type="reset" title="Reset">Reset</button>
-                        <button id="calculate" type="button" title="Calculate">Calculate</button>
+                        <button id="reset" type="reset">Reset</button>
+                        <button id="calculate" type="button">Calculate</button>
                       </div>
                       <div class="pull-right">
                         <div class="row"><a id="test1" href="#" title="Populate 1 biomarker using test data">Example 1</a></div>
@@ -689,169 +689,169 @@
                   <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
                 <div id="results" class="hide">
-                  <table class="table table-bordered table-condensed">
+                  <table id="paramTable" class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th>Calculations</th>
-                        <th class="bm_1 marker_name"></th>
-                        <th class="bm_2 marker_name"></th>
-                        <th class="bm_3 marker_name"></th>
+                        <th header="Calculations">Calculations</th>
+                        <th header="Calculations for Biomarker 1" title="Calculations for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Calculations for Biomarker 2" title="Calculations for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Calculations for Biomarker 3" title="Calculations for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                       </tr>
                     </thead>                
                     <tr>
                       <td class="concern termToDefine">Concern = PPV-P(D+)</td>
-                      <td id="concern_result" class="output bm_1"></td>
-                      <td id="concern_result" class="output bm_2"></td>
-                      <td id="concern_result" class="output bm_3"></td>
+                      <td class="concern_result output bm_1"></td>
+                      <td class="concern_result output bm_2"></td>
+                      <td class="concern_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="reassurance termToDefine">Reassurance = P(D+)-cNPV</td>
-                      <td id="reassurance_result" class="output bm_1"></td>
-                      <td id="reassurance_result" class="output bm_2"></td>
-                      <td id="reassurance_result" class="output bm_3"></td>
+                      <td class="reassurance_result output bm_1"></td>
+                      <td class="reassurance_result output bm_2"></td>
+                      <td class="reassurance_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="q_sens termToDefine">Concentration = Sensitivity - P(M+)</td>
-                      <td id="q_sens_result" class="output bm_1"></td>
-                      <td id="q_sens_result" class="output bm_2"></td>
-                      <td id="q_sens_result" class="output bm_3"></td>
+                      <td class="q_sens_result output bm_1"></td>
+                      <td class="q_sens_result output bm_2"></td>
+                      <td class="q_sens_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="q_spec termToDefine">Reduction = P(M+) - cSpec</td>
-                      <td id="q_spec_result" class="output bm_1"></td>
-                      <td id="q_spec_result" class="output bm_2"></td>
-                      <td id="q_spec_result" class="output bm_3"></td>
+                      <td class="q_spec_result output bm_1"></td>
+                      <td class="q_spec_result output bm_2"></td>
+                      <td class="q_spec_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="mrs termToDefine">Mean Risk Stratification = 2(ad-bc)</td>
-                      <td id="mrs_result" class="output bm_1"></td>
-                      <td id="mrs_result" class="output bm_2"></td>
-                      <td id="mrs_result" class="output bm_3"></td>
+                      <td class="mrs_result output bm_1"></td>
+                      <td class="mrs_result output bm_2"></td>
+                      <td class="mrs_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="max_mrs termToDefine">Maximum possible MRS for a disease with this prevalence</td>
-                      <td id="max_mrs_result" class="output bm_1"></td>
-                      <td id="max_mrs_result" class="output bm_2"></td>
-                      <td id="max_mrs_result" class="output bm_3"></td>
+                      <td class="max_mrs_result output bm_1"></td>
+                      <td class="max_mrs_result output bm_2"></td>
+                      <td class="max_mrs_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="pbs termToDefine">Population Burden Stratification (PBS) = a-b</td>
-                      <td id="pbs_result" class="output bm_1"></td>
-                      <td id="pbs_result" class="output bm_2"></td>
-                      <td id="pbs_result" class="output bm_3"></td>
+                      <td class="pbs_result output bm_1"></td>
+                      <td class="pbs_result output bm_2"></td>
+                      <td class="pbs_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="nnr termToDefine">Number Needed to Recruit (NNR) = 1/PBS</td>
-                      <td id="nnr_result" class="output bm_1"></td>
-                      <td id="nnr_result" class="output bm_2"></td>
-                      <td id="nnr_result" class="output bm_3"></td>
+                      <td class="nnr_result output bm_1"></td>
+                      <td class="nnr_result output bm_2"></td>
+                      <td class="nnr_result output bm_3"></td>
                     </tr>                
                     <tr>
                       <td class="nns termToDefine">Number Needed to Screen (NNS) =1/RD</td>
-                      <td id="nns_result" class="output bm_1"></td>
-                      <td id="nns_result" class="output bm_2"></td>
-                      <td id="nns_result" class="output bm_3"></td>
+                      <td class="nns_result output bm_1"></td>
+                      <td class="nns_result output bm_2"></td>
+                      <td class="nns_result output bm_3"></td>
                     </tr>
                   </table><br>
-                  <table class="table table-bordered table-condensed">
+                  <table id="calcTable" class="table table-bordered table-condensed">
                     <thead>
                       <tr>
-                        <th>Parameters</th>
-                        <th class="bm_1 marker_name"></th>
-                        <th class="bm_2 marker_name"></th>
-                        <th class="bm_3 marker_name"></th>
+                        <th header="Parameters">Parameters</th>
+                        <th header="Parameter results for Biomarker 1" title="Parameter results for Biomarker 1" class="bm_1 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Parameter results for Biomarker 2" title="Parameter results for Biomarker 2" class="bm_2 marker_name">(Biomarker Title Placeholder)</th>
+                        <th header="Parameter results for Biomarker 3" title="Parameter results for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td class="test termToDefine">True Positive Fraction = a</td>
-                        <td id="d_pos_result" class="output bm_1"></td>
-                        <td id="d_pos_result" class="output bm_2"></td>
-                        <td id="d_pos_result" class="output bm_3"></td>
+                        <td class="d_pos_result output bm_1"></td>
+                        <td class="d_pos_result output bm_2"></td>
+                        <td class="d_pos_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">False Negative Fraction = b</td>
-                        <td id="pos_d_neg_m_result" class="output bm_1"></td>
-                        <td id="pos_d_neg_m_result" class="output bm_2"></td>
-                        <td id="pos_d_neg_m_result" class="output bm_3"></td>
+                        <td class="pos_d_neg_m_result output bm_1"></td>
+                        <td class="pos_d_neg_m_result output bm_2"></td>
+                        <td class="pos_d_neg_m_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">False Positive Fraction = c</td>
-                        <td id="neg_d_pos_m_result" class="output bm_1"></td>
-                        <td id="neg_d_pos_m_result" class="output bm_2"></td>
-                        <td id="neg_d_pos_m_result" class="output bm_3"></td>
+                        <td class="neg_d_pos_m_result output bm_1"></td>
+                        <td class="neg_d_pos_m_result output bm_2"></td>
+                        <td class="neg_d_pos_m_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">True Negative Fraction = d</td>
-                        <td id="m_neg_result" class="output bm_1"></td>
-                        <td id="m_neg_result" class="output bm_2"></td>
-                        <td id="m_neg_result" class="output bm_3"></td>
+                        <td class="m_neg_result output bm_1"></td>
+                        <td class="m_neg_result output bm_2"></td>
+                        <td class="m_neg_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="termToDefine prob_m">Marker Positivity</td>
-                        <td id="prob_m_result" class="output bm_1"></td>
-                        <td id="prob_m_result" class="output bm_2"></td>
-                        <td id="prob_m_result" class="output bm_3"></td>
+                        <td class="prob_m_result output bm_1"></td>
+                        <td class="prob_m_result output bm_2"></td>
+                        <td class="prob_m_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="prob_d termToDefine">Disease Prevalence</td>
-                        <td id="prob_d_result" class="output bm_1"></td>
-                        <td id="prob_d_result" class="output bm_2"></td>
-                        <td id="prob_d_result" class="output bm_3"></td>
+                        <td class="prob_d_result output bm_1"></td>
+                        <td class="prob_d_result output bm_2"></td>
+                        <td class="prob_d_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="termToDefine ppv">Positive Predictive Value (PPV)</td>
-                        <td id="ppv_result" class="output bm_1"></td>
-                        <td id="ppv_result" class="output bm_2"></td>
-                        <td id="ppv_result" class="output bm_3"></td>
+                        <td class="ppv_result output bm_1"></td>
+                        <td class="ppv_result output bm_2"></td>
+                        <td class="ppv_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="cnpv termToDefine">Complement of Negative Predictive Value (cNPV)</td>
-                        <td id="c_npv_result" class="output bm_1"></td>
-                        <td id="c_npv_result" class="output bm_2"></td>
-                        <td id="c_npv_result" class="output bm_3"></td>
+                        <td class="c_npv_result output bm_1"></td>
+                        <td class="c_npv_result output bm_2"></td>
+                        <td class="c_npv_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="termToDefine sens">Sensitivity</td>
-                        <td id="sens_result" class="output bm_1"></td>
-                        <td id="sens_result" class="output bm_2"></td>
-                        <td id="sens_result" class="output bm_3"></td>
+                        <td class="sens_result output bm_1"></td>
+                        <td class="sens_result output bm_2"></td>
+                        <td class="sens_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="termToDefine spec">Specificity</td>
-                        <td id="spec_result" class="output bm_1"></td>
-                        <td id="spec_result" class="output bm_2"></td>
-                        <td id="spec_result" class="output bm_3"></td>
+                        <td class="spec_result output bm_1"></td>
+                        <td class="spec_result output bm_2"></td>
+                        <td class="spec_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">Complement of Specificity (cSpec)</td>
-                        <td id="c_spec_result" class="output bm_1"></td>
-                        <td id="c_spec_result" class="output bm_2"></td>
-                        <td id="c_spec_result" class="output bm_3"></td>
+                        <td class="c_spec_result output bm_1"></td>
+                        <td class="c_spec_result output bm_2"></td>
+                        <td class="c_spec_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">Relative Risk</td>
-                        <td id="rr_result" class="output bm_1"></td>
-                        <td id="rr_result" class="output bm_2"></td>
-                        <td id="rr_result" class="output bm_3"></td>
+                        <td class="rr_result output bm_1"></td>
+                        <td class="rr_result output bm_2"></td>
+                        <td class="rr_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">Risk Difference (RD)</td>
-                        <td id="r_diff_result" class="output bm_1"></td>
-                        <td id="r_diff_result" class="output bm_2"></td>
-                        <td id="r_diff_result" class="output bm_3"></td>
+                        <td class="r_diff_result output bm_1"></td>
+                        <td class="r_diff_result output bm_2"></td>
+                        <td class="r_diff_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="test termToDefine">Youden's Index (YI)</td>
-                        <td id="youden_result" class="output bm_1"></td>
-                        <td id="youden_result" class="output bm_2"></td>
-                        <td id="youden_result" class="output bm_3"></td>
+                        <td class="youden_result output bm_1"></td>
+                        <td class="youden_result output bm_2"></td>
+                        <td class="youden_result output bm_3"></td>
                       </tr>
                       <tr>
                         <td class="auc termToDefine">AUC = (1+YI)/2</td>
-                        <td id="auc_result" class="output bm_1"></td>
-                        <td id="auc_result" class="output bm_2"></td>
-                        <td id="auc_result" class="output bm_3"></td>
+                        <td class="auc_result output bm_1"></td>
+                        <td class="auc_result output bm_2"></td>
+                        <td class="auc_result output bm_3"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -859,7 +859,7 @@
               </div>
             </div>
             <div id="help" role="tabpanel" class="tab-pane fade">
-              <h3 title="Help" class="text-left">Help</h3>
+              <h3 title="Help content" class="text-left">Help</h3>
               <ul id="toc" class="list-unstyled extra-padding">
                 <ul class="list-unstyled"></ul>
               </ul>
@@ -936,9 +936,9 @@
       </div>
     </div>
     <div id="portal-footer" class="col-md-12">
-      <div class="footerLinks"><a href="http://www.cancer.gov/" title="Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" title="Support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" title="Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" title="Accessibility">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://cancer.gov/global/viewing-files" target="_blank" title="Viewing Files">Viewing Files</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" title="FOIA">FOIA</a><br><br><a href="http://www.dhhs.gov/">
+      <div class="footerLinks"><a href="http://www.cancer.gov/" target="_blank" title="National Cancer Institute Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" target="_blank" title="Contact us for technical support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" target="_blank" title="Web Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" target="_blank" title="Document Viewers, Multimedia Players and Accessibility Policy">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" target="_blank" title="Freedom of Information Act (FOIA)">FOIA</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.dhhs.gov/">
           Department of Health and
-          Human Services</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
+          Human Services</a><br><br><a target="_blank" href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
     </div>
     <script data-main="requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
   </body>

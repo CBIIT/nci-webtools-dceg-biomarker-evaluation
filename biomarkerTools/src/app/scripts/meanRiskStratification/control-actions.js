@@ -1,5 +1,3 @@
-//"use strict";
-
 // keep track of the number of marker elements, to use the number as the id,
 // track by value not by page element, tracking by element can be unreliable
 var currentMarkers = 1;
@@ -70,14 +68,24 @@ function new_marker() {
         // increment included class
         newElement.removeClass('marker-1').addClass("marker-" + counter);
 
-        // make sure previous values don't get copied also
-        newElement.find('.input,input').each(function () {
-            if ($(this).is("input")) {
-                $(this).val("");
+        // make sure previous values don't get copied also, and change element ids to make them unique
+        newElement.find('input, select, label').each(function () {
+            var newId = this.id + "-bm-"+ counter;
+
+            if ($(this).is("label")) {
+                var newFor = this.htmlFor + "-bm-"+ counter;
+                $(this).attr("for", newFor);
             }
-            if ($(this).is("select")) {
-                // set to first selection in dropdown
-                $(this)[0].selectedIndex = 0;
+            else{
+                $(this).attr("id", newId);
+                
+                if ($(this).is("input")) {
+                    $(this).val("");
+                }
+                if ($(this).is("select")) {
+                    // set to first selection in dropdown
+                    $(this)[0].selectedIndex = 0;
+                }
             }
         });
 
@@ -106,7 +114,6 @@ function new_marker() {
         controls_visibility(currentMarkers);
 
         // add new marker to #markers element
-        //$('#markers').append(newElement);
         $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
 
         var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
@@ -165,8 +172,8 @@ function calculate_mrs() {
         scrollTop();
         thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
 
-        promise.then(clean_data, function (error) {
-            display_errors("The service call has failed with the following status: " + error.statusText);
+        promise.then(clean_data, function (request,status, error) {
+            default_ajax_error(request, status, error);
         }).done(return_data).always(function(){
             enableAll();
             thisTool.find('#spinner').addClass("hide");
@@ -213,12 +220,12 @@ function return_data(data) {
             var data_item = params[name];
             var formattedText = data_item.Value;
             if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "%  ";
+                formattedText += "% ";
                 if (data_item["Confidence Interval (lower bound)"] !== null &&
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + "%, " + ci_ub + "%)";
+                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
                 }
             }
             else {
@@ -226,12 +233,12 @@ function return_data(data) {
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + ", " + ci_ub + ")";
+                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
                 }
             }
             // append text to table cell
-            cell = $('#' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', lookup_id + " " + formattedText);
+            cell = $('.' + lookup_id + '_result.' + marker_id + '.output');
+            cell.attr('title', name + " " + formattedText);
             cell.text(formattedText);
         });
         // same loop but through calculations
@@ -241,12 +248,12 @@ function return_data(data) {
             var formattedText = data_item.Value;
 
             if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "%  ";
+                formattedText += "% ";
                 if (data_item["Confidence Interval (lower bound)"] !== null &&
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + "%, " + ci_ub + "%)";
+                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
                 }
             }
             else {
@@ -254,12 +261,12 @@ function return_data(data) {
                     data_item["Confidence Interval (upper bound)"] !== null) {
                     ci_lb = data_item["Confidence Interval (lower bound)"];
                     ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += " (" + ci_lb + ", " + ci_ub + ")";
+                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
                 }
             }
 
-            cell = thisTool.find('#' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', lookup_id + " " + formattedText);
+            cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output');
+            cell.attr('title', name + " " + formattedText);
             cell.text(formattedText);
         });
     });
@@ -273,7 +280,8 @@ function append_name() {
     var name;
     do {
         i++;
-        var thisNameInputElement = thisTool.find('.marker-' + i + ' #name-input');
+        var thisNameInputElement = thisTool.find('.marker-' + i + ' [name="name-input"]');
+
         // append biomarker Name to results table header
         if ((thisNameInputElement.val()).length > 0)
             name = thisNameInputElement.val() + " (CI Low, CI High)";
@@ -354,9 +362,7 @@ function extract_values(valid) {
                     }
                 });
             }
-            //else {
-            //    valid = true;
-            //}
+
         }
     } while (i != currentMarkers);
 
@@ -381,7 +387,8 @@ function reset_mrs() {
     markerChildren.find('input').val('');
 
     // clear all output cells
-    thisTool.find('.output').text('');
+    thisTool.find('.output').text('').attr("title", "");
+    thisTool.find('#paramTable th:gt(1), #calcTable th:gt(1)').attr("title", '(Biomarker Title Placeholder)').text('(Biomarker Title Placeholder)');
     thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
 
     // close errors if showing
