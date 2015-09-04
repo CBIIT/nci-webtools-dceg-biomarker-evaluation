@@ -1,3 +1,6 @@
+imageDirectory="./tmp/"  
+dir.create(imageDirectory)
+
 BC <- new.env()
 MRS <- new.env()
 MTR <- new.env()
