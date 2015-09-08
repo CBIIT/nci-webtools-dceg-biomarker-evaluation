@@ -1,7 +1,8 @@
 var thisTool;
-
+var spinner;
 function init_sampleSize(){
     thisTool = $("#sampleSize");
+    spinner = thisTool.find("#spinner");
     random_gen();
 }    
 
@@ -11,7 +12,6 @@ $('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
 
 $(function(){
     init_sampleSize();
-
 });
 
 function checkValidity(){
@@ -58,44 +58,53 @@ thisTool.find('.post').click(function(){
         disableAll();
         var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
 
-        thisTool.find("#spinner").removeClass("hide");
+        spinner.removeClass("hide");
 
         // scroll down to loader image
         document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
 
         thisTool.find(".post").attr('disabled','').text("Please Wait....");
-        thisTool.find("#spinner").removeClass("hide");
+        spinner.removeClass("hide");
 
+        var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
+        var sensVal = trim_spaces(thisTool.find("#sensitivity_val").text());
+        var specVal = trim_spaces(thisTool.find("#specificity_val").text());
+        var prevVal = thisTool.find("#prevalence").val();
+        var nVal = thisTool.find("#n_value").val();
+        var unique = thisTool.find("#randomnumber").text();
         var request = function(){ 
             $.ajax({
                 type: 'POST',
                 // Provide correct Content-Type, so that Flask will know how to process it.
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
-                    sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
-                    spec: trim_spaces(thisTool.find("#specificity_val").text()),
-                    prev: thisTool.find("#prevalence").val(),
-                    N: thisTool.find("#n_value").val(),
-                    unique_id: thisTool.find("#randomnumber").text(),
-                    fixed_flag:thisTool.find("#fixed_flag").text() 
+                    k: kVal,
+                    sens: sensVal,
+                    spec: specVal,
+                    prev: prevVal,
+                    N: nVal,
+                    unique_id: unique,
+                    fixed_flag:thisTool.find("#fixed_flag").text()
                 }),
                 // This is the type of data expected back from the server.
                 dataType: 'json',
                 url: service
             }).then(function (ret) {
-                thisTool.find("#spinner").addClass("hide");
+                spinner.addClass("hide");
                 thisTool.find("#output_graph").empty();
-                generate_tabs(thisTool.find("#fixed").val(),thisTool.find("#randomnumber").text());
+                generate_tabs(thisTool.find("#fixed").val(),
+                              thisTool.find("#randomnumber").text());
                 generate_tables(ret);
                 random_gen();
+                spinner.removeClass("hide");
+                thisTool.find(".download").removeClass("hide");
             },
-            function(jqXHR, textStatus, errorThrown) {
+                    function(jqXHR, textStatus, errorThrown) {
                 default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
                 thisTool.find(".post").removeAttr('disabled').text("Calculate");
-                thisTool.find("#spinner").addClass("hide");
+                spinner.addClass("hide");
             });
         };
 
@@ -104,11 +113,7 @@ thisTool.find('.post').click(function(){
     return false;
 });
 
-thisTool.find('.reset').click(function(){
-    thisTool.find('input').val("");
-    thisTool.find("#output_graph").empty();
-    thisTool.find("#errors").addClass("hide");
-});
+thisTool.find('.reset').click(reset_code);
 
 thisTool.find("#add-test-data").click(function() {
     example_code();
@@ -290,7 +295,8 @@ function reset_code(){
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph").empty();
-    thisTool.find("#spinner, #error").addClass("hide");
+    thisTool.find("#error, .download").addClass("hide");
+    spinner.addClass("hide");
     thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
 
@@ -299,43 +305,48 @@ function random_gen(){
     thisTool.find("#randomnumber").text(randomno);
 }
 
+thisTool.find(".download").on("click", retrieve_excel);
 
 function retrieve_excel() {
-    uniqueKey = (new Date()).getTime();	
-    hostname = window.location.hostname;
-    url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-
-    thisTool.find("#spinner").removeClass("hide"); 
-
-    disableAll();
-    
-    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
-    var sensLength = sensString.split(",").length;
-    
-    var specString = trim_spaces(thisTool.find("#specificity_val").text());
-    var specLength = specString.split(",").length;
-    
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-            export: true,
-            k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
-            sens: sensString,
-            spec: specString,
-            sensLength: sensLength,
-            specLength: specLength,
-            prev: thisTool.find("#prevalence").val(),
-            N: thisTool.find("#n_value").val(),
-            unique_id: thisTool.find("#randomnumber").text(),
-            fixed_flag:thisTool.find("#fixed_flag").text()
-        },
-        dataType: "json",
-        success: set_excel,
-        error: ajax_error
-    }).always(function(){
-        thisTool.find("#calculate_button").text("Calculate");
-        enableAll();
-        thisTool.find("#spinner").addClass("hide");
-    });
+//    var unique = thisTool.find("#randomnumber").text();
+//    hostname = window.location.hostname;
+//    url = "http://" + hostname +"/" + rest + "/sampleSize/";
+//
+//    spinner.removeClass("hide"); 
+//
+//    disableAll();
+//
+//    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
+//    var sensLength = sensString.split(",").length;
+//    var specString = trim_spaces(thisTool.find("#specificity_val").text());
+//    var specLength = specString.split(",").length;
+//
+//    var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
+//    var fxFlag = thisTool.find("#fixed_flag").text();
+//    var nVal = thisTool.find("#n_value").val();
+//    var prevVal = thisTool.find("#prevalence").val();
+//
+//    $.ajax({
+//        type: "POST",
+//        url: url,
+//        data: {
+//            export: true,
+//            k: kVal,
+//            sens: sensString,
+//            spec: specString,
+//            sensLength: sensLength,
+//            specLength: specLength,
+//            prev: prevVal,
+//            N: nVal,
+//            unique_id: unique,
+//            fixed_flag: fxFlag
+//        },
+//        dataType: "json",
+//        success: set_excel,
+//        error: ajax_error
+//    }).always(function(){
+//        thisTool.find("#calculate_button").text("Calculate");
+//        enableAll();
+//        spinner.addClass("hide");
+//    });
 }
