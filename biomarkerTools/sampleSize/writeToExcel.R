@@ -5,6 +5,7 @@ excelDirectory <- "./tmp/";
 writeResultsToExcel <- function (tabs, allData, imgList) {
   outwb <- createWorkbook();
   
+  
   bottomBorder <-  Border(color="black", position=c("BOTTOM"), pen=c("BORDER_THIN"));
   rightBorder <-   Border(color="black", position=c("RIGHT"), pen=c("BORDER_THIN"));
   
@@ -44,6 +45,7 @@ writeResultsToExcel <- function (tabs, allData, imgList) {
   
   cellStyleRightBorder  <-CellStyle(outwb) + rightBorder;
   
+  startingRow <- 17;
   for (n in 1:length(tabs)) {
     PPVTableData <- allData[[n]]$PPVData
     cNPVTableData <- allData[[n]]$cNPVData
@@ -55,8 +57,8 @@ writeResultsToExcel <- function (tabs, allData, imgList) {
     leftImage <- imgList[[2 * n - 1]]
     rightImage <- imgList[[2 * n]]
     
-    addDataFrame(x = as.data.frame.matrix(PPVTableData), sheet = curSheet, startRow = 17, row.names = F)
-    addDataFrame(x = as.data.frame.matrix(cNPVTableData), sheet = curSheet, startRow = 17, startColumn = startcol, row.names = F )
+    addDataFrame(x = as.data.frame.matrix(PPVTableData), sheet = curSheet, startRow = startingRow, row.names = F)
+    addDataFrame(x = as.data.frame.matrix(cNPVTableData), sheet = curSheet, startRow = startingRow, startColumn = startcol, row.names = F )
     
     autoSizeColumn(curSheet, 1:ncol(x = as.data.frame.matrix(PPVTableData)))
     autoSizeColumn(curSheet, 1:ncol(x = as.data.frame.matrix(cNPVTableData)))
