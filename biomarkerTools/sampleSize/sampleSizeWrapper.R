@@ -3,6 +3,7 @@ source ('./DrawCompRecVark.R', local=environment())
 source ('./writeToExcel.R',local=environment())
 
 imageDirectory="./tmp/" 
+imgList = list()
 
 #example input values
 k=c(0,1)
@@ -25,13 +26,13 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   }
   
   if(exporting == TRUE) {
+    tabs = list()
     
     for(i in specTabs) {
-      tab=paste('tab', i, sep='')
-      prepareSaveGraph(imageDirectory, "PPVkSensSpec-", uniqueId, i)
-      prepareSaveGraph(imageDirectory, "cNPVkSensSpec-", uniqueId, i)
-      writeResultsToExcel(tab, allSensData)
+      tabs[[i]] = paste('Specificity', spec[[i]])
     }
+    
+    excelFileName <- writeResultsToExcel(tabs, allSensData, imgList)
     
     jsonString <- toJSON(excelFileName, method="C");
   }
@@ -50,14 +51,14 @@ saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   }
   
   if(exporting == TRUE) {
+    tabs = list()
     
     for(i in sensTabs) {
-      tab=paste('tab', i, sep='')
-      prepareSaveGraph(imageDirectory, "PPVkSpecSens-", uniqueId, i)
-      prepareSaveGraph(imageDirectory, "cNPVkSpecSens-", uniqueId, i)
-      imageFileName <- prepareSaveGraph(specmin, specmax, allSpecData[[i]], uniqueId, graphname);
-      writeResultsToExcel(tab, allSpecData)
+      tabs[[i]] = paste('Sensitivity', sens[[i]])
     }
+    
+    excelFileName <- writeResultsToExcel(tabs, allSpecData, imgList)
+    
   }
     return (toJSON(allSpecData, .escapeEscape=TRUE))
 }
@@ -123,6 +124,7 @@ prepareSaveGraph <- function(imgDir, graphPrefix, uniqueId, tabvalue) {
     dir.create(imgDir)  
   }
   graph=paste(imgDir, graphPrefix, uniqueId, "-", as.numeric(tabvalue),".png", sep='')
+  imgList <<- c(imgList, graph)
   png(file=graph)
 }
 
