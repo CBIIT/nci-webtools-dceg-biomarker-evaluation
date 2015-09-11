@@ -66,7 +66,7 @@ thisTool.find('.post').click(function(){
                 spinner.removeClass("hide");
                 thisTool.find(".download").removeClass("hide");
             },
-                                          function(jqXHR, textStatus, errorThrown) {
+            function(jqXHR, textStatus, errorThrown) {
                 default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
@@ -331,7 +331,8 @@ function sampleSizeRequest(exporting){
             unique_id: thisTool.find("#randomnumber").text(),
             fixed_flag: thisTool.find("#fixed_flag").text()
         }),
-        dataType: "json"
+        dataType: "json",
+        contentType: "application/json"
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
