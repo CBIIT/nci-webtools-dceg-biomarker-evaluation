@@ -318,9 +318,7 @@ function retrieve_excel() {
     disableAll();
 
     var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
-    var sensLength = sensString.split(",").length;
     var specString = trim_spaces(thisTool.find("#specificity_val").text());
-    var specLength = specString.split(",").length;
 
     var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
     var fxFlag = thisTool.find("#fixed_flag").text();
@@ -331,8 +329,8 @@ function retrieve_excel() {
         type: "POST",
         url: url,
         data: {
-            export: true,
             k: kVal,
+            export:true,
             sens: sensString,
             spec: specString,
             prev: prevVal,
