@@ -344,8 +344,7 @@ function retrieve_excel() {
         },
         dataType: "json",
         success: download_excel,
-        error: ajax_error
-    }).always(function(){
+        error: default_ajax_error}).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
         spinner.addClass("hide");
