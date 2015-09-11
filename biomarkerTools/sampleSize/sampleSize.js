@@ -328,7 +328,7 @@ function sampleSizeRequest(exporting){
         url: url,
         data: JSON.stringify({
             k: kVal,
-            export:true,
+            export:exporting,
             sens: sensString,
             spec: specString,
             prev: prevVal,
