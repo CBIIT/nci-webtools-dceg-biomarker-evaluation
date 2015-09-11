@@ -56,8 +56,6 @@ thisTool.find('.post').click(function(){
     }
     else {
         disableAll();
-        var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-
         spinner.removeClass("hide");
 
         // scroll down to loader image
@@ -66,31 +64,8 @@ thisTool.find('.post').click(function(){
         thisTool.find(".post").attr('disabled','').text("Please Wait....");
         spinner.removeClass("hide");
 
-        var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
-        var sensVal = trim_spaces(thisTool.find("#sensitivity_val").text());
-        var specVal = trim_spaces(thisTool.find("#specificity_val").text());
-        var prevVal = thisTool.find("#prevalence").val();
-        var nVal = thisTool.find("#n_value").val();
-        var unique = thisTool.find("#randomnumber").text();
-        var request = function(){ 
-            $.ajax({
-                type: 'POST',
-                // Provide correct Content-Type, so that Flask will know how to process it.
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    k: kVal,
-                    export:false,
-                    sens: sensVal,
-                    spec: specVal,
-                    prev: prevVal,
-                    N: nVal,
-                    unique_id: unique,
-                    fixed_flag:thisTool.find("#fixed_flag").text()
-                }),
-                // This is the type of data expected back from the server.
-                dataType: 'json',
-                url: service
-            }).then(function (ret) {
+        var request = function(){
+            sampleSizeRequest(false).then(function (ret) {
                 spinner.addClass("hide");
                 thisTool.find("#output_graph").empty();
                 generate_tabs(thisTool.find("#fixed").val(),
@@ -100,7 +75,7 @@ thisTool.find('.post').click(function(){
                 spinner.removeClass("hide");
                 thisTool.find(".download").removeClass("hide");
             },
-                    function(jqXHR, textStatus, errorThrown) {
+            function(jqXHR, textStatus, errorThrown) {
                 default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
@@ -309,7 +284,29 @@ function random_gen(){
 thisTool.find(".download").on("click", retrieve_excel);
 
 function retrieve_excel() {
-    var unique = thisTool.find("#randomnumber").text();
+    return sampleSizeRequest(true)
+        .then(
+        function (excelFileRequest) {
+            if(excelFileRequest.length > 0)
+                window.open(excelFileRequest);
+            else {
+                display_errors("There was a problem generating or downloading the excel file.");
+                console.log("problem generating excel file");
+            }
+        },
+        function(jqXHR, textStatus, errorThrown) {
+            default_ajax_error(jqXHR, textStatus, errorThrown);
+        })
+        .always(
+        function() {
+            enableAll();
+            thisTool.find(".post").removeAttr('disabled').text("Calculate");
+            spinner.addClass("hide");
+        });
+}
+
+function sampleSizeRequest(exporting){
+
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/sampleSize/";
 
@@ -320,15 +317,16 @@ function retrieve_excel() {
     var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
     var specString = trim_spaces(thisTool.find("#specificity_val").text());
 
+    var unique = thisTool.find("#randomnumber").text();
     var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
     var fxFlag = thisTool.find("#fixed_flag").text();
     var nVal = thisTool.find("#n_value").val();
     var prevVal = thisTool.find("#prevalence").val();
 
-    $.ajax({
+    return $.ajax({
         type: "POST",
         url: url,
-        data: {
+        data: JSON.stringify({
             k: kVal,
             export:true,
             sens: sensString,
@@ -337,22 +335,12 @@ function retrieve_excel() {
             N: nVal,
             unique_id: unique,
             fixed_flag: fxFlag
-        },
-        dataType: "json",
-        success: download_excel,
-        error: default_ajax_error}).always(function(){
+        }),
+        dataType: "json"
+    }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
         spinner.addClass("hide");
     });
 }
 
-function download_excel(excelFileRequest){
-    if(excelFileRequest.length > 0)
-        window.open(excelFileRequest);
-    else {
-        display_errors("There was a problem generating or downloading the excel file.");
-        console.log("problem generating excel file");
-    }
-
-}
