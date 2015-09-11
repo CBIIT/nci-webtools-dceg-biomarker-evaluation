@@ -36,7 +36,7 @@ def sampleSizeRest():
     fixed_flag=data["fixed_flag"]
     sens=data["sens"].split(',')
     spec=data["spec"].split(',')
-    exp=data["export"] #boolean check
+    exp=data["export"]
 
     start = time.time()
     print "Starting Benchmark"
@@ -48,13 +48,9 @@ def sampleSizeRest():
 
     jsonlist=list(jsonrtn)
 
-    if exp == True:
-        jsonrtn = (r_saveAllExport(fixed_flag, FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
-    else:
-        #2
-        jsonstring=''.join(jsonlist)
-        print jsonstring
-        return jsonstring
+    jsonstring=''.join(jsonlist)
+    print jsonstring
+    return jsonstring
 
 import argparse
 if __name__ == '__main__':
