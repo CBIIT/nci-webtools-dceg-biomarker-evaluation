@@ -5,27 +5,11 @@ excelDirectory <- "./tmp/";
 writeResultsToExcel <- function (tabs, allData, imgList) {
   outwb <- createWorkbook();
   
-  
   bottomBorder <-  Border(color="black", position=c("BOTTOM"), pen=c("BORDER_THIN"));
   rightBorder <-   Border(color="black", position=c("RIGHT"), pen=c("BORDER_THIN"));
   
-  cellStyleLav <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-                  Fill(backgroundColor="lavender", foregroundColor="lavender", pattern="SOLID_FOREGROUND") +
-                  bottomBorder +
-                  Alignment(h="ALIGN_CENTER");
-  
   # cellStyleBlue <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
   #                   Fill(backgroundColor="cornflowerblue", foregroundColor="cornflowerblue", pattern="SOLID_FOREGROUND") +
-  #                   bottomBorder +
-  #                   Alignment(h="ALIGN_CENTER");
-  
-  # cellStyleOrange <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-  #                     Fill(backgroundColor="orange", foregroundColor="orange", pattern="SOLID_FOREGROUND") +
-  #                     bottomBorder +
-  #                     Alignment(h="ALIGN_CENTER");
-  
-  # cellStylePink <-  CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
-  #                   Fill(backgroundColor="pink", foregroundColor="pink", pattern="SOLID_FOREGROUND") +
   #                   bottomBorder +
   #                   Alignment(h="ALIGN_CENTER");
   
@@ -35,22 +19,21 @@ writeResultsToExcel <- function (tabs, allData, imgList) {
   
   cellStyleGrayBorder <- CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                           Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
-                          bottomBorder +
-                          Alignment(h="ALIGN_CENTER");
+                          bottomBorder + Alignment(h="ALIGN_CENTER");
   
   cellStyleGrayRightBorder  <-CellStyle(outwb) +  Font(outwb, heightInPoints=11, isBold=TRUE, name="Calibri", color="black") + 
                               Fill(backgroundColor="#525252", foregroundColor="gray", pattern="SOLID_FOREGROUND") +
-                              rightBorder +
-                              Alignment(h="ALIGN_CENTER");
+                              rightBorder + Alignment(h="ALIGN_CENTER");
   
   cellStyleRightBorder  <-CellStyle(outwb) + rightBorder;
   
-  startingRow <- 17;
-  for (n in 1:length(tabs)) {
+  startingRow <- 20;
+  
+  for(n in 1:length(tabs)) {
     PPVTableData <- allData[[n]]$PPVData
     cNPVTableData <- allData[[n]]$cNPVData
     
-    startcol = ncol(PPVTableData) + ncol(cNPVTableData)
+    startcol <- ncol(PPVTableData) + ncol(cNPVTableData)
     
     curSheet <- createSheet(outwb, sheetName = tabs[[n]])
     
@@ -60,22 +43,28 @@ writeResultsToExcel <- function (tabs, allData, imgList) {
     addDataFrame(x = as.data.frame.matrix(PPVTableData), sheet = curSheet, startRow = startingRow, row.names = F)
     addDataFrame(x = as.data.frame.matrix(cNPVTableData), sheet = curSheet, startRow = startingRow, startColumn = startcol, row.names = F )
     
+#     row <- getRows(curSheet, rowIndex = startingRow)
+#     cells <- getCells(row)
+#     
+#     setCellStyle(cells, cellStyle = cellStyleGray)
+    
+#     setColumnWidth(curSheet, 1, startingRow)
+#     setColumnWidth(curSheet, startcol, startingRow)
+    
     autoSizeColumn(curSheet, 1:ncol(x = as.data.frame.matrix(PPVTableData)))
-    autoSizeColumn(curSheet, 1:ncol(x = as.data.frame.matrix(cNPVTableData)))
+    autoSizeColumn(curSheet, startcol:startcol + ncol(x = as.data.frame.matrix(cNPVTableData)))
     
-    addPicture(leftImage, curSheet, scale = .6, startRow = 1, startColumn = 1)
-    addPicture(rightImage, curSheet, scale = .6, startRow = 1, startColumn = startcol)
-    
-    setColumnWidth(curSheet, 1, 20)
-    setColumnWidth(curSheet, startcol, 20)
+    addPicture(leftImage, curSheet, scale = .75, startRow = 1, startColumn = 1)
+    addPicture(rightImage, curSheet, scale = .75, startRow = 1, startColumn = startcol)
     
   }
-
-  #fileName <- paste(excelDirectory, "sample-size-", time, '.xlsx',sep='');
   
-  fileName <- "./tmp/sample.xlsx"
+  # formatting time to use in filename
+  time <- gsub(":","",gsub("-","",gsub(" ","", Sys.time() , fixed=TRUE)));
+  
+  fileName <- toString(paste(excelDirectory, "sample_size_calculation_", time, '.xlsx',sep=''));
+  
   saveWorkbook(outwb, fileName);
 
   fileName;
-  
 }
