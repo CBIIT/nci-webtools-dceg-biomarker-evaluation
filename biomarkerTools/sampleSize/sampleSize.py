@@ -36,15 +36,15 @@ def sampleSizeRest():
     fixed_flag=data["fixed_flag"]
     sens=data["sens"].split(',')
     spec=data["spec"].split(',')
-    exp=data["export"]
+    exp=data["export"] #boolean check
 
     start = time.time()
     print "Starting Benchmark"
     
     if fixed_flag == "Specificity":
-    	jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    	jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
     else:
-        jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+        jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
 
     jsonlist=list(jsonrtn)
 
