@@ -308,40 +308,45 @@ function random_gen(){
 thisTool.find(".download").on("click", retrieve_excel);
 
 function retrieve_excel() {
+    var unique = thisTool.find("#randomnumber").text();
+    hostname = window.location.hostname;
+    url = "http://" + hostname +"/" + rest + "/sampleSize/";
 
+    spinner.removeClass("hide"); 
 
+    disableAll();
 
+    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
+    var sensLength = sensString.split(",").length;
+    var specString = trim_spaces(thisTool.find("#specificity_val").text());
+    var specLength = specString.split(",").length;
 
+    var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
+    var fxFlag = thisTool.find("#fixed_flag").text();
+    var nVal = thisTool.find("#n_value").val();
+    var prevVal = thisTool.find("#prevalence").val();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            export: true,
+            k: kVal,
+            sens: sensString,
+            spec: specString,
+            sensLength: sensLength,
+            specLength: specLength,
+            prev: prevVal,
+            N: nVal,
+            unique_id: unique,
+            fixed_flag: fxFlag
+        },
+        dataType: "json",
+        success: set_excel,
+        error: ajax_error
+    }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
+        enableAll();
+        spinner.addClass("hide");
+    });
 }
