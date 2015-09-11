@@ -5,14 +5,6 @@ source ('./writeToExcel.R',local=environment())
 imageDirectory="./tmp/" 
 imgList = list()
 
-#example input values
-k=c(0,1)
-sens=c(0.8, 0.9, 0.95, 0.995)
-spec=c(0.7,0.8,0.9)
-prev=0.001
-N=100
-excel=TRUE
-
 saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   specTabs=1:length(spec)
   allSensData= list()
@@ -25,7 +17,7 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
     tabsList[[i]] <- tab
   }
   
-  if(exporting == TRUE) {
+  if(exporting) {
     tabs = list()
     
     for(i in specTabs) {
@@ -33,8 +25,8 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
     }
     
     excelFileName <- writeResultsToExcel(tabs, allSensData, imgList)
-    
-    jsonString <- toJSON(excelFileName, method="C");
+    jsonString <- toJSON(excelFileName, method="C")
+    return (jsonString)
   }
 
     return (toJSON(allSensData, .escapeEscape=TRUE))
@@ -43,14 +35,16 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
 saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   sensTabs=1:length(sens)
   allSpecData= list()
+  tabsList= list()
   
   for (i in sensTabs) {
-    tab=paste('tab', i, sep='')
     data=saveSpecContours(k, sens[i], spec, prev, N, uniqueId, i)
+    tab=paste('tab', i, sep='')
     allSpecData[[tab]]=data
+    tabsList[[i]] <- tab
   }
   
-  if(exporting == TRUE) {
+  if(exporting) {
     tabs = list()
     
     for(i in sensTabs) {
@@ -58,7 +52,8 @@ saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
     }
     
     excelFileName <- writeResultsToExcel(tabs, allSpecData, imgList)
-    
+    jsonString <- toJSON(excelFileName, method="C");
+    return (jsonString)
   }
     return (toJSON(allSpecData, .escapeEscape=TRUE))
 }
