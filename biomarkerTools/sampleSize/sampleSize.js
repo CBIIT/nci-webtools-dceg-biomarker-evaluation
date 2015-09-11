@@ -335,8 +335,6 @@ function retrieve_excel() {
             k: kVal,
             sens: sensString,
             spec: specString,
-            sensLength: sensLength,
-            specLength: specLength,
             prev: prevVal,
             N: nVal,
             unique_id: unique,
