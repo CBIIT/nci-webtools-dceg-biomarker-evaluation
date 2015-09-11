@@ -343,11 +343,21 @@ function retrieve_excel() {
             fixed_flag: fxFlag
         },
         dataType: "json",
-        success: set_excel,
+        success: download_excel,
         error: ajax_error
     }).always(function(){
         thisTool.find("#calculate_button").text("Calculate");
         enableAll();
         spinner.addClass("hide");
     });
+}
+
+function download_excel(excelFileRequest){
+    if(excelFileRequest.length > 0)
+        window.open(excelFileRequest);
+    else {
+        display_errors("There was a problem generating or downloading the excel file.");
+        console.log("problem generating excel file");
+    }
+
 }
