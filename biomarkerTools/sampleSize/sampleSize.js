@@ -79,6 +79,7 @@ thisTool.find('.post').click(function(){
                 contentType: 'application/json',
                 data: JSON.stringify({
                     k: kVal,
+                    export:false,
                     sens: sensVal,
                     spec: specVal,
                     prev: prevVal,
