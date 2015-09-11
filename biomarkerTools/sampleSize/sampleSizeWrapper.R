@@ -65,12 +65,6 @@ saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
 
 saveSensContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
 {
-  #k=c(0,1)
-  #sens=c(0.8, 0.9, 0.95, 0.995)
-  #spec=0.8
-  #prev=0.001
-  #N=1
-  #uniqueId=1
   #save the PPV graph
   prepareSaveGraph(imageDirectory, "PPVkSensSpec-", uniqueId, tabvalue)
   DrawCompRecVarkSensSpec(k, sens, spec, prev, N)
@@ -89,13 +83,6 @@ saveSensContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
   
   return (data)
 }
-
-#example input values
-#k=c(0,1)
-#spec=c(0.8, 0.9, 0.95, 0.995)
-#sens=0.1
-#prev=0.001
-#N=1
 
 saveSpecContours <- function(k, sens, spec, prev, N, uniqueId, tabvalue)
 {
