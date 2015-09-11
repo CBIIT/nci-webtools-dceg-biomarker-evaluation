@@ -226,3 +226,4 @@ pip-log.txt
 # *.sublime-project
 # sftp configuration file
 sftp-config.json
+.Rproj.user
