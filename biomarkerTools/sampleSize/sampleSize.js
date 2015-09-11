@@ -55,15 +55,6 @@ thisTool.find('.post').click(function(){
         display_errors(valid[1]);
     }
     else {
-        disableAll();
-        spinner.removeClass("hide");
-
-       
-        document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
-
-        thisTool.find(".post").attr('disabled','').text("Please Wait....");
-        spinner.removeClass("hide");
-
         var request = function(){
             sampleSizeRequest(false).then(function (ret) {
                 spinner.addClass("hide");
@@ -75,7 +66,7 @@ thisTool.find('.post').click(function(){
                 spinner.removeClass("hide");
                 thisTool.find(".download").removeClass("hide");
             },
-            function(jqXHR, textStatus, errorThrown) {
+                                          function(jqXHR, textStatus, errorThrown) {
                 default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
@@ -271,7 +262,8 @@ function reset_code(){
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph").empty();
-    thisTool.find("#error, .download").addClass("hide");
+    thisTool.find("#errors, .download").addClass("hide");
+    
     spinner.addClass("hide");
     thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
@@ -309,32 +301,34 @@ function sampleSizeRequest(exporting){
 
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/sampleSize/";
-
-    spinner.removeClass("hide"); 
-
+    
     disableAll();
+    thisTool.find(".post").attr('disabled','').text("Please Wait....");
+    spinner.removeClass("hide");
 
-    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
-    var specString = trim_spaces(thisTool.find("#specificity_val").text());
+   
+    document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
 
-    var unique = thisTool.find("#randomnumber").text();
-    var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
-    var fxFlag = thisTool.find("#fixed_flag").text();
-    var nVal = thisTool.find("#n_value").val();
-    var prevVal = thisTool.find("#prevalence").val();
+   
+   
+   
+   
+   
+   
+   
 
     return $.ajax({
         type: "POST",
         url: url,
         data: JSON.stringify({
-            k: kVal,
+            k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
             export:exporting,
-            sens: sensString,
-            spec: specString,
-            prev: prevVal,
-            N: nVal,
-            unique_id: unique,
-            fixed_flag: fxFlag
+            sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
+            spec: trim_spaces(thisTool.find("#specificity_val").text()),
+            prev: thisTool.find("#prevalence").val(),
+            N: thisTool.find("#n_value").val(),
+            unique_id: thisTool.find("#randomnumber").text(),
+            fixed_flag: thisTool.find("#fixed_flag").text()
         }),
         dataType: "json"
     }).always(function(){
