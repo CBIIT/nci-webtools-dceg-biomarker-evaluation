@@ -35,7 +35,7 @@ def sampleSizeRest():
     fixed_flag=data["fixed_flag"]
     sens=data["sens"].split(',')
     spec=data["spec"].split(',')
-    exp=bool(data["export"])
+    exp=data["export"]
     start = time.time()
     print "Starting Benchmark"
     
@@ -48,7 +48,7 @@ def sampleSizeRest():
 
     #2
     jsonstring=''.join(jsonlist)
-    #print jsonstring
+    print jsonstring
     return jsonstring 
 
 import argparse
