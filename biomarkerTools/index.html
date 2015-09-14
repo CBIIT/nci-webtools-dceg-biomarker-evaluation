@@ -14,8 +14,8 @@
   </head>
   <body>
     <div class="sr-only"><a id="skip" href="#mainTabsContent">Skip to Content</a></div>
-    <div class="container">
-      <div id="main">
+    <div class="container-fluid">
+      <div id="main" class="container">
         <div id="header-wrap" class="row">
           <div class="pull-left col-sm-6"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
           <div class="pull-right col-sm-6"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
@@ -72,124 +72,132 @@
                         <div class="glyphicon glyphicon-chevron-down"></div>&nbsp; Normal Distribution
                       </div>
                       <div id="cases_control" class="panel-body collapse">
-                        <div class="panel panel-default table_data indent">
+                        <div class="panel panel-default table_data">
                           <div class="panel-heading"><b class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</b></div>
                           <div>
                             <div class="row table_data">
-                              <div class="col-sm-5 text-right table_data"></div>
-                              <div class="col-sm-2 table_data"> <b>Cases</b></div>
-                              <div class="col-sm-2 table_data"><b>Controls</b></div>
+                              <div class="col-xs-5 text-right table_data"></div>
+                              <div class="col-xs-3 table_data"> <b>Cases</b></div>
+                              <div class="col-xs-3 table_data"><b>Controls</b></div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-sm-5 text-right table_data">
+                              <div class="col-xs-5 text-right table_data">
                                 <label for="mean_cases_input"><b>Mean</b></label>
                               </div>
-                              <div class="pull-left table_data">
-                                <input id="mean_cases_input" type="text" value="4" size="4" class="data_entry_by_input">
+                              <div class="col-xs-3 table_data">
+                                <input id="mean_cases_input" type="text" value="4" size="4" class="pull-left data_entry_by_input">
                               </div>
-                              <div class="pull-left table_data">
-                                <label for="mean_controls_input" class="sr-only"> <b>Mean Controls</b></label>
+                              <div class="col-xs-3 table_data">
+                                <label for="mean_controls_input" class="pull-left sr-only"> <b>Mean Controls</b></label>
                                 <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-sm-5 text-right table_data">
+                              <div class="col-xs-5 text-right table_data">
                                 <label for="stderr_cases_input"><b>Standard Error</b></label>
                               </div>
-                              <div class="pull-left table_data">
-                                <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input">
+                              <div class="col-xs-3 table_data">
+                                <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input pull-left">
                               </div>
-                              <div class="pull-left table_data">
-                                <label for="stderr_controls_input" class="sr-only"> <b>Standard Error Controls</b></label>
+                              <div class="col-xs-3 table_data">
+                                <label for="stderr_controls_input" class="sr-only pull-left"> <b>Standard Error Controls</b></label>
                                 <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-sm-5 text-right table_data">
+                              <div class="col-xs-5 text-right table_data">
                                 <label for="N_cases_input"><b>N</b></label>
                               </div>
-                              <div class="pull-left table_data">
-                                <input id="N_cases_input" type="text" value="100" size="4" class="data_entry_by_input">
+                              <div class="col-xs-3 table_data">
+                                <input id="N_cases_input" type="text" value="100" size="4" class="pull-left data_entry_by_input">
                               </div>
-                              <div class="pull-left table_data">
+                              <div class="col-xs-3 table_data">
                                 <label for="N_controls_input" class="sr-only"> <b>N Controls</b></label>
-                                <input id="N_controls_input" type="text" value="200" size="4" class="data_entry_by_input">
+                                <input id="N_controls_input" type="text" value="200" size="4" class="pull-left data_entry_by_input">
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="panel-footer">
-                        <label id="Spec" for="specificity" data-term="Spec" class="define">Specificity:</label>
-                        <input id="specificity" type="text" size="40" value="0.8, 0.9, 0.95, 0.99, 0.999" required>
-                        <label id="DP" data-term="DP" for="prevalence" class="define">Prevalence:</label>
-                        <input id="prevalence" type="text" size="40" value="0.1, 0.05, 0.01, 0.005, 0.001" required>
+                        <div class="indent">
+                          <div class="row">
+                            <label id="Spec" for="specificity" data-term="Spec" class="define">Specificity:</label>
+                            <input id="specificity" type="text" value="0.8, 0.9, 0.95, 0.99, 0.999" required class="col-xs-12">
+                          </div>
+                          <div class="row">
+                            <label id="DP" data-term="DP" for="prevalence" class="define">Prevalence:</label>
+                            <input id="prevalence" type="text" value="0.1, 0.05, 0.01, 0.005, 0.001" required class="col-xs-12">
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  </form>
+                  <div class="row">
                     <button id="calculate_button" type="button">Calculate</button>
                     <button id="reset" type="reset">Reset</button>
                     <button id="download_button" type="button" class="hide">Download Excel File</button>
-                  </form>
+                  </div>
                   <div class="row">
                     <div class="row">
                       <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                     </div>
                   </div>
                 </div>
-                <div class="panel panel-default col-sm-3 table_panel">
-                  <div class="row"> <b class="header col-sm-5">&nbsp;</b><b class="header col-sm-2">Cases</b><b class="header col-sm-3">Controls</b><b class="header col-sm-2">Overall</b></div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Mean</b>
-                    <div id="mean_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="mean_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="mean_overall" class="col-sm-2 table_data text-center"></div>
+                <div class="panel panel-default col-sm-4 table_panel">
+                  <div class="row"> <b class="header col-xs-5">&nbsp;</b><b class="header col-xs-2">Cases</b><b class="header col-xs-3">Controls</b><b class="header col-xs-2">Overall</b></div>
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Mean</b>
+                    <div id="mean_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="mean_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="mean_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Standard Error</b>
-                    <div id="stderr_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="stderr_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="stderr_overall" class="col-sm-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Standard Error</b>
+                    <div id="stderr_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="stderr_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">N</b>
-                    <div id="N_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="N_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="N_overall" class="col-sm-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">N</b>
+                    <div id="N_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="N_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="N_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row line-above vertical-padding"><b class="col-sm-5 text-right">Standard Deviation</b>
-                    <div id="deviation_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="deviation_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="deviation_overall" class="col-sm-2 table_data text-center"></div>
+                  <div class="row line-above vertical-padding"><b class="col-xs-5 text-right">Standard Deviation</b>
+                    <div id="deviation_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="deviation_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="deviation_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Variance</b>
-                    <div id="variance_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="variance_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="variance_overall" class="col-sm-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Variance</b>
+                    <div id="variance_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="variance_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="variance_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
                       <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
-                    <div id="cv_cases" class="col-sm-2 table_data"></div>
-                    <div id="cv_controls" class="col-sm-3 table_data"></div>
-                    <div id="cv_overall" class="col-sm-2 table_data"></div>
+                    <div id="cv_cases" class="col-xs-2 table_data"></div>
+                    <div id="cv_controls" class="col-xs-3 table_data"></div>
+                    <div id="cv_overall" class="col-xs-2 table_data"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Difference in Mean</b>
-                    <div id="diff_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="diff_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="diff_overall" class="col-sm-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Difference in Mean</b>
+                    <div id="diff_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="diff_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="diff_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
                       <div id="Delta" data-term="Delta" class="define">Delta</div></b>
-                    <div id="delta_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="delta_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="delta_overall" class="col-sm-2 table_data text-center"></div>
+                    <div id="delta_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="delta_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="delta_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
                       <div id="AUC" data-term="AUC" class="define">AUC</div></b>
-                    <div id="auc_cases" class="col-sm-2 table_data text-center"></div>
-                    <div id="auc_controls" class="col-sm-3 table_data text-center"></div>
-                    <div id="auc_overall" class="col-sm-2 table_data text-center"></div>
+                    <div id="auc_cases" class="col-xs-2 table_data text-center"></div>
+                    <div id="auc_controls" class="col-xs-3 table_data text-center"></div>
+                    <div id="auc_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
                 </div>
-                <div class="graph_panel col-sm-4"></div>
+                <div class="graph_panel col-xs-12 col-sm-4"></div>
               </div>
-              <div class="bottom_section small">
+              <div class="bottom_section">
                 <div class="tabbed_output_panel"></div>
               </div>
             </div>

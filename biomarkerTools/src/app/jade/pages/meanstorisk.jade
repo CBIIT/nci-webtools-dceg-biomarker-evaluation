@@ -26,110 +26,114 @@
                 .glyphicon.glyphicon-chevron-down
                 | &nbsp; Normal Distribution
             #cases_control.panel-body.collapse
-              .panel.panel-default.table_data.indent
+              .panel.panel-default.table_data
                 .panel-heading
                     b.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
                 div
                     .row.table_data
-                        .col-sm-5.text-right.table_data
-                        .col-sm-2.table_data 
+                        .col-xs-5.text-right.table_data
+                        .col-xs-3.table_data 
                             b Cases
-                        .col-sm-2.table_data
+                        .col-xs-3.table_data
                             b Controls
                     .row.table_data
-                        .col-sm-5.text-right.table_data
+                        .col-xs-5.text-right.table_data
                             label(for='mean_cases_input')
                                 b Mean
-                        .pull-left.table_data
-                            input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
-                        .pull-left.table_data
-                            label.sr-only(for='mean_controls_input') 
+                        .col-xs-3.table_data
+                            input.pull-left#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
+                        .col-xs-3.table_data
+                            label.pull-left.sr-only(for='mean_controls_input') 
                                 b Mean Controls
                             input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
                     .row.table_data
-                        .col-sm-5.text-right.table_data
+                        .col-xs-5.text-right.table_data
                             label(for='stderr_cases_input')
                                 b Standard Error
-                        .pull-left.table_data
-                            input#stderr_cases_input.data_entry_by_input(type='text', value='0.1', size='4')
-                        .pull-left.table_data
-                            label.sr-only(for='stderr_controls_input') 
+                        .col-xs-3.table_data
+                            input#stderr_cases_input.data_entry_by_input.pull-left(type='text', value='0.1', size='4')
+                        .col-xs-3.table_data
+                            label.sr-only.pull-left(for='stderr_controls_input') 
                                 b Standard Error Controls
                             input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
                     .row.table_data
-                        .col-sm-5.text-right.table_data
+                        .col-xs-5.text-right.table_data
                             label(for='N_cases_input')
                                 b N
-                        .pull-left.table_data
-                            input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
-                        .pull-left.table_data
+                        .col-xs-3.table_data
+                            input#N_cases_input.pull-left.data_entry_by_input(type='text', value='100', size='4')
+                        .col-xs-3.table_data
                             label.sr-only(for='N_controls_input') 
                                 b N Controls
-                            input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
+                            input#N_controls_input.pull-left.data_entry_by_input(type='text', value='200', size='4')
             .panel-footer
-                label#Spec.define(for='specificity',data-term='Spec') Specificity:
-                input#specificity(type='text', size='40', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
-                label#DP.define(data-term='DP', for='prevalence') Prevalence:
-                input#prevalence(type='text', size='40', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
+                .indent
+                    .row
+                        label#Spec.define(for='specificity',data-term='Spec') Specificity:
+                        input#specificity.col-xs-12(type='text', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
+                    .row
+                        label#DP.define(data-term='DP', for='prevalence') Prevalence:
+                        input#prevalence.col-xs-12(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
+        .row
           button#calculate_button(type='button') Calculate
           button#reset(type='reset') Reset
           button#download_button.hide(type='button') Download Excel File
         .row
             include ../partials/loader
-      .panel.panel-default.col-sm-3.table_panel
+      .panel.panel-default.col-sm-4.table_panel
         .row 
-            b.header.col-sm-5 &nbsp;
-            b.header.col-sm-2 Cases
-            b.header.col-sm-3 Controls
-            b.header.col-sm-2 Overall
+            b.header.col-xs-5 &nbsp;
+            b.header.col-xs-2 Cases
+            b.header.col-xs-3 Controls
+            b.header.col-xs-2 Overall
         .row.vertical-padding
-            b.col-sm-5.text-right Mean
-            #mean_cases.col-sm-2.table_data.text-center
-            #mean_controls.col-sm-3.table_data.text-center
-            #mean_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right Mean
+            #mean_cases.col-xs-2.table_data.text-center
+            #mean_controls.col-xs-3.table_data.text-center
+            #mean_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right Standard Error
-            #stderr_cases.col-sm-2.table_data.text-center
-            #stderr_controls.col-sm-3.table_data.text-center
-            #stderr_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right Standard Error
+            #stderr_cases.col-xs-2.table_data.text-center
+            #stderr_controls.col-xs-3.table_data.text-center
+            #stderr_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right N
-            #N_cases.col-sm-2.table_data.text-center
-            #N_controls.col-sm-3.table_data.text-center
-            #N_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right N
+            #N_cases.col-xs-2.table_data.text-center
+            #N_controls.col-xs-3.table_data.text-center
+            #N_overall.col-xs-2.table_data.text-center
         .row.line-above.vertical-padding
-            b.col-sm-5.text-right Standard Deviation
-            #deviation_cases.col-sm-2.table_data.text-center
-            #deviation_controls.col-sm-3.table_data.text-center
-            #deviation_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right Standard Deviation
+            #deviation_cases.col-xs-2.table_data.text-center
+            #deviation_controls.col-xs-3.table_data.text-center
+            #deviation_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right Variance
-            #variance_cases.col-sm-2.table_data.text-center
-            #variance_controls.col-sm-3.table_data.text-center
-            #variance_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right Variance
+            #variance_cases.col-xs-2.table_data.text-center
+            #variance_controls.col-xs-3.table_data.text-center
+            #variance_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right
+            b.col-xs-5.text-right
               #CV.define(data-term='CV') Coefficient of Variation (CV)
-            #cv_cases.col-sm-2.table_data
-            #cv_controls.col-sm-3.table_data
-            #cv_overall.col-sm-2.table_data
+            #cv_cases.col-xs-2.table_data
+            #cv_controls.col-xs-3.table_data
+            #cv_overall.col-xs-2.table_data
         .row.vertical-padding
-            b.col-sm-5.text-right Difference in Mean
-            #diff_cases.col-sm-2.table_data.text-center
-            #diff_controls.col-sm-3.table_data.text-center
-            #diff_overall.col-sm-2.table_data.text-center
+            b.col-xs-5.text-right Difference in Mean
+            #diff_cases.col-xs-2.table_data.text-center
+            #diff_controls.col-xs-3.table_data.text-center
+            #diff_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right
+            b.col-xs-5.text-right
               #Delta.define(data-term='Delta') Delta
-            #delta_cases.col-sm-2.table_data.text-center
-            #delta_controls.col-sm-3.table_data.text-center
-            #delta_overall.col-sm-2.table_data.text-center
+            #delta_cases.col-xs-2.table_data.text-center
+            #delta_controls.col-xs-3.table_data.text-center
+            #delta_overall.col-xs-2.table_data.text-center
         .row.vertical-padding
-            b.col-sm-5.text-right
+            b.col-xs-5.text-right
               #AUC.define(data-term='AUC') AUC
-            #auc_cases.col-sm-2.table_data.text-center
-            #auc_controls.col-sm-3.table_data.text-center
-            #auc_overall.col-sm-2.table_data.text-center
-      .graph_panel.col-sm-4
-    .bottom_section.small
+            #auc_cases.col-xs-2.table_data.text-center
+            #auc_controls.col-xs-3.table_data.text-center
+            #auc_overall.col-xs-2.table_data.text-center
+      .graph_panel.col-xs-12.col-sm-4
+    .bottom_section
       .tabbed_output_panel

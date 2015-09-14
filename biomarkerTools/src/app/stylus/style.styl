@@ -8,379 +8,378 @@ highlight-compl = ivory
 @-ms-viewport
     width "device-width"
 body
-    font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
-    #header-wrap
-        background-color base-red
-        margin 0 auto
-    #main
-        // width 1280px
-        margin 0 auto
-        font-size small
-    .indent
-        margin-left 30px
-        margin-right 20px
-        margin-top 10px
-        margin-bottom 5px
-    .vertical-padding
-        padding-top .5em
-        padding-bottom .5em
-    .no-pad
-        padding 0
-    .title
-        color black
-    .define,.termToDefine
+    font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"    
+input
+    padding 1px !important
+#header-wrap
+    background-color base-red
+    margin 0 auto
+#main
+    // width 1280px
+    margin 0 auto
+    font-size small
+.indent
+    margin-left 30px
+    margin-right 20px
+    margin-top 10px
+    margin-bottom 5px
+.vertical-padding
+    padding-top .5em
+    padding-bottom .5em
+.no-pad
+    padding 0
+.title
+    color black
+.define,.termToDefine
+    font-weight bold
+    text-decoration underline
+    cursor help
+.popover
+    .popover-title
+        background-color highlight-compl
         font-weight bold
-        text-decoration underline
-        cursor help
-    .popover
-        .popover-title
-            background-color highlight-compl
-            font-weight bold
-        .popover-content
-            background-color highlight
-    .header
-        background-color tan
+    .popover-content
+        background-color highlight
+.header
+    background-color tan
 
-    .extra-padding
-        padding 1em
+.extra-padding
+    padding 1em
 
-    .extra-vertical-margin
-        margin 10px 0
-    #contentTabs
-        margin 1.5em auto
-        ul.nav.nav-tabs
-            font-size small
-            a
-                color black
-            > li.active a
-                text-decoration underline
-                font-weight bold
-             :after
-                border solid transparent
-                margin-left -10px
-                top 100%
-                left 50%
-        .tab-content
-            line-height 1.42857143
-            border-right 1px solid #ddd
-            border-bottom 1px solid #ddd
-            border-left 1px solid #ddd
-            border-radius 4px
-            padding 1.5em
-        #sampleSize
-            .tablevars
-                padding 0
-            #ss
-                // width 50%
-            .row
-                margin 1em auto
-            input
-                padding 1px !important
-        #bc
-            .explanation 
-                float left
-                padding-left 15px
-                // width 600px
-            .reference_row 
-                background-color  yellow
-            .top-header 
-                text-align center
-                background-color #444
-                color #FFF
-            #graph img
-                height auto
-                // width 65%
-            #inputdata
-                .input:hover
-                    cursor text
-                .panel-body
-                    padding-top 0
-                    padding-bottom 0
-            h2 
-                background-color #AAA
-                color #444
-                padding 5px
-            .bibliography 
-                // width 950px
-                clear both
-                float left
-                margin 50px
-            .bib-author 
-                float left
-            .bib-year 
-                float left
-            .bib-title 
-                float left
-                font-style italic
-            .bib-journal 
-                float left
-            .bib-ref 
-                float left
-            .bib-pages 
-                float left
-            .bib-doi 
-                float left
-        #meanstorisk
-            .graph_panel
-                padding-left 0
-            .panel.panel-default.table_panel
-                // width 28% // setting table // width specifically
-            .table_panel
-                .row
-                    border .125em solid #ddd
-                    border-radius 4px
-                    .header
-                        padding .5em
-            #download_button
-                margin 10px
-            .top_section 
-                height 400px
-
-            .bottom_section 
-                clear left
-                height 400px
-
-            .input_panel
-                border  1px #BBB solid
-
-            div.input_accordion 
-                background  #FFF url()
-
-            h3.input_accordion 
-                background-color ;
-                background  #DDD url()
-
-            .output_graph
-                max-// width 125%
-                display block
-                margin-left  auto
-                margin-right  auto
-
-            .key_output_panel 
-                float left
-                // width 300px
-                background-color #faf
-                height 99%
-
-            .tabbed_output_panel 
-                height 99%
-            .highlight
-                background-color yellow
-
-            .col1 
-                padding 6px
-                text-align center
-
-            .maincard 
-                // width 800px
-                height 750px
-                border 2px black solid
-
-            .highlight
-                background-color yellow
-
-            table.table_data 
-                // width 90%
-                background-color white
-                border 1px #BBB solid
-
-            table.output_data 
-                background-color white
-                border-collapse collapse
-                border 2px black solid
-
-            th.table_data
-                padding 2px
-
-            th.header 
-                border-bottom  1px #BBB solid
-            tr.table_data_header 
-                border-bottom  1px black solid
-                background-color #A0A0A0
-
-            tr.line-above 
-                border-top 1px #BBB solid
-
-            .main-title
-                text-align center
-
-            .PPV_stripe
-                border-bottom 1px black solid
-                background-color #B080FF
-
-            .cNPV_stripe 
-                border-bottom 1px black solid
-                background-color #8080FF
-
-            .PPVcNPV_stripe 
-                border-bottom 1px black solid
-                background-color #FFAA80
-
-            .ProgramBased_stripe 
-                border-bottom 1px black solid
-                background-color #FFB0D0
-
-            .PPVBased_stripe 
-                border-bottom 1px black solid
-                background-color #A0A0A0
-
-            .SensitivityBased_stripe 
-                border-bottom 1px black solid
-                background-color #808080
-
-            .DominatedByRareDisease_stripe 
-                border-bottom 1px black solid
-                background-color #F0F0F0
-        #help
-            h4 a
-                color white
-                font-size smaller
-            section h5
-                font-weight bold
-           ul li li
-               text-indent 1.5em
-        #meanRiskStratification
-            .marker-title
-                background-color tan
-            #results table th
-                background-color tan
-            .red
-                background-color base-red
-            .panel-title, .panel-title a
-                font-size small
-            table input[type="text"]
-                // width 50px
-                
-            .panel-toggle a, .panel-title a
-                color black
-                font-weight bold
-            label
-                font-weight bold
-
-            .well, #results
-                min-height 645px
-
-            .termToDefine, th
-                font-weight bold
-
-            .termToDefine.glyphicon
-                text-decoration none
-
-            .loader
-                background-image url("/common/images/loading.gif") no-repeat;
-                margin 0 auto;
-                height 300px
-                // width 100%
-
-            input[type="number"]
-                // width 8em
-
-            .input:invalid
-                background-color yellow
-        #riskStratAdvanced
-            input,select
-                padding 1px
-            //.ui-widget
-            //  font-size 12px
-            .label
-                float right
-            .explanation
-                float left
-                padding-left 15px
-                // width 600px
-
-            .reference_row
-                background-color yellow
-
-            td
-                text-align left
-
-            .prevalence_label
-                font-weight bold
-                background-color #AAA
-                color #444
-                padding 2px 25px 2px 25px
-
-            .bibliography
-                // width 950px
-                clear both
-                float left
-                margin 50px
-
-            .bib-author
-                float left
-
-            .bib-year
-                float left
-
-            .bib-title
-                float left
-                font-style italic
-
-            .bib-journal
-                float left
-
-            .bib-ref
-                float left
-
-            .bib-pages
-                float left
-
-            .bib-doi
-                float left
-
-            .status-info
-                color black
-
-            .status-error
-                color base-red
-
-            a#add-test-data
-                text-decoration underline
-                float right
-                :hover
-                    font-weight bold
-            .table-title
-                word-wrap normal
-                font-weight bold
-                text-align center
-                background-color #F8FAFA
-            #inputdata
-                // width 500px
-            #status-bar
-                background #CCC
-                display block
-                border none
-                box-sizing border-box
-                font 18px "arial", "sans-serif"
-                left 0
-                margin 10px
-                outline none
-                padding 10px
-                top 2px
-                // width 100%
-                visibility hidden
-            #tabs
-                .header
-                    background-color #AAA
-                    color #444
-                .vertical-text
-                    transform rotate(-90deg)
-                    white-space no-wrap
-                    // width 15px                  
-    #portal-footer
-        line-height 1.2em
-        //        margin 2em 0em 1em 0em
-        //        padding 1em 0em 1em 0em
-        text-align center
-        background-color #FFF
-        color #333333
+.extra-vertical-margin
+    margin 10px 0
+#contentTabs
+    margin 1.5em auto
+    ul.nav.nav-tabs
         font-size small
         a
+            color black
+        > li.active a
+            text-decoration underline
+            font-weight bold
+         :after
+            border solid transparent
+            margin-left -10px
+            top 100%
+            left 50%
+    .tab-content
+        line-height 1.42857143
+        border-right 1px solid #ddd
+        border-bottom 1px solid #ddd
+        border-left 1px solid #ddd
+        border-radius 4px
+        padding 1.5em
+    #sampleSize
+        .tablevars
+            padding 0
+        #ss
+            // width 50%
+        .row
+            margin 1em auto
+    #bc
+        .explanation 
+            float left
+            padding-left 15px
+            // width 600px
+        .reference_row 
+            background-color  yellow
+        .top-header 
+            text-align center
+            background-color #444
+            color #FFF
+        #graph img
+            height auto
+            // width 65%
+        #inputdata
+            .input:hover
+                cursor text
+            .panel-body
+                padding-top 0
+                padding-bottom 0
+        h2 
+            background-color #AAA
+            color #444
+            padding 5px
+        .bibliography 
+            // width 950px
+            clear both
+            float left
+            margin 50px
+        .bib-author 
+            float left
+        .bib-year 
+            float left
+        .bib-title 
+            float left
+            font-style italic
+        .bib-journal 
+            float left
+        .bib-ref 
+            float left
+        .bib-pages 
+            float left
+        .bib-doi 
+            float left
+    #meanstorisk
+        .graph_panel
+            padding-left 0
+        //.panel.panel-default.table_panel
+        // width 28% // setting table // width specifically
+        .table_panel
+            .row
+                border .125em solid #ddd
+                border-radius 4px
+                .header
+                    padding .5em
+        #download_button
+            margin 10px
+        .top_section 
+            height 400px
+
+        .bottom_section 
+            clear left
+            height 400px
+
+        .input_panel
+            border  1px #BBB solid
+
+        div.input_accordion
+            background  #FFF
+
+        h3.input_accordion 
+            background-color #DDD
+
+        .output_graph
+            //max- width 125%
+            display block
+            margin-left  auto
+            margin-right  auto
+
+        .key_output_panel 
+            float left
+            // width 300px
+            background-color #faf
+            height 99%
+
+        .tabbed_output_panel
+            height 99%
+        .highlight
+            background-color yellow
+
+        .col1 
+            padding 6px
+            text-align center
+
+        .maincard 
+            // width 800px
+            height 750px
+            border 2px black solid
+
+        .highlight
+            background-color yellow
+
+        table.table_data 
+            width 99%
+            background-color white
+            border 1px #BBB solid
+
+        table.output_data 
+            background-color white
+            border-collapse collapse
+            border 2px black solid
+
+        th.table_data
+            padding 2px
+
+        th.header 
+            border-bottom  1px #BBB solid
+        tr.table_data_header 
+            border-bottom  1px black solid
+            background-color #A0A0A0
+
+        tr.line-above 
+            border-top 1px #BBB solid
+
+        .main-title
+            text-align center
+
+        .PPV_stripe
+            border-bottom 1px black solid
+            background-color #B080FF
+
+        .cNPV_stripe 
+            border-bottom 1px black solid
+            background-color #8080FF
+
+        .PPVcNPV_stripe 
+            border-bottom 1px black solid
+            background-color #FFAA80
+
+        .ProgramBased_stripe 
+            border-bottom 1px black solid
+            background-color #FFB0D0
+
+        .PPVBased_stripe 
+            border-bottom 1px black solid
+            background-color #A0A0A0
+
+        .SensitivityBased_stripe 
+            border-bottom 1px black solid
+            background-color #808080
+
+        .DominatedByRareDisease_stripe 
+            border-bottom 1px black solid
+            background-color #F0F0F0
+    #help
+        h4 a
+            color white
+            font-size smaller
+        section h5
+            font-weight bold
+       ul li li
+           text-indent 1.5em
+    #meanRiskStratification
+        .marker-title
+            background-color tan
+        #results table th
+            background-color tan
+        .red
+            background-color base-red
+        .panel-title, .panel-title a
+            font-size small
+        table input[type="text"]
+            // width 50px
+
+        .panel-toggle a, .panel-title a
+            color black
+            font-weight bold
+        label
+            font-weight bold
+
+        .well, #results
+            min-height 645px
+
+        .termToDefine, th
+            font-weight bold
+
+        .termToDefine.glyphicon
             text-decoration none
-            color #333333
-            border none
-            :visited
-                color #333333
+
+        .loader
+            background-image url("/common/images/loading.gif") no-repeat;
+            margin 0 auto;
+            height 300px
+            // width 100%
+
+        input[type="number"]
+            // width 8em
+
+        .input:invalid
+            background-color yellow
+    #riskStratAdvanced
+        input,select
+            padding 1px
+        //.ui-widget
+        //  font-size 12px
+        .label
+            float right
+        .explanation
+            float left
+            padding-left 15px
+            // width 600px
+
+        .reference_row
+            background-color yellow
+
+        td
+            text-align left
+
+        .prevalence_label
+            font-weight bold
+            background-color #AAA
+            color #444
+            padding 2px 25px 2px 25px
+
+        .bibliography
+            // width 950px
+            clear both
+            float left
+            margin 50px
+
+        .bib-author
+            float left
+
+        .bib-year
+            float left
+
+        .bib-title
+            float left
+            font-style italic
+
+        .bib-journal
+            float left
+
+        .bib-ref
+            float left
+
+        .bib-pages
+            float left
+
+        .bib-doi
+            float left
+
+        .status-info
+            color black
+
+        .status-error
+            color base-red
+
+        a#add-test-data
+            text-decoration underline
+            float right
             :hover
-                text-decoration underline
+                font-weight bold
+        .table-title
+            word-wrap normal
+            font-weight bold
+            text-align center
+            background-color #F8FAFA
+        #inputdata
+            // width 500px
+        #status-bar
+            background #CCC
+            display block
+            border none
+            box-sizing border-box
+            font 18px "arial", "sans-serif"
+            left 0
+            margin 10px
+            outline none
+            padding 10px
+            top 2px
+            // width 100%
+            visibility hidden
+        #tabs
+            .header
+                background-color #AAA
+                color #444
+            .vertical-text
+                transform rotate(-90deg)
+                white-space no-wrap
+                // width 15px                  
+#portal-footer
+    line-height 1.2em
+    //        margin 2em 0em 1em 0em
+    //        padding 1em 0em 1em 0em
+    text-align center
+    background-color #FFF
+    color #333333
+    font-size small
+    a
+        text-decoration none
+        color #333333
+        border none
+        :visited
+            color #333333
+        :hover
+            text-decoration underline
