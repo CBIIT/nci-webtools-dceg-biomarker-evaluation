@@ -9,7 +9,6 @@ input {
 }
 #header-wrap {
   background-color: #a90101;
-  margin: 0 auto;
 }
 #main {
   margin: 0 auto;
@@ -54,6 +53,7 @@ input {
   margin: 10px 0;
 }
 #contentTabs {
+  width: 100%;
   margin: 1.5em auto;
 }
 #contentTabs ul.nav.nav-tabs {
@@ -172,6 +172,8 @@ input {
   background-color: #ddd;
 }
 #contentTabs #meanstorisk .output_graph {
+  min-width: 100%;
+  max-width: 110%;
   display: block;
   margin-left: auto;
   margin-right: auto;

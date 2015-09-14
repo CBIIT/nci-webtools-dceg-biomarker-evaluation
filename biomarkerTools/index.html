@@ -17,11 +17,11 @@
     <div class="container-fluid">
       <div id="main" class="container">
         <div id="header-wrap" class="row">
-          <div class="pull-left col-sm-6"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
-          <div class="pull-right col-sm-6"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
+          <div class="pull-left col-xs-6"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
+          <div class="pull-right col-xs-6"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
         </div>
-        <div class="row"><br><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43" class="img-responsive col-sm-6"></div>
-        <div id="contentTabs" class="col-sm-12">
+        <div class="row"><br><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43" class="img-responsive col-xs-6"></div>
+        <div id="contentTabs" class="col-xs-12">
           <ul role="tablist" class="nav nav-tabs">
             <li role="tab" title="Navigate to Home tab" class="active"><a href="#home" data-toggle="tab">Home</a></li>
             <li role="tab" title="Navigate to Means to Risk Stratification tab"><a href="#meanstorisk" data-toggle="tab">Means to Risk</a></li>
@@ -31,7 +31,7 @@
             <li role="tab" title="Navigate to Mean Risk Stratification tab"><a href="#meanRiskStratification" data-toggle="tab">Mean Risk Stratification</a></li>
             <li role="tab" title="Navigate to Help tab"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
-          <div id="mainTabsContent" class="tab-content col-sm-12">
+          <div id="mainTabsContent" class="tab-content col-xs-12">
             <div id="home" role="tabpanel" class="tab-pane fade in active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
@@ -51,7 +51,7 @@
               <div class="top_section">
                 <h3 title="Means to Risk Stratification tool" class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div><br>
-                <div class="col-sm-4">
+                <div class="col-xs-12 col-sm-4">
                   <form>
                     <div id="accordion" class="panel panel-default">
                       <div class="panel-heading">
@@ -76,12 +76,12 @@
                           <div class="panel-heading"><b class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</b></div>
                           <div>
                             <div class="row table_data">
-                              <div class="col-xs-5 text-right table_data"></div>
+                              <div class="col-xs-4 text-right table_data"></div>
                               <div class="col-xs-3 table_data"> <b>Cases</b></div>
                               <div class="col-xs-3 table_data"><b>Controls</b></div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-xs-5 text-right table_data">
+                              <div class="col-xs-4 text-right table_data">
                                 <label for="mean_cases_input"><b>Mean</b></label>
                               </div>
                               <div class="col-xs-3 table_data">
@@ -93,7 +93,7 @@
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-xs-5 text-right table_data">
+                              <div class="col-xs-4 text-right table_data">
                                 <label for="stderr_cases_input"><b>Standard Error</b></label>
                               </div>
                               <div class="col-xs-3 table_data">
@@ -105,7 +105,7 @@
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-xs-5 text-right table_data">
+                              <div class="col-xs-4 text-right table_data">
                                 <label for="N_cases_input"><b>N</b></label>
                               </div>
                               <div class="col-xs-3 table_data">
@@ -140,59 +140,59 @@
                   </div>
                   <div class="row">
                     <div class="row">
-                      <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                      <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                     </div>
                   </div>
                 </div>
-                <div class="panel panel-default col-sm-4 table_panel">
-                  <div class="row"> <b class="header col-xs-5">&nbsp;</b><b class="header col-xs-2">Cases</b><b class="header col-xs-3">Controls</b><b class="header col-xs-2">Overall</b></div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Mean</b>
+                <div class="panel panel-default col-xs-12 col-sm-4 table_panel">
+                  <div class="row"> <b class="header col-xs-4">&nbsp;</b><b class="header col-xs-2">Cases</b><b class="header col-xs-3">Controls</b><b class="header col-xs-3">Overall</b></div>
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">Mean</b>
                     <div id="mean_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="mean_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="mean_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="mean_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Standard Error</b>
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">Standard Error</b>
                     <div id="stderr_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="stderr_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="stderr_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">N</b>
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">N</b>
                     <div id="N_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="N_controls" class="col-xs-3 table_data text-center"></div>
                     <div id="N_overall" class="col-xs-2 table_data text-center"></div>
                   </div>
-                  <div class="row line-above vertical-padding"><b class="col-xs-5 text-right">Standard Deviation</b>
+                  <div class="row line-above vertical-padding"><b class="col-xs-4 text-right">Standard Deviation</b>
                     <div id="deviation_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="deviation_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="deviation_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="deviation_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Variance</b>
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">Variance</b>
                     <div id="variance_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="variance_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="variance_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="variance_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">
                       <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
                     <div id="cv_cases" class="col-xs-2 table_data"></div>
                     <div id="cv_controls" class="col-xs-3 table_data"></div>
-                    <div id="cv_overall" class="col-xs-2 table_data"></div>
+                    <div id="cv_overall" class="col-xs-3 table_data"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">Difference in Mean</b>
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">Difference in Mean</b>
                     <div id="diff_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="diff_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="diff_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="diff_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">
                       <div id="Delta" data-term="Delta" class="define">Delta</div></b>
                     <div id="delta_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="delta_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="delta_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="delta_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-xs-5 text-right">
+                  <div class="row vertical-padding"><b class="col-xs-4 text-right">
                       <div id="AUC" data-term="AUC" class="define">AUC</div></b>
                     <div id="auc_cases" class="col-xs-2 table_data text-center"></div>
                     <div id="auc_controls" class="col-xs-3 table_data text-center"></div>
-                    <div id="auc_overall" class="col-xs-2 table_data text-center"></div>
+                    <div id="auc_overall" class="col-xs-3 table_data text-center"></div>
                   </div>
                 </div>
                 <div class="graph_panel col-xs-12 col-sm-4"></div>
@@ -329,7 +329,7 @@
                 <div id="graph" class="col-sm-7"><img src="/common/images/initial.jpg" alt="placeholder image" class="thumbnail"></div>
                 <div class="col-sm-12">
                   <div class="row">
-                    <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                    <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                 </div>
                 <div class="bibliography">
@@ -455,7 +455,7 @@
               </div>
               <div class="col-sm-12">
                 <div class="row">
-                  <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
               </div>
               <div id="output" class="col-sm-12 row"></div>
@@ -545,7 +545,7 @@
                 </form>
                 <div class="col-sm-12">
                   <div class="row">
-                    <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                    <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                   <div class="hide">
                     <div id="specificity_val" class="dom_valref"></div>
@@ -691,7 +691,7 @@
               </div>
               <div class="col-sm-7 col-sm-7">
                 <div class="row">
-                  <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
                 <div id="results" class="hide">
                   <table id="paramTable" class="table table-bordered table-condensed">
@@ -938,7 +938,7 @@
             </div>
           </div>
         </div>
-        <div id="portal-footer" class="col-sm-12">
+        <div id="portal-footer" class="col-xs-12">
           <div class="footerLinks">
             <div class="row"><a href="http://www.cancer.gov/" target="_blank" title="National Cancer Institute Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" target="_blank" title="Contact us for technical support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" target="_blank" title="Web Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" target="_blank" title="Document Viewers, Multimedia Players and Accessibility Policy">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" target="_blank" title="Freedom of Information Act (FOIA)">FOIA</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.dhhs.gov/">Department of Health and Human Services</a></div><br>
             <div class="row"><a target="_blank" href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.usa.gov/">USA.gov</a></div><br>
