@@ -1,14 +1,19 @@
 common-blue = #4e5669
-red = #a90002
+base-red = #A90101
 light-red = #CD5C5C
 tan = #f5f5f5
 highlight = lightyellow
 highlight-compl = ivory
 
+@-ms-viewport
+    width "device-width"
 body
     font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
+    #header-wrap
+        background-color base-red
+        margin 0 auto
     #main
-        width 1280px
+        // width 1280px
         margin 0 auto
         font-size small
     .indent
@@ -44,7 +49,7 @@ body
     #contentTabs
         margin 1.5em auto
         ul.nav.nav-tabs
-            font-size 9pt
+            font-size small
             a
                 color black
             > li.active a
@@ -66,7 +71,7 @@ body
             .tablevars
                 padding 0
             #ss
-                width 50%
+                // width 50%
             .row
                 margin 1em auto
             input
@@ -75,7 +80,7 @@ body
             .explanation 
                 float left
                 padding-left 15px
-                width 600px
+                // width 600px
             .reference_row 
                 background-color  yellow
             .top-header 
@@ -84,7 +89,7 @@ body
                 color #FFF
             #graph img
                 height auto
-                width 65%
+                // width 65%
             #inputdata
                 .input:hover
                     cursor text
@@ -96,7 +101,7 @@ body
                 color #444
                 padding 5px
             .bibliography 
-                width 950px
+                // width 950px
                 clear both
                 float left
                 margin 50px
@@ -119,7 +124,7 @@ body
             .graph_panel
                 padding-left 0
             .panel.panel-default.table_panel
-                width 28% // setting table width specifically
+                // width 28% // setting table // width specifically
             .table_panel
                 .row
                     border .125em solid #ddd
@@ -146,14 +151,14 @@ body
                 background  #DDD url()
 
             .output_graph
-                max-width 125%
+                max-// width 125%
                 display block
                 margin-left  auto
                 margin-right  auto
 
             .key_output_panel 
                 float left
-                width 300px
+                // width 300px
                 background-color #faf
                 height 99%
 
@@ -167,7 +172,7 @@ body
                 text-align center
 
             .maincard 
-                width 800px
+                // width 800px
                 height 750px
                 border 2px black solid
 
@@ -175,7 +180,7 @@ body
                 background-color yellow
 
             table.table_data 
-                width 90%
+                // width 90%
                 background-color white
                 border 1px #BBB solid
 
@@ -240,11 +245,11 @@ body
             #results table th
                 background-color tan
             .red
-                background-color red
+                background-color base-red
             .panel-title, .panel-title a
                 font-size small
             table input[type="text"]
-                width 50px
+                // width 50px
                 
             .panel-toggle a, .panel-title a
                 color black
@@ -265,24 +270,24 @@ body
                 background-image url("/common/images/loading.gif") no-repeat;
                 margin 0 auto;
                 height 300px
-                width 100%
+                // width 100%
 
             input[type="number"]
-                width 8em
+                // width 8em
 
             .input:invalid
                 background-color yellow
         #riskStratAdvanced
             input,select
                 padding 1px
-            .ui-widget
-                font-size 12px
+            //.ui-widget
+            //  font-size 12px
             .label
                 float right
             .explanation
                 float left
                 padding-left 15px
-                width 600px
+                // width 600px
 
             .reference_row
                 background-color yellow
@@ -297,7 +302,7 @@ body
                 padding 2px 25px 2px 25px
 
             .bibliography
-                width 950px
+                // width 950px
                 clear both
                 float left
                 margin 50px
@@ -328,7 +333,7 @@ body
                 color black
 
             .status-error
-                color red
+                color base-red
 
             a#add-test-data
                 text-decoration underline
@@ -341,7 +346,7 @@ body
                 text-align center
                 background-color #F8FAFA
             #inputdata
-                width 500px
+                // width 500px
             #status-bar
                 background #CCC
                 display block
@@ -353,7 +358,7 @@ body
                 outline none
                 padding 10px
                 top 2px
-                width 100%
+                // width 100%
                 visibility hidden
             #tabs
                 .header
@@ -362,10 +367,20 @@ body
                 .vertical-text
                     transform rotate(-90deg)
                     white-space no-wrap
-                    width 15px
-//                .table-side
-//                    float left
-//                    width 450px
-//                .graphic-side
-//                    float right
-//                    width 410px
+                    // width 15px                  
+    #portal-footer
+        line-height 1.2em
+        //        margin 2em 0em 1em 0em
+        //        padding 1em 0em 1em 0em
+        text-align center
+        background-color #FFF
+        color #333333
+        font-size small
+        a
+            text-decoration none
+            color #333333
+            border none
+            :visited
+                color #333333
+            :hover
+                text-decoration underline

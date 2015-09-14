@@ -1,12 +1,12 @@
 #sampleSize.tab-pane.fade(role='tabpanel')
     h3.title.text-center(title="Power and Sample Size Calculation") Power and Sample Size for Biomarker Case Control Studies
-    .col-md-12
+    .col-sm-12
         #helpGlossaryLinks
             a.goToHelp(href="#help_sampleSize") Help
             | &nbsp;
             a.goToGlossary(href="#") Glossary
     .container
-        form#ss.col-md-8.row(novalidate)
+        form#ss.col-sm-8.row(novalidate)
             #message.col-sm-7.col-sm-offset-2.hide
                 .panel.panel-danger
                     .panel-heading
@@ -14,58 +14,58 @@
             .panel.panel-default
                 .tablevars.panel-body
                     .row
-                        .col-md-4
+                        .col-sm-4
                             b.pull-right Independent Variable
-                        .col-md-4
+                        .col-sm-4
                             .pull-right Proportion of Assays in Cases (k)
-                        .col-md-3.no-pad
+                        .col-sm-3.no-pad
                             .pull-left Min Value
                             .pull-right Max Value
                     .row
-                        .col-md-4
-                        .col-md-4
-                        .col-md-3.no-pad
-                            input#minInput.col-md-5.pull-left(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
-                            input#maxInput.col-md-6.pull-right(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
+                        .col-sm-4
+                        .col-sm-4
+                        .col-sm-3.no-pad
+                            input#minInput.col-sm-5.pull-left(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
+                            input#maxInput.col-sm-6.pull-right(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
                     .row
-                        .col-md-4               
+                        .col-sm-4               
                             label.pull-right(for='contour_dropdown') Contour
-                        .col-md-4
+                        .col-sm-4
                             select#contour_dropdown.pull-left(name='contour_dropdown', required)
                                 option(value='', selected='')
                                 option(value='specificity') Specificity
                                 option(value='sensitivity') Sensitivity
                         label.sr-only(for='contour') Contour
                         //- pattern='([0-8,. \-])+',
-                        input#contour.fontnormal.col-md-3(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
+                        input#contour.fontnormal.col-sm-3(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
                     .row
-                        .col-md-4
+                        .col-sm-4
                             label.pull-right(for='fixed_dropdown') Fixed Values
-                        .col-md-4
+                        .col-sm-4
                             select#fixed_dropdown.pull-left(name='fixed_dropdown', required)
                                 option(value='', selected='', disabled='disabled')
                                 option(value='specificity', disabled='disabled') Specificity
                                 option(value='sensitivity', disabled='disabled') Sensitivity
                         label.sr-only(for='fixed') Fixed
-                        input#fixed.fontnormal.col-md-3(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1.', required) 
+                        input#fixed.fontnormal.col-sm-3(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1.', required) 
                     //- pattern='([0-8,. \-])+', 
                     .row
-                        .col-md-4
+                        .col-sm-4
                             b.pull-right Parameters
-                        .col-md-4
+                        .col-sm-4
                             .pull-left(for='prevalence') Prevalence
-                        input#prevalence.col-md-3(type='number',min="0",max="1", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
+                        input#prevalence.col-sm-3(type='number',min="0",max="1", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
                     .row
-                        .col-md-4
-                        .col-md-4
+                        .col-sm-4
+                        .col-sm-4
                             .pull-left(for='n_value') Sample Size
-                        input#n_value.fontnormal.col-md-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer', required)
+                        input#n_value.fontnormal.col-sm-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer', required)
                 .panel-footer
                     button.post(type='submit') Calculate
                     button.reset(type='reset') Reset
                     .pull-right
                         a#add-test-data(title='Populate variables with working example', href='#') Example
-        .col-md-12
+        .col-sm-12
             include ../partials/loader
             .hide
                 #specificity_val.dom_valref

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Biomarker Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/common/css/font-awesome.css" type="text/css">
@@ -13,18 +14,14 @@
   </head>
   <body>
     <div class="sr-only"><a id="skip" href="#mainTabsContent">Skip to Content</a></div>
-    <div class="center-block">
-      <div id="wrapper">
-        <div id="logos">
-          <div class="pull-left"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
-          <div class="pull-right"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
-        </div>
-      </div><br>
+    <div class="container">
       <div id="main">
-        <div id="banners">
-          <div class="pull-left"><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43"></div><br>
+        <div id="header-wrap" class="row">
+          <div class="pull-left col-sm-6"><a href="http://www.cancer.gov" alt="National Cancer Institute" target="_blank"><img src="/common/images/nci.jpg" width="286" height="40" border="0" alt="National Cancer Institute"></a></div>
+          <div class="pull-right col-sm-6"><img src="/common/images/nih.jpg" width="322" height="40" border="0" alt="at the National Institutes of Health"></div>
         </div>
-        <div id="contentTabs" class="col-md-12">
+        <div class="row"><br><img src="/common/images/DCEG-BB-HREB.png" alt="Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal and Reproductive Epidemiology Branch " height="43" class="img-responsive col-sm-6"></div>
+        <div id="contentTabs" class="col-sm-12">
           <ul role="tablist" class="nav nav-tabs">
             <li role="tab" title="Navigate to Home tab" class="active"><a href="#home" data-toggle="tab">Home</a></li>
             <li role="tab" title="Navigate to Means to Risk Stratification tab"><a href="#meanstorisk" data-toggle="tab">Means to Risk</a></li>
@@ -34,7 +31,7 @@
             <li role="tab" title="Navigate to Mean Risk Stratification tab"><a href="#meanRiskStratification" data-toggle="tab">Mean Risk Stratification</a></li>
             <li role="tab" title="Navigate to Help tab"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
-          <div id="mainTabsContent" class="tab-content col-md-12">
+          <div id="mainTabsContent" class="tab-content col-sm-12">
             <div id="home" role="tabpanel" class="tab-pane fade in active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
               risk measures indentified case-control studies to clinical or public health applications. The toolset will show
@@ -54,7 +51,7 @@
               <div class="top_section">
                 <h3 title="Means to Risk Stratification tool" class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div><br>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <form>
                     <div id="accordion" class="panel panel-default">
                       <div class="panel-heading">
@@ -79,12 +76,12 @@
                           <div class="panel-heading"><b class="data_entry_by_input">Enter Mean, Standard Error, and N for Cases and Controls</b></div>
                           <div>
                             <div class="row table_data">
-                              <div class="col-md-5 text-right table_data"></div>
-                              <div class="col-md-2 table_data"> <b>Cases</b></div>
-                              <div class="col-md-2 table_data"><b>Controls</b></div>
+                              <div class="col-sm-5 text-right table_data"></div>
+                              <div class="col-sm-2 table_data"> <b>Cases</b></div>
+                              <div class="col-sm-2 table_data"><b>Controls</b></div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-md-5 text-right table_data">
+                              <div class="col-sm-5 text-right table_data">
                                 <label for="mean_cases_input"><b>Mean</b></label>
                               </div>
                               <div class="pull-left table_data">
@@ -96,7 +93,7 @@
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-md-5 text-right table_data">
+                              <div class="col-sm-5 text-right table_data">
                                 <label for="stderr_cases_input"><b>Standard Error</b></label>
                               </div>
                               <div class="pull-left table_data">
@@ -108,7 +105,7 @@
                               </div>
                             </div>
                             <div class="row table_data">
-                              <div class="col-md-5 text-right table_data">
+                              <div class="col-sm-5 text-right table_data">
                                 <label for="N_cases_input"><b>N</b></label>
                               </div>
                               <div class="pull-left table_data">
@@ -135,62 +132,62 @@
                   </form>
                   <div class="row">
                     <div class="row">
-                      <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                      <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                     </div>
                   </div>
                 </div>
-                <div class="panel panel-default col-md-3 table_panel">
-                  <div class="row"> <b class="header col-md-5">&nbsp;</b><b class="header col-md-2">Cases</b><b class="header col-md-3">Controls</b><b class="header col-md-2">Overall</b></div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">Mean</b>
-                    <div id="mean_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="mean_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="mean_overall" class="col-md-2 table_data text-center"></div>
+                <div class="panel panel-default col-sm-3 table_panel">
+                  <div class="row"> <b class="header col-sm-5">&nbsp;</b><b class="header col-sm-2">Cases</b><b class="header col-sm-3">Controls</b><b class="header col-sm-2">Overall</b></div>
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Mean</b>
+                    <div id="mean_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="mean_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="mean_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">Standard Error</b>
-                    <div id="stderr_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="stderr_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="stderr_overall" class="col-md-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Standard Error</b>
+                    <div id="stderr_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="stderr_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="stderr_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">N</b>
-                    <div id="N_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="N_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="N_overall" class="col-md-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">N</b>
+                    <div id="N_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="N_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="N_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row line-above vertical-padding"><b class="col-md-5 text-right">Standard Deviation</b>
-                    <div id="deviation_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="deviation_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="deviation_overall" class="col-md-2 table_data text-center"></div>
+                  <div class="row line-above vertical-padding"><b class="col-sm-5 text-right">Standard Deviation</b>
+                    <div id="deviation_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="deviation_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="deviation_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">Variance</b>
-                    <div id="variance_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="variance_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="variance_overall" class="col-md-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Variance</b>
+                    <div id="variance_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="variance_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="variance_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
                       <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div></b>
-                    <div id="cv_cases" class="col-md-2 table_data"></div>
-                    <div id="cv_controls" class="col-md-3 table_data"></div>
-                    <div id="cv_overall" class="col-md-2 table_data"></div>
+                    <div id="cv_cases" class="col-sm-2 table_data"></div>
+                    <div id="cv_controls" class="col-sm-3 table_data"></div>
+                    <div id="cv_overall" class="col-sm-2 table_data"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">Difference in Mean</b>
-                    <div id="diff_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="diff_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="diff_overall" class="col-md-2 table_data text-center"></div>
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">Difference in Mean</b>
+                    <div id="diff_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="diff_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="diff_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
                       <div id="Delta" data-term="Delta" class="define">Delta</div></b>
-                    <div id="delta_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="delta_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="delta_overall" class="col-md-2 table_data text-center"></div>
+                    <div id="delta_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="delta_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="delta_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
-                  <div class="row vertical-padding"><b class="col-md-5 text-right">
+                  <div class="row vertical-padding"><b class="col-sm-5 text-right">
                       <div id="AUC" data-term="AUC" class="define">AUC</div></b>
-                    <div id="auc_cases" class="col-md-2 table_data text-center"></div>
-                    <div id="auc_controls" class="col-md-3 table_data text-center"></div>
-                    <div id="auc_overall" class="col-md-2 table_data text-center"></div>
+                    <div id="auc_cases" class="col-sm-2 table_data text-center"></div>
+                    <div id="auc_controls" class="col-sm-3 table_data text-center"></div>
+                    <div id="auc_overall" class="col-sm-2 table_data text-center"></div>
                   </div>
                 </div>
-                <div class="graph_panel col-md-4"></div>
+                <div class="graph_panel col-sm-4"></div>
               </div>
               <div class="bottom_section small">
                 <div class="tabbed_output_panel"></div>
@@ -198,7 +195,7 @@
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
               <h3 title="Biomarker Comparison tool" class="title text-center">Biomarker Comparison</h3>
-              <div class="col-md-12 vertical-padding">
+              <div class="col-sm-12 vertical-padding">
                 <div id="helpGlossaryLinks"><a href="#help_bc" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
               <p>
@@ -207,8 +204,8 @@
                 sensitivity and specificity pairs (see the example plot below). The
                 likelihood ratio contours define four areas: 
                 <div class="row">
-                  <div class="col-md-5"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
-                  <div class="col-md-5 explanation">
+                  <div class="col-sm-5"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
+                  <div class="col-sm-5 explanation">
                     <ul id="ulForLRAreas">
                       <li class="liForLRArea">
                         Area A shows combinations of
@@ -251,7 +248,7 @@
                   </div>
                   <!-- Left Side-->
                 </div>
-                <div class="col-md-5 table-and-graph">
+                <div class="col-sm-5 table-and-graph">
                   <div id="accordion" class="panel panel-default">
                     <div class="panel-heading">
                       <div class="panel-title text-center"><b>Input Information</b></div>
@@ -270,50 +267,50 @@
                     </div>
                     <div id="inputdata" class="panel-body">
                       <div class="row non-data-row">
-                        <div class="col-md-1 header text-center"><b>#</b></div>
-                        <div class="col-md-3 header text-center"><b>Reference</b></div>
-                        <div class="col-md-3 header text-center">
+                        <div class="col-sm-1 header text-center"><b>#</b></div>
+                        <div class="col-sm-3 header text-center"><b>Reference</b></div>
+                        <div class="col-sm-3 header text-center">
                           <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
                         </div>
-                        <div class="col-md-2 header text-center">
+                        <div class="col-sm-2 header text-center">
                           <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
                         </div>
-                        <div class="col-md-3 header text-center">&nbsp;</div>
+                        <div class="col-sm-3 header text-center">&nbsp;</div>
                       </div>
                       <div row="0" class="row reference_row">
-                        <div class="col-md-1 text-center">1</div>
-                        <div row="0" col="reference" class="col-md-3 text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
-                        <div row="0" col="sensitivity" class="col-md-3 text-center input sensitivity">0.8</div>
-                        <div row="0" col="specificity" class="col-md-2 text-center input specificity">0.7</div>
-                        <div class="col-md-3 text-center"> </div>
+                        <div class="col-sm-1 text-center">1</div>
+                        <div row="0" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
+                        <div row="0" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.8</div>
+                        <div row="0" col="specificity" class="col-sm-2 text-center input specificity">0.7</div>
+                        <div class="col-sm-3 text-center"> </div>
                       </div>
                       <div row="1" class="row">
-                        <div class="col-md-1 text-center">2</div>
-                        <div row="1" col="reference" class="col-md-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="1" col="sensitivity" class="col-md-3 text-center input sensitivity">0.85</div>
-                        <div row="1" col="specificity" class="col-md-2 text-center input specificity">0.68</div>
-                        <div class="col-md-3 text-center">
+                        <div class="col-sm-1 text-center">2</div>
+                        <div row="1" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                        <div row="1" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.85</div>
+                        <div row="1" col="specificity" class="col-sm-2 text-center input specificity">0.68</div>
+                        <div class="col-sm-3 text-center">
                           <button class="remove_row_button">Remove</button>
                         </div>
                       </div>
                       <div row="2" class="row">
-                        <div class="col-md-1 text-center">3</div>
-                        <div row="2" col="reference" class="col-md-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="2" col="sensitivity" class="col-md-3 text-center input sensitivity">0.9</div>
-                        <div row="2" col="specificity" class="col-md-2 text-center input specificity">0.5</div>
-                        <div class="col-md-3 text-center">
+                        <div class="col-sm-1 text-center">3</div>
+                        <div row="2" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                        <div row="2" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.9</div>
+                        <div row="2" col="specificity" class="col-sm-2 text-center input specificity">0.5</div>
+                        <div class="col-sm-3 text-center">
                           <button class="remove_row_button">Remove</button>
                         </div>
                       </div>
                       <div class="row non-data-row">
-                        <div class="col-md-9"></div>
-                        <div class="col-md-3 text-center">
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-3 text-center">
                           <button id="new_row_button">New Row</button>
                         </div>
                       </div>
                     </div>
                     <div class="panel-footer">
-                      <label id="DP" data-term="DP" for="prevalence_bc" class="define prevalence_label col-md-3">Prevalence</label>
+                      <label id="DP" data-term="DP" for="prevalence_bc" class="define prevalence_label col-sm-3">Prevalence</label>
                       <input id="prevalence_bc" type="text">
                       <button id="calculate_button">Calculate</button>
                       <button id="reset">Reset</button>
@@ -321,10 +318,10 @@
                   </div>
                   <div id="output"></div>
                 </div>
-                <div id="graph" class="col-md-7"><img src="/common/images/initial.jpg" alt="placeholder image" class="thumbnail"></div>
-                <div class="col-md-12">
+                <div id="graph" class="col-sm-7"><img src="/common/images/initial.jpg" alt="placeholder image" class="thumbnail"></div>
+                <div class="col-sm-12">
                   <div class="row">
-                    <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                    <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                 </div>
                 <div class="bibliography">
@@ -340,17 +337,17 @@
             </div>
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Advanced Analysis tool" class="title text-center">Risk Stratification Advanced Analysis</h3>
-              <div class="col-md-12">
+              <div class="col-sm-12">
                 <div id="helpGlossaryLinks"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
-              <form class="col-md-7">
+              <form class="col-sm-7">
                 <div class="panel panel-default">
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-sm-3">
                         <label for="independent_dropdown_rs">Independent Variable</label>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-sm-2">
                         <select id="independent_dropdown_rs" name="independent_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="specificity">Specificity</option>
@@ -362,16 +359,16 @@
                         </select>
                       </div>
                       <label for="independent_rs" class="sr-only">Independent Variable Value</label>
-                      <input id="independent_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
+                      <input id="independent_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-sm-6">
                       <div>
                         <div id="indDef"></div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-sm-3">
                         <label for="contour_dropdown_rs">Contour</label>
                       </div>
-                      <div class="col-md-2">   
+                      <div class="col-sm-2">   
                         <select id="contour_dropdown_rs" name="contour_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="ppv">PPV</option>
@@ -383,16 +380,16 @@
                         </select>
                       </div>
                       <label for="contour_rs" class="sr-only">Contour Value</label>
-                      <input id="contour_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-md-6">
+                      <input id="contour_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-sm-6">
                       <div>
                         <div id="contourDef"></div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-sm-3">
                         <label for="fixed_dropdown_rs">Fixed Values</label>
                       </div>
-                      <div class="col-md-2">  
+                      <div class="col-sm-2">  
                         <select id="fixed_dropdown_rs" name="fixed_dropdown_rs">
                           <option value="" selected=""></option>
                           <option value="prevalence">Prevalence</option>
@@ -404,7 +401,7 @@
                         </select>
                       </div>
                       <label for="fixed_rs" class="sr-only">Fixed Value</label>
-                      <input id="fixed_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-md-6">
+                      <input id="fixed_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-sm-6">
                       <div>
                         <div id="fvDef"></div>
                       </div>
@@ -417,7 +414,7 @@
                   </div>
                 </div>
               </form>
-              <div id="examples" class="col-md-5">
+              <div id="examples" class="col-sm-5">
                 <div class="row vertical-padding"><span class="variable-example"></span></div>
                 <div class="row vertical-padding"><span class="variable-example"></span></div>
                 <div class="row vertical-padding"><span class="variable-example"></span></div>
@@ -448,20 +445,20 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-sm-12">
                 <div class="row">
-                  <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
               </div>
-              <div id="output" class="col-md-12 row"></div>
+              <div id="output" class="col-sm-12 row"></div>
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>
-              <div class="col-md-12">
+              <div class="col-sm-12">
                 <div id="helpGlossaryLinks"><a href="#help_sampleSize" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
               <div class="container">
-                <form id="ss" novalidate class="col-md-8 row">
+                <form id="ss" novalidate class="col-sm-8 row">
                   <div id="message" class="col-sm-7 col-sm-offset-2 hide">
                     <div class="panel panel-danger">
                       <div class="panel-heading"></div>
@@ -471,28 +468,28 @@
                   <div class="panel panel-default">
                     <div class="tablevars panel-body">
                       <div class="row">
-                        <div class="col-md-4"><b class="pull-right">Independent Variable</b></div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4"><b class="pull-right">Independent Variable</b></div>
+                        <div class="col-sm-4">
                           <div class="pull-right">Proportion of Assays in Cases (k)</div>
                         </div>
-                        <div class="col-md-3 no-pad">
+                        <div class="col-sm-3 no-pad">
                           <div class="pull-left">Min Value</div>
                           <div class="pull-right">Max Value</div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-3 no-pad">
-                          <input id="minInput" type="number" min="0" max="1" step=".01" title="Minimum value must be a floating point number between 0 and 1" required class="col-md-5 pull-left">
-                          <input id="maxInput" type="number" min="0" max="1" step=".01" title="Maximum value must be a floating point number between 0 and 1" required class="col-md-6 pull-right">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-3 no-pad">
+                          <input id="minInput" type="number" min="0" max="1" step=".01" title="Minimum value must be a floating point number between 0 and 1" required class="col-sm-5 pull-left">
+                          <input id="maxInput" type="number" min="0" max="1" step=".01" title="Maximum value must be a floating point number between 0 and 1" required class="col-sm-6 pull-right">
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-4">              
+                        <div class="col-sm-4">              
                           <label for="contour_dropdown" class="pull-right">Contour</label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                           <select id="contour_dropdown" name="contour_dropdown" required class="pull-left">
                             <option value="" selected=""></option>
                             <option value="specificity">Specificity</option>
@@ -500,13 +497,13 @@
                           </select>
                         </div>
                         <label for="contour" class="sr-only">Contour</label>
-                        <input id="contour" type="text" size="30" title="Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1" required class="fontnormal col-md-3">
+                        <input id="contour" type="text" size="30" title="Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1" required class="fontnormal col-sm-3">
                       </div>
                       <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                           <label for="fixed_dropdown" class="pull-right">Fixed Values</label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                           <select id="fixed_dropdown" name="fixed_dropdown" required class="pull-left">
                             <option value="" selected="" disabled="disabled"></option>
                             <option value="specificity" disabled="disabled">Specificity</option>
@@ -514,21 +511,21 @@
                           </select>
                         </div>
                         <label for="fixed" class="sr-only">Fixed</label>
-                        <input id="fixed" type="text" size="30" title="Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1." required class="fontnormal col-md-3">
+                        <input id="fixed" type="text" size="30" title="Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1." required class="fontnormal col-sm-3">
                       </div>
                       <div class="row">
-                        <div class="col-md-4"><b class="pull-right">Parameters</b></div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4"><b class="pull-right">Parameters</b></div>
+                        <div class="col-sm-4">
                           <div for="prevalence" class="pull-left">Prevalence</div>
                         </div>
-                        <input id="prevalence" type="number" min="0" max="1" step="0.01" title="Prevalence is required and must be floating point number between 0 and 1" required class="col-md-3">
+                        <input id="prevalence" type="number" min="0" max="1" step="0.01" title="Prevalence is required and must be floating point number between 0 and 1" required class="col-sm-3">
                       </div>
                       <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
                           <div for="n_value" class="pull-left">Sample Size</div>
                         </div>
-                        <input id="n_value" type="number" min="1" step="1" title="Sample Size is required and must be an integer" required class="fontnormal col-md-3">
+                        <input id="n_value" type="number" min="1" step="1" title="Sample Size is required and must be an integer" required class="fontnormal col-sm-3">
                       </div>
                     </div>
                     <div class="panel-footer">
@@ -538,9 +535,9 @@
                     </div>
                   </div>
                 </form>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                   <div class="row">
-                    <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                    <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                   <div class="hide">
                     <div id="specificity_val" class="dom_valref"></div>
@@ -554,11 +551,11 @@
             </div>
             <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade"> 
               <h3 title="Mean Risk Stratification tool" class="title text-center">Mean Risk Stratification</h3>
-              <div class="col-md-12">
+              <div class="col-sm-12">
                 <div id="helpGlossaryLinks"><a href="#help_meanRiskStratification" class="goToHelp">Help</a>&nbsp;&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
               </div>
-              <div class="col-md-5 col-sm-5">
-                <div class="col-md-12">
+              <div class="col-sm-5 col-sm-5">
+                <div class="col-sm-12">
                   <form id="markers" class="panel-group">
                     <div class="marker panel panel-default marker-1">
                       <div class="marker-title text-center"><b>Biomarker #1</b></div>
@@ -574,7 +571,7 @@
                           <table class="table table-condensed table-responsive">
                             <thead>
                               <tr>
-                                <td class="col-md-2 header"></td>
+                                <td class="col-sm-2 header"></td>
                                 <th id="prob_m" header="prob_m" class="termToDefine header">Marker Positive (M+)</th>
                                 <th id="m_neg" header="m_neg" class="termToDefine header">Marker Negative (M-)</th>
                               </tr>
@@ -668,7 +665,7 @@
                       </div>
                     </div>
                   </form>
-                  <div id="control-group" class="col-md-12">
+                  <div id="control-group" class="col-sm-12">
                     <div class="row">
                       <div class="pull-left">
                         <button id="add-marker"><span alt="Add(+)" title="Add biomarker" class="glyphicon glyphicon-plus-sign">&nbsp;</span><span>Add</span></button>
@@ -684,9 +681,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-7 col-sm-7">
+              <div class="col-sm-7 col-sm-7">
                 <div class="row">
-                  <p id="spinner" class="hide col-md-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                  <p id="spinner" class="hide col-sm-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                 </div>
                 <div id="results" class="hide">
                   <table id="paramTable" class="table table-bordered table-condensed">
@@ -933,12 +930,14 @@
             </div>
           </div>
         </div>
+        <div id="portal-footer" class="col-sm-12">
+          <div class="footerLinks">
+            <div class="row"><a href="http://www.cancer.gov/" target="_blank" title="National Cancer Institute Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" target="_blank" title="Contact us for technical support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" target="_blank" title="Web Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" target="_blank" title="Document Viewers, Multimedia Players and Accessibility Policy">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" target="_blank" title="Freedom of Information Act (FOIA)">FOIA</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.dhhs.gov/">Department of Health and Human Services</a></div><br>
+            <div class="row"><a target="_blank" href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.usa.gov/">USA.gov</a></div><br>
+            <div class="row"> NIH...Turning Discovery Into Health<sup>&reg;</sup></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="portal-footer" class="col-md-12">
-      <div class="footerLinks"><a href="http://www.cancer.gov/" target="_blank" title="National Cancer Institute Home">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:NCIMeansToRiskWebAdmin@mail.nih.gov" target="_blank" title="Contact us for technical support">Support</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies" target="_blank" title="Web Policies">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/accessibility" target="_blank" title="Document Viewers, Multimedia Players and Accessibility Policy">Accessibility</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.cancer.gov/global/web/policies/foia" target="_blank" title="Freedom of Information Act (FOIA)">FOIA</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.dhhs.gov/">
-          Department of Health and
-          Human Services</a><br><br><a target="_blank" href="http://www.nih.gov/">National Institutes of Health</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.cancer.gov/">National Cancer Institute</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://www.usa.gov/">USA.gov</a></div><br><br> NIH...Turning Discovery Into Health<sup>&reg;</sup>
     </div>
     <script data-main="requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
   </body>

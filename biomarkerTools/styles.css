@@ -1,8 +1,14 @@
+@-ms-viewport {
+  width: "device-width";
+}
 body {
   font-family: "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff";
 }
+body #header-wrap {
+  background-color: #a90101;
+  margin: 0 auto;
+}
 body #main {
-  width: 1280px;
   margin: 0 auto;
   font-size: small;
 }
@@ -48,7 +54,7 @@ body #contentTabs {
   margin: 1.5em auto;
 }
 body #contentTabs ul.nav.nav-tabs {
-  font-size: 9pt;
+  font-size: small;
 }
 body #contentTabs ul.nav.nav-tabs a {
   color: #000;
@@ -75,9 +81,6 @@ body #contentTabs .tab-content {
 body #contentTabs #sampleSize .tablevars {
   padding: 0;
 }
-body #contentTabs #sampleSize #ss {
-  width: 50%;
-}
 body #contentTabs #sampleSize .row {
   margin: 1em auto;
 }
@@ -87,7 +90,6 @@ body #contentTabs #sampleSize input {
 body #contentTabs #bc .explanation {
   float: left;
   padding-left: 15px;
-  width: 600px;
 }
 body #contentTabs #bc .reference_row {
   background-color: #ff0;
@@ -99,7 +101,6 @@ body #contentTabs #bc .top-header {
 }
 body #contentTabs #bc #graph img {
   height: auto;
-  width: 65%;
 }
 body #contentTabs #bc #inputdata .input:hover {
   cursor: text;
@@ -114,7 +115,6 @@ body #contentTabs #bc h2 {
   padding: 5px;
 }
 body #contentTabs #bc .bibliography {
-  width: 950px;
   clear: both;
   float: left;
   margin: 50px;
@@ -143,9 +143,6 @@ body #contentTabs #bc .bib-doi {
 }
 body #contentTabs #meanstorisk .graph_panel {
   padding-left: 0;
-}
-body #contentTabs #meanstorisk .panel.panel-default.table_panel {
-  width: 28%;
 }
 body #contentTabs #meanstorisk .table_panel .row {
   border: 0.125em solid #ddd;
@@ -176,14 +173,13 @@ background-color
   background: #ddd url("");
 }
 body #contentTabs #meanstorisk .output_graph {
-  max-width: 125%;
+max-
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 body #contentTabs #meanstorisk .key_output_panel {
   float: left;
-  width: 300px;
   background-color: #faf;
   height: 99%;
 }
@@ -198,7 +194,6 @@ body #contentTabs #meanstorisk .col1 {
   text-align: center;
 }
 body #contentTabs #meanstorisk .maincard {
-  width: 800px;
   height: 750px;
   border: 2px #000 solid;
 }
@@ -206,7 +201,6 @@ body #contentTabs #meanstorisk .highlight {
   background-color: #ff0;
 }
 body #contentTabs #meanstorisk table.table_data {
-  width: 90%;
   background-color: #fff;
   border: 1px #bbb solid;
 }
@@ -276,14 +270,11 @@ body #contentTabs #meanRiskStratification #results table th {
   background-color: #f5f5f5;
 }
 body #contentTabs #meanRiskStratification .red {
-  background-color: #a90002;
+  background-color: #a90101;
 }
 body #contentTabs #meanRiskStratification .panel-title,
 body #contentTabs #meanRiskStratification .panel-title a {
   font-size: small;
-}
-body #contentTabs #meanRiskStratification table input[type="text"] {
-  width: 50px;
 }
 body #contentTabs #meanRiskStratification .panel-toggle a,
 body #contentTabs #meanRiskStratification .panel-title a {
@@ -308,10 +299,6 @@ body #contentTabs #meanRiskStratification .loader {
   background-image: url("/common/images/loading.gif") no-repeat;
   margin: 0 auto;
   height: 300px;
-  width: 100%;
-}
-body #contentTabs #meanRiskStratification input[type="number"] {
-  width: 8em;
 }
 body #contentTabs #meanRiskStratification .input:invalid {
   background-color: #ff0;
@@ -320,16 +307,12 @@ body #contentTabs #riskStratAdvanced input,
 body #contentTabs #riskStratAdvanced select {
   padding: 1px;
 }
-body #contentTabs #riskStratAdvanced .ui-widget {
-  font-size: 12px;
-}
 body #contentTabs #riskStratAdvanced .label {
   float: right;
 }
 body #contentTabs #riskStratAdvanced .explanation {
   float: left;
   padding-left: 15px;
-  width: 600px;
 }
 body #contentTabs #riskStratAdvanced .reference_row {
   background-color: #ff0;
@@ -344,7 +327,6 @@ body #contentTabs #riskStratAdvanced .prevalence_label {
   padding: 2px 25px 2px 25px;
 }
 body #contentTabs #riskStratAdvanced .bibliography {
-  width: 950px;
   clear: both;
   float: left;
   margin: 50px;
@@ -375,7 +357,7 @@ body #contentTabs #riskStratAdvanced .status-info {
   color: #000;
 }
 body #contentTabs #riskStratAdvanced .status-error {
-  color: #a90002;
+  color: #a90101;
 }
 body #contentTabs #riskStratAdvanced a#add-test-data {
   text-decoration: underline;
@@ -390,9 +372,6 @@ body #contentTabs #riskStratAdvanced .table-title {
   text-align: center;
   background-color: #f8fafa;
 }
-body #contentTabs #riskStratAdvanced #inputdata {
-  width: 500px;
-}
 body #contentTabs #riskStratAdvanced #status-bar {
   background: #ccc;
   display: block;
@@ -406,7 +385,6 @@ body #contentTabs #riskStratAdvanced #status-bar {
   outline: none;
   padding: 10px;
   top: 2px;
-  width: 100%;
   visibility: hidden;
 }
 body #contentTabs #riskStratAdvanced #tabs .header {
@@ -420,5 +398,22 @@ body #contentTabs #riskStratAdvanced #tabs .vertical-text {
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   white-space: nowrap;
-  width: 15px;
+}
+body #portal-footer {
+  line-height: 1.2em;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+  font-size: small;
+}
+body #portal-footer a {
+  text-decoration: none;
+  color: #333;
+  border: none;
+}
+body #portal-footer a :visited {
+  color: #333;
+}
+body #portal-footer a :hover {
+  text-decoration: underline;
 }

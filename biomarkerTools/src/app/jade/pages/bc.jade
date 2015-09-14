@@ -1,6 +1,6 @@
 #bc.tab-pane.fade(role='tabpanel')
     h3.title.text-center(title="Biomarker Comparison tool") Biomarker Comparison
-    .col-md-12.vertical-padding
+    .col-sm-12.vertical-padding
         #helpGlossaryLinks
             a.goToHelp(href="#help_bc") Help
             | &nbsp;
@@ -11,9 +11,9 @@
       | sensitivity and specificity pairs (see the example plot below). The
       | likelihood ratio contours define four areas: 
       .row
-        .col-md-5
+        .col-sm-5
           img(src='images/exampleLRPlot.jpg', alt='sample LR plot', height='350')
-        .col-md-5.explanation
+        .col-sm-5.explanation
           ul#ulForLRAreas
             li.liForLRArea
               | Area A shows combinations of
@@ -46,7 +46,7 @@
             | in the 2 populations, even when disease prevalences are much
             | different. To calculate PPV and cNPV, provide a prevalence value.
         // Left Side
-      .col-md-5.table-and-graph
+      .col-sm-5.table-and-graph
         #accordion.panel.panel-default
             .panel-heading
                 .panel-title.text-center
@@ -65,53 +65,53 @@
                         input#file_upload(type='file', accept=".csv")
             #inputdata.panel-body
               .row.non-data-row
-                .col-md-1.header.text-center
+                .col-sm-1.header.text-center
                     b #
-                .col-md-3.header.text-center
+                .col-sm-3.header.text-center
                     b Reference
-                .col-md-3.header.text-center
+                .col-sm-3.header.text-center
                   #Sens.define(data-term='Sens')
                     b Sensitivity
-                .col-md-2.header.text-center
+                .col-sm-2.header.text-center
                   #Spec.define(data-term='Spec')
                     b Specificity
-                .col-md-3.header.text-center &nbsp;
+                .col-sm-3.header.text-center &nbsp;
               .row.reference_row(row='0')
-                .col-md-1.text-center 1
-                .col-md-3.text-center.reference(row='0', col='reference')
+                .col-sm-1.text-center 1
+                .col-sm-3.text-center.reference(row='0', col='reference')
                   img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
-                .col-md-3.text-center.input.sensitivity(row='0', col='sensitivity') 0.8
-                .col-md-2.text-center.input.specificity(row='0', col='specificity') 0.7
-                .col-md-3.text-center  
+                .col-sm-3.text-center.input.sensitivity(row='0', col='sensitivity') 0.8
+                .col-sm-2.text-center.input.specificity(row='0', col='specificity') 0.7
+                .col-sm-3.text-center  
               .row(row='1')
-                .col-md-1.text-center 2
-                .col-md-3.text-center.reference(row='1', col='reference')
+                .col-sm-1.text-center 2
+                .col-sm-3.text-center.reference(row='1', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-md-3.text-center.input.sensitivity(row='1', col='sensitivity') 0.85
-                .col-md-2.text-center.input.specificity(row='1', col='specificity') 0.68
-                .col-md-3.text-center
+                .col-sm-3.text-center.input.sensitivity(row='1', col='sensitivity') 0.85
+                .col-sm-2.text-center.input.specificity(row='1', col='specificity') 0.68
+                .col-sm-3.text-center
                   button.remove_row_button Remove
               .row(row='2')
-                .col-md-1.text-center 3
-                .col-md-3.text-center.reference(row='2', col='reference')
+                .col-sm-1.text-center 3
+                .col-sm-3.text-center.reference(row='2', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-md-3.text-center.input.sensitivity(row='2', col='sensitivity') 0.9
-                .col-md-2.text-center.input.specificity(row='2', col='specificity') 0.5
-                .col-md-3.text-center
+                .col-sm-3.text-center.input.sensitivity(row='2', col='sensitivity') 0.9
+                .col-sm-2.text-center.input.specificity(row='2', col='specificity') 0.5
+                .col-sm-3.text-center
                   button.remove_row_button Remove
               .row.non-data-row
-                .col-md-9
-                .col-md-3.text-center
+                .col-sm-9
+                .col-sm-3.text-center
                   button#new_row_button New Row
             .panel-footer
-                label#DP.define.prevalence_label.col-md-3(data-term='DP',for='prevalence_bc') Prevalence
+                label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
                 input#prevalence_bc(type='text')
                 button#calculate_button Calculate
                 button#reset Reset
         #output
-      .col-md-7#graph
+      .col-sm-7#graph
         img.thumbnail(src="/common/images/initial.jpg", alt="placeholder image")
-      .col-md-12
+      .col-sm-12
         include ../partials/loader
       .bibliography
         p
