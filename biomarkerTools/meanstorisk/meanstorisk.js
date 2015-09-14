@@ -496,7 +496,7 @@ function create_tabbed_table(dt) {
 
 function make_tabs() {
    
-    var tabs = $("<div id='tabs'> </div>");
+    var tabs = $("<div id='tabs' class='row'> </div>");
     $(".tabbed_output_panel").empty().append(tabs);
     var tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
@@ -508,7 +508,7 @@ function make_tabs() {
        
 
        
-        tab_names.append("<LI><a href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
+        tab_names.append("<LI><a class='col-xs-12' href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
         tabs.append("<DIV id='tab-" + index + "' > " + ppv_tabs[key] + " </div>"); 
     }
 
@@ -527,28 +527,28 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     var general_table = $("<TABLE class='table_data'></TABLE>");
     $("#"+tab_id).empty().append(general_table);
 
-    var first_header_row = $("<tr></tr>");	
+    var first_header_row = $("<tr class='row'></tr>");	
     first_header_row.append("<TH class='table_data header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + "</TH>");
     first_header_row.appendTo(general_table);
 
-    var second_header_row = $("<tr></tr>");	
+    var second_header_row = $("<tr class='row'></tr>");	
     second_header_row.append("<TH class='text-center table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) + 
                              "'><div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + 
                              "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
     second_header_row.appendTo(general_table);
 
-    var third_header_row = $("<tr></tr>");	
-    third_header_row.append("<TH class='table_data header text-center' colspan='4' style='border-right:1px solid black;'>" +
-                            "<div class='define' id='Sens2-" + tab_id +
+    var third_header_row = $("<tr class='row'></tr>");	
+    third_header_row.append("<TH class='table_data header text-center col-sm-5' colspan='4' style='border-right:1px solid black;'>" +
+                            "<div class='define col-xs-12' id='Sens2-" + tab_id +
                             "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div></TH>" );
-    third_header_row.append("<TH class='table_data header text-center' colspan='" + prevalence_count + "' >" +
-                            "<div class='define' id='DP2-" + tab_id + 
+    third_header_row.append("<TH class='table_data header text-center col-sm-7' colspan='" + prevalence_count + "' >" +
+                            "<div class='col-xs-12 define' id='DP2-" + tab_id + 
                             "' data-term='DP'>Disease Prevalence</div>" +
                             "<div class='popupDefinition' id='DP2-" + 
                             tab_id + "Definition'></div></TH>");
     third_header_row.appendTo(general_table);
 
-    var header_row = $("<tr></tr>");
+    var header_row = $("<tr class='row'></tr>");
     header_row.attr('id', type + '_table_row_header');
     header_row.append("<TH class='table_data header text-center'><div class='define' id='Spec-"+tab_id+"' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-"+tab_id+"Definition'></div></TD>");
     header_row.append("<TH class='table_data header text-center'><div class='define' id='Sens-"+tab_id+"' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-"+tab_id+"Definition'></div></TD>");
@@ -560,7 +560,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     header_row.appendTo(general_table);
 
     for(var y=0;y < specificity_count;y++) {
-        var row = $("<tr></tr>");
+        var row = $("<tr class='row'></tr>");
        
         row.attr('id', type + '_table_row_' + x);
         row.append("<TD class='table_data col1 text-center'>" + format_number(sensitivity_matrix[y].Specificity) + "</TD>");
