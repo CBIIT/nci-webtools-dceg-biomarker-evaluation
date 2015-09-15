@@ -16,10 +16,10 @@
                 .panel-heading(data-toggle="collapse", data-target="#file_upload")
                     .glyphicon.glyphicon-chevron-down
                     | &nbsp; User Defined Distribution (from file)
-                #file_upload.panel-body.collapse.in              
+                #file_upload.panel-body.collapse.in
                     p.indent
                         label.data_entry_by_file(for='input_file_upload')
-                            b Upload a raw case and control biomarker data file in csv format 
+                            b Upload a raw case and control biomarker data file in csv format
                                 a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
                     p.indent
                           input#input_file_upload.data_entry_by_file(type='file')
@@ -33,7 +33,7 @@
                     div
                         .row.table_data
                             .col-xs-4.text-right.table_data
-                            .col-xs-3.table_data 
+                            .col-xs-3.table_data
                                 b Cases
                             .col-xs-3.table_data
                                 b Controls
@@ -44,7 +44,7 @@
                             .col-xs-3.table_data
                                 input.pull-left#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
                             .col-xs-3.table_data
-                                label.pull-left.sr-only(for='mean_controls_input') 
+                                label.pull-left.sr-only(for='mean_controls_input')
                                     b Mean Controls
                                 input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
                         .row.table_data
@@ -54,7 +54,7 @@
                             .col-xs-3.table_data
                                 input#stderr_cases_input.data_entry_by_input.pull-left(type='text', value='0.1', size='4')
                             .col-xs-3.table_data
-                                label.sr-only.pull-left(for='stderr_controls_input') 
+                                label.sr-only.pull-left(for='stderr_controls_input')
                                     b Standard Error Controls
                                 input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
                         .row.table_data
@@ -64,7 +64,7 @@
                             .col-xs-3.table_data
                                 input#N_cases_input.pull-left.data_entry_by_input(type='text', value='100', size='4')
                             .col-xs-3.table_data
-                                label.sr-only(for='N_controls_input') 
+                                label.sr-only(for='N_controls_input')
                                     b N Controls
                                 input#N_controls_input.pull-left.data_entry_by_input(type='text', value='200', size='4')
                 .panel-footer
@@ -76,13 +76,9 @@
                             label#DP.define(data-term='DP', for='prevalence') Prevalence:
                             input#prevalence.col-xs-12(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
             .row
-              button#calculate_button(type='button') Calculate
-              button#reset(type='reset') Reset
-              button#download_button.hide(type='button') Download Excel File
-            .row
                 include ../partials/loader
           .panel.panel-default.col-xs-12.col-sm-6.table_panel
-            .row 
+            .row
                 b.header.col-xs-4 &nbsp;
                 b.header.col-xs-2 Cases
                 b.header.col-xs-3 Controls
@@ -136,5 +132,9 @@
                 #auc_controls.col-xs-3.table_data.text-center
                 #auc_overall.col-xs-3.table_data.text-center
       .graph_panel.col-xs-12.col-sm-4
+      .col-xs-12
+            button#calculate_button(type='button') Calculate
+            button#reset(type='reset') Reset
+            button#download_button.hide(type='button') Download Excel File
     .bottom_section
       .tabbed_output_panel
