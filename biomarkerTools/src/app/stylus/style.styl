@@ -122,8 +122,13 @@ input
     #meanstorisk
         .graph_panel
             padding-left 0
-        //.panel.panel-default.table_panel
-        // width 28% // setting table // width specifically
+            img
+                width 100%
+                height 100%
+                transition transform 0.5s ease-in
+                &:hover 
+                &:active
+                    transform scale(1.4)
         .table_panel
             .row
                 border .125em solid #ddd
