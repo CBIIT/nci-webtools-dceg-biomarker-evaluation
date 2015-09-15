@@ -61,9 +61,9 @@
                         <div data-toggle="collapse" data-target="#file_upload" class="panel-heading">
                           <div class="glyphicon glyphicon-chevron-down"></div>&nbsp; User Defined Distribution (from file)
                         </div>
-                        <div id="file_upload" class="panel-body collapse in">             
+                        <div id="file_upload" class="panel-body collapse in">
                           <p class="indent">
-                            <label for="input_file_upload" class="data_entry_by_file"><b>Upload a raw case and control biomarker data file in csv format <a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></b></label>
+                            <label for="input_file_upload" class="data_entry_by_file"><b>Upload a raw case and control biomarker data file in csv format<a href="meanstorisk/p16-ELISA-sample-data.csv">(Example)</a></b></label>
                           </p>
                           <p class="indent">
                             <input id="input_file_upload" type="file" class="data_entry_by_file">
@@ -78,7 +78,7 @@
                             <div>
                               <div class="row table_data">
                                 <div class="col-xs-4 text-right table_data"></div>
-                                <div class="col-xs-3 table_data"> <b>Cases</b></div>
+                                <div class="col-xs-3 table_data"><b>Cases</b></div>
                                 <div class="col-xs-3 table_data"><b>Controls</b></div>
                               </div>
                               <div class="row table_data">
@@ -89,7 +89,7 @@
                                   <input id="mean_cases_input" type="text" value="4" size="4" class="pull-left data_entry_by_input">
                                 </div>
                                 <div class="col-xs-3 table_data">
-                                  <label for="mean_controls_input" class="pull-left sr-only"> <b>Mean Controls</b></label>
+                                  <label for="mean_controls_input" class="pull-left sr-only"><b>Mean Controls</b></label>
                                   <input id="mean_controls_input" type="text" value="1" size="4" class="data_entry_by_input">
                                 </div>
                               </div>
@@ -101,7 +101,7 @@
                                   <input id="stderr_cases_input" type="text" value="0.1" size="4" class="data_entry_by_input pull-left">
                                 </div>
                                 <div class="col-xs-3 table_data">
-                                  <label for="stderr_controls_input" class="sr-only pull-left"> <b>Standard Error Controls</b></label>
+                                  <label for="stderr_controls_input" class="sr-only pull-left"><b>Standard Error Controls</b></label>
                                   <input id="stderr_controls_input" type="text" value="0.1" size="4" class="data_entry_by_input">
                                 </div>
                               </div>
@@ -113,7 +113,7 @@
                                   <input id="N_cases_input" type="text" value="100" size="4" class="pull-left data_entry_by_input">
                                 </div>
                                 <div class="col-xs-3 table_data">
-                                  <label for="N_controls_input" class="sr-only"> <b>N Controls</b></label>
+                                  <label for="N_controls_input" class="sr-only"><b>N Controls</b></label>
                                   <input id="N_controls_input" type="text" value="200" size="4" class="pull-left data_entry_by_input">
                                 </div>
                               </div>
@@ -135,18 +135,13 @@
                       </div>
                     </form>
                     <div class="row">
-                      <button id="calculate_button" type="button">Calculate</button>
-                      <button id="reset" type="reset">Reset</button>
-                      <button id="download_button" type="button" class="hide">Download Excel File</button>
-                    </div>
-                    <div class="row">
                       <div class="row">
                         <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                       </div>
                     </div>
                   </div>
                   <div class="panel panel-default col-xs-12 col-sm-6 table_panel">
-                    <div class="row"> <b class="header col-xs-4">&nbsp;</b><b class="header col-xs-2">Cases</b><b class="header col-xs-3">Controls</b><b class="header col-xs-3">Overall</b></div>
+                    <div class="row"><b class="header col-xs-4">&nbsp;</b><b class="header col-xs-2">Cases</b><b class="header col-xs-3">Controls</b><b class="header col-xs-3">Overall</b></div>
                     <div class="row vertical-padding"><b class="col-xs-4 text-right">Mean</b>
                       <div id="mean_cases" class="col-xs-2 table_data text-center"></div>
                       <div id="mean_controls" class="col-xs-3 table_data text-center"></div>
@@ -198,6 +193,11 @@
                   </div>
                 </div>
                 <div class="graph_panel col-xs-12 col-sm-4"></div>
+                <div class="col-xs-12">
+                  <button id="calculate_button" type="button">Calculate</button>
+                  <button id="reset" type="reset">Reset</button>
+                  <button id="download_button" type="button" class="hide">Download Excel File</button>
+                </div>
               </div>
               <div class="bottom_section">
                 <div class="tabbed_output_panel"></div>
