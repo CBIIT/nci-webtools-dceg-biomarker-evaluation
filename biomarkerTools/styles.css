@@ -145,8 +145,8 @@ input {
   padding-left: 0;
 }
 #contentTabs #meanstorisk .graph_panel img {
-  width: 100%;
-  height: 100%;
+  min-width: 103%;
+  max-width: 110%;
   -webkit-transition: -webkit-transform 0.5s ease-in;
   -moz-transition: -moz-transform 0.5s ease-in;
   -o-transition: -o-transform 0.5s ease-in;
