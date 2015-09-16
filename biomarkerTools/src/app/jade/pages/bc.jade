@@ -99,7 +99,7 @@
                 .col-xs-3.text-center.input.specificity(row='2', col='specificity') 0.5
                 .col-xs-2.text-center
                   button.remove_row_button Remove
-              .row.non-data-row
+              .non-data-row
                 .text-center.pull-right
                   button#new_row_button New Row
             .panel-footer
@@ -108,7 +108,7 @@
                 button#calculate_button Calculate
                 button#reset Reset
         #output
-      #graph.col-xs-5.thumbnail
+      #graph.col-xs-12.col-sm-5.thumbnail
         img.img-responsive(src="/common/images/initial.jpg", alt="placeholder image")
       .col-xs-12
         include ../partials/loader
