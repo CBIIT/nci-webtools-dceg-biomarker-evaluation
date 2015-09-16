@@ -1,17 +1,17 @@
 #riskStratAdvanced.tab-pane.fade(role='tabpanel')
     h3.title.text-center(title="Risk Stratification Advanced Analysis tool") Risk Stratification Advanced Analysis
-    .col-sm-12
+    .col-xs-12
         #helpGlossaryLinks
           a.goToHelp(href="#help_riskStratAdvanced") Help
           | &nbsp;
           a.goToGlossary(href="#") Glossary
-    form.col-sm-7
+    form.col-xs-7
         .panel.panel-default
-            .panel-body
+            .panel-body.col-xs-pull-12
                 .row
-                    .col-sm-3
+                    .col-xs-4
                         label(for='independent_dropdown_rs') Independent Variable
-                    .col-sm-2
+                    .col-xs-3
                         select#independent_dropdown_rs(name='independent_dropdown_rs')
                             option(value='', selected='')
                             option(value='specificity') Specificity
@@ -21,13 +21,13 @@
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
                     label.sr-only(for='independent_rs') Independent Variable Value
-                    input#independent_rs.col-sm-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
-                    div
+                    input#independent_rs.col-xs-4(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    .col-xs-push-1
                         #indDef
                 .row
-                    .col-sm-3
+                    .col-xs-4
                         label(for='contour_dropdown_rs') Contour
-                    .col-sm-2    
+                    .col-xs-3    
                         select#contour_dropdown_rs(name='contour_dropdown_rs')
                             option(value='', selected='')
                             option(value='ppv') PPV
@@ -37,13 +37,13 @@
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
                     label.sr-only(for='contour_rs') Contour Value
-                    input#contour_rs.col-sm-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
-                    div
+                    input#contour_rs.col-xs-4(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
+                    .col-xs-push-1
                         #contourDef
                 .row
-                    .col-sm-3
+                    .col-xs-4
                         label(for='fixed_dropdown_rs') Fixed Values
-                    .col-sm-2   
+                    .col-xs-3   
                         select#fixed_dropdown_rs(name='fixed_dropdown_rs')
                             option(value='', selected='')
                             option(value='prevalence') Prevalence
@@ -53,15 +53,15 @@
                             option(value='sensitivity') Sensitivity
                             option(value='cnpv') cNPV
                     label.sr-only(for='fixed_rs') Fixed Value
-                    input#fixed_rs.col-sm-6(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
-                    div
+                    input#fixed_rs.col-xs-4(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
+                    .col-xs-push-1
                         #fvDef
             .panel-footer
                 button#calculate Calculate
                 button#reset(type='reset') Reset
                 .pull-right
                     a.pull-right#add-test-data(href='#', title='Populate variables with a working example') Example
-    #examples.col-sm-5
+    #examples.col-xs-5
         .row.vertical-padding
             span.variable-example
         .row.vertical-padding
@@ -98,6 +98,6 @@
                         | Sensitivity+Specificity-1 > 0
                 strong 
                     | Do you wish to continue with calculation anyway?
-    .col-sm-12
+    .col-xs-12
         include ../partials/loader
-    .col-sm-12.row#output
+    .col-xs-12.row#output

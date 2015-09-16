@@ -428,6 +428,9 @@ img.expand:active {
   top: 2px;
   visibility: hidden;
 }
+#contentTabs #riskStratAdvanced #tabs {
+  font-size: inherit;
+}
 #contentTabs #riskStratAdvanced #tabs .header {
   background-color: #aaa;
   color: #444;
