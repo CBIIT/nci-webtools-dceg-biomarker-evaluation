@@ -105,7 +105,7 @@ input {
   color: #fff;
 }
 #contentTabs #bc #graph img {
-  height: auto;
+  width: 65%;
 }
 #contentTabs #bc #inputdata .input:hover {
   cursor: text;
@@ -207,6 +207,9 @@ input {
 }
 #contentTabs #meanstorisk .tabbed_output_panel {
   height: 99%;
+}
+#contentTabs #meanstorisk .tabbed_output_panel #tabs {
+  font-size: inherit;
 }
 #contentTabs #meanstorisk .highlight {
   background-color: #ff0;

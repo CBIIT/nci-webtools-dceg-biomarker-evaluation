@@ -212,10 +212,10 @@
                 This tool plots contours of likelihood ratio positive (LR+) and
                 likelihood ratio negative (LR-) for a reference test with indicated
                 sensitivity and specificity pairs (see the example plot below). The
-                likelihood ratio contours define four areas: 
+                likelihood ratio contours define four areas:
                 <div class="row">
-                  <div class="col-sm-5"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
-                  <div class="col-sm-5 explanation">
+                  <div class="col-sm-6"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
+                  <div class="col-sm-6 explanation">
                     <ul id="ulForLRAreas">
                       <li class="liForLRArea">
                         Area A shows combinations of
@@ -232,14 +232,14 @@
                         predictive value (cNPV).
                       </li>
                       <li class="liForLRArea">
-                        Area C shows combinations of sensitivity and specificity 
-                        with lower LR+ and higher LR- compared to the reference 
+                        Area C shows combinations of sensitivity and specificity
+                        with lower LR+ and higher LR- compared to the reference
                         test. This corresponds to a lower positive
                         predictive value (PPV) and lower complement of the
                         negative predictive value (cNPV).
                       </li>
                       <li class="liForLRArea">
-                        Area D shows combinations of sensitivity and 
+                        Area D shows combinations of sensitivity and
                         specificity with lower LR+ and lower LR- compared
                         to the reference test. This corresponds to a lower positive
                         predictive value (PPV) and higher complement of the negative
@@ -258,12 +258,12 @@
                   </div>
                   <!-- Left Side-->
                 </div>
-                <div class="col-sm-5 table-and-graph">
+                <div class="col-xs-12 col-sm-7 table-and-graph">
                   <div id="accordion" class="panel panel-default">
                     <div class="panel-heading">
                       <div class="panel-title text-center"><b>Input Information</b></div>
                     </div>
-                    <div class="panel-heading"><b>Manually enter parameters 
+                    <div class="panel-heading"><b>Manually enter parameters
                         <u>OR</u> import values from file</b></div>
                     <div id="upload" class="panel-body">
                       <div class="indent">
@@ -277,44 +277,43 @@
                     </div>
                     <div id="inputdata" class="panel-body">
                       <div class="row non-data-row">
-                        <div class="col-sm-1 header text-center"><b>#</b></div>
-                        <div class="col-sm-3 header text-center"><b>Reference</b></div>
-                        <div class="col-sm-3 header text-center">
+                        <div class="col-xs-1 header text-center"><b>#</b></div>
+                        <div class="col-xs-3 header text-center"><b>Reference</b></div>
+                        <div class="col-xs-3 header text-center">
                           <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
                         </div>
-                        <div class="col-sm-2 header text-center">
+                        <div class="col-xs-3 header text-center">
                           <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
                         </div>
-                        <div class="col-sm-3 header text-center">&nbsp;</div>
+                        <div class="col-xs-2 header text-center">&nbsp;</div>
                       </div>
                       <div row="0" class="row reference_row">
-                        <div class="col-sm-1 text-center">1</div>
-                        <div row="0" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
-                        <div row="0" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.8</div>
-                        <div row="0" col="specificity" class="col-sm-2 text-center input specificity">0.7</div>
-                        <div class="col-sm-3 text-center"> </div>
+                        <div class="col-xs-1 text-center">1</div>
+                        <div row="0" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
+                        <div row="0" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.8</div>
+                        <div row="0" col="specificity" class="col-xs-3 text-center input specificity">0.7</div>
+                        <div class="col-xs-2 text-center"> </div>
                       </div>
                       <div row="1" class="row">
-                        <div class="col-sm-1 text-center">2</div>
-                        <div row="1" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="1" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.85</div>
-                        <div row="1" col="specificity" class="col-sm-2 text-center input specificity">0.68</div>
-                        <div class="col-sm-3 text-center">
+                        <div class="col-xs-1 text-center">2</div>
+                        <div row="1" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                        <div row="1" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.85</div>
+                        <div row="1" col="specificity" class="col-xs-3 text-center input specificity">0.68</div>
+                        <div class="col-xs-2 text-center">
                           <button class="remove_row_button">Remove</button>
                         </div>
                       </div>
                       <div row="2" class="row">
-                        <div class="col-sm-1 text-center">3</div>
-                        <div row="2" col="reference" class="col-sm-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="2" col="sensitivity" class="col-sm-3 text-center input sensitivity">0.9</div>
-                        <div row="2" col="specificity" class="col-sm-2 text-center input specificity">0.5</div>
-                        <div class="col-sm-3 text-center">
+                        <div class="col-xs-1 text-center">3</div>
+                        <div row="2" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                        <div row="2" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.9</div>
+                        <div row="2" col="specificity" class="col-xs-3 text-center input specificity">0.5</div>
+                        <div class="col-xs-2 text-center">
                           <button class="remove_row_button">Remove</button>
                         </div>
                       </div>
                       <div class="row non-data-row">
-                        <div class="col-sm-9"></div>
-                        <div class="col-sm-3 text-center">
+                        <div class="text-center pull-right">
                           <button id="new_row_button">New Row</button>
                         </div>
                       </div>
@@ -328,20 +327,18 @@
                   </div>
                   <div id="output"></div>
                 </div>
-                <div id="graph" class="col-sm-7"><img src="/common/images/initial.jpg" alt="placeholder image" class="thumbnail"></div>
-                <div class="col-sm-12">
+                <div id="graph" class="col-xs-5 thumbnail"><img src="/common/images/initial.jpg" alt="placeholder image" class="img-responsive"></div>
+                <div class="col-xs-12">
                   <div class="row">
                     <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
                   </div>
                 </div>
                 <div class="bibliography">
                   <p><strong>References:</strong></p>
-                  <p>Marina V. Kondratovich, (2007), <i>
+                  <p>Marina V. Kondratovich, (2007),<i>
                       Comparing Two Medical Tests
                       When Results of Reference Standard Are Unavailable for Those
-                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">
-                       
-                      DOI: 10.1080/10543400701668308</a></p>
+                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,</i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
                 </div>
               </p>
             </div>
