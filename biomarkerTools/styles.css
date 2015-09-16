@@ -208,6 +208,9 @@ input {
 #contentTabs #meanstorisk .tabbed_output_panel {
   height: 99%;
 }
+#contentTabs #meanstorisk .tabbed_output_panel #tabs {
+  font-size: inherit;
+}
 #contentTabs #meanstorisk .highlight {
   background-color: #ff0;
 }
