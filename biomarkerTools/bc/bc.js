@@ -53,7 +53,7 @@ function uploading_csv(e) {
 function validate_csv(file){
 
     var file_types = [
-        "application/vnd.ms-excel", 
+        "application/vnd.ms-excel",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "text/csv" ];
    
@@ -65,7 +65,7 @@ function validate_csv(file){
             var fr = new FileReader();
 
             fr.onload = function(e) {
-                var valid = false; 
+                var valid = false;
                 var txt = e.target.result;
                 var lines = txt.split("\n").filter(Boolean);
 
@@ -87,7 +87,7 @@ function validate_csv(file){
                                 numberOfRows++;
                             }
                             else {
-                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" + 
+                                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" +
                                     arr[0] + "' or '" + arr[1] + "' is not a decimal value";
                                 display_errors(error_msg);
                                 break;
@@ -218,8 +218,8 @@ function import_data_row(data, ind){
     var cell_1 = "<div class='row' row='" + ind + "'><div class='col-xs-1'><b>" + (ind + 1) + "</b></div>";
     var cell_2 ="<div class='text-center col-xs-3 reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var cell_3 ="<div class='text-center col-xs-3 input sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
-    var cell_4 = "<div class='text-center col-xs-2 input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
-    var cell_5 ="<div class='text-center col-xs-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+    var cell_4 = "<div class='text-center col-xs-3 input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
+    var cell_5 ="<div class='text-center col-xs-2'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
 
     if(ind > 1) $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
     else
@@ -237,8 +237,8 @@ function add_new_row(){
     var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-xs-1'><b>" + (num_rows + 1) + "</b></div>";
     var row_2 ="<div class='text-center col-xs-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var row_3 ="<div class='text-center col-xs-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
-    var row_4 = "<div class='text-center col-xs-2 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
-    var row_5 ="<div class='text-center col-xs-3'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+    var row_4 = "<div class='text-center col-xs-3 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
+    var row_5 ="<div class='text-center col-xs-2'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
     inputElm.find('.row').last().prev().after(row_1 + row_2 + row_3 + row_4 +row_5);
     if (num_rows === 2) {
         inputElm.find('.row').each(function(){
@@ -325,11 +325,11 @@ function do_calculation(){
             hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity').text()));
             labels += i + ",";
         }
-        
+
         if(!hasNoErrors)
             return hasNoErrors;
     });
-    
+
     sensArray = sensArray.slice(0, -1);
     specArray = specArray.slice(0, -1);
     sensArrayWithRef = sensArrayWithRef.slice(0, -1);

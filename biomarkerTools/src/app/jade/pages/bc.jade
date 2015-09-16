@@ -9,11 +9,11 @@
       | This tool plots contours of likelihood ratio positive (LR+) and
       | likelihood ratio negative (LR-) for a reference test with indicated
       | sensitivity and specificity pairs (see the example plot below). The
-      | likelihood ratio contours define four areas: 
+      | likelihood ratio contours define four areas:
       .row
-        .col-sm-5
+        .col-sm-6
           img(src='images/exampleLRPlot.jpg', alt='sample LR plot', height='350')
-        .col-sm-5.explanation
+        .col-sm-6.explanation
           ul#ulForLRAreas
             li.liForLRArea
               | Area A shows combinations of
@@ -28,12 +28,12 @@
               | predictive value (PPV) and higher complement of the negative
               | predictive value (cNPV).
             li.liForLRArea
-              | Area C shows combinations of sensitivity and specificity 
-              | with lower LR+ and higher LR- compared to the reference 
+              | Area C shows combinations of sensitivity and specificity
+              | with lower LR+ and higher LR- compared to the reference
               | test. This corresponds to a lower positive
               | predictive value (PPV) and lower complement of the
               | negative predictive value (cNPV).
-            li.liForLRArea Area D shows combinations of sensitivity and 
+            li.liForLRArea Area D shows combinations of sensitivity and
               | specificity with lower LR+ and lower LR- compared
               | to the reference test. This corresponds to a lower positive
               | predictive value (PPV) and higher complement of the negative
@@ -46,13 +46,13 @@
             | in the 2 populations, even when disease prevalences are much
             | different. To calculate PPV and cNPV, provide a prevalence value.
         // Left Side
-      .col-xs-12.col-sm-5.table-and-graph
+      .col-xs-12.col-sm-7.table-and-graph
         #accordion.panel.panel-default
             .panel-heading
                 .panel-title.text-center
                     b Input Information
             .panel-heading
-                b Manually enter parameters 
+                b Manually enter parameters
                     u OR
                     |  import values from file
             #upload.panel-body
@@ -72,10 +72,10 @@
                 .col-xs-3.header.text-center
                   #Sens.define(data-term='Sens')
                     b Sensitivity
-                .col-xs-2.header.text-center
+                .col-xs-3.header.text-center
                   #Spec.define(data-term='Spec')
                     b Specificity
-                .col-xs-3.header.text-center &nbsp;
+                .col-xs-2.header.text-center &nbsp;
               .row.reference_row(row='0')
                 .col-xs-1.text-center 1
                 .col-xs-3.text-center.reference(row='0', col='reference')
@@ -100,8 +100,7 @@
                 .col-xs-2.text-center
                   button.remove_row_button Remove
               .row.non-data-row
-                .col-xs-9
-                .col-xs-3.text-center
+                .text-center.pull-right
                   button#new_row_button New Row
             .panel-footer
                 label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
@@ -109,18 +108,18 @@
                 button#calculate_button Calculate
                 button#reset Reset
         #output
-      #graph.col-xs-6.thumbnail
+      #graph.col-xs-5.thumbnail
         img.img-responsive(src="/common/images/initial.jpg", alt="placeholder image")
       .col-xs-12
         include ../partials/loader
       .bibliography
         p
           strong References:
-        p Marina V. Kondratovich, (2007), 
+        p Marina V. Kondratovich, (2007),
           i
             | Comparing Two Medical Tests
             | When Results of Reference Standard Are Unavailable for Those
-            | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, 
+            | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,
           a(target='_blank',
-          href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670') 
+          href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670')
             | DOI: 10.1080/10543400701668308
