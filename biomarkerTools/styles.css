@@ -105,7 +105,7 @@ input {
   color: #fff;
 }
 #contentTabs #bc #graph img {
-  height: auto;
+  width: 65%;
 }
 #contentTabs #bc #inputdata .input:hover {
   cursor: text;

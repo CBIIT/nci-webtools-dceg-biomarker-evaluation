@@ -46,7 +46,7 @@
             | in the 2 populations, even when disease prevalences are much
             | different. To calculate PPV and cNPV, provide a prevalence value.
         // Left Side
-      .col-sm-5.table-and-graph
+      .col-xs-12.col-sm-5.table-and-graph
         #accordion.panel.panel-default
             .panel-heading
                 .panel-title.text-center
@@ -65,43 +65,43 @@
                         input#file_upload(type='file', accept=".csv")
             #inputdata.panel-body
               .row.non-data-row
-                .col-sm-1.header.text-center
+                .col-xs-1.header.text-center
                     b #
-                .col-sm-3.header.text-center
+                .col-xs-3.header.text-center
                     b Reference
-                .col-sm-3.header.text-center
+                .col-xs-3.header.text-center
                   #Sens.define(data-term='Sens')
                     b Sensitivity
-                .col-sm-2.header.text-center
+                .col-xs-2.header.text-center
                   #Spec.define(data-term='Spec')
                     b Specificity
-                .col-sm-3.header.text-center &nbsp;
+                .col-xs-3.header.text-center &nbsp;
               .row.reference_row(row='0')
-                .col-sm-1.text-center 1
-                .col-sm-3.text-center.reference(row='0', col='reference')
+                .col-xs-1.text-center 1
+                .col-xs-3.text-center.reference(row='0', col='reference')
                   img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
-                .col-sm-3.text-center.input.sensitivity(row='0', col='sensitivity') 0.8
-                .col-sm-2.text-center.input.specificity(row='0', col='specificity') 0.7
-                .col-sm-3.text-center  
+                .col-xs-3.text-center.input.sensitivity(row='0', col='sensitivity') 0.8
+                .col-xs-3.text-center.input.specificity(row='0', col='specificity') 0.7
+                .col-xs-2.text-center  
               .row(row='1')
-                .col-sm-1.text-center 2
-                .col-sm-3.text-center.reference(row='1', col='reference')
+                .col-xs-1.text-center 2
+                .col-xs-3.text-center.reference(row='1', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-sm-3.text-center.input.sensitivity(row='1', col='sensitivity') 0.85
-                .col-sm-2.text-center.input.specificity(row='1', col='specificity') 0.68
-                .col-sm-3.text-center
+                .col-xs-3.text-center.input.sensitivity(row='1', col='sensitivity') 0.85
+                .col-xs-3.text-center.input.specificity(row='1', col='specificity') 0.68
+                .col-xs-2.text-center
                   button.remove_row_button Remove
               .row(row='2')
-                .col-sm-1.text-center 3
-                .col-sm-3.text-center.reference(row='2', col='reference')
+                .col-xs-1.text-center 3
+                .col-xs-3.text-center.reference(row='2', col='reference')
                   img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-sm-3.text-center.input.sensitivity(row='2', col='sensitivity') 0.9
-                .col-sm-2.text-center.input.specificity(row='2', col='specificity') 0.5
-                .col-sm-3.text-center
+                .col-xs-3.text-center.input.sensitivity(row='2', col='sensitivity') 0.9
+                .col-xs-3.text-center.input.specificity(row='2', col='specificity') 0.5
+                .col-xs-2.text-center
                   button.remove_row_button Remove
               .row.non-data-row
-                .col-sm-9
-                .col-sm-3.text-center
+                .col-xs-9
+                .col-xs-3.text-center
                   button#new_row_button New Row
             .panel-footer
                 label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
@@ -109,9 +109,9 @@
                 button#calculate_button Calculate
                 button#reset Reset
         #output
-      .col-sm-7#graph
-        img.thumbnail(src="/common/images/initial.jpg", alt="placeholder image")
-      .col-sm-12
+      #graph.col-xs-6.thumbnail
+        img.img-responsive(src="/common/images/initial.jpg", alt="placeholder image")
+      .col-xs-12
         include ../partials/loader
       .bibliography
         p
