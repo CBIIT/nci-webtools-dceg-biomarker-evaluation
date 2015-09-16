@@ -215,7 +215,7 @@ function clear_reference_row(){
 function import_data_row(data, ind){
     var empty_cell ="<div class='col-xs-3'>&nbsp;</div>";
 
-    var cell_1 = "<div class='row' row='" + ind + "'><div class='col-xs-1'><b>" + (ind + 1) + "</b></div>";
+    var cell_1 = "<div class='row' row='" + ind + "'><div class='col-xs-1 text-center'><b>" + (ind + 1) + "</b></div>";
     var cell_2 ="<div class='text-center col-xs-3 reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var cell_3 ="<div class='text-center col-xs-3 input sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
     var cell_4 = "<div class='text-center col-xs-3 input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
@@ -234,12 +234,12 @@ function import_data_row(data, ind){
 function add_new_row(){
    
     var num_rows = inputElm.find('.row:not(".non-data-row")').length;
-    var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-xs-1'><b>" + (num_rows + 1) + "</b></div>";
+    var row_1 = "<div class='row' row='" + num_rows + "'><div class='col-xs-1 text-center'><b>" + (num_rows + 1) + "</b></div>";
     var row_2 ="<div class='text-center col-xs-3 reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
     var row_3 ="<div class='text-center col-xs-3 input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
     var row_4 = "<div class='text-center col-xs-3 input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
     var row_5 ="<div class='text-center col-xs-2'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
-    inputElm.find('.row').last().prev().after(row_1 + row_2 + row_3 + row_4 +row_5);
+    inputElm.find('.row').last().after(row_1 + row_2 + row_3 + row_4 +row_5);
     if (num_rows === 2) {
         inputElm.find('.row').each(function(){
             if (!$(this).hasClass('non-data-row') && !$(this).hasClass('reference_row')) {
@@ -425,8 +425,8 @@ function refreshGraph(drawgraph){
 
 
 
-    thisTool.find('#graph img').attr("alt",'output after calculation');
-    thisTool.find('#graph img').attr("src", graph_file + d.getTime());
+    thisTool.find('#graph img').addClass("expand").attr("alt",'output after calculation');
+    thisTool.find('#graph img').addClass("expand").attr("src", graph_file + d.getTime());
 }
 
 function set_data(dt){
@@ -553,7 +553,7 @@ function reset_bc(){
 
     thisTool.find(".reference:first").click();
     thisTool.find('#graph img').attr('alt','image of example output after calculation');
-    thisTool.find('#graph img').attr('src','/common/images/initial.jpg');
+    thisTool.find('#graph img').removeClass("expand").attr('src', '/common/images/initial.jpg');
     thisTool.find('#output').empty();
 
     thisTool.find("[row='0'] .sensitivity").text("0.8");
