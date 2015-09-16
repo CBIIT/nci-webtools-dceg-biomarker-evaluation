@@ -427,6 +427,7 @@ function refreshGraph(drawgraph){
 
     thisTool.find('#graph img').addClass("expand").attr("alt",'output after calculation');
     thisTool.find('#graph img').addClass("expand").attr("src", graph_file + d.getTime());
+    thisTool.find('#graph b').removeClass("hide");
 }
 
 function set_data(dt){
@@ -554,6 +555,7 @@ function reset_bc(){
     thisTool.find(".reference:first").click();
     thisTool.find('#graph img').attr('alt','image of example output after calculation');
     thisTool.find('#graph img').removeClass("expand").attr('src', '/common/images/initial.jpg');
+    thisTool.find('#graph b').addClass("hide");
     thisTool.find('#output').empty();
 
     thisTool.find("[row='0'] .sensitivity").text("0.8");
