@@ -15,15 +15,9 @@ html(lang="en")
         .sr-only
             a#skip(href="#mainTabsContent") Skip to Content
         .center-block
-            include header
+            
             #main
-                #banners
-                    .pull-left
-                        img(src='/common/images/DCEG-BB-HREB.png',
-                        alt='Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal ' +
-                        'and Reproductive Epidemiology Branch ',
-                        height='43')
-                    br
+                include header
                 #contentTabs.col-md-12
                     ul.nav.nav-tabs(role='tablist')
                         li.active(role='tab', title="Navigate to Home tab")
