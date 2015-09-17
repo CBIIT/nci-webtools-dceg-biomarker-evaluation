@@ -20,7 +20,8 @@ import urllib
 app = Flask(__name__, static_folder='', static_url_path='/')
 #app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
+# r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
+r_getname_getCalculations = robjects.globalenv['RSA']['getCalculatedData']
 
 @app.route('/')
 def index():
@@ -42,15 +43,47 @@ def jsonp(func):
     return decorated_function
 
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
-@jsonp
+# @jsonp
 def call_rsa_RFunction():
-    thestream=request.stream.read();
-    print " input stream "+str(thestream);
-    jsondata = r_getname_getData(thestream)
-    print "json string >> "+str(jsondata[0]);
-    return jsondata[0]
+    data = request.json
 
+    returnedData = list()
 
+    for x in len(data):
+        key=data[x]["key"]
+        key=data[x]["keyindex"]
+        contour = data[x]["contour"]
+        contourtype = data[x]["contourval"]
+        independent = data[x]["independent"]
+        independenttype = data[x]["independentval"]
+        independentMax = data[x]["independentMax"]
+        independentMin = data[x]["independentMin"]
+        fixed = data[x]["fixed"]
+        fixedtype = data[x]["fixedval"]
+        unique = data[x]["uniqueId"]
+        abbreviatedkey = data[x]["abbreviatedkey"]
+        tabvalue = data[x]["tabvalue"]
+        # add a variable for export when we start working on the export piece
+
+        # we want to return data, imagepath(string) pairs
+        result = r_getname_getCalculations(independent, fixed, contour, independenttype, 
+            fixedtype, contourtype, abbreviatedkey,key, unique, tabvalue)
+
+        print result
+
+        returnedData[x] = [ result['data'], result['imagePath'] ]
+        print returnedData
+        
+    jsonstring = ''.join(returnedData)
+
+    print jsonstring
+    return jsonstring
+
+    # thestream=request.stream.read();
+    # print " input stream "+str(thestream);
+    # jsondata = r_getname_getData(thestream)
+    # print "json string >> "+str(jsondata[0]);
+    # return jsondata[0]
 
 import argparse
 if __name__ == '__main__':
