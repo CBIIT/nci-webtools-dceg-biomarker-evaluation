@@ -43,6 +43,38 @@ getDataJSON <-function(urlEncodedString)
   return (result);
 }
 
+getCalculatedData <-
+  function(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, keyGraphName, keynumber, tabvalue, uniqueId) {
+    # we want to return an array of {data,imageName} pairs to the front end
+    
+    try(dev.off(), silent=TRUE);
+    
+    fixedList=list();
+    contourList=list();
+    indList=list();
+    
+    # separate comma delimited string into lists
+    fixedList <- as.list(strsplit(fixedvalue, ",")[[1]]);
+    contourList <- as.list(strsplit(contourvalue, ",")[[1]]);
+    indList <- as.list(strsplit(independentvalue,",")[[1]]);
+    
+    resultsList=list();
+    # use length of fixedList to know how many tabs to create
+    for (i in fixedList) {  
+      returnedTable = getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keyGraphName, tabvalue, uniqueId, i)
+      resultsList = c(resultsList, returnedTable)
+    }
+    print(resultsList);
+    return (resultsList);
+#       tab <- i
+#       for(j in contourList) {
+#         for(k in indList){
+#           resultsList <- c(resultsList, getTable(independentValues =  k, i, j, independent, fixed, contour, keyGraphName,keynumber  = i, tabvalue =  i, uniqueId, tab = i))
+#         }
+#       }
+#     }
+}
+
 getVector <- function (vectorstring) {
   returnvector<-numeric();
   splitString<-strsplit(vectorstring, ",");

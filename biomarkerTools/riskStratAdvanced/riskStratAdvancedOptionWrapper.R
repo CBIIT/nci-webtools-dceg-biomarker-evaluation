@@ -118,6 +118,8 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
   return (getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keynumber, tabvalue, uniqueId));
 }
 
+
+# getTable("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta", "prevalence", "PPV","1", "1", 1442429050132, 1)
 getTable <-function(independentValues, fixedValues, contourValues, independent, fixed, contour, key, keynumber, tabvalue, uniqueId, tab)
 {
   tranposeorder = "";
@@ -142,7 +144,7 @@ getTable <-function(independentValues, fixedValues, contourValues, independent, 
   resultCheck = is(resultgraph,"try-error");
   
   if (resultCheck == "FALSE") {
-    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}]}]")
+    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 0}, {\"message\": \"", resultgraph[1], "\"}]}]")
   } else {
     json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 1}, {\"message\": \"",  gsub("\"", "", str_replace_all(resultgraph[1], "[\n]","")), "\"}]}]")
   }
