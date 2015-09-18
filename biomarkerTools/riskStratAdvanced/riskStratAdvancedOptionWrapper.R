@@ -134,7 +134,7 @@ getTable <-function(independentValues, fixedValues, contourValues, independent, 
   
   if (resultCheck == "FALSE") {
     # datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-    datatransposed <- getTransposedData(independentValues, fixedValues, contourValues, tranposeorder, resultdata[[as.numeric(keynumber)]]);
+    datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
     print(datatransposed)
     json_string = paste("[{ \"table_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}], \"data\":", str_replace_all(toJSON(datatransposed[,,as.numeric(tab)], method="C"), "[\n]",""), ",")
   } else {
