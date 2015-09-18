@@ -14,11 +14,11 @@ html(lang="en")
     body
         .sr-only
             a#skip(href="#mainTabsContent") Skip to Content
-        .center-block
-            
-            #main
-                include header
-                #contentTabs.col-md-12
+        //-        #main
+        .container-fluid
+            include header
+            #main.container
+                #contentTabs
                     ul.nav.nav-tabs(role='tablist')
                         li.active(role='tab', title="Navigate to Home tab")
                             a(href='#home', data-toggle='tab') Home

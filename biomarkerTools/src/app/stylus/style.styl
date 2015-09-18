@@ -1,5 +1,5 @@
 common-blue = #4e5669
-red = #a90002
+base-red = #BB0E3D
 light-red = #CD5C5C
 tan = #f5f5f5
 highlight = lightyellow
@@ -7,10 +7,23 @@ highlight-compl = ivory
 
 body
     font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
-    #main
-        width 1280px
+    
+    header
         margin 0 auto
+        hr
+            border-top .5em solid base-red
+            margin 0
+    .footer
+        color white
+        background-color #606060
+        li a
+            color inherit
+    #main
+        //        width 1280px
+        margin 1em auto
         font-size small
+        display block
+        margin-bottom 15%
     .indent
         margin-left 30px
         margin-right 20px
@@ -50,6 +63,7 @@ body
             > li.active a
                 text-decoration underline
                 font-weight bold
+                color base-red
              :after
                 border solid transparent
                 margin-left -10px
