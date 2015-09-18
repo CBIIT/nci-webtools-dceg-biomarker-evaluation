@@ -744,12 +744,12 @@ function getData(data) {
         data : JSON.stringify(data),
         dataType : "json",
         contentType: "application/json"
+    }).then(function(data_array){
+            return JSON.parse(JSON.stringify(data_array));
     }).done(function(data_array) {
        
 
         if (data_array.length > 0){
-            data_array = JSON.parse(JSON.stringify(data_array));
-
            
 
            
@@ -759,7 +759,7 @@ function getData(data) {
                 loadImage(data_array[i].imagePath);
             }
         }
-        return data;
+        return data_array;
     }).fail(function(request, status, error){
         default_ajax_error(request, status, error);
         thisTool.find("#tabs").addClass("hide").empty().html("");
