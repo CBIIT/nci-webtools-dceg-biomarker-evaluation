@@ -11,6 +11,7 @@ body header hr {
 body .footer {
   color: #fff;
   background-color: #606060;
+  font-size: small;
 }
 body .footer li a {
   color: inherit;
