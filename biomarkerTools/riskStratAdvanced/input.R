@@ -60,8 +60,8 @@ getCalculatedData <-
     
     resultsList=list();
     # use length of fixedList to know how many tabs to create
-    for (i in fixedList) {  
-      returnedTable = getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keyGraphName, tabvalue, uniqueId, i)
+    for (i in fixedList) {
+      returnedTable = getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, keyGraphName, keynumber ,tabvalue, uniqueId, i)
       resultsList = c(resultsList, returnedTable)
     }
     print(resultsList);

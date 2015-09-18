@@ -46,28 +46,29 @@ def jsonp(func):
 # @jsonp
 def call_rsa_RFunction():
     data = request.json
+    print data
 
     returnedData = list()
 
-    for x in len(data):
-        key=data[x]["key"]
-        key=data[x]["keyindex"]
-        contour = data[x]["contour"]
-        contourtype = data[x]["contourval"]
-        independent = data[x]["independent"]
-        independenttype = data[x]["independentval"]
-        independentMax = data[x]["independentMax"]
-        independentMin = data[x]["independentMin"]
-        fixed = data[x]["fixed"]
-        fixedtype = data[x]["fixedval"]
-        unique = data[x]["uniqueId"]
-        abbreviatedkey = data[x]["abbreviatedkey"]
-        tabvalue = data[x]["tabvalue"]
+    for x in data:
+        key=x["key"]
+        key=x["keyindex"]
+        contour = x["contour"]
+        contourtype = x["contourval"]
+        independent = x["independent"]
+        independenttype = x["independentval"]
+        independentMax = x["independentMax"]
+        independentMin = x["independentMin"]
+        fixed = x["fixed"]
+        fixedtype = x["fixedval"]
+        unique = x["uniqueId"]
+        abreviatedkey = x["abreviatedkey"]
+        tabvalue = x["tabvalue"]
         # add a variable for export when we start working on the export piece
 
         # we want to return data, imagepath(string) pairs
         result = r_getname_getCalculations(independent, fixed, contour, independenttype, 
-            fixedtype, contourtype, abbreviatedkey,key, unique, tabvalue)
+            fixedtype, contourtype, abreviatedkey,key, unique, tabvalue)
 
         print result
 
