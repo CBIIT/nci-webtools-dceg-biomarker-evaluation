@@ -530,22 +530,26 @@ function calculate_riskStrat(){
         var tableTitle = "";
 
        
+       
+       
+        
         for (var fixedIndex = 0; fixedIndex < fixed_values.split(",").length; fixedIndex++) {
+            var thisFixedValue = fixedSplit[fixedIndex];
             for ( var shortkey in keyvalueShort) {
                 request_data.push({
                     key : keyvalueShort[shortkey],
-                    keyindex : shortkey,
-                    independentval : independent_type,
+                    keyIndex : shortkey,
+                    independentType : independent_type,
                     independent : independent_values,
                     independentMin : indMin, 
                     independentMax : indMax,
-                    contourval : contour_type,
+                    contourType : contour_type,
                     contour : contour_values,
                     fixed : fixed_values,
-                    fixedval : fixed_type,
+                    fixedType : fixed_type,
                     uniqueId : uniqueKey,
-                    abreviatedkey : keyvalueShort[shortkey],
-                    tabvalue : fixedSplit[fixedIndex]
+                    abreviatedKey : keyvalueShort[shortkey],
+                    tabValue : thisFixedValue
                 });
             }
         }
