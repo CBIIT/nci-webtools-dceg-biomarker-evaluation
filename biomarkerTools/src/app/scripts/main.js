@@ -133,7 +133,7 @@ function display_errors(message) {
                                               "<ul class='list-unstyled'>" + text + "</ul></div>");
 
     thisTool.find('#errors').fadeIn();
-    document.querySelector('#banners').scrollIntoView(true);
+    document.querySelector('header').scrollIntoView(true);
 }
 
 function termDisplay(){
