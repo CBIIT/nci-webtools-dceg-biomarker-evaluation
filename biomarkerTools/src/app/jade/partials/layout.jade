@@ -2,8 +2,6 @@ doctype html
 html(lang="en")
     head
         title Biomarker Tools
-        meta(http-equiv='Cache-Control', content='no-store')
-        meta(http-equiv='Pragma', content='no-cache')
         meta(http-equiv='content-type', content='text/html; charset=utf-8')
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         link(rel='stylesheet', href='/common/css/font-awesome.css', type='text/css')
@@ -16,17 +14,11 @@ html(lang="en")
     body
         .sr-only
             a#skip(href="#mainTabsContent") Skip to Content
-        .center-block
+        //-        #main
+        .container-fluid
             include header
-            #main
-                #banners
-                    .pull-left
-                        img(src='/common/images/DCEG-BB-HREB.png',
-                        alt='Banner for NCI Division of Cancer Epidemiology, Genetics Biostatistics Branch, Hormonal ' +
-                        'and Reproductive Epidemiology Branch ',
-                        height='43')
-                    br
-                #contentTabs.col-md-12
+            #main.container
+                #contentTabs
                     ul.nav.nav-tabs(role='tablist')
                         li.active(role='tab', title="Navigate to Home tab")
                             a(href='#home', data-toggle='tab') Home
