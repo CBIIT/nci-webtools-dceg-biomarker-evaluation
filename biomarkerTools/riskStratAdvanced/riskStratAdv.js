@@ -537,7 +537,6 @@ function calculate_riskStrat(){
             var thisFixedValue = fixedSplit[fixedIndex];
             for ( var shortkey in keyvalueShort) {
                 request_data.push({
-                    key : keyvalueShort[shortkey],
                     keyIndex : shortkey,
                     independentType : independent_type,
                     independent : independent_values,

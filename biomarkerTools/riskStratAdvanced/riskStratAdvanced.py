@@ -50,7 +50,7 @@ def call_rsa_RFunction():
     returnedData = list()
 
     for x in data:
-        key=x["key"] #cNPV or PPV
+        abreviated_key = x["abreviatedKey"] #cNPV or PPV
         key_index=x["keyIndex"] #1 or 2
         contour = x["contour"]
         contour_type = x["contourType"] # contour dropdown values
@@ -61,14 +61,13 @@ def call_rsa_RFunction():
         fixed = x["fixed"]
         fixed_type = x["fixedType"] # fixed dropdown values
         unique = x["uniqueId"]
-        abreviated_key = x["abreviatedKey"]
         tab_value = x["tabValue"]
         # add a variable for export when we start working on the export piece
 
         # we want to return data, imagepath(string) pairs
         #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
         result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
-            fixed_type, contour_type, abreviated_key, key, key_index, tab_value, unique)
+            fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
         print result
 
