@@ -26,53 +26,43 @@ getDataJSON <-function(urlEncodedString)
   contourvalue<-getcontourValue(inputList);
   contourVector<-getVector(getcontourValue(inputList));
   key<-getKey(inputList);
-  keynumber<-getKeyNumber(inputList);
+  keyNumber<-getkeyNumber(inputList);
   specmin<-getSpecMin(inputList);
   specmax<-getSpecMax(inputList);
   uniqueId <- getUniqueId(inputList);
   tab <- gettab(inputList);
-  tabvalue <- gettabvalue(inputList);
+  tabValue <- gettabValue(inputList);
   keyGraphName <- getgraphname(inputList);
   jsonString = "";
   json_string = "";
   errorString = "";
   assign("last.warning", NULL, envir = baseenv());
-  result<-getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, gsub("\n","",keyGraphName), keynumber, tabvalue, uniqueId, tab);
+  result<-getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, gsub("\n","",keyGraphName), keyNumber, tabValue, uniqueId, tab);
 
   print(result);
   return (result);
 }
 
 getCalculatedData <-
-  function(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, keyGraphName, keynumber, tabvalue, uniqueId) {
-    # we want to return an array of {data,imageName} pairs to the front end
+  function(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber, tabValue, uniqueId) {
+    # we want to return an array of data objects to front end. Each data object has the table data and the graph image path
     
     try(dev.off(), silent=TRUE);
-    
-    fixedList=list();
-    contourList=list();
-    indList=list();
-    
+
     # separate comma delimited string into lists
-    fixedList <- as.list(strsplit(fixedvalue, ",")[[1]]);
-    contourList <- as.list(strsplit(contourvalue, ",")[[1]]);
-    indList <- as.list(strsplit(independentvalue,",")[[1]]);
+    fixedList = as.list(strsplit(fixedStringValue, ",")[[1]]);
+    contourList = as.list(strsplit(contourStringValue, ",")[[1]]);
+    indList = as.list(strsplit(independentStringValue,",")[[1]]);
     
     resultsList=list();
     # use length of fixedList to know how many tabs to create
     for (singleFixed in fixedList) {
-      returnedTable = getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, keyGraphName, keynumber ,tabvalue, uniqueId, singleFixed)
+      returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
       resultsList = c(resultsList, returnedTable)
     }
     print(resultsList);
     return (resultsList);
-#       tab <- i
-#       for(j in contourList) {
-#         for(k in indList){
-#           resultsList <- c(resultsList, getTable(independentValues =  k, i, j, independent, fixed, contour, keyGraphName,keynumber  = i, tabvalue =  i, uniqueId, tab = i))
-#         }
-#       }
-#     }
+
 }
 
 getVector <- function (vectorstring) {
@@ -99,7 +89,7 @@ getKey <- function (inputList) {
   inputList[[1]][[1]];
 }
 
-getKeyNumber <- function (inputList){
+getkeyNumber <- function (inputList){
   inputList[[2]][[1]];
   
 }
@@ -144,7 +134,7 @@ gettab <- function (inputList) {
   inputList[12][[1]];
 }
 
-gettabvalue <- function (inputList) {
+gettabValue <- function (inputList) {
   inputList[[13]][[1]];
 }
 
