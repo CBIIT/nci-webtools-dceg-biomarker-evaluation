@@ -58,7 +58,7 @@ getCalculatedData <-
     # use length of fixedList to know how many tabs to create
     for (singleFixed in fixedList) {
       returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
-      resultsList = c(resultsList, returnedTable)
+      resultsString = c(resultsString, returnedTable)
     }
     
     return (resultsString);
