@@ -49,7 +49,7 @@ def call_rsa_RFunction():
 
     returnedData = list()
 
-    for x in data:
+    for i,x in enumerate(data):
         abreviated_key = x["abreviatedKey"] #cNPV or PPV
         key_index=x["keyIndex"] #1 or 2
         contour = x["contour"]
@@ -69,10 +69,9 @@ def call_rsa_RFunction():
         result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
             fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
-        print result
-
-        returnedData[x] = result['data']
-        print returnedData
+        returnedData.insert(i, result)
+        
+    print returnedData
         
     jsonstring = ''.join(returnedData)
 
