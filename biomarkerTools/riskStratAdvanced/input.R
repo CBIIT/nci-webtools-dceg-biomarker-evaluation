@@ -61,7 +61,7 @@ getCalculatedData <-
       resultsList = c(resultsList, returnedTable)
     }
     print(resultsList);
-    return (resultsList);
+    return (toJSON(resultsList, .escapeEscape=TRUE);
 
 }
 
