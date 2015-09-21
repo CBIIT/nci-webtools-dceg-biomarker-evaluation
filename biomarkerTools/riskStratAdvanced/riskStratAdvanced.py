@@ -72,8 +72,9 @@ def call_rsa_RFunction():
         returnedData.insert(i, result)
         
     print returnedData
+    jsonlist=list(returnedData)
         
-    jsonstring = ''.join(returnedData)
+    jsonstring = ''.join(jsonlist)
 
     print jsonstring
     return jsonstring
