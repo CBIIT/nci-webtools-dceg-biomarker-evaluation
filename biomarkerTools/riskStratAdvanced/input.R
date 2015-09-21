@@ -60,7 +60,7 @@ getCalculatedData <-
       returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
       resultsList = c(resultsList, returnedTable)
     }
-    resultsList = toJSON(resultsList, .escapeEscape=TRUE)
+    
     return (resultsList);
 
 }
