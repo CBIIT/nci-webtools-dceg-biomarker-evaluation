@@ -54,14 +54,14 @@ getCalculatedData <-
     contourList = as.list(strsplit(contourStringValue, ",")[[1]]);
     indList = as.list(strsplit(independentStringValue,",")[[1]]);
     
-    resultsList=list();
+    resultsString="";
     # use length of fixedList to know how many tabs to create
     for (singleFixed in fixedList) {
       returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
       resultsList = c(resultsList, returnedTable)
     }
     
-    return (resultsList);
+    return (resultsString);
 
 }
 
