@@ -131,34 +131,43 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   
   resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
   resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId));
-#   
-#   joinedJSON = paste(toJSON(resultdata, method="C"), toJSON(resultgraph, method="C"), sep="")
-#   print(joinedJSON)
-#   
-#   return (joinedJSON)
   
- resultCheckData = is(resultdata,"try-error");
+  resultCheckData = is(resultdata,"try-error");
+  resultCheckGraph = is(resultgraph,"try-error");
  
- resultCheckGraph = is(resultgraph,"try-error");
- imgFilename=gsub("\"", "", str_replace_all(resultgraph[1], "[\n]",""))
- 
- if (resultCheckData == "FALSE") {
-   datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-   print(datatransposed)
-   json_string = paste("[{ \"table_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}, \"data\":", str_replace_all(toJSON(datatransposed[,,as.numeric(tab)], method="C"), "[\n]",""), ",")
- }
- else {
-   json_string = paste("[{ \"table_error\": [{ \"errortrue\": 1}, {\"message\": \"",  gsub("\"", "", str_replace_all(resultdata[1], "[\n]","")), "\"}], \"data\":{},")
- }
- 
- if (resultCheckGraph == "FALSE") {
-   json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 0}, {\"message\": \""," ", "\"}, {\"imagePath\": \"", imgFilename, "\"}]}]")
- }
- else {
-   json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 1}, {\"message\": \"", " ", "\"}, {\"imagePath\": \"", "", "\"}]}]")
- }
- 
- return (json_string);
+  tableData=str_replace_all(resultdata[1], "[\n]","")
+  imgFilename=gsub("\"", "", str_replace_all(resultgraph[1], "[\n]",""))
+  
+  if (resultCheckData == "FALSE") {
+    joined <- list(data=tableData, table_error={errortrue=0})   
+  }
+  else{
+    joined <- list(data={}, table_error={errortrue=1})
+  }
+  
+  
+#    datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
+#    print(datatransposed)
+#    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}, \"data\":", str_replace_all(toJSON(datatransposed[,,as.numeric(tab)], method="C"), "[\n]",""), ",")
+#  }
+#  else {
+#    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 1}, {\"message\": \"",  gsub("\"", "", str_replace_all(resultdata[1], "[\n]","")), "\"}], \"data\":{},")
+#  }
+#  
+if (resultCheckGraph == "FALSE") {
+  joined <- c(joined, imagePath=imgFilename, graph_error={errortrue=0})
+}
+else{
+  joined <- c(joined, imagePath="", graph_error={errortrue=1})
+}
+  return (toJSON(joined))
+#    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 0}, {\"message\": \""," ", "\"}, {\"imagePath\": \"", imgFilename, "\"}]}]")
+#  }
+#  else {
+#    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 1}, {\"message\": \"", " ", "\"}, {\"imagePath\": \"", "", "\"}]}]")
+#  }
+#  
+#  return (json_string);
 }
 
 getFunctionNameAsIs <- function (independent, contour, fixed) {
