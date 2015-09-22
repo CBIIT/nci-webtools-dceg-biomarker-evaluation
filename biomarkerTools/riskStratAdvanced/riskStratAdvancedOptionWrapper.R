@@ -118,6 +118,24 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
   return (getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keynumber, tabvalue, uniqueId));
 }
 
+getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId,thisFixedId)
+{
+  joined=list()
+  resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId,thisFixedId));
+  
+  resultCheckGraph = is(resultgraph,"try-error");
+  
+  imgFilename=gsub("\"", "", str_replace_all(resultgraph[1], "[\n]",""))
+  
+  if (resultCheckGraph == "FALSE") {
+    joined <- c(joined, imagePath=imgFilename, graph_error={errortrue=0},message="success")
+  }
+  else{
+    joined <- c(joined, imagePath="", graph_error={errortrue=1},message="fail")
+  }
+  
+  return (joined)
+} 
 
 # getTable("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta", "prevalence", "PPV","1", "1", 1442429050132, 1)
 getTable <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, keynumber, tabvalue, uniqueId, tab)
@@ -130,23 +148,19 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   thirdinputVector<-getVector(functionvalueorder[[3]]);
   
   resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
-  resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId));
   
   resultCheckData = is(resultdata,"try-error");
-  resultCheckGraph = is(resultgraph,"try-error");
- 
+  
   tableData=str_replace_all(resultdata[1], "[\n]","")
-  imgFilename=gsub("\"", "", str_replace_all(resultgraph[1], "[\n]",""))
   
   if (resultCheckData == "FALSE") {
-    joined <- list(data=tableData, table_error={errortrue=0})   
+    datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
+    joined <- list(data=datatransposed, table_error={errortrue=0})
   }
   else{
     joined <- list(data={}, table_error={errortrue=1})
   }
   
-  
-#    datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
 #    print(datatransposed)
 #    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}, \"data\":", str_replace_all(toJSON(datatransposed[,,as.numeric(tab)], method="C"), "[\n]",""), ",")
 #  }
@@ -154,20 +168,9 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
 #    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 1}, {\"message\": \"",  gsub("\"", "", str_replace_all(resultdata[1], "[\n]","")), "\"}], \"data\":{},")
 #  }
 #  
-if (resultCheckGraph == "FALSE") {
-  joined <- c(joined, imagePath=imgFilename, graph_error={errortrue=0})
-}
-else{
-  joined <- c(joined, imagePath="", graph_error={errortrue=1})
-}
-  return (toJSON(joined))
-#    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 0}, {\"message\": \""," ", "\"}, {\"imagePath\": \"", imgFilename, "\"}]}]")
-#  }
-#  else {
-#    json_string = paste(json_string, "\"graph_error\": [{ \"errortrue\": 1}, {\"message\": \"", " ", "\"}, {\"imagePath\": \"", "", "\"}]}]")
-#  }
-#  
-#  return (json_string);
+
+  return (joined)
+
 }
 
 getFunctionNameAsIs <- function (independent, contour, fixed) {
@@ -197,7 +200,7 @@ getFunctionNameAsIs <- function (independent, contour, fixed) {
 }
 
 
-drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputVector, tableName, tabvalue, uniqueId)
+drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputVector, tableName, tabvalue, uniqueId, singleFixed)
 {
   dir.create(imageDirectory);
   rfunctionname = getFunctionNameAsIs(independent, contour, fixed);
@@ -205,9 +208,9 @@ drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputV
   if (exists(as.character(substitute(drawfunctionname))))
   {
   	drawfunction <- get(drawfunctionname, mode="function");
-  	imageFileName = paste(imageDirectory, tableName, uniqueId, "-", as.numeric(tabvalue), ".png", sep = '');
-  	#png(file = imageFileName , units="in", width=10, height=8, res=150);
-	png(file=imageFileName, width=500, height=500)
+  	imageFileName = paste(imageDirectory, tableName, uniqueId, "-", as.numeric(tabvalue), "-", gsub("[.]","_", singleFixed), ".png", sep = '');
+
+  	png(file=imageFileName, width=500, height=500)
   	returnvalue<- drawfunction(firstinputVector,secondinputVector,as.numeric(tabvalue));
   #DrawDeltaSpecPPV(specmin, specmax, prev, ppv);
   	dev.off();
