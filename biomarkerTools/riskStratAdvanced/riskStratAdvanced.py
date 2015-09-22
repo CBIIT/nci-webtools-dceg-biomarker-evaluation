@@ -69,7 +69,7 @@ def call_rsa_RFunction():
         result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
             fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
-        returnedData.insert(i, result)
+        returnedData.insert(i, result[0])
         
     print returnedData
     jsonlist=list(returnedData)
