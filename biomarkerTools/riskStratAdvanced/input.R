@@ -48,13 +48,14 @@ getCalculatedData <-
     # we want to return an array of data objects to front end. Each data object has the table data and the graph image path
     
     try(dev.off(), silent=TRUE);
+    
+    resultsList = list()
 
     # separate comma delimited string into lists
     fixedList = as.list(strsplit(fixedStringValue, ",")[[1]]);
     contourList = as.list(strsplit(contourStringValue, ",")[[1]]);
     indList = as.list(strsplit(independentStringValue,",")[[1]]);
     
-    resultsString="";
     # use length of fixedList to know how many tabs to create
     for (singleFixed in fixedList) {
       returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
@@ -62,9 +63,12 @@ getCalculatedData <-
       
       # merge data and image lists into one
       mergedList = c(returnedTable, returnedGraph)
-      resultsString = paste(resultsString, toJSON(mergedList), sep="")
+      resultsList = c(resultsList, mergedList)
+#      resultsString = paste(resultsString, toJSON(mergedList), sep=",")
     }
     
+    resultsString = toJSON(resultsList)
+    resultsString = gsub("\n","",resultsString)
     return (resultsString);
 
 }
