@@ -58,13 +58,9 @@ getCalculatedData <-
     
     # use length of fixedList to know how many tabs to create
     for (singleFixed in fixedList) {
-      returnedTable = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, singleFixed)
-      returnedGraph = getGraph(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, tabValue, uniqueId, singleFixed)
+      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, list(singleFixed))
       
-      # merge data and image lists into one
-      mergedList = c(returnedTable, returnedGraph)
-      resultsList = c(resultsList, mergedList)
-#      resultsString = paste(resultsString, toJSON(mergedList), sep=",")
+      resultsList = c(resultsList, returnedDataGraph)
     }
     
     resultsString = toJSON(resultsList)
