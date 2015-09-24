@@ -520,7 +520,8 @@ function calculate_riskStrat() {
 
     var fixed_dropdown = thisTool.find("#fixed_dropdown_rs").val();
 
-    uniqueKey = (new Date()).getTime();
+
+    uniqueKey = generateUniqueKey();
 
     var tabkey = [ "Prevalence_Odds_Length" ];
     var titlekeys = [

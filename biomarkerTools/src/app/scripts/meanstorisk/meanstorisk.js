@@ -294,7 +294,8 @@ function set_standard_inputs(mean_cases,mean_controls,stderr_cases,stderr_contro
 }
 
 function make_ajax_call_user_defined_calculation() {
-    uniqueKey = (new Date()).getTime();	
+    uniqueKey = generateUniqueKey();
+    
     var hostname = window.location.hostname;
     var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
@@ -323,7 +324,8 @@ function make_ajax_call_user_defined_calculation() {
     });
 }
 function make_ajax_call_standard_calculation() {    
-    uniqueKey = (new Date()).getTime();	
+
+    uniqueKey = generateUniqueKey();
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
@@ -352,7 +354,7 @@ function make_ajax_call_standard_calculation() {
 }
 
 function make_excel_call_user_defined_calculation() {
-    uniqueKey = (new Date()).getTime();	
+    uniqueKey = generateUniqueKey();
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
@@ -386,7 +388,7 @@ function make_excel_call_user_defined_calculation() {
 }
 
 function make_excel_call_standard_calculation() {
-    uniqueKey = (new Date()).getTime();	
+    uniqueKey = generateUniqueKey();
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 

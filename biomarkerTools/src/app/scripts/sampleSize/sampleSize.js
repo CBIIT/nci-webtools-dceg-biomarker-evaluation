@@ -295,6 +295,6 @@ function reset_code(){
 }
 
 function random_gen(){
-    var randomno = Math.floor((Math.random() * 1000) + 1);
+    var randomno = generateUniqueKey();
     thisTool.find("#randomnumber").text(randomno);
 }

@@ -1,5 +1,6 @@
 requirejs.config({
     paths: {
+        rand: "//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.3.10/seedrandom.min",
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         'jquery.ui': "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min",
         modernzr: "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr",
@@ -12,7 +13,7 @@ requirejs.config({
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
         meanRiskStratification: 'meanRiskStratification/mrs',
         glossary: '/common/js/meansToRiskGlossary',
-        main: 'main'
+        main: 'main',
     },
     shim: {
         'jquery.ui': {
@@ -37,7 +38,7 @@ requirejs.config({
             deps: [ 'jquery.ui', 'datatables','bootstrap', 'main']
         },
         main: {
-            deps: ['modernzr','jquery.ui','bootstrap', 'glossary']
+            deps: ['modernzr','jquery.ui','bootstrap', 'glossary', 'rand']
         },
         help:{
             deps: ['glossary']
