@@ -4,13 +4,17 @@ body {
 body header {
   margin: 0 auto;
 }
+body header #dceg-logo,
+body header #branch-logo {
+  padding: 0;
+}
 body header hr {
   border-top: 0.5em solid #bb0e3d;
   margin: 0;
 }
 body .footer {
-  color: #fff;
-  background-color: #606060;
+  color: #606060;
+  background-color: #fff;
   font-size: small;
 }
 body .footer li a {
@@ -20,7 +24,6 @@ body #main {
   margin: 1em auto;
   font-size: small;
   display: block;
-  margin-bottom: 15%;
 }
 body .indent {
   margin-left: 30px;
@@ -116,7 +119,7 @@ body #contentTabs #bc .top-header {
 }
 body #contentTabs #bc #graph img {
   height: auto;
-  width: 65%;
+  width: 80%;
 }
 body #contentTabs #bc #inputdata .input:hover {
   cursor: text;
@@ -180,7 +183,6 @@ body #contentTabs #meanstorisk .top_section {
 }
 body #contentTabs #meanstorisk .bottom_section {
   clear: left;
-  height: 400px;
 }
 body #contentTabs #meanstorisk .input_panel {
   border: 1px #bbb solid;
