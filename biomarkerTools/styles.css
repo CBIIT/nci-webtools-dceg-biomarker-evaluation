@@ -119,7 +119,7 @@ body #contentTabs #bc .top-header {
 }
 body #contentTabs #bc #graph img {
   height: auto;
-  width: 65%;
+  width: 80%;
 }
 body #contentTabs #bc #inputdata .input:hover {
   cursor: text;
