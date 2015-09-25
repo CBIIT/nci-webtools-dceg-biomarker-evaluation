@@ -532,7 +532,13 @@ function calculate_riskStrat(){
        
        
        
-        
+
+        thisTool.find("#output").addClass("hide").empty();
+        tabs = $("<div id='tabs'> </div>");
+        thisTool.find("#output").append(tabs);
+        tab_names = $("<UL> </UL>");
+        tabs.append(tab_names);
+
         for (var fixedIndex = 0; fixedIndex < fixed_values.split(",").length; fixedIndex++) {
             var thisFixedValue = fixedSplit[fixedIndex];
             for ( var shortkey in keyvalueShort) {
@@ -551,9 +557,41 @@ function calculate_riskStrat(){
                     tabValue : thisFixedValue
                 });
             }
+
+            tab_names.append("<LI><a  class='extra-padding' href='#fixed-" + (fixedIndex + 1) +
+                             "'>" + fixed_type + " "+ thisFixedValue +
+                             "</a></LI>");
+
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (fixedIndex + 1) + 
+                         "' >  </div>");
+            tabs.append(tab_pane);
+            var tabId = "#fixed-" + (fixedIndex + 1);
+            createTab(thisFixedValue, fixedIndex, fixed_type, independent_type, contour_type, tabId);
         }
 
-        getData(request_data);
+        getData(request_data).done(function(data_array) {
+           
+
+            if (data_array.length > 0){
+
+               
+                for (var i = 0; i < data_array.length; i++) {
+                    for (var j = 0; j <= fixedSplit.length; i++) {
+                        var tabNum = j + 1;
+                        fillTable(data_array[i], columnHeadings, tabNum);
+                    }
+
+                }
+
+            }
+            tabs.tabs();
+            return data_array;
+        }).fail(function(request, status, error){
+            default_ajax_error(request, status, error);
+            thisTool.find("#output").addClass("hide").empty().html("");
+        }).always(function(){
+            if($.active <= 1) after_requests();
+        });
 
        
        
@@ -562,123 +600,6 @@ function calculate_riskStrat(){
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function after_requests(){
     if($.active == 1){
@@ -717,170 +638,156 @@ function getFunctionName(independent, fixed, contour) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getData(data) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
     if(window.location.host == "localhost") {
         service = "http://" + window.location.hostname + window.location.pathname + "riskStratAdvanced/test_result.json";
     }
-    
-    $.ajax({
+
+    return $.ajax({
         type : "POST",
         url : service,
         data : JSON.stringify(data),
         dataType : "json",
         contentType: "application/json"
     }).then(function(data_array){
-            return JSON.parse(JSON.stringify(data_array));
-    }).done(function(data_array) {
-       
-
-        if (data_array.length > 0){
-           
-
-           
-            for(var i = 0; i > data_array.length; i++) {
-               
-                fillTable(data_array[i].data, columnHeadings, i);
-                loadImage(data_array[i].imagePath);
-            }
-        }
-        return data_array;
-    }).fail(function(request, status, error){
-        default_ajax_error(request, status, error);
-        thisTool.find("#tabs").addClass("hide").empty().html("");
-    }).always(function(){
-        if($.active <= 1) after_requests();
+        return JSON.parse(JSON.stringify(data_array));
     });
 }
 
+function createTab(singleFixed, fixedIndex, fixedType,independentType, contourType, tabElement ){
 
+    var keyvalueIndex = getKeyValueIndex(independentType, fixedType, contourType);
 
+    var keyvalueShort = keyShort[keyvalueIndex];
+    var keyvalueLong = keyLong[keyvalueIndex];
 
+    for (var key in keyvalueShort) {
 
+        $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" + 
+          keyvalueShort[key] + (fixedIndex + 1)).empty();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
-    var tableId = "example-" + abbreviatedKey + tabnumber;
-    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
-
-    if( $.fn.DataTable.isDataTable(thisTool.find("#" + tableId)) ){
-        thisTool.find("#" + tableId).dataTable().fnDestroy();
-        thisTool.find("#" + tableId).empty();
+        table_graph_div = $("<div class='row set-" + 
+                            keyvalueShort[key] + 
+                            (fixedIndex + 1) + 
+                            "' class='pull-left'></div>");
+        thisTool.find(tabElement).append(table_graph_div);
+        graphic_side = ("<div class='graphic-side pull-right' id='graphic-" + 
+                        keyvalueShort[key] + (fixedIndex + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
+        table_graph_div.append(graphic_side);
+        table_side = $("<div class='table-side col-md-6 pull-left' id='table-" + 
+                       keyvalueShort[key] + (fixedIndex + 1) + 
+                       "'><div class='table-title extra-padding'>" + keyvalueLong[key] + 
+                       "</div></div>");
+        table_graph_div.append(table_side);
     }
 
+}
 
-    var independentArray = thisTool.find("#independent_rs").val();
-    independentArraySplit = independentArray.split(",");
+function fillTable(resultObject, columnHeadings, tabnumber) {
+    var tabElement = "#fixed-" +tabnumber;
+    for(var ind = 0; ind < resultObject.length; ind++) {
+        var singleDataObject = resultObject[ind];
 
-    var arr = [];
-    var tableData = jsonTableData[0].data;
-    var tableError = jsonTableData[0].table_error;
-    var graphError = jsonTableData[0].graph_error;
-    var tableErrorValue = tableError[0].errortrue;
-    var graphErrorValue = graphError[0].errortrue;
-    if (tableErrorValue != 1) {
-        rows = tableData.length;
-        for (var i = 0; i < tableData.length; i++) {
-            var values = [];
-            row_entries = tableData[i];
-            for ( var key in row_entries) {
-                values.push(row_entries[key]);
+        if(singleDataObject.length === 0) return false;
+
+        var abbreviatedKey = singleDataObject.prefix;
+
+        var tableId = "example-" + abbreviatedKey + tabnumber;
+        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
+        
+        var tableElement = thisTool.find(tabElement + " " + "#" + tableId);
+        if( tableElement[0] ) {
+            if($.fn.DataTable.isDataTable(tableElement)){
+                tableElement.dataTable().fnDestroy();
+                tableElement.empty();
             }
-            arr.push(values);
         }
 
-        var headings = [];
-        for ( i = 0; i < columnHeadings.length; i++) {
-            headings.push({
-                "sTitle" : columnHeadings[i]
+        var independentArray = thisTool.find("#independent_rs").val();
+        independentArraySplit = independentArray.split(",");
+
+        var arr = [];
+
+        var tableData = singleDataObject.data;
+        var tableError = singleDataObject.table_error;
+        var graphError = singleDataObject.graph_error;
+       
+       
+
+        if (tableError != 1) {
+            rows = tableData.length;
+            for (var i = 0; i < tableData.length; i++) {
+                var values = [];
+                row_entries = tableData[i];
+                for ( var key in row_entries) {
+                    values.push(row_entries[key]);
+                }
+                arr.push(values);
+            }
+
+            var headings = [];
+            for ( i = 0; i < columnHeadings.length; i++) {
+                headings.push({
+                    "sTitle" : columnHeadings[i]
+                });
+            }
+
+            var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
+                          tableId + "'></table>");
+            
+            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
+
+            table.dataTable({
+                "aaData" : arr,
+                "aoColumns" : headings,
+                "bJQueryUI" : true,
+                "bAutoWidth" : false,
+                "bFilter" : false,
+                "bSearchable" : false,
+                "bInfo" : false,
+                "bSort" : false,
+                "bPaginate" : false,
+                "bDestroy" : true,
+                "aaSorting" : [ [ 0, "asc" ] ]
             });
-        }
-
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
-                      tableId + "'></table>");
-        $("#table-" + abbreviatedKey + tabnumber).append(table);
-
-        table.dataTable({
-            "aaData" : arr,
-            "aoColumns" : headings,
-            "bJQueryUI" : true,
-            "bAutoWidth" : false,
-            "bFilter" : false,
-            "bSearchable" : false,
-            "bInfo" : false,
-            "bSort" : false,
-            "bPaginate" : false,
-            "bDestroy" : true,
-            "aaSorting" : [ [ 0, "asc" ] ]
-        });
-       
-        thisTool.find("#" + tableId + " tr:first").prepend(
-            "<td class='ui-state-default' colspan='2'></td>");
-        i = 0;
-        thisTool.find("#" + tableId + " tr:not(:first)").each(
-            function() {
-                $(this).prepend(
-                    "<th class='ui-state-default sorting_disabled'>" + 
-                    independentArraySplit[i] + "</th>");
-                i++;
+            
+           
+            thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
+                "<td class='ui-state-default' colspan='2'></td>");
+            
+            var z = 0;
+            
+            thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
+                function() {
+                    $(this).prepend(
+                        "<th class='ui-state-default sorting_disabled'>" + 
+                        independentArraySplit[z] + "</th>");
+                    i++;
             });
 
-       
-        thisTool.find("#" + tableId + " tr:eq(1)").prepend(
-            "<th class='header' rowspan='" + independentArraySplit.length + 
-            "'><div class='vertical-text'>" + tableFirstRowLabel + 
-            "</div></th>");
+           
+            thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
+                "<th class='header' rowspan='" + independentArraySplit.length + 
+                "'><div class='vertical-text'>" + tableFirstRowLabel + 
+                "</div></th>");
 
-       
-        thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
-            tableFirstColLabel + "</th></tr>");
-    } else {
-        if (graphErrorValue != 1) {
-            display_errors([tableError[1].message, graphError[1].message ]);
+           
+            thisTool.find(tabElement + " #" + tableId + " thead").prepend(
+                "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
+                tableFirstColLabel + "</th></tr>");
+        } 
+        else {
+            if (graphErrorValue != 1) {
+                display_errors([ singleDataObject.message ]);
+            }
+            else
+                display_errors([ singleDataObject.message ]);
         }
-        else
-            display_errors([tableError[1].message]);
+
+        loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);    
+
     }
 }
 
@@ -896,13 +803,12 @@ function getColumnHeaderData(columnHeadings) {
     return columnHeaderData2d;
 }
 
-function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
+function loadImage(tabNumber, graphNamePreFix, graphFilename) {
     var imageContainer = thisTool.find("#graphic-" + graphNamePreFix + tabNumber);
     imageContainer.empty();
 
     imageContainer.append(
-        "<img class='img-responsive' src='tmp/" + 
-        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
+        "<img class='img-responsive' src='" + graphFilename + "' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
 }
 
 function refreshGraph(drawgraph) {
