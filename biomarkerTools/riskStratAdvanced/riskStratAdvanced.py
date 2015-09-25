@@ -52,38 +52,32 @@ def call_rsa_RFunction():
     for i,x in enumerate(data):
         abreviated_key = x["abreviatedKey"] #cNPV or PPV
         key_index=x["keyIndex"] #1 or 2
-        contour = x["contour"]
-        contour_type = x["contourType"] # contour dropdown values
-        independent = x["independent"]
-        independent_type = x["independentType"] # independent dropdown values
-        independent_max = x["independentMax"]
-        independent_min = x["independentMin"]
-        fixed = x["fixed"]
-        fixed_type = x["fixedType"] # fixed dropdown values
-        unique = x["uniqueId"]
-        tab_value = x["tabValue"]
+
+        contour = str(x["contour"])
+        independent = str(x["independent"])
+        fixed = str(x["fixed"])
+
+        contour_type = str(x["contourType"]) # contour dropdown values
+        independent_type = str(x["independentType"]) # independent dropdown values
+        fixed_type = str(x["fixedType"]) # fixed dropdown values
+        
+        unique = str(x["uniqueId"])
+        tab_value = str(x["tabValue"])
         # add a variable for export when we start working on the export piece
 
-        # we want to return data, imagepath(string) pairs
         #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
-        result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
+	
+	print "************************************Before Sending to R **************************************************"
+	
+	result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
             fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
-        returnedData.insert(i, result[0])
-        
-    print returnedData
-    jsonlist=list(returnedData)
-        
-    jsonstring = ''.join(jsonlist)
+	print "************************************Index "+ str(i) + " returned******************************************"
+	# parse each returned json string and append to returnedData
+        returnedData.insert(i, json.loads(result[0]))
 
-    print jsonstring
-    return jsonstring
-
-    # thestream=request.stream.read();
-    # print " input stream "+str(thestream);
-    # jsondata = r_getname_getData(thestream)
-    # print "json string >> "+str(jsondata[0]);
-    # return jsondata[0]
+    print "+++++++++++++++++++++++++++++++++++Returning Data+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"    
+    return json.dumps(returnedData)
 
 import argparse
 if __name__ == '__main__':
