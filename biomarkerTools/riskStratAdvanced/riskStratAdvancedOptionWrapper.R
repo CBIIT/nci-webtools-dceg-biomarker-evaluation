@@ -151,7 +151,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   
   resultCheckData = is(resultdata,"try-error");
   
-  tableData=str_replace_all(resultdata[1], "[\n]","")
+  tableData=str_replace_all(resultdata, "[\n]","")
   
   if (resultCheckData == "FALSE") {
     datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
@@ -163,14 +163,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   
   returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, tab)
   joined <- c(joined, returnedGraph)
-  
-#    print(datatransposed)
-#    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 0}, {\"message\": \"", " ", "\"}, \"data\":", str_replace_all(toJSON(datatransposed[,,as.numeric(tab)], method="C"), "[\n]",""), ",")
-#  }
-#  else {
-#    json_string = paste("[{ \"table_error\": [{ \"errortrue\": 1}, {\"message\": \"",  gsub("\"", "", str_replace_all(resultdata[1], "[\n]","")), "\"}], \"data\":{},")
-#  }
-#  
+
   return (list(joined))
 
 }
