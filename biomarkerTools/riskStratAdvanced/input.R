@@ -49,7 +49,7 @@ getCalculatedData <-
     
     try(dev.off(), silent=TRUE);
     
-    resultsList = list()
+    resultsString = ""
 
     # separate comma delimited string into lists
     fixedList = as.list(strsplit(fixedStringValue, ",")[[1]]);
@@ -60,11 +60,10 @@ getCalculatedData <-
     for (singleFixed in fixedList) {
       returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, list(singleFixed))
       
-      resultsList = c(resultsList, returnedDataGraph)
+      resultsString = c(resultsString, returnedDataGraph)
     }
     
-    resultsString = toJSON(resultsList)
-    resultsString = gsub("\n","",resultsString)
+    resultsString = gsub("\n","",toJSON(resultsString))
     return (resultsString);
 
 }
