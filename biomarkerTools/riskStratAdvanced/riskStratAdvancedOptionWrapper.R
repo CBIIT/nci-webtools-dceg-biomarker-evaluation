@@ -125,8 +125,8 @@ getGraph <-function(independentStringValues, fixedStringValues, contourStringVal
   
   resultCheckGraph = is(resultgraph,"try-error");
   
-  imgFilename=gsub("\"", "", str_replace_all(resultgraph[1], "[\n]",""))
-  
+  imgFilename=gsub("\"", "", str_replace_all(resultgraph, "[\n]",""))
+  joined = list()
   if (resultCheckGraph == "FALSE") {
     joined <- c(joined, imagePath=imgFilename, graph_error={errortrue=0},message="success")
   }
