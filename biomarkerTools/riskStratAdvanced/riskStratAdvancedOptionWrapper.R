@@ -35,19 +35,23 @@ calculate <-function(independentVector, fixedVector, contourVector)
   print(secondinputVector)
   print(thirdinputVector)
   data<- rfunction(firstinputVector,secondinputVector,thirdinputVector);
+
+  data=str_replace_all(data, "[\n]","")  
+
   return (data);
 }
 
 calculate <-function(firstinputVector,secondinputVector,thirdinputVector,  independent, fixed, contour)
 {
   rfunctionname = getFunctionName(independent, fixed, contour);
-  print("+++++++++++")
+  print("+++++++++++++Calculate Function++++++++")
   print(rfunctionname)
   rfunction <- get(rfunctionname, mode="function")
   print(firstinputVector)
   print(secondinputVector)
   print(thirdinputVector)
   data<- rfunction(firstinputVector, secondinputVector, thirdinputVector);
+  print("+++++++++++++Returning From Calculate Function++++++++++++++++")
   return (data);
 }
 
@@ -120,9 +124,11 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
 
 getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId,thisFixedId)
 {
+  print("+++++++++++++++++++++++++++++++++++++++++++Entered getGraph+++++++++++++++++++++++++++++++++++++")
   joined=list()
   resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId,thisFixedId));
-  
+  print("*******************************************FINISHED Graph*******************************************")
+  print(resultgraph)
   resultCheckGraph = is(resultgraph,"try-error");
   
   imgFilename=gsub("\"", "", str_replace_all(resultgraph, "[\n]",""))
@@ -133,7 +139,7 @@ getGraph <-function(independentStringValues, fixedStringValues, contourStringVal
   else{
     joined <- c(joined, imagePath="", graph_error={errortrue=1},message="fail")
   }
-  
+  print("Returning Graph to joined**************************************************************************")
   return (joined)
 } 
 
@@ -148,11 +154,9 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   thirdinputVector<-getVector(functionvalueorder[[3]]);
   
   resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
-  
+  print("++++++++++++++++++++++++++++++++++++++++++++++Back From Calculate Function++++++++++++++++++++++++++++++++++++++++")
   resultCheckData = is(resultdata,"try-error");
-  
-  tableData=str_replace_all(resultdata, "[\n]","")
-  
+  print("++++++++++++++++++++++++++++++ after string replace+++++++++++++++++++++++++++++++++++++++++++++++++++")
   if (resultCheckData == "FALSE") {
     datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
     joined <- list(data=datatransposed, table_error={errortrue=0})
@@ -162,6 +166,8 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   }
   
   returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, tab)
+  print("++++++++++++++++++++++++++++++++++++++++++++Back From getGraph+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+  print(returnedGraph)
   joined <- c(joined, returnedGraph)
 
   return (list(joined))
@@ -200,10 +206,12 @@ drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputV
   dir.create(imageDirectory);
   rfunctionname = getFunctionNameAsIs(independent, contour, fixed);
   drawfunctionname=getDrawFunctionName(drawfunctionprefix, tableName, rfunctionname);
+  print("+++++++++++++++++++++++++inside draw graph+++++++++++++++++++++")
+  print(uniqueId)
   if (exists(as.character(substitute(drawfunctionname))))
   {
   	drawfunction <- get(drawfunctionname, mode="function");
-  	imageFileName = paste(imageDirectory, tableName, uniqueId, "-", as.numeric(tabvalue), "-", gsub("[.]","_", singleFixed), ".png", sep = '');
+  	imageFileName = paste(imageDirectory, tableName, toString(uniqueId), "-", as.numeric(tabvalue), "-", gsub("[.]","_", singleFixed), ".png", sep = '');
 
   	png(file=imageFileName, width=500, height=500)
   	returnvalue<- drawfunction(firstinputVector,secondinputVector,as.numeric(tabvalue));
