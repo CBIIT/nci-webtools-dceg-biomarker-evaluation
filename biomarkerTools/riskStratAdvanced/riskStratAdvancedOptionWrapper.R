@@ -159,10 +159,10 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
   print("++++++++++++++++++++++++++++++ after string replace+++++++++++++++++++++++++++++++++++++++++++++++++++")
   if (resultCheckData == "FALSE") {
     datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-    joined <- list(data=datatransposed, table_error={errortrue=0})
+    joined <- list(data=datatransposed, table_error={errortrue=0}, prefix=key)
   }
   else{
-    joined <- list(data={}, table_error={errortrue=1})
+    joined <- list(data={}, table_error={errortrue=1},prefix="")
   }
   
   returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, tab)
