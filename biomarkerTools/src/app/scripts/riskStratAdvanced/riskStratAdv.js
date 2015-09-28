@@ -808,7 +808,7 @@ function fillTable(resultObject, columnHeadings, index) {
 
         thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
 
-        var tableData = singleDataObject.data;
+        var tableData = singleDataObject.data[index];
         var tableError = singleDataObject.table_error;
         var graphError = singleDataObject.graph_error;
         var arr = [];
