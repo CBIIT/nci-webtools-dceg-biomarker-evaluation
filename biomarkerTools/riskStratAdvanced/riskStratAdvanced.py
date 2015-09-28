@@ -67,10 +67,10 @@ def call_rsa_RFunction():
 
         #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
 	
-	print "************************************Before Sending to R **************************************************"
-	
-	result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
-            fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
+    	print "************************************Before Sending to R **************************************************"
+    	
+    	result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
+                fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
 	print "************************************Index "+ str(i) + " returned******************************************"
 	# parse each returned json string and append to returnedData
