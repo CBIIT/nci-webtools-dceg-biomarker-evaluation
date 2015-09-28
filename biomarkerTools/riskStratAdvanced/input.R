@@ -57,8 +57,8 @@ getCalculatedData <-
     indList = as.list(strsplit(independentStringValue,",")[[1]]);
     
     # use length of fixedList to know how many tabs to create
-    for (singleFixed in fixedList) {
-      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber ,tabValue, uniqueId, list(singleFixed))
+    for (index in 1:length(fixedList)) {
+      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber,index , uniqueId, list(index))
       
       resultsString = c(resultsString, returnedDataGraph)
     }
