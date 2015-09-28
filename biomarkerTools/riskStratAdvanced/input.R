@@ -62,7 +62,7 @@ getCalculatedData <-
       
       resultsString = c(resultsString, returnedDataGraph)
     }
-    
+    resultsString[1] <- NULL
     resultsString = gsub("\n","",toJSON(resultsString))
     return (resultsString);
 
@@ -76,8 +76,6 @@ getVector <- function (vectorstring) {
   };
   return(returnvector);
 }
-
-
 
 getDrawFunctionName <- function (drawfunctionprefix, key, rfunctionname) {
   rDrawFileName = paste(rdirectory);
