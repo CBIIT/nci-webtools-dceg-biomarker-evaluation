@@ -122,11 +122,11 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
   return (getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keynumber, tabvalue, uniqueId));
 }
 
-getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId,thisFixedId)
+getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId)
 {
   print("+++++++++++++++++++++++++++++++++++++++++++Entered getGraph+++++++++++++++++++++++++++++++++++++")
   joined=list()
-  resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId,thisFixedId));
+  resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId));
   print("*******************************************FINISHED Graph*******************************************")
   print(resultgraph)
   resultCheckGraph = is(resultgraph,"try-error");
@@ -134,7 +134,7 @@ getGraph <-function(independentStringValues, fixedStringValues, contourStringVal
   imgFilename=gsub("\"", "", str_replace_all(resultgraph, "[\n]",""))
 
   if (resultCheckGraph == "FALSE") {
-    joined <- c(joined,tabId=thisFixedId, imagePath=imgFilename, graph_error={errortrue=0},message="success")
+    joined <- c(joined,tabId=tabvalue, imagePath=imgFilename, graph_error={errortrue=0},message="success")
   }
   else{
     joined <- c(joined, imagePath="", graph_error={errortrue=1},message="fail")
@@ -164,7 +164,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     joined <- list(tabId=tab[[1]], data={}, table_error={errortrue=1},prefix="")
   }
   
-  returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, tab)
+  returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId)
   print("++++++++++++++++++++++++++++++++++++++++++++Back From getGraph+++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
   print(returnedGraph)
   joined <- c(joined, returnedGraph)
@@ -200,7 +200,7 @@ getFunctionNameAsIs <- function (independent, contour, fixed) {
 }
 
 
-drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputVector, tableName, tabvalue, uniqueId, singleFixed)
+drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputVector, tableName, tabvalue, uniqueId)
 {
   dir.create(imageDirectory);
   rfunctionname = getFunctionNameAsIs(independent, contour, fixed);
@@ -210,7 +210,7 @@ drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputV
   if (exists(as.character(substitute(drawfunctionname))))
   {
   	drawfunction <- get(drawfunctionname, mode="function");
-  	imageFileName = paste(imageDirectory, tableName, toString(uniqueId), "-", as.numeric(tabvalue), "-", gsub("[.]","-", singleFixed), ".png", sep = '');
+  	imageFileName = paste(imageDirectory, tableName, toString(uniqueId), "-", as.numeric(tabvalue), ".png", sep = '');
 
   	png(file=imageFileName, width=500, height=500)
   	returnvalue<- drawfunction(firstinputVector,secondinputVector,as.numeric(tabvalue));
