@@ -44,7 +44,7 @@ getDataJSON <-function(urlEncodedString)
 }
 
 getCalculatedData <-
-  function(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber, tabValue, uniqueId) {
+  function(independentStringValue, fixedStringValue, contourStringValue, independentType, fixedType, contourType, keyGraphName, keyNumber, tabValue, uniqueId) {
     # we want to return an array of data objects to front end. Each data object has the table data and the graph image path
     
     try(dev.off(), silent=TRUE);
@@ -58,14 +58,13 @@ getCalculatedData <-
     
     # use length of fixedList to know how many tabs to create
     for (index in 1:length(fixedList)) {
-      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independent, fixed, contour, keyGraphName, keyNumber,index , uniqueId, list(index))
+      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independentType, fixedType, contourType, keyGraphName, keyNumber,index , uniqueId, list(fixedList[index]))
       
       resultsString = c(resultsString, returnedDataGraph)
     }
     resultsString[1] <- NULL
     resultsString = gsub("\n","",toJSON(resultsString))
     return (resultsString);
-
 }
 
 getVector <- function (vectorstring) {
