@@ -39,7 +39,7 @@ getDataJSON <-function(urlEncodedString)
   assign("last.warning", NULL, envir = baseenv());
   result<-getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, gsub("\n","",keyGraphName), keyNumber, tabValue, uniqueId, tab);
 
-  print(result);
+  #print(result);
   return (result);
 }
 
@@ -80,8 +80,8 @@ getDrawFunctionName <- function (drawfunctionprefix, key, rfunctionname) {
   rDrawFileName = paste(rdirectory);
   rDrawFileName = paste(rDrawFileName, drawfunctionprefix, functionnames[[tolower(c(key))]], rfunctionname, sep = "")
   
-  print(rDrawFileName)
-  print(rfunctionname)
+  #print(rDrawFileName)
+  #print(rfunctionname)
   return(rDrawFileName)
 }
 
@@ -151,7 +151,7 @@ JsonWrapper <- function(dppv,prev,spec)
 }
 
 parseURLEncodedString <- function (urlEncodedString) {
-  #print (urlEncodedString);
+  ##print (urlEncodedString);
   string <- URLdecode(urlEncodedString);
   inputList <- lapply(strsplit(string, "&")[[1]], function(x){
     tmp <- strsplit(x, "=")

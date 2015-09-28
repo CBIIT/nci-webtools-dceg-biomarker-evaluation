@@ -21,19 +21,19 @@ calculate <-function(independentVector, fixedVector, contourVector)
     fixed = deparse(substitute(fixedVector));
     contour = deparse(substitute(contourVector));
     rfunctionname = getFunctionName(independent, fixed, contour);
-    print("+++++++++++")
-    print(rfunctionname)
+    #print("+++++++++++")
+    #print(rfunctionname)
     rfunction <- get(rfunctionname, mode="function")
     functionvalueorder <- getfunctionvalueorder(independentVector, fixedVector, contourVector, independent, fixed, contour);
-    print("functionvalueorder")
-    print(functionvalueorder)
-    print("done functionvalueorder")
+    #print("functionvalueorder")
+    #print(functionvalueorder)
+    #print("done functionvalueorder")
     firstinputVector<-getVector(functionvalueorder[[1]]);
     secondinputVector<-getVector(functionvalueorder[[2]]);
     thirdinputVector<-getVector(functionvalueorder[[3]]);
-    print(firstinputVector)
-    print(secondinputVector)
-    print(thirdinputVector)
+    #print(firstinputVector)
+    #print(secondinputVector)
+    #print(thirdinputVector)
     data<- rfunction(firstinputVector,secondinputVector,thirdinputVector);
     
     data=str_replace_all(data, "[\n]","")  
@@ -44,14 +44,14 @@ calculate <-function(independentVector, fixedVector, contourVector)
 calculate <-function(firstinputVector,secondinputVector,thirdinputVector,  independent, fixed, contour)
 {
     rfunctionname = getFunctionName(independent, fixed, contour);
-    print("+++++++++++++Calculate Function++++++++")
-    print(rfunctionname)
+    #print("+++++++++++++Calculate Function++++++++")
+    #print(rfunctionname)
     rfunction <- get(rfunctionname, mode="function")
-    print(firstinputVector)
-    print(secondinputVector)
-    print(thirdinputVector)
+    #print(firstinputVector)
+    #print(secondinputVector)
+    #print(thirdinputVector)
     data<- rfunction(firstinputVector, secondinputVector, thirdinputVector);
-    print("+++++++++++++Returning From Calculate Function++++++++++++++++")
+    #print("+++++++++++++Returning From Calculate Function++++++++++++++++")
     return (data);
 }
 
@@ -59,15 +59,15 @@ calculate <-function(firstinputVector,secondinputVector,thirdinputVector,  indep
 getFunctionName <- function (independent, fixed, contour) {
     tranposelist = list();
     rFileName = paste(rdirectory);
-    print(independent)
-    print(fixed)
-    print(contour)
+    #print(independent)
+    #print(fixed)
+    #print(contour)
     inputnames = list("independent"=independent, "fixed"=fixed, "contour"=contour)
     for (name in names(functionnames))
     {
         for (variablename in names(inputnames))
         {
-            print(inputnames[[variablename]])
+            #print(inputnames[[variablename]])
             if (name == inputnames[[variablename]])
             {
                 rFileName = paste(rFileName, functionnames[[name]], sep = "")
@@ -76,8 +76,8 @@ getFunctionName <- function (independent, fixed, contour) {
             }
         }
     }
-    print(rFileName)
-    print(tranposelist)
+    #print(rFileName)
+    #print(tranposelist)
     return(rFileName)
 }
 
@@ -86,9 +86,9 @@ getfunctionvalueorder <- function (independentVector, fixedVector, contourVector
     tranposevaluelist = list();
     tranposelist = list();
     independentvalue = independentVector;
-    print(independentvalue)
+    #print(independentvalue)
     fixedvalue = fixedVector;
-    print(fixedvalue)
+    #print(fixedvalue)
     contourvalue = contourVector;
     inputnames = list("independent"=independent, "fixed"=fixed, "contour"=contour)
     inputvalues = list("independent"=independentvalue, "fixed"=fixedvalue, "contour"=contourvalue)
@@ -96,10 +96,10 @@ getfunctionvalueorder <- function (independentVector, fixedVector, contourVector
     {
         for (variablename in names(inputnames))
         {
-            print(inputnames[[variablename]]);
+            #print(inputnames[[variablename]]);
             if (name == functionnames[[inputnames[[variablename]]]])
             {
-                print(tranposevaluelist)
+                #print(tranposevaluelist)
                 tranposevaluelist <- c(tranposevaluelist, inputvalues[[variablename]])
                 tranposelist <- c(tranposelist, name)
             }
@@ -115,20 +115,20 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
     fixed = deparse(substitute(fixedVector));
     contour = deparse(substitute(contourVector));
     independentvalue = deparse(independentVector);
-    print(independentvalue)
+    #print(independentvalue)
     fixedvalue = deparse(fixedVector);
-    print(fixedvalue)
+    #print(fixedvalue)
     contourvalue = deparse(contourVector);
     return (getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keynumber, tabvalue, uniqueId));
 }
 
 getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, fixedVal)
 {
-    print("+++++++++++++++++++++++++++++++++++++++++++Entered getGraph+++++++++++++++++++++++++++++++++++++")
+    #print("+++++++++++++++++++++++++++++++++++++++++++Entered getGraph+++++++++++++++++++++++++++++++++++++")
     joined=list()
     resultgraph <- try(drawGraph(independent, fixed, contour, getVector(independentStringValues), getVector(contourStringValues), key, tabvalue, uniqueId, fixedVal));
-    print("*******************************************FINISHED Graph*******************************************")
-    print(resultgraph)
+    #print("*******************************************FINISHED Graph*******************************************")
+    #print(resultgraph)
     resultCheckGraph = is(resultgraph,"try-error");
     
     imgFilename=gsub("\"", "", str_replace_all(resultgraph, "[\n]",""))
@@ -139,13 +139,13 @@ getGraph <-function(independentStringValues, fixedStringValues, contourStringVal
     else{
         joined <- c(joined, imagePath="", graph_error={errortrue=1},message="fail")
     }
-    print("Returning Graph to joined**************************************************************************")
+    #print("Returning Graph to joined**************************************************************************")
     return (joined)
 } 
 
 getTable <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, keynumber, tabvalue, uniqueId, singleFixed)
 {
-    tranposeorder = "";
+tranposeorder = "";
     tranposeorder <- gettransposeorder(independent, fixed, contour);
     functionvalueorder <- getfunctionvalueorder(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour);
     
@@ -154,7 +154,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     thirdinputVector<-getVector(functionvalueorder[[3]]);
     
     resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
-    print("++++++++++++++++++++++++++++++++++++++++++++++ Back From Calculate Function ++++++++++++++++++++++++++++++++++++++++")
+    #print("++++++++++++++++++++++++++++++++++++++++++++++ Back From Calculate Function ++++++++++++++++++++++++++++++++++++++++")
     resultCheckData = is(resultdata,"try-error");
     
     if (resultCheckData == "FALSE") {
@@ -166,8 +166,8 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     }
     
     returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, singleFixed[[1]])
-    print("++++++++++++++++++++++++++++++++++++++++++++ Back From getGraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    print(returnedGraph)
+    #print("++++++++++++++++++++++++++++++++++++++++++++ Back From getGraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #print(returnedGraph)
     joined <- c(joined, returnedGraph)
     
     return (list(joined))
@@ -176,16 +176,16 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
 getFunctionNameAsIs <- function (independent, contour, fixed) {
     tranposelist = list();
     rFileName = paste(rdirectory);
-    print(independent)
-    print(fixed)
-    print(contour)
+    #print(independent)
+    #print(fixed)
+    #print(contour)
     inputnames = list("independent"=independent, "contour"=contour, "fixed"=fixed)
     
     for (variablename in names(inputnames))
     {
         for (name in names(functionnames))
         {
-            print(inputnames[[variablename]])
+            #print(inputnames[[variablename]])
             if (name == inputnames[[variablename]])
             {
                 rFileName = paste(rFileName, functionnames[[name]], sep = "")
@@ -194,8 +194,8 @@ getFunctionNameAsIs <- function (independent, contour, fixed) {
             }
         }
     }
-    print(rFileName)
-    print(tranposelist)
+    #print(rFileName)
+    #print(tranposelist)
     return(rFileName)
 }
 
@@ -205,8 +205,8 @@ drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputV
     dir.create(imageDirectory);
     rfunctionname = getFunctionNameAsIs(independent, contour, fixed);
     drawfunctionname=getDrawFunctionName(drawfunctionprefix, tableName, rfunctionname);
-    print("+++++++++++++++++++++++++inside draw graph+++++++++++++++++++++")
-    print(uniqueId)
+    #print("+++++++++++++++++++++++++inside draw graph+++++++++++++++++++++")
+    #print(uniqueId)
     if (exists(as.character(substitute(drawfunctionname))))
     {
         drawfunction <- get(drawfunctionname, mode="function");
@@ -220,7 +220,7 @@ drawGraph <-function(independent, fixed, contour, firstinputVector, secondinputV
     }
     else
     {
-        print(paste("no Draw function available", drawfunctionname));
+        #print(paste("no Draw function available", drawfunctionname));
     }
 }
 
@@ -230,9 +230,9 @@ getDrawFunctionName <- function (drawfunctionprefix, key, rfunctionname) {
     rDrawFileName = paste(rdirectory);
     rDrawFileName = paste(rDrawFileName, drawfunctionprefix, functionnames[[tolower(c(key))]], rfunctionname, sep = "")
     
-    print(rDrawFileName)
-    print(functionnames[[tolower(c(key))]])
-    print(rfunctionname)
+    #print(rDrawFileName)
+    #print(functionnames[[tolower(c(key))]])
+    #print(rfunctionname)
     return(rDrawFileName)
 }
 
@@ -249,7 +249,7 @@ gettransposeorder <- function (independent, fixed, contour) {
             }
         }
     }
-    print(tranposelist)
+    #print(tranposelist)
     return(tranposelist)
 }
 
@@ -266,9 +266,9 @@ getTransposedData <- function (independent, fixed, contour, tranposeorder, dataM
                 inputtransposelist[[variablename]] <- i
         }
     }
-    print(inputtransposelist[["independent"]])
-    print(inputtransposelist[["contour"]])
-    print(inputtransposelist[["fixed"]])
+    #print(inputtransposelist[["independent"]])
+    #print(inputtransposelist[["contour"]])
+    #print(inputtransposelist[["fixed"]])
     datax <- aperm(dataMatrix, c(inputtransposelist[["independent"]],inputtransposelist[["contour"]],inputtransposelist[["fixed"]]))
     return (datax)
 }

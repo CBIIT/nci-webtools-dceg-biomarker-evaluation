@@ -525,7 +525,22 @@ function calculate_riskStrat(){
         var keyvalueIndex = getKeyValueIndex(independent_type, fixed_type, contour_type);
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
+        
+        for ( var key in keyvalueShort) {
+            numberOfKeysForCurrentFunction++;
+        }
+        var eIndependent = thisTool.find("#independent_dropdown_rs")[0];
+        var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
+        var eContour = thisTool.find("#contour_dropdown_rs")[0];
+        var selectedContourValue = eContour.options[eContour.selectedIndex].text;
+
+        tableFirstRowLabel = selectedIndependentValue;
+        tableFirstColLabel = selectedContourValue;
+        
+        open_threads = numberOfKeysForCurrentFunction.length;
+        error_count = 0;
+        
         var request_data = [];
         var tableTitle = "";
 
@@ -576,11 +591,9 @@ function calculate_riskStrat(){
 
                
                 for (var i = 0; i < data_array.length; i++) {
-                    for (var j = 0; j <= fixedSplit.length; i++) {
-                        var tabNum = j + 1;
-                        fillTable(data_array[i], columnHeadings, tabNum);
+                    for (var j = 0; j < fixedSplit.length; j++) {
+                        fillTable(data_array[i], columnHeadings, j);
                     }
-
                 }
 
             }
@@ -593,10 +606,6 @@ function calculate_riskStrat(){
             if($.active <= 1) after_requests();
         });
 
-       
-       
-       
-       
     }
 
 }
@@ -685,19 +694,99 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 
 }
 
-function fillTable(resultObject, columnHeadings, tabnumber) {
-    var tabElement = "#fixed-" +tabnumber;
-    for(var ind = 0; ind < resultObject.length; ind++) {
-        var singleDataObject = resultObject[ind];
 
-        if(singleDataObject.length === 0) return false;
 
-        var abbreviatedKey = singleDataObject.prefix;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fillTable(resultObject, columnHeadings, index) {
+
+    var singleDataObject = resultObject[index];
+    var abbreviatedKey = singleDataObject.prefix;
+
+    var independentArray = thisTool.find("#independent_rs").val();
+    independentArraySplit = independentArray.split(",");
+
+    if(singleDataObject.length === 0) return false;
+    else {
+        var tabnumber = singleDataObject.tabId;
+        var tabElement = "#fixed-" +tabnumber;
         var tableId = "example-" + abbreviatedKey + tabnumber;
-        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
-        
         var tableElement = thisTool.find(tabElement + " " + "#" + tableId);
+
         if( tableElement[0] ) {
             if($.fn.DataTable.isDataTable(tableElement)){
                 tableElement.dataTable().fnDestroy();
@@ -705,20 +794,16 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
             }
         }
 
-        var independentArray = thisTool.find("#independent_rs").val();
-        independentArraySplit = independentArray.split(",");
-
-        var arr = [];
+        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
 
         var tableData = singleDataObject.data;
         var tableError = singleDataObject.table_error;
         var graphError = singleDataObject.graph_error;
-       
-       
+        var arr = [];
 
         if (tableError != 1) {
-            rows = tableData.length;
-            for (var i = 0; i < tableData.length; i++) {
+            var rows = tableData.length;
+            for (var i = 0; i < rows; i++) {
                 var values = [];
                 row_entries = tableData[i];
                 for ( var key in row_entries) {
@@ -727,17 +812,15 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
                 arr.push(values);
             }
 
-            var headings = [];
-            for ( i = 0; i < columnHeadings.length; i++) {
+            var headings = [];    
+            for (var j = 0; j < columnHeadings.length; j++) {
                 headings.push({
-                    "sTitle" : columnHeadings[i]
+                    "sTitle" : columnHeadings[j]
                 });
             }
 
             var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
                           tableId + "'></table>");
-            
-            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
 
             table.dataTable({
                 "aaData" : arr,
@@ -752,20 +835,20 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
                 "bDestroy" : true,
                 "aaSorting" : [ [ 0, "asc" ] ]
             });
-            
+
+            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
+
            
             thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
                 "<td class='ui-state-default' colspan='2'></td>");
-            
-            var z = 0;
-            
+
             thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
-                function() {
-                    $(this).prepend(
+                function(z, el) {
+                    $(el).prepend(
                         "<th class='ui-state-default sorting_disabled'>" + 
                         independentArraySplit[z] + "</th>");
-                    i++;
-            });
+                    z++;
+                });
 
            
             thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
@@ -777,17 +860,15 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
             thisTool.find(tabElement + " #" + tableId + " thead").prepend(
                 "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
                 tableFirstColLabel + "</th></tr>");
-        } 
+
+            loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
+        }
         else {
-            if (graphErrorValue != 1) {
+            if (graphErrorValue != 1)
                 display_errors([ singleDataObject.message ]);
-            }
             else
                 display_errors([ singleDataObject.message ]);
         }
-
-        loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);    
-
     }
 }
 

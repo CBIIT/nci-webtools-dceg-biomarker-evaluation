@@ -529,7 +529,22 @@ function calculate_riskStrat(){
         var keyvalueIndex = getKeyValueIndex(independent_type, fixed_type, contour_type);
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
+        
+        for ( var key in keyvalueShort) {
+            numberOfKeysForCurrentFunction++;
+        }
+        var eIndependent = thisTool.find("#independent_dropdown_rs")[0];
+        var selectedIndependentValue = eIndependent.options[eIndependent.selectedIndex].text;
 
+        var eContour = thisTool.find("#contour_dropdown_rs")[0];
+        var selectedContourValue = eContour.options[eContour.selectedIndex].text;
+
+        tableFirstRowLabel = selectedIndependentValue;
+        tableFirstColLabel = selectedContourValue;
+        
+        open_threads = numberOfKeysForCurrentFunction.length;
+        error_count = 0;
+        
         var request_data = [];
         var tableTitle = "";
 
@@ -580,11 +595,9 @@ function calculate_riskStrat(){
 
                 // then put the data and image into each tab
                 for (var i = 0; i < data_array.length; i++) {
-                    for (var j = 0; j <= fixedSplit.length; i++) {
-                        var tabNum = j + 1;
-                        fillTable(data_array[i], columnHeadings, tabNum);
+                    for (var j = 0; j < fixedSplit.length; j++) {
+                        fillTable(data_array[i], columnHeadings, j);
                     }
-
                 }
 
             }
@@ -597,10 +610,6 @@ function calculate_riskStrat(){
             if($.active <= 1) after_requests();
         });
 
-        // use when constructing tables
-        //    var titlekeys = [
-        //        "Sensitivity required to achieve specified PPV given prevalence and specificity",
-        //        "Delta required to achieve specified PPV given prevalence and specificity" ];
     }
 
 }
@@ -689,19 +698,107 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 
 }
 
-function fillTable(resultObject, columnHeadings, tabnumber) {
-    var tabElement = "#fixed-" +tabnumber;
-    for(var ind = 0; ind < resultObject.length; ind++) {
-        var singleDataObject = resultObject[ind];
+// original function on master
+//function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
+//    var tableId = "example-" + abbreviatedKey + tabnumber;
+//    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
+//
+//    if( $.fn.DataTable.isDataTable(thisTool.find("#" + tableId)) ){
+//        thisTool.find("#" + tableId).dataTable().fnDestroy();
+//        thisTool.find("#" + tableId).empty();
+//    }
+//
+//
+//    var independentArray = thisTool.find("#independent_rs").val();
+//    independentArraySplit = independentArray.split(",");
+//
+//    var arr = [];
+//    var tableData = jsonTableData[0].data;
+//    var tableError = jsonTableData[0].table_error;
+//    var graphError = jsonTableData[0].graph_error;
+//    var tableErrorValue = tableError[0].errortrue;
+//    var graphErrorValue = graphError[0].errortrue;
+//    if (tableErrorValue != 1) {
+//        rows = tableData.length;
+//        for (var i = 0; i < tableData.length; i++) {
+//            var values = [];
+//            row_entries = tableData[i];
+//            for ( var key in row_entries) {
+//                values.push(row_entries[key]);
+//            }
+//            arr.push(values);
+//        }
+//
+//        var headings = [];
+//        for ( i = 0; i < columnHeadings.length; i++) {
+//            headings.push({
+//                "sTitle" : columnHeadings[i]
+//            });
+//        }
+//
+//        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
+//                      tableId + "'></table>");
+//        $("#table-" + abbreviatedKey + tabnumber).append(table);
+//
+//        table.dataTable({
+//            "aaData" : arr,
+//            "aoColumns" : headings,
+//            "bJQueryUI" : true,
+//            "bAutoWidth" : false,
+//            "bFilter" : false,
+//            "bSearchable" : false,
+//            "bInfo" : false,
+//            "bSort" : false,
+//            "bPaginate" : false,
+//            "bDestroy" : true,
+//            "aaSorting" : [ [ 0, "asc" ] ]
+//        });
+//       
+//        thisTool.find("#" + tableId + " tr:first").prepend(
+//            "<td class='ui-state-default' colspan='2'></td>");
+//        i = 0;
+//        thisTool.find("#" + tableId + " tr:not(:first)").each(
+//            function() {
+//                $(this).prepend(
+//                    "<th class='ui-state-default sorting_disabled'>" + 
+//                    independentArraySplit[i] + "</th>");
+//                i++;
+//            });
+//
+//       
+//        thisTool.find("#" + tableId + " tr:eq(1)").prepend(
+//            "<th class='header' rowspan='" + independentArraySplit.length + 
+//            "'><div class='vertical-text'>" + tableFirstRowLabel + 
+//            "</div></th>");
+//
+//       
+//        thisTool.find("#" + tableId + " thead").prepend(
+//            "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
+//            tableFirstColLabel + "</th></tr>");
+//    } else {
+//        if (graphErrorValue != 1) {
+//            display_errors([tableError[1].message, graphError[1].message ]);
+//        }
+//        else
+//            display_errors([tableError[1].message]);
+//    }
+//}
 
-        if(singleDataObject.length === 0) return false;
+function fillTable(resultObject, columnHeadings, index) {
 
-        var abbreviatedKey = singleDataObject.prefix;
+    var singleDataObject = resultObject[index];
+    var abbreviatedKey = singleDataObject.prefix;
 
+    var independentArray = thisTool.find("#independent_rs").val();
+    independentArraySplit = independentArray.split(",");
+
+    if(singleDataObject.length === 0) return false;
+    else {
+        var tabnumber = singleDataObject.tabId;
+        var tabElement = "#fixed-" +tabnumber;
         var tableId = "example-" + abbreviatedKey + tabnumber;
-        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
-        
         var tableElement = thisTool.find(tabElement + " " + "#" + tableId);
+
         if( tableElement[0] ) {
             if($.fn.DataTable.isDataTable(tableElement)){
                 tableElement.dataTable().fnDestroy();
@@ -709,20 +806,16 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
             }
         }
 
-        var independentArray = thisTool.find("#independent_rs").val();
-        independentArraySplit = independentArray.split(",");
-
-        var arr = [];
+        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
 
         var tableData = singleDataObject.data;
         var tableError = singleDataObject.table_error;
         var graphError = singleDataObject.graph_error;
-        //    var tableErrorValue = tableError.errortrue;
-        //    var graphErrorValue = graphError.errortrue;
+        var arr = [];
 
         if (tableError != 1) {
-            rows = tableData.length;
-            for (var i = 0; i < tableData.length; i++) {
+            var rows = tableData.length;
+            for (var i = 0; i < rows; i++) {
                 var values = [];
                 row_entries = tableData[i];
                 for ( var key in row_entries) {
@@ -731,17 +824,15 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
                 arr.push(values);
             }
 
-            var headings = [];
-            for ( i = 0; i < columnHeadings.length; i++) {
+            var headings = [];    
+            for (var j = 0; j < columnHeadings.length; j++) {
                 headings.push({
-                    "sTitle" : columnHeadings[i]
+                    "sTitle" : columnHeadings[j]
                 });
             }
 
             var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
                           tableId + "'></table>");
-            
-            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
 
             table.dataTable({
                 "aaData" : arr,
@@ -756,20 +847,20 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
                 "bDestroy" : true,
                 "aaSorting" : [ [ 0, "asc" ] ]
             });
-            
+
+            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
+
             // add a first column as independent values
             thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
                 "<td class='ui-state-default' colspan='2'></td>");
-            
-            var z = 0;
-            
+
             thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
-                function() {
-                    $(this).prepend(
+                function(z, el) {
+                    $(el).prepend(
                         "<th class='ui-state-default sorting_disabled'>" + 
                         independentArraySplit[z] + "</th>");
-                    i++;
-            });
+                    z++;
+                });
 
             // add another first column for independent type
             thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
@@ -781,17 +872,15 @@ function fillTable(resultObject, columnHeadings, tabnumber) {
             thisTool.find(tabElement + " #" + tableId + " thead").prepend(
                 "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
                 tableFirstColLabel + "</th></tr>");
-        } 
+
+            loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
+        }
         else {
-            if (graphErrorValue != 1) {
+            if (graphErrorValue != 1)
                 display_errors([ singleDataObject.message ]);
-            }
             else
                 display_errors([ singleDataObject.message ]);
         }
-
-        loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);    
-
     }
 }
 
