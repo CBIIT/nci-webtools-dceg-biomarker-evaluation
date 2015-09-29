@@ -122,6 +122,35 @@ getTable <-function(independentVector, fixedVector, contourVector, key, keynumbe
     return (getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, key, keynumber, tabvalue, uniqueId));
 }
 
+getTable <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, keynumber, tabvalue, uniqueId, singleFixed)
+{
+	tranposeorder = "";
+    tranposeorder <- gettransposeorder(independent, fixed, contour);
+    functionvalueorder <- getfunctionvalueorder(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour);
+    
+    firstinputVector<-getVector(functionvalueorder[[1]]);
+    secondinputVector<-getVector(functionvalueorder[[2]]);
+    thirdinputVector<-getVector(functionvalueorder[[3]]);
+    
+    resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
+    #print("++++++++++++++++++++++++++++++++++++++++++++++ Back From Calculate Function ++++++++++++++++++++++++++++++++++++++++")
+    resultCheckData = is(resultdata,"try-error");
+    
+    if (resultCheckData == "FALSE") {
+        datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
+        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(tabvalue)], table_error={errortrue=0}, prefix=key)
+    }
+    else{
+        joined <- list(tabId="", data={}, table_error={errortrue=1},prefix="")
+    }
+    
+    returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, singleFixed[[1]])
+    #print("++++++++++++++++++++++++++++++++++++++++++++ Back From getGraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #print(returnedGraph)
+    joined <- c(joined, returnedGraph)
+    
+    return (list(joined))
+}
 getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, fixedVal)
 {
     #print("+++++++++++++++++++++++++++++++++++++++++++Entered getGraph+++++++++++++++++++++++++++++++++++++")
@@ -143,35 +172,7 @@ getGraph <-function(independentStringValues, fixedStringValues, contourStringVal
     return (joined)
 } 
 
-getTable <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, keynumber, tabvalue, uniqueId, singleFixed)
-{
-tranposeorder = "";
-    tranposeorder <- gettransposeorder(independent, fixed, contour);
-    functionvalueorder <- getfunctionvalueorder(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour);
-    
-    firstinputVector<-getVector(functionvalueorder[[1]]);
-    secondinputVector<-getVector(functionvalueorder[[2]]);
-    thirdinputVector<-getVector(functionvalueorder[[3]]);
-    
-    resultdata <- try(calculate(firstinputVector, secondinputVector, thirdinputVector, independent, fixed, contour));
-    #print("++++++++++++++++++++++++++++++++++++++++++++++ Back From Calculate Function ++++++++++++++++++++++++++++++++++++++++")
-    resultCheckData = is(resultdata,"try-error");
-    
-    if (resultCheckData == "FALSE") {
-        datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed, table_error={errortrue=0}, prefix=key)
-    }
-    else{
-        joined <- list(tabId="", data={}, table_error={errortrue=1},prefix="")
-    }
-    
-    returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, singleFixed[[1]])
-    #print("++++++++++++++++++++++++++++++++++++++++++++ Back From getGraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    #print(returnedGraph)
-    joined <- c(joined, returnedGraph)
-    
-    return (list(joined))
-}
+
 
 getFunctionNameAsIs <- function (independent, contour, fixed) {
     tranposelist = list();
