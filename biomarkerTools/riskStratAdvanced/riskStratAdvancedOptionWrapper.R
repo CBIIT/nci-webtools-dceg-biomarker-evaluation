@@ -20,24 +20,28 @@ calculate <-function(independentVector, fixedVector, contourVector)
     independent = deparse(substitute(independentVector));
     fixed = deparse(substitute(fixedVector));
     contour = deparse(substitute(contourVector));
+    
     rfunctionname = getFunctionName(independent, fixed, contour);
+    
     #print("+++++++++++")
     #print(rfunctionname)
+    
     rfunction <- get(rfunctionname, mode="function")
     functionvalueorder <- getfunctionvalueorder(independentVector, fixedVector, contourVector, independent, fixed, contour);
+    
     #print("functionvalueorder")
     #print(functionvalueorder)
     #print("done functionvalueorder")
+    
     firstinputVector<-getVector(functionvalueorder[[1]]);
     secondinputVector<-getVector(functionvalueorder[[2]]);
     thirdinputVector<-getVector(functionvalueorder[[3]]);
+    
     #print(firstinputVector)
     #print(secondinputVector)
     #print(thirdinputVector)
+    
     data<- rfunction(firstinputVector,secondinputVector,thirdinputVector);
-    
-    data=str_replace_all(data, "[\n]","")  
-    
     return (data);
 }
 
@@ -138,7 +142,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     
     if (resultCheckData == "FALSE") {
         datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(tabvalue)], table_error={errortrue=0}, prefix=key)
+        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(singleFixed[[1]])], table_error={errortrue=0}, prefix=key)
     }
     else{
         joined <- list(tabId="", data={}, table_error={errortrue=1},prefix="")
@@ -267,9 +271,9 @@ getTransposedData <- function (independent, fixed, contour, tranposeorder, dataM
                 inputtransposelist[[variablename]] <- i
         }
     }
-    #print(inputtransposelist[["independent"]])
-    #print(inputtransposelist[["contour"]])
-    #print(inputtransposelist[["fixed"]])
+    print(inputtransposelist[["independent"]])
+    print(inputtransposelist[["contour"]])
+    print(inputtransposelist[["fixed"]])
     datax <- aperm(dataMatrix, c(inputtransposelist[["independent"]],inputtransposelist[["contour"]],inputtransposelist[["fixed"]]))
     return (datax)
 }
