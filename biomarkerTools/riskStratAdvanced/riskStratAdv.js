@@ -512,7 +512,7 @@ function calculate_riskStrat(){
 
         var contour_type = thisTool.find("#contour_dropdown_rs").val();
         var contour_values = thisTool.find("#contour_rs").val().replace(/[^\d,.-]/g, '');
-        columnHeadings = contour_values.split(",");
+        var columnHeadings = contour_values.split(",");
 
         var fixed_type = thisTool.find("#fixed_dropdown_rs").val();
         var fixed_values = thisTool.find("#fixed_rs").val().replace(/[^\d,.-]/g, '');
@@ -775,17 +775,19 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 function fillTable(resultObject, columnHeadings, index) {
 
     var singleDataObject = resultObject[index];
-    var abbreviatedKey = singleDataObject.prefix;
 
     var independentArray = thisTool.find("#independent_rs").val();
     independentArraySplit = independentArray.split(",");
 
     if(singleDataObject.length === 0) return false;
     else {
+        var abbreviatedKey = singleDataObject.prefix;
         var tabnumber = singleDataObject.tabId;
-        var tabElement = "#fixed-" +tabnumber;
+        
         var tableId = "example-" + abbreviatedKey + tabnumber;
-        var tableElement = thisTool.find(tabElement + " " + "#" + tableId);
+        var tabElement = "#fixed-" +tabnumber;
+        
+        var tableElement = thisTool.find(tabElement + " #" + tableId);
 
         if( tableElement[0] ) {
             if($.fn.DataTable.isDataTable(tableElement)){
@@ -795,11 +797,12 @@ function fillTable(resultObject, columnHeadings, index) {
         }
 
         thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
-
-        var tableData = singleDataObject.data[index];
+        
+        var arr = [];
+        var tableData = singleDataObject.data;
         var tableError = singleDataObject.table_error;
         var graphError = singleDataObject.graph_error;
-        var arr = [];
+        
 
         if (tableError != 1) {
             var rows = tableData.length;
@@ -812,10 +815,10 @@ function fillTable(resultObject, columnHeadings, index) {
                 arr.push(values);
             }
 
-            var headings = [];    
-            for (var j = 0; j < columnHeadings.length; j++) {
+            var headings = [];
+            for (i = 0; i < columnHeadings.length; i++) {
                 headings.push({
-                    "sTitle" : columnHeadings[j]
+                    "sTitle" : columnHeadings[i]
                 });
             }
 
@@ -838,16 +841,16 @@ function fillTable(resultObject, columnHeadings, index) {
 
             $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
 
-           
             thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
                 "<td class='ui-state-default' colspan='2'></td>");
-
+            
+            i = 0;
             thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
-                function(z, el) {
-                    $(el).prepend(
+                function() {
+                    $(this).prepend(
                         "<th class='ui-state-default sorting_disabled'>" + 
-                        independentArraySplit[z] + "</th>");
-                    z++;
+                        independentArraySplit[i] + "</th>");
+                    i++;
                 });
 
            
@@ -860,14 +863,11 @@ function fillTable(resultObject, columnHeadings, index) {
             thisTool.find(tabElement + " #" + tableId + " thead").prepend(
                 "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
                 tableFirstColLabel + "</th></tr>");
-
-            loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
+            if(graphError != 1)
+                loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
         }
         else {
-            if (graphErrorValue != 1)
-                display_errors([ singleDataObject.message ]);
-            else
-                display_errors([ singleDataObject.message ]);
+            display_errors([ singleDataObject.message ]);
         }
     }
 }
