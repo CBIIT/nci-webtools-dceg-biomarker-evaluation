@@ -731,8 +731,11 @@ function fillTable(resultObject, columnHeadings, index) {
             for (var i = 0; i < rows; i++) {
                 var values = [];
                 row_entries = tableData[i];
-                for ( var key in row_entries) {
-                    values.push(row_entries[key]);
+               
+               
+                for ( var key in columnHeadings) {
+                    var columnInd = columnHeadings[key];
+                    values.push(row_entries[columnInd]);
                 }
                 arr.push(values);
             }
