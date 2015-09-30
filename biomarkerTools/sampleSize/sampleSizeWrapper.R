@@ -4,57 +4,70 @@ source ('./writeToExcel.R',local=environment())
 
 imageDirectory="./tmp/" 
 imgList = list()
+excelFileName = ""
 
 saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   specTabs=1:length(spec)
   allSensData= list()
   tabsList= list()
+  tabs = list()
   
   for (i in specTabs) {
     data=saveSensContours(k, sens, spec[i], prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
     allSensData[[tab]]=data
     tabsList[[i]] <- tab
-  }
-  
-  if(exporting) {
-    tabs = list()
     
-    for(i in specTabs) {
-      tabs[[i]] = paste('Specificity', spec[[i]])
-    }
-    
-    excelFileName <- writeResultsToExcel(tabs, allSensData, imgList)
-    jsonString <- toJSON(excelFileName, method="C")
-    return (jsonString)
+    tabs[[i]] = paste('Specificity', spec[[i]])
   }
+  excelFileName <<- writeResultsToExcel(tabs, allSensData, imgList)
+#   
+# 
+#   if(exporting) {
+#     tabs = list()
+#     
+#     for(i in specTabs) {
+#       tabs[[i]] = paste('Specificity', spec[[i]])
+#     }
+#     
+#     excelFileName <- writeResultsToExcel(tabs, allSensData, imgList)
+#     jsonString <- toJSON(excelFileName, method="C")
+#     return (jsonString)
+#   }
 
     return (toJSON(allSensData, .escapeEscape=TRUE))
+}
+
+getExcel <- function() {
+    return (toJSON(excelFileName, method="C"))
 }
 
 saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   sensTabs=1:length(sens)
   allSpecData= list()
   tabsList= list()
+  tabs = list()
   
   for (i in sensTabs) {
     data=saveSpecContours(k, sens[i], spec, prev, N, uniqueId, i)
     tab=paste('tab', i, sep='')
     allSpecData[[tab]]=data
     tabsList[[i]] <- tab
+    tabs[[i]] = paste('Sensitivity', sens[[i]])
   }
   
-  if(exporting) {
-    tabs = list()
-    
-    for(i in sensTabs) {
-      tabs[[i]] = paste('Sensitivity', sens[[i]])
-    }
-    
-    excelFileName <- writeResultsToExcel(tabs, allSpecData, imgList)
-    jsonString <- toJSON(excelFileName, method="C");
-    return (jsonString)
-  }
+  excelFileName <<- writeResultsToExcel(tabs, allSpecData, imgList)
+#   if(exporting) {
+#     tabs = list()
+#     
+#     for(i in sensTabs) {
+#       tabs[[i]] = paste('Sensitivity', sens[[i]])
+#     }
+#     
+#     
+#     jsonString <- toJSON(excelFileName, method="C");
+#     return (jsonString)
+#   }
     return (toJSON(allSpecData, .escapeEscape=TRUE))
 }
 
