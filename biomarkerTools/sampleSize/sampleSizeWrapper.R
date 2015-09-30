@@ -21,6 +21,7 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
     tabs[[i]] = paste('Specificity', spec[[i]])
   }
   excelFileName <<- writeResultsToExcel(tabs, allSensData, imgList, "sens")
+  imgList <<- list()
 #   
 # 
 #   if(exporting) {
@@ -57,6 +58,7 @@ saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   }
   
   excelFileName <<- writeResultsToExcel(tabs, allSpecData, imgList, "spec")
+  imgList <<- list()
 #   if(exporting) {
 #     tabs = list()
 #     
