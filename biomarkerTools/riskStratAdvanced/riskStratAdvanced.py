@@ -74,6 +74,7 @@ def call_rsa_RFunction():
 
 	print "************************************Index "+ str(i) + " returned******************************************"
 	# parse each returned json string and append to returnedData
+    # use returnedData variable to pass entire dataset to a function for writing to excel
         returnedData.insert(i, json.loads(result[0]))
 
     print "+++++++++++++++++++++++++++++++++++Returning Data+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"    

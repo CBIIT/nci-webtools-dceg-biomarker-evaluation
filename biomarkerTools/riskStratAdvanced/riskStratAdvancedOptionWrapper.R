@@ -142,18 +142,18 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     
     if (resultCheckData == "FALSE") {
         datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
-        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(singleFixed[[1]])], table_error={errortrue=0}, prefix=key)
+        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(singleFixed[[1]][[1]])], table_error={errortrue=0}, prefix=key)
     }
     else{
         joined <- list(tabId="", data={}, table_error={errortrue=1},prefix="")
     }
     
     returnedGraph = getGraph(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, singleFixed[[1]])
-    #print("++++++++++++++++++++++++++++++++++++++++++++ Back From getGraph +++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #print("++++++++++++++++++++++++++++++++++++++++++ Back From getGraph ++++++++++++++++++++++++++++++++++++++++++++++++")
     #print(returnedGraph)
     joined <- c(joined, returnedGraph)
     
-    return (list(joined))
+    return ({joined})
 }
 getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, fixedVal)
 {
