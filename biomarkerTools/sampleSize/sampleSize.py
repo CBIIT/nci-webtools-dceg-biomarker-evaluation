@@ -40,7 +40,7 @@ def sampleSizeRest():
     start = time.time()
     print "Starting Benchmark"
     
-    if exp == TRUE:
+    if exp == True:
         jsonrtn = r_getExcel()
     else:
         if fixed_flag == "Specificity":

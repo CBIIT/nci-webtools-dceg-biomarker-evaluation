@@ -2,7 +2,7 @@ library('xlsx');
 
 excelDirectory <- "./tmp/";
 
-writeResultsToExcel <- function (tabs, allData, imgList) {
+writeResultsToExcel <- function (tabs, allData, imgList, calcType) {
   outwb <- createWorkbook();
   
   bottomBorder <-  Border(color="black", position=c("BOTTOM"), pen=c("BORDER_THIN"));
@@ -62,7 +62,7 @@ writeResultsToExcel <- function (tabs, allData, imgList) {
   # formatting time to use in filename
   time <- gsub(":","",gsub("-","",gsub(" ","", Sys.time() , fixed=TRUE)));
   
-  fileName <- toString(paste(excelDirectory, "sample_size_calculation_", time, '.xlsx',sep=''));
+  fileName <- toString(paste(excelDirectory, "sample_size_calculation_",calcType,"_", time, '.xlsx',sep=''));
   
   saveWorkbook(outwb, fileName);
 
