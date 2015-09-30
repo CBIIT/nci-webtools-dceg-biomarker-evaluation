@@ -153,7 +153,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     #print(returnedGraph)
     joined <- c(joined, returnedGraph)
     
-    return ({joined})
+    return (list(joined))
 }
 getGraph <-function(independentStringValues, fixedStringValues, contourStringValues, independent, fixed, contour, key, tabvalue, uniqueId, fixedVal)
 {
