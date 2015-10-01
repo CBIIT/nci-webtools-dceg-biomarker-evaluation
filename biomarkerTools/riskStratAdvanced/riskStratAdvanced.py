@@ -18,10 +18,10 @@ import pandas.rpy.common as com
 import urllib
 
 app = Flask(__name__, static_folder='', static_url_path='/')
-#app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-# r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
 r_getname_getCalculations = robjects.globalenv['RSA']['getCalculatedData']
+r_getExcel = robjects.globalenv['RSA']['getExcelFile']
+r_createExcel = robjects.globalenv['RSA']['createExcel']
 
 @app.route('/')
 def index():
@@ -35,7 +35,6 @@ def jsonp(func):
         if callback:
             data = str(func(*args, **kwargs).data)
             content = str(callback) + '(' + data + ')'
-            #mimetype = 'application/javascript'
             mimetype = 'application/json'
             return current_app.response_class(content, mimetype=mimetype)
         else:
@@ -43,41 +42,44 @@ def jsonp(func):
     return decorated_function
 
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
-# @jsonp
+
 def call_rsa_RFunction():
     data = request.json
 
     returnedData = list()
+    if data["export"] == True:
+        returnedData = r_getExcel();
+    else:    
+        for i,x in enumerate(data):
+            abreviated_key = x["abreviatedKey"] #cNPV or PPV
+            key_index=x["keyIndex"] #1 or 2
 
-    for i,x in enumerate(data):
-        abreviated_key = x["abreviatedKey"] #cNPV or PPV
-        key_index=x["keyIndex"] #1 or 2
+            contour = str(x["contour"])
+            independent = str(x["independent"])
+            fixed = str(x["fixed"])
 
-        contour = str(x["contour"])
-        independent = str(x["independent"])
-        fixed = str(x["fixed"])
+            contour_type = str(x["contourType"]) # contour dropdown values
+            independent_type = str(x["independentType"]) # independent dropdown values
+            fixed_type = str(x["fixedType"]) # fixed dropdown values
 
-        contour_type = str(x["contourType"]) # contour dropdown values
-        independent_type = str(x["independentType"]) # independent dropdown values
-        fixed_type = str(x["fixedType"]) # fixed dropdown values
+            unique = str(x["uniqueId"])
+            tab_value = str(x["tabValue"])
+            # add a variable for export when we start working on the export piece
+
+            #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
+
+            print "************************************ Before Sending to R **************************************************"
+
+            result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
+                    fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
+
+            print "************************************ Index "+ str(i) + " returned ******************************************"
+            # parse each returned json string and append to returnedData
+            # use returnedData variable to pass entire dataset to a function for writing to excel
+            returnedData.insert(i, json.loads(result[0]))
         
-        unique = str(x["uniqueId"])
-        tab_value = str(x["tabValue"])
-        # add a variable for export when we start working on the export piece
-
-        #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
-	
-    	print "************************************Before Sending to R **************************************************"
-    	
-    	result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
-                fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
-
-	print "************************************Index "+ str(i) + " returned******************************************"
-	# parse each returned json string and append to returnedData
-    # use returnedData variable to pass entire dataset to a function for writing to excel
-        returnedData.insert(i, json.loads(result[0]))
-
-    print "+++++++++++++++++++++++++++++++++++Returning Data+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"    
+            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        r_createExcel(returnedData)
     return json.dumps(returnedData)
 
 import argparse

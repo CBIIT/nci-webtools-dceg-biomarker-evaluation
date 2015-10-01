@@ -11,36 +11,18 @@ rfunctionname = ""
 
 inputtransposelist = list();
 datatransposed = "";
+excelFilename = ""
+JSONstring <-"[[{'tabId': 1, 'data': [{'0.1': 0.177, '0.01': 0.0191, '0.05': 0.0923}, {'0.1': 0.218, '0.01': 0.0247, '0.05': 0.117}, {'0.1': 0.238, '0.01': 0.0276, '0.05': 0.129}, {'0.1': 0.271, '0.01': 0.0327, '0.05': 0.15}, {'0.1': 0.322, '0.01': 0.0415, '0.05': 0.184}], 'graph_error': 0, 'prefix': 'PPV', 'imagePath': './tmp/cNPV123456-1.png', 'message': 'success', 'table_error': 0}], [{'tabId': 1, 'data': [{'0.1': 0.0404, '0.01': 0.00382, '0.05': 0.0196}, {'0.1': 0.0523, '0.01': 0.00499, '0.05': 0.0255}, {'0.1': 0.0572, '0.01': 0.00549, '0.05': 0.028}, {'0.1': 0.0643, '0.01': 0.00621, '0.05': 0.0315}, {'0.1': 0.0735, '0.01': 0.00716, '0.05': 0.0362}], 'graph_error': 0, 'prefix': 'cNPV', 'imagePath': './tmp/cNPV123456-1.png', 'message': 'success', 'table_error': 0}]]"    
+getExcelFile <- function(){
+    return (excelFilename)
+}
 
-getDataJSON <-function(urlEncodedString)
-{
-  try(dev.off(), silent=TRUE);
-  inputList <- parseURLEncodedString(urlEncodedString);
-  independent<-getindependent(inputList);   #PPV -2
-  independentvalue<-getindependentValue(inputList);
-  independentVector<-getVector(getindependentValue(inputList));
-  fixed<-getfixed(inputList);   #PREV -3
-  fixedvalue<-getfixedValue(inputList);
-  fixedVector<-getVector(getfixedValue(inputList));
-  contour<- getcontour(inputList);   #SPEC -1
-  contourvalue<-getcontourValue(inputList);
-  contourVector<-getVector(getcontourValue(inputList));
-  key<-getKey(inputList);
-  keyNumber<-getkeyNumber(inputList);
-  specmin<-getSpecMin(inputList);
-  specmax<-getSpecMax(inputList);
-  uniqueId <- getUniqueId(inputList);
-  tab <- gettab(inputList);
-  tabValue <- gettabValue(inputList);
-  keyGraphName <- getgraphname(inputList);
-  jsonString = "";
-  json_string = "";
-  errorString = "";
-  assign("last.warning", NULL, envir = baseenv());
-  result<-getTable(independentvalue, fixedvalue, contourvalue, independent, fixed, contour, gsub("\n","",keyGraphName), keyNumber, tabValue, uniqueId, tab);
-
-  #print(result);
-  return (result);
+createExcel <- function(data,independent,contour,fixed){
+    tableHeaders <- list( ppv= paste("Positive Predictive Value given ", independent,",", contour,", ", fixed, sep=""),
+                          cnpv=paste("Complement of the Negative Predictive Value ", independent,",", contour,", ", fixed, sep=""), independentHeader=independent,contourHeader=contour, fixedHeader=fixed)
+                         
+    
+    excelFilename <<- writeResultsToExcel(data, tableHeaders)
 }
 
 getCalculatedData <-
@@ -83,63 +65,6 @@ getDrawFunctionName <- function (drawfunctionprefix, key, rfunctionname) {
   #print(rDrawFileName)
   #print(rfunctionname)
   return(rDrawFileName)
-}
-
-getKey <- function (inputList) {
-  inputList[[1]][[1]];
-}
-
-getkeyNumber <- function (inputList){
-  inputList[[2]][[1]];
-  
-}
-
-getindependent <- function (inputList) {
-  inputList[[3]][[1]];
-}
-
-getfixed <- function (inputList) {
-  inputList[[4]][[1]];
-}
-
-getcontour <- function (inputList) {
-  inputList[[5]][[1]];
-}
-
-getindependentValue <- function (inputList) {
-  inputList[[6]][[1]];
-}
-
-getfixedValue <- function (inputList) {
-  inputList[[7]][[1]];
-}
-
-getcontourValue <- function (inputList) {
-  inputList[[8]][[1]];
-}
-
-getSpecMin <- function (inputList) {
-  inputList[[9]][[1]];
-}
-
-getSpecMax <- function (inputList) {
-  inputList[[10]][[1]];
-}
-
-getUniqueId <- function (inputList) {
-  inputList[[11]][[1]];
-}
-
-gettab <- function (inputList) {
-  inputList[12][[1]];
-}
-
-gettabValue <- function (inputList) {
-  inputList[[13]][[1]];
-}
-
-getgraphname <- function (inputList) {
-  inputList[[14]][[1]];
 }
 
 JsonWrapper <- function(dppv,prev,spec)
