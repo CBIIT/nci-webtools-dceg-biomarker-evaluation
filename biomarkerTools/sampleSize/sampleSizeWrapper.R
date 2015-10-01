@@ -22,19 +22,6 @@ saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   }
   excelFileName <<- writeResultsToExcel(tabs, allSensData, imgList, "sens")
   imgList <<- list()
-#   
-# 
-#   if(exporting) {
-#     tabs = list()
-#     
-#     for(i in specTabs) {
-#       tabs[[i]] = paste('Specificity', spec[[i]])
-#     }
-#     
-#     excelFileName <- writeResultsToExcel(tabs, allSensData, imgList)
-#     jsonString <- toJSON(excelFileName, method="C")
-#     return (jsonString)
-#   }
 
     return (toJSON(allSensData, .escapeEscape=TRUE))
 }
@@ -59,17 +46,7 @@ saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
   
   excelFileName <<- writeResultsToExcel(tabs, allSpecData, imgList, "spec")
   imgList <<- list()
-#   if(exporting) {
-#     tabs = list()
-#     
-#     for(i in sensTabs) {
-#       tabs[[i]] = paste('Sensitivity', sens[[i]])
-#     }
-#     
-#     
-#     jsonString <- toJSON(excelFileName, method="C");
-#     return (jsonString)
-#   }
+
     return (toJSON(allSpecData, .escapeEscape=TRUE))
 }
 
