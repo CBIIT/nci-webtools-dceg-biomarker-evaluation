@@ -1,7 +1,7 @@
 library('RJSONIO')
 library('stringr')
 source ('RiskStratAnalysisOptions.R', local=environment())
-
+source ('writeToExcel.R')
 imageDirectory <- "./tmp/";
 rdirectory <- "";
 drawfunctionprefix = "Draw"
@@ -142,6 +142,7 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     
     if (resultCheckData == "FALSE") {
         datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
+        
         joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(singleFixed[[1]][[1]])], table_error={errortrue=0}, prefix=key)
     }
     else{
