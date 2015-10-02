@@ -49,8 +49,14 @@ def call_rsa_RFunction():
     returnedData = list()
     if data["export"] == True:
         returnedData = r_getExcel();
-    else:    
+    else:
+        globalFixedValues = data[1]["fixed"]
+        globalIndependentType = data[1]["independentType"]
+        globalContourType = data[1]["contourType"]
+        globalFixedType = data[1]["fixedType"]
+        
         for i,x in enumerate(data):
+            
             abreviated_key = x["abreviatedKey"] #cNPV or PPV
             key_index=x["keyIndex"] #1 or 2
 
@@ -64,9 +70,6 @@ def call_rsa_RFunction():
 
             unique = str(x["uniqueId"])
             tab_value = str(x["tabValue"])
-            # add a variable for export when we start working on the export piece
-
-            #getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
 
             print "************************************ Before Sending to R **************************************************"
 
@@ -79,7 +82,7 @@ def call_rsa_RFunction():
             returnedData.insert(i, json.loads(result[0]))
         
             print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        r_createExcel(returnedData)
+        r_createExcel(returnedData, globalIndependentType, globalContourType)
     return json.dumps(returnedData)
 
 import argparse
