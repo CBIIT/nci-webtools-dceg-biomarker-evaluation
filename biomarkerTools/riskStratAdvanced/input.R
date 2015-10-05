@@ -32,7 +32,8 @@ createExcel <- function(data, independentType, contourType, fixedType, fixedValu
     excelFilename <<- writeResultsToExcel(data, tableHeaders)
 }
 
-#getCalculatedData("0.6,0.75,0.8,0.86,0.92","1,1.5,2,3","0.01,0.05,0.1","specificity","delta","prevalence","cNPV","1","3",123456)
+
+
 
 getCalculatedData <-
   function(independentStringValue, fixedStringValue, contourStringValue, independentType, fixedType, contourType, keyGraphName, keyNumber, tabValue, uniqueId) {
@@ -49,8 +50,7 @@ getCalculatedData <-
     
     # use length of fixedList to know how many tabs to create
     for (tabIndex in 1:length(fixedList)) {
-      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independentType, fixedType, contourType, keyGraphName, keyNumber,tabIndex , uniqueId, list(fixedList[tabIndex]))
-      
+      returnedDataGraph = getTable(independentStringValue, fixedStringValue, contourStringValue, independentType, fixedType, contourType, keyGraphName, keyNumber, tabIndex, uniqueId, list(fixedList[[tabIndex]]))
       resultsString = c(resultsString, returnedDataGraph)
     }
     resultsString[1] <- NULL
