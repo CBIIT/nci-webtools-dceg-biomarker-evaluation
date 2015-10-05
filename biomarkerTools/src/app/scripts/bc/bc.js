@@ -343,7 +343,7 @@ function do_calculation(){
     else {
         thisTool.find('#errors').addClass("hide");
 
-        uniqueKey = new Date().getTime();
+        uniqueKey = generateUniqueKey();
         var hostname = window.location.hostname;
         var service = "http://" + hostname + "/" + rest + "/bc/";
 

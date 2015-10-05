@@ -569,7 +569,8 @@ function calculate_riskStrat(){
                     fixedType : fixed_type,
                     uniqueId : uniqueKey,
                     abreviatedKey : keyvalueShort[shortkey],
-                    tabValue : thisFixedValue
+                    tabValue : thisFixedValue,
+                    export: false
                 });
             }
 
