@@ -54,9 +54,8 @@ def call_rsa_RFunction():
         globalIndependentType = data[1]["independentType"]
         globalContourType = data[1]["contourType"]
         globalFixedType = data[1]["fixedType"]
-        
+
         for i,x in enumerate(data):
-            
             abreviated_key = x["abreviatedKey"] #cNPV or PPV
             key_index=x["keyIndex"] #1 or 2
 
@@ -72,26 +71,30 @@ def call_rsa_RFunction():
             tab_value = str(x["tabValue"])
 
             print "************************************ Before Sending to R **************************************************"
+            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +$
 
-            result = r_getname_getCalculations(independent, fixed, contour, independent_type, 
+            result = r_getname_getCalculations(independent, fixed, contour, independent_type,
                     fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
-            print "************************************ Index "+ str(i) + " returned ******************************************"
+            print "************************************ Index " + str(i) + " returned ******************************************"
+
             # parse each returned json string and append to returnedData
             # use returnedData variable to pass entire dataset to a function for writing to excel
             returnedData.insert(i, json.loads(result[0]))
-        
+
             print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        r_createExcel(returnedData, globalIndependentType, globalContourType)
+        print json.dumps(returnedData)
+        r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
+
     return json.dumps(returnedData)
 
 import argparse
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", dest="port_number", default="9982", help="Sets the Port") 
+    parser.add_argument("-p", dest="port_number", default="9982", help="Sets the Port")
     # Default port is production value; prod,stage,dev = 9982, sandbox=9983
     args = parser.parse_args()
     port_num = int(args.port_number);
-	
+
     hostname = gethostname()
     app.run(host='0.0.0.0', port=port_num, debug = True)
