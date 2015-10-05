@@ -47,7 +47,7 @@ def call_rsa_RFunction():
     data = request.json
 
     returnedData = list()
-    if data["export"] == True:
+    if data[1]["export"] == True:
         returnedData = r_getExcel();
     else:
         globalFixedValues = data[1]["fixed"]
