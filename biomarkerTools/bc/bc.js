@@ -79,7 +79,7 @@ function validate_csv(file){
                     valuesFromFile = [];
 
                    
-                    for (var count = 1; count < lines.length;count++) {
+                    for (var count = 1; count < 11;count++) {
                         var arr = lines[count].split(",");
                         if(arr.length > 1) {
                             if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
@@ -96,7 +96,7 @@ function validate_csv(file){
                     }
                 }
 
-                if(valuesFromFile.length == lines.length - 1) {
+                if(valuesFromFile.length == 10) {
                     valid = true;
                    
                     inputElm.find('.row:not(".non-data-row")').each(function(i, row) {
