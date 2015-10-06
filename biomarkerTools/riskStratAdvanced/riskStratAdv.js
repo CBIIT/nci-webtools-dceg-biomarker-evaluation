@@ -682,7 +682,7 @@ function retrieve_excel() {
        if(excel_file.length <= 1)
            display_errors(["There was a problem generating the excel file."]);
         else
-            window.open(excel_file[0]);
+            window.open(excel_file);
     });
 }
 

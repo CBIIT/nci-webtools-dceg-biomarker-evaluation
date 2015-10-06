@@ -47,13 +47,13 @@ def call_rsa_RFunction():
     data = request.json
 
     returnedData = list()
-    if data[1]["export"] == True:
-        returnedData = r_getExcel();
+    if data[0]["export"] == True:
+        returnedData = r_getExcel()[0];
     else:
-        globalFixedValues = data[1]["fixed"]
-        globalIndependentType = data[1]["independentType"]
-        globalContourType = data[1]["contourType"]
-        globalFixedType = data[1]["fixedType"]
+        globalFixedValues = data[0]["fixed"]
+        globalIndependentType = data[0]["independentType"]
+        globalContourType = data[0]["contourType"]
+        globalFixedType = data[0]["fixedType"]
 
         for i,x in enumerate(data):
             abreviated_key = x["abreviatedKey"] #cNPV or PPV
@@ -84,7 +84,7 @@ def call_rsa_RFunction():
 
             print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         print json.dumps(returnedData)
-        #r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
+        r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
 
     return json.dumps(returnedData)
 
