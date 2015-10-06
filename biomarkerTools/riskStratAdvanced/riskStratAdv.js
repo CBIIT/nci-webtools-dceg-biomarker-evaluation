@@ -670,7 +670,7 @@ function getData(data) {
     });
 }
 
-function retrieve_excel() {
+function retrieve_excel(e) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
     $.ajax({
@@ -678,16 +678,18 @@ function retrieve_excel() {
         url : service,
         data : JSON.stringify([{ export: true }]),
         dataType : "json",
-        contentType: "application/json",
+
         success: function(excel_file) {
             if(excel_file.length <= 1)
                 display_errors(["There was a problem generating the excel file."]);
             else
-                window.open([excel_file]);
+                window.location = excel_file;
                 return false;
         },
         error: default_ajax_error
     });
+    
+    e.preventDefault();
 }
 
 function createTab(singleFixed, fixedIndex, fixedType,independentType, contourType, tabElement ){
