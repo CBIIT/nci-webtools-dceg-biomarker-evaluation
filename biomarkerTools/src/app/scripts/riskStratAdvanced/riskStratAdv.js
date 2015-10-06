@@ -668,6 +668,7 @@ function getData(data) {
         dataType : "json",
         contentType: "application/json"
     }).then(function(data_array) {
+        thisTool.find("#download").removeClass("hide");
         return JSON.parse(JSON.stringify(data_array));
     });
 }
