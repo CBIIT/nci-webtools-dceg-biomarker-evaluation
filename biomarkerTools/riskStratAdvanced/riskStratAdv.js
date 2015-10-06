@@ -678,6 +678,7 @@ function retrieve_excel(e) {
         url : service,
         data : JSON.stringify([{ export: true }]),
         dataType : "json",
+        contentType: "application/json",
         success: function(excel_file) {
             if(excel_file.length <= 1)
                 display_errors(["There was a problem generating the excel file."]);
