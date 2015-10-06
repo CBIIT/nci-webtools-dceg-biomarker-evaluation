@@ -527,6 +527,7 @@ function calculate_riskStrat(){
         var numberOfKeysForCurrentFunction = 0;
 
         var keyvalueIndex = getKeyValueIndex(independent_type, fixed_type, contour_type);
+
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
 

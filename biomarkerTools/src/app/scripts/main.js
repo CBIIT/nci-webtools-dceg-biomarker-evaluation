@@ -11,6 +11,14 @@ $(document).ready(function(){
     this.title = "Biomarker Tools: Home";
 });
 
+function generateUniqueKey(){
+    Math.seedrandom();
+    var multiples = [100, 1000, 10000, 100000, 1000000, 10000000,100000000, 1000000000];
+    var randomKey = Math.floor(Math.random() * multiples[Math.floor(Math.random() * multiples.length)]);
+    
+    return randomKey;
+}
+
 function disableAll(){
     // Disable all controls for use during ajax request
     activeRequest = true;
@@ -134,6 +142,7 @@ function display_errors(message) {
 
     thisTool.find('#errors').fadeIn();
     document.querySelector('header').scrollIntoView(true);
+
 }
 
 function termDisplay(){
