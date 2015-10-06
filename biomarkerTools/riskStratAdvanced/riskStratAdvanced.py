@@ -18,9 +18,10 @@ import pandas.rpy.common as com
 import urllib
 
 app = Flask(__name__, static_folder='', static_url_path='/')
-#app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-r_getname_getData = robjects.globalenv['RSA']['getDataJSON']
+r_getname_getCalculations = robjects.globalenv['RSA']['getCalculatedData']
+r_getExcel = robjects.globalenv['RSA']['getExcelFile']
+r_createExcel = robjects.globalenv['RSA']['createExcel']
 
 @app.route('/')
 def index():
@@ -34,7 +35,6 @@ def jsonp(func):
         if callback:
             data = str(func(*args, **kwargs).data)
             content = str(callback) + '(' + data + ')'
-            #mimetype = 'application/javascript'
             mimetype = 'application/json'
             return current_app.response_class(content, mimetype=mimetype)
         else:
@@ -42,23 +42,59 @@ def jsonp(func):
     return decorated_function
 
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
-@jsonp
+
 def call_rsa_RFunction():
-    thestream=request.stream.read();
-    print " input stream "+str(thestream);
-    jsondata = r_getname_getData(thestream)
-    print "json string >> "+str(jsondata[0]);
-    return jsondata[0]
+    data = request.json
 
+    returnedData = list()
+    if data[0]["export"] == True:
+        returnedData = r_getExcel()[0];
+    else:
+        globalFixedValues = data[0]["fixed"]
+        globalIndependentType = data[0]["independentType"]
+        globalContourType = data[0]["contourType"]
+        globalFixedType = data[0]["fixedType"]
 
+        for i,x in enumerate(data):
+            abreviated_key = x["abreviatedKey"] #cNPV or PPV
+            key_index=x["keyIndex"] #1 or 2
+
+            contour = str(x["contour"])
+            independent = str(x["independent"])
+            fixed = str(x["fixed"])
+
+            contour_type = str(x["contourType"]) # contour dropdown values
+            independent_type = str(x["independentType"]) # independent dropdown values
+            fixed_type = str(x["fixedType"]) # fixed dropdown values
+
+            unique = str(x["uniqueId"])
+            tab_value = str(x["tabValue"])
+
+            print "************************************ Before Sending to R **************************************************"
+            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +"')"
+
+            result = r_getname_getCalculations(independent, fixed, contour, independent_type,
+                    fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
+
+            print "************************************ Index " + str(i) + " returned ******************************************"
+
+            # parse each returned json string and append to returnedData
+            # use returnedData variable to pass entire dataset to a function for writing to excel
+            returnedData.insert(i, json.loads(result[0]))
+
+            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        print json.dumps(returnedData)
+        r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
+
+    return json.dumps(returnedData)
 
 import argparse
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", dest="port_number", default="9982", help="Sets the Port") 
+    parser.add_argument("-p", dest="port_number", default="9982", help="Sets the Port")
     # Default port is production value; prod,stage,dev = 9982, sandbox=9983
     args = parser.parse_args()
     port_num = int(args.port_number);
-	
+
     hostname = gethostname()
     app.run(host='0.0.0.0', port=port_num, debug = True)

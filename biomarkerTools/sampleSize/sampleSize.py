@@ -16,6 +16,7 @@ app = Flask(__name__)
 
 r_saveAllSensGraphs = robjects.globalenv['SS']['saveAllSensGraphs']
 r_saveAllSpecGraphs = robjects.globalenv['SS']['saveAllSpecGraphs']
+r_getExcel = robjects.globalenv['SS']['getExcel']
 @app.route('/')
 def index():
     # Render template
@@ -35,20 +36,24 @@ def sampleSizeRest():
     fixed_flag=data["fixed_flag"]
     sens=data["sens"].split(',')
     spec=data["spec"].split(',')
-    
+    exp=data["export"]
     start = time.time()
     print "Starting Benchmark"
     
-    if fixed_flag == "Specificity":
-    	jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+    if exp == True:
+        jsonrtn = r_getExcel()
     else:
-        jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id))
+        if fixed_flag == "Specificity":
+            jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
+        else:
+            jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
 
     jsonlist=list(jsonrtn)
 
     #2
     jsonstring=''.join(jsonlist)
     print jsonstring
+    
     return jsonstring 
 
 import argparse

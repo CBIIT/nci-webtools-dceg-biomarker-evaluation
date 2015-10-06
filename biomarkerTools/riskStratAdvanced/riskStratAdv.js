@@ -165,6 +165,7 @@ var keyLong = [
     } ];
 
 var thisTool;
+var columnHeadings;
 
 function init_riskStrat(){  
     thisTool = $("#riskStratAdvanced");
@@ -190,7 +191,7 @@ $(document).ready(function(){
     thisTool.find("input").keyup(checkInputFields);
     thisTool.find("input").change(checkInputFields);
     thisTool.find("#add-test-data").click(addTestData);
-
+    thisTool.find("#download").on("click", retrieve_excel);
     thisTool.find("#calculate").on("click", function(e) {
         e.preventDefault();
         $("#errors").fadeOut().addClass("hide");
@@ -296,7 +297,7 @@ function resetPage() {
     makeSelectionsUnique(functionnames, "independent_dropdown_rs");
     thisTool.find("span.variable-example").text("");
     thisTool.find("option").removeAttr("disabled");
-    thisTool.find("#errors, #spinner").addClass("hide");
+    thisTool.find("#errors, #spinner, #download").addClass("hide");
     thisTool.find("select").val("");
     thisTool.find("input").val("");
     thisTool.find("#output").empty();
@@ -466,8 +467,7 @@ function checkInputFields() {
     }
 }
 
-function calculate_riskStrat() {
-
+function validate_inputs(){
    
     var checkInput = [];
     thisTool.find("input, select").each(function(){
@@ -479,7 +479,7 @@ function calculate_riskStrat() {
     if ($.inArray(false, checkInput) >= 0) {
         rulesViolationMsg.push("Invalid input array. Enter a valid array of floating point values.");
         display_errors(rulesViolationMsg);
-        return;
+        return false;
     }
 
     if (rulesViolationMsg.length > 0) {
@@ -487,54 +487,46 @@ function calculate_riskStrat() {
         thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
         thisTool.find("#spinner").addClass("hide");
         enableAll();
+        return false;
     }
     else {
         thisTool.find("#errors").fadeOut().addClass("hide");
         thisTool.find("#calculate").attr("disabled","").text("Please Wait....");
         thisTool.find("#spinner").removeClass("hide");
-        disableAll();  
-    }
+        disableAll();
+        return true;
+    } 
+}
 
-    var fixedArray = "";
-    var contourArray = "";
-    var independentArray = "";
-
-    independentArray = thisTool.find("#independent_rs").val();
+function calculate_riskStrat(){
    
-    independentArray = independentArray.replace(/[^\d,.-]/g, '');
-    var independentval = thisTool.find("#independent_dropdown_rs").val();
-    independentArraySplit = independentArray.split(",");
-    var independentMin = Math.min.apply(Math, independentArraySplit);
-    var independentMax = Math.max.apply(Math, independentArraySplit);
-    contourArray = thisTool.find("#contour_rs").val();
-   
-    contourArray = contourArray.replace(/[^\d,.-]/g, '');
-    var contourval = thisTool.find("#contour_dropdown_rs").val();
-    var columnHeadings = contourArray.split(",");
-    fixedArray = thisTool.find("#fixed_rs").val();
-   
-    fixedArray = fixedArray.replace(/[^\d,.-]/g, '');
-    var fixedval = thisTool.find("#fixed_dropdown_rs").val();
-    var fixedArraySplit = fixedArray.split(",");
-    var fixedArraySize = fixedArraySplit.length;
+    var validated = validate_inputs();
 
-    var fixed_dropdown = thisTool.find("#fixed_dropdown_rs").val();
+    if(validated){
+       
+        var independent_type = thisTool.find("#independent_dropdown_rs").val();
+        var independent_values = thisTool.find("#independent_rs").val().replace(/[^\d,.-]/g, '');
+        var indSplit = independent_values.split(",");
+        var indMin = Array.min(indSplit);
+        var indMax = Array.max(indSplit);
 
+        var contour_type = thisTool.find("#contour_dropdown_rs").val();
+        var contour_values = thisTool.find("#contour_rs").val().replace(/[^\d,.-]/g, '');
+        var columnHeadings = contour_values.split(",");
 
-    uniqueKey = generateUniqueKey();
+        var fixed_type = thisTool.find("#fixed_dropdown_rs").val();
+        var fixed_values = thisTool.find("#fixed_rs").val().replace(/[^\d,.-]/g, '');
+        var fixedSplit = fixed_values.split(",");
+        var uniqueKey = (new Date()).getTime();
 
-    var tabkey = [ "Prevalence_Odds_Length" ];
-    var titlekeys = [
-        "Sensitivity required to achieve specified PPV given prevalence and specificity",
-        "Delta required to achieve specified PPV given prevalence and specificity" ];
+        var abbreviatedkeys = [ "Sensitivity", "Delta" ];
+        var numberOfKeysForCurrentFunction = 0;
 
-    var abbreviatedkeys = [ "Sensitivity", "Delta" ];
-    var numberOfKeysForCurrentFunction = 0;
+        var keyvalueIndex = getKeyValueIndex(independent_type, fixed_type, contour_type);
 
-    var keyvalueIndex = getKeyValueIndex(independentval, fixedval, contourval);
-    if (keyvalueIndex >= 0) {
         var keyvalueShort = keyShort[keyvalueIndex];
         var keyvalueLong = keyLong[keyvalueIndex];
+
         for ( var key in keyvalueShort) {
             numberOfKeysForCurrentFunction++;
         }
@@ -546,86 +538,82 @@ function calculate_riskStrat() {
 
         tableFirstRowLabel = selectedIndependentValue;
         tableFirstColLabel = selectedContourValue;
+
         open_threads = numberOfKeysForCurrentFunction.length;
         error_count = 0;
 
-        thisTool.find("#output").addClass("hide").empty();
+        var request_data = [];
+        var tableTitle = "";
 
        
+       
+       
+
+        thisTool.find("#output").addClass("hide").empty();
         tabs = $("<div id='tabs'> </div>");
         thisTool.find("#output").append(tabs);
         tab_names = $("<UL> </UL>");
         tabs.append(tab_names);
 
-        for (var i = 0; i < fixedArraySplit.length; i++) {
-            tab_names.append("<LI><a  class='extra-padding' href='#fixed-" + (i + 1) +
-                             "'>" + fixed_dropdown + " "+ fixedArraySplit[i] +
+        for (var fixedIndex = 0; fixedIndex < fixed_values.split(",").length; fixedIndex++) {
+            var thisFixedValue = fixedSplit[fixedIndex];
+            for ( var shortkey in keyvalueShort) {
+                request_data.push({
+                    keyIndex : shortkey,
+                    independentType : independent_type,
+                    independent : independent_values,
+                    independentMin : indMin, 
+                    independentMax : indMax,
+                    contourType : contour_type,
+                    contour : contour_values,
+                    fixed : fixed_values,
+                    fixedType : fixed_type,
+                    uniqueId : uniqueKey,
+                    abreviatedKey : keyvalueShort[shortkey],
+                    tabValue : thisFixedValue,
+                    export: false
+                });
+            }
+
+            tab_names.append("<LI><a  class='extra-padding' href='#fixed-" + (fixedIndex + 1) +
+                             "'>" + fixed_type + " "+ thisFixedValue +
                              "</a></LI>");
-            tab_pane = $("<div class='tab-pane' id='fixed-" + (i + 1)+ 
+
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (fixedIndex + 1) + 
                          "' >  </div>");
             tabs.append(tab_pane);
-
-            for ( key in keyvalueShort) {
-
-                $("#graphic-" + keyvalueShort[key] + (i + 1) +", #table-" + 
-                  keyvalueShort[key] + (i + 1)).empty();
-
-                table_graph_div = $("<div class='row set-" + 
-                                    keyvalueShort[key] + 
-                                    (i + 1) + 
-                                    "' class='pull-left'></div>");
-                tab_pane.append(table_graph_div);
-                graphic_side = ("<div class='graphic-side pull-right' id='graphic-" + 
-                                keyvalueShort[key] + (i + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
-                table_graph_div.append(graphic_side);
-                table_side = $("<div class='table-side col-md-6 pull-left' id='table-" + 
-                               keyvalueShort[key] + (i + 1) + 
-                               "'><div class='table-title extra-padding'>" + keyvalueLong[key] + 
-                               "</div></div>");
-                table_graph_div.append(table_side);
-            }
-        }
-        tabs.tabs();
-
-        var promises = [];//store promises in an array
-
-        for (var fixedValue = 0; fixedValue < fixedArraySplit.length; fixedValue++) {
-            tabindex = fixedValue + 1;
-
-            for ( var shortkey in keyvalueShort) {
-                var promise = getData({
-                    key : keyvalueShort[shortkey],
-                    keyindex : shortkey,
-                    independentval : independentval,
-                    fixedval : fixedval,
-                    contourval : contourval,
-                    independent : independentArray,
-                    fixed : fixedArray,
-                    Contour : contourArray,
-                    Specmin : independentMin,
-                    Specmax : independentMax,
-                    uniqueId : uniqueKey,
-                    tab : tabindex,
-                    tabvalue : fixedArraySplit[fixedValue],
-                    abreviatedkey : keyvalueShort[shortkey]
-                }, keyvalueShort[shortkey], tabindex,
-                                      fixedArraySplit[fixedValue], uniqueKey,
-                                      keyvalueShort[shortkey], columnHeadings);
-
-                promises.push([promise, tabindex, keyvalueShort[shortkey]]);
-            }
+            var tabId = "#fixed-" + (fixedIndex + 1);
+            createTab(thisFixedValue, fixedIndex, fixed_type, independent_type, contour_type, tabId);
         }
 
-        $.when.apply($, promises);
-    }
-    else {
-        thisTool.find("#output").empty();
-        thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-        thisTool.find("#spinner").addClass("hide");
-        enableAll();
+        getData(request_data).done(function(data_array) {
+           
+
+            if (data_array.length > 0){
+
+               
+                for (var i = 0; i < data_array.length; i++) {
+                    for (var j = 0; j < fixedSplit.length; j++) {
+                        fillTable(data_array[i], columnHeadings, j);
+                    }
+                }
+
+            }
+            tabs.tabs();
+            
+            thisTool.find("#download").removeClass("hide");
+            return data_array;
+        }).fail(function(request, status, error){
+            default_ajax_error(request, status, error);
+            thisTool.find("#output").addClass("hide").empty().html("");
+        }).always(function(){
+            if($.active <= 1) after_requests();
+        });
+
     }
 
 }
+
 function after_requests(){
     if($.active == 1){
         thisTool.find("#output").removeClass("hide");
@@ -662,117 +650,172 @@ function getFunctionName(independent, fixed, contour) {
     return (rFileName);
 }
 
-function getData(data, tableTitle, tabnumber, tabValue, uniqueKey,
-                  abbreviatedKey, columnHeadings) {
 
+function getData(data) {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
-    $.ajax({
+    if(window.location.host == "localhost") {
+        service = "http://" + window.location.hostname + window.location.pathname + "riskStratAdvanced/test_result.json";
+    }
+
+    return $.ajax({
         type : "POST",
         url : service,
-        data : data,
+        data : JSON.stringify(data),
         dataType : "json",
         contentType: "application/json"
-    }).done(function(data) {
-        if (data.length > 0){
-            data = JSON.parse(JSON.stringify(data));
-            fillTable(data, columnHeadings, tabnumber, abbreviatedKey);
-            loadImage(tabnumber,tabValue.trim(), uniqueKey, abbreviatedKey);
-        }
-        else {
-            display_errors("No data to display for tab " + tabnumber);
-        }
-        return data;
-    }).fail(function(request, status, error){
-        default_ajax_error(request, status, error);
-        thisTool.find("#tabs").addClass("hide").empty().html("");
-    }).always(function(){
-        if($.active <= 1) after_requests();
+    }).then(function(data_array) {
+        thisTool.find("#download").removeClass("hide");
+        return JSON.parse(JSON.stringify(data_array));
     });
 }
 
-function fillTable(jsonTableData, columnHeadings, tabnumber, abbreviatedKey) {
-    var tableId = "example-" + abbreviatedKey + tabnumber;
-    thisTool.find("#table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
+function retrieve_excel() {
+    var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
-    if( $.fn.DataTable.isDataTable(thisTool.find("#" + tableId)) ){
-        thisTool.find("#" + tableId).dataTable().fnDestroy();
-        thisTool.find("#" + tableId).empty();
+    return $.ajax({
+        type : "POST",
+        url : service,
+        data : JSON.stringify([{ export: true }]),
+        dataType : "json",
+        contentType: "application/json"
+    }).then(function(excel_file) {
+       if(excel_file.length <= 1)
+           display_errors(["There was a problem generating the excel file."]);
+        else
+            window.open(excel_file);
+    });
+}
+
+function createTab(singleFixed, fixedIndex, fixedType,independentType, contourType, tabElement ){
+
+    var keyvalueIndex = getKeyValueIndex(independentType, fixedType, contourType);
+
+    var keyvalueShort = keyShort[keyvalueIndex];
+    var keyvalueLong = keyLong[keyvalueIndex];
+
+    for (var key in keyvalueShort) {
+
+        $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" + 
+          keyvalueShort[key] + (fixedIndex + 1)).empty();
+
+        table_graph_div = $("<div class='row set-" + 
+                            keyvalueShort[key] + 
+                            (fixedIndex + 1) + 
+                            "' class='pull-left'></div>");
+        thisTool.find(tabElement).append(table_graph_div);
+        graphic_side = ("<div class='graphic-side pull-right' id='graphic-" + 
+                        keyvalueShort[key] + (fixedIndex + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
+        table_graph_div.append(graphic_side);
+        table_side = $("<div class='table-side col-md-6 pull-left' id='table-" + 
+                       keyvalueShort[key] + (fixedIndex + 1) + 
+                       "'><div class='table-title extra-padding'>" + keyvalueLong[key] + 
+                       "</div></div>");
+        table_graph_div.append(table_side);
     }
 
+}
+
+function fillTable(resultObject, columnHeadings, index) {
+
+    var singleDataObject = resultObject[index];
 
     var independentArray = thisTool.find("#independent_rs").val();
     independentArraySplit = independentArray.split(",");
 
-    var arr = [];
-    var tableData = jsonTableData[0].data;
-    var tableError = jsonTableData[0].table_error;
-    var graphError = jsonTableData[0].graph_error;
-    var tableErrorValue = tableError[0].errortrue;
-    var graphErrorValue = graphError[0].errortrue;
-    if (tableErrorValue != 1) {
-        rows = tableData.length;
-        for (var i = 0; i < tableData.length; i++) {
-            var values = [];
-            row_entries = tableData[i];
-            for ( var key in row_entries) {
-                values.push(row_entries[key]);
+    if(singleDataObject.length === 0) return false;
+    else {
+        var abbreviatedKey = singleDataObject.prefix;
+        var tabnumber = singleDataObject.tabId;
+
+        var tableId = "example-" + abbreviatedKey + tabnumber;
+        var tabElement = "#fixed-" +tabnumber;
+
+        var tableElement = thisTool.find(tabElement + " #" + tableId);
+
+        if( tableElement[0] ) {
+            if($.fn.DataTable.isDataTable(tableElement)){
+                tableElement.dataTable().fnDestroy();
+                tableElement.empty();
             }
-            arr.push(values);
         }
 
-        var headings = [];
-        for ( i = 0; i < columnHeadings.length; i++) {
-            headings.push({
-                "sTitle" : columnHeadings[i]
+        thisTool.find(tabElement+" #table-" + abbreviatedKey + tabnumber + " #" + tableId).html("");
+
+        var arr = [];
+        var tableData = singleDataObject.data;
+        var tableError = singleDataObject.table_error;
+        var graphError = singleDataObject.graph_error;
+
+
+        if (tableError != 1) {
+            var rows = tableData.length;
+            for (var i = 0; i < rows; i++) {
+                var values = [];
+                row_entries = tableData[i];
+               
+               
+                for ( var key in columnHeadings) {
+                    var columnInd = columnHeadings[key];
+                    values.push(row_entries[columnInd]);
+                }
+                arr.push(values);
+            }
+
+            var headings = [];
+            for (i = 0; i < columnHeadings.length; i++) {
+                headings.push({
+                    "sTitle" : columnHeadings[i]
+                });
+            }
+
+            var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
+                          tableId + "'></table>");
+
+            table.dataTable({
+                "aaData" : arr,
+                "aoColumns" : headings,
+                "bJQueryUI" : true,
+                "bAutoWidth" : false,
+                "bFilter" : false,
+                "bSearchable" : false,
+                "bInfo" : false,
+                "bSort" : false,
+                "bPaginate" : false,
+                "bDestroy" : true,
+                "aaSorting" : [ [ 0, "asc" ] ]
             });
+
+            $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
+
+            thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
+                "<td class='ui-state-default' colspan='2'></td>");
+
+            i = 0;
+            thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
+                function() {
+                    $(this).prepend(
+                        "<th class='ui-state-default sorting_disabled'>" + 
+                        independentArraySplit[i] + "</th>");
+                    i++;
+                });
+
+           
+            thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
+                "<th class='header' rowspan='" + independentArraySplit.length + 
+                "'><div class='vertical-text'>" + tableFirstRowLabel + 
+                "</div></th>");
+
+           
+            thisTool.find(tabElement + " #" + tableId + " thead").prepend(
+                "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
+                tableFirstColLabel + "</th></tr>");
+            if(graphError != 1)
+                loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
         }
-
-        var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
-                      tableId + "'></table>");
-        $("#table-" + abbreviatedKey + tabnumber).append(table);
-
-        table.dataTable({
-            "aaData" : arr,
-            "aoColumns" : headings,
-            "bJQueryUI" : true,
-            "bAutoWidth" : false,
-            "bFilter" : false,
-            "bSearchable" : false,
-            "bInfo" : false,
-            "bSort" : false,
-            "bPaginate" : false,
-            "bDestroy" : true,
-            "aaSorting" : [ [ 0, "asc" ] ]
-        });
-       
-        thisTool.find("#" + tableId + " tr:first").prepend(
-            "<td class='ui-state-default' colspan='2'></td>");
-        i = 0;
-        thisTool.find("#" + tableId + " tr:not(:first)").each(
-            function() {
-                $(this).prepend(
-                    "<th class='ui-state-default sorting_disabled'>" + 
-                    independentArraySplit[i] + "</th>");
-                i++;
-            });
-
-       
-        thisTool.find("#" + tableId + " tr:eq(1)").prepend(
-            "<th class='header' rowspan='" + independentArraySplit.length + 
-            "'><div class='vertical-text'>" + tableFirstRowLabel + 
-            "</div></th>");
-
-       
-        thisTool.find("#" + tableId + " thead").prepend(
-            "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
-            tableFirstColLabel + "</th></tr>");
-    } else {
-        if (graphErrorValue != 1) {
-            display_errors([tableError[1].message, graphError[1].message ]);
+        else {
+            display_errors([ singleDataObject.message ]);
         }
-        else
-            display_errors([tableError[1].message]);
     }
 }
 
@@ -788,13 +831,12 @@ function getColumnHeaderData(columnHeadings) {
     return columnHeaderData2d;
 }
 
-function loadImage(tabNumber, tabValue, uniqueId, graphNamePreFix) {
+function loadImage(tabNumber, graphNamePreFix, graphFilename) {
     var imageContainer = thisTool.find("#graphic-" + graphNamePreFix + tabNumber);
     imageContainer.empty();
 
     imageContainer.append(
-        "<img class='img-responsive' src='tmp/" + 
-        graphNamePreFix + uniqueId + "-" + tabValue + ".png' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
+        "<img class='img-responsive' src='" + graphFilename + "' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
 }
 
 function refreshGraph(drawgraph) {
@@ -807,11 +849,6 @@ function refreshGraph(drawgraph) {
 
     var d = new Date();
     thisTool.find("#graph").attr("src", graph_file + d.getTime());
-}
-
-function ajax_error(jqXHR, exception) {
-    refreshGraph(1);
-    display_errors("ajax problem");
 }
 
 function makeSelectionsUnique(originalOptions, elementId) {
@@ -846,18 +883,15 @@ function makeSelectionsUnique(originalOptions, elementId) {
         removeAllOptions(dropdownBoxId);
         addAllOptions(dropdownBoxId, originalOptions, disabledValues);
 
-
         thisTool.find("#" + dropdownBoxId).val(selectedValues[key]).change();
     }
 
     setInitialValue(elementId);
     checkForInvalidVariableCombo(elementId);
     activeSelectionChange = false;
-
 }
 
 function removeAllOptions(eid) {
-
     var element = thisTool.find("#"+eid)[0];
     for (var i = element.options.length - 1; i >= 0; i--) {
         element.remove(i);
@@ -882,7 +916,6 @@ function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
 }
 
 function setInitialValue(textboxId) {
-
     var selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
     var key = $.inArray(selectedOption, functionnames);
 
@@ -938,3 +971,14 @@ function checkForInvalidVariableCombo() {
         return;
     }
 }
+
+
+Array.max = function( array ){
+    array = array.map(Number);
+    return Math.max.apply( Math, array );
+};
+
+Array.min = function( array ){
+    array = array.map(Number);
+    return Math.min.apply( Math, array );
+};

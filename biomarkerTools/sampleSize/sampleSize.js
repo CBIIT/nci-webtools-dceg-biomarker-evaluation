@@ -1,7 +1,8 @@
 var thisTool;
-
+var spinner;
 function init_sampleSize(){
     thisTool = $("#sampleSize");
+    spinner = thisTool.find("#spinner");
     random_gen();
 }    
 
@@ -11,7 +12,6 @@ $('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
 
 $(function(){
     init_sampleSize();
-
 });
 
 function checkValidity(){
@@ -25,7 +25,7 @@ function checkValidity(){
         else if(!valObject.valid && !valObject.stepMismatch) {
             if($(el)[0].title !== "") messages.push($(el)[0].title);
         }
-        
+
         else if(el.id == "contour" || el.id == "fixed") {
             var values = $(el).val().split(',');
 
@@ -55,47 +55,23 @@ thisTool.find('.post').click(function(){
         display_errors(valid[1]);
     }
     else {
-        disableAll();
-        var service = "http://" + window.location.hostname + "/" + rest + "/sampleSize/" ;
-        
-        thisTool.find("#spinner").removeClass("hide");
-
-       
-        document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
-
-        thisTool.find(".post").attr('disabled','').text("Please Wait....");
-        thisTool.find("#spinner").removeClass("hide");
-
-        var request = function(){ 
-            $.ajax({
-                type: 'POST',
-               
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
-                    sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
-                    spec: trim_spaces(thisTool.find("#specificity_val").text()),
-                    prev: thisTool.find("#prevalence").val(),
-                    N: thisTool.find("#n_value").val(),
-                    unique_id: thisTool.find("#randomnumber").text(),
-                    fixed_flag:thisTool.find("#fixed_flag").text() 
-                }),
-               
-                dataType: 'json',
-                url: service
-            }).then(function (ret) {
-                thisTool.find("#spinner").addClass("hide");
+        var request = function(){
+            sampleSizeRequest(false).then(function (ret) {
+                spinner.addClass("hide");
                 thisTool.find("#output_graph").empty();
-                generate_tabs(thisTool.find("#fixed").val(),thisTool.find("#randomnumber").text());
+                generate_tabs(thisTool.find("#fixed").val(),
+                              thisTool.find("#randomnumber").text());
                 generate_tables(ret);
                 random_gen();
+                spinner.removeClass("hide");
+                thisTool.find(".download").removeClass("hide");
             },
             function(jqXHR, textStatus, errorThrown) {
                 default_ajax_error(jqXHR, textStatus, errorThrown);
             }).always(function(){
                 enableAll();
                 thisTool.find(".post").removeAttr('disabled').text("Calculate");
-                thisTool.find("#spinner").addClass("hide");
+                spinner.addClass("hide");
             });
         };
 
@@ -104,11 +80,7 @@ thisTool.find('.post').click(function(){
     return false;
 });
 
-thisTool.find('.reset').click(function(){
-    thisTool.find('input').val("");
-    thisTool.find("#output_graph").empty();
-    thisTool.find("#errors").addClass("hide");
-});
+thisTool.find('.reset').click(reset_code);
 
 thisTool.find("#add-test-data").click(function() {
     example_code();
@@ -290,7 +262,9 @@ function reset_code(){
     thisTool.find("#minInput").val(0.0);
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph").empty();
-    thisTool.find("#spinner, #error").addClass("hide");
+    thisTool.find("#errors, .download").addClass("hide");
+    
+    spinner.addClass("hide");
     thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
 
@@ -298,3 +272,70 @@ function random_gen(){
     var randomno = generateUniqueKey();
     thisTool.find("#randomnumber").text(randomno);
 }
+
+thisTool.find(".download").on("click", retrieve_excel);
+
+function retrieve_excel() {
+    return sampleSizeRequest(true)
+        .then(
+        function (excelFileRequest) {
+            if(excelFileRequest.length > 0)
+                window.open(excelFileRequest);
+            else {
+                display_errors("There was a problem generating or downloading the excel file.");
+                console.log("problem generating excel file");
+            }
+        },
+        function(jqXHR, textStatus, errorThrown) {
+            default_ajax_error(jqXHR, textStatus, errorThrown);
+        })
+        .always(
+        function() {
+            enableAll();
+            thisTool.find(".post").removeAttr('disabled').text("Calculate");
+            spinner.addClass("hide");
+        });
+}
+
+function sampleSizeRequest(exporting){
+
+    hostname = window.location.hostname;
+    url = "http://" + hostname +"/" + rest + "/sampleSize/";
+    
+    disableAll();
+    thisTool.find(".post").attr('disabled','').text("Please Wait....");
+    spinner.removeClass("hide");
+
+   
+    document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
+
+   
+   
+   
+   
+   
+   
+   
+
+    return $.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify({
+            k: thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val(),
+            export:exporting,
+            sens: trim_spaces(thisTool.find("#sensitivity_val").text()),
+            spec: trim_spaces(thisTool.find("#specificity_val").text()),
+            prev: thisTool.find("#prevalence").val(),
+            N: thisTool.find("#n_value").val(),
+            unique_id: thisTool.find("#randomnumber").text(),
+            fixed_flag: thisTool.find("#fixed_flag").text()
+        }),
+        dataType: "json",
+        contentType: "application/json"
+    }).always(function(){
+        thisTool.find("#calculate_button").text("Calculate");
+        enableAll();
+        spinner.addClass("hide");
+    });
+}
+

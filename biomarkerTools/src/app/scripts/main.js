@@ -141,7 +141,8 @@ function display_errors(message) {
                                               "<ul class='list-unstyled'>" + text + "</ul></div>");
 
     thisTool.find('#errors').fadeIn();
-    document.querySelector('#main').scrollIntoView(true);
+    document.querySelector('header').scrollIntoView(true);
+
 }
 
 function termDisplay(){
