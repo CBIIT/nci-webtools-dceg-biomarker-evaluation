@@ -46,7 +46,7 @@ getCalculatedData <-
     # separate comma delimited string into lists
     fixedList = as.list(strsplit(fixedStringValue, ",")[[1]]);
     contourList = as.list(strsplit(contourStringValue, ",")[[1]]);
-    indList = as.list(strsplit(independentStringValue,",")[[1]]);
+    indList = as.list(strsplit(independentStringValue, ",")[[1]]);
     
     # use length of fixedList to know how many tabs to create
     for (tabIndex in 1:length(fixedList)) {
