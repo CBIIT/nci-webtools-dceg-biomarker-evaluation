@@ -143,7 +143,8 @@ getTable <-function(independentStringValues, fixedStringValues, contourStringVal
     if (resultCheckData == "FALSE") {
         datatransposed <- getTransposedData(independent, fixed, contour, tranposeorder, resultdata[[as.numeric(keynumber)]]);
         
-        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(resultdata$Delta[[tabvalue]])], table_error={errortrue=0}, prefix=key)
+        #joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(resultdata$Delta[[tabvalue]])], table_error={errortrue=0}, prefix=key)
+        joined <- list(tabId=paste(key,"-",tabvalue, sep=""), data=datatransposed[,,as.numeric(tabvalue)], table_error={errortrue=0}, prefix=key)
     }
     else{
         joined <- list(tabId="", data={}, table_error={errortrue=1},prefix="")

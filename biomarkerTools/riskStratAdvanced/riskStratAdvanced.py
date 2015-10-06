@@ -71,7 +71,7 @@ def call_rsa_RFunction():
             tab_value = str(x["tabValue"])
 
             print "************************************ Before Sending to R **************************************************"
-            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +$
+            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +"')"
 
             result = r_getname_getCalculations(independent, fixed, contour, independent_type,
                     fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
@@ -84,7 +84,7 @@ def call_rsa_RFunction():
 
             print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         print json.dumps(returnedData)
-        r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
+        #r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
 
     return json.dumps(returnedData)
 
