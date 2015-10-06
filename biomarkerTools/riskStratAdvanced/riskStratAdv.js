@@ -673,7 +673,7 @@ function getData(data) {
 function retrieve_excel() {
     var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
-    return $.ajax({
+    $.ajax({
         type : "POST",
         url : service,
         data : JSON.stringify([{ export: true }]),
@@ -684,7 +684,7 @@ function retrieve_excel() {
            display_errors(["There was a problem generating the excel file."]);
         else
             window.open(excel_file);
-    });
+    }, default_ajax_error);
 }
 
 function createTab(singleFixed, fixedIndex, fixedType,independentType, contourType, tabElement ){
