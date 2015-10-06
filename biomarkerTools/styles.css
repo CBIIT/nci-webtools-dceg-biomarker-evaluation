@@ -164,9 +164,6 @@ body #contentTabs #bc .bib-doi {
 body #contentTabs #meanstorisk .graph_panel {
   padding-left: 0;
 }
-body #contentTabs #meanstorisk .panel.panel-default.table_panel {
-  width: 28%;
-}
 body #contentTabs #meanstorisk .table_panel .row {
   border: 0.125em solid #ddd;
   -webkit-border-radius: 4px;
@@ -195,8 +192,8 @@ background-color
   background: #ddd url("");
 }
 body #contentTabs #meanstorisk .output_graph {
-  min-width: 125%;
-  max-width: 129%;
+  min-width: 126%;
+  max-width: 136%;
   display: block;
   margin-left: auto;
   margin-right: auto;
