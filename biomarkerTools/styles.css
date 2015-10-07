@@ -1,89 +1,116 @@
+@-ms-viewport {
+  width: "device-width";
+}
+@media (min-width: 1280px) {
+  .container {
+    width: 1200px;
+  }
+}
 body {
   font-family: "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff";
 }
-body header {
-  margin: 0 auto;
+input {
+  padding: 1px !important;
 }
-body header #dceg-logo,
-body header #branch-logo {
-  padding: 0;
-}
-body header hr {
-  border-top: 0.5em solid #bb0e3d;
-  margin: 0;
-}
-body .footer {
+.footer {
   color: #606060;
   background-color: #fff;
   font-size: small;
 }
-body .footer li a {
+.footer li a {
   color: inherit;
 }
-body #main {
-  margin: 1em auto;
-  font-size: small;
-  display: block;
+header {
+  margin: 0 auto;
 }
-body .indent {
+#dceg-logo,
+#branch-logo {
+  padding: 0;
+}
+hr {
+  border-top: 0.5em solid #bb0e3d;
+  margin: 0;
+}
+#main {
+  margin: 0 auto;
+  font-size: small;
+}
+img.expand {
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  -ms-transition: -ms-transform 0.5s ease-in;
+  transition: transform 0.5s ease-in;
+}
+img.expand:hover,
+img.expand:active {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -o-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.indent {
   margin-left: 30px;
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
-body .vertical-padding {
+.vertical-padding {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-body .no-pad {
+.no-pad {
   padding: 0;
 }
-body .title {
+.title {
   color: #000;
 }
-body .define,
-body .termToDefine {
+.define,
+.termToDefine {
   font-weight: bold;
   text-decoration: underline;
   cursor: help;
 }
-body .popover .popover-title {
+.popover .popover-title {
   background-color: #fffff0;
   font-weight: bold;
 }
-body .popover .popover-content {
+.popover .popover-content {
   background-color: #ffffe0;
 }
-body .header {
+.header {
   background-color: #f5f5f5;
 }
-body .extra-padding {
+.extra-padding {
   padding: 1em;
 }
-body .extra-vertical-margin {
+.extra-vertical-margin {
   margin: 10px 0;
 }
-body #contentTabs {
+#contentTabs {
+  width: 100%;
   margin: 1.5em auto;
 }
-body #contentTabs ul.nav.nav-tabs {
+#contentTabs ul.nav.nav-tabs {
+  font-size: small;
   font-size: 9pt;
 }
-body #contentTabs ul.nav.nav-tabs a {
+#contentTabs ul.nav.nav-tabs a {
   color: #000;
 }
-body #contentTabs ul.nav.nav-tabs > li.active a {
+#contentTabs ul.nav.nav-tabs > li.active a {
   text-decoration: underline;
   font-weight: bold;
   color: #bb0e3d;
 }
-body #contentTabs ul.nav.nav-tabs :after {
+#contentTabs ul.nav.nav-tabs :after {
   border: solid transparent;
   margin-left: -10px;
   top: 100%;
   left: 50%;
 }
-body #contentTabs .tab-content {
+#contentTabs .tab-content {
   line-height: 1.42857143;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -92,325 +119,315 @@ body #contentTabs .tab-content {
   border-radius: 4px;
   padding: 1.5em;
 }
-body #contentTabs #sampleSize .tablevars {
+#contentTabs #sampleSize .tablevars {
   padding: 0;
 }
-body #contentTabs #sampleSize #ss {
-  width: 50%;
-}
-body #contentTabs #sampleSize .row {
+#contentTabs #sampleSize .row {
   margin: 1em auto;
 }
-body #contentTabs #sampleSize input {
-  padding: 1px !important;
-}
-body #contentTabs #bc .explanation {
+#contentTabs #bc .explanation {
   float: left;
   padding-left: 15px;
-  width: 600px;
 }
-body #contentTabs #bc .reference_row {
+#contentTabs #bc .reference_row {
   background-color: #ff0;
 }
-body #contentTabs #bc .top-header {
+#contentTabs #bc .top-header {
   text-align: center;
   background-color: #444;
   color: #fff;
 }
-body #contentTabs #bc #graph img {
-  height: auto;
+#contentTabs #bc #graph img {
   width: 80%;
 }
-body #contentTabs #bc #inputdata .input:hover {
+#contentTabs #bc #inputdata .input:hover {
   cursor: text;
 }
-body #contentTabs #bc #inputdata .panel-body {
+#contentTabs #bc #inputdata .panel-body {
   padding-top: 0;
   padding-bottom: 0;
 }
-body #contentTabs #bc h2 {
+#contentTabs #bc h2 {
   background-color: #aaa;
   color: #444;
   padding: 5px;
 }
-body #contentTabs #bc .bibliography {
-  width: 950px;
+#contentTabs #bc .bibliography {
   clear: both;
   float: left;
   margin: 50px;
 }
-body #contentTabs #bc .bib-author {
+#contentTabs #bc .bib-author {
   float: left;
 }
-body #contentTabs #bc .bib-year {
+#contentTabs #bc .bib-year {
   float: left;
 }
-body #contentTabs #bc .bib-title {
+#contentTabs #bc .bib-title {
   float: left;
   font-style: italic;
 }
-body #contentTabs #bc .bib-journal {
+#contentTabs #bc .bib-journal {
   float: left;
 }
-body #contentTabs #bc .bib-ref {
+#contentTabs #bc .bib-ref {
   float: left;
 }
-body #contentTabs #bc .bib-pages {
+#contentTabs #bc .bib-pages {
   float: left;
 }
-body #contentTabs #bc .bib-doi {
+#contentTabs #bc .bib-doi {
   float: left;
 }
-body #contentTabs #meanstorisk .graph_panel {
+#contentTabs #meanstorisk .graph_panel {
   padding-left: 0;
 }
-body #contentTabs #meanstorisk .table_panel .row {
+#contentTabs #meanstorisk .graph_panel img {
+  min-width: 103%;
+  max-width: 110%;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  -ms-transition: -ms-transform 0.5s ease-in;
+  transition: transform 0.5s ease-in;
+}
+#contentTabs #meanstorisk .graph_panel img:hover,
+#contentTabs #meanstorisk .graph_panel img:active {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -o-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+}
+#contentTabs #meanstorisk .table_panel .row {
   border: 0.125em solid #ddd;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-body #contentTabs #meanstorisk .table_panel .row .header {
+#contentTabs #meanstorisk .table_panel .row .header {
   padding: 0.5em;
 }
-body #contentTabs #meanstorisk #download_button {
+#contentTabs #meanstorisk #download_button {
   margin: 10px;
 }
-body #contentTabs #meanstorisk .top_section {
-  height: 400px;
-}
-body #contentTabs #meanstorisk .bottom_section {
-  clear: left;
-}
-body #contentTabs #meanstorisk .input_panel {
+#contentTabs #meanstorisk .input_panel {
   border: 1px #bbb solid;
 }
-body #contentTabs #meanstorisk div.input_accordion {
-  background: #fff url("");
+#contentTabs #meanstorisk div.input_accordion {
+  background: #fff;
 }
-body #contentTabs #meanstorisk h3.input_accordion {
-background-color
-  background: #ddd url("");
+#contentTabs #meanstorisk h3.input_accordion {
+  background-color: #ddd;
 }
-body #contentTabs #meanstorisk .output_graph {
-  min-width: 105%;
-  max-width: 108%;
+#contentTabs #meanstorisk .output_graph {
+  min-width: 100%;
+  max-width: 110%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-body #contentTabs #meanstorisk .key_output_panel {
+#contentTabs #meanstorisk .key_output_panel {
   float: left;
-  width: 300px;
   background-color: #faf;
   height: 99%;
 }
-body #contentTabs #meanstorisk .tabbed_output_panel {
+#contentTabs #meanstorisk .tabbed_output_panel {
   height: 99%;
 }
-body #contentTabs #meanstorisk .highlight {
+#contentTabs #meanstorisk .tabbed_output_panel #tabs {
+  font-size: inherit;
+}
+#contentTabs #meanstorisk .highlight {
   background-color: #ff0;
 }
-body #contentTabs #meanstorisk .col1 {
+#contentTabs #meanstorisk .col1 {
   padding: 6px;
   text-align: center;
 }
-body #contentTabs #meanstorisk .maincard {
-  width: 800px;
+#contentTabs #meanstorisk .maincard {
   height: 750px;
   border: 2px #000 solid;
 }
-body #contentTabs #meanstorisk .highlight {
+#contentTabs #meanstorisk .highlight {
   background-color: #ff0;
 }
-body #contentTabs #meanstorisk table.table_data {
-  width: 90%;
+#contentTabs #meanstorisk table.table_data {
+  width: 99%;
   background-color: #fff;
   border: 1px #bbb solid;
 }
-body #contentTabs #meanstorisk table.output_data {
+#contentTabs #meanstorisk table.output_data {
   background-color: #fff;
   border-collapse: collapse;
   border: 2px #000 solid;
 }
-body #contentTabs #meanstorisk th.table_data {
+#contentTabs #meanstorisk th.table_data {
   padding: 2px;
 }
-body #contentTabs #meanstorisk th.header {
+#contentTabs #meanstorisk th.header {
   border-bottom: 1px #bbb solid;
 }
-body #contentTabs #meanstorisk tr.table_data_header {
+#contentTabs #meanstorisk tr.table_data_header {
   border-bottom: 1px #000 solid;
   background-color: #a0a0a0;
 }
-body #contentTabs #meanstorisk tr.line-above {
+#contentTabs #meanstorisk tr.line-above {
   border-top: 1px #bbb solid;
 }
-body #contentTabs #meanstorisk .main-title {
+#contentTabs #meanstorisk .main-title {
   text-align: center;
 }
-body #contentTabs #meanstorisk .PPV_stripe {
+#contentTabs #meanstorisk .PPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #b080ff;
 }
-body #contentTabs #meanstorisk .cNPV_stripe {
+#contentTabs #meanstorisk .cNPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #8080ff;
 }
-body #contentTabs #meanstorisk .PPVcNPV_stripe {
+#contentTabs #meanstorisk .PPVcNPV_stripe {
   border-bottom: 1px #000 solid;
   background-color: #ffaa80;
 }
-body #contentTabs #meanstorisk .ProgramBased_stripe {
+#contentTabs #meanstorisk .ProgramBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #ffb0d0;
 }
-body #contentTabs #meanstorisk .PPVBased_stripe {
+#contentTabs #meanstorisk .PPVBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #a0a0a0;
 }
-body #contentTabs #meanstorisk .SensitivityBased_stripe {
+#contentTabs #meanstorisk .SensitivityBased_stripe {
   border-bottom: 1px #000 solid;
   background-color: #808080;
 }
-body #contentTabs #meanstorisk .DominatedByRareDisease_stripe {
+#contentTabs #meanstorisk .DominatedByRareDisease_stripe {
   border-bottom: 1px #000 solid;
   background-color: #f0f0f0;
 }
-body #contentTabs #help h4 a {
+#contentTabs #help h4 a {
   color: #fff;
   font-size: smaller;
 }
-body #contentTabs #help section h5 {
+#contentTabs #help section h5 {
   font-weight: bold;
 }
-body #contentTabs ul li li {
+#contentTabs ul li li {
   text-indent: 1.5em;
 }
-body #contentTabs #meanRiskStratification .marker-title {
+#contentTabs #meanRiskStratification input[type="number"] {
+  width: 100%;
+}
+#contentTabs #meanRiskStratification .marker-title {
   background-color: #f5f5f5;
 }
-body #contentTabs #meanRiskStratification #results table th {
+#contentTabs #meanRiskStratification #results table th {
   background-color: #f5f5f5;
 }
-body #contentTabs #meanRiskStratification .red {
-  background-color: #f00;
+#contentTabs #meanRiskStratification .red {
+  background-color: #bb0e3d;
 }
-body #contentTabs #meanRiskStratification .panel-title,
-body #contentTabs #meanRiskStratification .panel-title a {
+#contentTabs #meanRiskStratification .panel-title,
+#contentTabs #meanRiskStratification .panel-title a {
   font-size: small;
 }
-body #contentTabs #meanRiskStratification table input[type="text"] {
-  width: 50px;
-}
-body #contentTabs #meanRiskStratification .panel-toggle a,
-body #contentTabs #meanRiskStratification .panel-title a {
+#contentTabs #meanRiskStratification .panel-toggle a,
+#contentTabs #meanRiskStratification .panel-title a {
   color: #000;
   font-weight: bold;
 }
-body #contentTabs #meanRiskStratification label {
+#contentTabs #meanRiskStratification label {
   font-weight: bold;
 }
-body #contentTabs #meanRiskStratification .well,
-body #contentTabs #meanRiskStratification #results {
+#contentTabs #meanRiskStratification .well,
+#contentTabs #meanRiskStratification #results {
   min-height: 645px;
 }
-body #contentTabs #meanRiskStratification .termToDefine,
-body #contentTabs #meanRiskStratification th {
+#contentTabs #meanRiskStratification .termToDefine,
+#contentTabs #meanRiskStratification th {
   font-weight: bold;
 }
-body #contentTabs #meanRiskStratification .termToDefine.glyphicon {
+#contentTabs #meanRiskStratification .termToDefine.glyphicon {
   text-decoration: none;
 }
-body #contentTabs #meanRiskStratification .loader {
+#contentTabs #meanRiskStratification .loader {
   background-image: url("/common/images/loading.gif") no-repeat;
   margin: 0 auto;
   height: 300px;
-  width: 100%;
 }
-body #contentTabs #meanRiskStratification input[type="number"] {
-  width: 8em;
-}
-body #contentTabs #meanRiskStratification .input:invalid {
+#contentTabs #meanRiskStratification .input:invalid {
   background-color: #ff0;
 }
-body #contentTabs #riskStratAdvanced input,
-body #contentTabs #riskStratAdvanced select {
+#contentTabs #riskStratAdvanced input,
+#contentTabs #riskStratAdvanced select {
   padding: 1px;
 }
-body #contentTabs #riskStratAdvanced .ui-widget {
-  font-size: 12px;
-}
-body #contentTabs #riskStratAdvanced .label {
+#contentTabs #riskStratAdvanced .label {
   float: right;
 }
-body #contentTabs #riskStratAdvanced .explanation {
+#contentTabs #riskStratAdvanced .explanation {
   float: left;
   padding-left: 15px;
-  width: 600px;
 }
-body #contentTabs #riskStratAdvanced .reference_row {
+#contentTabs #riskStratAdvanced .reference_row {
   background-color: #ff0;
 }
-body #contentTabs #riskStratAdvanced td {
+#contentTabs #riskStratAdvanced td {
   text-align: left;
 }
-body #contentTabs #riskStratAdvanced .prevalence_label {
+#contentTabs #riskStratAdvanced .prevalence_label {
   font-weight: bold;
   background-color: #aaa;
   color: #444;
   padding: 2px 25px 2px 25px;
 }
-body #contentTabs #riskStratAdvanced .bibliography {
-  width: 950px;
+#contentTabs #riskStratAdvanced .bibliography {
   clear: both;
   float: left;
   margin: 50px;
 }
-body #contentTabs #riskStratAdvanced .bib-author {
+#contentTabs #riskStratAdvanced .bib-author {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .bib-year {
+#contentTabs #riskStratAdvanced .bib-year {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .bib-title {
+#contentTabs #riskStratAdvanced .bib-title {
   float: left;
   font-style: italic;
 }
-body #contentTabs #riskStratAdvanced .bib-journal {
+#contentTabs #riskStratAdvanced .bib-journal {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .bib-ref {
+#contentTabs #riskStratAdvanced .bib-ref {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .bib-pages {
+#contentTabs #riskStratAdvanced .bib-pages {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .bib-doi {
+#contentTabs #riskStratAdvanced .bib-doi {
   float: left;
 }
-body #contentTabs #riskStratAdvanced .status-info {
+#contentTabs #riskStratAdvanced .status-info {
   color: #000;
 }
-body #contentTabs #riskStratAdvanced .status-error {
-  color: #f00;
+#contentTabs #riskStratAdvanced .status-error {
+  color: #bb0e3d;
 }
-body #contentTabs #riskStratAdvanced a#add-test-data {
+#contentTabs #riskStratAdvanced a#add-test-data {
   text-decoration: underline;
   float: right;
 }
-body #contentTabs #riskStratAdvanced a#add-test-data :hover {
+#contentTabs #riskStratAdvanced a#add-test-data :hover {
   font-weight: bold;
 }
-body #contentTabs #riskStratAdvanced .table-title {
+#contentTabs #riskStratAdvanced .table-title {
   word-wrap: normal;
   font-weight: bold;
   text-align: center;
   background-color: #f8fafa;
 }
-body #contentTabs #riskStratAdvanced #inputdata {
-  width: 500px;
-}
-body #contentTabs #riskStratAdvanced #status-bar {
+#contentTabs #riskStratAdvanced #status-bar {
   background: #ccc;
   display: block;
   border: none;
@@ -423,19 +440,38 @@ body #contentTabs #riskStratAdvanced #status-bar {
   outline: none;
   padding: 10px;
   top: 2px;
-  width: 100%;
   visibility: hidden;
 }
-body #contentTabs #riskStratAdvanced #tabs .header {
+#contentTabs #riskStratAdvanced #tabs {
+  font-size: inherit;
+}
+#contentTabs #riskStratAdvanced #tabs .header {
   background-color: #aaa;
   color: #444;
 }
-body #contentTabs #riskStratAdvanced #tabs .vertical-text {
+#contentTabs #riskStratAdvanced #tabs .vertical-text {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   white-space: nowrap;
-  width: 15px;
+}
+#portal-footer {
+  line-height: 1.2em;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+  font-size: small;
+}
+#portal-footer a {
+  text-decoration: none;
+  color: #333;
+  border: none;
+}
+#portal-footer a :visited {
+  color: #333;
+}
+#portal-footer a :hover {
+  text-decoration: underline;
 }

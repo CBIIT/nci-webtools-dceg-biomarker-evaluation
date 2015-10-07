@@ -27,7 +27,7 @@
                 .row
                     .col-xs-4
                         label(for='contour_dropdown_rs') Contour
-                    .col-xs-3    
+                    .col-xs-3
                         select#contour_dropdown_rs(name='contour_dropdown_rs')
                             option(value='', selected='')
                             option(value='ppv') PPV
@@ -43,7 +43,7 @@
                 .row
                     .col-xs-4
                         label(for='fixed_dropdown_rs') Fixed Values
-                    .col-xs-3   
+                    .col-xs-3
                         select#fixed_dropdown_rs(name='fixed_dropdown_rs')
                             option(value='', selected='')
                             option(value='prevalence') Prevalence
@@ -80,24 +80,24 @@
                     strong
                         | Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1
                   li.rule.rule2
-                    strong 
+                    strong
                         | Delta can be 0 to 5
-                  li.rule.rule3 
+                  li.rule.rule3
                     strong
                         | cNPV < Prevalence
-                  li.rule.rule3 
-                    strong 
+                  li.rule.rule3
+                    strong
                         | For arrays: max(cNPV) < min(Prevalence)
-                  li.rule.rule4 
+                  li.rule.rule4
                     strong
                         | Prevalence < PPV
                   li.rule.rule4
-                    strong 
+                    strong
                         | For arrays: max(prev) < min(PPV)
                   li.rule.rule5
                     strong
                         | Sensitivity+Specificity-1 > 0
-                strong 
+                strong
                     | Do you wish to continue with calculation anyway?
     .col-xs-12
         include ../partials/loader

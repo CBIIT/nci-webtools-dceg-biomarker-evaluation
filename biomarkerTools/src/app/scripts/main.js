@@ -15,7 +15,7 @@ function generateUniqueKey(){
     Math.seedrandom();
     var multiples = [100, 1000, 10000, 100000, 1000000, 10000000,100000000, 1000000000];
     var randomKey = Math.floor(Math.random() * multiples[Math.floor(Math.random() * multiples.length)]);
-    
+
     return randomKey;
 }
 
@@ -23,7 +23,7 @@ function disableAll(){
     // Disable all controls for use during ajax request
     activeRequest = true;
     $("a, button,select,input").attr("disabled","").addClass("disable_control");
-    
+
     // disabling tabs and collapse elements
     $("[data-toggle='tab']").attr("data-toggle", "disabledTab");
     $("[data-toggle='collapse']").attr("data-toggle", "disabledCollapse");
@@ -34,7 +34,7 @@ function enableAll() {
     activeRequest = false;
     $("a, button, select, input").removeAttr("disabled").removeClass("disable_control");
     $(".disable_control").unbind("click");
-    
+
     // enabling tabs and collapse elements
     $("[data-toggle='disabledTab']").attr("data-toggle", "tab");
     $("[data-toggle='disabledCollapse']").attr("data-toggle", "collapse");
@@ -142,7 +142,6 @@ function display_errors(message) {
 
     thisTool.find('#errors').fadeIn();
     document.querySelector('header').scrollIntoView(true);
-
 }
 
 function termDisplay(){
