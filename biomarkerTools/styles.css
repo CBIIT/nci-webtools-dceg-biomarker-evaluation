@@ -179,12 +179,15 @@ img.expand:active {
 #contentTabs #bc .bib-doi {
   float: left;
 }
+#contentTabs #meanstorisk .no-pad * {
+  padding: 0;
+}
 #contentTabs #meanstorisk .graph_panel {
   padding-left: 0;
 }
 #contentTabs #meanstorisk .graph_panel img {
-  min-width: 103%;
-  max-width: 110%;
+  min-width: 100%;
+  max-width: 102%;
   -webkit-transition: -webkit-transform 0.5s ease-in;
   -moz-transition: -moz-transform 0.5s ease-in;
   -o-transition: -o-transform 0.5s ease-in;
@@ -315,7 +318,7 @@ img.expand:active {
 #contentTabs ul li li {
   text-indent: 1.5em;
 }
-#contentTabs #meanRiskStratification input[type="number"] {
+#contentTabs #meanRiskStratification table input[type="number"] {
   width: 100%;
 }
 #contentTabs #meanRiskStratification .marker-title {
