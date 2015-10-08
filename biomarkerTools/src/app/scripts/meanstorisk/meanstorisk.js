@@ -150,6 +150,21 @@ function bind_calculate_button() {
 }
 function validate_input(valid){
     var messages = [];
+    
+    // split comma delimited string and check values for specificity and prevalence
+    var specificitySplit = thisTool.find("input#specificity").val().split(",");
+    var prevalenceSplit = thisTool.find("input#prevalence").val().split(",");
+    
+    $.each(specificitySplit, function(ind, singleSpec){
+        if(!isNumberBetweenZeroAndOne(singleSpec))
+            messages.push("Specficity contains an invalid value: '" + singleSpec + "'");
+    });
+    
+    $.each(prevalenceSplit, function(ind, singlePrev){
+        if(!isNumberBetweenZeroAndOne(singlePrev))
+            messages.push("Prevalence contains an invalid value: '" + singlePrev + "'");
+    });
+    
     if(thisTool.find("input#specificity")[0].validity.valueMissing){
         messages.push("Specificity is required");
     }
@@ -171,6 +186,8 @@ function validate_input(valid){
             if(this.value.length === 0){
                 empty = true;
             }
+            if(isNaN(this.value))
+                messages.push("'"+ this.value +"' is not a valid value for " + this.labels[0].textContent);
         });
 
         if(empty)
@@ -618,8 +635,17 @@ function reset_meanstorisk(){
     thisTool.find('#errors').fadeOut();
     var fileControl = thisTool.find("input#input_file_upload");
     thisTool.find(".table_panel .table_data, .tabbed_output_panel, .graph_panel").html("");
+    
     thisTool.find("input#specificity").val("0.8, 0.9, 0.95, 0.99, 0.999");
     thisTool.find("input#prevalence").val("0.1, 0.05, 0.01, 0.005, 0.001");
+    
+    thisTool.find("input#mean_cases_input").val("4");
+    thisTool.find("input#mean_controls_input").val("1");
+    thisTool.find("input#stderr_cases_input").val("0.1");
+    thisTool.find("input#stderr_controls_input").val("0.1");
+    thisTool.find("input#N_cases_input").val("100");
+    thisTool.find("input#N_controls_input").val("200");
+    
     thisTool.find("#download_button").addClass("hide");
     thisTool.find("#spinner").addClass('hide');
     valuesFromFile = [];

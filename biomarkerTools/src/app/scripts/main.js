@@ -112,6 +112,8 @@ function default_ajax_error(request, status, error){
 }
 
 function isNumberBetweenZeroAndOne(n) {
+    if(isNaN(n))
+        return false;
     if (isNaN(parseFloat(n)))
         return false;
     if (n > 1)
