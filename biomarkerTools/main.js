@@ -116,9 +116,9 @@ function isNumberBetweenZeroAndOne(n) {
         return false;
     if (isNaN(parseFloat(n)))
         return false;
-    if (n > 1)
+    if (n >= 1)
         return false;
-    if (n < 0)
+    if (n <= 0)
         return false;
     return true;
 }
