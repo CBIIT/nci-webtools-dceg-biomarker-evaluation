@@ -47,19 +47,19 @@
                                 option(value='specificity', disabled='disabled') Specificity
                                 option(value='sensitivity', disabled='disabled') Sensitivity
                         label.sr-only(for='fixed') Fixed
-                        input#fixed.fontnormal.col-sm-3(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1.', required)
+                        input#fixed.fontnormal.col-sm-3(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1', required)
                     //- pattern='([0-8,. \-])+',
                     .row
                         .col-sm-4
                             b.pull-right Parameters
                         .col-sm-4
                             .pull-left(for='prevalence') Prevalence
-                        input#prevalence.col-sm-3(type='number',min="0",max="1", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
+                        input#prevalence.col-sm-3(type='number',min="0",max=".9999999", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
                     .row
                         .col-sm-4
                         .col-sm-4
                             .pull-left(for='n_value') Sample Size
-                        input#n_value.fontnormal.col-sm-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer', required)
+                        input#n_value.fontnormal.col-sm-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
                 .panel-footer
                     button.post(type='submit') Calculate
                     button.reset(type='reset') Reset
