@@ -26,9 +26,17 @@ function checkValidity(){
         valObject = $(el)[0].validity;
         if(el.id == "contour_dropdown" && valObject.valueMissing) {
             messages.push("Please select an option from the Contour dropdown.");
+        }        
+        else if(el.id == "n_value"){
+            if($(el).val() <= 0)
+                messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
+        }        
+        else if(el.id == "prevalence"){
+            if(!isNumberBetweenZeroAndOne($(el).val())) 
+                messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
         }
         else if(!valObject.valid && !valObject.stepMismatch) {
-            if($(el)[0].title !== "") messages.push($(el)[0].title);
+            if($(el)[0].title !== "") messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
         }
 
         else if(el.id == "contour" || el.id == "fixed") {
@@ -36,10 +44,9 @@ function checkValidity(){
 
             for(var i = 0; i != values.length; i++) {
                 if(isNaN(values[i])|| !isNumberBetweenZeroAndOne(values[i]))
-                    messages.push(el.title);
+                    messages.push(el.title + ". You entered '" + values[i] + "'");
             }
         }
-
     });
 
     if(messages.length > 0)
@@ -289,15 +296,6 @@ function sampleSizeRequest(exporting){
 
     // scroll down to loader image
     document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
-
-    //    var sensString = trim_spaces(thisTool.find("#sensitivity_val").text());
-    //    var specString = trim_spaces(thisTool.find("#specificity_val").text());
-    //
-    //    var unique = thisTool.find("#randomnumber").text();
-    //    var kVal = thisTool.find("#minInput").val() + "," + thisTool.find("#maxInput").val();
-    //    var fxFlag = ;
-    //    var nVal = thisTool.find("#n_value").val();
-    //    var prevVal = thisTool.find("#prevalence").val();
 
     return $.ajax({
         type: "POST",
