@@ -70,19 +70,19 @@ def call_rsa_RFunction():
             unique = str(x["uniqueId"])
             tab_value = str(x["tabValue"])
 
-            print "************************************ Before Sending to R **************************************************"
-            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +"')"
+            #            print "************************************ Before Sending to R **************************************************"
+            #            print "getCalculatedData('" + independent + "', '" + fixed + "', '" + contour + "', '" + independent_type + "', '" + fixed_type + "', '" + contour_type + "', '" + abreviated_key + "', '" + key_index + "', '" + tab_value +"')"
 
             result = r_getname_getCalculations(independent, fixed, contour, independent_type,
                     fixed_type, contour_type, abreviated_key, key_index, tab_value, unique)
 
-            print "************************************ Index " + str(i) + " returned ******************************************"
+            #            print "************************************ Index " + str(i) + " returned ******************************************"
 
             # parse each returned json string and append to returnedData
             # use returnedData variable to pass entire dataset to a function for writing to excel
             returnedData.insert(i, json.loads(result[0]))
 
-            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+            #            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         print json.dumps(returnedData)
         r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
 
