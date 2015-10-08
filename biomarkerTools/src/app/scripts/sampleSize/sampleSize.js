@@ -17,6 +17,11 @@ $(function(){
 function checkValidity(){
     var isValid;
     var messages = [];
+    
+    if(thisTool.find("#minInput").val() == thisTool.find("#maxInput").val()) {
+        messages.push("Min and Max values of k cannot be equal.");
+    }
+    
     thisTool.find("input, select").each(function(ind, el) {
         valObject = $(el)[0].validity;
         if(el.id == "contour_dropdown" && valObject.valueMissing) {
@@ -92,30 +97,6 @@ thisTool.find("#contour").keyup(function(){
 
 thisTool.find("#fixed").keyup(function(){
     change_hidden('fixed');
-});
-
-thisTool.find("#minInput, #maxInput").on('change', function() {
-    var thisVal = this.value;
-    var compareVal;
-
-    if(this.id == "minInput") {
-        compareVal = thisTool.find("#maxInput").val();
-    }
-    else {
-        compareVal = thisTool.find("#minInput").val();
-    }
-
-    if(thisVal.length + compareVal.length >= 2) {
-        if(thisVal == compareVal) {
-            display_errors("Min Value and Max Value of k cannot be equal");
-        }
-        else if( thisTool.find("#maxInput").val() < thisTool.find("#minInput").val()) {
-            display_errors("Max Value cannot be less than the Min Value");
-        }
-    }
-    else {
-        thisTool.find("#errors").empty().addClass("hide");
-    }
 });
 
 thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
