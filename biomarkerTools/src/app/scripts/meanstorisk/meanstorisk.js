@@ -188,6 +188,12 @@ function validate_input(valid){
             }
             if(isNaN(this.value))
                 messages.push("'"+ this.value +"' is not a valid value for " + this.labels[0].textContent);
+            
+            if(this.id == "N_cases_input" || this.id == "N_controls_input" ){
+                if(this.value < 0) {
+                    messages.push(this.labels[0].textContent + " must be greater than 0. You entered '" + this.value + "'");
+                }
+            }
         });
 
         if(empty)
