@@ -123,6 +123,10 @@ function isNumberBetweenZeroAndOne(n) {
     return true;
 }
 
+function isInt(n){
+    return Number(n) === n && n % 1 === 0;
+}
+
 function display_errors(message) {
     var text = "";
 

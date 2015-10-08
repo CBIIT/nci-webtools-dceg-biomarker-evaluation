@@ -4,7 +4,7 @@ function init_sampleSize(){
     thisTool = $("#sampleSize");
     spinner = thisTool.find("#spinner");
     random_gen();
-}    
+}
 
 $('a[href="#sampleSize"]').on('shown.bs.tab',function(e){
     init_sampleSize();
@@ -17,22 +17,22 @@ $(function(){
 function checkValidity(){
     var isValid;
     var messages = [];
-    
+
     if(thisTool.find("#minInput").val() == thisTool.find("#maxInput").val()) {
         messages.push("Min and Max values of k cannot be equal.");
     }
-    
+
     thisTool.find("input, select").each(function(ind, el) {
         valObject = $(el)[0].validity;
         if(el.id == "contour_dropdown" && valObject.valueMissing) {
             messages.push("Please select an option from the Contour dropdown.");
-        }        
+        }
         else if(el.id == "n_value"){
-            if($(el).val() <= 0)
+            if($(el).val() <= 0 || !isInt($(el).val()))
                 messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
-        }        
+        }
         else if(el.id == "prevalence"){
-            if(!isNumberBetweenZeroAndOne($(el).val())) 
+            if(!isNumberBetweenZeroAndOne($(el).val()))
                 messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
         }
         else if(!valObject.valid && !valObject.stepMismatch) {
@@ -88,7 +88,7 @@ thisTool.find('.post').click(function(){
         };
 
         request();
-    } 
+    }
     return false;
 });
 
@@ -96,7 +96,7 @@ thisTool.find('.reset').click(reset_code);
 
 thisTool.find("#add-test-data").click(function() {
     example_code();
-});	
+});
 
 thisTool.find("#contour").keyup(function(){
     change_hidden('contour');
@@ -164,10 +164,10 @@ function generate_tabs(iterate,randomnumber){
     for(var i = 0; i < arrayLength; i++) {
        
         tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
-        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG alt="PPV graph image for tab '+(i+1)+'" SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG alt="cNPV graph image for tab '+(i+1)+'" SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';	  
+        tabcontent += '<div id="tab'+(i+1)+'"> <TABLE><TR><TD> <TABLE><TR><TD><IMG alt="PPV graph image for tab '+(i+1)+'" SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'ppvdata"><div></TD></TR></TABLE> </TD><TD> <TABLE><TR><TD><IMG alt="cNPV graph image for tab '+(i+1)+'" SRC="tmp/'+cimagename+randomnumber+'-'+(i+1)+'.png"></TD></TR> <TR><TD><div class="extra-padding" id="tab'+(i+1)+'cnpvdata"></div></TD></TR></TABLE> </TD></TR></TABLE> </div>';
 
        
-    }    
+    }
     tabheaders += "</ul>";
    
 
@@ -210,7 +210,7 @@ function lock_fixed_options(){
 }
 
 function change_hidden(callingbox) {
-    if (((callingbox == "contour")) && (thisTool.find("#contour_dropdown option:selected").text() == "Specificity")) {   
+    if (((callingbox == "contour")) && (thisTool.find("#contour_dropdown option:selected").text() == "Specificity")) {
         thisTool.find("#specificity_val").text(trim_spaces(thisTool.find("#contour").val()));
     }else if (((callingbox == "contour")) && (thisTool.find("#contour_dropdown option:selected").text() == "Sensitivity")){
         thisTool.find("#sensitivity_val").text(trim_spaces(thisTool.find("#contour").val()));
@@ -224,7 +224,7 @@ function change_hidden(callingbox) {
 }
 
 function trim_spaces(varstring) {
-    return varstring.replace(/\s/g, '');	
+    return varstring.replace(/\s/g, '');
 }
 
 function example_code(){
@@ -251,7 +251,7 @@ function reset_code(){
     thisTool.find("#maxInput").val(1.0);
     thisTool.find("#output_graph").empty();
     thisTool.find("#errors, .download").addClass("hide");
-    
+
     spinner.addClass("hide");
     thisTool.find(".post").removeAttr("disabled").text("Calculate");
 }
@@ -289,7 +289,7 @@ function sampleSizeRequest(exporting){
 
     hostname = window.location.hostname;
     url = "http://" + hostname +"/" + rest + "/sampleSize/";
-    
+
     disableAll();
     thisTool.find(".post").attr('disabled','').text("Please Wait....");
     spinner.removeClass("hide");
