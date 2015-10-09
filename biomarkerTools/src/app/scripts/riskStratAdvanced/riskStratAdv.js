@@ -194,10 +194,9 @@ $(document).ready(function(){
     thisTool.find("#download").on("click", retrieve_excel);
     thisTool.find("#calculate").on("click", function(e) {
         e.preventDefault();
-        $("#errors").fadeOut().addClass("hide");
+        $("#errors, #download").fadeOut().addClass("hide");
         if (checkRules() == "Fail") {
             display_errors(validation_rules);
-            //            createRulesDialog();
             return false;
         }
         else {
@@ -471,16 +470,17 @@ function checkInputFields() {
     }
 }
 
-function validate_inputs(){
+function validate_inputs() {
     // Check pattern for each input box
     var checkInput = [];
     thisTool.find("input, select").each(function(){
         checkInput.push($(this)[0].checkValidity());
-        var controlIds = ["independent_rs","contour_rs"];
-        var control = $(this)[0];
 
-        if($.inArray(this.id, controlIds) >= 0){
-            this.value.split(",").forEach(function(val, ind, arr){
+        var control = $(this)[0];
+        var controlIds = ["independent_rs","contour_rs"];
+
+        if($.inArray(this.id, controlIds) >= 0) {
+            this.value.split(",").forEach(function(val, ind, arr) {
                 if(!isNumberBetweenZeroAndOne(val.trim())) {
                     rulesViolationMsg.push("'" + val.trim() + "' is an invalid value. Enter a valid array of floating point values for " + control.labels[0].textContent);
                 }
