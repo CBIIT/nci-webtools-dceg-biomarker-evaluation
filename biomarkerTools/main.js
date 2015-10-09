@@ -124,7 +124,7 @@ function isNumberBetweenZeroAndOne(n) {
 }
 
 function isInt(n){
-    return Number(n) === n && n % 1 === 0;
+    return Number(n) == n && n % 1 === 0;
 }
 
 function display_errors(message) {
