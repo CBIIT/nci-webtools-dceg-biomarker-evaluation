@@ -112,13 +112,19 @@ function default_ajax_error(request, status, error){
 }
 
 function isNumberBetweenZeroAndOne(n) {
+    if(isNaN(n))
+        return false;
     if (isNaN(parseFloat(n)))
         return false;
-    if (n > 1)
+    if (n >= 1)
         return false;
-    if (n < 0)
+    if (n <= 0)
         return false;
     return true;
+}
+
+function isInt(n){
+    return Number(n) == n && n % 1 === 0;
 }
 
 function display_errors(message) {
