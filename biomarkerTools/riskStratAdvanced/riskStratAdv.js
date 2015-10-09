@@ -17,9 +17,9 @@ var validation_rules = [
     'Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1',
     'Delta can be 0 to 5',
     'cNPV < Prevalence',
-    'For arrays: max(cNPV) < min(Prevalence)', 
+    'For arrays: max(cNPV) < min(Prevalence)',
     'Prevalence < PPV',
-    'For arrays: max(prev) < min(PPV)', 
+    'For arrays: max(prev) < min(PPV)',
     'Sensitivity+Specificity-1 > 0'
 ];
 var keysforfunctionnames = [ "", "Sens", "Spec", "PPV", "cNPV", "Prev", "Delta" ];
@@ -43,16 +43,16 @@ var keysforfunction = [{
 },
                        {
                            2 : "Spec"
-                       }, 
+                       },
                        {
                            3 : "PPV"
-                       }, 
+                       },
                        {
                            4 : "cNPV"
-                       }, 
+                       },
                        {
                            5 : "Prev"
-                       }, 
+                       },
                        {
                            6 : "Delta"
                        }
@@ -167,7 +167,7 @@ var keyLong = [
 var thisTool;
 var columnHeadings;
 
-function init_riskStrat(){  
+function init_riskStrat(){
     thisTool = $("#riskStratAdvanced");
     if (typeof String.prototype.trim !== 'function') {
         String.prototype.trim = function() {
@@ -276,10 +276,10 @@ function addPopupDefinition() {
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
     thisTool.find("#" + elementId)
-        .html("<div class='define' id='" + 
-              termId + 
-              "' data-term='" + 
-              dataTerm + 
+        .html("<div class='define' id='" +
+              termId +
+              "' data-term='" +
+              dataTerm +
               "'><img src='/common/images/info.png' height='20', width='20', alt='pop up definition for " + dataTerm + "'></div>").find(".define").on("click", termDisplay);
 
 }
@@ -472,6 +472,16 @@ function validate_inputs(){
     var checkInput = [];
     thisTool.find("input, select").each(function(){
         checkInput.push($(this)[0].checkValidity());
+        var controlIds = ["independent_rs","contour_rs"];
+        var control = $(this)[0];
+
+        if($.inArray(this.id, controlIds) >= 0){
+            this.value.split(",").forEach(function(val, ind, arr){
+                if(!isNumberBetweenZeroAndOne(val.trim())) {
+                    rulesViolationMsg.push("'" + val.trim() + "' is an invalid value. Enter a valid array of floating point values for " + control.labels[0].textContent);
+                }
+            });
+        }
     });
 
     thisTool.find("#output").empty();
@@ -495,7 +505,7 @@ function validate_inputs(){
         thisTool.find("#spinner").removeClass("hide");
         disableAll();
         return true;
-    } 
+    }
 }
 
 function calculate_riskStrat(){
@@ -562,7 +572,7 @@ function calculate_riskStrat(){
                     keyIndex : shortkey,
                     independentType : independent_type,
                     independent : independent_values,
-                    independentMin : indMin, 
+                    independentMin : indMin,
                     independentMax : indMax,
                     contourType : contour_type,
                     contour : contour_values,
@@ -579,7 +589,7 @@ function calculate_riskStrat(){
                              "'>" + fixed_type + " "+ thisFixedValue +
                              "</a></LI>");
 
-            tab_pane = $("<div class='tab-pane' id='fixed-" + (fixedIndex + 1) + 
+            tab_pane = $("<div class='tab-pane' id='fixed-" + (fixedIndex + 1) +
                          "' >  </div>");
             tabs.append(tab_pane);
             var tabId = "#fixed-" + (fixedIndex + 1);
@@ -600,7 +610,7 @@ function calculate_riskStrat(){
 
             }
             tabs.tabs();
-            
+
             thisTool.find("#download").removeClass("hide");
             return data_array;
         }).fail(function(request, status, error){
@@ -699,20 +709,20 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 
     for (var key in keyvalueShort) {
 
-        $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" + 
+        $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" +
           keyvalueShort[key] + (fixedIndex + 1)).empty();
 
-        table_graph_div = $("<div class='row set-" + 
-                            keyvalueShort[key] + 
-                            (fixedIndex + 1) + 
+        table_graph_div = $("<div class='row set-" +
+                            keyvalueShort[key] +
+                            (fixedIndex + 1) +
                             "' class='pull-left'></div>");
         thisTool.find(tabElement).append(table_graph_div);
-        graphic_side = ("<div class='graphic-side pull-right' id='graphic-" + 
+        graphic_side = ("<div class='graphic-side pull-right' id='graphic-" +
                         keyvalueShort[key] + (fixedIndex + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
         table_graph_div.append(graphic_side);
-        table_side = $("<div class='table-side col-md-6 pull-left' id='table-" + 
-                       keyvalueShort[key] + (fixedIndex + 1) + 
-                       "'><div class='table-title extra-padding'>" + keyvalueLong[key] + 
+        table_side = $("<div class='table-side col-md-6 pull-left' id='table-" +
+                       keyvalueShort[key] + (fixedIndex + 1) +
+                       "'><div class='table-title extra-padding'>" + keyvalueLong[key] +
                        "</div></div>");
         table_graph_div.append(table_side);
     }
@@ -772,7 +782,7 @@ function fillTable(resultObject, columnHeadings, index) {
                 });
             }
 
-            var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + 
+            var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" +
                           tableId + "'></table>");
 
             table.dataTable({
@@ -798,20 +808,20 @@ function fillTable(resultObject, columnHeadings, index) {
             thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
                 function() {
                     $(this).prepend(
-                        "<th class='ui-state-default sorting_disabled'>" + 
+                        "<th class='ui-state-default sorting_disabled'>" +
                         independentArraySplit[i] + "</th>");
                     i++;
                 });
 
            
             thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
-                "<th class='header' rowspan='" + independentArraySplit.length + 
-                "'><div class='vertical-text'>" + tableFirstRowLabel + 
+                "<th class='header' rowspan='" + independentArraySplit.length +
+                "'><div class='vertical-text'>" + tableFirstRowLabel +
                 "</div></th>");
 
            
             thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-                "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" + 
+                "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" +
                 tableFirstColLabel + "</th></tr>");
             if(graphError != 1)
                 loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
@@ -954,12 +964,12 @@ function checkForInvalidVariableCombo() {
 
         if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
 
-            var userSelectedVariables = selectedValues[0].toString() + ", "+ 
-                selectedValues[1].toString() + ",  and " + 
+            var userSelectedVariables = selectedValues[0].toString() + ", "+
+                selectedValues[1].toString() + ",  and " +
                 selectedValues[2].toString();
-            var message = "The variables " + 
-                userSelectedVariables + 
-                " do not form a valid variable combination for this calculation.  " + 
+            var message = "The variables " +
+                userSelectedVariables +
+                " do not form a valid variable combination for this calculation.  " +
                 "Please select a vaild variable combination.";
             display_errors([message]);
             validCombo = false;
