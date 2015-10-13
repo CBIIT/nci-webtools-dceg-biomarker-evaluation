@@ -46,10 +46,6 @@ input {
   float: right;
   clear: both;
 }
-#meanstorisk .top_group {
-  clear: both;
-  overflow: auto;
-}
 #meanstorisk .top_group > div {
   padding: 15px;
   float: left;
@@ -295,7 +291,6 @@ input {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   padding: 1.5em;
-  overflow: auto;
 }
 #contentTabs #sampleSize .tablevars {
   padding: 0;

@@ -36,17 +36,14 @@ input
   float right
   clear both
 #meanstorisk
-  .top_group
-    clear both
-    overflow auto
-    > div
-      padding 15px
-      float left
+  .top_group > div
+    padding 15px
+    float left
+    width (100%*4/13)
+    ~ div
       width (100%*4/13)
       ~ div
-        width (100%*4/13)
-        ~ div
-          width (100%*5/13)
+        width (100%*5/13)
   #cases_control
     .table_data
       width 40%
@@ -215,7 +212,6 @@ input
     border-left 1px solid #ddd
     border-radius 4px
     padding 1.5em
-    overflow auto
   #sampleSize
     .tablevars
       padding 0

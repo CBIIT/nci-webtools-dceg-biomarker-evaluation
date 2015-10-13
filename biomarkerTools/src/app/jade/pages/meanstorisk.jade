@@ -1,4 +1,4 @@
-#meanstorisk.tab-pane.fade.active(role='tabpanel')
+#meanstorisk.tab-pane.fade.in(role='tabpanel')
   .top_section
     h3.text-center(title="Means to Risk Stratification tool") From Difference in Means to Risk Stratification: A Web Tool
     div
@@ -7,7 +7,7 @@
         a.goToHelp(href="#help_meanstorisk") Help
         span &nbsp;
         a.goToGlossary(href="#") Glossary
-    .top_group
+    .top_group.clearfix
       div
         #accordion.panel.panel-default
           .panel-heading
@@ -152,3 +152,5 @@
       button#reset(type='reset') Reset
       button#download_button.hide(type='button') Download Excel File
     include ../partials/loader
+    .bottom_section.small
+      .tabbed_output_panel

@@ -30,7 +30,7 @@
             <li role="tab" title="Navigate to Help tab"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
           <div id="mainTabsContent" class="tab-content">
-            <div id="home" role="tabpanel" class="tab-pane fade">
+            <div id="home" role="tabpanel" class="tab-pane fade active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>
               <p>
                 This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
@@ -48,13 +48,13 @@
                 <li><a title="go to the Risk Stratification Advanced Options tool" href="#riskStratAdvanced" class="goToTab">Risk Stratification Advanced Options</a></li>
               </ul>
             </div>
-            <div id="meanstorisk" role="tabpanel" class="tab-pane fade active">
+            <div id="meanstorisk" role="tabpanel" class="tab-pane fade in">
               <div class="top_section">
                 <h3 title="Means to Risk Stratification tool" class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div><span>&nbsp;</span>
                   <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a><span>&nbsp;</span><a href="#" class="goToGlossary">Glossary</a></div>
                 </div>
-                <div class="top_group">
+                <div class="top_group clearfix">
                   <div>
                     <div id="accordion" class="panel panel-default">
                       <div class="panel-heading"><b>Choose how to enter the data</b></div>
@@ -208,6 +208,9 @@
                   <button id="download_button" type="button" class="hide">Download Excel File</button>
                 </div>
                 <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+                <div class="bottom_section small">
+                  <div class="tabbed_output_panel"></div>
+                </div>
               </div>
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
