@@ -6,393 +6,414 @@ highlight = lightyellow
 highlight-compl = ivory
 
 @-ms-viewport
-    width "device-width"
+  width "device-width"
 
-//large resolutions
-@media (min-width 1280px)
-      .container
-            width 1200px
 body
-    font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
-input
-      padding 1px !important
-.footer
-      color #606060
-      background-color white
-      font-size small
-      li a
-            color inherit
+  font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
 header
-      margin 0 auto
-  #dceg-logo,#branch-logo
-      padding 0
+  max-width 1200px
+  margin 0 auto
   hr
-      border-top .5em solid base-red
-      margin 0
-#main
-    margin 0 auto
-    font-size small
-
-img.expand
-    transition transform 0.5s ease-in
-    &:hover
-    &:active
-        transform scale(1.4)
-.indent
-    margin-left 30px
-    margin-right 20px
-    margin-top 10px
-    margin-bottom 5px
-.vertical-padding
-    padding-top .5em
-    padding-bottom .5em
-.no-pad
+    border-top .5em solid base-red
+    margin 0
+  #dceg-logo,#branch-logo
+    min-width 400px
+    max-width 720px
     padding 0
-.title
-    color black
-.define,.termToDefine
-    font-weight bold
-    text-decoration underline
-    cursor help
-.popover
-    .popover-title
-        background-color highlight-compl
-        font-weight bold
-    .popover-content
-        background-color highlight
-.header
-    background-color tan
-.extra-padding
-    padding 1em
-.extra-vertical-margin
-    margin 10px 0
-#contentTabs
-    width 100%
-    margin 1.5em auto
-    ul.nav.nav-tabs
-      font-size small
-      font-size 9pt
-      a
-            color black
-      > li.active a
-            text-decoration underline
-            font-weight bold
-            color base-red
-         :after
-            border solid transparent
-            margin-left -10px
-            top 100%
-            left 50%
-    .tab-content
-        line-height 1.42857143
-        border-right 1px solid #ddd
-        border-bottom 1px solid #ddd
-        border-left 1px solid #ddd
-        border-radius 4px
-        padding 1.5em
-    #sampleSize
-        .tablevars
-            padding 0
-        #ss
-            // width 50%
-        .row
-            margin 1em auto
-    #bc
-        .explanation
-            float left
-            padding-left 15px
-            // width 600px
-        .reference_row
-            background-color  yellow
-        .top-header
-            text-align center
-            background-color #444
-            color #FFF
-        #graph img
-            width 80%
-        #inputdata
-            .input:hover
-                cursor text
-            .panel-body
-                padding-top 0
-                padding-bottom 0
-        h2
-            background-color #AAA
-            color #444
-            padding 5px
-        .bibliography
-            // width 950px
-            clear both
-            float left
-            margin 50px
-        .bib-author
-            float left
-        .bib-year
-            float left
-        .bib-title
-            float left
-            font-style italic
-        .bib-journal
-            float left
-        .bib-ref
-            float left
-        .bib-pages
-            float left
-        .bib-doi
-            float left
-    #meanstorisk
-        .no-pad *
-            padding 0
-        .graph_panel
-            padding-left 0
-            img
-                min-width 100%
-                max-width 102%
-                transition transform 0.5s ease-in
-                &:hover
-                &:active
-                    transform scale(1.4)
-        .table_panel
-            .row
-                border .125em solid #ddd
-                border-radius 4px
-                .header
-                    padding .5em
-        #download_button
-            margin 10px
-        //        .top_section
-        //            height 400px
-        //
-        //        .bottom_section
-        //            clear left
-        //            height 400px
-        .input_panel
-            border  1px #BBB solid
-
-        div.input_accordion
-            background  #FFF
-
-        h3.input_accordion
-            background-color #DDD
-
-        .output_graph
-            min-width 100%
-            max-width 110%
-            display block
-            margin-left  auto
-            margin-right  auto
-
-        .key_output_panel
-            float left
-            // width 300px
-            background-color #faf
-            height 99%
-
-        .tabbed_output_panel
-            height 99%
-            #tabs
-                  font-size inherit
-        .highlight
-            background-color yellow
-
-        .col1
-            padding 6px
-            text-align center
-
-        .maincard
-            // width 800px
-            height 750px
-            border 2px black solid
-
-        .highlight
-            background-color yellow
-
-        table.table_data
-            width 99%
-            background-color white
-            border 1px #BBB solid
-
-        table.output_data
-            background-color white
-            border-collapse collapse
-            border 2px black solid
-
-        th.table_data
-            padding 2px
-
-        th.header
-            border-bottom  1px #BBB solid
-        tr.table_data_header
-            border-bottom  1px black solid
-            background-color #A0A0A0
-
-        tr.line-above
-            border-top 1px #BBB solid
-
-        .main-title
-            text-align center
-
-        .PPV_stripe
-            border-bottom 1px black solid
-            background-color #B080FF
-
-        .cNPV_stripe
-            border-bottom 1px black solid
-            background-color #8080FF
-
-        .PPVcNPV_stripe
-            border-bottom 1px black solid
-            background-color #FFAA80
-
-        .ProgramBased_stripe
-            border-bottom 1px black solid
-            background-color #FFB0D0
-
-        .PPVBased_stripe
-            border-bottom 1px black solid
-            background-color #A0A0A0
-
-        .SensitivityBased_stripe
-            border-bottom 1px black solid
-            background-color #808080
-
-        .DominatedByRareDisease_stripe
-            border-bottom 1px black solid
-            background-color #F0F0F0
-    #help
-        h4 a
-            color white
-            font-size smaller
-        section h5
-            font-weight bold
-       ul li li
-           text-indent 1.5em
-    #meanRiskStratification
-        table input[type="number"]
-            width 100%
-        .marker-title
-            background-color tan
-        #results table th
-            background-color tan
-        .red
-            background-color base-red
-        .panel-title, .panel-title a
-            font-size small
-        .panel-toggle a, .panel-title a
-            color black
-            font-weight bold
-        label
-            font-weight bold
-        .well, #results
-            min-height 645px
-        .termToDefine, th
-            font-weight bold
-
-        .termToDefine.glyphicon
-            text-decoration none
-        .loader
-            background-image url("/common/images/loading.gif") no-repeat;
-            margin 0 auto;
-            height 300px
-        .input:invalid
-            background-color yellow
-    #riskStratAdvanced
-        input,select
-            padding 1px
-        .label
-            float right
-        .explanation
-            float left
-            padding-left 15px
-            // width 600px
-
-        .reference_row
-            background-color yellow
-
-        td
-            text-align left
-
-        .prevalence_label
-            font-weight bold
-            background-color #AAA
-            color #444
-            padding 2px 25px 2px 25px
-
-        .bibliography
-            // width 950px
-            clear both
-            float left
-            margin 50px
-
-        .bib-author
-            float left
-
-        .bib-year
-            float left
-
-        .bib-title
-            float left
-            font-style italic
-
-        .bib-journal
-            float left
-
-        .bib-ref
-            float left
-
-        .bib-pages
-            float left
-
-        .bib-doi
-            float left
-
-        .status-info
-            color black
-
-        .status-error
-            color base-red
-
-        a#add-test-data
-            text-decoration underline
-            float right
-            :hover
-                font-weight bold
-        .table-title
-            word-wrap normal
-            font-weight bold
-            text-align center
-            background-color #F8FAFA
-        #status-bar
-            background #CCC
-            display block
-            border none
-            box-sizing border-box
-            font 18px "arial", "sans-serif"
-            left 0
-            margin 10px
-            outline none
-            padding 10px
-            top 2px
-            visibility hidden
-        #tabs
-            font-size inherit
-            .header
-                background-color #AAA
-                color #444
-            .vertical-text
-                transform rotate(-90deg)
-                white-space no-wrap
-#portal-footer
-    line-height 1.2em
+img.expand
+  transition transform 0.5s ease-in
+  &:hover
+  &:active
+    transform scale(1.4)
+input
+  padding 1px !important
+#main
+  max-width 1200px
+  min-width 400px
+  margin 0 auto
+  font-size small
+#helpGlossaryLinks
+  float right
+  clear both
+#meanstorisk
+  .top_group
+    clear both
+    overflow auto
+    > div
+      padding 15px
+      float left
+      width (100%*4/13)
+      ~ div
+        width (100%*4/13)
+        ~ div
+          width (100%*5/13)
+  #cases_control
+    .table_data
+      width 40%
+      height 2em
+      ~ .table_data
+        width 30%
+  .panel-footer
+    input
+      width 100%
+  #mtr-results
+    .table_row
+      border .125em solid #ddd
+      border-radius 4px
+      overflow auto
+      .header
+        padding .5em
+    .table_data
+      width (100%/3)
+      ~ .table_data
+        width (100%/6)
+        ~ .table_data
+          width 25%
+  .no-pad *
+  padding 0
+  .graph_panel
+      padding-left 0
+      img
+        width 100%
+        transition transform 0.5s ease-in
+        &:hover
+        &:active
+          transform scale(1.4)
+  #download_button
+    margin 10px
+  .input_panel
+    border  1px #BBB solid
+  div.input_accordion
+    background  #FFF
+  h3.input_accordion
+    background-color #DDD
+  .output_graph
+    display block
+    margin-left  auto
+    margin-right  auto
+  .key_output_panel
+    float left
+    background-color #faf
+    height 99%
+  .tabbed_output_panel
+    height 99%
+    #tabs
+        font-size inherit
+  .highlight
+    background-color yellow
+  .col1
+    padding 6px
     text-align center
-    background-color #FFF
-    color #333333
+  .maincard
+    height 750px
+    border 2px black solid
+  .highlight
+    background-color yellow
+  table.table_data
+    width 99%
+    background-color white
+    border 1px #BBB solid
+  table.output_data
+    background-color white
+    border-collapse collapse
+    border 2px black solid
+  th.table_data
+    padding 2px
+  th.header
+    border-bottom  1px #BBB solid
+  tr.table_data_header
+    border-bottom  1px black solid
+    background-color #A0A0A0
+  tr.line-above
+    border-top 1px #BBB solid
+  .main-title
+    text-align center
+  .PPV_stripe
+    border-bottom 1px black solid
+    background-color #B080FF
+  .cNPV_stripe
+    border-bottom 1px black solid
+    background-color #8080FF
+  .PPVcNPV_stripe
+    border-bottom 1px black solid
+    background-color #FFAA80
+  .ProgramBased_stripe
+    border-bottom 1px black solid
+    background-color #FFB0D0
+  .PPVBased_stripe
+    border-bottom 1px black solid
+    background-color #A0A0A0
+  .SensitivityBased_stripe
+    border-bottom 1px black solid
+    background-color #808080
+  .DominatedByRareDisease_stripe
+    border-bottom 1px black solid
+    background-color #F0F0F0
+.footer
+    color #606060
+    background-color white
     font-size small
+    li a
+      color inherit
+.glyphicon + span
+  margin-left 1em
+.indent
+  margin-left 30px
+  margin-right 20px
+  margin-top 10px
+  margin-bottom 5px
+.vertical-padding
+  padding-top .5em
+  padding-bottom .5em
+.no-pad
+  padding 0
+.table_container
+  overflow auto
+.table_row
+  clear both
+.table_data
+  float left
+.title
+  color black
+.define,.termToDefine
+  font-weight bold
+  text-decoration underline
+  cursor help
+.popover
+  .popover-title
+    background-color highlight-compl
+    font-weight bold
+  .popover-content
+    background-color highlight
+.header
+  background-color tan
+.extra-padding
+  padding 1em
+.extra-vertical-margin
+  margin 10px 0
+#contentTabs
+  width 100%
+  margin 1.5em auto
+  ul.nav.nav-tabs
+    font-size small
+    font-size 9pt
     a
-        text-decoration none
-        color #333333
-        border none
-        :visited
-            color #333333
-        :hover
-            text-decoration underline
+      color black
+    > li.active a
+      text-decoration underline
+      font-weight bold
+      color base-red
+     :after
+      border solid transparent
+      margin-left -10px
+      top 100%
+      left 50%
+  .tab-content
+    line-height 1.42857143
+    border-right 1px solid #ddd
+    border-bottom 1px solid #ddd
+    border-left 1px solid #ddd
+    border-radius 4px
+    padding 1.5em
+    overflow auto
+  #sampleSize
+    .tablevars
+      padding 0
+    #ss
+      // width 50%
+    .row
+      margin 1em auto
+  #bc
+    .explanation
+      float left
+      padding-left 15px
+      // width 600px
+    .reference_row
+      background-color  yellow
+    .top-header
+      text-align center
+      background-color #444
+      color #FFF
+    #graph img
+      width 80%
+    #inputdata
+      .input:hover
+        cursor text
+      .panel-body
+        padding-top 0
+        padding-bottom 0
+    h2
+      background-color #AAA
+      color #444
+      padding 5px
+    .bibliography
+      // width 950px
+      clear both
+      float left
+      margin 50px
+    .bib-author
+      float left
+    .bib-year
+      float left
+    .bib-title
+      float left
+      font-style italic
+    .bib-journal
+      float left
+    .bib-ref
+      float left
+    .bib-pages
+      float left
+    .bib-doi
+      float left
+  #help
+    h4 a
+      color white
+      font-size smaller
+    section h5
+      font-weight bold
+     ul li li
+       text-indent 1.5em
+  #meanRiskStratification
+    table input[type="number"]
+      width 100%
+    .marker-title
+      background-color tan
+    #results table th
+      background-color tan
+    .red
+      background-color base-red
+    .panel-title, .panel-title a
+      font-size small
+    .panel-toggle a, .panel-title a
+      color black
+      font-weight bold
+    label
+      font-weight bold
+    .well, #results
+      min-height 645px
+    .termToDefine, th
+      font-weight bold
+
+    .termToDefine.glyphicon
+      text-decoration none
+    .loader
+      background-image url("/common/images/loading.gif") no-repeat;
+      margin 0 auto;
+      height 300px
+    .input:invalid
+      background-color yellow
+  #riskStratAdvanced
+    input,select
+      padding 1px
+    .label
+      float right
+    .explanation
+      float left
+      padding-left 15px
+      // width 600px
+
+    .reference_row
+      background-color yellow
+
+    td
+      text-align left
+
+    .prevalence_label
+      font-weight bold
+      background-color #AAA
+      color #444
+      padding 2px 25px 2px 25px
+
+    .bibliography
+      // width 950px
+      clear both
+      float left
+      margin 50px
+
+    .bib-author
+      float left
+
+    .bib-year
+      float left
+
+    .bib-title
+      float left
+      font-style italic
+
+    .bib-journal
+      float left
+
+    .bib-ref
+      float left
+
+    .bib-pages
+      float left
+
+    .bib-doi
+      float left
+
+    .status-info
+      color black
+
+    .status-error
+      color base-red
+
+    a#add-test-data
+      text-decoration underline
+      float right
+      :hover
+        font-weight bold
+    .table-title
+      word-wrap normal
+      font-weight bold
+      text-align center
+      background-color #F8FAFA
+    #status-bar
+      background #CCC
+      display block
+      border none
+      box-sizing border-box
+      font 18px "arial", "sans-serif"
+      left 0
+      margin 10px
+      outline none
+      padding 10px
+      top 2px
+      visibility hidden
+    #tabs
+      font-size inherit
+      .header
+        background-color #AAA
+        color #444
+      .vertical-text
+        transform rotate(-90deg)
+        white-space no-wrap
+#portal-footer
+  line-height 1.2em
+  text-align center
+  background-color #FFF
+  color #333333
+  font-size small
+  a
+    text-decoration none
+    color #333333
+    border none
+    :visited
+      color #333333
+    :hover
+      text-decoration underline
+@media (max-width 1200px)
+  #meanstorisk
+    .top_group > div
+      width 50%
+      ~ div
+        width 50%
+        ~ div
+          width 100%
+@media (max-width 800px)
+  #meanstorisk
+    .top_group > div
+      width 100%
+      ~ div
+        width 100%
