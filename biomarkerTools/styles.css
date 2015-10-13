@@ -134,9 +134,11 @@ table .table_data {
 }
 #meanstorisk .tabbed_output_panel {
   height: 99%;
+  overflow: auto;
 }
 #meanstorisk .tabbed_output_panel #tabs {
   font-size: inherit;
+  margin: 0px;
 }
 #meanstorisk .highlight {
   background-color: #ff0;
