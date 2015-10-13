@@ -36,6 +36,9 @@ img.expand:active {
 input {
   padding: 1px !important;
 }
+table .table_data {
+  float: none;
+}
 #main {
   max-width: 1200px;
   min-width: 400px;
