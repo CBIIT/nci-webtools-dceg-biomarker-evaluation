@@ -89,13 +89,12 @@ input {
 #meanstorisk #mtr-results .table_data ~ .table_data ~ .table_data {
   width: 25%;
 }
-#meanstorisk .no-pad *,
-#meanstorisk padding 0,
+#meanstorisk .no-pad * {
+  padding: 0;
+}
 #meanstorisk .graph_panel {
   padding-left: 0;
 }
-#meanstorisk .no-pad * img,
-#meanstorisk padding 0 img,
 #meanstorisk .graph_panel img {
   width: 100%;
   -webkit-transition: -webkit-transform 0.5s ease-in;
@@ -104,11 +103,7 @@ input {
   -ms-transition: -ms-transform 0.5s ease-in;
   transition: transform 0.5s ease-in;
 }
-#meanstorisk .no-pad * img:hover,
-#meanstorisk padding 0 img:hover,
 #meanstorisk .graph_panel img:hover,
-#meanstorisk .no-pad * img:active,
-#meanstorisk padding 0 img:active,
 #meanstorisk .graph_panel img:active {
   -webkit-transform: scale(1.4);
   -moz-transform: scale(1.4);
