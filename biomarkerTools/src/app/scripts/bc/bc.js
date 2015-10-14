@@ -204,9 +204,9 @@ function change_value(field, new_value){
 }
 
 function import_data_row(data, ind){
-  var empty_cell ="<div class='col-xs-3'>&nbsp;</div>";
+  var empty_cell ="<div>&nbsp;</div>";
 
-  var cell_1 = "<div class='row' row='" + ind + "'><div class='text-center'><b>" + (ind + 1) + "</b></div>";
+  var cell_1 = "<div row='" + ind + "'><div class='text-center'><b>" + (ind + 1) + "</b></div>";
   var cell_2 ="<div class='text-center reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
   var cell_3 ="<div class='text-center input sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
   var cell_4 = "<div class='text-center input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
@@ -454,11 +454,11 @@ function jsonToCell(obj){
       LRminus = value;
     }
   }
-  var new_row = $("<div class='row'>");
-  new_row.append("<div class='col-xs-3 text-center'>" + Sensitivity + "</div>");
-  new_row.append("<div class='col-xs-3 text-center'>" + Specificity + "</div>");
-  new_row.append("<div class='col-xs-3 text-center'>" + LRplus + "</div>");
-  new_row.append("<div class='col-xs-3 text-center'>" + LRminus + "</div>");
+  var new_row = $("<div>");
+  new_row.append("<div class='text-center'>" + Sensitivity + "</div>");
+  new_row.append("<div class='text-center'>" + Specificity + "</div>");
+  new_row.append("<div class='text-center'>" + LRplus + "</div>");
+  new_row.append("<div class='text-center'>" + LRminus + "</div>");
   thisTool.find('#output').append(new_row);
 }
 
@@ -482,14 +482,14 @@ function jsonToCellWithPrev(obj){
       else if (key== 'cNPV') cNPV=value;
     }
   }
-  var new_row = $("<div class='row'>");
-  new_row.append("<div class='col-xs-2 text-center'>" + Sensitivity + "</div>");
-  new_row.append("<div class='col-xs-2 text-center'>" + Specificity + "</div>");
-  new_row.append("<div class='col-xs-2 text-center'>" + LRplus + "</div>");
-  new_row.append("<div class='col-xs-2 text-center'>" + LRminus + "</div>");
+  var new_row = $("<div>");
+  new_row.append("<div class='text-center'>" + Sensitivity + "</div>");
+  new_row.append("<div class='text-center'>" + Specificity + "</div>");
+  new_row.append("<div class='text-center'>" + LRplus + "</div>");
+  new_row.append("<div class='text-center'>" + LRminus + "</div>");
   if (validPrevValue) {
-    new_row.append("<div class='col-xs-2 text-center'>" + PPV + "</div>");
-    new_row.append("<div class='col-xs-2 text-center'>" + cNPV + "</div>");
+    new_row.append("<div class='text-center'>" + PPV + "</div>");
+    new_row.append("<div class='text-center'>" + cNPV + "</div>");
   }
   thisTool.find('#output').append(new_row);
 }
@@ -497,14 +497,14 @@ function jsonToCellWithPrev(obj){
 function createOutputTable(jsondata){
   var top_header_row, header_row, i$, len$, each;
   thisTool.find('#output').empty();
-  top_header_row = $("<div class='row'></div>");
-  top_header_row.append("<div class='col-xs-12 top-header'><strong>Output Data</strong></div>");
+  top_header_row = $("<div></div>");
+  top_header_row.append("<div class='top-header'><strong>Output Data</strong></div>");
   thisTool.find('#output').append(top_header_row);
-  header_row = $("<div class='row'></div>");
-  header_row.append("<div class='col-xs-3 header text-center'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></div>");
-  header_row.append("<div class='col-xs-3 header text-center'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div class='col-xs-3 header text-center'><div class='define' id='LRP2' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div class='col-xs-3 header text-center'><div class='define' id='LRN2' data-term='LRN'>LR-</div></div>");
+  header_row = $("<div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='LRP2' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='LRN2' data-term='LRN'>LR-</div></div>");
   thisTool.find('#output').append(header_row);
   for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
     each = jsondata[i$];
@@ -514,16 +514,16 @@ function createOutputTable(jsondata){
 
 function createOutputTableWithPrev(jsondata){
   thisTool.find('#output').empty();
-  top_header_row = $("<div class='row'></div>");
-  top_header_row.append("<div class='col-xs-12 top-header'>Output Data</div>");
+  top_header_row = $("<div></div>");
+  top_header_row.append("<div class='top-header'>Output Data</div>");
   thisTool.find('#output').append(top_header_row);
-  var header_row = $("<div class='row'></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='LRP3' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='LRN3' data-term='LRN'>LR-</div></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
-  header_row.append("<div class='col-xs-2 header text-center'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
+  var header_row = $("<div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='LRP3' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='LRN3' data-term='LRN'>LR-</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
+  header_row.append("<div class='header text-center'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
   thisTool.find('#output').append(header_row);
   for (var each in jsondata) {
     jsonToCellWithPrev(jsondata[each]);

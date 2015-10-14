@@ -258,9 +258,13 @@ table .table_data {
   padding-top: 0;
   padding-bottom: 0;
 }
+#bc #output > div ~ div {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
 #bc #output > div ~ div > div {
-  float: left;
-  width: 25%;
+  display: table-cell;
 }
 #bc h2 {
   background-color: #aaa;

@@ -190,9 +190,12 @@ table .table_data
     .panel-body
       padding-top 0
       padding-bottom 0
-  #output > div ~ div > div
-    float left
-    width 25%
+  #output > div ~ div
+    display table
+    width 100%
+    table-layout fixed
+    > div
+      display table-cell
   h2
     background-color #AAA
     color #444
