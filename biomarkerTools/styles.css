@@ -19,6 +19,7 @@ header #branch-logo {
   padding: 0;
 }
 img.expand {
+  width: 80%;
   -webkit-transition: -webkit-transform 0.5s ease-in;
   -moz-transition: -moz-transform 0.5s ease-in;
   -o-transition: -o-transform 0.5s ease-in;
@@ -93,22 +94,6 @@ table .table_data {
 }
 #meanstorisk .graph_panel {
   padding-left: 0;
-}
-#meanstorisk .graph_panel img {
-  width: 100%;
-  -webkit-transition: -webkit-transform 0.5s ease-in;
-  -moz-transition: -moz-transform 0.5s ease-in;
-  -o-transition: -o-transform 0.5s ease-in;
-  -ms-transition: -ms-transform 0.5s ease-in;
-  transition: transform 0.5s ease-in;
-}
-#meanstorisk .graph_panel img:hover,
-#meanstorisk .graph_panel img:active {
-  -webkit-transform: scale(1.4);
-  -moz-transform: scale(1.4);
-  -o-transform: scale(1.4);
-  -ms-transform: scale(1.4);
-  transform: scale(1.4);
 }
 #meanstorisk #download_button {
   margin: 10px;
