@@ -1,126 +1,132 @@
 #bc.tab-pane.fade(role='tabpanel')
-    h3.title.text-center(title="Biomarker Comparison tool") Biomarker Comparison
-    .col-sm-12.vertical-padding
-        #helpGlossaryLinks
-            a.goToHelp(href="#help_bc") Help
-            | &nbsp;
-            a.goToGlossary(href="#") Glossary
-    p
-      | This tool plots contours of likelihood ratio positive (LR+) and
-      | likelihood ratio negative (LR-) for a reference test with indicated
-      | sensitivity and specificity pairs (see the example plot below). The
-      | likelihood ratio contours define four areas:
-      .row
-        .col-sm-6
-          img(src='images/exampleLRPlot.jpg', alt='sample LR plot', height='350')
-        .col-sm-6.explanation
-          ul#ulForLRAreas
-            li.liForLRArea
-              | Area A shows combinations of
-              | sensitivity and specificity with higher LR+ and LR- than the
-              | reference test. This corresponds to a higher positive predictive
-              | value (PPV) and lower complement of the negative predictive value
-              | (cNPV)
-            li.liForLRArea
-              | Area B shows combinations of
-              | sensitivity and specificity with higher LR+ and lower LR- than
-              | the reference test. This corresponds to a higher positive
-              | predictive value (PPV) and higher complement of the negative
-              | predictive value (cNPV).
-            li.liForLRArea
-              | Area C shows combinations of sensitivity and specificity
-              | with lower LR+ and higher LR- compared to the reference
-              | test. This corresponds to a lower positive
-              | predictive value (PPV) and lower complement of the
-              | negative predictive value (cNPV).
-            li.liForLRArea Area D shows combinations of sensitivity and
-              | specificity with lower LR+ and lower LR- compared
-              | to the reference test. This corresponds to a lower positive
-              | predictive value (PPV) and higher complement of the negative
-              | predictive value (cNPV)
-          p LR+ and LR- measures provide test-specific characteristics of risk
-            | stratification that yield estimates of absolute risk (PPV and NPV)
-            | when multiplied with the specific disease prevalence. LR+ and LR-
-            | estimated in one population will be the same in another
-            | population, whenever sensitivities and specificities are the same
-            | in the 2 populations, even when disease prevalences are much
-            | different. To calculate PPV and cNPV, provide a prevalence value.
-        // Left Side
-      .col-xs-12.col-sm-7.col-md-6.table-and-graph
+  h3.title.text-center(title="Biomarker Comparison tool") Biomarker Comparison
+  div
+    span &nbsp;
+    #helpGlossaryLinks
+      a.goToHelp(href="#help_bc") Help
+      span &nbsp;
+      a.goToGlossary(href="#") Glossary
+  p
+    | This tool plots contours of likelihood ratio positive (LR+) and
+    | likelihood ratio negative (LR-) for a reference test with indicated
+    | sensitivity and specificity pairs (see the example plot below). The
+    | likelihood ratio contours define four areas:
+  .maliable.clearfix
+    .top_group.clearfix
+      img(src='images/exampleLRPlot.jpg', alt='sample LR plot')
+      div
+        ul#ulForLRAreas
+          li.liForLRArea
+            | Area A shows combinations of
+            | sensitivity and specificity with higher LR+ and LR- than the
+            | reference test. This corresponds to a higher positive predictive
+            | value (PPV) and lower complement of the negative predictive value
+            | (cNPV)
+          li.liForLRArea
+            | Area B shows combinations of
+            | sensitivity and specificity with higher LR+ and lower LR- than
+            | the reference test. This corresponds to a higher positive
+            | predictive value (PPV) and higher complement of the negative
+            | predictive value (cNPV).
+          li.liForLRArea
+            | Area C shows combinations of sensitivity and specificity
+            | with lower LR+ and higher LR- compared to the reference
+            | test. This corresponds to a lower positive
+            | predictive value (PPV) and lower complement of the
+            | negative predictive value (cNPV).
+          li.liForLRArea
+            | Area D shows combinations of sensitivity and
+            | specificity with lower LR+ and lower LR- compared
+            | to the reference test. This corresponds to a lower positive
+            | predictive value (PPV) and higher complement of the negative
+            | predictive value (cNPV)
+      p
+        | LR+ and LR- measures provide test-specific characteristics of risk
+        | stratification that yield estimates of absolute risk (PPV and NPV)
+        | when multiplied with the specific disease prevalence. LR+ and LR-
+        | estimated in one population will be the same in another
+        | population, whenever sensitivities and specificities are the same
+        | in the 2 populations, even when disease prevalences are much
+        | different. To calculate PPV and cNPV, provide a prevalence value.
+    .bottom_group
+      div
         #accordion.panel.panel-default
-            .panel-heading
-                .panel-title.text-center
-                    b Input Information
-            .panel-heading
-                b Manually enter parameters
-                    u OR
-                    |  import values from file
-            #upload.panel-body
-                .indent
-                    p
-                        label.data_entry_by_file(for='file_upload')
-                            | Upload CSV file to pre-populate parameters table with data
-                            a(href='bc/exampleValues.csv')  (Example)
-                    p
-                        input#file_upload(type='file', accept=".csv")
-            #inputdata.panel-body
-              .row.non-data-row
-                .col-xs-1.header.text-center
-                    b #
-                .col-xs-3.header.text-center
-                    b Reference
-                .col-xs-3.header.text-center
-                  #Sens.define(data-term='Sens')
-                    b Sensitivity
-                .col-xs-3.header.text-center
-                  #Spec.define(data-term='Spec')
-                    b Specificity
-                .col-xs-2.header.text-center &nbsp;
-              .row.reference_row(row='0')
-                .col-xs-1.text-center 1
-                .col-xs-3.text-center.reference(row='0', col='reference')
-                  img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
-                .col-xs-3.text-center.input.sensitivity(row='0', col='sensitivity') 0.8
-                .col-xs-3.text-center.input.specificity(row='0', col='specificity') 0.7
-                .col-xs-2.text-center  
-              .row(row='1')
-                .col-xs-1.text-center 2
-                .col-xs-3.text-center.reference(row='1', col='reference')
-                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-xs-3.text-center.input.sensitivity(row='1', col='sensitivity') 0.85
-                .col-xs-3.text-center.input.specificity(row='1', col='specificity') 0.68
-                .col-xs-2.text-center
-                  button.remove_row_button Remove
-              .row(row='2')
-                .col-xs-1.text-center 3
-                .col-xs-3.text-center.reference(row='2', col='reference')
-                  img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-                .col-xs-3.text-center.input.sensitivity(row='2', col='sensitivity') 0.9
-                .col-xs-3.text-center.input.specificity(row='2', col='specificity') 0.5
-                .col-xs-2.text-center
-                  button.remove_row_button Remove
-              .non-data-row
-                .text-center.pull-right
-                  button#new_row_button New Row
-            .panel-footer
-                label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
-                input#prevalence_bc(type='text')
-                button#calculate_button Calculate
-                button#reset Reset
+          .panel-heading
+            .panel-title.text-center
+              b Input Information
+          .panel-heading
+            b
+              span Manually enter parameters 
+              u OR
+              span  import values from file
+          #upload.panel-body
+            .indent
+              p
+                label.data_entry_by_file(for='file_upload')
+                  span Upload CSV file to pre-populate parameters table with data 
+                  a(href='bc/exampleValues.csv') (Example)
+              p
+                input#file_upload(type='file', accept=".csv")
+          #inputdata.panel-body
+            .non-data-row
+              .header.text-center
+                  b #
+              .header.text-center
+                  b Reference
+              .header.text-center
+                #Sens.define(data-term='Sens')
+                  b Sensitivity
+              .header.text-center
+                #Spec.define(data-term='Spec')
+                  b Specificity
+              .header.text-center &nbsp;
+            .reference_row(row='0')
+              .text-center 1
+              .text-center.reference(row='0', col='reference')
+                img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
+              .text-center.input.sensitivity(row='0', col='sensitivity') 0.8
+              .text-center.input.specificity(row='0', col='specificity') 0.7
+              .text-center  
+            div(row='1')
+              .text-center 2
+              .text-center.reference(row='1', col='reference')
+                img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
+              .text-center.input.sensitivity(row='1', col='sensitivity') 0.85
+              .text-center.input.specificity(row='1', col='specificity') 0.68
+              .text-center
+                button.remove_row_button Remove
+            div(row='2')
+              .text-center 3
+              .text-center.reference(row='2', col='reference')
+                img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
+              .text-center.input.sensitivity(row='2', col='sensitivity') 0.9
+              .text-center.input.specificity(row='2', col='specificity') 0.5
+              .text-center
+                button.remove_row_button Remove
+            .non-data-row
+              div &nbsp;
+              div &nbsp;
+              div &nbsp;
+              div &nbsp;
+              .text-center
+                button#new_row_button New Row
+          .panel-footer
+            label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
+            input#prevalence_bc(type='text')
+            button#calculate_button Calculate
+            button#reset Reset
         #output
-      #graph.col-xs-12.col-sm-5.thumbnail.text-center
-            img.img-responsive(src="/common/images/initial.jpg", alt="placeholder image")
-            b.hide (hover over or click image to expand)
-      .col-xs-12
-        include ../partials/loader
-      .bibliography
-        p
-          strong References:
-        p Marina V. Kondratovich, (2007),
-          i
-            | Comparing Two Medical Tests
-            | When Results of Reference Standard Are Unavailable for Those
-            | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,
-          a(target='_blank',
-          href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670')
-            | DOI: 10.1080/10543400701668308
+      #graph.thumbnail.text-center
+        img.img-responsive(src="/common/images/initial.jpg", alt="placeholder image")
+        b.hide (hover over or click image to expand)
+  div
+    include ../partials/loader
+  .bibliography
+    p
+      strong References:
+    p Marina V. Kondratovich, (2007),
+      i
+        | Comparing Two Medical Tests
+        | When Results of Reference Standard Are Unavailable for Those
+        | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,
+      a(target='_blank', href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670') DOI: 10.1080/10543400701668308

@@ -49,15 +49,15 @@ table .table_data {
   float: right;
   clear: both;
 }
-#meanstorisk .top_group > div {
+#meanstorisk .maliable > div {
   padding: 15px;
   float: left;
   width: 30.76923076923077%;
 }
-#meanstorisk .top_group > div ~ div {
+#meanstorisk .maliable > div ~ div {
   width: 30.76923076923077%;
 }
-#meanstorisk .top_group > div ~ div ~ div {
+#meanstorisk .maliable > div ~ div ~ div {
   width: 38.46153846153846%;
 }
 #meanstorisk #cases_control .table_data {
@@ -208,6 +208,92 @@ table .table_data {
   border-bottom: 1px #000 solid;
   background-color: #f0f0f0;
 }
+#bc .top_group > div {
+  overflow: auto;
+}
+#bc .top_group > div ul {
+  padding-left: 1.5em;
+}
+#bc .top_group > img {
+  width: 350px;
+  float: left;
+  overflow: visible;
+}
+#bc .reference_row {
+  background-color: #ff0;
+}
+#bc .top-header {
+  text-align: center;
+  background-color: #444;
+  color: #fff;
+}
+#bc .bottom_group > div {
+  float: left;
+  padding-right: 15px;
+  width: 58.333333333333336%;
+}
+#bc .bottom_group #graph {
+  width: 41.666666666666664%;
+}
+#bc .bottom_group #graph img {
+  width: 80%;
+}
+#bc #inputdata > div {
+  overflow: auto;
+}
+#bc #inputdata > div > div {
+  float: left;
+  width: 8.333333333333334%;
+}
+#bc #inputdata > div > div ~ div {
+  width: 25%;
+}
+#bc #inputdata > div > div ~ div ~ div ~ div ~ div {
+  width: 16.666666666666668%;
+}
+#bc #inputdata .input:hover {
+  cursor: text;
+}
+#bc #inputdata .panel-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#bc #output > div ~ div > div {
+  float: left;
+  width: 25%;
+}
+#bc h2 {
+  background-color: #aaa;
+  color: #444;
+  padding: 5px;
+}
+#bc .bibliography {
+  clear: both;
+  float: left;
+  margin: 50px;
+}
+#bc .bib-author {
+  float: left;
+}
+#bc .bib-year {
+  float: left;
+}
+#bc .bib-title {
+  float: left;
+  font-style: italic;
+}
+#bc .bib-journal {
+  float: left;
+}
+#bc .bib-ref {
+  float: left;
+}
+#bc .bib-pages {
+  float: left;
+}
+#bc .bib-doi {
+  float: left;
+}
 .footer {
   color: #606060;
   background-color: #fff;
@@ -302,60 +388,6 @@ table .table_data {
 }
 #contentTabs #sampleSize .row {
   margin: 1em auto;
-}
-#contentTabs #bc .explanation {
-  float: left;
-  padding-left: 15px;
-}
-#contentTabs #bc .reference_row {
-  background-color: #ff0;
-}
-#contentTabs #bc .top-header {
-  text-align: center;
-  background-color: #444;
-  color: #fff;
-}
-#contentTabs #bc #graph img {
-  width: 80%;
-}
-#contentTabs #bc #inputdata .input:hover {
-  cursor: text;
-}
-#contentTabs #bc #inputdata .panel-body {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#contentTabs #bc h2 {
-  background-color: #aaa;
-  color: #444;
-  padding: 5px;
-}
-#contentTabs #bc .bibliography {
-  clear: both;
-  float: left;
-  margin: 50px;
-}
-#contentTabs #bc .bib-author {
-  float: left;
-}
-#contentTabs #bc .bib-year {
-  float: left;
-}
-#contentTabs #bc .bib-title {
-  float: left;
-  font-style: italic;
-}
-#contentTabs #bc .bib-journal {
-  float: left;
-}
-#contentTabs #bc .bib-ref {
-  float: left;
-}
-#contentTabs #bc .bib-pages {
-  float: left;
-}
-#contentTabs #bc .bib-doi {
-  float: left;
 }
 #contentTabs #help h4 a {
   color: #fff;
@@ -528,21 +560,44 @@ table .table_data {
   text-decoration: underline;
 }
 @media (max-width: 1200px) {
-  #meanstorisk .top_group > div {
+  #meanstorisk .maliable > div {
     width: 50%;
   }
-  #meanstorisk .top_group > div ~ div {
+  #meanstorisk .maliable > div ~ div {
     width: 50%;
   }
-  #meanstorisk .top_group > div ~ div ~ div {
+  #meanstorisk .maliable > div ~ div ~ div {
     width: 100%;
   }
 }
+@media (max-width: 1000px) {
+  #bc .bottom_group > div {
+    float: none;
+    width: 100%;
+    padding-right: 15px;
+  }
+  #bc .bottom_group #graph {
+    width: 608px;
+    margin: 0px auto;
+    padding-right: 4px;
+  }
+}
 @media (max-width: 800px) {
-  #meanstorisk .top_group > div {
+  #meanstorisk .maliable > div {
     width: 100%;
   }
-  #meanstorisk .top_group > div ~ div {
+  #meanstorisk .maliable > div ~ div {
     width: 100%;
+  }
+}
+@media (max-width: 780px) {
+  #bc .top_group > img {
+    float: none;
+    display: block;
+    margin: 0px auto;
+    width: 480px;
+  }
+  #bc .top_group > img ~ * {
+    float: none;
   }
 }

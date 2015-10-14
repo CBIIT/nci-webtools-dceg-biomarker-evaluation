@@ -29,8 +29,8 @@
             <li role="tab" title="Navigate to Mean Risk Stratification tab"><a href="#meanRiskStratification" data-toggle="tab">Mean Risk Stratification</a></li>
             <li role="tab" title="Navigate to Help tab"><a href="#help" data-toggle="tab">Help</a></li>
           </ul>
-          <div id="mainTabsContent" class="tab-content">
-            <div id="home" role="tabpanel" class="tab-pane fade active in">
+          <div id="mainTabsContent" class="tab-content clearfix">
+            <div id="home" role="tabpanel" class="tab-pane fade in active">
               <h3 title="Home" class="title text-center">Biomarker Tools</h3>
               <p>
                 This toolset estimates risk stratification from early biomarker data and stategies to advance biomarkers or other
@@ -48,13 +48,13 @@
                 <li><a title="go to the Risk Stratification Advanced Options tool" href="#riskStratAdvanced" class="goToTab">Risk Stratification Advanced Options</a></li>
               </ul>
             </div>
-            <div id="meanstorisk" role="tabpanel" class="tab-pane fade in">
+            <div id="meanstorisk" role="tabpanel" class="tab-pane fade">
               <div class="top_section">
                 <h3 title="Means to Risk Stratification tool" class="text-center">From Difference in Means to Risk Stratification: A Web Tool</h3>
                 <div><span>&nbsp;</span>
                   <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a><span>&nbsp;</span><a href="#" class="goToGlossary">Glossary</a></div>
                 </div>
-                <div class="top_group clearfix">
+                <div class="maliable clearfix">
                   <div>
                     <div id="accordion" class="panel panel-default">
                       <div class="panel-heading"><b>Choose how to enter the data</b></div>
@@ -215,17 +215,18 @@
             </div>
             <div id="bc" role="tabpanel" class="tab-pane fade">
               <h3 title="Biomarker Comparison tool" class="title text-center">Biomarker Comparison</h3>
-              <div class="col-sm-12 vertical-padding">
-                <div id="helpGlossaryLinks"><a href="#help_bc" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              <div><span>&nbsp;</span>
+                <div id="helpGlossaryLinks"><a href="#help_bc" class="goToHelp">Help</a><span>&nbsp;</span><a href="#" class="goToGlossary">Glossary</a></div>
               </div>
               <p>
                 This tool plots contours of likelihood ratio positive (LR+) and
                 likelihood ratio negative (LR-) for a reference test with indicated
                 sensitivity and specificity pairs (see the example plot below). The
                 likelihood ratio contours define four areas:
-                <div class="row">
-                  <div class="col-sm-6"><img src="images/exampleLRPlot.jpg" alt="sample LR plot" height="350"></div>
-                  <div class="col-sm-6 explanation">
+              </p>
+              <div class="maliable clearfix">
+                <div class="top_group clearfix"><img src="images/exampleLRPlot.jpg" alt="sample LR plot">
+                  <div>
                     <ul id="ulForLRAreas">
                       <li class="liForLRArea">
                         Area A shows combinations of
@@ -256,99 +257,104 @@
                         predictive value (cNPV)
                       </li>
                     </ul>
-                    <p>
-                      LR+ and LR- measures provide test-specific characteristics of risk
-                      stratification that yield estimates of absolute risk (PPV and NPV)
-                      when multiplied with the specific disease prevalence. LR+ and LR-
-                      estimated in one population will be the same in another
-                      population, whenever sensitivities and specificities are the same
-                      in the 2 populations, even when disease prevalences are much
-                      different. To calculate PPV and cNPV, provide a prevalence value.
-                    </p>
                   </div>
-                  <!-- Left Side-->
+                  <p>
+                    LR+ and LR- measures provide test-specific characteristics of risk
+                    stratification that yield estimates of absolute risk (PPV and NPV)
+                    when multiplied with the specific disease prevalence. LR+ and LR-
+                    estimated in one population will be the same in another
+                    population, whenever sensitivities and specificities are the same
+                    in the 2 populations, even when disease prevalences are much
+                    different. To calculate PPV and cNPV, provide a prevalence value.
+                  </p>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-6 table-and-graph">
-                  <div id="accordion" class="panel panel-default">
-                    <div class="panel-heading">
-                      <div class="panel-title text-center"><b>Input Information</b></div>
+                <div class="bottom_group">
+                  <div>
+                    <div id="accordion" class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="panel-title text-center"><b>Input Information</b></div>
+                      </div>
+                      <div class="panel-heading"><b><span>Manually enter parameters </span>
+                          <u>OR</u><span> import values from file</span></b></div>
+                      <div id="upload" class="panel-body">
+                        <div class="indent">
+                          <p>
+                            <label for="file_upload" class="data_entry_by_file"><span>Upload CSV file to pre-populate parameters table with data </span><a href="bc/exampleValues.csv">(Example)</a></label>
+                          </p>
+                          <p>
+                            <input id="file_upload" type="file" accept=".csv">
+                          </p>
+                        </div>
+                      </div>
+                      <div id="inputdata" class="panel-body">
+                        <div class="non-data-row">
+                          <div class="header text-center"><b>#</b></div>
+                          <div class="header text-center"><b>Reference</b></div>
+                          <div class="header text-center">
+                            <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
+                          </div>
+                          <div class="header text-center">
+                            <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
+                          </div>
+                          <div class="header text-center">&nbsp;</div>
+                        </div>
+                        <div row="0" class="reference_row">
+                          <div class="text-center">1</div>
+                          <div row="0" col="reference" class="text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
+                          <div row="0" col="sensitivity" class="text-center input sensitivity">0.8</div>
+                          <div row="0" col="specificity" class="text-center input specificity">0.7</div>
+                          <div class="text-center"> </div>
+                        </div>
+                        <div row="1">
+                          <div class="text-center">2</div>
+                          <div row="1" col="reference" class="text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                          <div row="1" col="sensitivity" class="text-center input sensitivity">0.85</div>
+                          <div row="1" col="specificity" class="text-center input specificity">0.68</div>
+                          <div class="text-center">
+                            <button class="remove_row_button">Remove</button>
+                          </div>
+                        </div>
+                        <div row="2">
+                          <div class="text-center">3</div>
+                          <div row="2" col="reference" class="text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
+                          <div row="2" col="sensitivity" class="text-center input sensitivity">0.9</div>
+                          <div row="2" col="specificity" class="text-center input specificity">0.5</div>
+                          <div class="text-center">
+                            <button class="remove_row_button">Remove</button>
+                          </div>
+                        </div>
+                        <div class="non-data-row">
+                          <div>&nbsp;</div>
+                          <div>&nbsp;</div>
+                          <div>&nbsp;</div>
+                          <div>&nbsp;</div>
+                          <div class="text-center">
+                            <button id="new_row_button">New Row</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <label id="DP" data-term="DP" for="prevalence_bc" class="define prevalence_label col-sm-3">Prevalence</label>
+                        <input id="prevalence_bc" type="text">
+                        <button id="calculate_button">Calculate</button>
+                        <button id="reset">Reset</button>
+                      </div>
                     </div>
-                    <div class="panel-heading"><b>Manually enter parameters
-                        <u>OR</u> import values from file</b></div>
-                    <div id="upload" class="panel-body">
-                      <div class="indent">
-                        <p>
-                          <label for="file_upload" class="data_entry_by_file">Upload CSV file to pre-populate parameters table with data<a href="bc/exampleValues.csv"> (Example)</a></label>
-                        </p>
-                        <p>
-                          <input id="file_upload" type="file" accept=".csv">
-                        </p>
-                      </div>
-                    </div>
-                    <div id="inputdata" class="panel-body">
-                      <div class="row non-data-row">
-                        <div class="col-xs-1 header text-center"><b>#</b></div>
-                        <div class="col-xs-3 header text-center"><b>Reference</b></div>
-                        <div class="col-xs-3 header text-center">
-                          <div id="Sens" data-term="Sens" class="define"><b>Sensitivity</b></div>
-                        </div>
-                        <div class="col-xs-3 header text-center">
-                          <div id="Spec" data-term="Spec" class="define"><b>Specificity</b></div>
-                        </div>
-                        <div class="col-xs-2 header text-center">&nbsp;</div>
-                      </div>
-                      <div row="0" class="row reference_row">
-                        <div class="col-xs-1 text-center">1</div>
-                        <div row="0" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/checkbox.png" height="18" width="18" alt="this row is the reference row"></div>
-                        <div row="0" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.8</div>
-                        <div row="0" col="specificity" class="col-xs-3 text-center input specificity">0.7</div>
-                        <div class="col-xs-2 text-center"> </div>
-                      </div>
-                      <div row="1" class="row">
-                        <div class="col-xs-1 text-center">2</div>
-                        <div row="1" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="1" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.85</div>
-                        <div row="1" col="specificity" class="col-xs-3 text-center input specificity">0.68</div>
-                        <div class="col-xs-2 text-center">
-                          <button class="remove_row_button">Remove</button>
-                        </div>
-                      </div>
-                      <div row="2" class="row">
-                        <div class="col-xs-1 text-center">3</div>
-                        <div row="2" col="reference" class="col-xs-3 text-center reference"><img src="/common/images/uncheckbox.png" height="18" width="18" alt="click to set this row as the reference row"></div>
-                        <div row="2" col="sensitivity" class="col-xs-3 text-center input sensitivity">0.9</div>
-                        <div row="2" col="specificity" class="col-xs-3 text-center input specificity">0.5</div>
-                        <div class="col-xs-2 text-center">
-                          <button class="remove_row_button">Remove</button>
-                        </div>
-                      </div>
-                      <div class="non-data-row">
-                        <div class="text-center pull-right">
-                          <button id="new_row_button">New Row</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel-footer">
-                      <label id="DP" data-term="DP" for="prevalence_bc" class="define prevalence_label col-sm-3">Prevalence</label>
-                      <input id="prevalence_bc" type="text">
-                      <button id="calculate_button">Calculate</button>
-                      <button id="reset">Reset</button>
-                    </div>
+                    <div id="output"></div>
                   </div>
-                  <div id="output"></div>
+                  <div id="graph" class="thumbnail text-center"><img src="/common/images/initial.jpg" alt="placeholder image" class="img-responsive"><b class="hide">(hover over or click image to expand)</b></div>
                 </div>
-                <div id="graph" class="col-xs-12 col-sm-5 thumbnail text-center"><img src="/common/images/initial.jpg" alt="placeholder image" class="img-responsive"><b class="hide">(hover over or click image to expand)</b></div>
-                <div class="col-xs-12">
-                  <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
-                </div>
-                <div class="bibliography">
-                  <p><strong>References:</strong></p>
-                  <p>Marina V. Kondratovich, (2007),<i>
-                      Comparing Two Medical Tests
-                      When Results of Reference Standard Are Unavailable for Those
-                      Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,</i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
-                </div>
-              </p>
+              </div>
+              <div>
+                <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
+              </div>
+              <div class="bibliography">
+                <p><strong>References:</strong></p>
+                <p>Marina V. Kondratovich, (2007),<i>
+                    Comparing Two Medical Tests
+                    When Results of Reference Standard Are Unavailable for Those
+                    Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,</i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
+              </div>
             </div>
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Advanced Analysis tool" class="title text-center">Risk Stratification Advanced Analysis</h3>

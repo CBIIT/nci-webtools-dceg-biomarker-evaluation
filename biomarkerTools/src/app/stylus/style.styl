@@ -38,7 +38,7 @@ table .table_data
   float right
   clear both
 #meanstorisk
-  .top_group > div
+  .maliable > div
     padding 15px
     float left
     width (100%*4/13)
@@ -150,6 +150,73 @@ table .table_data
   .DominatedByRareDisease_stripe
     border-bottom 1px black solid
     background-color #F0F0F0
+#bc
+  .top_group
+    > div
+      overflow auto
+      ul
+        padding-left 1.5em
+    > img
+      width 350px
+      float left
+      overflow visible
+  .reference_row
+    background-color yellow
+  .top-header
+    text-align center
+    background-color #444
+    color #FFF
+  .bottom_group
+    > div
+      float left
+      padding-right 15px
+      width (100%*7/12)
+    #graph
+      width (100%*5/12)
+      img
+        width 80%
+  #inputdata
+    > div
+      overflow auto
+      > div
+        float left
+        width (100%*1/12)
+        & ~ div
+          width (100%*3/12)
+          & ~ div ~ div ~ div
+            width (100%*2/12)
+    .input:hover
+      cursor text
+    .panel-body
+      padding-top 0
+      padding-bottom 0
+  #output > div ~ div > div
+    float left
+    width 25%
+  h2
+    background-color #AAA
+    color #444
+    padding 5px
+  .bibliography
+    // width 950px
+    clear both
+    float left
+    margin 50px
+  .bib-author
+    float left
+  .bib-year
+    float left
+  .bib-title
+    float left
+    font-style italic
+  .bib-journal
+    float left
+  .bib-ref
+    float left
+  .bib-pages
+    float left
+  .bib-doi
+    float left
 .footer
     color #606060
     background-color white
@@ -223,49 +290,6 @@ table .table_data
       // width 50%
     .row
       margin 1em auto
-  #bc
-    .explanation
-      float left
-      padding-left 15px
-      // width 600px
-    .reference_row
-      background-color  yellow
-    .top-header
-      text-align center
-      background-color #444
-      color #FFF
-    #graph img
-      width 80%
-    #inputdata
-      .input:hover
-        cursor text
-      .panel-body
-        padding-top 0
-        padding-bottom 0
-    h2
-      background-color #AAA
-      color #444
-      padding 5px
-    .bibliography
-      // width 950px
-      clear both
-      float left
-      margin 50px
-    .bib-author
-      float left
-    .bib-year
-      float left
-    .bib-title
-      float left
-      font-style italic
-    .bib-journal
-      float left
-    .bib-ref
-      float left
-    .bib-pages
-      float left
-    .bib-doi
-      float left
   #help
     h4 a
       color white
@@ -298,8 +322,8 @@ table .table_data
     .termToDefine.glyphicon
       text-decoration none
     .loader
-      background-image url("/common/images/loading.gif") no-repeat;
-      margin 0 auto;
+      background-image url("/common/images/loading.gif") no-repeat
+      margin 0 auto
       height 300px
     .input:invalid
       background-color yellow
@@ -405,15 +429,36 @@ table .table_data
       text-decoration underline
 @media (max-width 1200px)
   #meanstorisk
-    .top_group > div
+    .maliable > div
       width 50%
       ~ div
         width 50%
         ~ div
           width 100%
+@media (max-width 1000px)
+  #bc
+    .bottom_group
+      > div
+        float none
+        width 100%
+        padding-right 15px
+      #graph
+        width 608px
+        margin 0px auto
+        padding-right 4px
+
 @media (max-width 800px)
   #meanstorisk
-    .top_group > div
+    .maliable > div
       width 100%
       ~ div
         width 100%
+@media (max-width 780px)
+  #bc
+    .top_group > img
+      float none
+      display block
+      margin 0px auto
+      width 480px
+    .top_group > img ~ *
+      float none
