@@ -466,36 +466,36 @@ function set_values_table(dt) {
     var values = dt.Delta;
 
 
-    if (values[0].Cases) set_value("#mean_cases",values[0].Cases.toPrecision(2)); else set_value("#mean_cases","");
-    if (values[0].Controls) set_value("#mean_controls",values[0].Controls.toPrecision(2));	else set_value("#mean_controls","");
-    if (values[0].Overall) set_value("#mean_overall",values[0].Overall.toPrecision(2) ); else set_value("#mean_overall","");
+    if (values[0].Cases) set_value("#mean_cases",values[0].Cases.toPrecision(2)); else set_value("#mean_cases","&nbsp;");
+    if (values[0].Controls) set_value("#mean_controls",values[0].Controls.toPrecision(2));	else set_value("#mean_controls","&nbsp;");
+    if (values[0].Overall) set_value("#mean_overall",values[0].Overall.toPrecision(2) ); else set_value("#mean_overall","&nbsp;");
 
 
-    if (values[1].Cases) set_value("#stderr_cases",values[1].Cases.toPrecision(4));	else set_value("#stderr_cases","");
-    if (values[1].Controls) set_value("#stderr_controls",values[1].Controls.toPrecision(4)); else set_value("#stderr_controls","");
-    if (values[1].Overall) set_value("#stderr_overall",values[1].Overall.toPrecision(4)); else set_value("#stderr_overall","");
+    if (values[1].Cases) set_value("#stderr_cases",values[1].Cases.toPrecision(4));	else set_value("#stderr_cases","&nbsp;");
+    if (values[1].Controls) set_value("#stderr_controls",values[1].Controls.toPrecision(4)); else set_value("#stderr_controls","&nbsp;");
+    if (values[1].Overall) set_value("#stderr_overall",values[1].Overall.toPrecision(4)); else set_value("#stderr_overall","&nbsp;");
 
-    if (values[2].Cases) set_value("#N_cases",values[2].Cases); else set_value("#N_cases","");
-    if (values[2].Controls) set_value("#N_controls",values[2].Controls);	else set_value("#N_controls","");
-    if (values[2].Overall) set_value("#N_overall",values[2].Overall); else set_value("#N_overall","");
+    if (values[2].Cases) set_value("#N_cases",values[2].Cases); else set_value("#N_cases","&nbsp;");
+    if (values[2].Controls) set_value("#N_controls",values[2].Controls);	else set_value("#N_controls","&nbsp;");
+    if (values[2].Overall) set_value("#N_overall",values[2].Overall); else set_value("#N_overall","&nbsp;");
 
-    if (values[3].Cases) set_value("#deviation_cases",values[3].Cases.toPrecision(4)); else set_value("#deviation_cases","");
-    if (values[3].Controls) set_value("#deviation_controls",values[3].Controls.toPrecision(4) ); else set_value("#deviation_controls","");
-    if (values[3].Overall) set_value("#deviation_overall",values[3].Overall.toPrecision(4) );else set_value("#deviation_overall","");
+    if (values[3].Cases) set_value("#deviation_cases",values[3].Cases.toPrecision(4)); else set_value("#deviation_cases","&nbsp;");
+    if (values[3].Controls) set_value("#deviation_controls",values[3].Controls.toPrecision(4) ); else set_value("#deviation_controls","&nbsp;");
+    if (values[3].Overall) set_value("#deviation_overall",values[3].Overall.toPrecision(4) );else set_value("#deviation_overall","&nbsp;");
 
-    if (values[4].Cases) set_value("#variance_cases",values[4].Cases.toPrecision(4) ); else set_value("#variance_cases","");
-    if (values[4].Controls) set_value("#variance_controls",values[4].Controls.toPrecision(4)); else set_value("#variance_controls","");
-    if (values[4].Overall) set_value("#variance_overall",values[4].Overall.toPrecision(4) ); else set_value("#variance_overall","");
+    if (values[4].Cases) set_value("#variance_cases",values[4].Cases.toPrecision(4) ); else set_value("#variance_cases","&nbsp;");
+    if (values[4].Controls) set_value("#variance_controls",values[4].Controls.toPrecision(4)); else set_value("#variance_controls","&nbsp;");
+    if (values[4].Overall) set_value("#variance_overall",values[4].Overall.toPrecision(4) ); else set_value("#variance_overall","&nbsp;");
 
-    if (values[5].Cases) set_value("#cv_cases",values[5].Cases.toPrecision(4) ); else set_value("#cv_cases","");
-    if (values[5].Controls) set_value("#cv_controls",values[5].Controls.toPrecision(4)); else set_value("#cv_controls","");
-    if (values[5].Overall) set_value("#cv_overall",values[5].Overall.toPrecision(4) ); else set_value("#cv_overall","");
+    if (values[5].Cases) set_value("#cv_cases",values[5].Cases.toPrecision(4) ); else set_value("#cv_cases","&nbsp;");
+    if (values[5].Controls) set_value("#cv_controls",values[5].Controls.toPrecision(4)); else set_value("#cv_controls","&nbsp;");
+    if (values[5].Overall) set_value("#cv_overall",values[5].Overall.toPrecision(4) ); else set_value("#cv_overall","&nbsp;");
 
-    if (values[6].Overall) set_value("#diff_overall",values[6].Overall.toPrecision(4) ); else set_value("#diff_overall","");
+    if (values[6].Overall) set_value("#diff_overall",values[6].Overall.toPrecision(4) ); else set_value("#diff_overall","&nbsp;");
 
-    if (values[7].Overall) set_value("#delta_overall",values[7].Overall.toPrecision(4) ); else set_value("#delta_overall","");
+    if (values[7].Overall) set_value("#delta_overall",values[7].Overall.toPrecision(4) ); else set_value("#delta_overall","&nbsp;");
 
-    if (values[8]&& values[8].Overall) set_value("#auc_overall",values[8].Overall.toPrecision(4) ); else set_value("#auc_overall","");
+    if (values[8]&& values[8].Overall) set_value("#auc_overall",values[8].Overall.toPrecision(4) ); else set_value("#auc_overall","&nbsp;");
 }
 
 function create_tabbed_table(dt) {
@@ -520,48 +520,33 @@ function create_tabbed_table(dt) {
 }
 
 function make_tabs() {
-
     var tabs = $("<div id='tabs' class='row'> </div>");
     $(".tabbed_output_panel").empty().append(tabs);
     var tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
-
     var index = 0;
     for(var key in ppv_tabs) {
         index++;
-
-
-
-
         tab_names.append("<LI><a class='col-xs-12' href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
         tabs.append("<DIV id='tab-" + index + "' > " + ppv_tabs[key] + " </div>");
     }
-
     tabs.tabs();
-
 }
 
 function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_matrix, matrix) {
     var prevalence_values = Object.keys(matrix[0]);
     var prevalence_count = prevalence_values.length;
     var specificity_count = matrix.length;
-
-
-
-
     var general_table = $("<TABLE class='table_data'></TABLE>");
     $("#"+tab_id).empty().append(general_table);
-
     var first_header_row = $("<tr class='row'></tr>");
     first_header_row.append("<TH class='table_data header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + "</TH>");
     first_header_row.appendTo(general_table);
-
     var second_header_row = $("<tr class='row'></tr>");
     second_header_row.append("<TH class='text-center table_data " + type + "_stripe' colspan='" +  (prevalence_count + 4) +
                              "'><div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name +
                              "</div><div class='popupDefinition' id='" + type +tab_id+ "Definition'></div></TH>");
     second_header_row.appendTo(general_table);
-
     var third_header_row = $("<tr class='row'></tr>");
     third_header_row.append("<TH class='table_data header text-center col-sm-5' colspan='4' style='border-right:1px solid black;'>" +
                             "<div class='define col-xs-12' id='Sens2-" + tab_id +
@@ -572,12 +557,11 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
                             "<div class='popupDefinition' id='DP2-" +
                             tab_id + "Definition'></div></TH>");
     third_header_row.appendTo(general_table);
-
     var header_row = $("<tr class='row'></tr>");
     header_row.attr('id', type + '_table_row_header');
-    header_row.append("<TH class='table_data header text-center'><div class='define' id='Spec-"+tab_id+"' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-"+tab_id+"Definition'></div></TD>");
-    header_row.append("<TH class='table_data header text-center'><div class='define' id='Sens-"+tab_id+"' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-"+tab_id+"Definition'></div></TD>");
-    header_row.append("<TH class='table_data header text-center'><div class='define' id='LRP-"+tab_id+"' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP-"+tab_id+"Definition'></div></TD>");
+    header_row.append("<TH class='table_data header text-center'><div class='define' id='Spec-" + tab_id + "' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-" + tab_id + "Definition'></div></TD>");
+    header_row.append("<TH class='table_data header text-center'><div class='define' id='Sens-" + tab_id + "' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-" + tab_id + "Definition'></div></TD>");
+    header_row.append("<TH class='table_data header text-center'><div class='define' id='LRP-" + tab_id + "' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP-" + tab_id + "Definition'></div></TD>");
     header_row.append("<TH class='table_data header text-center' style='border-right:1px solid black;'><div class='define' id='LRN-"+tab_id+"' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN-"+tab_id+"Definition'></div></TD>");
     for(var x=0;x<prevalence_count;x++) {
         header_row.append("<TH class='table_data header text-center'>" + format_number(prevalence_values[x]) + "</TD>");
@@ -616,7 +600,7 @@ function draw_graph() {
         graph_file = "tmp/input"+uniqueKey+".png?";
     }
 
-    $(".graph_panel").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file+"'/><small><b>(Hover or click to enlarge)</b></small>");
+    $(".graph_panel").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small><b>(Hover or click to enlarge)</b></small>");
 }
 
 function set_value(field, value) {

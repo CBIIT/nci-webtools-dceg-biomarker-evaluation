@@ -339,53 +339,39 @@ table .table_data
       float left
       padding-left 15px
       // width 600px
-
     .reference_row
       background-color yellow
-
     td
       text-align left
-
     .prevalence_label
       font-weight bold
       background-color #AAA
       color #444
       padding 2px 25px 2px 25px
-
     .bibliography
       // width 950px
       clear both
       float left
       margin 50px
-
     .bib-author
       float left
-
     .bib-year
       float left
-
     .bib-title
       float left
       font-style italic
-
     .bib-journal
       float left
-
     .bib-ref
       float left
-
     .bib-pages
       float left
-
     .bib-doi
       float left
-
     .status-info
       color black
-
     .status-error
       color base-red
-
     a#add-test-data
       text-decoration underline
       float right
@@ -430,14 +416,16 @@ table .table_data
       color #333333
     :hover
       text-decoration underline
+@media (min-width 1200px)
+  #meanstorisk .graph_panel img.expand
+    width 100%
 @media (max-width 1200px)
-  #meanstorisk
-    .maliable > div
+  #meanstorisk .maliable > div
+    width 50%
+    ~ div
       width 50%
       ~ div
-        width 50%
-        ~ div
-          width 100%
+        width 100%
 @media (max-width 1000px)
   #bc
     .bottom_group
