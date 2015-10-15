@@ -157,6 +157,7 @@ table .table_data
         padding-left 1.5em
     > img
       width 350px
+      max-width 100%
       float left
       overflow visible
   .reference_row
@@ -340,7 +341,6 @@ table .table_data
     border-bottom 1px solid #ddd
     border-left 1px solid #ddd
     border-radius 4px
-    padding 1.5em
   #sampleSize
     .tablevars
       padding 0
@@ -428,6 +428,7 @@ table .table_data
   #meanstorisk
     .maliable > div
       width 100%
+      padding 0px
       ~ div
         width 100%
 @media (max-width 780px)
@@ -439,3 +440,6 @@ table .table_data
       width 480px
     .top_group > img ~ *
       float none
+@media (min-width 480px)
+  #contentTabs .tab-content
+    padding 1.5em
