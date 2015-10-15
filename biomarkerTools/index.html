@@ -358,88 +358,86 @@
             </div>
             <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
               <h3 title="Risk Stratification Advanced Analysis tool" class="title text-center">Risk Stratification Advanced Analysis</h3>
-              <div class="col-xs-12">
-                <div id="helpGlossaryLinks"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a>&nbsp;<a href="#" class="goToGlossary">Glossary</a></div>
+              <div><span>&nbsp;</span>
+                <div id="helpGlossaryLinks"><a href="#help_riskStratAdvanced" class="goToHelp">Help</a><span>&nbsp;</span><a href="#" class="goToGlossary">Glossary</a></div>
               </div>
-              <div class="col-xs-9 col-md-7 col-lg-6">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div class="no-pad col-xs-12 row">
-                      <div class="col-xs-12 col-sm-3">
-                        <label for="independent_dropdown_rs">Independent Variable</label>
-                      </div>
-                      <div class="col-xs-4 col-sm-3 col-lg-4">
-                        <select id="independent_dropdown_rs" name="independent_dropdown_rs">
-                          <option value="" selected=""></option>
-                          <option value="specificity">Specificity</option>
-                          <option value="prevalence">Prevalence</option>
-                          <option value="ppv">PPV</option>
-                          <option value="delta">Delta</option>
-                          <option value="sensitivity">Sensitivity</option>
-                          <option value="cnpv">cNPV</option>
-                        </select>
-                      </div>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="no-pad">
+                    <div>
+                      <label for="independent_dropdown_rs">Independent Variable</label>
+                    </div>
+                    <div>
+                      <select id="independent_dropdown_rs" name="independent_dropdown_rs">
+                        <option value="" selected=""></option>
+                        <option value="specificity">Specificity</option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="ppv">PPV</option>
+                        <option value="delta">Delta</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </div>
+                    <div id="indDef" class="infobox"></div>
+                    <div class="input">
                       <label for="independent_rs" class="sr-only">Independent Variable Value</label>
-                      <input id="independent_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-xs-6 col-sm-4">
-                      <div class="col-xs-push-1">
-                        <div id="indDef"></div>
-                      </div>
-                    </div>
-                    <div class="no-pad col-xs-12 row">
-                      <div class="col-xs-12 col-sm-3">
-                        <label for="contour_dropdown_rs">Contour</label>
-                      </div>
-                      <div class="col-xs-4 col-sm-3 col-lg-4">
-                        <select id="contour_dropdown_rs" name="contour_dropdown_rs">
-                          <option value="" selected=""></option>
-                          <option value="ppv">PPV</option>
-                          <option value="prevalence">Prevalence</option>
-                          <option value="specificity">Specificity</option>
-                          <option value="delta">Delta</option>
-                          <option value="sensitivity">Sensitivity</option>
-                          <option value="cnpv">cNPV</option>
-                        </select>
-                      </div>
-                      <label for="contour_rs" class="sr-only">Contour Value</label>
-                      <input id="contour_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required class="col-xs-6 col-sm-4">
-                      <div class="col-xs-push-1">
-                        <div id="contourDef"></div>
-                      </div>
-                    </div>
-                    <div class="no-pad col-xs-12 row">
-                      <div class="col-xs-12 col-sm-3">
-                        <label for="fixed_dropdown_rs">Fixed Values</label>
-                      </div>
-                      <div class="col-xs-4 col-sm-3 col-lg-4">
-                        <select id="fixed_dropdown_rs" name="fixed_dropdown_rs">
-                          <option value="" selected=""></option>
-                          <option value="prevalence">Prevalence</option>
-                          <option value="delta">Delta</option>
-                          <option value="ppv">PPV</option>
-                          <option value="specificity">Specificity</option>
-                          <option value="sensitivity">Sensitivity</option>
-                          <option value="cnpv">cNPV</option>
-                        </select>
-                      </div>
-                      <label for="fixed_rs" class="sr-only">Fixed Value</label>
-                      <input id="fixed_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required class="col-xs-6 col-sm-4">
-                      <div class="col-xs-push-1">
-                        <div id="fvDef"></div>
-                      </div>
+                      <input id="independent_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required>
                     </div>
                   </div>
-                  <div class="panel-footer">
-                    <button id="calculate">Calculate</button>
-                    <button id="reset" type="reset">Reset</button>
-                    <button id="download" class="hide">Download Excel</button>
-                    <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
+                  <div class="no-pad">
+                    <div>
+                      <label for="contour_dropdown_rs">Contour</label>
+                    </div>
+                    <div>
+                      <select id="contour_dropdown_rs" name="contour_dropdown_rs">
+                        <option value="" selected=""></option>
+                        <option value="ppv">PPV</option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="specificity">Specificity</option>
+                        <option value="delta">Delta</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </div>
+                    <div id="contourDef" class="infobox"></div>
+                    <div class="input">
+                      <label for="contour_rs" class="sr-only">Contour Value</label>
+                      <input id="contour_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas." required>
+                    </div>
+                  </div>
+                  <div class="no-pad">
+                    <div>
+                      <label for="fixed_dropdown_rs">Fixed Values</label>
+                    </div>
+                    <div>
+                      <select id="fixed_dropdown_rs" name="fixed_dropdown_rs">
+                        <option value="" selected=""></option>
+                        <option value="prevalence">Prevalence</option>
+                        <option value="delta">Delta</option>
+                        <option value="ppv">PPV</option>
+                        <option value="specificity">Specificity</option>
+                        <option value="sensitivity">Sensitivity</option>
+                        <option value="cnpv">cNPV</option>
+                      </select>
+                    </div>
+                    <div id="fvDef" class="infobox"></div>
+                    <div class="input">
+                      <label for="fixed_rs" class="sr-only">Fixed Value</label>
+                      <input id="fixed_rs" type="text" size="30" pattern="([0-9,. -])+" title="An array of floating point numbers seperated by commas" required>
+                    </div>
                   </div>
                 </div>
+                <div class="panel-footer">
+                  <button id="calculate">Calculate</button>
+                  <button id="reset" type="reset">Reset</button>
+                  <button id="download" class="hide">Download Excel</button>
+                  <div class="pull-right"><a id="add-test-data" href="#" title="Populate variables with a working example" class="pull-right">Example</a></div>
+                </div>
               </div>
-              <div id="examples" class="col-xs-3 col-md-5 col-lg-6">
-                <div class="row vertical-padding"><span class="variable-example"></span></div>
-                <div class="row vertical-padding"><span class="variable-example"></span></div>
-                <div class="row vertical-padding"><span class="variable-example"></span></div>
+              <div id="examples">
+                <div class="vertical-padding"><span class="variable-example"></span></div>
+                <div class="vertical-padding"><span class="variable-example"></span></div>
+                <div class="vertical-padding"><span class="variable-example"></span></div>
               </div>
               <div id="status-bar">Status Bar</div>
               <div id="dialog-confirm" title="Rules Violation" class="modal fade">
@@ -448,21 +446,21 @@
                   <div class="modal-header">One or more of the following rules have been violated:</div>
                   <div class="modal-body">
                     <ul class="list-unstyled">
-                      <li class="rule rule1"><strong>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</strong></li>
-                      <li class="rule rule2"><strong>Delta can be 0 to 5</strong></li>
-                      <li class="rule rule3"><strong>cNPV < Prevalence</strong></li>
-                      <li class="rule rule3"><strong>For arrays: max(cNPV) < min(Prevalence)</strong></li>
-                      <li class="rule rule4"><strong>Prevalence < PPV</strong></li>
-                      <li class="rule rule4"><strong>For arrays: max(prev) < min(PPV)</strong></li>
-                      <li class="rule rule5"><strong>Sensitivity+Specificity-1 > 0</strong></li>
+                      <li class="rule rule1"></li><strong>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</strong>
+                      <li class="rule rule2"></li><strong>Delta can be 0 to 5</strong>
+                      <li class="rule rule3"></li><strong>cNPV < Prevalence</strong>
+                      <li class="rule rule3"></li><strong>For arrays: max(cNPV) < min(Prevalence)</strong>
+                      <li class="rule rule4"></li><strong>Prevalence < PPV</strong>
+                      <li class="rule rule4"></li><strong>For arrays: max(prev) < min(PPV)</strong>
+                      <li class="rule rule5"></li><strong>Sensitivity+Specificity-1 > 0</strong>
                     </ul><strong>Do you wish to continue with calculation anyway?</strong>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12">
+              <div>
                 <p id="spinner" class="hide col-xs-offset-6"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
               </div>
-              <div id="output" class="col-xs-12 row"></div>
+              <div id="output"></div>
             </div>
             <div id="sampleSize" role="tabpanel" class="tab-pane fade">
               <h3 title="Power and Sample Size Calculation" class="title text-center">Power and Sample Size for Biomarker Case Control Studies</h3>

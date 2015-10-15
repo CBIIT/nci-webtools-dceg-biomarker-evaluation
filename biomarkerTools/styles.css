@@ -14,7 +14,7 @@ header hr {
 }
 header #dceg-logo,
 header #branch-logo {
-  min-width: 400px;
+  min-width: 320px;
   max-width: 720px;
   padding: 0;
 }
@@ -49,7 +49,7 @@ table .table_data {
 }
 #main {
   max-width: 1200px;
-  min-width: 400px;
+  min-width: 320px;
   margin: 0 auto;
   font-size: small;
 }
@@ -289,6 +289,93 @@ table .table_data {
 #bc .bib-doi {
   float: left;
 }
+#riskStratAdvanced input,
+#riskStratAdvanced select {
+  padding: 1px;
+}
+#riskStratAdvanced .panel-body > div {
+  overflow: auto;
+  padding: 1px;
+}
+#riskStratAdvanced .panel-body > div > div {
+  float: left;
+  min-width: 13em;
+  height: 2em;
+}
+#riskStratAdvanced .panel-body > div > div * {
+  width: 100%;
+  height: 100%;
+  line-height: 2em;
+  margin-bottom: 0px;
+}
+#riskStratAdvanced .panel-body > div > div + div {
+  min-width: 7em;
+  padding-right: 2px;
+}
+#riskStratAdvanced .panel-body > div .input {
+  overflow: auto;
+  float: none;
+}
+#riskStratAdvanced .panel-body > div .infobox {
+  float: right;
+  min-width: 0px;
+  padding-right: 0px;
+}
+#riskStratAdvanced #add-test-data {
+  text-decoration: underline;
+  float: right;
+}
+#riskStratAdvanced #add-test-data:hover {
+  font-weight: bold;
+}
+#riskStratAdvanced #status-bar {
+  background: #ccc;
+  display: block;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font: 18px "arial", "sans-serif";
+  left: 0;
+  margin: 10px;
+  outline: none;
+  padding: 10px;
+  top: 2px;
+  visibility: hidden;
+}
+#riskStratAdvanced #tabs {
+  font-size: inherit;
+}
+#riskStratAdvanced #tabs .header {
+  background-color: #aaa;
+  color: #444;
+}
+#riskStratAdvanced #tabs .vertical-text {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  white-space: nowrap;
+}
+#riskStratAdvanced .table-title {
+  word-wrap: normal;
+  font-weight: bold;
+  text-align: center;
+  background-color: #f8fafa;
+}
+.define,
+.termToDefine {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: help;
+}
+.extra-padding {
+  padding: 1em;
+}
+.extra-vertical-margin {
+  margin: 10px 0;
+}
 .footer {
   color: #606060;
   background-color: #fff;
@@ -300,36 +387,17 @@ table .table_data {
 .glyphicon + span {
   margin-left: 1em;
 }
+.header {
+  background-color: #f5f5f5;
+}
 .indent {
   margin-left: 30px;
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
-.vertical-padding {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
 .no-pad {
   padding: 0;
-}
-.table_container {
-  overflow: auto;
-}
-.table_row {
-  clear: both;
-}
-.table_data {
-  float: left;
-}
-.title {
-  color: #000;
-}
-.define,
-.termToDefine {
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: help;
 }
 .popover .popover-title {
   background-color: #fffff0;
@@ -338,14 +406,21 @@ table .table_data {
 .popover .popover-content {
   background-color: #ffffe0;
 }
-.header {
-  background-color: #f5f5f5;
+.table_container {
+  overflow: auto;
 }
-.extra-padding {
-  padding: 1em;
+.table_data {
+  float: left;
 }
-.extra-vertical-margin {
-  margin: 10px 0;
+.table_row {
+  clear: both;
+}
+.title {
+  color: #000;
+}
+.vertical-padding {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 #contentTabs {
   width: 100%;
@@ -437,105 +512,6 @@ table .table_data {
 #contentTabs #meanRiskStratification .input:invalid {
   background-color: #ff0;
 }
-#contentTabs #riskStratAdvanced input,
-#contentTabs #riskStratAdvanced select {
-  padding: 1px;
-}
-#contentTabs #riskStratAdvanced .label {
-  float: right;
-}
-#contentTabs #riskStratAdvanced .explanation {
-  float: left;
-  padding-left: 15px;
-}
-#contentTabs #riskStratAdvanced .reference_row {
-  background-color: #ff0;
-}
-#contentTabs #riskStratAdvanced td {
-  text-align: left;
-}
-#contentTabs #riskStratAdvanced .prevalence_label {
-  font-weight: bold;
-  background-color: #aaa;
-  color: #444;
-  padding: 2px 25px 2px 25px;
-}
-#contentTabs #riskStratAdvanced .bibliography {
-  clear: both;
-  float: left;
-  margin: 50px;
-}
-#contentTabs #riskStratAdvanced .bib-author {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .bib-year {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .bib-title {
-  float: left;
-  font-style: italic;
-}
-#contentTabs #riskStratAdvanced .bib-journal {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .bib-ref {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .bib-pages {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .bib-doi {
-  float: left;
-}
-#contentTabs #riskStratAdvanced .status-info {
-  color: #000;
-}
-#contentTabs #riskStratAdvanced .status-error {
-  color: #bb0e3d;
-}
-#contentTabs #riskStratAdvanced a#add-test-data {
-  text-decoration: underline;
-  float: right;
-}
-#contentTabs #riskStratAdvanced a#add-test-data :hover {
-  font-weight: bold;
-}
-#contentTabs #riskStratAdvanced .table-title {
-  word-wrap: normal;
-  font-weight: bold;
-  text-align: center;
-  background-color: #f8fafa;
-}
-#contentTabs #riskStratAdvanced #status-bar {
-  background: #ccc;
-  display: block;
-  border: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font: 18px "arial", "sans-serif";
-  left: 0;
-  margin: 10px;
-  outline: none;
-  padding: 10px;
-  top: 2px;
-  visibility: hidden;
-}
-#contentTabs #riskStratAdvanced #tabs {
-  font-size: inherit;
-}
-#contentTabs #riskStratAdvanced #tabs .header {
-  background-color: #aaa;
-  color: #444;
-}
-#contentTabs #riskStratAdvanced #tabs .vertical-text {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  white-space: nowrap;
-}
 #portal-footer {
   line-height: 1.2em;
   text-align: center;
@@ -565,11 +541,11 @@ table .table_data {
   }
   #meanstorisk .graph_panel img.expand:hover,
   #meanstorisk .graph_panel img.expand:active {
-    -webkit-transform: scale(2.5);
-    -moz-transform: scale(2.5);
-    -o-transform: scale(2.5);
-    -ms-transform: scale(2.5);
-    transform: scale(2.5);
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    transform: scale(1.6);
   }
 }
 @media (max-width: 1200px) {
