@@ -30,14 +30,16 @@ input
   padding 1px !important
 table .table_data
   float none
+#accordion [data-toggle='collapse']
+  cursor pointer
+#helpGlossaryLinks
+  float right
+  clear both
 #main
   max-width 1200px
   min-width 400px
   margin 0 auto
   font-size small
-#helpGlossaryLinks
-  float right
-  clear both
 #meanstorisk
   .maliable > div
     padding 15px
@@ -168,6 +170,7 @@ table .table_data
       width (100%*7/12)
     #graph
       width (100%*5/12)
+      max-width 100%
       img
         width 80%
   #inputdata
@@ -439,12 +442,11 @@ table .table_data
       > div
         float none
         width 100%
-        padding-right 15px
+        padding-right 0px
       #graph
         width 608px
         margin 0px auto
         padding-right 4px
-
 @media (max-width 800px)
   #meanstorisk
     .maliable > div

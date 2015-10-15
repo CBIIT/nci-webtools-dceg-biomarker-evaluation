@@ -40,15 +40,18 @@ input {
 table .table_data {
   float: none;
 }
+#accordion [data-toggle='collapse'] {
+  cursor: pointer;
+}
+#helpGlossaryLinks {
+  float: right;
+  clear: both;
+}
 #main {
   max-width: 1200px;
   min-width: 400px;
   margin: 0 auto;
   font-size: small;
-}
-#helpGlossaryLinks {
-  float: right;
-  clear: both;
 }
 #meanstorisk .maliable > div {
   padding: 15px;
@@ -219,6 +222,7 @@ table .table_data {
 }
 #bc .bottom_group #graph {
   width: 41.666666666666664%;
+  max-width: 100%;
 }
 #bc .bottom_group #graph img {
   width: 80%;
@@ -563,7 +567,7 @@ table .table_data {
   #bc .bottom_group > div {
     float: none;
     width: 100%;
-    padding-right: 15px;
+    padding-right: 0px;
   }
   #bc .bottom_group #graph {
     width: 608px;
