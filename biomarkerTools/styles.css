@@ -28,11 +28,11 @@ img.expand {
 }
 img.expand:hover,
 img.expand:active {
-  -webkit-transform: scale(1.4);
-  -moz-transform: scale(1.4);
-  -o-transform: scale(1.4);
-  -ms-transform: scale(1.4);
-  transform: scale(1.4);
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
 }
 input {
   padding: 1px !important;
@@ -557,6 +557,19 @@ table .table_data {
 @media (min-width: 1200px) {
   #meanstorisk .graph_panel img.expand {
     width: 100%;
+    -webkit-transform-origin: top right;
+    -moz-transform-origin: top right;
+    -o-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+  }
+  #meanstorisk .graph_panel img.expand:hover,
+  #meanstorisk .graph_panel img.expand:active {
+    -webkit-transform: scale(2.5);
+    -moz-transform: scale(2.5);
+    -o-transform: scale(2.5);
+    -ms-transform: scale(2.5);
+    transform: scale(2.5);
   }
 }
 @media (max-width: 1200px) {
