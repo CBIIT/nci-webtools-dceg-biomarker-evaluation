@@ -616,7 +616,7 @@ function draw_graph() {
         graph_file = "tmp/input"+uniqueKey+".png?";
     }
 
-    $(".graph_panel").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph' src='" + graph_file+"'/><small><b>(Hover or click to enlarge)</b></small>");
+    $(".graph_panel").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file+"'/><small><b>(Hover or click to enlarge)</b></small>");
 }
 
 function set_value(field, value) {
