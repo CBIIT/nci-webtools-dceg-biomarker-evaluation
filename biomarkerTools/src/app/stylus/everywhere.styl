@@ -1,0 +1,50 @@
+/**
+ * tag-based styles
+ */
+body
+  font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
+h3
+  text-align center
+  margin-top 0px
+img.expand
+  width 80%
+  transition transform 0.5s ease-in
+  &:hover
+  &:active
+    transform scale(1.25)
+/**
+ * id-based styles (technically ids should refer to a single element but things happen)
+ */
+#accordion [data-toggle='collapse']
+  cursor pointer
+#helpGlossaryLinks
+  float none
+  overflow auto
+  a
+    float right
+    padding .5em
+/**
+ * class-based styles (ideally id-based styles on this stylesheet should be converted to this)
+ */
+.emptyblock
+  display block
+  content '&nbsp;'
+.bold
+  font-weight bold
+.panel-body .panel:last-child
+  margin-bottom 0px
+.table_row
+  padding 2px
+  overflow auto
+.table_data
+  display block
+  float left
+  height 2em
+  line-height 2em
+  text-align center
+  padding 0px 2px
+.table_data.text-right
+  text-align right
+.table_data input
+  height 2em
+  padding 0px
