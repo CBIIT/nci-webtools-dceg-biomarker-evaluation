@@ -1,14 +1,11 @@
 #meanstorisk.tab-pane.fade(role='tabpanel')
   .top_section
-    h3.text-center(title="Means to Risk Stratification tool") From Difference in Means to Risk Stratification: A Web Tool
-    div
-      span &nbsp;
-      #helpGlossaryLinks
-        a.goToHelp(href="#help_meanstorisk") Help
-        span &nbsp;
-        a.goToGlossary(href="#") Glossary
+    h3(title="Means to Risk Stratification tool") From Difference in Means to Risk Stratification: A Web Tool
+    #helpGlossaryLinks
+      a.goToHelp(href="#help_meanstorisk") Help
+      a.goToGlossary(href="#") Glossary
     .maliable.clearfix
-      div
+      .input
         #accordion.panel.panel-default
           .panel-heading
             b Choose how to enter the data
@@ -20,7 +17,7 @@
               label.data_entry_by_file(for='input_file_upload')
                 b
                   span Upload a raw case and control biomarker data file in csv format
-                  a(href='meanstorisk/p16-ELISA-sample-data.csv') (Example)
+                  a(href='meanstorisk/p16-ELISA-sample-data.csv')  (Example)
             p.indent
               input#input_file_upload.data_entry_by_file(type='file')
           .panel-heading(data-toggle="collapse", data-target="#cases_control")
@@ -28,48 +25,36 @@
             span Normal Distribution
           #cases_control.panel-body.collapse
             .panel.panel-default
-              .panel-heading
-                b.data_entry_by_input Enter Mean, Standard Error, and N for Cases and Controls
+              .panel-heading.bold Enter Mean, Standard Error, and N for Cases and Controls
               .no-pad.table_container
                 .table_row
-                  .table_data &nbsp;
-                  .table_data
-                    b Cases
-                  .table_data
-                    b Controls
+                  .table_data.emptyblock
+                  .table_data.bold Cases
+                  .table_data.bold Controls
                 .table_row
-                  .text-right.table_data
-                      b Mean
+                  .table_data.text-right.bold Mean
                   .table_data
-                    label.sr-only(for='mean_cases_input')
-                      b Mean for Cases
-                    input#mean_cases_input.data_entry_by_input(type='text', value='4', size='4')
+                    label.sr-only(for='mean_cases_input') Mean for Cases
+                    input#mean_cases_input(type='text', value='4', size='4')
                   .table_data
-                    label.sr-only(for='mean_controls_input')
-                      b Mean for Controls
-                    input#mean_controls_input.data_entry_by_input(type='text', value='1', size='4')
+                    label.sr-only(for='mean_controls_input') Mean for Controls
+                    input#mean_controls_input(type='text', value='1', size='4')
                 .table_row
-                  .text-right.table_data
-                    b Standard Error
+                  .table_data.text-right.bold Standard Error
                   .table_data
-                    label.sr-only(for='stderr_cases_input')
-                      b Standard Error for Cases
-                    input#stderr_cases_input.data_entry_by_input.pull-left(type='text', value='0.1', size='4')
+                    label.sr-only(for='stderr_cases_input') Standard Error for Cases
+                    input#stderr_cases_input.pull-left(type='text', value='0.1', size='4')
                   .table_data
-                    label.sr-only(for='stderr_controls_input')
-                      b Standard Error for Controls
-                    input#stderr_controls_input.data_entry_by_input(type='text', value='0.1', size='4')
+                    label.sr-only(for='stderr_controls_input') Standard Error for Controls
+                    input#stderr_controls_input(type='text', value='0.1', size='4')
                 .table_row
-                  .text-right.table_data
-                    b N
+                  .table_data.text-right.bold N
                   .table_data
-                    label.sr-only(for='N_cases_input')
-                      b N for Cases
-                    input#N_cases_input.data_entry_by_input(type='text', value='100', size='4')
+                    label.sr-only(for='N_cases_input') N for Cases
+                    input#N_cases_input(type='text', value='100', size='4')
                   .table_data
-                    label.sr-only(for='N_controls_input')
-                      b N for Controls
-                    input#N_controls_input.data_entry_by_input(type='text', value='200', size='4')
+                    label.sr-only(for='N_controls_input') N for Controls
+                    input#N_controls_input(type='text', value='200', size='4')
           .panel-footer
             .indent
               div
@@ -78,75 +63,63 @@
               div
                 label#DP.define(data-term='DP', for='prevalence') Prevalence:
                 input#prevalence(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
-      div
+      .output
         #mtr-results.panel.panel-default.table_container
           .table_row
-            .table_data.header &nbsp;
-            .table_data.header
-              b Cases
-            .table_data.header
-              b Controls
-            .table_data.header
-              b Overall
+            .table_data.emptyblock
+            .table_data.header.bold Cases
+            .table_data.header.bold Controls
+            .table_data.header.bold Overall
           .table_row.vertical-padding
-            .table_data.text-right
-              b Mean
-            #mean_cases.table_data.text-center &nbsp;
-            #mean_controls.table_data.text-center &nbsp;
-            #mean_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold Mean
+            #mean_cases.table_data &nbsp;
+            #mean_controls.table_data &nbsp;
+            #mean_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b Standard Error
-            #stderr_cases.table_data.text-center &nbsp;
-            #stderr_controls.table_data.text-center &nbsp;
-            #stderr_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold Standard Error
+            #stderr_cases.table_data &nbsp;
+            #stderr_controls.table_data &nbsp;
+            #stderr_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b N
-            #N_cases.table_data.text-center &nbsp;
-            #N_controls.table_data.text-center &nbsp;
-            #N_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold N
+            #N_cases.table_data &nbsp;
+            #N_controls.table_data &nbsp;
+            #N_overall.table_data &nbsp;
           .table_row.line-above.vertical-padding
-            .table_data.text-right
-              b Standard Deviation
-            #deviation_cases.table_data.text-center &nbsp;
-            #deviation_controls.table_data.text-center &nbsp;
-            #deviation_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold Standard Deviation
+            #deviation_cases.table_data &nbsp;
+            #deviation_controls.table_data &nbsp;
+            #deviation_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b Variance
-            #variance_cases.table_data.text-center &nbsp;
-            #variance_controls.table_data.text-center &nbsp;
-            #variance_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold Variance
+            #variance_cases.table_data &nbsp;
+            #variance_controls.table_data &nbsp;
+            #variance_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b
-                #CV.define(data-term='CV') Coefficient of Variation (CV)
-            #cv_cases.table_data.text-center &nbsp;
-            #cv_controls.table_data.text-center &nbsp;
-            #cv_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold
+              #CV.define(data-term='CV') Coefficient of Variation (CV)
+            #cv_cases.table_data &nbsp;
+            #cv_controls.table_data &nbsp;
+            #cv_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b Difference in Mean
-            #diff_cases.table_data.text-center &nbsp;
-            #diff_controls.table_data.text-center &nbsp;
-            #diff_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold Difference in Mean
+            #diff_cases.table_data &nbsp;
+            #diff_controls.table_data &nbsp;
+            #diff_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b
-                #Delta.define(data-term='Delta') Delta
-            #delta_cases.table_data.text-center &nbsp;
-            #delta_controls.table_data.text-center &nbsp;
-            #delta_overall.table_data.text-center &nbsp;
+            .table_data.text-right.bold
+              #Delta.define(data-term='Delta') Delta
+            #delta_cases.table_data &nbsp;
+            #delta_controls.table_data &nbsp;
+            #delta_overall.table_data &nbsp;
           .table_row.vertical-padding
-            .table_data.text-right
-              b
-                #AUC.define(data-term='AUC') AUC
-            #auc_cases.table_data.text-center &nbsp;
-            #auc_controls.table_data.text-center &nbsp;
-            #auc_overall.table_data.text-center &nbsp;
-      div
-        .graph_panel.text-center
+            .table_data.text-right.bold
+              #AUC.define(data-term='AUC') AUC
+            #auc_cases.table_data &nbsp;
+            #auc_controls.table_data &nbsp;
+            #auc_overall.table_data &nbsp;
+      .graph
+        .graph_panel
     div
       button#calculate_button(type='button') Calculate
       button#reset(type='reset') Reset

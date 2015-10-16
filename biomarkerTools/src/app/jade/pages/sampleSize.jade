@@ -1,76 +1,74 @@
 #sampleSize.tab-pane.fade(role='tabpanel')
-    h3.title.text-center(title="Power and Sample Size Calculation") Power and Sample Size for Biomarker Case Control Studies
-    .col-sm-12
-        #helpGlossaryLinks
-            a.goToHelp(href="#help_sampleSize") Help
-            | &nbsp;
-            a.goToGlossary(href="#") Glossary
-    .container
-        form#ss.col-sm-10.col-md-6.row(novalidate)
-            #message.col-sm-7.col-sm-offset-2.hide
-                .panel.panel-danger
-                    .panel-heading
-                    #message-content.panel-body
-            .panel.panel-default
-                .tablevars.panel-body
-                    .row
-                        .col-sm-4
-                            b.pull-right Independent Variable
-                        .col-sm-4
-                            .pull-right Proportion of Assays in Cases (k)
-                        .col-sm-3.no-pad
-                            .pull-left Min Value
-                            .pull-right Max Value
-                    .row
-                        .col-sm-4
-                        .col-sm-4
-                        .col-sm-3.no-pad
-                            input#minInput.col-sm-5.pull-left(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
-                            input#maxInput.col-sm-6.pull-right(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
-                    .row
-                        .col-sm-4
-                            label.pull-right(for='contour_dropdown') Contour
-                        .col-sm-4
-                            select#contour_dropdown.pull-left(name='contour_dropdown', required)
-                                option(value='', selected='')
-                                option(value='specificity') Specificity
-                                option(value='sensitivity') Sensitivity
-                        label.sr-only(for='contour') Contour
-                        //- pattern='([0-8,. \-])+',
-                        input#contour.fontnormal.col-sm-3(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
-                    .row
-                        .col-sm-4
-                            label.pull-right(for='fixed_dropdown') Fixed Values
-                        .col-sm-4
-                            select#fixed_dropdown.pull-left(name='fixed_dropdown', required)
-                                option(value='', selected='', disabled='disabled')
-                                option(value='specificity', disabled='disabled') Specificity
-                                option(value='sensitivity', disabled='disabled') Sensitivity
-                        label.sr-only(for='fixed') Fixed
-                        input#fixed.fontnormal.col-sm-3(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1', required)
-                    //- pattern='([0-8,. \-])+',
-                    .row
-                        .col-sm-4
-                            b.pull-right Parameters
-                        .col-sm-4
-                            .pull-left(for='prevalence') Prevalence
-                        input#prevalence.col-sm-3(type='number',min="0",max=".9999999", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
-                    .row
-                        .col-sm-4
-                        .col-sm-4
-                            .pull-left(for='n_value') Sample Size
-                        input#n_value.fontnormal.col-sm-3(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
-                .panel-footer
-                    button.post(type='submit') Calculate
-                    button.reset(type='reset') Reset
-                    button.hide.download(type='button') Download Excel
-                    .pull-right
-                        a#add-test-data(title='Populate variables with working example', href='#') Example
-        .col-sm-11
-            include ../partials/loader
-            .hide
-                #specificity_val.dom_valref
-                #sensitivity_val.dom_valref
-                #fixed_flag.dom_valref
-                #randomnumber.dom_valref
-            #output_graph
+  h3(title="Power and Sample Size Calculation") Power and Sample Size for Biomarker Case Control Studies
+  #helpGlossaryLinks
+    a.goToHelp(href="#help_sampleSize") Help
+    a.goToGlossary(href="#") Glossary
+  div
+    form#ss(novalidate)
+      #message.hide
+        .panel.panel-danger
+          .panel-heading
+          #message-content.panel-body
+      .panel.panel-default
+        .tablevars.panel-body
+          div
+            div
+              b.pull-right Independent Variable
+            div
+              .pull-right Proportion of Assays in Cases (k)
+            .no-pad
+              .pull-left Min Value
+              .pull-right Max Value
+          div
+            .emptyblock
+            .emptyblock
+            .no-pad
+              input#minInput.pull-left(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
+              input#maxInput.pull-right(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
+          div
+            div
+              label.pull-right(for='contour_dropdown') Contour
+            div
+              select#contour_dropdown.pull-left(name='contour_dropdown', required)
+                option(value='', selected='')
+                option(value='specificity') Specificity
+                option(value='sensitivity') Sensitivity
+            label.sr-only(for='contour') Contour
+            //- pattern='([0-8,. \-])+',
+            input#contour.fontnormal(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
+          div
+            div
+              label.pull-right(for='fixed_dropdown') Fixed Values
+            div
+              select#fixed_dropdown.pull-left(name='fixed_dropdown', required)
+                option(value='', selected='', disabled='disabled')
+                option(value='specificity', disabled='disabled') Specificity
+                option(value='sensitivity', disabled='disabled') Sensitivity
+            label.sr-only(for='fixed') Fixed
+            input#fixed.fontnormal(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1', required)
+          //- pattern='([0-8,. \-])+',
+          div
+            div
+              b.pull-right Parameters
+            div
+              .pull-left(for='prevalence') Prevalence
+            input#prevalence(type='number',min="0",max=".9999999", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
+          div
+            .emptyblock
+            div
+              .pull-left(for='n_value') Sample Size
+            input#n_value.fontnormal(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
+        .panel-footer
+          button.post(type='submit') Calculate
+          button.reset(type='reset') Reset
+          button.hide.download(type='button') Download Excel
+          .pull-right
+            a#add-test-data(title='Populate variables with working example', href='#') Example
+    div
+      include ../partials/loader
+      .hide
+        #specificity_val.dom_valref
+        #sensitivity_val.dom_valref
+        #fixed_flag.dom_valref
+        #randomnumber.dom_valref
+      #output_graph

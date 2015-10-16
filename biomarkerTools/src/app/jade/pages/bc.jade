@@ -1,11 +1,8 @@
 #bc.tab-pane.fade(role='tabpanel')
-  h3.title.text-center(title="Biomarker Comparison tool") Biomarker Comparison
-  div
-    span &nbsp;
-    #helpGlossaryLinks
-      a.goToHelp(href="#help_bc") Help
-      span &nbsp;
-      a.goToGlossary(href="#") Glossary
+  h3(title="Biomarker Comparison tool") Biomarker Comparison
+  #helpGlossaryLinks
+    a.goToHelp(href="#help_bc") Help
+    a.goToGlossary(href="#") Glossary
   p
     | This tool plots contours of likelihood ratio positive (LR+) and
     | likelihood ratio negative (LR-) for a reference test with indicated
@@ -111,7 +108,7 @@
               .text-center
                 button#new_row_button New Row
           .panel-footer
-            label#DP.define.prevalence_label.col-sm-3(data-term='DP',for='prevalence_bc') Prevalence
+            label#DP.define.prevalence_label(data-term='DP',for='prevalence_bc') Prevalence
             input#prevalence_bc(type='text')
             button#calculate_button Calculate
             button#reset Reset

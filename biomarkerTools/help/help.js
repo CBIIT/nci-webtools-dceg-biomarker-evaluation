@@ -1,14 +1,11 @@
 var thisTool;
 $(document).ready(function(){
-   
-    requirejs(['main', 'glossary' ]);
     thisTool = $('#help');
     thisTool.find('h4, h5').each(tableOfContentsList);
 });
 
 $('a[href="#help"]').on('shown.bs.tab',function(e){
     thisTool = $("#help");
-    require([ 'help']);
 });
 
 

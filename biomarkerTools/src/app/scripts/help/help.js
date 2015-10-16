@@ -1,14 +1,11 @@
 var thisTool;
 $(document).ready(function(){
-    // pull in glossary js file
-    requirejs(['main', 'glossary' ]);
     thisTool = $('#help');
     thisTool.find('h4, h5').each(tableOfContentsList);
 });
 
 $('a[href="#help"]').on('shown.bs.tab',function(e){
     thisTool = $("#help");
-    require([ 'help']);
 });
 
 // used to construct links list for table of contents section

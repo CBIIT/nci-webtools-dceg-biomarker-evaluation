@@ -1,22 +1,9 @@
-@-ms-viewport {
-  width: "device-width";
-}
 body {
   font-family: "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff";
 }
-header {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-header hr {
-  border-top: 0.5em solid #bb0e3d;
-  margin: 0;
-}
-header #dceg-logo,
-header #branch-logo {
-  min-width: 320px;
-  max-width: 720px;
-  padding: 0;
+h3 {
+  text-align: center;
+  margin-top: 0px;
 }
 img.expand {
   width: 80%;
@@ -34,565 +21,90 @@ img.expand:active {
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
-input {
-  padding: 1px !important;
-}
-table .table_data {
-  float: none;
-}
 #accordion [data-toggle='collapse'] {
   cursor: pointer;
 }
 #helpGlossaryLinks {
-  float: right;
-  clear: both;
-}
-#main {
-  max-width: 1200px;
-  min-width: 320px;
-  margin: 0 auto;
-  font-size: small;
-}
-#meanstorisk .maliable > div {
-  padding: 15px;
-  float: left;
-  width: 30.76923076923077%;
-}
-#meanstorisk .maliable > div ~ div {
-  width: 30.76923076923077%;
-}
-#meanstorisk .maliable > div ~ div ~ div {
-  width: 38.46153846153846%;
-}
-#meanstorisk #cases_control .table_data {
-  width: 40%;
-  height: 2em;
-  padding: 2px;
-}
-#meanstorisk #cases_control .table_data ~ .table_data {
-  width: 30%;
-}
-#meanstorisk .panel-footer input {
-  width: 100%;
-}
-#meanstorisk #mtr-results .table_row {
-  border: 0.125em solid #ddd;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  float: none;
   overflow: auto;
 }
-#meanstorisk #mtr-results .table_row .header {
+#helpGlossaryLinks a {
+  float: right;
   padding: 0.5em;
 }
-#meanstorisk #mtr-results .table_data {
-  width: 33.333333333333336%;
-  padding: 2px;
-}
-#meanstorisk #mtr-results .table_data ~ .table_data {
-  width: 16.666666666666668%;
-}
-#meanstorisk #mtr-results .table_data ~ .table_data ~ .table_data {
-  width: 25%;
-}
-#meanstorisk .no-pad * {
-  padding: 0;
-}
-#meanstorisk .graph_panel {
-  padding-left: 0;
-}
-#meanstorisk #download_button {
-  margin: 10px;
-}
-#meanstorisk .input_panel {
-  border: 1px #bbb solid;
-}
-#meanstorisk div.input_accordion {
-  background: #fff;
-}
-#meanstorisk h3.input_accordion {
-  background-color: #ddd;
-}
-#meanstorisk .output_graph {
+.emptyblock {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  content: '&nbsp;';
 }
-#meanstorisk .key_output_panel {
-  float: left;
-  background-color: #faf;
-  height: 99%;
+.bold {
+  font-weight: bold;
 }
-#meanstorisk .tabbed_output_panel {
-  height: 99%;
-  overflow: auto;
-}
-#meanstorisk .tabbed_output_panel #tabs {
-  font-size: inherit;
-  margin: 0px;
-}
-#meanstorisk .highlight {
-  background-color: #ff0;
-}
-#meanstorisk .col1 {
-  padding: 6px;
-  text-align: center;
-}
-#meanstorisk .maincard {
-  height: 750px;
-  border: 2px #000 solid;
-}
-#meanstorisk .highlight {
-  background-color: #ff0;
-}
-#meanstorisk table.table_data {
-  width: 99%;
-  background-color: #fff;
-  border: 1px #bbb solid;
-}
-#meanstorisk table.output_data {
-  background-color: #fff;
-  border-collapse: collapse;
-  border: 2px #000 solid;
-}
-#meanstorisk th.table_data {
-  padding: 2px;
-}
-#meanstorisk th.header {
-  border-bottom: 1px #bbb solid;
-}
-#meanstorisk tr.table_data_header {
-  border-bottom: 1px #000 solid;
-  background-color: #a0a0a0;
-}
-#meanstorisk tr.line-above {
-  border-top: 1px #bbb solid;
-}
-#meanstorisk .main-title {
-  text-align: center;
-}
-#meanstorisk .PPV_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #b080ff;
-}
-#meanstorisk .cNPV_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #8080ff;
-}
-#meanstorisk .PPVcNPV_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #ffaa80;
-}
-#meanstorisk .ProgramBased_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #ffb0d0;
-}
-#meanstorisk .PPVBased_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #a0a0a0;
-}
-#meanstorisk .SensitivityBased_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #808080;
-}
-#meanstorisk .DominatedByRareDisease_stripe {
-  border-bottom: 1px #000 solid;
-  background-color: #f0f0f0;
-}
-#bc .top_group > div {
-  overflow: auto;
-}
-#bc .top_group > div ul {
-  padding-left: 1.5em;
-}
-#bc .top_group > img {
-  width: 350px;
-  max-width: 100%;
-  float: left;
-  overflow: visible;
-}
-#bc .reference_row {
-  background-color: #ff0;
-}
-#bc .top-header {
-  text-align: center;
-  background-color: #444;
-  color: #fff;
-}
-#bc .bottom_group > div {
-  float: left;
-  padding-right: 15px;
-  width: 58.333333333333336%;
-}
-#bc .bottom_group #graph {
-  width: 41.666666666666664%;
-  max-width: 100%;
-}
-#bc .bottom_group #graph img {
-  width: 80%;
-}
-#bc #inputdata > div {
-  overflow: auto;
-}
-#bc #inputdata > div > div {
-  float: left;
-  width: 8.333333333333334%;
-}
-#bc #inputdata > div > div ~ div {
-  width: 25%;
-}
-#bc #inputdata > div > div ~ div ~ div ~ div ~ div {
-  width: 16.666666666666668%;
-}
-#bc #inputdata .input:hover {
-  cursor: text;
-}
-#bc #inputdata .panel-body {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#bc #output > div ~ div {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-#bc #output > div ~ div > div {
-  display: table-cell;
-}
-#bc h2 {
-  background-color: #aaa;
-  color: #444;
-  padding: 5px;
-}
-#bc .bibliography {
-  clear: both;
-  float: left;
-  margin: 50px;
-}
-#bc .bib-author {
-  float: left;
-}
-#bc .bib-year {
-  float: left;
-}
-#bc .bib-title {
-  float: left;
-  font-style: italic;
-}
-#bc .bib-journal {
-  float: left;
-}
-#bc .bib-ref {
-  float: left;
-}
-#bc .bib-pages {
-  float: left;
-}
-#bc .bib-doi {
-  float: left;
-}
-#riskStratAdvanced input,
-#riskStratAdvanced select {
-  padding: 1px;
-}
-#riskStratAdvanced .panel-body > div {
-  overflow: auto;
-  padding: 1px;
-}
-#riskStratAdvanced .panel-body > div > div {
-  float: left;
-  min-width: 13em;
-  height: 2em;
-}
-#riskStratAdvanced .panel-body > div > div * {
-  width: 100%;
-  height: 100%;
-  line-height: 2em;
+.panel-body .panel:last-child {
   margin-bottom: 0px;
 }
-#riskStratAdvanced .panel-body > div > div + div {
-  min-width: 7em;
-  padding-right: 2px;
-}
-#riskStratAdvanced .panel-body > div .input {
-  overflow: auto;
-  float: none;
-}
-#riskStratAdvanced .panel-body > div .infobox {
-  float: right;
-  min-width: 0px;
-  padding-right: 0px;
-}
-#riskStratAdvanced #add-test-data {
-  text-decoration: underline;
-  float: right;
-}
-#riskStratAdvanced #add-test-data:hover {
-  font-weight: bold;
-}
-#riskStratAdvanced #status-bar {
-  background: #ccc;
-  display: block;
-  border: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font: 18px "arial", "sans-serif";
-  left: 0;
-  margin: 10px;
-  outline: none;
-  padding: 10px;
-  top: 2px;
-  visibility: hidden;
-}
-#riskStratAdvanced #tabs {
-  font-size: inherit;
-}
-#riskStratAdvanced #tabs .header {
-  background-color: #aaa;
-  color: #444;
-}
-#riskStratAdvanced #tabs .vertical-text {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  white-space: nowrap;
-}
-#riskStratAdvanced .table-title {
-  word-wrap: normal;
-  font-weight: bold;
-  text-align: center;
-  background-color: #f8fafa;
-}
-.define,
-.termToDefine {
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: help;
-}
-.extra-padding {
-  padding: 1em;
-}
-.extra-vertical-margin {
-  margin: 10px 0;
-}
-.footer {
-  color: #606060;
-  background-color: #fff;
-  font-size: small;
-}
-.footer li a {
-  color: inherit;
-}
-.glyphicon + span {
-  margin-left: 1em;
-}
-.header {
-  background-color: #f5f5f5;
-}
-.indent {
-  margin-left: 30px;
-  margin-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-.no-pad {
-  padding: 0;
-}
-.popover .popover-title {
-  background-color: #fffff0;
-  font-weight: bold;
-}
-.popover .popover-content {
-  background-color: #ffffe0;
-}
-.table_container {
+.table_row {
+  padding: 2px;
   overflow: auto;
 }
 .table_data {
+  display: block;
   float: left;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  padding: 0px 2px;
 }
-.table_row {
-  clear: both;
+.table_data.text-right {
+  text-align: right;
 }
-.title {
-  color: #000;
+.table_data input {
+  height: 2em;
+  padding: 0px;
 }
-.vertical-padding {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+header,
+#main,
+#footer {
+  min-width: 320px;
+  max-width: 1200px;
+  margin: 0px auto;
 }
-#contentTabs {
-  width: 100%;
-  margin: 1.5em auto;
+header .division-logo {
+  min-width: 320px;
 }
-#contentTabs ul.nav.nav-tabs {
+header #dceg-logo,
+header #branch-logo {
+  min-width: 320px;
+}
+#main {
   font-size: small;
-  font-size: 9pt;
 }
-#contentTabs ul.nav.nav-tabs a {
-  color: #000;
-}
-#contentTabs ul.nav.nav-tabs > li.active a {
-  text-decoration: underline;
-  font-weight: bold;
-  color: #bb0e3d;
-}
-#contentTabs ul.nav.nav-tabs :after {
-  border: solid transparent;
-  margin-left: -10px;
-  top: 100%;
-  left: 50%;
-}
-#contentTabs .tab-content {
+#mainTabsContent {
   line-height: 1.42857143;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-left: 1px solid #ddd;
+  border: solid #ddd;
+  border-width: 0px 1px 1px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+  padding: 1.5em;
 }
-#contentTabs #sampleSize .tablevars {
-  padding: 0;
+@media (max-width: 480px) {
+  #mainTabsContent {
+    padding: 1.5em 0px;
+  }
 }
-#contentTabs #sampleSize .row {
-  margin: 1em auto;
+#meanstorisk #cases_control .table_row > div {
+  width: 30%;
 }
-#contentTabs #help h4 a {
-  color: #fff;
-  font-size: smaller;
+#meanstorisk #cases_control .table_row > div:first-child {
+  width: 40%;
 }
-#contentTabs #help section h5 {
-  font-weight: bold;
-}
-#contentTabs #help ul li li {
-  text-indent: 1.5em;
-}
-#contentTabs #meanRiskStratification table input[type="number"] {
+#meanstorisk #cases_control input {
   width: 100%;
 }
-#contentTabs #meanRiskStratification .marker-title {
-  background-color: #f5f5f5;
+#meanstorisk #accordion .panel-footer input {
+  width: 100%;
 }
-#contentTabs #meanRiskStratification #results table th {
-  background-color: #f5f5f5;
-}
-#contentTabs #meanRiskStratification .red {
-  background-color: #bb0e3d;
-}
-#contentTabs #meanRiskStratification .panel-title,
-#contentTabs #meanRiskStratification .panel-title a {
-  font-size: small;
-}
-#contentTabs #meanRiskStratification .panel-toggle a,
-#contentTabs #meanRiskStratification .panel-title a {
-  color: #000;
-  font-weight: bold;
-}
-#contentTabs #meanRiskStratification label {
-  font-weight: bold;
-}
-#contentTabs #meanRiskStratification .well,
-#contentTabs #meanRiskStratification #results {
-  min-height: 645px;
-}
-#contentTabs #meanRiskStratification .termToDefine,
-#contentTabs #meanRiskStratification th {
-  font-weight: bold;
-}
-#contentTabs #meanRiskStratification .termToDefine.glyphicon {
-  text-decoration: none;
-}
-#contentTabs #meanRiskStratification .loader {
-  background-image: url("/common/images/loading.gif") no-repeat;
-  margin: 0 auto;
-  height: 300px;
-}
-#contentTabs #meanRiskStratification .input:invalid {
-  background-color: #ff0;
-}
-#portal-footer {
-  line-height: 1.2em;
-  text-align: center;
-  background-color: #fff;
-  color: #333;
-  font-size: small;
-}
-#portal-footer a {
-  text-decoration: none;
-  color: #333;
-  border: none;
-}
-#portal-footer a :visited {
-  color: #333;
-}
-#portal-footer a :hover {
-  text-decoration: underline;
-}
-@media (min-width: 1200px) {
-  #meanstorisk .graph_panel img.expand {
-    width: 100%;
-    -webkit-transform-origin: top right;
-    -moz-transform-origin: top right;
-    -o-transform-origin: top right;
-    -ms-transform-origin: top right;
-    transform-origin: top right;
-  }
-  #meanstorisk .graph_panel img.expand:hover,
-  #meanstorisk .graph_panel img.expand:active {
-    -webkit-transform: scale(1.6);
-    -moz-transform: scale(1.6);
-    -o-transform: scale(1.6);
-    -ms-transform: scale(1.6);
-    transform: scale(1.6);
-  }
-}
-@media (max-width: 1200px) {
-  #meanstorisk .maliable > div {
-    width: 50%;
-  }
-  #meanstorisk .maliable > div ~ div {
-    width: 50%;
-  }
-  #meanstorisk .maliable > div ~ div ~ div {
-    width: 100%;
-  }
-}
-@media (max-width: 1000px) {
-  #bc .bottom_group > div {
-    float: none;
-    width: 100%;
-    padding-right: 0px;
-  }
-  #bc .bottom_group #graph {
-    width: 608px;
-    margin: 0px auto;
-    padding-right: 4px;
-  }
-}
-@media (max-width: 800px) {
-  #meanstorisk .maliable > div {
-    width: 100%;
-    padding: 0px;
-  }
-  #meanstorisk .maliable > div ~ div {
-    width: 100%;
-  }
-}
-@media (max-width: 780px) {
-  #bc .top_group > img {
-    float: none;
-    display: block;
-    margin: 0px auto;
-    width: 480px;
-  }
-  #bc .top_group > img ~ * {
-    float: none;
-  }
-}
-@media (min-width: 480px) {
-  #contentTabs .tab-content {
-    padding: 1.5em;
-  }
+#meanstorisk #mtr-results .table_row {
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
 }
