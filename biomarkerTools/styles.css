@@ -91,6 +91,46 @@ header #branch-logo {
     padding: 1.5em 0px;
   }
 }
+@media (min-width: 1200px) {
+  #meanstorisk .maliable > div {
+    width: 30.76923076923077%;
+    padding: 15px;
+  }
+  #meanstorisk .maliable > .graph {
+    width: 38.46153846153846%;
+  }
+  #meanstorisk .maliable .graph_panel img.expand {
+    width: 100%;
+    -webkit-transform-origin: top right;
+    -moz-transform-origin: top right;
+    -o-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+  }
+  #meanstorisk .maliable .graph_panel img.expand:hover,
+  #meanstorisk .maliable .graph_panel img.expand:active {
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    transform: scale(1.6);
+  }
+}
+@media (min-width: 800px) {
+  #meanstorisk .maliable > div {
+    float: left;
+    width: 50%;
+  }
+  #meanstorisk .maliable .input {
+    padding-right: 15px;
+  }
+  #meanstorisk .maliable .output {
+    padding-left: 15px;
+  }
+  #meanstorisk .maliable .graph {
+    width: 100%;
+  }
+}
 #meanstorisk #cases_control .table_row > div {
   width: 30%;
 }
@@ -100,6 +140,9 @@ header #branch-logo {
 #meanstorisk #cases_control input {
   width: 100%;
 }
+#meanstorisk #accordion .panel-footer label {
+  text-decoration: underline;
+}
 #meanstorisk #accordion .panel-footer input {
   width: 100%;
 }
@@ -107,4 +150,45 @@ header #branch-logo {
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+}
+#meanstorisk #mtr-results .table_row:nth-child(5) .table_data,
+#meanstorisk #mtr-results .table_row:nth-child(7) .table_data,
+#meanstorisk #mtr-results .table_row:nth-child(8) .table_data {
+  line-height: 4em;
+  height: 4em;
+}
+#meanstorisk #mtr-results .table_row:nth-child(5) .table_data:first-child,
+#meanstorisk #mtr-results .table_row:nth-child(7) .table_data:first-child,
+#meanstorisk #mtr-results .table_row:nth-child(8) .table_data:first-child {
+  line-height: 2em;
+}
+#meanstorisk #mtr-results .table_data {
+  width: 25%;
+}
+#meanstorisk #mtr-results .table_data:first-child {
+  width: 33.333333333333336%;
+}
+#meanstorisk #mtr-results .table_data:nth-child(2) {
+  width: 16.666666666666668%;
+}
+#meanstorisk .graph_panel {
+  text-align: center;
+}
+#meanstorisk .graph_panel img {
+  display: block;
+  margin: 0px auto;
+  width: 100%;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
+}
+#meanstorisk .graph_panel img:hover,
+#meanstorisk .graph_panel img:active {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -o-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
 }

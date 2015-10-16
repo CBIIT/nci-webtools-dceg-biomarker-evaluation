@@ -70,54 +70,51 @@
             .table_data.header.bold Cases
             .table_data.header.bold Controls
             .table_data.header.bold Overall
-          .table_row.vertical-padding
+          .table_row
             .table_data.text-right.bold Mean
-            #mean_cases.table_data &nbsp;
-            #mean_controls.table_data &nbsp;
-            #mean_overall.table_data &nbsp;
-          .table_row.vertical-padding
+            #mean_cases.table_data.emptyblock
+            #mean_controls.table_data.emptyblock
+            #mean_overall.table_data.emptyblock
+          .table_row
             .table_data.text-right.bold Standard Error
-            #stderr_cases.table_data &nbsp;
-            #stderr_controls.table_data &nbsp;
-            #stderr_overall.table_data &nbsp;
-          .table_row.vertical-padding
+            #stderr_cases.table_data.emptyblock
+            #stderr_controls.table_data.emptyblock
+            #stderr_overall.table_data.emptyblock
+          .table_row
             .table_data.text-right.bold N
-            #N_cases.table_data &nbsp;
-            #N_controls.table_data &nbsp;
-            #N_overall.table_data &nbsp;
-          .table_row.line-above.vertical-padding
+            #N_cases.table_data.emptyblock
+            #N_controls.table_data.emptyblock
+            #N_overall.table_data.emptyblock
+          .table_row
             .table_data.text-right.bold Standard Deviation
-            #deviation_cases.table_data &nbsp;
-            #deviation_controls.table_data &nbsp;
-            #deviation_overall.table_data &nbsp;
-          .table_row.vertical-padding
+            #deviation_cases.table_data.emptyblock
+            #deviation_controls.table_data.emptyblock
+            #deviation_overall.table_data.emptyblock
+          .table_row
             .table_data.text-right.bold Variance
-            #variance_cases.table_data &nbsp;
-            #variance_controls.table_data &nbsp;
-            #variance_overall.table_data &nbsp;
-          .table_row.vertical-padding
-            .table_data.text-right.bold
-              #CV.define(data-term='CV') Coefficient of Variation (CV)
-            #cv_cases.table_data &nbsp;
-            #cv_controls.table_data &nbsp;
-            #cv_overall.table_data &nbsp;
-          .table_row.vertical-padding
+            #variance_cases.table_data.emptyblock
+            #variance_controls.table_data.emptyblock
+            #variance_overall.table_data.emptyblock
+          .table_row
+            .table_data.text-right.bold.define(data-term='CV') Coefficient of Variation (CV)
+            #cv_cases.table_data.emptyblock
+            #cv_controls.table_data.emptyblock
+            #cv_overall.table_data.emptyblock
+          .table_row
             .table_data.text-right.bold Difference in Mean
-            #diff_cases.table_data &nbsp;
-            #diff_controls.table_data &nbsp;
-            #diff_overall.table_data &nbsp;
-          .table_row.vertical-padding
-            .table_data.text-right.bold
-              #Delta.define(data-term='Delta') Delta
-            #delta_cases.table_data &nbsp;
-            #delta_controls.table_data &nbsp;
-            #delta_overall.table_data &nbsp;
-          .table_row.vertical-padding
-            .table_data.text-right.bold
-              #AUC.define(data-term='AUC') AUC
-            #auc_cases.table_data &nbsp;
-            #auc_controls.table_data &nbsp;
-            #auc_overall.table_data &nbsp;
+            #diff_cases.table_data.emptyblock
+            #diff_controls.table_data.emptyblock
+            #diff_overall.table_data.emptyblock
+          .table_row
+            .table_data.text-right.bold.define(data-term='Delta') Delta
+            #delta_cases.table_data.emptyblock
+            #delta_controls.table_data.emptyblock
+            #delta_overall.table_data.emptyblock
+          .table_row
+            .table_data.text-right.bold.define(data-term='AUC') AUC
+            #auc_cases.table_data.emptyblock
+            #auc_controls.table_data.emptyblock
+            #auc_overall.table_data.emptyblock
       .graph
         .graph_panel
     div

@@ -5,60 +5,10 @@ input
 table .table_data
   float none
 #meanstorisk
-  @media (min-width 1200px)
-    .graph_panel img.expand
-      width 100%
-      transform-origin top right
-      &:hover
-      &:active
-        transform scale(1.6)
-  @media (max-width 1200px)
-    .maliable > div
-      width 50%
-      ~ div
-        width 50%
-        ~ div
-          width 100%
-  @media (max-width 800px)
-    .maliable > div
-      width 100%
-      padding 0px
-      ~ div
-        width 100%
-  .maliable > div
-    padding 15px
-    float left
-    width (100%*4/13)
-    ~ div
-      width (100%*4/13)
-      ~ div
-        width (100%*5/13)
-  #mtr-results
-    .table_row
-      border .125em solid #ddd
-      border-radius 4px
-      overflow auto
-      .header
-        padding .5em
-    .table_data
-      width (100%/3)
-      padding 2px
-      ~ .table_data
-        width (100%/6)
-        ~ .table_data
-          width 25%
-  .no-pad *
-    padding 0
-  .graph_panel
-    padding-left 0
   #download_button
     margin 10px
   .input_panel
     border  1px #BBB solid
-  .output_graph
-    display block
-    margin-left  auto
-    margin-right  auto
   .key_output_panel
     float left
     background-color #faf
@@ -120,6 +70,24 @@ table .table_data
     border-bottom 1px black solid
     background-color #F0F0F0
 #bc
+  @media (max-width 1000px)
+    .bottom_group
+      > div
+        float none
+        width 100%
+        padding-right 0px
+      #graph
+        width 608px
+        margin 0px auto
+        padding-right 4px
+  @media (max-width 780px)
+    .top_group > img
+      float none
+      display block
+      margin 0px auto
+      width 480px
+    .top_group > img ~ *
+      float none
   .top_group
     > div
       overflow auto
@@ -363,23 +331,3 @@ table .table_data
       color #333333
     :hover
       text-decoration underline
-@media (max-width 1000px)
-  #bc
-    .bottom_group
-      > div
-        float none
-        width 100%
-        padding-right 0px
-      #graph
-        width 608px
-        margin 0px auto
-        padding-right 4px
-@media (max-width 780px)
-  #bc
-    .top_group > img
-      float none
-      display block
-      margin 0px auto
-      width 480px
-    .top_group > img ~ *
-      float none

@@ -1,14 +1,60 @@
-#cases_control
-  .table_row
+.maliable
+  @media (min-width 1200px)
     > div
-      width 30%
-      &:first-child
-        width 40%
+      width (100%*4/13)
+      padding 15px
+    > .graph
+      width (100%*5/13)
+    .graph_panel img.expand
+      width 100%
+      transform-origin top right
+      &:hover
+      &:active
+        transform scale(1.6)
+  @media (min-width 800px)
+    > div
+      float left
+      width 50%
+    .input
+      padding-right 15px
+    .output
+      padding-left 15px
+    .graph
+      width 100%
+#cases_control
+  .table_row > div
+    width 30%
+    &:first-child
+      width 40%
   input
     width 100%
-#accordion .panel-footer input
-  width 100%
+#accordion .panel-footer
+  label
+    text-decoration underline
+  input
+    width 100%
 #mtr-results
   .table_row
     border 1px solid #ddd
     border-radius 4px
+    &:nth-child(5), &:nth-child(7), &:nth-child(8)
+      .table_data
+        line-height 4em
+        height 4em
+        &:first-child
+          line-height 2em
+  .table_data
+    width 25%
+    &:first-child
+      width (100%/3)
+    &:nth-child(2)
+      width (100%/6)
+.graph_panel
+  text-align center
+  img
+    display block
+    margin 0px auto
+    width 100%
+    transform-origin top right
+    &:hover, &:active
+      transform scale(1.4)

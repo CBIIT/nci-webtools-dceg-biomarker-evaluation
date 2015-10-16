@@ -134,65 +134,59 @@
                       <div class="table_data header bold">Controls</div>
                       <div class="table_data header bold">Overall</div>
                     </div>
-                    <div class="table_row vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">Mean</div>
-                      <div id="mean_cases" class="table_data">&nbsp;</div>
-                      <div id="mean_controls" class="table_data">&nbsp;</div>
-                      <div id="mean_overall" class="table_data">&nbsp;</div>
+                      <div id="mean_cases" class="table_data emptyblock"></div>
+                      <div id="mean_controls" class="table_data emptyblock"></div>
+                      <div id="mean_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">Standard Error</div>
-                      <div id="stderr_cases" class="table_data">&nbsp;</div>
-                      <div id="stderr_controls" class="table_data">&nbsp;</div>
-                      <div id="stderr_overall" class="table_data">&nbsp;</div>
+                      <div id="stderr_cases" class="table_data emptyblock"></div>
+                      <div id="stderr_controls" class="table_data emptyblock"></div>
+                      <div id="stderr_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">N</div>
-                      <div id="N_cases" class="table_data">&nbsp;</div>
-                      <div id="N_controls" class="table_data">&nbsp;</div>
-                      <div id="N_overall" class="table_data">&nbsp;</div>
+                      <div id="N_cases" class="table_data emptyblock"></div>
+                      <div id="N_controls" class="table_data emptyblock"></div>
+                      <div id="N_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row line-above vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">Standard Deviation</div>
-                      <div id="deviation_cases" class="table_data">&nbsp;</div>
-                      <div id="deviation_controls" class="table_data">&nbsp;</div>
-                      <div id="deviation_overall" class="table_data">&nbsp;</div>
+                      <div id="deviation_cases" class="table_data emptyblock"></div>
+                      <div id="deviation_controls" class="table_data emptyblock"></div>
+                      <div id="deviation_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">Variance</div>
-                      <div id="variance_cases" class="table_data">&nbsp;</div>
-                      <div id="variance_controls" class="table_data">&nbsp;</div>
-                      <div id="variance_overall" class="table_data">&nbsp;</div>
+                      <div id="variance_cases" class="table_data emptyblock"></div>
+                      <div id="variance_controls" class="table_data emptyblock"></div>
+                      <div id="variance_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
-                      <div class="table_data text-right bold">
-                        <div id="CV" data-term="CV" class="define">Coefficient of Variation (CV)</div>
-                      </div>
-                      <div id="cv_cases" class="table_data">&nbsp;</div>
-                      <div id="cv_controls" class="table_data">&nbsp;</div>
-                      <div id="cv_overall" class="table_data">&nbsp;</div>
+                    <div class="table_row">
+                      <div data-term="CV" class="table_data text-right bold define">Coefficient of Variation (CV)</div>
+                      <div id="cv_cases" class="table_data emptyblock"></div>
+                      <div id="cv_controls" class="table_data emptyblock"></div>
+                      <div id="cv_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
+                    <div class="table_row">
                       <div class="table_data text-right bold">Difference in Mean</div>
-                      <div id="diff_cases" class="table_data">&nbsp;</div>
-                      <div id="diff_controls" class="table_data">&nbsp;</div>
-                      <div id="diff_overall" class="table_data">&nbsp;</div>
+                      <div id="diff_cases" class="table_data emptyblock"></div>
+                      <div id="diff_controls" class="table_data emptyblock"></div>
+                      <div id="diff_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
-                      <div class="table_data text-right bold">
-                        <div id="Delta" data-term="Delta" class="define">Delta</div>
-                      </div>
-                      <div id="delta_cases" class="table_data">&nbsp;</div>
-                      <div id="delta_controls" class="table_data">&nbsp;</div>
-                      <div id="delta_overall" class="table_data">&nbsp;</div>
+                    <div class="table_row">
+                      <div data-term="Delta" class="table_data text-right bold define">Delta</div>
+                      <div id="delta_cases" class="table_data emptyblock"></div>
+                      <div id="delta_controls" class="table_data emptyblock"></div>
+                      <div id="delta_overall" class="table_data emptyblock"></div>
                     </div>
-                    <div class="table_row vertical-padding">
-                      <div class="table_data text-right bold">
-                        <div id="AUC" data-term="AUC" class="define">AUC</div>
-                      </div>
-                      <div id="auc_cases" class="table_data">&nbsp;</div>
-                      <div id="auc_controls" class="table_data">&nbsp;</div>
-                      <div id="auc_overall" class="table_data">&nbsp;</div>
+                    <div class="table_row">
+                      <div data-term="AUC" class="table_data text-right bold define">AUC</div>
+                      <div id="auc_cases" class="table_data emptyblock"></div>
+                      <div id="auc_controls" class="table_data emptyblock"></div>
+                      <div id="auc_overall" class="table_data emptyblock"></div>
                     </div>
                   </div>
                 </div>
@@ -647,8 +641,8 @@
               <div id="control-group"></div>
               <div>
                 <div class="pull-left"></div>
-                <button id="add-marker"><span alt="Add(+)" title="Add biomarker" class="glyphicon glyphicon-plus-sign">&nbsp;</span><span>Add</span></button>
-                <button id="delete-marker" title="Delete biomarker"><span alt="Delete(-)" class="glyphicon glyphicon-minus-sign">&nbsp;</span><span>Delete</span></button>
+                <button id="add-marker"><span alt="Add(+)" title="Add biomarker" class="glyphicon glyphicon-plus-sign emptyblock"></span><span>Add</span></button>
+                <button id="delete-marker" title="Delete biomarker"><span alt="Delete(-)" class="glyphicon glyphicon-minus-sign emptyblock"></span><span>Delete</span></button>
                 <button id="reset" type="reset">Reset</button>
                 <button id="calculate" type="button">Calculate</button>
                 <div class="pull-right"></div>
