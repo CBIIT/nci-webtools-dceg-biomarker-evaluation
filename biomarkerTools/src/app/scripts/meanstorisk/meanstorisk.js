@@ -151,7 +151,7 @@ function bind_calculate_button() {
 function validate_input(valid){
     var messages = [];
     var valueMissing = function(el) {
-      return el.validity ? el.validity.valueMissing : el.val().trim() !== "";
+      return el.validity ? el.validity.valueMissing : el.val().trim() === "";
     };
     
     // split comma delimited string and check values for specificity and prevalence
@@ -168,11 +168,11 @@ function validate_input(valid){
             messages.push("Prevalence contains an invalid value: '" + singlePrev + "'");
     });
     
-    if(valueMissing(thisTool.find("input#specificity")[0])){
+    if(valueMissing(thisTool.find("input#specificity").eq(0))){
         messages.push("Specificity is required");
     }
 
-    if(valueMissing(thisTool.find("input#prevalence")[0])){
+    if(valueMissing(thisTool.find("input#prevalence").eq(0))){
         messages.push("Prevalence is required");
     }
 
@@ -523,7 +523,7 @@ function create_tabbed_table(dt) {
 }
 
 function make_tabs() {
-    var tabs = $("<div id='tabs' class='row'> </div>");
+    var tabs = $("<div id='tabs'></div>");
     $(".tabbed_output_panel").empty().append(tabs);
     var tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
@@ -542,16 +542,16 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     var specificity_count = matrix.length;
     var general_table = $("<TABLE></TABLE>");
     $("#"+tab_id).empty().append(general_table);
-    var first_header_row = $("<tr class='row'></tr>");
+    var first_header_row = $("<tr></tr>");
     first_header_row.append("<TH class='header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + "</TH>");
     first_header_row.appendTo(general_table);
-    var second_header_row = $("<tr class='row'></tr>");
+    var second_header_row = $("<tr></tr>");
     second_header_row.append("<TH class='text-center " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'>" +
                              "<div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + "</div>" +
                              "<div class='popupDefinition' id='" + type +tab_id+ "Definition'></div>" +
                              "</TH>");
     second_header_row.appendTo(general_table);
-    var third_header_row = $("<tr class='row'></tr>");
+    var third_header_row = $("<tr></tr>");
     third_header_row.append("<TH class='header text-center col-sm-5' colspan='4' style='border-right:1px solid black;'>" +
                             "<div class='define col-xs-12' id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
                             "</TH>" );
@@ -560,7 +560,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
                             "<div class='popupDefinition' id='DP2-" + tab_id + "Definition'></div>" +
                             "</TH>");
     third_header_row.appendTo(general_table);
-    var header_row = $("<tr class='row'></tr>");
+    var header_row = $("<tr></tr>");
     header_row.attr('id', type + '_table_row_header');
     header_row.append("<TH class='header text-center'><div class='define' id='Spec-" + tab_id + "' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-" + tab_id + "Definition'></div></TD>");
     header_row.append("<TH class='header text-center'><div class='define' id='Sens-" + tab_id + "' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-" + tab_id + "Definition'></div></TD>");
@@ -572,7 +572,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     header_row.appendTo(general_table);
 
     for(var y=0;y < specificity_count;y++) {
-        var row = $("<tr class='row'></tr>");
+        var row = $("<tr></tr>");
 
         row.attr('id', type + '_table_row_' + x);
         row.append("<TD class='col1 text-center'>" + format_number(sensitivity_matrix[y].Specificity) + "</TD>");

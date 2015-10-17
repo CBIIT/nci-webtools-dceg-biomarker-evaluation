@@ -52,35 +52,34 @@
     display block
     margin 0px auto
     width 100%
-    transform-origin top right
     &:hover, &:active
       transform scale(1.4)
 .tabbed_output_panel
+  #tabs div
+    overflow auto
   table
     width 99%
     border 2px black solid
     border-collapse collapse
+    tr:nth-child(2)
+      border-bottom 1px black solid
+      &.PPV_stripe
+        background-color #B080FF
+      &.cNPV_stripe
+        background-color #8080FF
+      &.PPVcNPV_stripe
+        background-color #FFAA80
+      &.ProgramBased_stripe
+        background-color #FFB0D0
+      &.PPVBased_stripe
+        background-color #A0A0A0
+      &.SensitivityBased_stripe
+        background-color #808080
+      &.DominatedByRareDisease_stripe
+        background-color #F0F0F0
     th
       padding 2px
       border-bottom 1px #BBB solid
-    .PPV_stripe
-      border-bottom 1px black solid
-      background-color #B080FF
-    .cNPV_stripe
-      border-bottom 1px black solid
-      background-color #8080FF
-    .PPVcNPV_stripe
-      border-bottom 1px black solid
-      background-color #FFAA80
-    .ProgramBased_stripe
-      border-bottom 1px black solid
-      background-color #FFB0D0
-    .PPVBased_stripe
-      border-bottom 1px black solid
-      background-color #A0A0A0
-    .SensitivityBased_stripe
-      border-bottom 1px black solid
-      background-color #808080
-    .DominatedByRareDisease_stripe
-      border-bottom 1px black solid
-      background-color #F0F0F0
+      background-color #F5F5F5
+    td
+      padding 0px 1em
