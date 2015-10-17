@@ -168,11 +168,11 @@ function validate_input(valid){
             messages.push("Prevalence contains an invalid value: '" + singlePrev + "'");
     });
     
-    if(thisTool.find("input#specificity")[0].validity.valueMissing ){
+    if(valueMissing(thisTool.find("input#specificity")[0])){
         messages.push("Specificity is required");
     }
 
-    if(thisTool.find("input#prevalence")[0].validity.valueMissing){
+    if(valueMissing(thisTool.find("input#prevalence")[0])){
         messages.push("Prevalence is required");
     }
 
