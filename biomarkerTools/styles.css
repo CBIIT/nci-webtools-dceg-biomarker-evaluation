@@ -189,34 +189,36 @@ header #branch-logo {
 }
 #meanstorisk .tabbed_output_panel #tabs div {
   overflow: auto;
+  padding: 0px;
 }
 #meanstorisk .tabbed_output_panel table {
   width: 99%;
+  margin: 0px auto;
   border: 2px #000 solid;
   border-collapse: collapse;
 }
 #meanstorisk .tabbed_output_panel table tr:nth-child(2) {
   border-bottom: 1px #000 solid;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).PPV_stripe {
+#meanstorisk .tabbed_output_panel table tr.PPV_stripe {
   background-color: #b080ff;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).cNPV_stripe {
+#meanstorisk .tabbed_output_panel table tr.cNPV_stripe {
   background-color: #8080ff;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).PPVcNPV_stripe {
+#meanstorisk .tabbed_output_panel table tr.PPVcNPV_stripe {
   background-color: #ffaa80;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).ProgramBased_stripe {
+#meanstorisk .tabbed_output_panel table tr.ProgramBased_stripe {
   background-color: #ffb0d0;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).PPVBased_stripe {
+#meanstorisk .tabbed_output_panel table tr.PPVBased_stripe {
   background-color: #a0a0a0;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).SensitivityBased_stripe {
+#meanstorisk .tabbed_output_panel table tr.SensitivityBased_stripe {
   background-color: #808080;
 }
-#meanstorisk .tabbed_output_panel table tr:nth-child(2).DominatedByRareDisease_stripe {
+#meanstorisk .tabbed_output_panel table tr.DominatedByRareDisease_stripe {
   background-color: #f0f0f0;
 }
 #meanstorisk .tabbed_output_panel table th {

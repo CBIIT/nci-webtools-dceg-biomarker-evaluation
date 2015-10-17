@@ -57,12 +57,15 @@
 .tabbed_output_panel
   #tabs div
     overflow auto
+    padding 0px
   table
     width 99%
+    margin 0px auto
     border 2px black solid
     border-collapse collapse
-    tr:nth-child(2)
-      border-bottom 1px black solid
+    tr
+      &:nth-child(2)
+        border-bottom 1px black solid
       &.PPV_stripe
         background-color #B080FF
       &.cNPV_stripe
