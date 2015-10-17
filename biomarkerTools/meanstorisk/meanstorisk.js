@@ -150,6 +150,9 @@ function bind_calculate_button() {
 }
 function validate_input(valid){
     var messages = [];
+    var valueMissing = function(el) {
+      return el.validity ? el.validity.valueMissing : el.val().trim() !== "";
+    };
     
    
     var specificitySplit = thisTool.find("input#specificity").val().split(",");
@@ -165,7 +168,7 @@ function validate_input(valid){
             messages.push("Prevalence contains an invalid value: '" + singlePrev + "'");
     });
     
-    if(thisTool.find("input#specificity")[0].validity.valueMissing){
+    if(thisTool.find("input#specificity")[0].validity.valueMissing ){
         messages.push("Specificity is required");
     }
 

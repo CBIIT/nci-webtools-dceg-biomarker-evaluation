@@ -9,13 +9,13 @@ html(lang="en")
     link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", type="text/css")
     link(rel="stylesheet", href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css")
     link(rel="stylesheet", href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css")
-    // link(rel="stylesheet", href="/common/css/style.css")
+    link(rel="stylesheet", href="/common/css/style.css")
     link(rel="stylesheet", href="styles.css")
     block styles
   body
     .sr-only
       a#skip(href="#mainTabsContent") Skip to Content
-    // include header
+    include header
     #main
       #contentTabs
         ul.nav.nav-tabs(role="tablist")
@@ -41,5 +41,5 @@ html(lang="en")
           include ../pages/sampleSize
           include ../pages/meanRiskStratification
           include ../pages/help
-    // include footer
+    include footer
     script(data-main="requires", src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js")

@@ -39,6 +39,9 @@ img.expand:active {
 .bold {
   font-weight: bold;
 }
+.define {
+  text-decoration: underline;
+}
 .panel-body .panel:last-child {
   margin-bottom: 0px;
 }
@@ -91,6 +94,21 @@ header #branch-logo {
     padding: 1.5em 0px;
   }
 }
+@media (min-width: 800px) {
+  #meanstorisk .maliable > div {
+    float: left;
+    width: 50%;
+  }
+  #meanstorisk .maliable .input {
+    padding-right: 15px;
+  }
+  #meanstorisk .maliable .output {
+    padding-left: 15px;
+  }
+  #meanstorisk .maliable .graph {
+    width: 100%;
+  }
+}
 @media (min-width: 1200px) {
   #meanstorisk .maliable > div {
     width: 30.76923076923077%;
@@ -109,26 +127,11 @@ header #branch-logo {
   }
   #meanstorisk .maliable .graph_panel img.expand:hover,
   #meanstorisk .maliable .graph_panel img.expand:active {
-    -webkit-transform: scale(1.6);
-    -moz-transform: scale(1.6);
-    -o-transform: scale(1.6);
-    -ms-transform: scale(1.6);
-    transform: scale(1.6);
-  }
-}
-@media (min-width: 800px) {
-  #meanstorisk .maliable > div {
-    float: left;
-    width: 50%;
-  }
-  #meanstorisk .maliable .input {
-    padding-right: 15px;
-  }
-  #meanstorisk .maliable .output {
-    padding-left: 15px;
-  }
-  #meanstorisk .maliable .graph {
-    width: 100%;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
   }
 }
 #meanstorisk #cases_control .table_row > div {
@@ -139,9 +142,6 @@ header #branch-logo {
 }
 #meanstorisk #cases_control input {
   width: 100%;
-}
-#meanstorisk #accordion .panel-footer label {
-  text-decoration: underline;
 }
 #meanstorisk #accordion .panel-footer input {
   width: 100%;
