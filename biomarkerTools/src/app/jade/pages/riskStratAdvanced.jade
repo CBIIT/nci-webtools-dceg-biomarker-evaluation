@@ -3,12 +3,12 @@
   #helpGlossaryLinks
     a.goToHelp(href="#help_riskStratAdvanced") Help
     a.goToGlossary(href="#") Glossary
-  .panel.panel-default
-    .panel-body
-      .no-pad
-        div
+  .input.panel.panel-default
+    .panel-body.table_container
+      .table_row
+        .table_data.bold.text-right
           label(for='independent_dropdown_rs') Independent Variable
-        div
+        .table_data
           select#independent_dropdown_rs(name='independent_dropdown_rs')
             option(value='', selected='')
             option(value='specificity') Specificity
@@ -17,14 +17,14 @@
             option(value='delta') Delta
             option(value='sensitivity') Sensitivity
             option(value='cnpv') cNPV
-        #indDef.infobox
-        .input
+        #indDef.table_data.emptyblock
+        .table_data
           label.sr-only(for='independent_rs') Independent Variable Value
           input#independent_rs(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
-      .no-pad
-        div
+      .table_row
+        .table_data.bold.text-right
           label(for='contour_dropdown_rs') Contour
-        div
+        .table_data
           select#contour_dropdown_rs(name='contour_dropdown_rs')
             option(value='', selected='')
             option(value='ppv') PPV
@@ -33,14 +33,14 @@
             option(value='delta') Delta
             option(value='sensitivity') Sensitivity
             option(value='cnpv') cNPV
-        #contourDef.infobox
-        .input
+        #contourDef.table_data.emptyblock
+        .table_data
           label.sr-only(for='contour_rs') Contour Value
           input#contour_rs(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas.', required)
-      .no-pad
-        div
+      .table_row
+        .table_data.bold.text-right
           label(for='fixed_dropdown_rs') Fixed Values
-        div
+        .table_data
           select#fixed_dropdown_rs(name='fixed_dropdown_rs')
             option(value='', selected='')
             option(value='prevalence') Prevalence
@@ -49,8 +49,8 @@
             option(value='specificity') Specificity
             option(value='sensitivity') Sensitivity
             option(value='cnpv') cNPV
-        #fvDef.infobox
-        .input
+        #fvDef.table_data.emptyblock
+        .table_data
           label.sr-only(for='fixed_rs') Fixed Value
           input#fixed_rs(type='text', size='30', pattern='([0-9,. \-])+', title='An array of floating point numbers seperated by commas', required)
     .panel-footer

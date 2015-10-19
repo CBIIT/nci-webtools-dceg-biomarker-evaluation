@@ -296,7 +296,7 @@ function resetPage() {
   thisTool.find("#errors, #spinner, #download").addClass("hide");
   thisTool.find("select").val("");
   thisTool.find("input").val("");
-  thisTool.find("#output").empty();
+  thisTool.find(".output").empty();
   resetPopupDefinition();
 }
 
@@ -481,7 +481,7 @@ function validate_inputs() {
     }
   });
 
-  thisTool.find("#output").empty();
+  thisTool.find(".output").empty();
 
   if ($.inArray(false, checkInput) >= 0) {
     rulesViolationMsg.push("Invalid input array. Enter a valid array of floating point values.");
@@ -556,9 +556,9 @@ function calculate_riskStrat(){
     // keyIndex is either 1 or 2. It may correspond with abbreviatedKey value cNPV or PPV.
     // tabValue is each individual value of the 'fixed' comma separated values string
 
-    thisTool.find("#output").addClass("hide").empty();
+    thisTool.find(".output").addClass("hide").empty();
     tabs = $("<div id='tabs'> </div>");
-    thisTool.find("#output").append(tabs);
+    thisTool.find(".output").append(tabs);
     tab_names = $("<UL> </UL>");
     tabs.append(tab_names);
 
@@ -612,7 +612,7 @@ function calculate_riskStrat(){
       return data_array;
     }).fail(function(request, status, error){
       default_ajax_error(request, status, error);
-      thisTool.find("#output").addClass("hide").empty().html("");
+      thisTool.find(".output").addClass("hide").empty().html("");
     }).always(function(){
       if($.active <= 1) after_requests();
     });
@@ -623,7 +623,7 @@ function calculate_riskStrat(){
 
 function after_requests(){
   if($.active == 1){
-    thisTool.find("#output").removeClass("hide");
+    thisTool.find(".output").removeClass("hide");
     thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
     enableAll();
     thisTool.find("#spinner").addClass("hide");

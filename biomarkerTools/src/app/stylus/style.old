@@ -1,162 +1,43 @@
-#bc
-  @media (max-width 1000px)
-    .bottom_group
-      > div
-        float none
-        width 100%
-        padding-right 0px
-      #graph
-        width 608px
-        margin 0px auto
-        padding-right 4px
-  @media (max-width 780px)
-    .top_group > img
-      float none
-      display block
-      margin 0px auto
-      width 480px
-    .top_group > img ~ *
-      float none
-  .top_group
-    > div
-      overflow auto
-      ul
-        padding-left 1.5em
-    > img
-      width 350px
-      max-width 100%
-      float left
-      overflow visible
-  .reference_row
-    background-color yellow
-  .top-header
-    text-align center
-    background-color #444
-    color #FFF
-  .bottom_group
-    > div
-      float left
-      padding-right 15px
-      width (100%*7/12)
-    #graph
-      width (100%*5/12)
-      max-width 100%
-      img
-        width 80%
-  #inputdata
-    > div
-      overflow auto
-      > div
-        float left
-        width (100%*1/12)
-        & ~ div
-          width (100%*3/12)
-          & ~ div ~ div ~ div
-            width (100%*2/12)
-    .input:hover
-      cursor text
-    .panel-body
-      padding-top 0
-      padding-bottom 0
-  #output > div ~ div
-    display table
+#meanRiskStratification
+  table input[type="number"]
     width 100%
-    table-layout fixed
-    > div
-      display table-cell
-  h2
-    background-color #AAA
-    color #444
-    padding 5px
-  .bibliography
-    clear both
-    float left
-    margin 50px
-  .bib-author
-    float left
-  .bib-year
-    float left
-  .bib-title
-    float left
-    font-style italic
-  .bib-journal
-    float left
-  .bib-ref
-    float left
-  .bib-pages
-    float left
-  .bib-doi
-    float left
-#riskStratAdvanced
-  input,select
-    padding 1px
-  .panel-body
-    > div
-      overflow auto
-      padding 1px
-      > div
-        float left
-        min-width 13em
-        height 2em
-        *
-          width 100%
-          height 100%
-          line-height 2em
-          margin-bottom 0px
-        + div
-          min-width 7em
-          padding-right 2px
-      .input
-        overflow auto
-        float none
-      .infobox
-        float right
-        min-width 0px
-        padding-right 0px
-  #add-test-data
-    text-decoration underline
-    float right
-    &:hover
-      font-weight bold
-  #status-bar
-    background #CCC
-    display block
-    border none
-    box-sizing border-box
-    font 18px "arial", "sans-serif"
-    left 0
-    margin 10px
-    outline none
-    padding 10px
-    top 2px
-    visibility hidden
-  #tabs
-    font-size inherit
-    .header
-      background-color #AAA
-      color #444
-    .vertical-text
-      transform rotate(-90deg)
-      white-space no-wrap
-  .table-title
-    word-wrap normal
-    font-weight bold
-    text-align center
-    background-color #F8FAFA
-.define,.termToDefine
-  font-weight bold
-  text-decoration underline
-  cursor help
-.extra-padding
-  padding 1em
-.extra-vertical-margin
-  margin 10px 0
-.footer
-    color #606060
-    background-color white
+  .marker-title
+    background-color tan
+  #results table th
+    background-color tan
+  .red
+    background-color base-red
+  .panel-title, .panel-title a
     font-size small
-    li a
-      color inherit
+  .panel-toggle a, .panel-title a
+    color black
+    font-weight bold
+  label
+    font-weight bold
+  .well, #results
+    min-height 645px
+  .termToDefine, th
+    font-weight bold
+
+  .termToDefine.glyphicon
+    text-decoration none
+  .loader
+    background-image url("/common/images/loading.gif") no-repeat
+    margin 0 auto
+    height 300px
+  .input:invalid
+    background-color yellow
+
+
+
+#help
+  h4 a
+    color white
+    font-size smaller
+  section h5
+    font-weight bold
+   ul li li
+    text-indent 1.5em
 .glyphicon + span
   margin-left 1em
 .header
@@ -202,50 +83,6 @@
       margin-left -10px
       top 100%
       left 50%
-  #sampleSize
-    .tablevars
-      padding 0
-    #ss
-      // width 50%
-    .row
-      margin 1em auto
-  #help
-    h4 a
-      color white
-      font-size smaller
-    section h5
-      font-weight bold
-     ul li li
-       text-indent 1.5em
-  #meanRiskStratification
-    table input[type="number"]
-      width 100%
-    .marker-title
-      background-color tan
-    #results table th
-      background-color tan
-    .red
-      background-color base-red
-    .panel-title, .panel-title a
-      font-size small
-    .panel-toggle a, .panel-title a
-      color black
-      font-weight bold
-    label
-      font-weight bold
-    .well, #results
-      min-height 645px
-    .termToDefine, th
-      font-weight bold
-
-    .termToDefine.glyphicon
-      text-decoration none
-    .loader
-      background-image url("/common/images/loading.gif") no-repeat
-      margin 0 auto
-      height 300px
-    .input:invalid
-      background-color yellow
 #portal-footer
   line-height 1.2em
   text-align center
@@ -282,15 +119,57 @@ input
     #tabs
       font-size inherit
       margin 0px
-  .highlight
-    background-color yellow
   .col1
     padding 6px
     text-align center
   .maincard
     height 750px
     border 2px black solid
-  .highlight
-    background-color yellow
   .main-title
     text-align center
+#bc
+  .top-header
+    text-align center
+    background-color #444
+    color #FFF
+  h2
+    background-color #AAA
+    color #444
+    padding 5px
+#riskStratAdvanced
+  #add-test-data
+    text-decoration underline
+    float right
+    &:hover
+      font-weight bold
+  #status-bar
+    background #CCC
+    display block
+    border none
+    box-sizing border-box
+    font 18px "arial", "sans-serif"
+    left 0
+    margin 10px
+    outline none
+    padding 10px
+    top 2px
+    visibility hidden
+  #tabs
+    font-size inherit
+    .header
+      background-color #AAA
+      color #444
+    .vertical-text
+      transform rotate(-90deg)
+      white-space no-wrap
+  .table-title
+    word-wrap normal
+    font-weight bold
+    text-align center
+    background-color #F8FAFA
+.footer
+    color #606060
+    background-color white
+    font-size small
+    li a
+      color inherit

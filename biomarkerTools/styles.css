@@ -39,30 +39,58 @@ img.expand:active {
 .bold {
   font-weight: bold;
 }
-.define {
+.define,
+.termToDefine {
+  font-weight: bold;
   text-decoration: underline;
+  cursor: help;
+}
+.graph {
+  text-align: center;
+}
+.graph img {
+  display: block;
+  margin: 0px auto;
+}
+.highlight {
+  background-color: #ff0;
 }
 .panel-body .panel:last-child {
   margin-bottom: 0px;
 }
 .table_row {
-  padding: 2px;
+  padding: 0.15em;
   overflow: auto;
 }
 .table_data {
   display: block;
   float: left;
-  height: 2em;
+  height: 2.2em;
   line-height: 2em;
   text-align: center;
-  padding: 0px 2px;
+  padding: 0.1em 0.15em;
+}
+.table_data:last-child {
+  float: none;
+  overflow: auto;
+  width: auto;
+}
+.table_data.text-left {
+  text-align: left;
 }
 .table_data.text-right {
   text-align: right;
 }
-.table_data input {
+.table_data button,
+.table_data input,
+.table_data select {
+  width: 100%;
   height: 2em;
   padding: 0px;
+  line-height: 1em;
+}
+.table_data label {
+  margin-bottom: 0px;
 }
 header,
 #main,
@@ -117,16 +145,15 @@ header #branch-logo {
   #meanstorisk .maliable > .graph {
     width: 38.46153846153846%;
   }
-  #meanstorisk .maliable .graph_panel img.expand {
-    width: 100%;
+  #meanstorisk .maliable .graph img.expand {
     -webkit-transform-origin: top right;
     -moz-transform-origin: top right;
     -o-transform-origin: top right;
     -ms-transform-origin: top right;
     transform-origin: top right;
   }
-  #meanstorisk .maliable .graph_panel img.expand:hover,
-  #meanstorisk .maliable .graph_panel img.expand:active {
+  #meanstorisk .maliable .graph img.expand:hover,
+  #meanstorisk .maliable .graph img.expand:active {
     -webkit-transform: scale(1.5);
     -moz-transform: scale(1.5);
     -o-transform: scale(1.5);
@@ -171,16 +198,11 @@ header #branch-logo {
 #meanstorisk #mtr-results .table_data:nth-child(2) {
   width: 16.666666666666668%;
 }
-#meanstorisk .graph_panel {
-  text-align: center;
-}
-#meanstorisk .graph_panel img {
-  display: block;
-  margin: 0px auto;
+#meanstorisk .graph img {
   width: 100%;
 }
-#meanstorisk .graph_panel img:hover,
-#meanstorisk .graph_panel img:active {
+#meanstorisk .graph img:hover,
+#meanstorisk .graph img:active {
   -webkit-transform: scale(1.4);
   -moz-transform: scale(1.4);
   -o-transform: scale(1.4);
@@ -228,4 +250,140 @@ header #branch-logo {
 }
 #meanstorisk .tabbed_output_panel table td {
   padding: 0px 1em;
+}
+#bc #inputdata .table_row:first-child ~ .table_row {
+  counter-increment: bcDataRows;
+}
+#bc #inputdata .table_row:first-child ~ .table_row .table_data:first-child::after {
+  content: counter(bcDataRows);
+  font-weight: bold;
+}
+#bc #inputdata .table_row:last-child {
+  counter-increment: bcDataRows -1;
+}
+#bc #inputdata .table_row:last-child button {
+  width: 100%;
+}
+#bc #inputdata .table_data {
+  width: 25%;
+}
+#bc #inputdata .table_data:first-child {
+  width: 8.333333333333334%;
+}
+@media (max-width: 479px) {
+  #bc #inputdata .table_data:first-child {
+    display: none;
+  }
+}
+#bc #inputdata .table_data:last-child {
+  width: auto;
+}
+#bc #inputdata .table_data .input_field:hover {
+  cursor: text;
+}
+#bc #inputdata .table_data img {
+  position: relative;
+  top: -0.15em;
+  height: 2em;
+  padding: 0px 0px 0.15em 0.15em;
+}
+@media (min-width: 1000px) {
+  #bc .data_group {
+    float: left;
+    padding-right: 15px;
+    width: 58.333333333333336%;
+  }
+}
+#bc .graph {
+  width: 608px;
+  max-width: 100%;
+  margin: 0px auto;
+}
+@media (min-width: 1000px) {
+  #bc .graph {
+    width: 41.666666666666664%;
+  }
+}
+#bc .output > div ~ div {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+#bc .output > div ~ div > div {
+  display: table-cell;
+}
+#bc .reference_row {
+  background-color: #ff0;
+}
+#bc .top_group > img {
+  display: block;
+  margin: 0px auto;
+  width: 480px;
+  max-width: 100%;
+}
+@media (min-width: 780px) {
+  #bc .top_group > img {
+    float: left;
+    width: 350px;
+  }
+}
+#bc .top_group > div {
+  overflow: auto;
+}
+#bc .top_group > div ul {
+  padding-left: 1.5em;
+}
+#riskStratAdvanced .input {
+  width: 100%;
+  max-width: 640px;
+}
+#riskStratAdvanced .input .table_data:first-child {
+  min-width: 13em;
+}
+#riskStratAdvanced .input .table_data:nth-child(2) {
+  min-width: 7em;
+}
+#riskStratAdvanced .input .table_data:nth-child(3) {
+  float: right;
+}
+#riskStratAdvanced .input .table_data:last-child {
+  min-width: 7em;
+}
+#sampleSize .input {
+  width: 100%;
+  max-width: 640px;
+}
+@media (max-width: 430px) {
+  #sampleSize .input > .table_container > .table_row:first-child > .table_data {
+    height: 5.2em;
+  }
+}
+#sampleSize .input > .table_container > .table_row:first-child > .table_data:last-child {
+  height: 5.2em;
+}
+@media (max-width: 540px) {
+  #sampleSize .input > .table_container > .table_row:first-child ~ .table_row .table_data:first-child {
+    height: 4.4em;
+    line-height: 4.4em;
+  }
+}
+#sampleSize .input > .table_container > .table_row > .table_data:first-child {
+  min-width: 12em;
+}
+#sampleSize .input > .table_container > .table_row > .table_data:nth-child(2) {
+  width: 10em;
+}
+@media (max-width: 540px) {
+  #sampleSize .input > .table_container > .table_row > .table_data:nth-child(2) {
+    float: none;
+    overflow: auto;
+    width: auto;
+  }
+}
+#sampleSize .input > .table_container .table_container .table_data {
+  width: 50%;
+}
+#meanRiskStratification .input {
+  width: 100%;
+  max-width: 320px;
 }

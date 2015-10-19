@@ -31,22 +31,41 @@ img.expand
   content '&nbsp;'
 .bold
   font-weight bold
-.define
+.define,.termToDefine
+  font-weight bold
   text-decoration underline
+  cursor help
+.graph
+  text-align center
+  img
+    display block
+    margin 0px auto
+.highlight
+  background-color yellow
 .panel-body .panel:last-child
   margin-bottom 0px
 .table_row
-  padding 2px
+  padding .15em
   overflow auto
 .table_data
   display block
   float left
-  height 2em
+  height 2.2em
   line-height 2em
   text-align center
-  padding 0px 2px
-.table_data.text-right
-  text-align right
-.table_data input
-  height 2em
-  padding 0px
+  padding .1em .15em
+  &:last-child
+    float none
+    overflow auto
+    width auto
+  &.text-left
+    text-align left
+  &.text-right
+    text-align right
+  button, input, select
+    width 100%
+    height 2em
+    padding 0px
+    line-height 1em
+  label
+    margin-bottom 0px

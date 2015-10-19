@@ -4,108 +4,103 @@
     a.goToHelp(href="#help_meanRiskStratification") Help
     a.goToGlossary(href="#") Glossary
   div
-    form#markers.panel-group
-    .marker.panel.panel-default.marker-1
-      .marker-title.text-center
-      b Biomarker #1
-      .extra-padding
-      label(for='name-input') Biomarker Name
-      input#name-input.input(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
-      .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-1')
-      h6.panel-title
-        span.glyphicon.glyphicon-chevron-down
-        | &nbsp;&nbsp;
-        a.accordion-toggle(title='Input Option 1 2 by 2 Table') Input: 2x2 Table
-      #marker-1-option-1.panel-collapse.collapse.in
-      .option-1.panel-body
-        table.table.table-condensed.table-responsive
-        thead
-          tr
-          td.header
-          th#prob_m.termToDefine.header(header="prob_m") Marker Positive (M+)
-          th#m_neg.termToDefine.header(header="m_neg") Marker Negative (M-)
-        tbody
-          tr
-          th#prob_d.termToDefine.header Disease Positive (D+)
-          td
-            label.sr-only(for='a') A
-            input#a.input(name='a', type='number', maxlength='30')
-          td
-            label.sr-only(for='b') B
-            input#b.input(name='b', type='number', maxlength='30')
-          tr
-          th#d_neg.termToDefine.header Disease Negative (D-)
-          td
-            label.sr-only(for='c') C
-            input#c.input(name='c', type='number', maxlength='30')
-          td
-            label.sr-only(for='d') D
-            input#d.input(name='d', type='number', maxlength='30')
-      .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-2')
-      h6.panel-title
-        span.glyphicon.glyphicon-chevron-down
-        | &nbsp;&nbsp;
-        a.accordion-toggle(title='Input option 2 PPV, NPV, Sensitivity, Specificity, etc.') Input: PPV, NPV, Sensitivity, Specificity, etc.
-      #marker-1-option-2.panel-collapse.collapse
-      .option-2.panel-body.extra-padding.table-responsive
-        .extra-padding
-        label(for='sampsize') Sample Size
-        input.input#sampsize(name='sampsize', type='number', maxlength='30', min='1')
-        table.option-2.table.table-condensed.table-responsive
-        thead
-          tr
-          th.header(title='Parameter Type Column', header="Parameter Type Column") Parameter
-          th.header(title='Parameter Proportion Column', header="Parameter Proportion Column") Proportion
-        tbody
-          tr(row='0')
-          td
-            label.sr-only(for="param_1") Parameter 1 Selections
-            select#param_1.input(name='param_1')
-            option(value='ppv') PPV
-            option(value='sens') Sensitivity
-            span.dd.termToDefine
-            img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
-          td
-            label.sr-only(for="param_1_value") Parameter 1 Selections
-            input#param_1_value.input(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
-          tr(row='1')
-          td
-            label.sr-only(for="param_2") Parameter 2 Selections
-            select#param_2.input(name='param_2')
-            option(value='npv') NPV
-            option(value='spec') Specificity
-            span.dd.termToDefine
-            img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
-          td
-            label.sr-only(for="param_2_value") Parameter 2 Selections
-            input#param_2_value.input(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
-          tr(row='2')
-          td
-            label.sr-only(for="param_3") Parameter 3 Selections
-            select#param_3.input(name='param_3')
-            option(value='prob_m') Marker Positivity (P(M+))
-            option(value='prob_d') Disease Prevalence (P(D+))
-            span.dd.termToDefine
-            img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
-          td
-            label.sr-only(for="param_3_value") Parameter 3 Selections
-            input#param_3_value.input(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
+    form#markers.input.panel-group
+      .panel.panel-default.marker-1
+        .panel-heading.text-center.bold Biomarker #1
+        .panel-body
+          label(for='name-input') Biomarker Name
+          input#name-input.input(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
+        .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-1')
+          .glyphicon.glyphicon-chevron-down
+          span Input: 2x2 Table
+        #marker-1-option-1.panel-collapse.collapse.in
+          .option-1.panel-body
+            table.table.table-condensed.table-responsive
+              thead
+                tr
+                  td.header
+                  th#prob_m.termToDefine.header(header="prob_m") Marker Positive (M+)
+                  th#m_neg.termToDefine.header(header="m_neg") Marker Negative (M-)
+              tbody
+                tr
+                  th#prob_d.termToDefine.header Disease Positive (D+)
+                  td
+                    label.sr-only(for='a') A
+                    input#a.input(name='a', type='number', maxlength='30')
+                  td
+                    label.sr-only(for='b') B
+                    input#b.input(name='b', type='number', maxlength='30')
+                tr
+                  th#d_neg.termToDefine.header Disease Negative (D-)
+                  td
+                    label.sr-only(for='c') C
+                    input#c.input(name='c', type='number', maxlength='30')
+                  td
+                    label.sr-only(for='d') D
+                    input#d.input(name='d', type='number', maxlength='30')
+        .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-2')
+          .glyphicon.glyphicon-chevron-down
+          span Input: PPV, NPV, Sensitivity, Specificity, etc.
+        #marker-1-option-2.panel-collapse.collapse
+          .option-2.panel-body.extra-padding.table-responsive
+            div
+              label(for='sampsize') Sample Size
+              input.input#sampsize(name='sampsize', type='number', maxlength='30', min='1')
+            table.option-2.table.table-condensed.table-responsive
+              thead
+                tr
+                  th.header(title='Parameter Type Column', header="Parameter Type Column") Parameter
+                  th.header(title='Parameter Proportion Column', header="Parameter Proportion Column") Proportion
+              tbody
+                tr(row='0')
+                  td
+                    label.sr-only(for="param_1") Parameter 1 Selections
+                    select#param_1.input(name='param_1')
+                      option(value='ppv') PPV
+                      option(value='sens') Sensitivity
+                    span.dd.termToDefine
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
+                  td
+                    label.sr-only(for="param_1_value") Parameter 1 Selections
+                    input#param_1_value.input(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
+                tr(row='1')
+                  td
+                    label.sr-only(for="param_2") Parameter 2 Selections
+                    select#param_2.input(name='param_2')
+                      option(value='npv') NPV
+                      option(value='spec') Specificity
+                    span.dd.termToDefine
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
+                  td
+                    label.sr-only(for="param_2_value") Parameter 2 Selections
+                    input#param_2_value.input(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
+                tr(row='2')
+                  td
+                    label.sr-only(for="param_3") Parameter 3 Selections
+                    select#param_3.input(name='param_3')
+                      option(value='prob_m') Marker Positivity (P(M+))
+                      option(value='prob_d') Disease Prevalence (P(D+))
+                    span.dd.termToDefine
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
+                  td
+                    label.sr-only(for="param_3_value") Parameter 3 Selections
+                    input#param_3_value.input(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
     #control-group
-    div
-      .pull-left
-      button#add-marker
-        span.glyphicon.glyphicon-plus-sign.emptyblock(alt='Add(+)', title='Add biomarker')
-        span Add
-      button#delete-marker(title='Delete biomarker')
-        span.glyphicon.glyphicon-minus-sign.emptyblock(alt='Delete(-)')
-        span Delete
-      button#reset(type='reset') Reset
-      button#calculate(type='button') Calculate
-      .pull-right
       div
-        a#test1(href='#', title='Populate 1 biomarker using test data') Example 1
-      div
-        a#test2(href='#', title='Populate 1 biomarker using test data') Example 2
+        .pull-left
+          button#add-marker
+            span.glyphicon.glyphicon-plus-sign.emptyblock(alt='Add(+)', title='Add biomarker')
+            span Add
+          button#delete-marker(title='Delete biomarker')
+            span.glyphicon.glyphicon-minus-sign.emptyblock(alt='Delete(-)')
+            span Delete
+          button#reset(type='reset') Reset
+          button#calculate(type='button') Calculate
+        .pull-right
+          div
+            a#test1(href='#', title='Populate 1 biomarker using test data') Example 1
+          div
+            a#test2(href='#', title='Populate 1 biomarker using test data') Example 2
   div
     include ../partials/loader.jade
     #results.hide

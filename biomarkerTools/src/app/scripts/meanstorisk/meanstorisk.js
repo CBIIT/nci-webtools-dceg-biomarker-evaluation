@@ -1,4 +1,3 @@
-
 var cases_string;
 var uniqueKey;
 var thisTool = $("#meanstorisk");
@@ -21,19 +20,15 @@ $(document).ready(function(){
     bind_calculate_button();
     bind_download_button();
     bind_option_choices();
-
     thisTool.find("#cases_control").on('click', function () {
         thisTool.find("#download_button").addClass('hide');
     });
-
     thisTool.find('#file_upload, #cases_control').on('show.bs.collapse', function(){
-        if(this.id == "file_upload"){
+        if (this.id == "file_upload") {
             thisTool.find('#cases_control').collapse('hide');
-        }
-        else{
+        } else {
             thisTool.find('#file_upload').collapse('hide');
         }
-
         thisTool.find('.panel-body').not( document.getElementById(this.id) )
             .removeClass('in')
             .addClass('collapse');
@@ -603,7 +598,7 @@ function draw_graph() {
         graph_file = "tmp/input"+uniqueKey+".png?";
     }
 
-    $(".graph_panel").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small><b>(Hover or click to enlarge)</b></small>");
+    $(".graph").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small class='bold'>(Hover or click to enlarge)</small>");
 }
 
 function set_value(field, value) {

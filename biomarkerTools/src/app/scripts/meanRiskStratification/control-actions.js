@@ -104,7 +104,7 @@ function new_marker() {
         });
 
         // change title for new marker
-        newElement.find('.marker-title b').text("Biomarker #" + counter);
+        newElement.find('#markers .panel-heading').first().text("Biomarker #" + counter);
         newElement.find('.termToDefine, .dd.termToDefine')
             .on('click', display_definition);
 

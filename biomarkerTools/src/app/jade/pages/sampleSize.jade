@@ -9,55 +9,55 @@
         .panel.panel-danger
           .panel-heading
           #message-content.panel-body
-      .panel.panel-default
-        .tablevars.panel-body
-          div
-            div
-              b.pull-right Independent Variable
-            div
-              .pull-right Proportion of Assays in Cases (k)
-            .no-pad
-              .pull-left Min Value
-              .pull-right Max Value
-          div
-            .emptyblock
-            .emptyblock
-            .no-pad
-              input#minInput.pull-left(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
-              input#maxInput.pull-right(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
-          div
-            div
-              label.pull-right(for='contour_dropdown') Contour
-            div
-              select#contour_dropdown.pull-left(name='contour_dropdown', required)
+      .input.panel.panel-default
+        .panel-body.table_container
+          .table_row
+            .table_data.bold.text-right Independent Variable
+            .table_data.text-left Proportion of Assays in Cases (k)
+            .table_data
+              .table_container
+                .table_row
+                  .table_data Min Value
+                  .table_data Max Value
+                .table_row
+                  .table_data
+                    input#minInput(type="number", min="0", max="1", step=".01", title="Minimum value must be a floating point number between 0 and 1", required)
+                  .table_data
+                    input#maxInput(type="number", min="0", max="1",  step=".01", title="Maximum value must be a floating point number between 0 and 1", required)
+          .table_row
+            .table_data.bold.text-right
+              label(for='contour_dropdown') Contour
+            .table_data
+              select#contour_dropdown(name='contour_dropdown', required)
                 option(value='', selected='')
                 option(value='specificity') Specificity
                 option(value='sensitivity') Sensitivity
-            label.sr-only(for='contour') Contour
-            //- pattern='([0-8,. \-])+',
-            input#contour.fontnormal(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
-          div
-            div
-              label.pull-right(for='fixed_dropdown') Fixed Values
-            div
-              select#fixed_dropdown.pull-left(name='fixed_dropdown', required)
+            .table_data
+              label.sr-only(for='contour') Contour
+              //- pattern='([0-8,. \-])+',
+              input#contour.fontnormal(type='text', size='30', title='Contour value must be an array of floating point numbers separated by commas.  Numbers must be between 0 and 1', required)
+          .table_row
+            .table_data.bold.text-right
+              label(for='fixed_dropdown') Fixed Values
+            .table_data
+              select#fixed_dropdown(name='fixed_dropdown', required)
                 option(value='', selected='', disabled='disabled')
                 option(value='specificity', disabled='disabled') Specificity
                 option(value='sensitivity', disabled='disabled') Sensitivity
-            label.sr-only(for='fixed') Fixed
-            input#fixed.fontnormal(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1', required)
-          //- pattern='([0-8,. \-])+',
-          div
-            div
-              b.pull-right Parameters
-            div
-              .pull-left(for='prevalence') Prevalence
-            input#prevalence(type='number',min="0",max=".9999999", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
-          div
-            .emptyblock
-            div
-              .pull-left(for='n_value') Sample Size
-            input#n_value.fontnormal(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
+            .table_data
+              label.sr-only(for='fixed') Fixed
+              //- pattern='([0-8,. \-])+',
+              input#fixed.fontnormal(type='text', size='30', title='Fixed value must be an array of floating point numbers separated by commas. Numbers must be between 0 and 1', required)
+          .table_row
+            .table_data.bold.text-right Parameters
+            .table_data.text-left(for='prevalence') Prevalence
+            .table_data
+              input#prevalence(type='number',min="0",max=".9999999", step="0.01", title='Prevalence is required and must be floating point number between 0 and 1', required)
+          .table_row
+            .table_data.emptyblock
+            .table_data.text-left(for='n_value') Sample Size
+            .table_data
+              input#n_value.fontnormal(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
         .panel-footer
           button.post(type='submit') Calculate
           button.reset(type='reset') Reset

@@ -24,7 +24,7 @@ $(document).ready(function(){
   bind_remove_row();
   bind_add_new_row();
 
-  thisTool.find( "#file_upload" ).on('change', uploading_csv);
+  thisTool.find("#file_upload").on('change', uploading_csv);
   thisTool.find("#reset").on('click', reset_bc);
 });
 
@@ -99,7 +99,7 @@ function validate_csv(file){
         if(valuesFromFile.length == 10) {
           valid = true;
           // clear all table rows
-          inputElm.find('.row:not(".non-data-row")').each(function(i, row) {
+          inputElm.find('.table_row:not(".non-data-row")').each(function(i, row) {
             $(row).remove();
           });
 
@@ -141,11 +141,11 @@ function bind_reference_row(){
     var row, col;
     row = $(this).attr('row');
     col = $(this).attr('col');
-    var oldReference = $(this).html("<img src='/common/images/checkbox.png' height='18' width='18' alt='check'/>")
+    var oldReference = $(this).html("<img src='/common/images/checkbox.png' alt='check'/>")
       .siblings().last().empty().html('&nbsp;')
       .parent().addClass('reference_row')
       .siblings('.reference_row').removeClass('reference_row');
-    oldReference.children('.reference').html("<img src='/common/images/uncheckbox.png' height='18' width='18' alt='Click to set this as the reference row'/>");
+    oldReference.children('.reference').html("<img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/>");
     if (oldReference.parent().children().length > 4) {
       oldReference.children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
     }
@@ -153,7 +153,7 @@ function bind_reference_row(){
   });
 }
 function bind_input(){
-  thisTool.find('.input').click(function(e){
+  thisTool.find('.input_field').click(function(e){
     var row, col, val, inp;
     if (!editing) {
       row = $(this).attr('row');
@@ -204,19 +204,19 @@ function change_value(field, new_value){
 }
 
 function import_data_row(data, ind){
-  var empty_cell ="<div>&nbsp;</div>";
+  var empty_cell ="<div class='emptyblock'></div>";
 
-  var cell_1 = "<div row='" + ind + "'><div class='text-center'><b>" + (ind + 1) + "</b></div>";
-  var cell_2 ="<div class='text-center reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
-  var cell_3 ="<div class='text-center input sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
-  var cell_4 = "<div class='text-center input specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
-  var cell_5 ="<div class='text-center'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+  var cell_1 = "<div class='table_row' row='" + ind + "'><div class='table_data emptyblock'></div>";
+  var cell_2 ="<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
+  var cell_3 ="<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
+  var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
+  var cell_5 ="<div class='table_data'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
 
   if(ind > 1) $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
   else
     $(cell_1 + cell_2 + cell_3 + cell_4 + empty_cell).insertBefore(inputElm.children().last());
 
-  inputElm.find(".row:not(.non-data-row):first").addClass("reference_row");
+  inputElm.find(".table_row:not(.non-data-row):first").addClass("reference_row");
   bind_remove_row();
   bind_reference_row();
   bind_input();
@@ -225,11 +225,11 @@ function import_data_row(data, ind){
 function add_new_row(){
   // exclude .non-data-rows in the count
   var num_rows = inputElm.children('*:not(.non-data-row)').length;
-  var row_1 = "<div row='" + num_rows + "'><div class='text-center'><b>" + (num_rows + 1) + "</b></div>";
-  var row_2 = "<div class='text-center reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' height='18' width='18'  alt='uncheck'/></div>";
-  var row_3 = "<div class='text-center input sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
-  var row_4 = "<div class='text-center input specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
-  var row_5 = "<div class='text-center'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+  var row_1 = "<div class='table_row' row='" + num_rows + "'><div class='table_data emptyblock'></div>";
+  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
+  var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
+  var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
+  var row_5 = "<div class='table_data'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
   inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
   if (num_rows === 2) {
     inputElm.children('*:not(:last-child)').each(function(){
@@ -242,16 +242,11 @@ function add_new_row(){
   bind_reference_row();
   bind_input();
 
-  inputElm.find('.row:not(".non-data-row")').each(update_row_index);
+  inputElm.find('.table_row:not(".non-data-row")').each(update_row_index);
 }
 
 function update_row_index(i, row){
   var ind = i + 1; //displayed value is not zero based
-  if(!$(row).hasClass('reference_row'))
-    $(row.firstElementChild).html(ind);
-  else
-    $(row.firstElementChild).html("<b>" + ind + "</b>");
-
   // update row attributes as well
   $(row).attr("row", i);
 
@@ -297,7 +292,7 @@ function do_calculation(){
     prev = prevalence;
   }
 
-  inputElm.children('*:not(:last-child)').each(function(i, el){
+  inputElm.children(':not(:last-child)').each(function(i, el){
     if ($(this).hasClass('reference_row')) {
       refSens = parseFloat($(this).find('.sensitivity').text());
       refSpec = parseFloat($(this).find('.specificity').text());
@@ -413,18 +408,16 @@ function refreshGraph(drawgraph){
   }
   d = new Date();
 
-//  thisTool.find('#graph').empty();
-
-  thisTool.find('#graph img').addClass("expand").attr("alt",'output after calculation');
-  thisTool.find('#graph img').addClass("expand").attr("src", graph_file + d.getTime());
-  thisTool.find('#graph b').removeClass("hide");
+  thisTool.find('.graph img').removeClass("hide")
+      .attr("alt",'output after calculation')
+      .attr("src", graph_file + d.getTime())
+    .next('.graph b').removeClass("hide");
 }
 
 function set_data(dt){
   var jsonObject = JSON.parse(JSON.stringify(dt));
   refreshGraph(1);
-  thisTool.find('#output').empty();
-  thisTool.find('#output > *:first').remove();
+  thisTool.find('.output').empty();
   if (validPrevValue) {
     createOutputTableWithPrev(jsonObject);
   } else {
@@ -455,11 +448,11 @@ function jsonToCell(obj){
     }
   }
   var new_row = $("<div>");
-  new_row.append("<div class='text-center'>" + Sensitivity + "</div>");
-  new_row.append("<div class='text-center'>" + Specificity + "</div>");
-  new_row.append("<div class='text-center'>" + LRplus + "</div>");
-  new_row.append("<div class='text-center'>" + LRminus + "</div>");
-  thisTool.find('#output').append(new_row);
+  new_row.append("<div class='table_data'>" + Sensitivity + "</div>");
+  new_row.append("<div class='table_data'>" + Specificity + "</div>");
+  new_row.append("<div class='table_data'>" + LRplus + "</div>");
+  new_row.append("<div class='table_data'>" + LRminus + "</div>");
+  thisTool.find('.output').append(new_row);
 }
 
 function jsonToCellWithPrev(obj){
@@ -483,29 +476,29 @@ function jsonToCellWithPrev(obj){
     }
   }
   var new_row = $("<div>");
-  new_row.append("<div class='text-center'>" + Sensitivity + "</div>");
-  new_row.append("<div class='text-center'>" + Specificity + "</div>");
-  new_row.append("<div class='text-center'>" + LRplus + "</div>");
-  new_row.append("<div class='text-center'>" + LRminus + "</div>");
+  new_row.append("<div class='table_data'>" + Sensitivity + "</div>");
+  new_row.append("<div class='table_data'>" + Specificity + "</div>");
+  new_row.append("<div class='table_data'>" + LRplus + "</div>");
+  new_row.append("<div class='table_data'>" + LRminus + "</div>");
   if (validPrevValue) {
-    new_row.append("<div class='text-center'>" + PPV + "</div>");
-    new_row.append("<div class='text-center'>" + cNPV + "</div>");
+    new_row.append("<div class='table_data'>" + PPV + "</div>");
+    new_row.append("<div class='table_data'>" + cNPV + "</div>");
   }
   thisTool.find('#output').append(new_row);
 }
 
 function createOutputTable(jsondata){
   var top_header_row, header_row, i$, len$, each;
-  thisTool.find('#output').empty();
+  thisTool.find('.output').empty();
   top_header_row = $("<div></div>");
   top_header_row.append("<div class='top-header'><strong>Output Data</strong></div>");
-  thisTool.find('#output').append(top_header_row);
+  thisTool.find('.output').append(top_header_row);
   header_row = $("<div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='Sens2' data-term='Sens'>Sensitivity</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='Spec2' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='LRP2' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='LRN2' data-term='LRN'>LR-</div></div>");
-  thisTool.find('#output').append(header_row);
+  header_row.append("<div id='Sens2' class='table_data bold define' data-term='Sens'>Sensitivity</div>");
+  header_row.append("<div id='Spec2' class='table_data bold define' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div id='LRP2' class='table_data bold define' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div id='LRN2' class='table_data bold define' data-term='LRN'>LR-</div></div>");
+  thisTool.find('.output').append(header_row);
   for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
     each = jsondata[i$];
     jsonToCell(each);
@@ -513,18 +506,18 @@ function createOutputTable(jsondata){
 }
 
 function createOutputTableWithPrev(jsondata){
-  thisTool.find('#output').empty();
+  thisTool.find('.output').empty();
   top_header_row = $("<div></div>");
   top_header_row.append("<div class='top-header'>Output Data</div>");
-  thisTool.find('#output').append(top_header_row);
+  thisTool.find('.output').append(top_header_row);
   var header_row = $("<div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='Sens3' data-term='Sens'>Sensitivity</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='Spec3' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='LRP3' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='LRN3' data-term='LRN'>LR-</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='PPV3' data-term='PPV'>PPV</div></div>");
-  header_row.append("<div class='header text-center'><div class='define' id='cNPV3' data-term='cNPV'>cNPV</div></div>");
-  thisTool.find('#output').append(header_row);
+  header_row.append("<div id='Sens3' class='table_data bold define' data-term='Sens'>Sensitivity</div></div>");
+  header_row.append("<div id='Spec3' class='table_data bold define' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div id='LRP3' class='table_data bold define' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div id='LRN3' class='table_data bold define' data-term='LRN'>LR-</div></div>");
+  header_row.append("<div id='PPV3' class='table_data bold define' data-term='PPV'>PPV</div></div>");
+  header_row.append("<div id='cNPV3' class='table_data bold define' data-term='cNPV'>cNPV</div></div>");
+  thisTool.find('.output').append(header_row);
   for (var each in jsondata) {
     jsonToCellWithPrev(jsondata[each]);
   }
@@ -534,7 +527,7 @@ function reset_bc(){
   thisTool.find('#errors').addClass("hide");
   thisTool.find("#file_upload, #prevalence_bc").val("");
 
-  inputElm.find('.row:not(".non-data-row")').each(function(i, el) {
+  inputElm.find(':not(".non-data-row")').each(function(i, el) {
     $(el).remove();
   });
 
@@ -543,10 +536,10 @@ function reset_bc(){
   add_new_row();
 
   thisTool.find(".reference:first").click();
-  thisTool.find('#graph img').attr('alt','image of example output after calculation');
-  thisTool.find('#graph img').removeClass("expand").attr('src', '/common/images/initial.jpg');
-  thisTool.find('#graph b').addClass("hide");
-  thisTool.find('#output').empty();
+  thisTool.find('.graph img').attr('alt','image of example output after calculation');
+  thisTool.find('.graph img').addClass("hide").attr('src', '/common/images/initial.jpg');
+  thisTool.find('.graph b').addClass("hide");
+  thisTool.find('.output').empty();
 
   thisTool.find("[row='0'] .sensitivity").text("0.8");
   thisTool.find("[row='0'] .specificity").text("0.7");
