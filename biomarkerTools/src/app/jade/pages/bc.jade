@@ -49,13 +49,11 @@
       div
         #accordion.panel.panel-default
           .panel-heading
-            .panel-title.text-center
-              b Input Information
-          .panel-heading
-            b
-              span Manually enter parameters 
-              u OR
-              span  import values from file
+            .panel-title.text-center.bold Input Information
+          .panel-heading.bold
+            span Manually enter parameters 
+            u OR
+            span  import values from file
           #upload.panel-body
             .indent
               p
@@ -64,48 +62,42 @@
                   a(href='bc/exampleValues.csv') (Example)
               p
                 input#file_upload(type='file', accept=".csv")
-          #inputdata.panel-body
-            .non-data-row
-              .header.text-center
-                  b #
-              .header.text-center
-                  b Reference
-              .header.text-center
-                #Sens.define(data-term='Sens')
-                  b Sensitivity
-              .header.text-center
-                #Spec.define(data-term='Spec')
-                  b Specificity
-              .header.text-center &nbsp;
-            .reference_row(row='0')
-              .text-center 1
-              .text-center.reference(row='0', col='reference')
+          #inputdata.panel-body.table_container
+            .table_row.non-data-row
+              .table_data.bold #
+              .table_data.bold Reference
+              #Sens.table_data.bold.define(data-term='Sens') Sensitivity
+              #Spec.table_data.bold.define(data-term='Spec') Specificity
+              .table_data.emptyblock
+            .table_row.reference_row(row='0')
+              .table_data 1
+              .table_data.reference(row='0', col='reference')
                 img(src='/common/images/checkbox.png', height='18', width='18', alt='this row is the reference row')
-              .text-center.input.sensitivity(row='0', col='sensitivity') 0.8
-              .text-center.input.specificity(row='0', col='specificity') 0.7
-              .text-center  
-            div(row='1')
-              .text-center 2
-              .text-center.reference(row='1', col='reference')
+              .table_data.input.sensitivity(row='0', col='sensitivity') 0.8
+              .table_data.input.specificity(row='0', col='specificity') 0.7
+              .table_data.emptyblock
+            .table_row(row='1')
+              .table_data 2
+              .table_data.reference(row='1', col='reference')
                 img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-              .text-center.input.sensitivity(row='1', col='sensitivity') 0.85
-              .text-center.input.specificity(row='1', col='specificity') 0.68
-              .text-center
+              .table_data.input.sensitivity(row='1', col='sensitivity') 0.85
+              .table_data.input.specificity(row='1', col='specificity') 0.68
+              .table_data.emptyblock
                 button.remove_row_button Remove
-            div(row='2')
-              .text-center 3
-              .text-center.reference(row='2', col='reference')
+            .table_row(row='2')
+              .table_data 3
+              .table_data.reference(row='2', col='reference')
                 img(src='/common/images/uncheckbox.png', height='18', width='18', alt='click to set this row as the reference row')
-              .text-center.input.sensitivity(row='2', col='sensitivity') 0.9
-              .text-center.input.specificity(row='2', col='specificity') 0.5
-              .text-center
+              .table_data.input.sensitivity(row='2', col='sensitivity') 0.9
+              .table_data.input.specificity(row='2', col='specificity') 0.5
+              .table_data.emptyblock
                 button.remove_row_button Remove
-            .non-data-row
-              div &nbsp;
-              div &nbsp;
-              div &nbsp;
-              div &nbsp;
-              .text-center
+            .table_row.non-data-row
+              .table_data.emptyblock
+              .table_data.emptyblock
+              .table_data.emptyblock
+              .table_data.emptyblock
+              .table_data
                 button#new_row_button New Row
           .panel-footer
             label#DP.define.prevalence_label(data-term='DP',for='prevalence_bc') Prevalence

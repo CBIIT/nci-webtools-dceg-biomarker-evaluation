@@ -1,36 +1,3 @@
-@-ms-viewport
-  width "device-width"
-input
-  padding 1px !important
-table .table_data
-  float none
-#meanstorisk
-  #download_button
-    margin 10px
-  .input_panel
-    border  1px #BBB solid
-  .key_output_panel
-    float left
-    background-color #faf
-    height 99%
-  .tabbed_output_panel
-    height 99%
-    overflow auto
-    #tabs
-      font-size inherit
-      margin 0px
-  .highlight
-    background-color yellow
-  .col1
-    padding 6px
-    text-align center
-  .maincard
-    height 750px
-    border 2px black solid
-  .highlight
-    background-color yellow
-  .main-title
-    text-align center
 #bc
   @media (max-width 1000px)
     .bottom_group
@@ -293,3 +260,37 @@ table .table_data
       color #333333
     :hover
       text-decoration underline
+
+
+
+@-ms-viewport
+  width "device-width"
+input
+  padding 1px !important
+#meanstorisk
+  #download_button
+    margin 10px
+  .input_panel
+    border  1px #BBB solid
+  .key_output_panel
+    float left
+    background-color #faf
+    height 99%
+  .tabbed_output_panel
+    height 99%
+    overflow auto
+    #tabs
+      font-size inherit
+      margin 0px
+  .highlight
+    background-color yellow
+  .col1
+    padding 6px
+    text-align center
+  .maincard
+    height 750px
+    border 2px black solid
+  .highlight
+    background-color yellow
+  .main-title
+    text-align center

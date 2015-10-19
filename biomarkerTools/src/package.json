@@ -1,7 +1,7 @@
 {
   "name": "biomarker-tools",
   "version": "0.0.1",
-  "private":true,    
+  "private": true,
   "scripts": {
     "republish": "lsc -cj package.json.ls && lsc -cj bower.json.ls",
     "build": "gulp --require LiveScript build",
