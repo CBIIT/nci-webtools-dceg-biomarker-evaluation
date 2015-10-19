@@ -1,0 +1,26 @@
+.input
+  width 100%
+  max-width 640px
+  > .table_container
+    > .table_row
+      &:first-child
+        > .table_data
+          @media (max-width 430px)
+            height 5.2em
+          &:last-child
+            height 5.2em
+        @media (max-width 540px)
+          ~ .table_row .table_data:first-child
+            height 4.4em
+            line-height 4.4em
+      > .table_data
+        &:first-child
+          min-width 12em
+        &:nth-child(2)
+          width 10em
+          @media (max-width 540px)
+            float none
+            overflow auto
+            width auto
+    .table_container .table_data
+      width 50%
