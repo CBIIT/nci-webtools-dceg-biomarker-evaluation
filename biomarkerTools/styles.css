@@ -92,6 +92,9 @@ img.expand:active {
 .table_data label {
   margin-bottom: 0px;
 }
+.table_padding {
+  padding: 0.25em 0.3em;
+}
 header,
 #main,
 #footer {
@@ -115,11 +118,11 @@ header #branch-logo {
   border-width: 0px 1px 1px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  padding: 1.5em;
+  padding: 1.5em 0px;
 }
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   #mainTabsContent {
-    padding: 1.5em 0px;
+    padding: 1.5em;
   }
 }
 @media (min-width: 800px) {
@@ -384,6 +387,92 @@ header #branch-logo {
   width: 50%;
 }
 #meanRiskStratification .input {
-  width: 100%;
-  max-width: 320px;
+  overflow: auto;
+  max-width: 500px;
+  margin: 0px auto;
+}
+@media (min-width: 950px) {
+  #meanRiskStratification .input {
+    float: left;
+    padding-right: 15px;
+  }
+}
+#meanRiskStratification .input #control-group a:last-child::before {
+  content: '\a0';
+}
+@media (min-width: 480px) {
+  #meanRiskStratification .input #control-group .table_row:first-child {
+    float: left;
+    width: 70%;
+  }
+}
+#meanRiskStratification .input #control-group .table_row:first-child .table_data {
+  width: 25%;
+}
+#meanRiskStratification .input #control-group .table_row:first-child .table_data:nth-last-child(2) {
+  float: right;
+}
+#meanRiskStratification .input #control-group .table_row:first-child .table_data:last-child {
+  width: auto;
+}
+#meanRiskStratification .input .option-1 .table_row:first-child,
+#meanRiskStratification .input .option-2 .table_row:first-child {
+  background-color: #f5f5f5;
+}
+#meanRiskStratification .input .option-1 .table_data {
+  float: right;
+  min-width: 7em;
+  width: 33.333333333333336%;
+}
+#meanRiskStratification .input .option-1 .table_data:last-child {
+  float: none;
+  background-color: #f5f5f5;
+  width: auto;
+}
+@media (max-width: 500px) {
+  #meanRiskStratification .input .option-1 .table_data {
+    height: 4.2em;
+  }
+  #meanRiskStratification .input .option-1 .table_row:not(:first-child) .table_data:not(:last-child) {
+    line-height: 4em;
+  }
+}
+#meanRiskStratification .input .option-2 .table_data:first-child {
+  min-width: 14em;
+}
+#meanRiskStratification .input .option-2 .table_data span {
+  float: right;
+}
+#meanRiskStratification .input .option-2 .table_data div {
+  overflow: auto;
+}
+#meanRiskStratification .output {
+  overflow: auto;
+}
+@media (min-width: 950) {
+  #meanRiskStratification .output {
+    padding-left: 15px;
+  }
+}
+#meanRiskStratification .output table {
+  border-top: 1px solid #ddd;
+  margin: 1em 0px;
+}
+@media (min-width: 480px) {
+  #meanRiskStratification .output table {
+    margin-top: 0px;
+  }
+}
+#meanRiskStratification .output th {
+  background-color: #f5f5f5;
+}
+#meanRiskStratification .output th,
+#meanRiskStratification .output td {
+  border: solid #ddd;
+  border-width: 0px 1px 1px 0px;
+  padding: 0.1em 0.15em;
+}
+#meanRiskStratification .output th:first-child,
+#meanRiskStratification .output td:first-child {
+  border-width: 0px 1px 1px;
 }
