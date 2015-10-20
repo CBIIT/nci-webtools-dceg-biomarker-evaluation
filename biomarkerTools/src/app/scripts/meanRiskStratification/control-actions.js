@@ -32,7 +32,7 @@ $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
     init_meanRiskStratification();
 });
 
-thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
+thisTool.find('.define').on('click', display_definition);
 thisTool.find("#errors").alert();
 // testing
 thisTool.find('a#test1,a#test2').on('click', test);
@@ -105,7 +105,7 @@ function new_marker() {
 
         // change title for new marker
         newElement.find('#markers .panel-heading').first().text("Biomarker #" + counter);
-        newElement.find('.termToDefine, .dd.termToDefine')
+        newElement.find('.define')
             .on('click', display_definition);
 
         currentMarkers++;
