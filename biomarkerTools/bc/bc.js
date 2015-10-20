@@ -99,7 +99,7 @@ function validate_csv(file){
         if(valuesFromFile.length == 10) {
           valid = true;
          
-          inputElm.find('.table_row:not(".non-data-row")').each(function(i, row) {
+          inputElm.children(':not(.non-data-row)').each(function(i, row) {
             $(row).remove();
           });
 
@@ -204,19 +204,15 @@ function change_value(field, new_value){
 }
 
 function import_data_row(data, ind){
-  var empty_cell ="<div class='emptyblock'></div>";
-
   var cell_1 = "<div class='table_row' row='" + ind + "'><div class='table_data emptyblock'></div>";
-  var cell_2 ="<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
-  var cell_3 ="<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
+  var cell_2 = "<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
+  var cell_3 = "<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
   var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
-  var cell_5 ="<div class='table_data'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+  var cell_5 = "<div class='table_data emptyblock'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
 
-  if(ind > 1) $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
-  else
-    $(cell_1 + cell_2 + cell_3 + cell_4 + empty_cell).insertBefore(inputElm.children().last());
+  $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
 
-  inputElm.find(".table_row:not(.non-data-row):first").addClass("reference_row");
+  inputElm.children(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='check'/>").siblings().last().empty();
   bind_remove_row();
   bind_reference_row();
   bind_input();
@@ -224,7 +220,7 @@ function import_data_row(data, ind){
 
 function add_new_row(){
  
-  var num_rows = inputElm.children('*:not(.non-data-row)').length;
+  var num_rows = inputElm.children(':not(.non-data-row)').length;
   var row_1 = "<div class='table_row' row='" + num_rows + "'><div class='table_data emptyblock'></div>";
   var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
   var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
@@ -232,8 +228,9 @@ function add_new_row(){
   var row_5 = "<div class='table_data'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
   inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
   if (num_rows === 2) {
-    inputElm.children('*:not(:last-child)').each(function(){
-      if (!$(this).hasClass('non-data-row') && !$(this).hasClass('reference_row')) {
+    inputElm.children(':not(.non-data-row)').each(function(i, row){
+      update_row_index(i, row);
+      if (!$(this).hasClass('reference_row')) {
         $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
       }
     });
@@ -241,8 +238,6 @@ function add_new_row(){
   bind_remove_row();
   bind_reference_row();
   bind_input();
-
-  inputElm.find('.table_row:not(".non-data-row")').each(update_row_index);
 }
 
 function update_row_index(i, row){
@@ -263,7 +258,7 @@ function remove_row(el){
   if (num_rows <= 2) {
     inputElm.find('.remove_row_button').remove();
   }
-  inputElm.children('*:not(.non-data-row)').each(update_row_index);
+  inputElm.children(':not(.non-data-row)').each(update_row_index);
 }
 
 function do_calculation(){
@@ -527,7 +522,7 @@ function reset_bc(){
   thisTool.find('#errors').addClass("hide");
   thisTool.find("#file_upload, #prevalence_bc").val("");
 
-  inputElm.find(':not(".non-data-row")').each(function(i, el) {
+  inputElm.children(':not(.non-data-row)').each(function(i, el) {
     $(el).remove();
   });
 

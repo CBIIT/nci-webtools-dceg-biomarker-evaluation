@@ -7,11 +7,13 @@ h3
   text-align center
   margin-top 0px
 img.expand
-  width 80%
-  transition transform 0.5s ease-in
-  &:hover
-  &:active
-    transform scale(1.25)
+  width 100%
+  @media (min-width 640px)
+    width 80%
+    transition transform 0.5s ease-in
+    &:hover
+    &:active
+      transform scale(1.25)
 /**
  * id-based styles (technically ids should refer to a single element but things happen)
  */
@@ -44,9 +46,8 @@ img.expand
   background-color yellow
 .panel-body .panel:last-child
   margin-bottom 0px
-.table_row
-  padding .15em
-  overflow auto
+.red
+  background-color base-red
 .table_data
   display block
   float left
@@ -71,3 +72,6 @@ img.expand
     margin-bottom 0px
 .table_padding
   padding .25em .3em
+.table_row
+  padding .15em
+  overflow auto

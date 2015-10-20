@@ -6,20 +6,25 @@ h3 {
   margin-top: 0px;
 }
 img.expand {
-  width: 80%;
-  -webkit-transition: -webkit-transform 0.5s ease-in;
-  -moz-transition: -moz-transform 0.5s ease-in;
-  -o-transition: -o-transform 0.5s ease-in;
-  -ms-transition: -ms-transform 0.5s ease-in;
-  transition: transform 0.5s ease-in;
+  width: 100%;
 }
-img.expand:hover,
-img.expand:active {
-  -webkit-transform: scale(1.25);
-  -moz-transform: scale(1.25);
-  -o-transform: scale(1.25);
-  -ms-transform: scale(1.25);
-  transform: scale(1.25);
+@media (min-width: 640px) {
+  img.expand {
+    width: 80%;
+    -webkit-transition: -webkit-transform 0.5s ease-in;
+    -moz-transition: -moz-transform 0.5s ease-in;
+    -o-transition: -o-transform 0.5s ease-in;
+    -ms-transition: -ms-transform 0.5s ease-in;
+    transition: transform 0.5s ease-in;
+  }
+  img.expand:hover,
+  img.expand:active {
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    transform: scale(1.25);
+  }
 }
 #accordion [data-toggle='collapse'] {
   cursor: pointer;
@@ -58,9 +63,8 @@ img.expand:active {
 .panel-body .panel:last-child {
   margin-bottom: 0px;
 }
-.table_row {
-  padding: 0.15em;
-  overflow: auto;
+.red {
+  background-color: #bb0e3d;
 }
 .table_data {
   display: block;
@@ -94,6 +98,10 @@ img.expand:active {
 }
 .table_padding {
   padding: 0.25em 0.3em;
+}
+.table_row {
+  padding: 0.15em;
+  overflow: auto;
 }
 header,
 #main,
@@ -185,7 +193,7 @@ header #branch-logo {
 #meanstorisk #mtr-results .table_row:nth-child(7) .table_data,
 #meanstorisk #mtr-results .table_row:nth-child(8) .table_data {
   line-height: 4em;
-  height: 4em;
+  height: 4.2em;
 }
 #meanstorisk #mtr-results .table_row:nth-child(5) .table_data:first-child,
 #meanstorisk #mtr-results .table_row:nth-child(7) .table_data:first-child,
@@ -200,17 +208,6 @@ header #branch-logo {
 }
 #meanstorisk #mtr-results .table_data:nth-child(2) {
   width: 16.666666666666668%;
-}
-#meanstorisk .graph img {
-  width: 100%;
-}
-#meanstorisk .graph img:hover,
-#meanstorisk .graph img:active {
-  -webkit-transform: scale(1.4);
-  -moz-transform: scale(1.4);
-  -o-transform: scale(1.4);
-  -ms-transform: scale(1.4);
-  transform: scale(1.4);
 }
 #meanstorisk .tabbed_output_panel #tabs div {
   overflow: auto;

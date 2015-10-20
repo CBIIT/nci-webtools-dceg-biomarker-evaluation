@@ -1,26 +1,4 @@
 #meanRiskStratification
-  table input[type="number"]
-    width 100%
-  .marker-title
-    background-color tan
-  #results table th
-    background-color tan
-  .red
-    background-color base-red
-  .panel-title, .panel-title a
-    font-size small
-  .panel-toggle a, .panel-title a
-    color black
-    font-weight bold
-  label
-    font-weight bold
-  .well, #results
-    min-height 645px
-  .termToDefine, th
-    font-weight bold
-
-  .termToDefine.glyphicon
-    text-decoration none
   .loader
     background-image url("/common/images/loading.gif") no-repeat
     margin 0 auto
