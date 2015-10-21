@@ -304,12 +304,20 @@ header #branch-logo {
     width: 41.666666666666664%;
   }
 }
+#bc .output .top-header {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+}
+#bc .output > div:nth-child(2) {
+  text-align: center;
+}
 #bc .output > div ~ div {
   display: table;
   table-layout: fixed;
   width: 100%;
 }
-#bc .output > div ~ div > div {
+#bc .output > div ~ div div {
   display: table-cell;
 }
 #bc .reference_row {

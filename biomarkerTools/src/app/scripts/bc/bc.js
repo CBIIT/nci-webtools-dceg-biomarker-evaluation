@@ -489,10 +489,10 @@ function createOutputTable(jsondata){
   top_header_row.append("<div class='top-header'><strong>Output Data</strong></div>");
   thisTool.find('.output').append(top_header_row);
   header_row = $("<div></div>");
-  header_row.append("<div id='Sens2' class='table_data bold define' data-term='Sens'>Sensitivity</div>");
-  header_row.append("<div id='Spec2' class='table_data bold define' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div id='LRP2' class='table_data bold define' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div id='LRN2' class='table_data bold define' data-term='LRN'>LR-</div></div>");
+  header_row.append("<div id='Sens2' class='define' data-term='Sens'>Sensitivity</div>");
+  header_row.append("<div id='Spec2' class='define' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div id='LRP2' class='define' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div id='LRN2' class='define' data-term='LRN'>LR-</div></div>");
   thisTool.find('.output').append(header_row);
   for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
     each = jsondata[i$];
@@ -506,12 +506,12 @@ function createOutputTableWithPrev(jsondata){
   top_header_row.append("<div class='top-header'>Output Data</div>");
   thisTool.find('.output').append(top_header_row);
   var header_row = $("<div></div>");
-  header_row.append("<div id='Sens3' class='table_data bold define' data-term='Sens'>Sensitivity</div></div>");
-  header_row.append("<div id='Spec3' class='table_data bold define' data-term='Spec'>Specificity</div></div>");
-  header_row.append("<div id='LRP3' class='table_data bold define' data-term='LRP'>LR+</div></div>");
-  header_row.append("<div id='LRN3' class='table_data bold define' data-term='LRN'>LR-</div></div>");
-  header_row.append("<div id='PPV3' class='table_data bold define' data-term='PPV'>PPV</div></div>");
-  header_row.append("<div id='cNPV3' class='table_data bold define' data-term='cNPV'>cNPV</div></div>");
+  header_row.append("<div id='Sens3' class='define' data-term='Sens'>Sensitivity</div></div>");
+  header_row.append("<div id='Spec3' class='define' data-term='Spec'>Specificity</div></div>");
+  header_row.append("<div id='LRP3' class='define' data-term='LRP'>LR+</div></div>");
+  header_row.append("<div id='LRN3' class='define' data-term='LRN'>LR-</div></div>");
+  header_row.append("<div id='PPV3' class='define' data-term='PPV'>PPV</div></div>");
+  header_row.append("<div id='cNPV3' class='define' data-term='cNPV'>cNPV</div></div>");
   thisTool.find('.output').append(header_row);
   for (var each in jsondata) {
     jsonToCellWithPrev(jsondata[each]);

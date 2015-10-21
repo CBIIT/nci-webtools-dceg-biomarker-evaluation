@@ -36,12 +36,20 @@
   margin 0px auto
   @media (min-width 1000px)
     width (100%*5/12)
-.output > div ~ div
-  display table
-  table-layout fixed
-  width 100%
+.output
+  .top-header
+    background-color #444
+    color #FFF
+    text-align center
   > div
-    display table-cell
+    &:nth-child(2)
+      text-align center
+    ~ div
+      display table
+      table-layout fixed
+      width 100%
+      div
+        display table-cell
 .reference_row
   background-color yellow
 .top_group
