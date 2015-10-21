@@ -139,11 +139,10 @@ function display_errors(message) {
     text = message;
   }
   if(thisTool.find('#errors').length > 0){
-    thisTool.find("#errors").empty();
-    thisTool.find("#errors").remove();
+    thisTool.find("#errors").empty().remove();
   }
 
-  thisTool.find("#helpGlossaryLinks").after("<div id='errors' class='col-md-12 alert alert-danger fade in'>" +
+  thisTool.find("#helpGlossaryLinks").after("<div id='errors' class='alert alert-danger fade in'>" +
                         "<ul class='list-unstyled'>" + text + "</ul></div>");
 
   thisTool.find('#errors').fadeIn();

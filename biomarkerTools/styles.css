@@ -342,9 +342,10 @@ header #branch-logo {
   padding-left: 1.5em;
 }
 #riskStratAdvanced .input {
+  overflow: auto;
+  margin: 0px auto;
   width: 100%;
   max-width: 600px;
-  margin: 0px auto;
 }
 #riskStratAdvanced .input .table_data:first-child {
   min-width: 11em;

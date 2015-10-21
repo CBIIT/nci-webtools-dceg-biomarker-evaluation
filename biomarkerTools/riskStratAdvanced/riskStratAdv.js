@@ -387,7 +387,7 @@ function checkInputFields() {
   });
 
   if ($.inArray(0, selectedValues) == -1 && validCombo) {
-    thisTool.find("#errors").addClass("hide");
+    thisTool.find("#errors").remove();
   }
   else{
     display_errors(["One of the fields contains invalid input."]);
@@ -428,7 +428,7 @@ function validate_inputs() {
     return false;
   }
   else {
-    thisTool.find("#errors").fadeOut().addClass("hide");
+    thisTool.find("#errors").fadeOut().remove();
     thisTool.find("#calculate").attr("disabled","").text("Please Wait....");
     thisTool.find("#spinner").removeClass("hide");
     disableAll();
@@ -825,42 +825,24 @@ function setInitialValue(textboxId) {
 }
 
 function checkForInvalidVariableCombo() {
-
   var selectedValues = [];
-  var ids = thisTool.find("select").map(function() {
-    return this.id;
-  }).get();
-
-  $.each(ids, function(key, elementId) {
-    selectedValues.push(thisTool.find("#" + elementId + " option:selected").val());
+  thisTool.find("select").each(function(key, element) {
+    if ($(element).val() !== "")
+      selectedValues.push($(element).val());
   });
-
-  var blankCount = $.inArray("", selectedValues);
-  if ($.inArray("", selectedValues) == -1) {
-
-    var selectedValuesSorted = selectedValues.sort();
-    var selectedValuesSortedString = selectedValues.join("-");
-
-    if ($.inArray(selectedValuesSortedString, invalidCombos) >= 0) {
-
-      var userSelectedVariables = selectedValues[0].toString() + ", "+
-        selectedValues[1].toString() + ",  and " +
-        selectedValues[2].toString();
-      var message = "The variables " +
-        userSelectedVariables +
-        " do not form a valid variable combination for this calculation.  " +
-        "Please select a vaild variable combination.";
-      display_errors([message]);
-      validCombo = false;
-    } else {
-      validCombo = true;
-      thisTool.find("#errors").addClass("hide");
-    }
-  } else {
-    thisTool.find("#errors").addClass("hide");
+  if (selectedValues.length < 3) {
+    thisTool.find("#errors").remove();
     validCombo = false;
-
-    return;
+  } else if ($.inArray(selectedValues.sort().join("-"), invalidCombos) >= 0) {
+    var message = "The variables " + selectedValues[0] + ", " +
+      selectedValues[1] + ",  and " + selectedValues[2] +
+      " do not form a valid variable combination for this calculation.  " +
+      "Please select a vaild variable combination.";
+    display_errors([message]);
+    validCombo = false;
+  } else {
+    validCombo = true;
+    thisTool.find("#errors").remove();
   }
 }
 
