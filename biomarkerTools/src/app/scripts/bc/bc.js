@@ -406,7 +406,7 @@ function refreshGraph(drawgraph){
   thisTool.find('.graph img').removeClass("hide")
       .attr("alt",'output after calculation')
       .attr("src", graph_file + d.getTime())
-    .next('.graph b').removeClass("hide");
+    .next('.graph small').removeClass("hide");
 }
 
 function set_data(dt){
@@ -443,10 +443,10 @@ function jsonToCell(obj){
     }
   }
   var new_row = $("<div>");
-  new_row.append("<div class='table_data'>" + Sensitivity + "</div>");
-  new_row.append("<div class='table_data'>" + Specificity + "</div>");
-  new_row.append("<div class='table_data'>" + LRplus + "</div>");
-  new_row.append("<div class='table_data'>" + LRminus + "</div>");
+  new_row.append("<div>" + Sensitivity + "</div>");
+  new_row.append("<div>" + Specificity + "</div>");
+  new_row.append("<div>" + LRplus + "</div>");
+  new_row.append("<div>" + LRminus + "</div>");
   thisTool.find('.output').append(new_row);
 }
 
@@ -471,13 +471,13 @@ function jsonToCellWithPrev(obj){
     }
   }
   var new_row = $("<div>");
-  new_row.append("<div class='table_data'>" + Sensitivity + "</div>");
-  new_row.append("<div class='table_data'>" + Specificity + "</div>");
-  new_row.append("<div class='table_data'>" + LRplus + "</div>");
-  new_row.append("<div class='table_data'>" + LRminus + "</div>");
+  new_row.append("<div>" + Sensitivity + "</div>");
+  new_row.append("<div>" + Specificity + "</div>");
+  new_row.append("<div>" + LRplus + "</div>");
+  new_row.append("<div'>" + LRminus + "</div>");
   if (validPrevValue) {
-    new_row.append("<div class='table_data'>" + PPV + "</div>");
-    new_row.append("<div class='table_data'>" + cNPV + "</div>");
+    new_row.append("<div>" + PPV + "</div>");
+    new_row.append("<div>" + cNPV + "</div>");
   }
   thisTool.find('#output').append(new_row);
 }
@@ -533,7 +533,7 @@ function reset_bc(){
   thisTool.find(".reference:first").click();
   thisTool.find('.graph img').attr('alt','image of example output after calculation');
   thisTool.find('.graph img').addClass("hide").attr('src', '/common/images/initial.jpg');
-  thisTool.find('.graph b').addClass("hide");
+  thisTool.find('.graph small').addClass("hide");
   thisTool.find('.output').empty();
 
   thisTool.find("[row='0'] .sensitivity").text("0.8");
