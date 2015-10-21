@@ -98,6 +98,7 @@ img.expand {
 }
 .table_padding {
   padding: 0.25em 0.3em;
+  line-height: 2em;
 }
 .table_row {
   padding: 0.15em;
@@ -301,15 +302,13 @@ header #branch-logo {
 }
 @media (min-width: 1000px) {
   #bc .graph {
+    float: left;
     width: 41.666666666666664%;
   }
 }
 #bc .output .top-header {
   background-color: #444;
   color: #fff;
-  text-align: center;
-}
-#bc .output > div:nth-child(2) {
   text-align: center;
 }
 #bc .output > div ~ div {
@@ -319,6 +318,7 @@ header #branch-logo {
 }
 #bc .output > div ~ div div {
   display: table-cell;
+  text-align: center;
 }
 #bc .reference_row {
   background-color: #ff0;
@@ -343,10 +343,11 @@ header #branch-logo {
 }
 #riskStratAdvanced .input {
   width: 100%;
-  max-width: 640px;
+  max-width: 600px;
+  margin: 0px auto;
 }
 #riskStratAdvanced .input .table_data:first-child {
-  min-width: 13em;
+  min-width: 11em;
 }
 #riskStratAdvanced .input .table_data:nth-child(2) {
   min-width: 7em;

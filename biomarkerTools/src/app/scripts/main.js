@@ -1,3 +1,9 @@
+if (typeof String.prototype.trim !== 'function') {
+  String.prototype.trim = function() {
+    return this.replace(/^\s+|\s+$/g, "");
+  };
+}
+
 var default_ajax_error;
 var rest = "biomarkerToolsRest"; // reuse this variable across tools
 var activeRequest = false; // will be used to detect if requests are running

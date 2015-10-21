@@ -22,53 +22,14 @@ var validation_rules = [
   'Sensitivity+Specificity-1 > 0'
 ];
 var keysforfunctionnames = [ "", "Sens", "Spec", "PPV", "cNPV", "Prev", "Delta" ];
+var functionnames = [ "", "sensitivity", "specificity", "ppv", "cnpv", "prevalence", "delta" ];
+var invalidCombos = [ "delta-sensitivity-specificity", "cnpv-delta-ppv", "cnpv-ppv-prevalence", "cnpv-ppv-sensitivity", "cnpv-ppv-specificity", "delta-ppv-prevalence", "cnpv-delta-prevalence" ];
+var initialData = [ "", "0.8, 0.85,0.9, 0.95, 0.995", "0.6, 0.75, 0.8, 0.86, 0.92", "0.6, 0.7, 0.8, 0.9, 0.95", "0.39, 0.48, 0.59, 0.62, 0.78", "0.01, 0.05, 0.1", "1, 1.5, 2, 3" ];
 
-var functionnames = [ "", "sensitivity", "specificity", "ppv", "cnpv",
-                      "prevalence", "delta" ];
-
-var invalidCombos = [ "delta-sensitivity-specificity", "cnpv-delta-ppv",
-                      "cnpv-ppv-prevalence", "cnpv-ppv-sensitivity", "cnpv-ppv-specificity",
-                      "delta-ppv-prevalence", "cnpv-delta-prevalence" ];
-var initialData = [ "", "0.8, 0.85,0.9, 0.95, 0.995",
-                    "0.6, 0.75, 0.8, 0.86, 0.92", "0.6, 0.7, 0.8, 0.9, 0.95",
-                    "0.39, 0.48, 0.59, 0.62, 0.78", "0.01, 0.05, 0.1", "1, 1.5, 2, 3" ];
-
-var activeSelectionChange = false;
 var validCombo = false;
 var rulesViolationMsg = [];
 
-var keysforfunction = [{
-  1 : "Sens"
-}, {
- 2 : "Spec"
-}, {
- 3 : "PPV"
-}, {
- 4 : "cNPV"
-}, {
- 5 : "Prev"
-}, {
- 6 : "Delta"
-}];
-
-var keysforfunction = [ {
-  1 : "sensitivity"
-}, {
-  2 : "specificity"
-}, {
-  3 : "ppv"
-}, {
-  4 : "cnpv"
-}, {
-  5 : "prevalence"
-}, {
-  6 : "delta"
-} ];
-
-var rfunctions = [ "SensPPVDelta", "SensPPVPrev", "SensSpecPPV",
-                   "SensPrevDelta", "SenscNPVDelta", "SenscNPVPrev", "SensSpeccNPV",
-                   "SensSpecPrev", "SpecPPVDelta", "SpecPPVPrev", "SpecPrevDelta",
-                   "SpeccNPVDelta", "SpeccNPVPrev" ];
+var rfunctions = [ "SensPPVDelta", "SensPPVPrev", "SensSpecPPV", "SensPrevDelta", "SenscNPVDelta", "SenscNPVPrev", "SensSpeccNPV", "SensSpecPrev", "SpecPPVDelta", "SpecPPVPrev", "SpecPrevDelta", "SpeccNPVDelta", "SpeccNPVPrev" ];
 
 var keyShort = [ {
   1 : "Prevalence"
@@ -160,24 +121,15 @@ var keyLong = [
 var thisTool;
 var columnHeadings;
 
-function init_riskStrat(){
-  thisTool = $("#riskStratAdvanced");
-  if (typeof String.prototype.trim !== 'function') {
-    String.prototype.trim = function() {
-      return this.replace(/^\s+|\s+$/g, "");
-    };
-  }
-}
-
 $("a[href='#riskStratAdvanced']").on("shown.bs.tab",function(e){
-  init_riskStrat();
+  thisTool = $("#riskStratAdvanced");
 });
 
 $(document).ready(function(){
-  init_riskStrat();
+  thisTool = $("#riskStratAdvanced");
 
-  thisTool.find("select").change(function() {
-    makeSelectionsUnique(functionnames, this.id);
+  thisTool.find("select").on('change',function() {
+    makeSelectionsUnique(this.id);
   });
 
   thisTool.find("#reset").on("click", resetPage);
@@ -191,35 +143,18 @@ $(document).ready(function(){
     if (checkRules() == "Fail") {
       display_errors(validation_rules);
       return false;
-    }
-    else {
+    } else {
       calculate_riskStrat();
     }
   });
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 });
 
 function addTestData() {
-
   thisTool.find("#independent_dropdown_rs").val("specificity");
   thisTool.find("#contour_dropdown_rs").val("prevalence");
   thisTool.find("#fixed_dropdown_rs").val("delta");
 
-  makeSelectionsUnique(functionnames, "independent_dropdown_rs");
+  makeSelectionsUnique("independent_dropdown_rs");
 
   thisTool.find("#independent_rs").val("0.6, 0.75, 0.8, 0.86, 0.92");
   thisTool.find("#contour_rs").val("0.01, 0.05, 0.1");
@@ -286,7 +221,7 @@ function resetPopupDefinition() {
 
 function resetPage() {
   thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-  makeSelectionsUnique(functionnames, "independent_dropdown_rs");
+  makeSelectionsUnique("independent_dropdown_rs");
   thisTool.find("span.variable-example").text("");
   thisTool.find("option").removeAttr("disabled");
   thisTool.find("#errors, #spinner, #download").addClass("hide");
@@ -857,84 +792,35 @@ function refreshGraph(drawgraph) {
   thisTool.find("#graph").attr("src", graph_file + d.getTime());
 }
 
-function makeSelectionsUnique(originalOptions, elementId) {
-
+function makeSelectionsUnique(elementId) {
   var selectedValues = [];
-  var disabledValues = [];
+  var disabledValues;
 
-  if (activeSelectionChange === true)
-    return;
+  var dropdowns = thisTool.find("select");
 
-  activeSelectionChange = true;
-
-
-  var ids = thisTool.find("select").map(function() {
-    return this.id;
-  }).get();
-
-
-  $.each(ids, function(key, elementId) {
-    selectedValues.push(thisTool.find("#" + elementId + " option:selected").val());
+  $.each(dropdowns, function(key, dropdown) {
+    if ($(dropdown).val() !== "")
+      selectedValues.push($(dropdown).val());
   });
 
-  for (var key = 0; key < ids.length; key++) {
-    disabledValues = [];
-    for (var i = 0; i < selectedValues.length; i++) {
-      if (i != key && selectedValues[i] !== "") {
-        disabledValues.push(selectedValues[i]);
+  $.each(dropdowns, function(key, dropdown) {
+    $(dropdown).find('option:not(:selected)').each(function() {
+      $(this).removeAttr('disabled');
+      if ($.inArray($(this).val(),selectedValues) > -1) {
+        $(this).attr('disabled','disabled');
       }
-    }
-
-    var dropdownBoxId = ids[key];
-    removeAllOptions(dropdownBoxId);
-    addAllOptions(dropdownBoxId, originalOptions, disabledValues);
-
-    thisTool.find("#" + dropdownBoxId).val(selectedValues[key]).change();
-  }
+    });
+  });
 
   setInitialValue(elementId);
   checkForInvalidVariableCombo(elementId);
-  activeSelectionChange = false;
-}
-
-function removeAllOptions(eid) {
-  var element = thisTool.find("#"+eid)[0];
-  for (var i = element.options.length - 1; i >= 0; i--) {
-    element.remove(i);
-  }
-}
-
-function addAllOptions(dropdownBoxId, originalOptions, disabledOptions) {
-  for (var optionKey = 0; optionKey < originalOptions.length; optionKey++) {
-    var attribute;
-    if ($.inArray(originalOptions[optionKey], disabledOptions) > -1) {
-      attribute = thisTool.find("#" + dropdownBoxId).append(
-        $("<option></option>").attr("value",
-                      originalOptions[optionKey]).attr("disabled",
-                                       "disabled").text(originalOptions[optionKey]));
-    } else {
-      attribute = thisTool.find("#" + dropdownBoxId).append(
-        $("<option></option>").attr("value",
-                      originalOptions[optionKey]).text(
-          originalOptions[optionKey]));
-    }
-  }
 }
 
 function setInitialValue(textboxId) {
-  var selectedOption = thisTool.find("#" + textboxId + " option:selected").val();
-  var key = $.inArray(selectedOption, functionnames);
+  var thisSelect = thisTool.find('#'+textboxId);
+  var thisInput = thisTool.find('#'+textboxId.replace('_dropdown','')).attr('placeholder',initialData[$.inArray(thisSelect.val(), functionnames)]).val("");
+ 
 
-  var eSelect = thisTool.find("#"+textboxId);
-
-  var eSelect2 = thisTool.find(eSelect).parent().parent()[0];
-
-  thisTool.find(eSelect2).find(":input").val("");
-  var dropdownIndex = $(eSelect2).index();
-  thisTool.find("#examples .row:eq(" + dropdownIndex + ") span").text(initialData[key]);
-
-
-  thisTool.find("#" + textboxId).val(selectedOption).change();
   addPopupDefinition();
 }
 
