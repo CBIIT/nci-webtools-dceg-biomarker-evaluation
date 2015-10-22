@@ -364,13 +364,33 @@ header #branch-logo {
     padding: 1em 0px;
   }
 }
-#riskStratAdvanced .output .table-side {
+#riskStratAdvanced .output .table_container {
   overflow: auto;
 }
-#riskStratAdvanced .output .table-side .table_padding {
+#riskStratAdvanced .output .table_container .table-header {
   background-color: #f8fafa;
   font-weight: bold;
   text-align: center;
+}
+#riskStratAdvanced .output .table_container th {
+  background-color: #aaa;
+  color: #444;
+}
+#riskStratAdvanced .output .table_container th:first-child {
+  vertical-align: bottom;
+}
+#riskStratAdvanced .output .table_container th,
+#riskStratAdvanced .output .table_container td {
+  padding: 0.1em 0.15em;
+}
+#riskStratAdvanced .output .vertical-text {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  width: 1em;
 }
 #sampleSize .input {
   width: 100%;

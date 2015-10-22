@@ -640,18 +640,13 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
     $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" +
       keyvalueShort[key] + (fixedIndex + 1)).empty();
 
-    table_graph_div = $("<div class='set-" +
-              keyvalueShort[key] +
-              (fixedIndex + 1) +
-              "' class='pull-left'></div>");
+    table_graph_div = $("<div class='set-" + keyvalueShort[key] + (fixedIndex + 1) + "' class='pull-left'></div>");
     thisTool.find(tabElement).append(table_graph_div);
-    graphic_side = ("<div class='graph' id='graphic-" +
-            keyvalueShort[key] + (fixedIndex + 1) + "'></div>");
+    graphic_side = ("<div class='graph' id='graphic-" + keyvalueShort[key] + (fixedIndex + 1) + "'></div>");
     table_graph_div.append(graphic_side);
-    table_side = $("<div id='table-" +
-             keyvalueShort[key] + (fixedIndex + 1) +
-             "'><div class='table_padding'>" + keyvalueLong[key] +
-             "</div></div>");
+    table_side = $("<div id='table-" + keyvalueShort[key] + (fixedIndex + 1) + "' class='table_container'>" +
+                     "<div class='table-header'>" + keyvalueLong[key] + "</div>" +
+                   "</div>");
     table_graph_div.append(table_side);
   }
 
@@ -710,8 +705,7 @@ function fillTable(resultObject, columnHeadings, index) {
         });
       }
 
-      var table = $("<div class='table_container' id='" +
-              tableId + "'></table>");
+      var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" + tableId + "'></table>");
 
       table.dataTable({
         "aaData" : arr,
@@ -730,7 +724,7 @@ function fillTable(resultObject, columnHeadings, index) {
       $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
 
       thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
-        "<td class='ui-state-default' colspan='2'></td>");
+        "<th class='ui-state-default' colspan='2'></td>");
 
       i = 0;
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(

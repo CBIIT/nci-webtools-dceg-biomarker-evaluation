@@ -16,9 +16,20 @@
   @media (max-width 379px)
     .ui-tabs .ui-tabs-panel
       padding 1em 0px
-  .table-side
+  .table_container
     overflow auto
-    .table_padding
+    .table-header
       background-color #F8FAFA
       font-weight bold
       text-align center
+    th
+      background-color #AAA
+      color #444
+      &:first-child
+        vertical-align bottom
+    th, td
+      padding .1em .15em
+  .vertical-text
+    transform rotate(-90deg)
+    white-space nowrap
+    width 1em
