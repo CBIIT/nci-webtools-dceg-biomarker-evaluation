@@ -640,17 +640,17 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
     $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" +
       keyvalueShort[key] + (fixedIndex + 1)).empty();
 
-    table_graph_div = $("<div class='row set-" +
+    table_graph_div = $("<div class='set-" +
               keyvalueShort[key] +
               (fixedIndex + 1) +
               "' class='pull-left'></div>");
     thisTool.find(tabElement).append(table_graph_div);
-    graphic_side = ("<div class='graphic-side pull-right' id='graphic-" +
-            keyvalueShort[key] + (fixedIndex + 1) + "'><div class='pull-right vertical-padding'> </div></div>");
+    graphic_side = ("<div class='graph' id='graphic-" +
+            keyvalueShort[key] + (fixedIndex + 1) + "'></div>");
     table_graph_div.append(graphic_side);
-    table_side = $("<div class='table-side pull-left' id='table-" +
+    table_side = $("<div id='table-" +
              keyvalueShort[key] + (fixedIndex + 1) +
-             "'><div class='table-title extra-padding'>" + keyvalueLong[key] +
+             "'><div class='table_padding'>" + keyvalueLong[key] +
              "</div></div>");
     table_graph_div.append(table_side);
   }
@@ -710,7 +710,7 @@ function fillTable(resultObject, columnHeadings, index) {
         });
       }
 
-      var table = $("<table cellpadding='0' cellspacing='0' class='cell-border' id='" +
+      var table = $("<div class='table_container' id='" +
               tableId + "'></table>");
 
       table.dataTable({
@@ -777,7 +777,7 @@ function loadImage(tabNumber, graphNamePreFix, graphFilename) {
   imageContainer.empty();
 
   imageContainer.append(
-    "<img class='img-responsive' src='" + graphFilename + "' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
+    "<img class='expand' src='" + graphFilename + "' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
 }
 
 function refreshGraph(drawgraph) {

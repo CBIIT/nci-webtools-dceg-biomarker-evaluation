@@ -359,6 +359,19 @@ header #branch-logo {
 #riskStratAdvanced .input .table_data:last-child {
   min-width: 7em;
 }
+@media (max-width: 379px) {
+  #riskStratAdvanced .output .ui-tabs .ui-tabs-panel {
+    padding: 1em 0px;
+  }
+}
+#riskStratAdvanced .output .table-side {
+  overflow: auto;
+}
+#riskStratAdvanced .output .table-side .table_padding {
+  background-color: #f8fafa;
+  font-weight: bold;
+  text-align: center;
+}
 #sampleSize .input {
   width: 100%;
   max-width: 640px;
