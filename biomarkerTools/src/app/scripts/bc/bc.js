@@ -479,7 +479,7 @@ function jsonToCellWithPrev(obj){
     new_row.append("<div>" + PPV + "</div>");
     new_row.append("<div>" + cNPV + "</div>");
   }
-  thisTool.find('#output').append(new_row);
+  thisTool.find('.output').append(new_row);
 }
 
 function createOutputTable(jsondata){

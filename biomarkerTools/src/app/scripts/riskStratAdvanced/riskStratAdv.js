@@ -614,7 +614,7 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 
   for (var key in keyvalueShort) {
     $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" + keyvalueShort[key] + (fixedIndex + 1)).empty();
-    table_graph_div = $("<div class='set-" + keyvalueShort[key] + (fixedIndex + 1) + "' class='clearfix'></div>");
+    table_graph_div = $("<div class='set-" + keyvalueShort[key] + (fixedIndex + 1) + " clearfix'></div>");
     thisTool.find(tabElement).append(table_graph_div);
     graphic_side = ("<div class='graph' id='graphic-" + keyvalueShort[key] + (fixedIndex + 1) + "'></div>");
     table_graph_div.append(graphic_side);
