@@ -26,6 +26,9 @@ img.expand {
     transform: scale(1.25);
   }
 }
+p#spinner {
+  text-align: center;
+}
 #accordion [data-toggle='collapse'] {
   cursor: pointer;
 }
