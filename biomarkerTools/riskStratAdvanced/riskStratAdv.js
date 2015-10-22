@@ -231,28 +231,6 @@ function resetPage() {
   resetPopupDefinition();
 }
 
-function createRulesDialog() {
-  $(function() {
-    thisTool.find("#dialog-confirm").dialog({
-      resizable : false,
-      height : 375,
-      width : 400,
-      autoOpen : false,
-      buttons : {
-        Yes : function() {
-          $(this).dialog("close");
-          calculate_riskStrat();
-        },
-        Cancel : function() {
-          $(this).dialog("close");
-
-        }
-      },
-      modal : true
-    });
-  });
-}
-
 function sortFloat(a, b) {
   return a - b;
 }
@@ -629,18 +607,14 @@ function retrieve_excel(e) {
 }
 
 function createTab(singleFixed, fixedIndex, fixedType,independentType, contourType, tabElement ){
-
   var keyvalueIndex = getKeyValueIndex(independentType, fixedType, contourType);
 
   var keyvalueShort = keyShort[keyvalueIndex];
   var keyvalueLong = keyLong[keyvalueIndex];
 
   for (var key in keyvalueShort) {
-
-    $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" +
-      keyvalueShort[key] + (fixedIndex + 1)).empty();
-
-    table_graph_div = $("<div class='set-" + keyvalueShort[key] + (fixedIndex + 1) + "' class='pull-left'></div>");
+    $("#graphic-" + keyvalueShort[key] + (fixedIndex + 1) +", #table-" + keyvalueShort[key] + (fixedIndex + 1)).empty();
+    table_graph_div = $("<div class='set-" + keyvalueShort[key] + (fixedIndex + 1) + "' class='clearfix'></div>");
     thisTool.find(tabElement).append(table_graph_div);
     graphic_side = ("<div class='graph' id='graphic-" + keyvalueShort[key] + (fixedIndex + 1) + "'></div>");
     table_graph_div.append(graphic_side);
@@ -743,7 +717,7 @@ function fillTable(resultObject, columnHeadings, index) {
 
      
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><td class='header' colspan='2'></td><th class='header' colspan='5'>" +
+        "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" +
         tableFirstColLabel + "</th></tr>");
       if(graphError != 1)
         loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);

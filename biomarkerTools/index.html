@@ -416,23 +416,6 @@
               <div class="table_padding"><span class="variable-example"></span></div>
               <div class="table_padding"><span class="variable-example"></span></div>
             </div>
-            <div id="dialog-confirm" title="Rules Violation" class="modal fade">
-              <div class="modal-dialog"></div>
-              <div class="modal-content">
-                <div class="modal-header">One or more of the following rules have been violated:</div>
-                <div class="modal-body">
-                  <ul class="list-unstyled">
-                    <li class="rule rule1"></li><strong>Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1</strong>
-                    <li class="rule rule2"></li><strong>Delta can be 0 to 5</strong>
-                    <li class="rule rule3"></li><strong>cNPV < Prevalence</strong>
-                    <li class="rule rule3"></li><strong>For arrays: max(cNPV) < min(Prevalence)</strong>
-                    <li class="rule rule4"></li><strong>Prevalence < PPV</strong>
-                    <li class="rule rule4"></li><strong>For arrays: max(prev) < min(PPV)</strong>
-                    <li class="rule rule5"></li><strong>Sensitivity+Specificity-1 > 0</strong>
-                  </ul><strong>Do you wish to continue with calculation anyway?</strong>
-                </div>
-              </div>
-            </div>
             <div>
               <p id="spinner" class="hide"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
             </div>

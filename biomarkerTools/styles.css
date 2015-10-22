@@ -42,7 +42,6 @@ p#spinner {
 }
 .emptyblock {
   display: block;
-  content: '&nbsp;';
 }
 .bold {
   font-weight: bold;
@@ -367,6 +366,16 @@ header #branch-logo {
     padding: 1em 0px;
   }
 }
+@media (min-width: 800px) {
+  #riskStratAdvanced .output .graph {
+    float: right;
+    width: 50%;
+    padding-left: 15px;
+  }
+  #riskStratAdvanced .output .table_container {
+    padding-right: 15px;
+  }
+}
 #riskStratAdvanced .output .table_container {
   overflow: auto;
 }
@@ -380,18 +389,23 @@ header #branch-logo {
   color: #444;
 }
 #riskStratAdvanced .output .table_container th:first-child {
-  vertical-align: bottom;
+  vertical-align: top;
 }
 #riskStratAdvanced .output .table_container th,
 #riskStratAdvanced .output .table_container td {
   padding: 0.1em 0.15em;
 }
 #riskStratAdvanced .output .vertical-text {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -webkit-transform-origin: bottom left;
+  -moz-transform-origin: bottom left;
+  -o-transform-origin: bottom left;
+  -ms-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
   white-space: nowrap;
   width: 1em;
 }

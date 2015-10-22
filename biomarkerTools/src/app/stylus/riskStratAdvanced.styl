@@ -16,6 +16,13 @@
   @media (max-width 379px)
     .ui-tabs .ui-tabs-panel
       padding 1em 0px
+  @media (min-width 800px)
+    .graph
+      float right
+      width 50%
+      padding-left 15px
+    .table_container
+      padding-right 15px
   .table_container
     overflow auto
     .table-header
@@ -26,10 +33,11 @@
       background-color #AAA
       color #444
       &:first-child
-        vertical-align bottom
+        vertical-align top
     th, td
       padding .1em .15em
   .vertical-text
-    transform rotate(-90deg)
+    transform-origin bottom left
+    transform rotate(90deg)
     white-space nowrap
     width 1em
