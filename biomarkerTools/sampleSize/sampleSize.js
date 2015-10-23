@@ -46,7 +46,7 @@ function checkValidity(){
         }
         break;
       default:
-        if ($(el)[0].title !== "")
+        if (!valObject.valid && !valObject.stepMismatch && $(el)[0].title !== "")
           messages.push($(el)[0].title + ". You entered '" + $(el).val() + "'");
     }
   });

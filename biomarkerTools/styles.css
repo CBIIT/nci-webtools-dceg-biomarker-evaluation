@@ -412,6 +412,7 @@ header #branch-logo {
 #sampleSize .input {
   width: 100%;
   max-width: 640px;
+  margin: 0px auto;
 }
 @media (max-width: 430px) {
   #sampleSize .input .panel-body.table_container > .table_row:first-child > .table_data {
