@@ -77,9 +77,8 @@ thisTool.find('.post').click(function(){
         generate_tables(ret);
         random_gen();
         spinner.removeClass("hide");
-        thisTool.find(".download").parent.removeClass("hide");
-      },
-      function(jqXHR, textStatus, errorThrown) {
+        thisTool.find(".download").parent().removeClass("hide");
+      }, function(jqXHR, textStatus, errorThrown) {
         default_ajax_error(jqXHR, textStatus, errorThrown);
       }).always(function(){
         enableAll();
@@ -168,7 +167,7 @@ function generate_tabs(iterate,randomnumber){
   for(var i = 0; i < arrayLength; i++) {
    
     tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
-    tabcontent += '<div id="tab'+(i+1)+'">' +
+    tabcontent += '<div id="tab'+(i+1)+'" class="clearfix">' +
                     '<div class="left_group">' +
                       '<div class="graph">' +
                         '<IMG alt="PPV graph image for tab '+(i+1)+'" SRC="tmp/'+pimagename+randomnumber+'-'+(i+1)+'.png" class="expand">' +
