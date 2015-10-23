@@ -115,24 +115,24 @@ function generate_tables(jsonrtn){
 
   for(var i in jsonrtn) {
    
-    var tablesvar = '<div class="table_row"' +
+    var tablesvar = '<div class="table_row">' +
                       '<div class="table_data">' + label + '</div>' +
                       '<div class="table_data">Optimal k</div>' +
                       '<div class="table_data">Relative efficiency gain or loss compared to k = 0.5</div>' +
                     '</div>';
-    var ppvtabledata = $(tablesvar);
-    var cnpvtabledata = $(tablesvar);
+    var ppvtabledata = tablesvar;
+    var cnpvtabledata = tablesvar;
     for(var n=0; n<jsonrtn[i].PPVData.length; n++) {
-      ppvtabledata.append('<div class="table_row">' +
-                            '<div class="table_data">' + jsonrtn[i].PPVData[n][label] + '</div>' +
-                            '<div class="table_data">' + jsonrtn[i].PPVData[n]["Optimal k"] + '</div>' +
-                            '<div class="table_data">' + jsonrtn[i].PPVData[n]["Relative efficiency gain or loss compared to k = 0.5"] + '</div>' +
-                          '</div>');
-      cnpvtabledata.append('<div class="table_row">' +
-                             '<div class="table_data">' + jsonrtn[i].cNPVData[n][label] + '</div>' +
-                             '<div class="table_data">' + jsonrtn[i].cNPVData[n]["Optimal k"] + '</div>' +
-                             '<div class="table_data">' + jsonrtn[i].cNPVData[n]["Relative efficiency gain or loss compared to k = 0.5"] + '</div>' +
-                           '</div>');
+      ppvtabledata += '<div class="table_row">' +
+                        '<div class="table_data">' + jsonrtn[i].PPVData[n][label] + '</div>' +
+                        '<div class="table_data">' + jsonrtn[i].PPVData[n]["Optimal k"] + '</div>' +
+                        '<div class="table_data">' + jsonrtn[i].PPVData[n]["Relative efficiency gain or loss compared to k = 0.5"] + '</div>' +
+                      '</div>';
+      cnpvtabledata += '<div class="table_row">' +
+                         '<div class="table_data">' + jsonrtn[i].cNPVData[n][label] + '</div>' +
+                         '<div class="table_data">' + jsonrtn[i].cNPVData[n]["Optimal k"] + '</div>' +
+                         '<div class="table_data">' + jsonrtn[i].cNPVData[n]["Relative efficiency gain or loss compared to k = 0.5"] + '</div>' +
+                       '</div>';
     }
     thisTool.find("#"+i+"ppvdata").append(ppvtabledata);
     thisTool.find("#"+i+"cnpvdata").append(cnpvtabledata);
