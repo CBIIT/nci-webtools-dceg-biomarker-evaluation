@@ -30,4 +30,22 @@
       float right
     .table_row:last-child .table_data:last-child
       float left
-
+.output
+  .table_row
+    padding 0px
+    &:first-child .table_data
+      border-top-width 1px
+      background-color #F5F5F5
+      height 4.2em
+      line-height 4em
+      font-weight bold
+      &:last-child
+        line-height 2em
+  .table_data
+    width 25%
+    border solid #DDD
+    border-width 0px 1px 1px 0px
+    &:first-child
+      border-left-width 1px
+    &:last-child
+      width 50%
