@@ -426,12 +426,6 @@
             <div id="helpGlossaryLinks"><a href="#help_sampleSize" class="goToHelp">Help</a><a href="#" class="goToGlossary">Glossary</a></div>
             <div>
               <form id="ss" novalidate>
-                <div id="message" class="hide">
-                  <div class="panel panel-danger">
-                    <div class="panel-heading"></div>
-                    <div id="message-content" class="panel-body"></div>
-                  </div>
-                </div>
                 <div class="input panel panel-default">
                   <div class="panel-body table_container">
                     <div class="table_row">
@@ -501,11 +495,21 @@
                       </div>
                     </div>
                   </div>
-                  <div class="panel-footer">
-                    <button type="submit" class="post">Calculate</button>
-                    <button type="reset" class="reset">Reset</button>
-                    <button type="button" class="hide download">Download Excel</button>
-                    <div class="pull-right"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
+                  <div class="panel-footer table_container">
+                    <div class="table_row">
+                      <div class="table_data"><a id="add-test-data" title="Populate variables with working example" href="#">Example</a></div>
+                    </div>
+                    <div class="table_row">
+                      <div class="table_data">
+                        <button type="submit" class="post">Calculate</button>
+                      </div>
+                      <div class="table_data">
+                        <button type="reset" class="reset">Reset</button>
+                      </div>
+                      <div class="table_data hide">
+                        <button type="button" class="download">Download Excel</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -517,7 +521,7 @@
                   <div id="fixed_flag" class="dom_valref"></div>
                   <div id="randomnumber" class="dom_valref"></div>
                 </div>
-                <div id="output_graph"></div>
+                <div class="output"></div>
               </div>
             </div>
           </div>

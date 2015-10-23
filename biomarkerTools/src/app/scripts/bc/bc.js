@@ -474,7 +474,7 @@ function jsonToCellWithPrev(obj){
   new_row.append("<div>" + Sensitivity + "</div>");
   new_row.append("<div>" + Specificity + "</div>");
   new_row.append("<div>" + LRplus + "</div>");
-  new_row.append("<div'>" + LRminus + "</div>");
+  new_row.append("<div>" + LRminus + "</div>");
   if (validPrevValue) {
     new_row.append("<div>" + PPV + "</div>");
     new_row.append("<div>" + cNPV + "</div>");

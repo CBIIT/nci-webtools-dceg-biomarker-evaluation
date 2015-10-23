@@ -414,34 +414,40 @@ header #branch-logo {
   max-width: 640px;
 }
 @media (max-width: 430px) {
-  #sampleSize .input > .table_container > .table_row:first-child > .table_data {
+  #sampleSize .input .panel-body.table_container > .table_row:first-child > .table_data {
     height: 5.2em;
   }
 }
-#sampleSize .input > .table_container > .table_row:first-child > .table_data:last-child {
+#sampleSize .input .panel-body.table_container > .table_row:first-child > .table_data:last-child {
   height: 5.2em;
 }
 @media (max-width: 540px) {
-  #sampleSize .input > .table_container > .table_row:first-child ~ .table_row .table_data:first-child {
+  #sampleSize .input .panel-body.table_container > .table_row:first-child ~ .table_row .table_data:first-child {
     height: 4.4em;
-    line-height: 4.4em;
+    line-height: 2em;
   }
 }
-#sampleSize .input > .table_container > .table_row > .table_data:first-child {
+#sampleSize .input .panel-body.table_container > .table_row > .table_data:first-child {
   min-width: 12em;
 }
-#sampleSize .input > .table_container > .table_row > .table_data:nth-child(2) {
+#sampleSize .input .panel-body.table_container > .table_row > .table_data:nth-child(2) {
   width: 10em;
 }
 @media (max-width: 540px) {
-  #sampleSize .input > .table_container > .table_row > .table_data:nth-child(2) {
+  #sampleSize .input .panel-body.table_container > .table_row > .table_data:nth-child(2) {
     float: none;
     overflow: auto;
     width: auto;
   }
 }
-#sampleSize .input > .table_container .table_container .table_data {
+#sampleSize .input .panel-body.table_container .table_container .table_data {
   width: 50%;
+}
+#sampleSize .input .panel-footer.table_container .table_row:first-child {
+  float: right;
+}
+#sampleSize .input .panel-footer.table_container .table_row:last-child .table_data:last-child {
+  float: left;
 }
 #meanRiskStratification .input {
   overflow: auto;

@@ -5,10 +5,6 @@
     a.goToGlossary(href="#") Glossary
   div
     form#ss(novalidate)
-      #message.hide
-        .panel.panel-danger
-          .panel-heading
-          #message-content.panel-body
       .input.panel.panel-default
         .panel-body.table_container
           .table_row
@@ -58,12 +54,17 @@
             .table_data.text-left(for='n_value') Sample Size
             .table_data
               input#n_value.fontnormal(type='number', min="1", step="1", title='Sample Size is required and must be an integer greater than 0', required)
-        .panel-footer
-          button.post(type='submit') Calculate
-          button.reset(type='reset') Reset
-          button.hide.download(type='button') Download Excel
-          .pull-right
-            a#add-test-data(title='Populate variables with working example', href='#') Example
+        .panel-footer.table_container
+          .table_row
+            .table_data
+              a#add-test-data(title='Populate variables with working example', href='#') Example
+          .table_row
+            .table_data
+              button.post(type='submit') Calculate
+            .table_data
+              button.reset(type='reset') Reset
+            .table_data.hide
+              button.download(type='button') Download Excel
     div
       include ../partials/loader
       .hide
@@ -71,4 +72,4 @@
         #sensitivity_val.dom_valref
         #fixed_flag.dom_valref
         #randomnumber.dom_valref
-      #output_graph
+      .output

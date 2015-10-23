@@ -1,7 +1,7 @@
 .input
   width 100%
   max-width 640px
-  > .table_container
+  .panel-body.table_container
     > .table_row
       &:first-child
         > .table_data
@@ -12,7 +12,7 @@
         @media (max-width 540px)
           ~ .table_row .table_data:first-child
             height 4.4em
-            line-height 4.4em
+            line-height 2em
       > .table_data
         &:first-child
           min-width 12em
@@ -24,3 +24,9 @@
             width auto
     .table_container .table_data
       width 50%
+  .panel-footer.table_container
+    .table_row:first-child
+      float right
+    .table_row:last-child .table_data:last-child
+      float left
+
