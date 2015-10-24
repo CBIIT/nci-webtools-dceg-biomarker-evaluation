@@ -53,7 +53,7 @@
               <div id="helpGlossaryLinks"><a href="#help_meanstorisk" class="goToHelp">Help</a><a href="#" class="goToGlossary">Glossary</a></div>
               <div class="maliable clearfix">
                 <div class="input">
-                  <div id="accordion" class="panel panel-default">
+                  <div class="accordion panel panel-default">
                     <div class="panel-heading"><b>Choose how to enter the data</b></div>
                     <div data-toggle="collapse" data-target="#file_upload" class="panel-heading">
                       <div class="glyphicon glyphicon-chevron-down"></div><span>User Defined Distribution (from file)</span>
@@ -528,20 +528,20 @@
           <div id="meanRiskStratification" role="tabpanel" class="tab-pane fade">
             <h3 title="Mean Risk Stratification tool">Mean Risk Stratification</h3>
             <div id="helpGlossaryLinks"><a href="#help_meanRiskStratification" class="goToHelp">Help</a><a href="#" class="goToGlossary">Glossary</a></div>
-            <form id="markers" class="input panel-group">
-              <div class="panel panel-default marker-1">
-                <div class="panel-heading text-center bold">Biomarker #1</div>
-                <div class="panel-body">
-                  <div class="table_padding">
-                    <label for="name-input">Biomarker Name</label>
-                    <input id="name-input" type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9_- ]*$" class="input_field">
+            <form class="input panel-group">
+              <div id="markers">
+                <div id="marker-1" class="accordion panel panel-default">
+                  <div class="panel-heading text-center bold">Biomarker #1</div>
+                  <div class="panel-body">
+                    <div class="table_padding">
+                      <label for="name-input">Biomarker Name</label>
+                      <input id="name-input" type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9_- ]*$" class="input_field">
+                    </div>
                   </div>
-                </div>
-                <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-1" class="panel-heading">
-                  <div class="glyphicon glyphicon-chevron-down"></div><span>Input: 2x2 Table</span>
-                </div>
-                <div id="marker-1-option-1" class="panel-collapse collapse in">
-                  <div class="option-1 panel-body table_container">
+                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-1" class="panel-heading">
+                    <div class="glyphicon glyphicon-chevron-down"></div><span>Input: 2x2 Table</span>
+                  </div>
+                  <div class="option-1 panel-body panel-collapse table_container collapse in">
                     <div class="table_row">
                       <div id="m_neg" header="m_neg" class="table_data define">Marker Negative (M-)</div>
                       <div id="prob_m" header="prob_m" class="table_data define">Marker Positive (M+)</div>
@@ -570,12 +570,10 @@
                       <div id="d_neg" class="table_data text-left define">Disease Negative (D-)</div>
                     </div>
                   </div>
-                </div>
-                <div data-toggle="collapse" data-parent=".marker-1" data-target="#marker-1-option-2" class="panel-heading">
-                  <div class="glyphicon glyphicon-chevron-down"></div><span>Input: PPV, NPV, Sensitivity, Specificity, etc.</span>
-                </div>
-                <div id="marker-1-option-2" class="panel-collapse collapse">
-                  <div class="option-2 panel-body">
+                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-2" class="panel-heading">
+                    <div class="glyphicon glyphicon-chevron-down"></div><span>Input: PPV, NPV, Sensitivity, Specificity, etc.</span>
+                  </div>
+                  <div class="option-2 panel-body panel-collapse collapse">
                     <div class="table_padding">
                       <label for="sampsize">Sample Size</label>
                       <input id="sampsize" name="sampsize" type="number" maxlength="30" min="1" class="input_field">

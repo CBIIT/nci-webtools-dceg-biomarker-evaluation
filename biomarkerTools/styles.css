@@ -29,9 +29,6 @@ img.expand {
 p#spinner {
   text-align: center;
 }
-#accordion [data-toggle='collapse'] {
-  cursor: pointer;
-}
 #helpGlossaryLinks {
   float: none;
   overflow: auto;
@@ -39,6 +36,9 @@ p#spinner {
 #helpGlossaryLinks a {
   float: right;
   padding: 0.5em;
+}
+.accordion [data-toggle='collapse'] {
+  cursor: pointer;
 }
 .emptyblock {
   display: block;
@@ -494,7 +494,8 @@ header #branch-logo {
 }
 #meanRiskStratification .input {
   overflow: auto;
-  max-width: 500px;
+  width: 100%;
+  max-width: 480px;
   margin: 0px auto;
 }
 @media (min-width: 950px) {
@@ -535,7 +536,7 @@ header #branch-logo {
   background-color: #f5f5f5;
   width: auto;
 }
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   #meanRiskStratification .input .option-1 .table_data {
     height: 4.2em;
   }

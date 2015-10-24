@@ -3,18 +3,18 @@
   #helpGlossaryLinks
     a.goToHelp(href="#help_meanRiskStratification") Help
     a.goToGlossary(href="#") Glossary
-  form#markers.input.panel-group
-    .panel.panel-default.marker-1
-      .panel-heading.text-center.bold Biomarker #1
-      .panel-body
-        .table_padding
-          label(for='name-input') Biomarker Name
-          input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
-      .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-1')
-        .glyphicon.glyphicon-chevron-down
-        span Input: 2x2 Table
-      #marker-1-option-1.panel-collapse.collapse.in
-        .option-1.panel-body.table_container
+  form.input.panel-group
+    #markers
+      #marker-1.accordion.panel.panel-default
+        .panel-heading.text-center.bold Biomarker #1
+        .panel-body
+          .table_padding
+            label(for='name-input') Biomarker Name
+            input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
+        .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-1')
+          .glyphicon.glyphicon-chevron-down
+          span Input: 2x2 Table
+        .option-1.panel-body.panel-collapse.table_container.collapse.in
           .table_row
             #m_neg.table_data.define(header="m_neg") Marker Negative (M-)
             #prob_m.table_data.define(header="prob_m") Marker Positive (M+)
@@ -35,11 +35,10 @@
               label.sr-only(for='c') C
               input#c.input_field(name='c', type='number', maxlength='30')
             #d_neg.table_data.text-left.define Disease Negative (D-)
-      .panel-heading(data-toggle='collapse', data-parent='.marker-1', data-target='#marker-1-option-2')
-        .glyphicon.glyphicon-chevron-down
-        span Input: PPV, NPV, Sensitivity, Specificity, etc.
-      #marker-1-option-2.panel-collapse.collapse
-        .option-2.panel-body
+        .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
+          .glyphicon.glyphicon-chevron-down
+          span Input: PPV, NPV, Sensitivity, Specificity, etc.
+        .option-2.panel-body.panel-collapse.collapse
           .table_padding
             label(for='sampsize') Sample Size
             input.input_field#sampsize(name='sampsize', type='number', maxlength='30', min='1')
