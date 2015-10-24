@@ -149,7 +149,7 @@ function return_data(data) {
 
   $.each(data, function (propName, paramGroup) {
     var ci_lb, ci_ub, params, calc, marker_id;
-    for (var i = 0; i < numElements; i++) {
+    for (var i = i; i < numElements + 1; i++) {
       var markerValue = thisTool.find('#marker-' + i + ' [name="name-input"]').val();
       var name = markerValue.length > 0 ? markerValue + " (CI Low, CI High)" : "Biomarker " + i + " (CI Low, CI High)";
       thisTool.find('.bm_' + i).attr('title', name).text(name);
@@ -177,7 +177,7 @@ function return_data(data) {
         formattedText += "(" + ci_lb + ", " + ci_ub + ")";
       }
       // append text to table cell
-      cell = $('.' + lookup_id + '_result.' + marker_id + '.output');
+      cell = $('.' + lookup_id + '_result.' + marker_id + '.output_field');
       cell.attr('title', name + " " + formattedText);
       cell.text(formattedText);
     });
@@ -200,7 +200,7 @@ function return_data(data) {
         formattedText += "(" + ci_lb + ", " + ci_ub + ")";
       }
 
-      cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output');
+      cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output_field');
       cell.attr('title', name + " " + formattedText);
       cell.text(formattedText);
     });
@@ -222,8 +222,6 @@ function extract_values(valid) {
     // inside this marker find inputs by group
     var option_1_controls = thisMarker.find('.option-1 .input_field').serializeArray(); // option 1
     var option_2_controls = thisMarker.find('.option-2 .input_field').serializeArray(); // option 2
-    console.log(option_1_controls);
-    console.log(option_2_controls);
     option_1_controls.forEach(function (element) {
       // don't add empty values to object
       if (element.value.length > 0) {
