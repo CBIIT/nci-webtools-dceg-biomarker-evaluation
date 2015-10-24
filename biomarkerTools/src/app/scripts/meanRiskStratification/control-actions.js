@@ -143,16 +143,16 @@ function clean_data(data) {
 
 function return_data(data) {
   var numElements = thisTool.find('#markers').children().length;
-  for (var i = 0; i < numElements; i++) {
+  for (var i = 1; i < numElements + 1; i++) {
     $('.bm_' + i).removeClass("hide");
   }
 
   $.each(data, function (propName, paramGroup) {
     var ci_lb, ci_ub, params, calc, marker_id;
-    for (var i = i; i < numElements + 1; i++) {
+    for (var i = 1; i < numElements + 1; i++) {
       var markerValue = thisTool.find('#marker-' + i + ' [name="name-input"]').val();
       var name = markerValue.length > 0 ? markerValue + " (CI Low, CI High)" : "Biomarker " + i + " (CI Low, CI High)";
-      thisTool.find('.bm_' + i).attr('title', name).text(name);
+      thisTool.find('.marker_name.bm_' + i).attr('title', name).text(name);
     }
 
     params = paramGroup.parameters;
