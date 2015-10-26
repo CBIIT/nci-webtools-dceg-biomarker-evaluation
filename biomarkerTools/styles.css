@@ -155,22 +155,21 @@ header #branch-logo {
   }
 }
 @media (min-width: 800px) {
-  #meanstorisk .maliable > div {
+  #meanstorisk .maliable .input {
     float: left;
     width: 50%;
-  }
-  #meanstorisk .maliable .input {
     padding-right: 15px;
   }
   #meanstorisk .maliable .output {
+    overflow: auto;
+    width: 50%;
     padding-left: 15px;
-  }
-  #meanstorisk .maliable .graph {
-    width: 100%;
   }
 }
 @media (min-width: 1200px) {
-  #meanstorisk .maliable > div {
+  #meanstorisk .maliable .input,
+  #meanstorisk .maliable .output {
+    float: left;
     width: 30.76923076923077%;
     padding: 15px;
   }
@@ -570,7 +569,7 @@ header #branch-logo {
 #meanRiskStratification .output {
   overflow: auto;
 }
-@media (min-width: 950) {
+@media (min-width: 950px) {
   #meanRiskStratification .output {
     padding-left: 15px;
   }

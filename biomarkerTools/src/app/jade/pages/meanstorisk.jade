@@ -26,7 +26,7 @@
           #cases_control.panel-body.collapse
             .panel.panel-default
               .panel-heading.bold Enter Mean, Standard Error, and N for Cases and Controls
-              .no-pad.table_container
+              .table_container
                 .table_row
                   .table_data.emptyblock
                   .table_data.bold Cases
@@ -56,13 +56,16 @@
                     label.sr-only(for='N_controls_input') N for Controls
                     input#N_controls_input(type='text', value='200', size='4')
           .panel-footer
-            .indent
-              div
-                label#Spec.define(for='specificity',data-term='Spec') Specificity:
-                input#specificity(type='text', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
-              div
-                label#DP.define(data-term='DP', for='prevalence') Prevalence:
-                input#prevalence(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
+            .table_padding
+              label#Spec.define(for='specificity',data-term='Spec') Specificity:
+              input#specificity(type='text', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
+            .table_padding
+              label#DP.define(data-term='DP', for='prevalence') Prevalence:
+              input#prevalence(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
+        .table_padding.text-center
+          button#calculate_button(type='button') Calculate
+          button#reset(type='reset') Reset
+          button#download_button.hide(type='button') Download Excel File
       .output
         #mtr-results.panel.panel-default.table_container
           .table_row
@@ -116,10 +119,6 @@
             #auc_controls.table_data.emptyblock
             #auc_overall.table_data.emptyblock
       .graph
-    div
-      button#calculate_button(type='button') Calculate
-      button#reset(type='reset') Reset
-      button#download_button.hide(type='button') Download Excel File
     include ../partials/loader
     .bottom_section.small
       .tabbed_output_panel

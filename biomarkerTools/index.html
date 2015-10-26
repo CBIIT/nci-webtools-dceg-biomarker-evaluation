@@ -72,7 +72,7 @@
                     <div id="cases_control" class="panel-body collapse">
                       <div class="panel panel-default">
                         <div class="panel-heading bold">Enter Mean, Standard Error, and N for Cases and Controls</div>
-                        <div class="no-pad table_container">
+                        <div class="table_container">
                           <div class="table_row">
                             <div class="table_data emptyblock"></div>
                             <div class="table_data bold">Cases</div>
@@ -115,17 +115,20 @@
                       </div>
                     </div>
                     <div class="panel-footer">
-                      <div class="indent">
-                        <div>
-                          <label id="Spec" for="specificity" data-term="Spec" class="define">Specificity:</label>
-                          <input id="specificity" type="text" value="0.8, 0.9, 0.95, 0.99, 0.999" required>
-                        </div>
-                        <div>
-                          <label id="DP" data-term="DP" for="prevalence" class="define">Prevalence:</label>
-                          <input id="prevalence" type="text" value="0.1, 0.05, 0.01, 0.005, 0.001" required>
-                        </div>
+                      <div class="table_padding">
+                        <label id="Spec" for="specificity" data-term="Spec" class="define">Specificity:</label>
+                        <input id="specificity" type="text" value="0.8, 0.9, 0.95, 0.99, 0.999" required>
+                      </div>
+                      <div class="table_padding">
+                        <label id="DP" data-term="DP" for="prevalence" class="define">Prevalence:</label>
+                        <input id="prevalence" type="text" value="0.1, 0.05, 0.01, 0.005, 0.001" required>
                       </div>
                     </div>
+                  </div>
+                  <div class="table_padding text-center">
+                    <button id="calculate_button" type="button">Calculate</button>
+                    <button id="reset" type="reset">Reset</button>
+                    <button id="download_button" type="button" class="hide">Download Excel File</button>
                   </div>
                 </div>
                 <div class="output">
@@ -193,11 +196,6 @@
                   </div>
                 </div>
                 <div class="graph"></div>
-              </div>
-              <div>
-                <button id="calculate_button" type="button">Calculate</button>
-                <button id="reset" type="reset">Reset</button>
-                <button id="download_button" type="button" class="hide">Download Excel File</button>
               </div>
               <p id="spinner" class="hide"><i class="fa fa-spinner fa-spin fa-2x"></i><span id="spinnerText">Calculating</span></p>
               <div class="bottom_section small">
