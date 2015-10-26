@@ -578,7 +578,21 @@ header #branch-logo {
 #meanRiskStratification .output #paramTable {
   margin-bottom: 1em;
 }
+#meanRiskStratification .output table {
+  width: 100%;
+}
+#meanRiskStratification .output td,
+#meanRiskStratification .output th {
+  border: solid #ddd;
+  border-width: 0px 1px 1px 0px;
+  padding: 0.1em 0.15em;
+}
+#meanRiskStratification .output td:first-child,
+#meanRiskStratification .output th:first-child {
+  border-left-width: 1px;
+}
 #meanRiskStratification .output th {
   background-color: #f5f5f5;
+  border-top-width: 1px;
   font-weight: bold;
 }
