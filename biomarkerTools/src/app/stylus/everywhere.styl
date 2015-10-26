@@ -49,6 +49,17 @@ p#spinner
   margin-bottom 0px
 .red
   background-color base-red
+.table_container.bordered
+  .table_row
+    &:first-child .table_data
+      border-top-width 1px
+    &:not(:first-child) .table_data:first-child
+      text-align left
+  .table_data
+    border solid #DDD
+    border-width 0px 1px 1px 0px
+    &:first-child
+      border-left-width 1px
 .table_data
   display block
   float left

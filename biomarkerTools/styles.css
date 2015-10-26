@@ -68,6 +68,19 @@ p#spinner {
 .red {
   background-color: #bb0e3d;
 }
+.table_container.bordered .table_row:first-child .table_data {
+  border-top-width: 1px;
+}
+.table_container.bordered .table_row:not(:first-child) .table_data:first-child {
+  text-align: left;
+}
+.table_container.bordered .table_data {
+  border: solid #ddd;
+  border-width: 0px 1px 1px 0px;
+}
+.table_container.bordered .table_data:first-child {
+  border-left-width: 1px;
+}
 .table_data {
   display: block;
   float: left;
@@ -496,7 +509,7 @@ header #branch-logo {
   overflow: auto;
   width: 100%;
   max-width: 480px;
-  margin: 0px auto;
+  margin: 0px auto 1em;
 }
 @media (min-width: 950px) {
   #meanRiskStratification .input {
@@ -562,6 +575,10 @@ header #branch-logo {
     padding-left: 15px;
   }
 }
-#meanRiskStratification .output #results .table_data {
-  width: 25%;
+#meanRiskStratification .output #paramTable {
+  margin-bottom: 1em;
+}
+#meanRiskStratification .output th {
+  background-color: #f5f5f5;
+  font-weight: bold;
 }
