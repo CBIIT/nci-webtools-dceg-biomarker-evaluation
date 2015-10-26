@@ -535,6 +535,7 @@ header #branch-logo {
   float: none;
   background-color: #f5f5f5;
   width: auto;
+  text-align: left;
 }
 @media (max-width: 480px) {
   #meanRiskStratification .input .option-1 .table_data {
@@ -561,25 +562,6 @@ header #branch-logo {
     padding-left: 15px;
   }
 }
-#meanRiskStratification .output table {
-  border-top: 1px solid #ddd;
-  margin: 1em 0px;
-}
-@media (min-width: 480px) {
-  #meanRiskStratification .output table {
-    margin-top: 0px;
-  }
-}
-#meanRiskStratification .output th {
-  background-color: #f5f5f5;
-}
-#meanRiskStratification .output th,
-#meanRiskStratification .output td {
-  border: solid #ddd;
-  border-width: 0px 1px 1px 0px;
-  padding: 0.1em 0.15em;
-}
-#meanRiskStratification .output th:first-child,
-#meanRiskStratification .output td:first-child {
-  border-width: 0px 1px 1px;
+#meanRiskStratification .output #results .table_data {
+  width: 25%;
 }

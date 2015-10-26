@@ -26,7 +26,7 @@
             .table_data
               label.sr-only(for='a') A
               input#a.input_field(name='a', type='number', maxlength='30')
-            #prob_d.table_data.text-left.define Disease Positive (D+)
+            #prob_d.table_data.define Disease Positive (D+)
           .table_row
             .table_data
               label.sr-only(for='d') D
@@ -34,7 +34,7 @@
             .table_data
               label.sr-only(for='c') C
               input#c.input_field(name='c', type='number', maxlength='30')
-            #d_neg.table_data.text-left.define Disease Negative (D-)
+            #d_neg.table_data.define Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
           .glyphicon.glyphicon-chevron-down
           span Input: PPV, NPV, Sensitivity, Specificity, etc.
@@ -103,136 +103,136 @@
   .output
     include ../partials/loader.jade
     #results.hide
-      table#paramTable
-        tr
-          th(header="Calculations") Calculations
-          th.bm_1.marker_name(header="Calculations for Biomarker 1", title="Calculations for Biomarker 1") (Biomarker Title Placeholder)
-          th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
-          th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
-        tr
-          td.text-left.concern.define Concern = PPV-P(D+)
-          td.concern_result.output_field.bm_1
-          td.concern_result.output_field.bm_2
-          td.concern_result.output_field.bm_3
-        tr
-          td.text-left.reassurance.define Reassurance = P(D+)-cNPV
-          td.reassurance_result.output_field.bm_1
-          td.reassurance_result.output_field.bm_2
-          td.reassurance_result.output_field.bm_3
-        tr
-          td.text-left.q_sens.define Concentration = Sensitivity - P(M+)
-          td.q_sens_result.output_field.bm_1
-          td.q_sens_result.output_field.bm_2
-          td.q_sens_result.output_field.bm_3
-        tr
-          td.text-left.q_spec.define Reduction = P(M+) - cSpec
-          td.q_spec_result.output_field.bm_1
-          td.q_spec_result.output_field.bm_2
-          td.q_spec_result.output_field.bm_3
-        tr
-          td.text-left.mrs.define Mean Risk Stratification = 2(ad-bc)
-          td.mrs_result.output_field.bm_1
-          td.mrs_result.output_field.bm_2
-          td.mrs_result.output_field.bm_3
-        tr
-          td.text-left.max_mrs.define Maximum possible MRS for a disease with this prevalence
-          td.max_mrs_result.output_field.bm_1
-          td.max_mrs_result.output_field.bm_2
-          td.max_mrs_result.output_field.bm_3
-        tr
-          td.text-left.pbs.define Population Burden Stratification (PBS) = a-b
-          td.pbs_result.output_field.bm_1
-          td.pbs_result.output_field.bm_2
-          td.pbs_result.output_field.bm_3
-        tr
-          td.text-left.nnr.define Number Needed to Recruit (NNR) = 1/PBS
-          td.nnr_result.output_field.bm_1
-          td.nnr_result.output_field.bm_2
-          td.nnr_result.output_field.bm_3
-        tr
-          td.text-left.nns.define Number Needed to Screen (NNS) =1/RD
-          td.nns_result.output_field.bm_1
-          td.nns_result.output_field.bm_2
-          td.nns_result.output_field.bm_3
-      table#calcTable
-        tr
-          th(header="Parameters") Parameters
-          th.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1") (Biomarker Title Placeholder)
-          th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
-          th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
-        tr
-          td.text-left.test.define True Positive Fraction = a
-          td.d_pos_result.output_field.bm_1
-          td.d_pos_result.output_field.bm_2
-          td.d_pos_result.output_field.bm_3
-        tr
-          td.text-left.test.define False Negative Fraction = b
-          td.pos_d_neg_m_result.output_field.bm_1
-          td.pos_d_neg_m_result.output_field.bm_2
-          td.pos_d_neg_m_result.output_field.bm_3
-        tr
-          td.text-left.test.define False Positive Fraction = c
-          td.neg_d_pos_m_result.output_field.bm_1
-          td.neg_d_pos_m_result.output_field.bm_2
-          td.neg_d_pos_m_result.output_field.bm_3
-        tr
-          td.text-left.test.define True Negative Fraction = d
-          td.m_neg_result.output_field.bm_1
-          td.m_neg_result.output_field.bm_2
-          td.m_neg_result.output_field.bm_3
-        tr
-          td.text-left.define.prob_m Marker Positivity
-          td.prob_m_result.output_field.bm_1
-          td.prob_m_result.output_field.bm_2
-          td.prob_m_result.output_field.bm_3
-        tr
-          td.text-left.prob_d.define Disease Prevalence
-          td.prob_d_result.output_field.bm_1
-          td.prob_d_result.output_field.bm_2
-          td.prob_d_result.output_field.bm_3
-        tr
-          td.text-left.define.ppv Positive Predictive Value (PPV)
-          td.ppv_result.output_field.bm_1
-          td.ppv_result.output_field.bm_2
-          td.ppv_result.output_field.bm_3
-        tr
-          td.text-left.cnpv.define Complement of Negative Predictive Value (cNPV)
-          td.c_npv_result.output_field.bm_1
-          td.c_npv_result.output_field.bm_2
-          td.c_npv_result.output_field.bm_3
-        tr
-          td.text-left.define.sens Sensitivity
-          td.sens_result.output_field.bm_1
-          td.sens_result.output_field.bm_2
-          td.sens_result.output_field.bm_3
-        tr
-          td.text-left.define.spec Specificity
-          td.spec_result.output_field.bm_1
-          td.spec_result.output_field.bm_2
-          td.spec_result.output_field.bm_3
-        tr
-          td.text-left.test.define Complement of Specificity (cSpec)
-          td.c_spec_result.output_field.bm_1
-          td.c_spec_result.output_field.bm_2
-          td.c_spec_result.output_field.bm_3
-        tr
-          td.text-left.test.define Relative Risk
-          td.rr_result.output_field.bm_1
-          td.rr_result.output_field.bm_2
-          td.rr_result.output_field.bm_3
-        tr
-          td.text-left.test.define Risk Difference (RD)
-          td.r_diff_result.output_field.bm_1
-          td.r_diff_result.output_field.bm_2
-          td.r_diff_result.output_field.bm_3
-        tr
-          td.text-left.test.define
+      #paramTable.table_container
+        .table_row
+          .table_data(header="Calculations") Calculations
+          .table_data.bm_1.marker_name(header="Calculations for Biomarker 1", title="Calculations for Biomarker 1") (Biomarker Title Placeholder)
+          .table_data.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
+          .table_data.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
+        .table_row
+          .table_data.concern.define Concern = PPV-P(D+)
+          .table_data.concern_result.output_field.bm_1
+          .table_data.concern_result.output_field.bm_2
+          .table_data.concern_result.output_field.bm_3
+        .table_row
+          .table_data.text-left.reassurance.define Reassurance = P(D+)-cNPV
+          .table_data.reassurance_result.output_field.bm_1
+          .table_data.reassurance_result.output_field.bm_2
+          .table_data.reassurance_result.output_field.bm_3
+        .table_row
+          .table_data.text-left.q_sens.define Concentration = Sensitivity - P(M+)
+          .table_data.q_sens_result.output_field.bm_1
+          .table_data.q_sens_result.output_field.bm_2
+          .table_data.q_sens_result.output_field.bm_3
+        .table_row
+          .table_data.text-left.q_spec.define Reduction = P(M+) - cSpec
+          .table_data.q_spec_result.output_field.bm_1
+          .table_data.q_spec_result.output_field.bm_2
+          .table_data.q_spec_result.output_field.bm_3
+        .table_row
+          .table_data.text-left.mrs.define Mean Risk Stratification = 2(ad-bc)
+          .table_data.mrs_result.output_field.bm_1
+          .table_data.mrs_result.output_field.bm_2
+          .table_data.mrs_result.output_field.bm_3
+        .table_row
+          .table_data.text-left.max_mrs.define Maximum possible MRS for a disease with this prevalence
+          .table_data.max_mrs_result.output_field.bm_1
+          .table_data.max_mrs_result.output_field.bm_2
+          .table_data.max_mrs_result.output_field.bm_3
+        .table_row
+          .table_data.pbs.define Population Burden Stratification (PBS) = a-b
+          .table_data.pbs_result.output_field.bm_1
+          .table_data.pbs_result.output_field.bm_2
+          .table_data.pbs_result.output_field.bm_3
+        .table_row
+          .table_data.nnr.define Number Needed to Recruit (NNR) = 1/PBS
+          .table_data.nnr_result.output_field.bm_1
+          .table_data.nnr_result.output_field.bm_2
+          .table_data.nnr_result.output_field.bm_3
+        .table_row
+          .table_data.nns.define Number Needed to Screen (NNS) =1/RD
+          .table_data.nns_result.output_field.bm_1
+          .table_data.nns_result.output_field.bm_2
+          .table_data.nns_result.output_field.bm_3
+      #calcTable.table_container
+        .table_row
+          .table_data(header="Parameters") Parameters
+          .table_data.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1") (Biomarker Title Placeholder)
+          .table_data.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
+          .table_data.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
+        .table_row
+          .table_data.test.define True Positive Fraction = a
+          .table_data.d_pos_result.output_field.bm_1
+          .table_data.d_pos_result.output_field.bm_2
+          .table_data.d_pos_result.output_field.bm_3
+        .table_row
+          .table_data.test.define False Negative Fraction = b
+          .table_data.pos_d_neg_m_result.output_field.bm_1
+          .table_data.pos_d_neg_m_result.output_field.bm_2
+          .table_data.pos_d_neg_m_result.output_field.bm_3
+        .table_row
+          .table_data.test.define False Positive Fraction = c
+          .table_data.neg_d_pos_m_result.output_field.bm_1
+          .table_data.neg_d_pos_m_result.output_field.bm_2
+          .table_data.neg_d_pos_m_result.output_field.bm_3
+        .table_row
+          .table_data.test.define True Negative Fraction = d
+          .table_data.m_neg_result.output_field.bm_1
+          .table_data.m_neg_result.output_field.bm_2
+          .table_data.m_neg_result.output_field.bm_3
+        .table_row
+          .table_data.define.prob_m Marker Positivity
+          .table_data.prob_m_result.output_field.bm_1
+          .table_data.prob_m_result.output_field.bm_2
+          .table_data.prob_m_result.output_field.bm_3
+        .table_row
+          .table_data.prob_d.define Disease Prevalence
+          .table_data.prob_d_result.output_field.bm_1
+          .table_data.prob_d_result.output_field.bm_2
+          .table_data.prob_d_result.output_field.bm_3
+        .table_row
+          .table_data.define.ppv Positive Predictive Value (PPV)
+          .table_data.ppv_result.output_field.bm_1
+          .table_data.ppv_result.output_field.bm_2
+          .table_data.ppv_result.output_field.bm_3
+        .table_row
+          .table_data.cnpv.define Complement of Negative Predictive Value (cNPV)
+          .table_data.c_npv_result.output_field.bm_1
+          .table_data.c_npv_result.output_field.bm_2
+          .table_data.c_npv_result.output_field.bm_3
+        .table_row
+          .table_data.define.sens Sensitivity
+          .table_data.sens_result.output_field.bm_1
+          .table_data.sens_result.output_field.bm_2
+          .table_data.sens_result.output_field.bm_3
+        .table_row
+          .table_data.define.spec Specificity
+          .table_data.spec_result.output_field.bm_1
+          .table_data.spec_result.output_field.bm_2
+          .table_data.spec_result.output_field.bm_3
+        .table_row
+          .table_data.test.define Complement of Specificity (cSpec)
+          .table_data.c_spec_result.output_field.bm_1
+          .table_data.c_spec_result.output_field.bm_2
+          .table_data.c_spec_result.output_field.bm_3
+        .table_row
+          .table_data.test.define Relative Risk
+          .table_data.rr_result.output_field.bm_1
+          .table_data.rr_result.output_field.bm_2
+          .table_data.rr_result.output_field.bm_3
+        .table_row
+          .table_data.test.define Risk Difference (RD)
+          .table_data.r_diff_result.output_field.bm_1
+          .table_data.r_diff_result.output_field.bm_2
+          .table_data.r_diff_result.output_field.bm_3
+        .table_row
+          .table_data.test.define
             | Youden's Index (YI)
-          td.youden_result.output_field.bm_1
-          td.youden_result.output_field.bm_2
-          td.youden_result.output_field.bm_3
-        tr
-          td.text-left.auc.define AUC = (1+YI)/2
-          td.auc_result.output_field.bm_1
-          td.auc_result.output_field.bm_2
-          td.auc_result.output_field.bm_3
+          .table_data.youden_result.output_field.bm_1
+          .table_data.youden_result.output_field.bm_2
+          .table_data.youden_result.output_field.bm_3
+        .table_row
+          .table_data.auc.define AUC = (1+YI)/2
+          .table_data.auc_result.output_field.bm_1
+          .table_data.auc_result.output_field.bm_2
+          .table_data.auc_result.output_field.bm_3
