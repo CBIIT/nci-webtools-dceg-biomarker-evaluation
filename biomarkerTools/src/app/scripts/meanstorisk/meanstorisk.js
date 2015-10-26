@@ -582,13 +582,13 @@ function draw_graph() {
 
 
   var activePanelId = thisTool.find("#accordion .collapse.in").attr('id');
-  if (activePanelId =="file_upload") {
+  if (activePanelId == "file_upload") {
     graph_file = "tmp/CSV"+uniqueKey+".png?";
   } else {
     graph_file = "tmp/input"+uniqueKey+".png?";
   }
 
-  $(".graph").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small class='bold'>(Hover or click to enlarge)</small>");
+  thisTool.find(".graph").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small class='bold'>(Hover or click to enlarge)</small>");
 }
 
 function set_value(field, value) {

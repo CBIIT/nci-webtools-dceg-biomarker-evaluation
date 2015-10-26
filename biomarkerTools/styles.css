@@ -8,24 +8,6 @@ h3 {
 img.expand {
   width: 100%;
 }
-@media (min-width: 640px) {
-  img.expand {
-    width: 80%;
-    -webkit-transition: -webkit-transform 0.5s ease-in;
-    -moz-transition: -moz-transform 0.5s ease-in;
-    -o-transition: -o-transform 0.5s ease-in;
-    -ms-transition: -ms-transform 0.5s ease-in;
-    transition: transform 0.5s ease-in;
-  }
-  img.expand:hover,
-  img.expand:active {
-    -webkit-transform: scale(1.25);
-    -moz-transform: scale(1.25);
-    -o-transform: scale(1.25);
-    -ms-transform: scale(1.25);
-    transform: scale(1.25);
-  }
-}
 p#spinner {
   text-align: center;
 }
@@ -154,6 +136,10 @@ header #branch-logo {
     padding: 1.5em;
   }
 }
+#meanstorisk .maliable .graph {
+  max-width: 600px;
+  margin: 0px auto;
+}
 @media (min-width: 800px) {
   #meanstorisk .maliable .input {
     float: left;
@@ -164,6 +150,9 @@ header #branch-logo {
     overflow: auto;
     width: 50%;
     padding-left: 15px;
+  }
+  #meanstorisk .maliable .graph {
+    clear: both;
   }
 }
 @media (min-width: 1200px) {
@@ -176,21 +165,6 @@ header #branch-logo {
   #meanstorisk .maliable > .graph {
     width: 38.46153846153846%;
   }
-  #meanstorisk .maliable .graph img.expand {
-    -webkit-transform-origin: top right;
-    -moz-transform-origin: top right;
-    -o-transform-origin: top right;
-    -ms-transform-origin: top right;
-    transform-origin: top right;
-  }
-  #meanstorisk .maliable .graph img.expand:hover,
-  #meanstorisk .maliable .graph img.expand:active {
-    -webkit-transform: scale(1.5);
-    -moz-transform: scale(1.5);
-    -o-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    transform: scale(1.5);
-  }
 }
 #meanstorisk #cases_control .table_row > div {
   width: 30%;
@@ -198,10 +172,7 @@ header #branch-logo {
 #meanstorisk #cases_control .table_row > div:first-child {
   width: 40%;
 }
-#meanstorisk #cases_control input {
-  width: 100%;
-}
-#meanstorisk #accordion .panel-footer input {
+#meanstorisk .accordion .panel-footer input {
   width: 100%;
 }
 #meanstorisk #mtr-results .table_row {
@@ -388,6 +359,10 @@ header #branch-logo {
     padding-right: 15px;
   }
 }
+#riskStratAdvanced .output .graph,
+#riskStratAdvanced .output .table_container {
+  margin-bottom: 1em;
+}
 #riskStratAdvanced .output .table_container {
   overflow: auto;
 }
@@ -420,6 +395,9 @@ header #branch-logo {
   transform: rotate(90deg);
   white-space: nowrap;
   width: 1em;
+}
+#sampleSize form {
+  margin-bottom: 1em;
 }
 #sampleSize .input {
   width: 100%;

@@ -1,4 +1,7 @@
 .maliable
+  .graph
+    max-width 600px
+    margin 0px auto
   @media (min-width 800px)
     .input
       float left
@@ -8,6 +11,8 @@
       overflow auto
       width 50%
       padding-left 15px
+    .graph
+      clear both
   @media (min-width 1200px)
     .input, .output
       float left
@@ -15,20 +20,19 @@
       padding 15px
     > .graph
       width (100%*5/13)
+/*
     .graph img.expand
       transform-origin top right
       &:hover
       &:active
         transform scale(1.5)
-#cases_control
-  .table_row > div
-    width 30%
-    &:first-child
-      width 40%
-  input
-    width 100%
-#accordion .panel-footer input
-    width 100%
+*/
+#cases_control .table_row > div
+  width 30%
+  &:first-child
+    width 40%
+.accordion .panel-footer input
+  width 100%
 #mtr-results
   .table_row
     border 1px solid #ddd
