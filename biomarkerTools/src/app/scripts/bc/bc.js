@@ -21,7 +21,10 @@ $(document).ready(function(){
   bind_reference_row();
   bind_input();
   bind_calculate_button();
-  bind_remove_row();
+  thisTool.find('#inputdata').on('click', '.remove_row_button', function(e) {
+    e.preventDefault();
+    remove_row($(this));
+  });
   bind_add_new_row();
 
   thisTool.find("#file_upload").on('change', uploading_csv);
@@ -121,11 +124,6 @@ function validate_csv(file){
   return false;
 }
 
-function bind_remove_row(){
-  thisTool.find('.remove_row_button').on('click', function(){
-    remove_row($(this));
-  });
-}
 function bind_add_new_row(){
   thisTool.find('#new_row_button').click(function(){
     add_new_row();
@@ -147,9 +145,8 @@ function bind_reference_row(){
       .siblings('.reference_row').removeClass('reference_row');
     oldReference.children('.reference').html("<img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/>");
     if (oldReference.parent().children().length > 4) {
-      oldReference.children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
+      oldReference.children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON><BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
     }
-    bind_remove_row();
   });
 }
 function bind_input(){
@@ -208,12 +205,14 @@ function import_data_row(data, ind){
   var cell_2 = "<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
   var cell_3 = "<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
   var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
-  var cell_5 = "<div class='table_data emptyblock'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+  var cell_5 = "<div class='table_data emptyblock'>" +
+                 "<BUTTON class='remove_row_button'>Remove</BUTTON>" +
+                 "<BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
+               "</div>";
 
   $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
 
   inputElm.children(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='check'/>").siblings().last().empty();
-  bind_remove_row();
   bind_reference_row();
   bind_input();
 }
@@ -225,17 +224,19 @@ function add_new_row(){
   var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
   var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
   var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
-  var row_5 = "<div class='table_data'><BUTTON class='remove_row_button'>Remove</BUTTON></div></div>";
+  var row_5 = "<div class='table_data emptyblock'>" +
+                 "<BUTTON class='remove_row_button'>Remove</BUTTON>" +
+                 "<BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
+               "</div>";
   inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
   if (num_rows === 2) {
     inputElm.children(':not(.non-data-row)').each(function(i, row){
       update_row_index(i, row);
       if (!$(this).hasClass('reference_row')) {
-        $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON>");
+        $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON><BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
       }
     });
   }
-  bind_remove_row();
   bind_reference_row();
   bind_input();
 }
