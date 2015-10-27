@@ -153,6 +153,7 @@ header #branch-logo {
 }
 #meanstorisk .maliable .input,
 #meanstorisk .maliable .output {
+  width: 100%;
   max-width: 360px;
 }
 @media (max-width: 761px) {
@@ -309,22 +310,26 @@ header #branch-logo {
   height: 2em;
   padding: 0px 0px 0.15em 0.15em;
 }
+#bc .data_group {
+  width: 100%;
+  max-width: 580px;
+  margin: 0px auto;
+}
 @media (min-width: 1000px) {
   #bc .data_group {
     float: left;
+    max-width: 595px;
     padding-right: 15px;
-    width: 58.333333333333336%;
   }
 }
 #bc .graph {
-  width: 608px;
-  max-width: 100%;
+  overflow: auto;
+  max-width: 580px;
   margin: 0px auto;
 }
 @media (min-width: 1000px) {
   #bc .graph {
-    float: left;
-    width: 41.666666666666664%;
+    max-width: 620px;
   }
 }
 #bc .output .top-header {
