@@ -537,7 +537,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
                "</TH>");
   second_header_row.appendTo(general_table);
   var third_header_row = $("<tr></tr>");
-  third_header_row.append("<TH class='header text-center colspan='4' style='border-right:1px solid black;'>" +
+  third_header_row.append("<TH class='header text-center' colspan='4' style='border-right:1px solid black;'>" +
               "<div class='define id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
               "</TH>" );
   third_header_row.append("<TH class='header text-center' colspan='" + prevalence_count + "' >" +

@@ -1,25 +1,33 @@
 .maliable
+  margin 0px auto
+  font-size 0px
+  > *
+    font-size 13px
   .graph
     max-width 600px
     margin 0px auto
-  @media (min-width 800px)
+  .input, .output
+    width 360px
+    padding 15px
+  @media (max-width 761px)
+    max-width 360px
+  @media (min-width 762px) and (max-width 1079px)
+    max-width 720px
+    .input, .output
+      display inline-block
+      vertical-align top
     .input
-      float left
-      width 50%
       padding-right 15px
     .output
-      overflow auto
-      width 50%
       padding-left 15px
     .graph
       clear both
-  @media (min-width 1200px)
+  @media (min-width 1080px)
     .input, .output
       float left
-      width (100%*4/13)
-      padding 15px
-    > .graph
-      width (100%*5/13)
+    .graph
+      overflow auto
+      
 /*
     .graph img.expand
       transform-origin top right
@@ -33,6 +41,8 @@
     width 40%
 .accordion .panel-footer input
   width 100%
+.input > .table_padding button
+  width auto
 #mtr-results
   .table_row
     border 1px solid #ddd
