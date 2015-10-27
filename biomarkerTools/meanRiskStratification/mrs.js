@@ -91,7 +91,6 @@ function delete_marker(e) {
     thisTool.find('.bm_'+numElements).addClass("hide");
     controls_visibility();
   }
-  scrollTop();
 }
 
 function calculate_mrs(e) {
@@ -123,14 +122,7 @@ function calculate_mrs(e) {
       thisTool.find('#spinner').addClass("hide");
       thisTool.find('#calculate').removeAttr("disabled").text("Calculate");
     });
-    scrollTop();
   }
-}
-
-function scrollTop() {
-  $('html, body').animate({
-    scrollTop: 0
-  });
 }
 
 function clean_data(data) {
@@ -205,7 +197,6 @@ function return_data(data) {
 
   thisTool.find("#results").removeClass("hide");
   thisTool.find("#spinner").addClass("hide");
-  scrollTop();
 }
 
 function extract_values(valid) {

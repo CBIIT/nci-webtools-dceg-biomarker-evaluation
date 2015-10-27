@@ -385,6 +385,10 @@ header #branch-logo {
 #riskStratAdvanced .input .table_data:last-child {
   min-width: 7em;
 }
+#riskStratAdvanced .output .graph {
+  max-width: 400px;
+  margin: 0px auto;
+}
 @media (min-width: 800px) {
   #riskStratAdvanced .output .graph {
     float: right;
@@ -480,11 +484,15 @@ header #branch-logo {
   #sampleSize .output .left_group {
     float: left;
     width: 50%;
+    max-width: 350px;
+    margin: 0px auto;
     padding-right: 15px;
   }
   #sampleSize .output .right_group {
     float: right;
     width: 50%;
+    max-width: 350px;
+    margin: 0px auto;
     padding-left: 15px;
   }
 }
