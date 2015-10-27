@@ -481,18 +481,21 @@ header #branch-logo {
   float: left;
 }
 @media (min-width: 768px) {
+  #sampleSize .output .left_group,
+  #sampleSize .output .right_group {
+    width: 50%;
+  }
+  #sampleSize .output .left_group .graph,
+  #sampleSize .output .right_group .graph {
+    margin: 0px auto;
+    max-width: 350px;
+  }
   #sampleSize .output .left_group {
     float: left;
-    width: 50%;
-    max-width: 350px;
-    margin: 0px auto;
     padding-right: 15px;
   }
   #sampleSize .output .right_group {
     float: right;
-    width: 50%;
-    max-width: 350px;
-    margin: 0px auto;
     padding-left: 15px;
   }
 }
