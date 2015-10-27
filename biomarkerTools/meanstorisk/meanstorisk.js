@@ -515,7 +515,7 @@ function make_tabs() {
   var index = 0;
   for(var key in ppv_tabs) {
     index++;
-    tab_names.append("<LI><a class='col-xs-12' href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
+    tab_names.append("<LI><a href='#tab-" + index + "' title='" + ppv_tabs[key] + "'>" + key + "</a></LI>");
     tabs.append("<DIV id='tab-" + index + "' > " + ppv_tabs[key] + " </div>");
   }
   tabs.tabs();
@@ -537,11 +537,11 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
                "</TH>");
   second_header_row.appendTo(general_table);
   var third_header_row = $("<tr></tr>");
-  third_header_row.append("<TH class='header text-center col-sm-5' colspan='4' style='border-right:1px solid black;'>" +
-              "<div class='define col-xs-12' id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
+  third_header_row.append("<TH class='header text-center colspan='4' style='border-right:1px solid black;'>" +
+              "<div class='define id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
               "</TH>" );
-  third_header_row.append("<TH class='header text-center col-sm-7' colspan='" + prevalence_count + "' >" +
-              "<div class='col-xs-12 define' id='DP2-" + tab_id + "' data-term='DP'>Disease Prevalence</div>" +
+  third_header_row.append("<TH class='header text-center' colspan='" + prevalence_count + "' >" +
+              "<div class='define' id='DP2-" + tab_id + "' data-term='DP'>Disease Prevalence</div>" +
               "<div class='popupDefinition' id='DP2-" + tab_id + "Definition'></div>" +
               "</TH>");
   third_header_row.appendTo(general_table);

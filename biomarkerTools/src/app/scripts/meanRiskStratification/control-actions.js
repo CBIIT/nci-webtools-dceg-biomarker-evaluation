@@ -8,7 +8,6 @@ var init_meanRiskStratification = function() {
   thisTool.on('show.bs.collapse','.option-2', function() {
     $(this).prev().prev().collapse('hide');
   })
-  create_popover();
 }
 
 $(document).ready(init_meanRiskStratification);
@@ -20,7 +19,6 @@ $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
   init_meanRiskStratification();
 });
 
-thisTool.find('.define').on('click', display_definition);
 thisTool.find("#errors").alert();
 // testing
 thisTool.find('a#test1,a#test2').on('click', test);
@@ -78,7 +76,6 @@ function new_marker(e) {
       $(this).attr('data-parent','#'+elementId);
     });
     newElement.find('.panel-heading:first').text('Biomarker #' + numElements);
-    newElement.find('.define').on('click', display_definition);
 
     $(newElement).insertAfter(thisTool.find('#markers').children(':last-child'));
     controls_visibility();

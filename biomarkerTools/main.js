@@ -65,7 +65,7 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
   document.title = title;
 });
 
-$('.define').on('click', termDisplay);
+$(document).on('click', '.define', termDisplay);
 
 $('.disable_control').on('click',function(e){
   e.preventDefault();
@@ -149,10 +149,10 @@ function display_errors(message) {
   document.querySelector('header').scrollIntoView(true);
 }
 
-function termDisplay(){
+function termDisplay() {
   var $self = $(this);
   var dTerm = $self.attr('data-term');
-
+  if (typeof Glossary[dTerm] === "undefined") return;
   var definition = Glossary[dTerm].definition;
   var term = Glossary[dTerm].fullName;
 
@@ -173,5 +173,4 @@ function termDisplay(){
     $self.popover();
     $self.popover('show');
   }
-
 }

@@ -16,8 +16,8 @@
           span Input: 2x2 Table
         .option-1.panel-body.panel-collapse.table_container.collapse.in
           .table_row
-            #m_neg.table_data.define(header="m_neg") Marker Negative (M-)
-            #prob_m.table_data.define(header="prob_m") Marker Positive (M+)
+            #m_neg.table_data.define(data-term="m_neg") Marker Negative (M-)
+            #prob_m.table_data.define(data-term="prob_m") Marker Positive (M+)
             .table_data.emptyblock
           .table_row
             .table_data
@@ -26,7 +26,7 @@
             .table_data
               label.sr-only(for='a') A
               input#a.input_field(name='a', type='number', maxlength='30')
-            #prob_d.table_data.text-left.define Disease Positive (D+)
+            #prob_d.table_data.text-left.define(data-term="prob_d") Disease Positive (D+)
           .table_row
             .table_data
               label.sr-only(for='d') D
@@ -34,7 +34,7 @@
             .table_data
               label.sr-only(for='c') C
               input#c.input_field(name='c', type='number', maxlength='30')
-            #d_neg.table_data.text-left.define Disease Negative (D-)
+            #d_neg.table_data.text-left.define(data-term="d_neg") Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
           .glyphicon.glyphicon-chevron-down
           span Input: PPV, NPV, Sensitivity, Specificity, etc.
@@ -49,7 +49,7 @@
             .table_row(row='0')
               .table_data
                 label.sr-only(for="param_1") Parameter 1 Selections
-                span.dd.define
+                span.dd.define(data-term='ppv')
                   img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
                 div
                   select#param_1.input_field(name='param_1')
@@ -61,7 +61,7 @@
             .table_row(row='1')
               .table_data
                 label.sr-only(for="param_2") Parameter 2 Selections
-                span.dd.define
+                span.dd.define(data-term='npv')
                   img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
                 div
                   select#param_2.input_field(name='param_2')
@@ -73,7 +73,7 @@
             .table_row(row='2')
               .table_data
                 label.sr-only(for="param_3") Parameter 3 Selections
-                span.dd.define
+                span.dd.define(data-term='prob_m')
                   img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
                 div
                   select#param_3.input_field(name='param_3')
@@ -110,47 +110,47 @@
           th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
           th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
         tr
-          td.text-left.concern.define Concern = PPV-P(D+)
+          td.text-left.concern.define(data-term="concern") Concern = PPV-P(D+)
           td.concern_result.output_field.bm_1
           td.concern_result.output_field.bm_2
           td.concern_result.output_field.bm_3
         tr
-          td.text-left.reassurance.define Reassurance = P(D+)-cNPV
+          td.text-left.reassurance.define(data-term="reassurance") Reassurance = P(D+)-cNPV
           td.reassurance_result.output_field.bm_1
           td.reassurance_result.output_field.bm_2
           td.reassurance_result.output_field.bm_3
         tr
-          td.text-left.q_sens.define Concentration = Sensitivity - P(M+)
+          td.text-left.q_sens.define(data-term="q_sens") Concentration = Sensitivity - P(M+)
           td.q_sens_result.output_field.bm_1
           td.q_sens_result.output_field.bm_2
           td.q_sens_result.output_field.bm_3
         tr
-          td.text-left.q_spec.define Reduction = P(M+) - cSpec
+          td.text-left.q_spec.define(data-term="q_spec") Reduction = P(M+) - cSpec
           td.q_spec_result.output_field.bm_1
           td.q_spec_result.output_field.bm_2
           td.q_spec_result.output_field.bm_3
         tr
-          td.text-left.mrs.define Mean Risk Stratification = 2(ad-bc)
+          td.text-left.mrs.define(data-term="mrs") Mean Risk Stratification = 2(ad-bc)
           td.mrs_result.output_field.bm_1
           td.mrs_result.output_field.bm_2
           td.mrs_result.output_field.bm_3
         tr
-          td.text-left.max_mrs.define Maximum possible MRS for a disease with this prevalence
+          td.text-left.max_mrs.define(data-term="max_mrs") Maximum possible MRS for a disease with this prevalence
           td.max_mrs_result.output_field.bm_1
           td.max_mrs_result.output_field.bm_2
           td.max_mrs_result.output_field.bm_3
         tr
-          td.text-left.pbs.define Population Burden Stratification (PBS) = a-b
+          td.text-left.pbs.define(data-term="pbs") Population Burden Stratification (PBS) = a-b
           td.pbs_result.output_field.bm_1
           td.pbs_result.output_field.bm_2
           td.pbs_result.output_field.bm_3
         tr
-          td.text-left.nnr.define Number Needed to Recruit (NNR) = 1/PBS
+          td.text-left.nnr.define(data-term="nnr") Number Needed to Recruit (NNR) = 1/PBS
           td.nnr_result.output_field.bm_1
           td.nnr_result.output_field.bm_2
           td.nnr_result.output_field.bm_3
         tr
-          td.text-left.nns.define Number Needed to Screen (NNS) =1/RD
+          td.text-left.nns.define(data-term="nns") Number Needed to Screen (NNS) =1/RD
           td.nns_result.output_field.bm_1
           td.nns_result.output_field.bm_2
           td.nns_result.output_field.bm_3
@@ -161,78 +161,78 @@
           th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
           th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
         tr
-          td.text-left.test.define True Positive Fraction = a
+          td.text-left.define True Positive Fraction = a
           td.d_pos_result.output_field.bm_1
           td.d_pos_result.output_field.bm_2
           td.d_pos_result.output_field.bm_3
         tr
-          td.text-left.test.define False Negative Fraction = b
+          td.text-left.define False Negative Fraction = b
           td.pos_d_neg_m_result.output_field.bm_1
           td.pos_d_neg_m_result.output_field.bm_2
           td.pos_d_neg_m_result.output_field.bm_3
         tr
-          td.text-left.test.define False Positive Fraction = c
+          td.text-left.define False Positive Fraction = c
           td.neg_d_pos_m_result.output_field.bm_1
           td.neg_d_pos_m_result.output_field.bm_2
           td.neg_d_pos_m_result.output_field.bm_3
         tr
-          td.text-left.test.define True Negative Fraction = d
+          td.text-left.define True Negative Fraction = d
           td.m_neg_result.output_field.bm_1
           td.m_neg_result.output_field.bm_2
           td.m_neg_result.output_field.bm_3
         tr
-          td.text-left.define.prob_m Marker Positivity
+          td.text-left.define.prob_m(data-term="prob_m") Marker Positivity
           td.prob_m_result.output_field.bm_1
           td.prob_m_result.output_field.bm_2
           td.prob_m_result.output_field.bm_3
         tr
-          td.text-left.prob_d.define Disease Prevalence
+          td.text-left.prob_d.define(data-term="prob_d") Disease Prevalence
           td.prob_d_result.output_field.bm_1
           td.prob_d_result.output_field.bm_2
           td.prob_d_result.output_field.bm_3
         tr
-          td.text-left.define.ppv Positive Predictive Value (PPV)
+          td.text-left.define.ppv(data-term="PPV") Positive Predictive Value (PPV)
           td.ppv_result.output_field.bm_1
           td.ppv_result.output_field.bm_2
           td.ppv_result.output_field.bm_3
         tr
-          td.text-left.cnpv.define Complement of Negative Predictive Value (cNPV)
+          td.text-left.cnpv.define(data-term="cnpv") Complement of Negative Predictive Value (cNPV)
           td.c_npv_result.output_field.bm_1
           td.c_npv_result.output_field.bm_2
           td.c_npv_result.output_field.bm_3
         tr
-          td.text-left.define.sens Sensitivity
+          td.text-left.define.sens(data-term="Sens") Sensitivity
           td.sens_result.output_field.bm_1
           td.sens_result.output_field.bm_2
           td.sens_result.output_field.bm_3
         tr
-          td.text-left.define.spec Specificity
+          td.text-left.define.spec(data-term="Spec") Specificity
           td.spec_result.output_field.bm_1
           td.spec_result.output_field.bm_2
           td.spec_result.output_field.bm_3
         tr
-          td.text-left.test.define Complement of Specificity (cSpec)
+          td.text-left.define Complement of Specificity (cSpec)
           td.c_spec_result.output_field.bm_1
           td.c_spec_result.output_field.bm_2
           td.c_spec_result.output_field.bm_3
         tr
-          td.text-left.test.define Relative Risk
+          td.text-left.define Relative Risk
           td.rr_result.output_field.bm_1
           td.rr_result.output_field.bm_2
           td.rr_result.output_field.bm_3
         tr
-          td.text-left.test.define Risk Difference (RD)
+          td.text-left.define Risk Difference (RD)
           td.r_diff_result.output_field.bm_1
           td.r_diff_result.output_field.bm_2
           td.r_diff_result.output_field.bm_3
         tr
-          td.text-left.test.define
+          td.text-left.define
             | Youden's Index (YI)
           td.youden_result.output_field.bm_1
           td.youden_result.output_field.bm_2
           td.youden_result.output_field.bm_3
         tr
-          td.text-left.auc.define AUC = (1+YI)/2
+          td.text-left.define(data-term="AUC") AUC = (1+YI)/2
           td.auc_result.output_field.bm_1
           td.auc_result.output_field.bm_2
           td.auc_result.output_field.bm_3

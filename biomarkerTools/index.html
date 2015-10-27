@@ -543,8 +543,8 @@
                   </div>
                   <div class="option-1 panel-body panel-collapse table_container collapse in">
                     <div class="table_row">
-                      <div id="m_neg" header="m_neg" class="table_data define">Marker Negative (M-)</div>
-                      <div id="prob_m" header="prob_m" class="table_data define">Marker Positive (M+)</div>
+                      <div id="m_neg" data-term="m_neg" class="table_data define">Marker Negative (M-)</div>
+                      <div id="prob_m" data-term="prob_m" class="table_data define">Marker Positive (M+)</div>
                       <div class="table_data emptyblock"></div>
                     </div>
                     <div class="table_row">
@@ -556,7 +556,7 @@
                         <label for="a" class="sr-only">A</label>
                         <input id="a" name="a" type="number" maxlength="30" class="input_field">
                       </div>
-                      <div id="prob_d" class="table_data text-left define">Disease Positive (D+)</div>
+                      <div id="prob_d" data-term="prob_d" class="table_data text-left define">Disease Positive (D+)</div>
                     </div>
                     <div class="table_row">
                       <div class="table_data">
@@ -567,7 +567,7 @@
                         <label for="c" class="sr-only">C</label>
                         <input id="c" name="c" type="number" maxlength="30" class="input_field">
                       </div>
-                      <div id="d_neg" class="table_data text-left define">Disease Negative (D-)</div>
+                      <div id="d_neg" data-term="d_neg" class="table_data text-left define">Disease Negative (D-)</div>
                     </div>
                   </div>
                   <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-2" class="panel-heading">
@@ -585,7 +585,7 @@
                       </div>
                       <div row="0" class="table_row">
                         <div class="table_data">
-                          <label for="param_1" class="sr-only">Parameter 1 Selections</label><span class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 1 dropdown value"></span>
+                          <label for="param_1" class="sr-only">Parameter 1 Selections</label><span data-term="ppv" class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 1 dropdown value"></span>
                           <div>
                             <select id="param_1" name="param_1" class="input_field">
                               <option value="ppv">PPV</option>
@@ -600,7 +600,7 @@
                       </div>
                       <div row="1" class="table_row">
                         <div class="table_data">
-                          <label for="param_2" class="sr-only">Parameter 2 Selections</label><span class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 2 dropdown value"></span>
+                          <label for="param_2" class="sr-only">Parameter 2 Selections</label><span data-term="npv" class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 2 dropdown value"></span>
                           <div>
                             <select id="param_2" name="param_2" class="input_field">
                               <option value="npv">NPV</option>
@@ -615,7 +615,7 @@
                       </div>
                       <div row="2" class="table_row">
                         <div class="table_data">
-                          <label for="param_3" class="sr-only">Parameter 3 Selections</label><span class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 3 dropdown value"></span>
+                          <label for="param_3" class="sr-only">Parameter 3 Selections</label><span data-term="prob_m" class="dd define"><img src="/common/images/info.png" height="20" width="20" alt="pop up definition for parameter 3 dropdown value"></span>
                           <div>
                             <select id="param_3" name="param_3" class="input_field">
                               <option value="prob_m">Marker Positivity (P(M+))</option>
@@ -663,55 +663,55 @@
                     <th header="Calculations for Biomarker 3" title="Calculations for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                   </tr>
                   <tr>
-                    <td class="text-left concern define">Concern = PPV-P(D+)</td>
+                    <td data-term="concern" class="text-left concern define">Concern = PPV-P(D+)</td>
                     <td class="concern_result output_field bm_1"></td>
                     <td class="concern_result output_field bm_2"></td>
                     <td class="concern_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left reassurance define">Reassurance = P(D+)-cNPV</td>
+                    <td data-term="reassurance" class="text-left reassurance define">Reassurance = P(D+)-cNPV</td>
                     <td class="reassurance_result output_field bm_1"></td>
                     <td class="reassurance_result output_field bm_2"></td>
                     <td class="reassurance_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left q_sens define">Concentration = Sensitivity - P(M+)</td>
+                    <td data-term="q_sens" class="text-left q_sens define">Concentration = Sensitivity - P(M+)</td>
                     <td class="q_sens_result output_field bm_1"></td>
                     <td class="q_sens_result output_field bm_2"></td>
                     <td class="q_sens_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left q_spec define">Reduction = P(M+) - cSpec</td>
+                    <td data-term="q_spec" class="text-left q_spec define">Reduction = P(M+) - cSpec</td>
                     <td class="q_spec_result output_field bm_1"></td>
                     <td class="q_spec_result output_field bm_2"></td>
                     <td class="q_spec_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left mrs define">Mean Risk Stratification = 2(ad-bc)</td>
+                    <td data-term="mrs" class="text-left mrs define">Mean Risk Stratification = 2(ad-bc)</td>
                     <td class="mrs_result output_field bm_1"></td>
                     <td class="mrs_result output_field bm_2"></td>
                     <td class="mrs_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left max_mrs define">Maximum possible MRS for a disease with this prevalence</td>
+                    <td data-term="max_mrs" class="text-left max_mrs define">Maximum possible MRS for a disease with this prevalence</td>
                     <td class="max_mrs_result output_field bm_1"></td>
                     <td class="max_mrs_result output_field bm_2"></td>
                     <td class="max_mrs_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left pbs define">Population Burden Stratification (PBS) = a-b</td>
+                    <td data-term="pbs" class="text-left pbs define">Population Burden Stratification (PBS) = a-b</td>
                     <td class="pbs_result output_field bm_1"></td>
                     <td class="pbs_result output_field bm_2"></td>
                     <td class="pbs_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left nnr define">Number Needed to Recruit (NNR) = 1/PBS</td>
+                    <td data-term="nnr" class="text-left nnr define">Number Needed to Recruit (NNR) = 1/PBS</td>
                     <td class="nnr_result output_field bm_1"></td>
                     <td class="nnr_result output_field bm_2"></td>
                     <td class="nnr_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left nns define">Number Needed to Screen (NNS) =1/RD</td>
+                    <td data-term="nns" class="text-left nns define">Number Needed to Screen (NNS) =1/RD</td>
                     <td class="nns_result output_field bm_1"></td>
                     <td class="nns_result output_field bm_2"></td>
                     <td class="nns_result output_field bm_3"></td>
@@ -725,91 +725,91 @@
                     <th header="Parameter results for Biomarker 3" title="Parameter results for Biomarker 3" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                   </tr>
                   <tr>
-                    <td class="text-left test define">True Positive Fraction = a</td>
+                    <td class="text-left define">True Positive Fraction = a</td>
                     <td class="d_pos_result output_field bm_1"></td>
                     <td class="d_pos_result output_field bm_2"></td>
                     <td class="d_pos_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">False Negative Fraction = b</td>
+                    <td class="text-left define">False Negative Fraction = b</td>
                     <td class="pos_d_neg_m_result output_field bm_1"></td>
                     <td class="pos_d_neg_m_result output_field bm_2"></td>
                     <td class="pos_d_neg_m_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">False Positive Fraction = c</td>
+                    <td class="text-left define">False Positive Fraction = c</td>
                     <td class="neg_d_pos_m_result output_field bm_1"></td>
                     <td class="neg_d_pos_m_result output_field bm_2"></td>
                     <td class="neg_d_pos_m_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">True Negative Fraction = d</td>
+                    <td class="text-left define">True Negative Fraction = d</td>
                     <td class="m_neg_result output_field bm_1"></td>
                     <td class="m_neg_result output_field bm_2"></td>
                     <td class="m_neg_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left define prob_m">Marker Positivity</td>
+                    <td data-term="prob_m" class="text-left define prob_m">Marker Positivity</td>
                     <td class="prob_m_result output_field bm_1"></td>
                     <td class="prob_m_result output_field bm_2"></td>
                     <td class="prob_m_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left prob_d define">Disease Prevalence</td>
+                    <td data-term="prob_d" class="text-left prob_d define">Disease Prevalence</td>
                     <td class="prob_d_result output_field bm_1"></td>
                     <td class="prob_d_result output_field bm_2"></td>
                     <td class="prob_d_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left define ppv">Positive Predictive Value (PPV)</td>
+                    <td data-term="PPV" class="text-left define ppv">Positive Predictive Value (PPV)</td>
                     <td class="ppv_result output_field bm_1"></td>
                     <td class="ppv_result output_field bm_2"></td>
                     <td class="ppv_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left cnpv define">Complement of Negative Predictive Value (cNPV)</td>
+                    <td data-term="cnpv" class="text-left cnpv define">Complement of Negative Predictive Value (cNPV)</td>
                     <td class="c_npv_result output_field bm_1"></td>
                     <td class="c_npv_result output_field bm_2"></td>
                     <td class="c_npv_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left define sens">Sensitivity</td>
+                    <td data-term="Sens" class="text-left define sens">Sensitivity</td>
                     <td class="sens_result output_field bm_1"></td>
                     <td class="sens_result output_field bm_2"></td>
                     <td class="sens_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left define spec">Specificity</td>
+                    <td data-term="Spec" class="text-left define spec">Specificity</td>
                     <td class="spec_result output_field bm_1"></td>
                     <td class="spec_result output_field bm_2"></td>
                     <td class="spec_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">Complement of Specificity (cSpec)</td>
+                    <td class="text-left define">Complement of Specificity (cSpec)</td>
                     <td class="c_spec_result output_field bm_1"></td>
                     <td class="c_spec_result output_field bm_2"></td>
                     <td class="c_spec_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">Relative Risk</td>
+                    <td class="text-left define">Relative Risk</td>
                     <td class="rr_result output_field bm_1"></td>
                     <td class="rr_result output_field bm_2"></td>
                     <td class="rr_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">Risk Difference (RD)</td>
+                    <td class="text-left define">Risk Difference (RD)</td>
                     <td class="r_diff_result output_field bm_1"></td>
                     <td class="r_diff_result output_field bm_2"></td>
                     <td class="r_diff_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left test define">Youden's Index (YI)</td>
+                    <td class="text-left define">Youden's Index (YI)</td>
                     <td class="youden_result output_field bm_1"></td>
                     <td class="youden_result output_field bm_2"></td>
                     <td class="youden_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left auc define">AUC = (1+YI)/2</td>
+                    <td data-term="AUC" class="text-left define">AUC = (1+YI)/2</td>
                     <td class="auc_result output_field bm_1"></td>
                     <td class="auc_result output_field bm_2"></td>
                     <td class="auc_result output_field bm_3"></td>
