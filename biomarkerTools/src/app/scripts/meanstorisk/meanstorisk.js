@@ -588,7 +588,7 @@ function draw_graph() {
     graph_file = "tmp/input"+uniqueKey+".png?";
   }
 
-  thisTool.find(".graph").empty().append("<IMG title='click or hover to enlarge' alt='graph' class='output_graph expand' src='" + graph_file + "'/><small class='bold'>(Hover or click to enlarge)</small>");
+  thisTool.find(".graph").empty().append("<IMG alt='graph' class='output_graph expand' src='" + graph_file + "'/>");
 }
 
 function set_value(field, value) {

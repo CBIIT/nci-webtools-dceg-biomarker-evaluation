@@ -153,8 +153,7 @@ header #branch-logo {
 }
 #meanstorisk .maliable .input,
 #meanstorisk .maliable .output {
-  width: 360px;
-  padding: 15px;
+  max-width: 360px;
 }
 @media (max-width: 761px) {
   #meanstorisk .maliable {
@@ -184,6 +183,7 @@ header #branch-logo {
   #meanstorisk .maliable .input,
   #meanstorisk .maliable .output {
     float: left;
+    padding: 15px;
   }
   #meanstorisk .maliable .graph {
     overflow: auto;
