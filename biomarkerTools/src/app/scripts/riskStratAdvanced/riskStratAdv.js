@@ -660,7 +660,7 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
       if (!Array.isArray(tableData)) {
         for (var k in rowHeadings) {
           var newData = [];
-          newData.push(parseFloat(tableData[rowHeadings[k]]));
+          newData.push(tableData[parseFloat(rowHeadings[k])]);
           arr.push(newData);
         }
       } else {
