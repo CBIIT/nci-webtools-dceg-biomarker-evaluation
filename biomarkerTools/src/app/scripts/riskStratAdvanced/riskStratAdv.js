@@ -654,6 +654,7 @@ function fillTable(resultObject, columnHeadings, index) {
 
     var arr = [];
     var tableData = singleDataObject.data;
+    tableData = Array.isArray(tableData)?tableData:[tableData];
     var tableError = singleDataObject.table_error;
     var graphError = singleDataObject.graph_error;
 

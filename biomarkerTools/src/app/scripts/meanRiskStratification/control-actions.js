@@ -115,7 +115,7 @@ function calculate_mrs(e) {
       contentType: 'application/json',
       url: service,
       data: input
-    }).then(clean_data, function (request,status, error) {
+    }).then(clean_data, function (request, status, error) {
       default_ajax_error(request, status, error);
     }).done(return_data).always(function(){
       enableAll();

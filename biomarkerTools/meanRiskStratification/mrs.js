@@ -115,7 +115,7 @@ function calculate_mrs(e) {
       contentType: 'application/json',
       url: service,
       data: input
-    }).then(clean_data, function (request,status, error) {
+    }).then(clean_data, function (request, status, error) {
       default_ajax_error(request, status, error);
     }).done(return_data).always(function(){
       enableAll();
@@ -501,6 +501,33 @@ function validate(values) {
     if (marker_value_keys.length < 2) {
       valid = false;
       messages.push('You must enter values for either option 1 or 2 in each biomarker.');
+    }
+    if (values[item].prob_d && values[item].ppv && values[item].npv) {
+      var minProbD, maxProbD;
+      var cnpv = parseFloat((1 - values[item].npv).toFixed(4));
+      if (values[item].ppv > cnpv) {
+        minProbD = cnpv;
+        maxProbD = values[item].ppv;
+      } else {
+        minProbD = values[item].ppv;
+        maxProbD = cnpv;
+      }
+      if (values[item].prob_d <= minProbD || values[item].prob_d >= maxProbD) {
+        messages.push("Disease Prevalence must be between the PPV (" + values[item].ppv + ") and cNPV (" + cnpv + ").");
+      }
+    } else if (values[item].prob_m && values[item].sens && values[item].spec) {
+      var minProbM, maxProbM;
+      var cspec = parseFloat((1 - values[item].spec).toFixed(4));
+      if (values[item].sens > cspec) {
+        minProbM = cspec;
+        maxProbM = values[item].sens;
+      } else {
+        minProbM = values[item].sens;
+        maxProbM = cspec;
+      }
+      if (values[item].prob_m <= minProbM || values[item].prob_m >= maxProbM) {
+        messages.push("Marker Positivity must be between the Sensitivity (" + values[item].sens + ") and the compliment of the Specificity (" + cspec + ").");
+      }
     }
   }
 

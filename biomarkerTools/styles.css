@@ -422,6 +422,9 @@ header #branch-logo {
 #riskStratAdvanced .output .table_container td {
   padding: 0.1em 0.15em;
 }
+#riskStratAdvanced .output .table_container tbody tr:first-child th:first-child {
+  height: 9em;
+}
 #riskStratAdvanced .output .vertical-text {
   -webkit-transform-origin: bottom left;
   -moz-transform-origin: bottom left;
