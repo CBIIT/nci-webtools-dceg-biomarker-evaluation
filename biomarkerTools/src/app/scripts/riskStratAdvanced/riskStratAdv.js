@@ -139,7 +139,7 @@ $(document).ready(function(){
   thisTool.find("#download").on("click", retrieve_excel);
   thisTool.find("#calculate").on("click", function(e) {
     e.preventDefault();
-    $("#errors, #download").fadeOut().addClass("hide");
+    $("#errors, #download").addClass("hide");
     if (checkRules() == "Fail") {
       display_errors(validation_rules);
       return false;

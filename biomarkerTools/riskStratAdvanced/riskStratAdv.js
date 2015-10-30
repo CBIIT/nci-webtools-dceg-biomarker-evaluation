@@ -139,7 +139,7 @@ $(document).ready(function(){
   thisTool.find("#download").on("click", retrieve_excel);
   thisTool.find("#calculate").on("click", function(e) {
     e.preventDefault();
-    $("#errors, #download").fadeOut().addClass("hide");
+    $("#errors, #download").addClass("hide");
     if (checkRules() == "Fail") {
       display_errors(validation_rules);
       return false;
@@ -660,7 +660,7 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
       if (!Array.isArray(tableData)) {
         for (var k in rowHeadings) {
           var newData = [];
-          newData.push(parseFloat(tableData[rowHeadings[k]]));
+          newData.push(tableData[parseFloat(rowHeadings[k])]);
           arr.push(newData);
         }
       } else {
