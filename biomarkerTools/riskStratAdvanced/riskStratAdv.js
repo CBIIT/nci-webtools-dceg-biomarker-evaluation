@@ -506,11 +506,10 @@ function calculate_riskStrat(){
      
 
       if (data_array.length > 0){
-
        
         for (var i = 0; i < data_array.length; i++) {
           for (var j = 0; j < fixedSplit.length; j++) {
-            fillTable(data_array[i], columnHeadings, j);
+            fillTable(data_array[i], j, columnHeadings, indSplit);
           }
         }
 
@@ -626,7 +625,7 @@ function createTab(singleFixed, fixedIndex, fixedType,independentType, contourTy
 
 }
 
-function fillTable(resultObject, columnHeadings, index) {
+function fillTable(resultObject, index, columnHeadings, rowHeadings) {
 
   var singleDataObject = resultObject[index];
 
@@ -654,29 +653,35 @@ function fillTable(resultObject, columnHeadings, index) {
 
     var arr = [];
     var tableData = singleDataObject.data;
-    tableData = Array.isArray(tableData)?tableData:[tableData];
     var tableError = singleDataObject.table_error;
     var graphError = singleDataObject.graph_error;
 
-
     if (tableError != 1) {
-      var rows = tableData.length;
-      for (var i = 0; i < rows; i++) {
-        var values = [];
-        row_entries = tableData[i];
-       
-       
-        for ( var key in columnHeadings) {
-          var columnInd = columnHeadings[key];
-          values.push(row_entries[columnInd]);
+      if (!Array.isArray(tableData)) {
+        for (var rowHead in rowHeadings) {
+          var newData = [];
+          newData.push(tableData[rowHead]);
+          arr.push(newData);
         }
-        arr.push(values);
+      } else {
+        var rows = tableData.length;
+        for (var i = 0; i < rows; i++) {
+          var values = [];
+          row_entries = tableData[i];
+         
+         
+          for ( var key in columnHeadings) {
+            var columnInd = columnHeadings[key];
+            values.push(row_entries[columnInd]);
+          }
+          arr.push(values);
+        }
       }
 
       var headings = [];
-      for (i = 0; i < columnHeadings.length; i++) {
+      for (var x = 0; x < columnHeadings.length; x++) {
         headings.push({
-          "sTitle" : columnHeadings[i]
+          "sTitle" : columnHeadings[x]
         });
       }
 
@@ -701,13 +706,13 @@ function fillTable(resultObject, columnHeadings, index) {
       thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
         "<th class='ui-state-default' colspan='2'></td>");
 
-      i = 0;
+      var y = 0;
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
         function() {
           $(this).prepend(
             "<th class='ui-state-default sorting_disabled'>" +
-            independentArraySplit[i] + "</th>");
-          i++;
+            independentArraySplit[y] + "</th>");
+          y++;
         });
 
      
