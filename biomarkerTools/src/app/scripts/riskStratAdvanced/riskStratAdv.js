@@ -658,9 +658,9 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
 
     if (tableError != 1) {
       if (!Array.isArray(tableData)) {
-        for (var rowHead in rowHeadings) {
+        for (var key in rowHeadings) {
           var newData = [];
-          newData.push(tableData[rowHead]);
+          newData.push(tableData[rowHeading[key]]);
           arr.push(newData);
         }
       } else {
@@ -670,8 +670,8 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
           row_entries = tableData[i];
           // use column headings to properly sort the data, the number of headings and
           // number of data row_entries should match up
-          for ( var key in columnHeadings) {
-            var columnInd = columnHeadings[key];
+          for ( var k in columnHeadings) {
+            var columnInd = columnHeadings[k];
             values.push(row_entries[columnInd]);
           }
           arr.push(values);
