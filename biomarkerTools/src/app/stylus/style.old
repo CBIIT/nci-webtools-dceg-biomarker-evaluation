@@ -1,0 +1,153 @@
+#meanRiskStratification
+  .loader
+    background-image url("/common/images/loading.gif") no-repeat
+    margin 0 auto
+    height 300px
+  .input:invalid
+    background-color yellow
+
+
+
+#help
+  h4 a
+    color white
+    font-size smaller
+  section h5
+    font-weight bold
+   ul li li
+    text-indent 1.5em
+.glyphicon + span
+  margin-left 1em
+.header
+  background-color tan
+.indent
+  margin-left 30px
+  margin-right 20px
+  margin-top 10px
+  margin-bottom 5px
+.no-pad
+  padding 0
+.popover
+  .popover-title
+    background-color highlight-compl
+    font-weight bold
+  .popover-content
+    background-color highlight
+.table_container
+  overflow auto
+.table_data
+  float left
+.table_row
+  clear both
+.title
+  color black
+.vertical-padding
+  padding-top .5em
+  padding-bottom .5em
+#contentTabs
+  width 100%
+  margin 1.5em auto
+  ul.nav.nav-tabs
+    font-size small
+    font-size 9pt
+    a
+      color black
+    > li.active a
+      text-decoration underline
+      font-weight bold
+      color base-red
+     :after
+      border solid transparent
+      margin-left -10px
+      top 100%
+      left 50%
+#portal-footer
+  line-height 1.2em
+  text-align center
+  background-color #FFF
+  color #333333
+  font-size small
+  a
+    text-decoration none
+    color #333333
+    border none
+    :visited
+      color #333333
+    :hover
+      text-decoration underline
+
+
+
+@-ms-viewport
+  width "device-width"
+input
+  padding 1px !important
+#meanstorisk
+  #download_button
+    margin 10px
+  .input_panel
+    border  1px #BBB solid
+  .key_output_panel
+    float left
+    background-color #faf
+    height 99%
+  .tabbed_output_panel
+    height 99%
+    overflow auto
+    #tabs
+      font-size inherit
+      margin 0px
+  .col1
+    padding 6px
+    text-align center
+  .maincard
+    height 750px
+    border 2px black solid
+  .main-title
+    text-align center
+#bc
+  .top-header
+    text-align center
+    background-color #444
+    color #FFF
+  h2
+    background-color #AAA
+    color #444
+    padding 5px
+#riskStratAdvanced
+  #add-test-data
+    text-decoration underline
+    float right
+    &:hover
+      font-weight bold
+  #status-bar
+    background #CCC
+    display block
+    border none
+    box-sizing border-box
+    font 18px "arial", "sans-serif"
+    left 0
+    margin 10px
+    outline none
+    padding 10px
+    top 2px
+    visibility hidden
+  #tabs
+    font-size inherit
+    .header
+      background-color #AAA
+      color #444
+    .vertical-text
+      transform rotate(-90deg)
+      white-space no-wrap
+  .table-title
+    word-wrap normal
+    font-weight bold
+    text-align center
+    background-color #F8FAFA
+.footer
+    color #606060
+    background-color white
+    font-size small
+    li a
+      color inherit

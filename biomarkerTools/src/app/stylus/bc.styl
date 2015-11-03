@@ -1,0 +1,71 @@
+#inputdata
+  @media (max-width 479px)
+    .remove_row_button:first-child
+      display none
+  @media (min-width 480px)
+    .remove_row_button:last-child
+      display none
+  .table_row
+    &:first-child ~ .table_row
+      counter-increment bcDataRows
+      .table_data:first-child::after
+        content counter(bcDataRows)
+        font-weight bold
+    &:last-child
+      counter-increment bcDataRows -1
+      button
+        width 100%
+  .table_data
+    width (100%*3/12)
+    &:first-child
+      width (100%*1/12)
+    &:last-child
+      width auto
+    .input_field:hover
+      cursor text
+    img
+      position relative
+      top -.15em
+      height 2em
+      padding 0px 0px .15em .15em
+.data_group
+  width 100%
+  max-width 580px
+  margin 0px auto
+  @media (min-width 1000px)
+    float left
+    max-width 595px
+    padding-right 15px
+.graph
+  overflow auto
+  max-width 580px
+  margin 0px auto
+  @media (min-width 1000px)
+    max-width 620px
+.output
+  .top-header
+    background-color #444
+    color #FFF
+    text-align center
+  > div ~ div
+      display table
+      table-layout fixed
+      width 100%
+      div
+        display table-cell
+        text-align center
+.reference_row
+  background-color yellow
+.top_group
+  > img
+    display block
+    margin 0px auto
+    width 480px
+    max-width 100%
+    @media (min-width 780px)
+      float left
+      width 350px
+  > div
+    overflow auto
+    ul
+      padding-left 1.5em

@@ -118,7 +118,7 @@ gulp.task 'css' <[bower]> ->
   bower = gulp.src main-bower-files!
     .pipe gulp-filter -> it.path is /\.css$/
 
-  styl = gulp.src 'app/stylus/**/*.styl'
+  styl = gulp.src 'app/stylus/**/styles.styl'
     .pipe gulp-filter -> it.path isnt /\/_[^/]+\.styl$/
     .pipe gulp-stylus use: [nib!] import: <[ nib ]>
     .pipe gulp-concat 'styles.css'

@@ -1,38 +1,24 @@
-// keep track of the number of marker elements, to use the number as the id,
-// track by value not by page element, tracking by element can be unreliable
-var currentMarkers = 1;
 var thisTool;
 
+var init_meanRiskStratification = function() {
+  thisTool = $("#meanRiskStratification");
+  thisTool.on('show.bs.collapse','.option-1', function() {
+    $(this).next().next().collapse('hide');
+  })
+  thisTool.on('show.bs.collapse','.option-2', function() {
+    $(this).prev().prev().collapse('hide');
+  })
+}
 
 $(document).ready(init_meanRiskStratification);
 
-function init_meanRiskStratification(){    
-    thisTool = $("#meanRiskStratification");
-    create_popover();
-
-}
-
-// on panel show
-thisTool.find('#marker-1-option-1, #marker-1-option-2').on('show.bs.collapse', function(){
-    if(this.id == "marker-1-option-1") {
-        thisTool.find('#marker-1-option-2').collapse('hide');
-    }
-    else {
-        thisTool.find('#marker-1-option-1').collapse('hide');
-    }
-
-    thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
-        .removeClass('in')
-        .addClass('collapse');
-});
-
+// after panel show finishes
 $('a[href="#meanRiskStratification"]').on('shown.bs.tab', function(e) {
-    thisTool.find("#spinner").addClass("hide");
-    controls_visibility(currentMarkers);
-    init_meanRiskStratification();
+  thisTool.find("#spinner").addClass("hide");
+  controls_visibility();
+  init_meanRiskStratification();
 });
 
-thisTool.find('.termToDefine, .dd.termToDefine').on('click', display_definition);
 thisTool.find("#errors").alert();
 // testing
 thisTool.find('a#test1,a#test2').on('click', test);
@@ -41,370 +27,282 @@ thisTool.find('#add-marker').on('click', new_marker);
 thisTool.find('#delete-marker').on('click', delete_marker);
 thisTool.find('#calculate').on('click', calculate_mrs);
 
-function controls_visibility(numElements) {
-    // controls the visibility of the add/remove marker buttons
-    if (numElements == 2) {
-        thisTool.find('#delete-marker').removeClass("hide");
-        thisTool.find('#add-marker').removeClass("hide");
-    }
-    if (numElements > 2) {
-        thisTool.find('#delete-marker').removeClass("hide");
-        thisTool.find('#add-marker').addClass("hide");
-    }
-    if (numElements < 2) {
-        thisTool.find('#delete-marker').addClass("hide");
-        thisTool.find('#add-marker').removeClass("hide");
-    }
+function controls_visibility() {
+  var controlGroup = thisTool.find('#control-group');
+  var numElements = controlGroup.prev().children().length;
+  controlGroup = controlGroup.children(':first').children(':not(:last)');
+  switch (numElements) {
+    case 1:
+      controlGroup.eq(0).removeClass('hide');
+      controlGroup.eq(1).addClass('hide');
+      break;
+    case 2:
+      controlGroup.eq(0).removeClass('hide');
+      controlGroup.eq(1).removeClass('hide');
+      break;
+    case 3:
+      controlGroup.eq(0).addClass('hide');
+      controlGroup.eq(1).removeClass('hide');
+      break;
+  }
 }
 
-function new_marker() {
-    var counter = currentMarkers + 1;
-    if (currentMarkers <= 3) {
-        var markerTemplate = thisTool.find('#markers').find('.marker').first();
-
-        // clone controls
-        var newElement = markerTemplate.clone();
-
-        // increment included class
-        newElement.removeClass('marker-1').addClass("marker-" + counter);
-
-        // make sure previous values don't get copied also, and change element ids to make them unique
-        newElement.find('input, select, label').each(function () {
-            var newId = this.id + "-bm-"+ counter;
-
-            if ($(this).is("label")) {
-                var newFor = this.htmlFor + "-bm-"+ counter;
-                $(this).attr("for", newFor);
-            }
-            else{
-                $(this).attr("id", newId);
-                
-                if ($(this).is("input")) {
-                    $(this).val("");
-                }
-                if ($(this).is("select")) {
-                    // set to first selection in dropdown
-                    $(this)[0].selectedIndex = 0;
-                }
-            }
-        });
-
-        // dynamically generate the id for the new panel elements
-        newElement.find(".panel-heading").each(function (index) {
-            var panel_id = '#marker-' + counter + '-option-' + (index + 1);
-
-            $(this).attr('data-target', panel_id);
-            $(this).attr('data-parent', '.marker-' + counter);
-        });
-
-        // generate new Ids for each on of the sub panels within the new generated marker
-        newElement.find(".panel-collapse").each(function (index) {
-            var newPanelContentId = 'marker-' + counter + '-option-' + (index + 1);
-            $(this).attr("id", newPanelContentId);
-        });
-
-        // change title for new marker
-        newElement.find('.marker-title b').text("Biomarker #" + counter);
-        newElement.find('.termToDefine, .dd.termToDefine')
-            .on('click', display_definition);
-
-        currentMarkers++;
-        // after currentMarkers has been updated make sure panel events
-        // gets to the newly created marker
-        controls_visibility(currentMarkers);
-
-        // add new marker to #markers element
-        $(newElement[0]).insertAfter(thisTool.find('#markers').children().last());
-
-        var panel_1 = '.marker-' + counter + ' #marker-' + counter + '-option-1';
-        var panel_2 = '.marker-' + counter + ' #marker-' + counter + '-option-2';
-
-        // on panel show
-        thisTool.find(panel_1+" , "+ panel_2).on('show.bs.collapse', function(){
-            // keep one panel open per group
-            if(this.id == "marker-" + counter + "-option-1") {
-                thisTool.find('#marker-' + counter + '-option-2').collapse('hide');
-            }
-            else {
-                thisTool.find('#marker-' + counter + '-option-1').collapse('hide');
-            }
-
-            thisTool.find(this.id +' .panel-body').not( document.getElementById(this.id) )
-                .removeClass('in')
-                .addClass('collapse');
-        });
-    }
-}
-
-function delete_marker() {
-    if (currentMarkers > 1) {
-        // remove last child
-        thisTool.find('#markers').children().last().empty();
-        thisTool.find('#markers').children().last().remove();
-        thisTool.find('.bm_'+currentMarkers).addClass("hide");
-        currentMarkers--;
-    }
-    controls_visibility(currentMarkers);
-    scrollTop();
-}
-
-function calculate_mrs() {
-    var service;
-    var valuesObj = extract_values(false);
-    var valid = valuesObj[1]; // get the boolean value that was returned
-    if (valid) {
-        var to_value = 10 * 2500; //25 seconds
-        var input = JSON.stringify(valuesObj[0]);
-
-        service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
-
-        thisTool.find('#spinner').removeClass("hide");
-        thisTool.find("#calculate").attr("disabled", "").text("Please Wait....");
-        disableAll();
-        // ajax call, change to actual service name
-        var promise = $.ajax({
-            dataType: 'json',
-            method: 'POST',
-            contentType: 'application/json',
-            url: service,
-            data: input
-        });
-        scrollTop();
-        thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
-
-        promise.then(clean_data, function (request,status, error) {
-            default_ajax_error(request, status, error);
-        }).done(return_data).always(function(){
-            enableAll();
-            thisTool.find('#spinner').addClass("hide");
-            thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
-        });
-    }
-}
-
-function scrollTop() {
-    $('html, body').animate({
-        scrollTop: 0
+function new_marker(e) {
+  e.preventDefault()
+  var numElements = thisTool.find('#markers').children().length + 1;
+  if (numElements < 4) {
+    var markerTemplate = thisTool.find('#markers').children(':first-child');
+    var newElement = markerTemplate.clone();
+    var elementId = 'marker-' + numElements;
+    newElement.attr('id', elementId);
+    newElement.find('label, input, select').each(function () {
+      var newId = this.id + '-bm-' + numElements;
+      switch ($(this).prop('tagName')) {
+        case 'input':
+          $(this).attr('for', this.htmlFor + '-bm-' + numElements);
+          break;
+        case 'label':
+          $(this).attr('id', newId);
+          $(this).val('');
+          break;
+        case 'select':
+          $(this).attr('id', newId);
+          this.selectedIndex = 0;
+          break;
+      }
     });
+    newElement.find('[data-target]').each(function() {
+      $(this).attr('data-target',$(this).attr('data-target').replace($(this).attr('data-parent'),'#'+elementId))
+      $(this).attr('data-parent','#'+elementId);
+    });
+    newElement.find('.panel-heading:first').text('Biomarker #' + numElements);
+
+    $(newElement).insertAfter(thisTool.find('#markers').children(':last-child'));
+    controls_visibility();
+  }
+}
+
+function delete_marker(e) {
+  e.preventDefault();
+  var markers = thisTool.find('#markers').children();
+  var numElements = markers.length;
+  if (numElements > 1) {
+    markers.last().empty().remove();
+    thisTool.find('.bm_'+numElements).addClass("hide");
+    controls_visibility();
+  }
+}
+
+function calculate_mrs(e) {
+  e.preventDefault();
+  var service;
+  var valuesObj = extract_values(false);
+  var valid = valuesObj[1]; // get the boolean value that was returned
+  if (valid) {
+    thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
+    var to_value = 10 * 2500; //25 seconds
+    var input = JSON.stringify(valuesObj[0]);
+
+    service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
+
+    thisTool.find('#spinner').removeClass("hide");
+    thisTool.find('#calculate').attr("disabled", "").text("Please Wait....");
+    disableAll();
+    // ajax call, change to actual service name
+    var promise = $.ajax({
+      dataType: 'json',
+      method: 'POST',
+      contentType: 'application/json',
+      url: service,
+      data: input
+    }).then(clean_data, function (request, status, error) {
+      default_ajax_error(request, status, error);
+    }).done(return_data).always(function(){
+      enableAll();
+      thisTool.find('#spinner').addClass("hide");
+      thisTool.find('#calculate').removeAttr("disabled").text("Calculate");
+    });
+  }
 }
 
 function clean_data(data) {
-    // check to make sure json is in the right format
-    return JSON.parse(JSON.stringify(data));
+  // check to make sure json is in the right format
+  return JSON.parse(JSON.stringify(data));
 }
 
 function return_data(data) {
-    var i = 0;
+  var numElements = thisTool.find('#markers').children().length;
+  for (var i = 1; i < numElements + 1; i++) {
+    $('.bm_' + i).removeClass("hide");
+  }
 
-    // hide all again before showing
-    thisTool.find("#results, .bm_1, .bm_2, .bm_3").addClass("hide");
+  $.each(data, function (propName, paramGroup) {
+    var ci_lb, ci_ub, params, calc, marker_id;
+    for (var i = 1; i < numElements + 1; i++) {
+      var markerValue = thisTool.find('#marker-' + i + ' [name="name-input"]').val();
+      var name = markerValue.length > 0 ? markerValue + " (CI Low, CI High)" : "Biomarker " + i + " (CI Low, CI High)";
+      thisTool.find('.marker_name.bm_' + i).attr('title', name).text(name);
+    }
 
-    do {
-        i++;
-        // propName should be bm_#
-        $('.bm_' + i).removeClass("hide");
-    } while (i != currentMarkers);
+    params = paramGroup.parameters;
+    calc = paramGroup.calculations;
+    marker_id = propName;
 
-    $.each(data, function (propName, paramGroup) {
-        var ci_lb, ci_ub, params, calc, marker_id;
-        append_name();
-
-        params = paramGroup.parameters;
-        calc = paramGroup.calculations;
-        marker_id = propName;
-
-        // loop through appending data to table
-        $.each(params, function (name) {
-
-            var lookup_id = lookup[name];
-            var data_item = params[name];
-            var formattedText = data_item.Value;
-            if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "% ";
-                if (data_item["Confidence Interval (lower bound)"] !== null &&
-                    data_item["Confidence Interval (upper bound)"] !== null) {
-                    ci_lb = data_item["Confidence Interval (lower bound)"];
-                    ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
-                }
-            }
-            else {
-                if (data_item["Confidence Interval (lower bound)"] !== null &&
-                    data_item["Confidence Interval (upper bound)"] !== null) {
-                    ci_lb = data_item["Confidence Interval (lower bound)"];
-                    ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
-                }
-            }
-            // append text to table cell
-            cell = $('.' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', name + " " + formattedText);
-            cell.text(formattedText);
-        });
-        // same loop but through calculations
-        $.each(calc, function (name) {
-            var lookup_id = lookup[name];
-            var data_item = calc[name];
-            var formattedText = data_item.Value;
-
-            if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
-                formattedText += "% ";
-                if (data_item["Confidence Interval (lower bound)"] !== null &&
-                    data_item["Confidence Interval (upper bound)"] !== null) {
-                    ci_lb = data_item["Confidence Interval (lower bound)"];
-                    ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
-                }
-            }
-            else {
-                if (data_item["Confidence Interval (lower bound)"] !== null &&
-                    data_item["Confidence Interval (upper bound)"] !== null) {
-                    ci_lb = data_item["Confidence Interval (lower bound)"];
-                    ci_ub = data_item["Confidence Interval (upper bound)"];
-                    formattedText += "(" + ci_lb + ", " + ci_ub + ")";
-                }
-            }
-
-            cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output');
-            cell.attr('title', name + " " + formattedText);
-            cell.text(formattedText);
-        });
+    // loop through appending data to table
+    $.each(params, function (name) {
+      var lookup_id = lookup[name];
+      var data_item = params[name];
+      var formattedText = data_item.Value;
+      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
+        formattedText += "% ";
+        if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
+          ci_lb = data_item["Confidence Interval (lower bound)"];
+          ci_ub = data_item["Confidence Interval (upper bound)"];
+          formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
+        }
+      } else if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
+        ci_lb = data_item["Confidence Interval (lower bound)"];
+        ci_ub = data_item["Confidence Interval (upper bound)"];
+        formattedText += "(" + ci_lb + ", " + ci_ub + ")";
+      }
+      // append text to table cell
+      cell = $('.' + lookup_id + '_result.' + marker_id + '.output_field');
+      cell.attr('title', name + " " + formattedText);
+      cell.text(formattedText);
     });
+    // same loop but through calculations
+    $.each(calc, function (name) {
+      var lookup_id = lookup[name];
+      var data_item = calc[name];
+      var formattedText = data_item.Value;
 
-    thisTool.find("#results").removeClass("hide");
-    thisTool.find("#spinner").addClass("hide");
-}
+      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
+        formattedText += "% ";
+        if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
+          ci_lb = data_item["Confidence Interval (lower bound)"];
+          ci_ub = data_item["Confidence Interval (upper bound)"];
+          formattedText += "(" + ci_lb + "%, " + ci_ub + "%)";
+        }
+      } else if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
+        ci_lb = data_item["Confidence Interval (lower bound)"];
+        ci_ub = data_item["Confidence Interval (upper bound)"];
+        formattedText += "(" + ci_lb + ", " + ci_ub + ")";
+      }
 
-function append_name() {
-    var i = 0;
-    var name;
-    do {
-        i++;
-        var thisNameInputElement = thisTool.find('.marker-' + i + ' [name="name-input"]');
+      cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output_field');
+      cell.attr('title', name + " " + formattedText);
+      cell.text(formattedText);
+    });
+  });
 
-        // append biomarker Name to results table header
-        if ((thisNameInputElement.val()).length > 0)
-            name = thisNameInputElement.val() + " (CI Low, CI High)";
-        else
-            name = "Biomarker " + i + " (CI Low, CI High)";
-
-        // find the element to append the text to
-        thisTool.find('#results').find('table thead tr .bm_' + i).attr('title', name).text(name);
-    } while (i != currentMarkers);
+  thisTool.find("#results").removeClass("hide");
+  thisTool.find("#spinner").addClass("hide");
 }
 
 function extract_values(valid) {
-    var values = {};
+  var values = {};
 
-    // find biomarkers with values first, use currentMarkers for iteration
-    var i = 0;
-    do {
-        i++;
+  var numElements = thisTool.find('#markers').children().length;
+  for (var i = 1; i < numElements + 1; i++) {
+    values["bm_" + i] = {};
+    var thisMarker = thisTool.find('#marker-' + i);
 
-        values["bm_" + i] = {};
-        var thisMarker = thisTool.find('.marker-' + i);
+    // inside this marker find inputs by group
+    var option_1_controls = thisMarker.find('.option-1 .input_field').serializeArray(); // option 1
+    var option_2_controls = thisMarker.find('.option-2 .input_field').serializeArray(); // option 2
+    option_1_controls.forEach(function (element) {
+      // don't add empty values to object
+      if (element.value.length > 0) {
+        values["bm_" + i].option = 1;
+        values["bm_" + i][element.name] = element.value;
+      }
+    });
 
-        // inside this marker find inputs by group
-        var option_1_controls = thisMarker.find('#marker-' + i + '-option-1 .input').serializeArray(); // option 1
-        var option_2_controls = thisMarker.find('#marker-' + i + '-option-2 .input').serializeArray(); // option 2
+    // check option variable
+    if (!values["bm_" + i].option) {
 
-        var append_values = function (element) {
-            // don't add empty values to object
-            if (element.value.length > 0) {
-                values["bm_" + i].option = 1;
-                values["bm_" + i][element.name] = element.value;
-            }
-        };
-
-        option_1_controls.forEach(append_values);
-
-        // check option variable
-        if (!values["bm_" + i].option) {
-
-            // apply option flag
-            values["bm_" + i].option = 2;
-
-            var param_1 = [];
-            var param_2 = [];
-            var param_3 = [];
-            var param_4 = [];
-            var mapping_pairs = function (obj) {
-                // filter each pair into separate arrays
-                if (obj.name == "param_1" && obj.value.length > 0) {
-                    param_1.push(obj);
-                }
-                if (obj.name == "param_2" && obj.value.length > 0) {
-                    param_2.push(obj);
-                }
-                if (obj.name == "param_3" && obj.value.length > 0) {
-                    param_3.push(obj);
-                }
-                if (obj.name == "sampsize" && obj.value.length > 0) {
-                    param_4.push(obj);
-                }
-            };
-
-            option_2_controls.filter(mapping_pairs);
-
-            if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
-                // sample size
-                values["bm_" + i][param_4[0].name] = param_4[0].value;
-
-                var value_length = [param_1[1].value.length, param_2[1].value.length, param_3[1].value.length];
-
-                value_length.forEach(function (el) {
-                    if (el > 0) {
-                        valid = false;
-                        // manually mapping each value pair
-                        joinObjects(values["bm_" + i], param_1[0], param_1[1]);
-                        joinObjects(values["bm_" + i], param_2[0], param_2[1]);
-                        joinObjects(values["bm_" + i], param_3[0], param_3[1]);
-                    }
-                });
-            }
-
+      // apply option flag
+      values["bm_" + i].option = 2;
+      var param_1 = [];
+      var param_2 = [];
+      var param_3 = [];
+      var param_4 = [];
+      option_2_controls.filter(function (obj) {
+        if (obj.value && obj.value.length > 0) {
+          switch (obj.name) {
+            case "param_1":
+              param_1.push(obj);
+              break;
+            case "param_2":
+              param_2.push(obj);
+              break;
+            case "param_3":
+              param_3.push(obj);
+              break;
+            case "sampsize":
+              param_4.push(obj);
+              break;
+          }
         }
-    } while (i != currentMarkers);
+      });
+      if (param_1.length > 1 && param_2.length > 1 && param_3.length > 1 && param_4.length > 0) {
+        // sample size
+        values["bm_" + i][param_4[0].name] = param_4[0].value;
 
-    valid = validate(values);
-    return [values, valid];
+        var value_length = [param_1[1].value.length, param_2[1].value.length, param_3[1].value.length];
+
+        value_length.forEach(function (el) {
+          if (el > 0) {
+            valid = false;
+            // manually mapping each value pair
+            joinObjects(values["bm_" + i], param_1[0], param_1[1]);
+            joinObjects(values["bm_" + i], param_2[0], param_2[1]);
+            joinObjects(values["bm_" + i], param_3[0], param_3[1]);
+          }
+        });
+      }
+
+    }
+  }
+
+  valid = validate(values);
+  return [values, valid];
 }
 
 function joinObjects(parentObj, obj1, obj2) {
-    // takes in two objects extracts the value from obj1 as
-    // the new key and the value from obj2 as the new value
-    parentObj[obj1.value] = obj2.value;
-    return parentObj;
+  // takes in two objects extracts the value from obj1 as
+  // the new key and the value from obj2 as the new value
+  parentObj[obj1.value] = obj2.value;
+  return parentObj;
 }
 
-function reset_mrs() {
-    thisTool.find("#spinner").addClass('hide');
-    // resets form to initial state
-    var markerChildren = thisTool.find('#markers').children();
+function reset_mrs(e) {
+  e.preventDefault();
+  thisTool.find("#spinner").addClass('hide');
+  // resets form to initial state
+  var markerChildren = thisTool.find('#markers').children();
 
-    // reset drop downs then, text boxes, hide results, then clear the cells
-    markerChildren.find('select').find('option:first').attr('selected', 'selected');
-    markerChildren.find('input').val('');
+  // reset drop downs then, text boxes, hide results, then clear the cells
+  markerChildren.find('select').find('option:first').attr('selected', 'selected');
+  markerChildren.find('input').val('');
 
-    // clear all output cells
-    thisTool.find('.output').text('').attr("title", "");
-    thisTool.find('#paramTable th:gt(1), #calcTable th:gt(1)').attr("title", '(Biomarker Title Placeholder)').text('(Biomarker Title Placeholder)');
-    thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
+  // clear all output cells
+  thisTool.find('.output_field').text('').attr("title", "");
+  thisTool.find('#paramTable th:gt(1), #calcTable th:gt(1)').attr("title", '(Biomarker Title Placeholder)').text('(Biomarker Title Placeholder)');
+  thisTool.find('#results, .bm_1, .bm_2, .bm_3').addClass("hide");
 
-    // close errors if showing
-    thisTool.find('#errors').fadeOut();
+  // close errors if showing
+  thisTool.find('#errors').fadeOut();
 
-    thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
+  thisTool.find("#calculate").removeAttr("disabled").text("Calculate");
 
-    reset_markers();
+  reset_markers();
 }
 
 function reset_markers(){
-    // remove generated markers first, .remove() doesn't remove element from DOM
-    thisTool.find('#markers').children().not(':first').each(function () {
-        $(this).empty();
-        $(this).remove();
-    });
-    currentMarkers = 1;
-    controls_visibility(currentMarkers);
+  // remove generated markers first, .remove() doesn't remove element from DOM
+  thisTool.find('#markers').children(':not(:first)').each(function () {
+    $(this).empty().remove();
+  });
+  controls_visibility();
 }

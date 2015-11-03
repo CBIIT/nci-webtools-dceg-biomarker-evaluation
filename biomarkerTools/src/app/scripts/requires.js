@@ -41,7 +41,7 @@ requirejs.config({
             deps: ['modernzr','jquery.ui','bootstrap', 'glossary', 'rand']
         },
         help:{
-            deps: ['glossary']
+            deps: ['glossary', 'main']
         }
     }
 });

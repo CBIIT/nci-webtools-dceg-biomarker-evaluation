@@ -1,0 +1,47 @@
+.input
+  overflow auto
+  margin 0px auto
+  width 100%
+  max-width 600px
+  .table_data
+    &:first-child
+      min-width 11em
+    &:nth-child(2)
+      min-width 7em
+    &:nth-child(3)
+      float right
+    &:last-child
+      min-width 7em
+.output
+  .graph
+    max-width 400px
+    margin 0px auto
+  @media (min-width 800px)
+    .graph
+      float right
+      width 50%
+      padding-left 15px
+    .table_container
+      padding-right 15px
+  .graph, .table_container
+    margin-bottom 1em
+  .table_container
+    overflow auto
+    .table-header
+      background-color #F8FAFA
+      font-weight bold
+      text-align center
+    th
+      background-color #AAA
+      color #444
+      &:first-child
+        vertical-align top
+    th, td
+      padding .1em .15em
+    tbody tr:first-child th:first-child
+      height 9em
+  .vertical-text
+    transform-origin bottom left
+    transform rotate(90deg)
+    white-space nowrap
+    width 1em

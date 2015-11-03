@@ -1,0 +1,96 @@
+/**
+ * tag-based styles
+ */
+body
+  font-family "Arial Rounded MT Bold", "Helvetica Rounded", "Arial", "sans-seriff"
+h3
+  text-align center
+  margin-top 0px
+img.expand
+  width 100%
+/*
+  @media (min-width 640px)
+    width 80%
+    transition transform 0.5s ease-in
+    &:hover
+    &:active
+      transform scale(1.25)
+*/
+p#spinner
+  text-align center
+/**
+ * id-based styles (technically ids should refer to a single element but things happen)
+ */
+#helpGlossaryLinks
+  float none
+  overflow auto
+  a
+    float right
+    padding .5em
+/**
+ * class-based styles (ideally id-based styles on this stylesheet should be converted to this)
+ */
+.accordion [data-toggle='collapse']
+  cursor pointer
+.emptyblock
+  display block
+.bold
+  font-weight bold
+.define,.termToDefine
+  font-weight bold
+  text-decoration underline
+  cursor help
+.graph
+  text-align center
+  img
+    display block
+    margin 0px auto
+.highlight
+  background-color yellow
+.panel-body .panel:last-child
+  margin-bottom 0px
+.red
+  background-color base-red
+.table_container.bordered
+  .table_row
+    &:first-child .table_data
+      border-top-width 1px
+    &:not(:first-child) .table_data:first-child
+      text-align left
+  .table_data
+    border solid #DDD
+    border-width 0px 1px 1px 0px
+    &:first-child
+      border-left-width 1px
+.table_data
+  display block
+  float left
+  height 2.2em
+  line-height 2em
+  text-align center
+  padding .1em .15em
+  &:last-child
+    float none
+    overflow auto
+    width auto
+  &.text-left
+    text-align left
+  &.text-right
+    text-align right
+.table_padding
+  padding .25em .3em
+  line-height 2em
+.table_data, .table_padding
+  button, input, select
+    width 100%
+    height 2em
+    padding 0px
+    line-height 1em
+  label
+    margin-bottom 0px
+.table_row
+  padding .15em
+  overflow auto
+@media (max-width 379px)
+  .ui-tabs .ui-tabs-panel
+    padding 1em 0px

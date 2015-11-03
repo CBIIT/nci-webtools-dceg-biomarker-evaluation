@@ -1,0 +1,94 @@
+.maliable
+  margin 0px auto
+  font-size 0px
+  > *
+    font-size 13px
+  .graph
+    max-width 600px
+    margin 0px auto
+  .input, .output
+    width 100%
+    max-width 360px
+  @media (max-width 761px)
+    max-width 360px
+  @media (min-width 762px) and (max-width 1079px)
+    max-width 720px
+    .input, .output
+      display inline-block
+      vertical-align top
+    .input
+      padding-right 15px
+    .output
+      padding-left 15px
+    .graph
+      clear both
+  @media (min-width 1080px)
+    .input, .output
+      float left
+      padding 15px
+    .graph
+      overflow auto
+      
+/*
+    .graph img.expand
+      transform-origin top right
+      &:hover
+      &:active
+        transform scale(1.5)
+*/
+#cases_control .table_row > div
+  width 30%
+  &:first-child
+    width 40%
+.accordion .panel-footer input
+  width 100%
+.input > .table_padding button
+  width auto
+#mtr-results
+  .table_row
+    border 1px solid #ddd
+    border-radius 4px
+    &:nth-child(5), &:nth-child(7), &:nth-child(8)
+      .table_data
+        line-height 4em
+        height 4.2em
+        &:first-child
+          line-height 2em
+  .table_data
+    width 25%
+    &:first-child
+      width (100%/3)
+    &:nth-child(2)
+      width (100%/6)
+.tabbed_output_panel
+  #tabs div
+    overflow auto
+    padding 0px
+  table
+    width 99%
+    margin 0px auto
+    border 2px black solid
+    border-collapse collapse
+    tr
+      &:nth-child(2)
+        border-bottom 1px black solid
+      &.PPV_stripe
+        background-color #B080FF
+      &.cNPV_stripe
+        background-color #8080FF
+      &.PPVcNPV_stripe
+        background-color #FFAA80
+      &.ProgramBased_stripe
+        background-color #FFB0D0
+      &.PPVBased_stripe
+        background-color #A0A0A0
+      &.SensitivityBased_stripe
+        background-color #808080
+      &.DominatedByRareDisease_stripe
+        background-color #F0F0F0
+    th
+      padding 2px
+      border-bottom 1px #BBB solid
+      background-color #F5F5F5
+    td
+      padding 0px 1em
