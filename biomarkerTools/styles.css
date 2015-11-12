@@ -575,6 +575,9 @@ header #branch-logo {
   text-align: left;
 }
 @media (max-width: 480px) {
+  #meanRiskStratification .input .option-1 {
+    font-size: 12px;
+  }
   #meanRiskStratification .input .option-1 .table_data {
     height: 4.2em;
   }

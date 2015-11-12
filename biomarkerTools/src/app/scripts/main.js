@@ -65,7 +65,7 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
   document.title = title;
 });
 
-$(document).on('click', '.define', termDisplay);
+$(document).on('click touchstart', '.define', termDisplay);
 
 $('.disable_control').on('click',function(e){
   e.preventDefault();
