@@ -1,3 +1,62 @@
+$.extend($_Glossary,{
+	AUC : {
+		fullName : "Area under the receiver operator characteristic curve",
+		definition : " for a biomarker is the average sensitivity (or, equivalently, the integral of the sensitivity) in the interval of cSpecificity from 0 to 1 (specificity from 1 to 0), itself equal to the area between the ROC curve and the x-axis."
+	},
+	CV : {
+		fullName : "Coefficient of Variation",
+		definition : "The coefficient of variation is defined as the ratio of the standard deviation to the mean. It shows the extent of variability in relation to mean of the population."
+	},
+	cNPV : {
+		fullName : "Complement of Negative Predictive Value (cNPV)",
+		definition : "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
+	},
+	Delta : {
+		fullName : "Delta",
+		definition : "The statistic delta is the ratio of the absolute difference in average level of the biomarker between cases and controls in units of standard deviation."
+	},
+	DP : {
+		fullName : "Disease Prevalence",
+		definition : "Proportion of the population with disease, or previously diagnosed with disease, at a given time."
+	},
+	LR : {
+		fullName : "Likelihood Ratios (LR)",
+		definition : " The likelihood ratios are factors that update the prior odds to obtain conditional odds of disease after a positive and negative disease."
+	},
+	LRP : {
+		fullName : "Likelihood Ratio Positive (LR+)",
+		definition : "The LR+ is the ratio of the probabilities of a case having a positive test (Sensitivity) and of a control having a positive test (cSpecificity)."
+	},
+	LRN : {
+		fullName : "Likelihood Ratio Negative (LR-)",
+		definition : "The LR- is the ratio of the probabilities of the control having a negative test (Specificity) and the case having a negative test (cSensitivity)."
+	},
+	PPV : {
+		fullName : "Positive Predictive Value (PPV)",
+		definition : "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity and specificity, PPV’s reflect disease prevalence and is useful for risk stratification."
+	},
+	PPVmcNPV : {
+		fullName : "PPV-cNPV",
+		definition : "The difference PPV-cNPV is a simple measure of the clinical value of the test, or the difference between risks; if PPV is close to cNPV, the screening test will not be very helpful, even if the sensitivity and specificity are high."
+	},
+	ROC : {
+		fullName : "Receiver operator characteristic (ROC) curve",
+		definition : "A presentation that plots a point for all possible thresholds of the biomarker, with the y-axis representing sensitivity and the x-axis representing 1 - <i>specificity</i> of the test.  The ROC curve graphically displays the tradeoff of increased sensitivity but decreased specificity from lowering the threshold, and vice versa."
+	},
+	Risk : {
+		fullName : "Risk",
+		definition : "Probability of disease, implicitly prevalent disease, or incident disease within an interval."
+	},
+	Sens : {
+		fullName : "Sensitivity",
+		definition : "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among those who are positive for disease."
+	},
+	Spec : {
+		fullName : "Specificity",
+		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
+	}
+});
+
 var cases_string;
 var uniqueKey;
 var thisTool = $("#meanstorisk");
@@ -532,25 +591,23 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
   first_header_row.appendTo(general_table);
   var second_header_row = $("<tr></tr>");
   second_header_row.append("<TH class='text-center " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'>" +
-               "<div class='define' id='" + type + tab_id+"' data-term='"+type+"'>" + table_second_name + "</div>" +
-               "<div class='popupDefinition' id='" + type +tab_id+ "Definition'></div>" +
-               "</TH>");
+                             "<div id='" + type + tab_id+"'" + ($_Glossary[type]===undefined?"":" class='define' data-term='"+type+"'") + ">" + table_second_name + "</div>" +
+                           "</TH>");
   second_header_row.appendTo(general_table);
   var third_header_row = $("<tr></tr>");
   third_header_row.append("<TH class='header text-center' colspan='4' style='border-right:1px solid black;'>" +
-              "<div class='define id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
-              "</TH>" );
+                            "<div class='define id='Sens2-" + tab_id + "' data-term='Sens'>Sensitivity Given Specificity <br /> for Given Delta </div>" +
+                          "</TH>" );
   third_header_row.append("<TH class='header text-center' colspan='" + prevalence_count + "' >" +
-              "<div class='define' id='DP2-" + tab_id + "' data-term='DP'>Disease Prevalence</div>" +
-              "<div class='popupDefinition' id='DP2-" + tab_id + "Definition'></div>" +
-              "</TH>");
+                            "<div class='define' id='DP2-" + tab_id + "' data-term='DP'>Disease Prevalence</div>" +
+                          "</TH>");
   third_header_row.appendTo(general_table);
   var header_row = $("<tr></tr>");
   header_row.attr('id', type + '_table_row_header');
-  header_row.append("<TH class='header text-center'><div class='define' id='Spec-" + tab_id + "' data-term='Spec'>Specificity</div><div class='popupDefinition' id='Spec-" + tab_id + "Definition'></div></TD>");
-  header_row.append("<TH class='header text-center'><div class='define' id='Sens-" + tab_id + "' data-term='Sens'>Sensitivity</div><div class='popupDefinition' id='Sens-" + tab_id + "Definition'></div></TD>");
-  header_row.append("<TH class='header text-center'><div class='define' id='LRP-" + tab_id + "' data-term='LRP'>LR+</div><div class='popupDefinition' id='LRP-" + tab_id + "Definition'></div></TD>");
-  header_row.append("<TH class='header text-center' style='border-right:1px solid black;'><div class='define' id='LRN-"+tab_id+"' data-term='LRN'>LR-</div><div class='popupDefinition' id='LRN-"+tab_id+"Definition'></div></TD>");
+  header_row.append("<TH class='header text-center'><div class='define' id='Spec-" + tab_id + "' data-term='Spec'>Specificity</div></TD>");
+  header_row.append("<TH class='header text-center'><div class='define' id='Sens-" + tab_id + "' data-term='Sens'>Sensitivity</div></TD>");
+  header_row.append("<TH class='header text-center'><div class='define' id='LRP-" + tab_id + "' data-term='LRP'>LR+</div></TD>");
+  header_row.append("<TH class='header text-center' style='border-right:1px solid black;'><div class='define' id='LRN-"+tab_id+"' data-term='LRN'>LR-</div></TD>");
   for(var x=0;x<prevalence_count;x++) {
     header_row.append("<TH class='header text-center'>" + format_number(prevalence_values[x]) + "</TD>");
   }
@@ -573,8 +630,6 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
     }
     row.appendTo(general_table);
   }
-
-  general_table.find('.define').on('click', termDisplay);
 }
 
 function draw_graph() {

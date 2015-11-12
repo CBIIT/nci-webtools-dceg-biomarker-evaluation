@@ -1,29 +1,25 @@
 var thisTool;
 $(document).ready(function(){
     thisTool = $('#help');
-    thisTool.find('h4, h5').each(tableOfContentsList);
+    var glossary = $('#glossary');
+    var keys = [];
+    var terms = {};
+    for (var term in $_Glossary) {
+      if (keys.indexOf(term.toUpperCase()) < 0) {
+        keys.push(term.toUpperCase());
+        terms[term.toUpperCase()] = $_Glossary[term];
+      }
+    }
+    keys = keys.sort();
+    for (var index in keys) {
+      index = keys[index];
+      $("<p><b>" + terms[index].fullName + ":</b><span> " + terms[index].definition + "</span></p>").appendTo(glossary);
+    }
 });
 
 $('a[href="#help"]').on('shown.bs.tab',function(e){
     thisTool = $("#help");
 });
-
-
-function tableOfContentsList(){
-    var text = this.innerHTML;
-    if(this.tagName == "H4")
-        thisTool.find('#toc').append("<li><strong><a class='goToTopic' href='#" + this.id + "'>" + text + "</a><strong></li>");
-    if(this.tagName == "H5"){
-        var el = $("<li><a class='goToTopic' href='#" + this.id + "'>" + text + "</a></li>");    
-
-        if(this.id.indexOf("help_") != -1){
-            el.find('.goToTopic').on('click', function(){
-                goToTarget(this);
-            });
-            thisTool.find('#toc li:contains("Tools Help")').append(el);
-        }
-    }
-}
 
 $('.goToTopic').on('click', function(){
     goToTarget(this);

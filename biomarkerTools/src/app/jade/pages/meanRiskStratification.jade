@@ -1,7 +1,6 @@
 #meanRiskStratification.tab-pane.fade(role='tabpanel')
   h3(title="Mean Risk Stratification tool") Mean Risk Stratification
   #helpGlossaryLinks
-    a.goToHelp(href="#help_meanRiskStratification") Help
     a.goToGlossary(href="#") Glossary
   form.input.panel-group
     #markers
@@ -161,27 +160,27 @@
           th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
           th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
         tr
-          td.text-left.define True Positive Fraction = a
+          td.text-left True Positive Fraction = a
           td.d_pos_result.output_field.bm_1
           td.d_pos_result.output_field.bm_2
           td.d_pos_result.output_field.bm_3
         tr
-          td.text-left.define False Negative Fraction = b
+          td.text-left False Negative Fraction = b
           td.pos_d_neg_m_result.output_field.bm_1
           td.pos_d_neg_m_result.output_field.bm_2
           td.pos_d_neg_m_result.output_field.bm_3
         tr
-          td.text-left.define False Positive Fraction = c
+          td.text-left False Positive Fraction = c
           td.neg_d_pos_m_result.output_field.bm_1
           td.neg_d_pos_m_result.output_field.bm_2
           td.neg_d_pos_m_result.output_field.bm_3
         tr
-          td.text-left.define True Negative Fraction = d
+          td.text-left True Negative Fraction = d
           td.m_neg_result.output_field.bm_1
           td.m_neg_result.output_field.bm_2
           td.m_neg_result.output_field.bm_3
         tr
-          td.text-left.define.prob_m(data-term="prob_m") Marker Positivity
+          td.text-left.prob_m(data-term="prob_m") Marker Positivity
           td.prob_m_result.output_field.bm_1
           td.prob_m_result.output_field.bm_2
           td.prob_m_result.output_field.bm_3
@@ -211,22 +210,22 @@
           td.spec_result.output_field.bm_2
           td.spec_result.output_field.bm_3
         tr
-          td.text-left.define Complement of Specificity (cSpec)
+          td.text-left Complement of Specificity (cSpec)
           td.c_spec_result.output_field.bm_1
           td.c_spec_result.output_field.bm_2
           td.c_spec_result.output_field.bm_3
         tr
-          td.text-left.define Relative Risk
+          td.text-left Relative Risk
           td.rr_result.output_field.bm_1
           td.rr_result.output_field.bm_2
           td.rr_result.output_field.bm_3
         tr
-          td.text-left.define Risk Difference (RD)
+          td.text-left Risk Difference (RD)
           td.r_diff_result.output_field.bm_1
           td.r_diff_result.output_field.bm_2
           td.r_diff_result.output_field.bm_3
         tr
-          td.text-left.define
+          td.text-left
             | Youden's Index (YI)
           td.youden_result.output_field.bm_1
           td.youden_result.output_field.bm_2

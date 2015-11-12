@@ -28,8 +28,7 @@ p#spinner {
 .bold {
   font-weight: bold;
 }
-.define,
-.termToDefine {
+.define {
   font-weight: bold;
   text-decoration: underline;
   cursor: help;
@@ -619,5 +618,15 @@ header #branch-logo {
 #meanRiskStratification .output th {
   background-color: #f5f5f5;
   border-top-width: 1px;
+  font-weight: bold;
+}
+#help #tools-help + section article > * {
+  padding-left: 1em;
+}
+#help #tools-help + section article > *:first-child {
+  padding-left: 0px;
+}
+#help h5,
+#help h6 {
   font-weight: bold;
 }
