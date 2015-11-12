@@ -124,6 +124,11 @@ gulp.task 'css' <[bower]> ->
     .pipe gulp-concat 'styles.css'
     .pipe gulp.dest parentDir
 
+  gulp.src 'app/stylus/IEOnly.styl'
+    .pipe gulp-filter -> it.path isnt /\/_[^/]+\.styl$/
+    .pipe gulp-stylus use: [nib!] import: <[ nib ]>
+    .pipe gulp.dest parentDir
+
   s = streamqueue { +objectMode }
     .done bower, styl, gulp.src 'app/css/**/*.css'
     .pipe gulp-if production, gulp-csso!
