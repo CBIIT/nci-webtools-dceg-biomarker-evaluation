@@ -1,20 +1,29 @@
 #help.tab-pane.fade(role='tabpanel')
   h3.text-left(title="Help content") Help
-  ul#toc.list-unstyled.extra-padding
+  ul#toc.list-unstyled
+    li
+      strong
+        a.goToTopic(href='#tools-help') Tools Help
+      ul
+        li
+          a.goToTopic(href='#help_riskStratAdvanced') Risk Stratification Advanced Analysis
+    li
+      strong
+        a.goToTopic(href='#faq') FAQ
+    li
+      strong
+        a.goToTopic(href='#header-glossary') Glossary of Terms
   h4#tools-help.text-left.bg-primary Tools Help
   section
-    article.extra-padding
-      h5#help_meanstorisk Means to Risk
-      h5#help_bc Biomarker Comparison
+    article
       h5#help_riskStratAdvanced Risk Stratification Advanced Analysis
-      article.extra-padding
+      div
+        h6 Instructions for Input
         p
-          b Instructions for Input
-          br
           | This tool calculates values and creates a graph for valid combinations of given PPV, cNPV,
           | delta, specificity, sensitivity, and prevalence values. Click on the 'Example' link
           | for an example input combination.
-          ol
+        ol
           li
             | Choose which values you would like to input as the
             | independent variable, or for the x-axis of the output graph, from
@@ -28,9 +37,9 @@
             | Choose which values you would like to input as fixed
             | values. Then enter your values as decimals separated by commas.
           li Click 'Calculate'
-        p
-          b Input Validation Rules
-          ul
+      div
+        h6 Input Validation Rules
+        ul
           li Specificity, Sensitivity, PPV, cNPV, and Prevalence can only be 0 to 1
           li Delta can be 0 to 5
           li cNPV < Prevalence
@@ -41,11 +50,9 @@
           li
             | PPV and cNPV; Sensitivity, Specificity, and Delta; PPV,
             | Prevalence, and Delta; and cNPV, Prevalence, and Delta are invalid combinations of input
-      h5#help_sampleSize Power and Sample Size Calculation
-      h5#help_meanRiskStratification Mean Risk Stratification
   h4#faq.text-left.bg-primary FAQ
   section
-    article.extra-padding
+    article
       dl
         dt Where do I go for technical support?
         dl Please send an
@@ -56,4 +63,4 @@
         dl The web tools have been tested to work with Internet Explorer 10, Firefox and Chrome.
         | These tools do not support Internet Explorer 9 and below.
   h4#header-glossary.text-left.bg-primary Glossary of Terms
-  section.extra-padding#glossary
+  section#glossary

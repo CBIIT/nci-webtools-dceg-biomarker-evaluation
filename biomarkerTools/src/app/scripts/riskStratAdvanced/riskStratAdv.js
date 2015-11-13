@@ -165,7 +165,6 @@ function addTestData() {
 }
 
 function addPopupDefinition() {
-
   var termLookup = {
     ppv : "PPV",
     cnpv : "cNPV",
@@ -180,35 +179,26 @@ function addPopupDefinition() {
   if (!!independent) {
     var independentTerm = termLookup[independent];
     createPopupDefinitionElement("indDef", independentTerm, independentTerm);
-  }
-  else {
+  } else {
     thisTool.find("#indDef").html("");
   }
   if (!!contour) {
     var contourTerm = termLookup[contour];
     createPopupDefinitionElement("contourDef", contourTerm, contourTerm);
-  }
-  else {
+  } else {
     thisTool.find("#contourDef").html("");
   }
   if (!!fixedValue) {
     var fixedValueTerm = termLookup[fixedValue];
     createPopupDefinitionElement("fvDef", fixedValueTerm, fixedValueTerm);
-  }
-  else {
+  } else {
     thisTool.find("#fvDef").html("");
   }
-  thisTool.find(".define").on("click", termDisplay);
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
   thisTool.find("#" + elementId)
-    .html("<div class='define' id='" +
-        termId +
-        "' data-term='" +
-        dataTerm +
-        "'><img src='/common/images/info.png' height='20', width='20', alt='pop up definition for " + dataTerm + "'></div>").find(".define").on("click", termDisplay);
-
+    .html("<div class='define' id='" + termId + "' data-term='" + dataTerm + "'><img src='/common/images/info.png' alt='pop up definition for " + dataTerm + "'></div>");
 }
 
 function resetPopupDefinition() {
@@ -830,3 +820,30 @@ Array.min = function( array ){
   array = array.map(Number);
   return Math.min.apply( Math, array );
 };
+
+$.extend($_Glossary,{
+	cNPV : {
+		fullName : "Complement of Negative Predictive Value (cNPV)",
+		definition : "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
+	},
+	Delta : {
+		fullName : "Delta",
+		definition : "The statistic delta is the ratio of the absolute difference in average level of the biomarker between cases and controls in units of standard deviation."
+	},
+	DP : {
+		fullName : "Disease Prevalence",
+		definition : "Proportion of the population with disease, or previously diagnosed with disease, at a given time."
+	},
+	PPV : {
+		fullName : "Positive Predictive Value (PPV)",
+		definition : "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity and specificity, PPV’s reflect disease prevalence and is useful for risk stratification."
+	},
+	Sens : {
+		fullName : "Sensitivity",
+		definition : "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among those who are positive for disease."
+	},
+	Spec : {
+		fullName : "Specificity",
+		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
+	}
+});

@@ -419,7 +419,6 @@ function set_data(dt){
   } else {
     createOutputTable(jsonObject);
   }
-  thisTool.find('.define').on('click', termDisplay);
 }
 
 function jsonToCell(obj){
@@ -547,3 +546,34 @@ function reset_bc(){
   thisTool.find("[row='2'] .specificity").text("0.5");
 
 }
+
+$.extend($_Glossary,{
+	cNPV : {
+		fullName : "Complement of Negative Predictive Value (cNPV)",
+		definition : "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
+	},
+	DP : {
+		fullName : "Disease Prevalence",
+		definition : "Proportion of the population with disease, or previously diagnosed with disease, at a given time."
+	},
+	LRP : {
+		fullName : "Likelihood Ratio Positive (LR+)",
+		definition : "The LR+ is the ratio of the probabilities of a case having a positive test (Sensitivity) and of a control having a positive test (cSpecificity)."
+	},
+	LRN : {
+		fullName : "Likelihood Ratio Negative (LR-)",
+		definition : "The LR- is the ratio of the probabilities of the control having a negative test (Specificity) and the case having a negative test (cSensitivity)."
+	},
+	PPV : {
+		fullName : "Positive Predictive Value (PPV)",
+		definition : "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity and specificity, PPV’s reflect disease prevalence and is useful for risk stratification."
+	},
+	Sens : {
+		fullName : "Sensitivity",
+		definition : "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among those who are positive for disease."
+	},
+	Spec : {
+		fullName : "Specificity",
+		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
+	}
+});

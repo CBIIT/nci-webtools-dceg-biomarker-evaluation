@@ -12,36 +12,30 @@ requirejs.config({
         meanstorisk: 'meanstorisk/meanstorisk',
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
         meanRiskStratification: 'meanRiskStratification/mrs',
-        glossary: '/common/js/meansToRiskGlossary',
+        glossary: '/common/js/popover-functions',
         main: 'main',
     },
     shim: {
-        'jquery.ui': {
+        bootstrap: {
             deps: ['jquery']
+        },
+        'jquery.ui': {
+            deps: ['bootstrap' /* not really, but we want them to load in order */]
         },
         datatables: {
             deps: ['jquery.ui']
         },
-        bootstrap: {
-            deps: ['jquery']
-        },
         glossary: {
-            deps: ['jquery']
-        },
-        sampleSize: {
-            deps: ['jquery.ui', 'main']
-        },
-        meanstorisk: {
-            deps: ['jquery.ui', 'main']
-        },
-        riskStratAdvanced: {
-            deps: [ 'jquery.ui', 'datatables','bootstrap', 'main']
+            deps: ['jquery.ui']
         },
         main: {
-            deps: ['modernzr','jquery.ui','bootstrap', 'glossary', 'rand']
+            deps: ['glossary', 'modernzr', 'rand']
+        },
+        riskStratAdvanced: {
+            deps: ['datatables']
         },
         help:{
-            deps: ['glossary', 'main']
+            deps: ['glossary', 'bc', 'meanstorisk', 'meanRiskStratification', 'riskStratAdvanced']
         }
     }
 });

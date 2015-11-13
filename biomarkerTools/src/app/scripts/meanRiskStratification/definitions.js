@@ -1,8 +1,11 @@
-$.extend(Glossary, {
+$.extend($_Glossary, {
+	AUC : {
+		fullName : "Area under the receiver operator characteristic curve",
+		definition : " for a biomarker is the average sensitivity (or, equivalently, the integral of the sensitivity) in the interval of cSpecificity from 0 to 1 (specificity from 1 to 0), itself equal to the area between the ROC curve and the x-axis."
+	},
   cnpv: {
     fullName: "Complement of Negative Predictive Value (cNPV)",
-    definition: "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and " +
-    "specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
+    definition: "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
   },
   concern: {
     fullName: "Concern",
@@ -41,7 +44,10 @@ $.extend(Glossary, {
     definition: "Extra disease detection in positive group than negative group. " +
     "Formula: PBS = a-b"
   },
-  ppv: Glossary['PPV'],
+	ppv : {
+		fullName : "Positive Predictive Value (PPV)",
+		definition : "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity and specificity, PPV’s reflect disease prevalence and is useful for risk stratification."
+	},
   prob_d: {
     fullName: "Disease Positive (D+)",
     definition: "Disease prevalence, or probability of disease"
@@ -62,15 +68,13 @@ $.extend(Glossary, {
     fullName: "Reassurance",
     definition: "Reduction in disease risk from testing negative. Formula: Reassurance = P(D+)-cNPV"
   },
-  sampsize: {
-    fullName: "Sample Size",
-    definition: ""
-  },
-  sens: Glossary['Sens'],
-  spec: Glossary['Spec'],
-  test: {
-    fullName: "Test",
-    definition: "empty"
+	sens : {
+		fullName : "Sensitivity",
+		definition : "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among those who are positive for disease."
+	},
+	spec : {
+		fullName : "Specificity",
+		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
   }
 });
 
