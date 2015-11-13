@@ -6,11 +6,14 @@
     .remove_row_button:last-child
       display none
   .table_row
-    &:first-child ~ .table_row
-      counter-increment bcDataRows
-      .table_data:first-child::after
-        content counter(bcDataRows)
-        font-weight bold
+    &:first-child
+      @media (max-width 479px)
+        font-size 11px
+      ~ .table_row
+        counter-increment bcDataRows
+        .table_data:first-child::after
+          content counter(bcDataRows)
+          font-weight bold
     &:last-child
       counter-increment bcDataRows -1
       button

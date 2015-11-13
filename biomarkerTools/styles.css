@@ -278,6 +278,11 @@ header #branch-logo {
     display: none;
   }
 }
+@media (max-width: 479px) {
+  #bc #inputdata .table_row:first-child {
+    font-size: 11px;
+  }
+}
 #bc #inputdata .table_row:first-child ~ .table_row {
   counter-increment: bcDataRows;
 }
@@ -373,7 +378,7 @@ header #branch-logo {
   max-width: 600px;
 }
 #riskStratAdvanced .input .table_data:first-child {
-  min-width: 11em;
+  min-width: 13em;
 }
 #riskStratAdvanced .input .table_data:nth-child(2) {
   min-width: 7em;
@@ -445,6 +450,11 @@ header #branch-logo {
   width: 100%;
   max-width: 640px;
   margin: 0px auto;
+}
+@media (max-width: 479px) {
+  #sampleSize .input {
+    font-size: 12px;
+  }
 }
 @media (max-width: 430px) {
   #sampleSize .input .panel-body.table_container > .table_row:first-child > .table_data {
@@ -550,6 +560,11 @@ header #branch-logo {
     width: 70%;
   }
 }
+@media (max-width: 568px) {
+  #meanRiskStratification .input #control-group .table_row:first-child {
+    font-size: 11px;
+  }
+}
 #meanRiskStratification .input #control-group .table_row:first-child .table_data {
   width: 25%;
 }
@@ -574,10 +589,12 @@ header #branch-logo {
   width: auto;
   text-align: left;
 }
-@media (max-width: 480px) {
+@media (max-width: 568px) {
   #meanRiskStratification .input .option-1 {
-    font-size: 12px;
+    font-size: 11px;
   }
+}
+@media (max-width: 480px) {
   #meanRiskStratification .input .option-1 .table_data {
     height: 4.2em;
   }
