@@ -820,30 +820,3 @@ Array.min = function( array ){
   array = array.map(Number);
   return Math.min.apply( Math, array );
 };
-
-$.extend($_Glossary,{
-	cNPV : {
-		fullName : "Complement of Negative Predictive Value (cNPV)",
-		definition : "Probability of disease, given a negative test result from biomarker. Unlike sensitivity and specificity, cNPV's reflect disease prevalence and is useful for risk stratification."
-	},
-	Delta : {
-		fullName : "Delta",
-		definition : "The statistic delta is the ratio of the absolute difference in average level of the biomarker between cases and controls in units of standard deviation."
-	},
-	DP : {
-		fullName : "Disease Prevalence",
-		definition : "Proportion of the population with disease, or previously diagnosed with disease, at a given time."
-	},
-	PPV : {
-		fullName : "Positive Predictive Value (PPV)",
-		definition : "Probability of disease, given a positive test result from biomarker.  Unlike sensitivity and specificity, PPV’s reflect disease prevalence and is useful for risk stratification."
-	},
-	Sens : {
-		fullName : "Sensitivity",
-		definition : "Sensitivity is the proportion whose biomarker test is positive (above the threshold) among those who are positive for disease."
-	},
-	Spec : {
-		fullName : "Specificity",
-		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
-	}
-});

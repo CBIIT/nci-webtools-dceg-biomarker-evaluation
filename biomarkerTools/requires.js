@@ -12,7 +12,8 @@ requirejs.config({
         meanstorisk: 'meanstorisk/meanstorisk',
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
         meanRiskStratification: 'meanRiskStratification/mrs',
-        glossary: '/common/js/popover-functions',
+        define: '/common/js/popover-functions',
+        glossary: 'glossary',
         main: 'main',
     },
     shim: {
@@ -25,17 +26,17 @@ requirejs.config({
         datatables: {
             deps: ['jquery.ui']
         },
-        glossary: {
+        define: {
             deps: ['jquery.ui']
+        },
+        glossary: {
+            deps: ['define']
         },
         main: {
             deps: ['glossary', 'modernzr', 'rand']
         },
         riskStratAdvanced: {
             deps: ['datatables']
-        },
-        help:{
-            deps: ['glossary', 'bc', 'meanstorisk', 'meanRiskStratification', 'riskStratAdvanced']
         }
     }
 });
@@ -43,5 +44,9 @@ requirejs.config({
 
 require(['main'], function(){
     console.log("default scripts loaded");
+    var id = $('[role="tab"].active a')[0].hash.replace('#','');
+    if (id != 'home') {
+      require([ id ]);
+    }
     return {};
 });

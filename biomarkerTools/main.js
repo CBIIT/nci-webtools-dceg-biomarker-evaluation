@@ -53,14 +53,15 @@ $(document).on('hide.bs.tab', function (e) {
 $(document).on('shown.bs.tab', function (e) {
   if(e.target.hash !== undefined){
     var id = e.target.hash.toString().replace('#', '');
-    require([ id ]);
+    if (id != 'home')
+      require([ id ]);
   }
 });
 
 $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
   var id = el.target.hash.toString().replace('#', '');
-
-  require([id]);
+  if (id != 'home')
+    require([id]);
   var title = "Biomarker Tools: " + el.target.text;
   document.title = title;
 });
@@ -97,7 +98,8 @@ $('.goToTab').on('click', function(el){
   $('.nav li.active').removeClass('active');
   $(".nav a[href='" + ref + "']").tab('show').parent().addClass('active');
   var id = ref.replace("#","");
-  require([id]);
+  if (id != 'home')
+    require([id]);
 });
 
 
