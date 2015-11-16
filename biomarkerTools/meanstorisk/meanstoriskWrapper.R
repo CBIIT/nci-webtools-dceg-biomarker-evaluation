@@ -160,6 +160,9 @@ parseURLEncodedString <- function (urlEncodedString) {
   string <- URLdecode(urlEncodedString);
   inputList <- lapply(strsplit(string, "&")[[1]], function(x){
     tmp <- strsplit(x, "=")
+    if (length(tmp[[1]]) == 1 && tmp[[1]][[1]] == "dataCSV") {
+      stop("FileNotFound")
+    }
     val <- tmp[[1]][[2]]
     names(val) <- tmp[[1]][[1]]
     as.list(val)

@@ -1,22 +1,22 @@
 #!flask/bin/python
 from flask import Flask, Response, abort, request, make_response, url_for, jsonify
 from functools import wraps
-from flask import current_app
-
-import rpy2.robjects as robjects
-from rpy2.robjects import r
 import cgi
-import shutil
-import os
-from xml.sax.saxutils import escape, unescape
-from socket import gethostname
+from flask import current_app
 import json
-import pandas as pd
 import numpy as np
+import os
+import pandas as pd
 from pandas import DataFrame
 import pandas.rpy.common as com
-import urllib
+from rpy2.rinterface import RRuntimeError
+import rpy2.robjects as robjects
+from rpy2.robjects import r
+import shutil
+from socket import gethostname
 import time
+import urllib
+from xml.sax.saxutils import escape, unescape
 
 app = Flask(__name__)
 
@@ -41,7 +41,15 @@ def jsonp(func):
 def call_mean_RFunction():
     print "Data Start Time: " + str(time.time());
     stream = request.stream.read()
-    jsondata = r_getname_getApcData(stream)
+    try:
+      jsondata = r_getname_getApcData(stream)
+    except RRuntimeError as e:
+      if ("FileNotFound" in e.args[0]):
+        response = jsonify({'error': "Please choose a file to upload, or use the Normal Distribution input method."})
+        response.status_code = 500;
+        return response
+      else:
+        raise
     print "After Data Calculation: " + str(time.time());
     return jsondata[0]
 
