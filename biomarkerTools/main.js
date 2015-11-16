@@ -109,8 +109,13 @@ function goToTarget(tar) {
 
 
 function default_ajax_error(request, status, error){
-  display_errors([error]);
-  console.log(request.responseText);
+  var logError;
+  try {
+    logError = JSON.parse(request.responseText).error;
+  } catch (e) {
+    logError = error;
+  }
+  display_errors([logError]);
 }
 
 function isNumberBetweenZeroAndOne(n) {
