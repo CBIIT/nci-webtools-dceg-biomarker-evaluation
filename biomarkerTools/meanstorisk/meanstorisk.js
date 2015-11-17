@@ -120,7 +120,7 @@ function prepare_upload (e) {
 }
 
 function bind_option_choices() {
-  thisTool.find("#accordion").collapse({
+  thisTool.find(".accordion").collapse({
     toggle: false
   });
 
@@ -168,12 +168,12 @@ function validate_input(valid){
     messages.push("Prevalence is required");
   }
 
-  if (thisTool.find("#accordion").find(".panel-body:first").hasClass("in") && valuesFromFile.length === 0) {
+  if (thisTool.find(".accordion").find(".panel-body:first").hasClass("in") && valuesFromFile.length === 0) {
     messages.push("Please Upload a file or pick the normalized option and enter key data first");
   }
-  if(thisTool.find("#accordion").find(".panel-body:nth(1)").hasClass("in")){
+  if(thisTool.find(".accordion").find(".panel-body:nth(1)").hasClass("in")){
 
-    var inputs = thisTool.find("#accordion").find(".panel-body:nth(1) input");
+    var inputs = thisTool.find(".accordion").find(".panel-body:nth(1) input");
 
     var empty = false;
 
@@ -220,7 +220,7 @@ function make_call() {
 
 function bind_download_button() {
   thisTool.find("#download_button").click(function() {
-    var activePanelIndex = thisTool.find("#accordion .collapse.in").index() - 2;
+    var activePanelIndex = thisTool.find(".accordion .collapse.in").index() - 2;
     if (activePanelIndex === 0) {
 
       if (valuesFromFile.length === 0) {
@@ -577,7 +577,7 @@ function draw_graph() {
   var graph_file;
 
 
-  var activePanelId = thisTool.find("#accordion .collapse.in").attr('id');
+  var activePanelId = thisTool.find(".accordion .collapse.in").attr('id');
   if (activePanelId == "file_upload") {
     graph_file = "tmp/CSV"+uniqueKey+".png?";
   } else {
