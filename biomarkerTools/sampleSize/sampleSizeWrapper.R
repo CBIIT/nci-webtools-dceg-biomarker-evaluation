@@ -1,4 +1,4 @@
-library('RJSONIO')
+library(RJSONIO)
 source ('./DrawCompRecVark.R', local=environment())
 source ('./writeToExcel.R',local=environment())
 
@@ -6,7 +6,15 @@ imageDirectory="./tmp/"
 imgList = list()
 excelFileName = ""
 
-saveAllSensGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
+saveAllSensGraphs <- function(jsoninput) {
+  jsoninput <- fromJSON(jsoninput)
+  k <- as.numeric(jsoninput$k)
+  sens <- as.numeric(jsoninput$sens)
+  spec <- as.numeric(jsoninput$spec)
+  prev <- as.numeric(jsoninput$prev)
+  N <- as.numeric(jsoninput$N)
+  uniqueId <- jsoninput$uniqueId
+  exporting <- jsoninput$exporting
   specTabs=1:length(spec)
   allSensData= list()
   tabsList= list()
@@ -30,7 +38,15 @@ getExcel <- function() {
     return (toJSON(excelFileName, method="C"))
 }
 
-saveAllSpecGraphs <- function(k, sens, spec, prev, N, uniqueId, exporting) {
+saveAllSpecGraphs <- function(jsoninput) {
+  jsoninput <- fromJSON(jsoninput)
+  k <- as.numeric(jsoninput$k)
+  sens <- as.numeric(jsoninput$sens)
+  spec <- as.numeric(jsoninput$spec)
+  prev <- as.numeric(jsoninput$prev)
+  N <- as.numeric(jsoninput$N)
+  uniqueId <- jsoninput$uniqueId
+  exporting <- jsoninput$exporting
   sensTabs=1:length(sens)
   allSpecData= list()
   tabsList= list()
