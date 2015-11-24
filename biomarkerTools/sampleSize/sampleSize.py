@@ -37,6 +37,15 @@ def sampleSizeRest():
     sens=data["sens"].split(',')
     spec=data["spec"].split(',')
     exp=data["export"]
+    jsonsend = json.dumps({
+      "k": k,
+      "prev": prev,
+      "N": N,
+      "uniqueId": unique_id,
+      "sens": sens,
+      "spec": spec,
+      "exporting": exp
+    })
     start = time.time()
     print "Starting Benchmark"
     
@@ -44,9 +53,9 @@ def sampleSizeRest():
         jsonrtn = r_getExcel()
     else:
         if fixed_flag == "Specificity":
-            jsonrtn = (r_saveAllSensGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
+            jsonrtn = r_saveAllSensGraphs(jsonsend)
         else:
-            jsonrtn = (r_saveAllSpecGraphs(FloatVector(k), FloatVector(sens), FloatVector(spec), float(prev), IntVector(N), unique_id, exp))
+            jsonrtn = r_saveAllSpecGraphs(jsonsend)
 
     jsonlist=list(jsonrtn)
 
