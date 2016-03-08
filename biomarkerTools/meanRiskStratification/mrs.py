@@ -115,13 +115,14 @@ def mrsRest():
 
     return json.dumps(biomar)
 
-import argparse
 if __name__ == '__main__':
+    import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", dest="port_number", default="9982", help="Sets the Port")
+    parser.add_argument("--debug", action="store_true")
     # Default port is production value; prod,stage,dev = 9982, sandbox=9983
     args = parser.parse_args()
     port_num = int(args.port_number);
 
     hostname = gethostname()
-    app.run(host='0.0.0.0', port=port_num, debug = True)
+    app.run(host='0.0.0.0', port=port_num, debug = args.debug)

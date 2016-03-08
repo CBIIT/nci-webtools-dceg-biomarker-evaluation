@@ -36,14 +36,15 @@ def api_tunnel(toolName):
         return mrsRest()
         
 
-import argparse
 if __name__ == '__main__':
     # sandbox/dev (9160/8160)
+    import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", dest="port_number", default="9160", help="Sets the Port")
+    parser.add_argument("--debug", action="store_true")
 
     args = parser.parse_args()
     port_num = int(args.port_number);
 	
     hostname = gethostname()
-    app.run(host='0.0.0.0', port=port_num, debug = True)
+    app.run(host='0.0.0.0', port=port_num, debug = args.debug)
