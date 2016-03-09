@@ -47,4 +47,4 @@ if __name__ == '__main__':
     port_num = int(args.port_number);
 	
     hostname = gethostname()
-    app.run(host='0.0.0.0', port=port_num, debug = args.debug)
+    app.run(host='0.0.0.0', port=port_num, debug = args.debug, use_evalex = False)
