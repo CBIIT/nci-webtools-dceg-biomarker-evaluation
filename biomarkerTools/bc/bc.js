@@ -226,14 +226,14 @@ function add_new_row(){
   var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
   var row_5 = "<div class='table_data emptyblock'>" +
                  "<BUTTON class='remove_row_button'>Remove</BUTTON>" +
-                 "<BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
+                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign' alt='remove row'></span></BUTTON>" +
                "</div>";
   inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
   if (num_rows === 2) {
     inputElm.children(':not(.non-data-row)').each(function(i, row){
       update_row_index(i, row);
       if (!$(this).hasClass('reference_row')) {
-        $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON><BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+        $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign' alt='remove row'></span></BUTTON><BUTTON class='remove_row_button'></BUTTON>");
       }
     });
   }

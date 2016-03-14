@@ -1,10 +1,16 @@
 #inputdata
   @media (max-width 479px)
-    .remove_row_button:first-child
-      display none
+    .remove_row_button
+      > .text
+        display none
+      > .glyphicon
+        display block
   @media (min-width 480px)
-    .remove_row_button:last-child
-      display none
+    .remove_row_button
+      >.text
+        display block
+      > .glyphicon
+        display none
   .table_row
     &:first-child
       @media (max-width 479px)

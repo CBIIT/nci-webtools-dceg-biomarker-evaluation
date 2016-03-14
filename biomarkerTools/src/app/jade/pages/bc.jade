@@ -81,9 +81,9 @@
             .table_data.input_field.sensitivity(row='1', col='sensitivity') 0.85
             .table_data.input_field.specificity(row='1', col='specificity') 0.68
             .table_data.emptyblock
-              button.remove_row_button Remove
-              button.remove_row_button
-                span.glyphicon.glyphicon-minus-sign
+              button.remove_row_button 
+                span.text Remove
+                span.glyphicon.glyphicon-minus-sign(title="Remove row")
           .table_row(row='2')
             .table_data.emptyblock
             .table_data.reference(row='2', col='reference')
@@ -91,9 +91,9 @@
             .table_data.input_field.sensitivity(row='2', col='sensitivity') 0.9
             .table_data.input_field.specificity(row='2', col='specificity') 0.5
             .table_data.emptyblock
-              button.remove_row_button Remove
               button.remove_row_button
-                span.glyphicon.glyphicon-minus-sign
+                span.text Remove
+                span.glyphicon.glyphicon-minus-sign(title="Remove row")
           .table_row.non-data-row
             button#new_row_button New Row
         .panel-footer
