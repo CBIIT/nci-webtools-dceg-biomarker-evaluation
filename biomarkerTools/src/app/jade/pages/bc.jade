@@ -108,8 +108,8 @@
           .table_row.non-data-row
             button#new_row_button New Row
         .panel-footer
-          label#DP.prevalence_label
-            a.define(href="#",data-term='DP',for='prevalence_bc') Prevalence
+          label#DP.prevalence_label(for='prevalence_bc')
+            a.define(href="#",data-term='DP') Prevalence
           input#prevalence_bc(type='text')
           button#calculate_button Calculate
           button#reset Reset

@@ -58,12 +58,12 @@
                     input#N_controls_input(type='text', value='200', size='4')
           .panel-footer
             .table_padding
-              label#Spec
-                a.define(href="javascript:void(0);", for='specificity',data-term='Spec') Specificity:
+              label#Spec(for='specificity')
+                a.define(href="javascript:void(0);", data-term='Spec') Specificity:
               input#specificity(type='text', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
             .table_padding
-              label#DP
-                a.define(href="javascript:void(0);", data-term='DP', for='prevalence') Prevalence:
+              label#DP(for='prevalence')
+                a.define(href="javascript:void(0);", data-term='DP') Prevalence:
               input#prevalence(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
         .table_padding.text-center
           button#calculate_button(type='button') Calculate
