@@ -301,7 +301,9 @@ function retrieve_excel() {
 }
 
 function sampleSizeRequest(exporting){
-  var url = "/" + rest + "/sampleSize/";
+
+  hostname = window.location.hostname;
+  url = "http://" + hostname +"/" + rest + "/sampleSize/";
 
   disableAll();
   thisTool.find(".post").attr('disabled','').text("Please Wait....");

@@ -143,29 +143,46 @@ function bind_reference_row(){
       .siblings().last().empty().html('&nbsp;')
       .parent().addClass('reference_row')
       .siblings('.reference_row').removeClass('reference_row');
-    oldReference.children('.reference').html("<img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/>");
+    oldReference.children('.reference').html("<a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/></a>");
     if (oldReference.parent().children().length > 4) {
-      oldReference.children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON><BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+      oldReference.children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
     }
   });
 }
-function bind_input(){
-  thisTool.find('.input_field').click(function(e){
-    var row, col, val, inp;
-    if (!editing) {
-      row = $(this).attr('row');
-      col = $(this).attr('col');
-      val = $(this).text();
-      old_value = val;
-      inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
-      $(this).empty();
-      $(this).append(inp);
-      bind_text_change(inp);
-      inp.focus();
-      editing = true;
-    }
-  });
+function bind_input() {
+    thisTool.find('.input_field').click(function (e) {
+        var row, col, val, inp;
+        if (!editing) {
+            row = $(this).attr('row');
+            col = $(this).attr('col');
+            val = $(this).text();
+            old_value = val;
+            inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
+            $(this).empty();
+            $(this).append(inp);
+            bind_text_change(inp);
+            inp.focus();
+            editing = true;
+        }
+    });
+
+    thisTool.find('.input_field, .input_field a').on("focus", function (e) {
+        var row, col, val, inp;
+        if (!editing) {
+            row = $(this).attr('row');
+            col = $(this).attr('col');
+            val = $(this).text();
+            old_value = val;
+            inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
+            $(this).empty();
+            $(this).append(inp);
+            bind_text_change(inp);
+            inp.focus();
+            editing = true;
+        }
+    });
 }
+
 function bind_text_change(inp){
   inp.on('blur', function(e){
     var $this, new_value;
@@ -206,8 +223,7 @@ function import_data_row(data, ind){
   var cell_3 = "<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
   var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
   var cell_5 = "<div class='table_data emptyblock'>" +
-                 "<BUTTON class='remove_row_button'>Remove</BUTTON>" +
-                 "<BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
+                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
                "</div>";
 
   $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
@@ -221,19 +237,17 @@ function add_new_row(){
   // exclude .non-data-rows in the count
   var num_rows = inputElm.children(':not(.non-data-row)').length;
   var row_1 = "<div class='table_row' row='" + num_rows + "'><div class='table_data emptyblock'></div>";
-  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
-  var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'>&nbsp;</div>" ;
-  var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'>&nbsp;</div>";
+  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='uncheck'/></a></div>";
+  var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></div>" ;
+  var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></div>";
   var row_5 = "<div class='table_data emptyblock'>" +
-                 "<BUTTON class='remove_row_button'>Remove</BUTTON>" +
-                 "<BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
-               "</div>";
+                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></div>";
   inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
   if (num_rows === 2) {
     inputElm.children(':not(.non-data-row)').each(function(i, row){
       update_row_index(i, row);
       if (!$(this).hasClass('reference_row')) {
-        $(this).children().last().empty().html("<BUTTON class='remove_row_button'>Remove</BUTTON><BUTTON class='remove_row_button'><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+        $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
       }
     });
   }
@@ -290,20 +304,20 @@ function do_calculation(){
 
   inputElm.children(':not(:last-child)').each(function(i, el){
     if ($(this).hasClass('reference_row')) {
-      refSens = parseFloat($(this).find('.sensitivity').text());
-      refSpec = parseFloat($(this).find('.specificity').text());
+      refSens = parseFloat($(this).find('.sensitivity a').text());
+      refSpec = parseFloat($(this).find('.specificity a').text());
       sensArrayWithRef += refSens + ",";
       specArrayWithRef += refSpec + ",";
       hasNoErrors = isNumberBetweenZeroAndOne(refSens);
       hasNoErrors = isNumberBetweenZeroAndOne(refSpec);
     }
     else if (!$(this).hasClass('non-data-row')) {
-      sensArray += parseFloat($(this).find('.sensitivity').text()) + ",";
-      specArray += parseFloat($(this).find('.specificity').text()) + ",";
-      sensArrayWithRef += parseFloat($(this).find('.sensitivity').text()) + ",";
-      specArrayWithRef += parseFloat($(this).find('.specificity').text()) + ",";
-      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity').text()));
-      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity').text()));
+      sensArray += parseFloat($(this).find('.sensitivity a').text()) + ",";
+      specArray += parseFloat($(this).find('.specificity a').text()) + ",";
+      sensArrayWithRef += parseFloat($(this).find('.sensitivity a').text()) + ",";
+      specArrayWithRef += parseFloat($(this).find('.specificity a').text()) + ",";
+      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity a').text()));
+      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity a').text()));
       labels += i + ",";
     }
 
@@ -536,13 +550,13 @@ function reset_bc(){
   thisTool.find('.graph small').addClass("hide");
   thisTool.find('.output').empty();
 
-  thisTool.find("[row='0'] .sensitivity").text("0.8");
-  thisTool.find("[row='0'] .specificity").text("0.7");
+  thisTool.find("[row='0'] .sensitivity a").text("0.8");
+  thisTool.find("[row='0'] .specificity a").text("0.7");
 
-  thisTool.find("[row='1'] .sensitivity").text("0.85");
-  thisTool.find("[row='1'] .specificity").text("0.68");
+  thisTool.find("[row='1'] .sensitivity a").text("0.85");
+  thisTool.find("[row='1'] .specificity a").text("0.68");
 
-  thisTool.find("[row='2'] .sensitivity").text("0.9");
-  thisTool.find("[row='2'] .specificity").text("0.5");
+  thisTool.find("[row='2'] .sensitivity a").text("0.9");
+  thisTool.find("[row='2'] .specificity a").text("0.5");
 
 }

@@ -11,12 +11,15 @@
             label(for='name-input') Biomarker Name
             input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-1')
-          .glyphicon.glyphicon-chevron-down
-          span Input: 2x2 Table
+            a(href="javascript:void(0);")
+              .glyphicon.glyphicon-chevron-down
+              span Input: 2x2 Table
         .option-1.panel-body.panel-collapse.table_container.collapse.in
           .table_row
-            #m_neg.table_data.define(data-term="m_neg") Marker Negative (M-)
-            #prob_m.table_data.define(data-term="prob_m") Marker Positive (M+)
+            #m_neg.table_data
+                a.define(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
+            #prob_m.table_data
+                a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
             .table_data.emptyblock
           .table_row
             .table_data
@@ -25,7 +28,8 @@
             .table_data
               label.sr-only(for='a') A
               input#a.input_field(name='a', type='number', maxlength='30')
-            #prob_d.table_data.text-left.define(data-term="prob_d") Disease Positive (D+)
+            #prob_d.table_data.text-left
+                a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
           .table_row
             .table_data
               label.sr-only(for='d') D
@@ -33,10 +37,12 @@
             .table_data
               label.sr-only(for='c') C
               input#c.input_field(name='c', type='number', maxlength='30')
-            #d_neg.table_data.text-left.define(data-term="d_neg") Disease Negative (D-)
+            #d_neg.table_data.text-left
+                a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
-          .glyphicon.glyphicon-chevron-down
-          span Input: PPV, NPV, Sensitivity, Specificity, etc.
+            a(href="javascript:void(0);")
+                .glyphicon.glyphicon-chevron-down
+                span Input: PPV, NPV, Sensitivity, Specificity, etc.
         .option-2.panel-body.panel-collapse.collapse
           .table_padding
             label(for='sampsize') Sample Size

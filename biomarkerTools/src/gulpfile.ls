@@ -21,8 +21,7 @@ plumber = ->
     gutil.beep!
     gutil.log gutil.colors.red it.toString!
 
-#livereload-server = require('tiny-lr')!
-#livereload = -> gulp-livereload livereload-server
+gulp.task 'default' <[ build ]>
 
 var http-server
 production = true if gutil.env.env is \production
@@ -36,23 +35,13 @@ gulp.task 'build' <[ clean:scripts template bower js:copy ls:app css ]> !->
 
 #clean files before running the build
 gulp.task \clean:scripts ->
-  del [ 
+  del [
   '../bc/*.js'
   '../meanRiskStratification/*.js'
   '../meanstorisk/*.js'
   '../riskStratificationAdvanced/*.js'
   '../sampleSize/*.js'
   ] force: true
-  
-# gulp.task 'test:unit' <[build]> ->
-#  gulp.start 'test:karma' ->
-#    process.exit!
-#
-#gulp.task 'test:karma' (done) ->
-#  require 'karma' .server.start {
-#    config-file: __dirname + '/test/karma.conf.ls',
-#    single-run: true
-#  }, done
 
 gulp.task 'dev' <[template js:copy ls:app css]> (done) ->
   gulp.watch ['app/jade/**/*.jade'] <[template]>
@@ -91,27 +80,27 @@ gulp.task 'ls:app' ->
     .pipe gulp.dest parentDir
 
   s.done!
-  
+
 gulp.task 'js:copy' <[bower]> ->
   s = streamqueue { +objectMode }
 
   #copy json files
   gulp.src \app/scripts/**/*.json
     .pipe gulp.dest parentDir
-  
-  # run js file through jshint, report errors, strip the comments, then place the files in a root scripts folder 
+
+  # run js file through jshint, report errors, strip the comments, then place the files in a root scripts folder
   gulp.src <[ !app/scripts/meanRiskStratification/**/* app/scripts/**/*.js ]>
     .pipe strip-comments!
     .pipe jshint!
     .pipe jshint.reporter \jshint-stylish
     .pipe gulp.dest parentDir
-    
+
   #merge scripts for mrs
   s.queue gulp.src \app/scripts/meanRiskStratification/*.js
     .pipe gulp-concat \mrs.js
     .pipe gulp-if dev, livereload!
     .pipe gulp.dest "#{parentDir}/meanRiskStratification"
-    
+
   s.done!
 
 gulp.task 'css' <[bower]> ->

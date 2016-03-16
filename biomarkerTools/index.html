@@ -55,9 +55,8 @@
                 <div class="input">
                   <div class="accordion panel panel-default">
                     <div class="panel-heading"><b>Choose how to enter the data</b></div>
-                    <div data-toggle="collapse" data-target="#file_upload" class="panel-heading">
-                      <div class="glyphicon glyphicon-chevron-down"></div><span>User Defined Distribution (from file)</span>
-                    </div>
+                    <div data-toggle="collapse" data-target="#file_upload" class="panel-heading"><a href="javascript:void(0);">
+                        <div class="glyphicon glyphicon-chevron-down"></div><span>User Defined Distribution (from file)</span></a></div>
                     <div id="file_upload" class="panel-body collapse in">
                       <p class="indent">
                         <label for="input_file_upload" class="data_entry_by_file"><b><span>Upload a raw case and control biomarker data file in csv format</span><a href="meanstorisk/p16-ELISA-sample-data.csv"> (Example)</a></b></label>
@@ -66,9 +65,8 @@
                         <input id="input_file_upload" type="file" class="data_entry_by_file">
                       </p>
                     </div>
-                    <div data-toggle="collapse" data-target="#cases_control" class="panel-heading">
-                      <div class="glyphicon glyphicon-chevron-down"></div><span>Normal Distribution</span>
-                    </div>
+                    <div data-toggle="collapse" data-target="#cases_control" class="panel-heading"><a href="javascript:void(0);">
+                        <div class="glyphicon glyphicon-chevron-down"></div><span>Normal Distribution</span></a></div>
                     <div id="cases_control" class="panel-body collapse">
                       <div class="panel panel-default">
                         <div class="panel-heading bold">Enter Mean, Standard Error, and N for Cases and Controls</div>
@@ -116,11 +114,11 @@
                     </div>
                     <div class="panel-footer">
                       <div class="table_padding">
-                        <label id="Spec" for="specificity" data-term="Spec" class="define">Specificity:</label>
+                        <label id="Spec"><a href="javascript:void(0);" for="specificity" data-term="Spec" class="define">Specificity:</a></label>
                         <input id="specificity" type="text" value="0.8, 0.9, 0.95, 0.99, 0.999" required>
                       </div>
                       <div class="table_padding">
-                        <label id="DP" data-term="DP" for="prevalence" class="define">Prevalence:</label>
+                        <label id="DP"><a href="javascript:void(0);" data-term="DP" for="prevalence" class="define">Prevalence:</a></label>
                         <input id="prevalence" type="text" value="0.1, 0.05, 0.01, 0.005, 0.001" required>
                       </div>
                     </div>
@@ -170,7 +168,7 @@
                       <div id="variance_overall" class="table_data emptyblock"></div>
                     </div>
                     <div class="table_row">
-                      <div data-term="CV" class="table_data text-right bold define">Coefficient of Variation (CV)</div>
+                      <div class="table_data text-right bold"><a href="javascript:void(0);" data-term="CV" class="define">Coefficient of Variation (CV)</a></div>
                       <div id="cv_cases" class="table_data emptyblock"></div>
                       <div id="cv_controls" class="table_data emptyblock"></div>
                       <div id="cv_overall" class="table_data emptyblock"></div>
@@ -182,13 +180,13 @@
                       <div id="diff_overall" class="table_data emptyblock"></div>
                     </div>
                     <div class="table_row">
-                      <div data-term="Delta" class="table_data text-right bold define">Delta</div>
+                      <div class="table_data text-right bold"><a href="javascript:void(0);" data-term="Delta" class="define">Delta</a></div>
                       <div id="delta_cases" class="table_data emptyblock"></div>
                       <div id="delta_controls" class="table_data emptyblock"></div>
                       <div id="delta_overall" class="table_data emptyblock"></div>
                     </div>
                     <div class="table_row">
-                      <div data-term="AUC" class="table_data text-right bold define">AUC</div>
+                      <div class="table_data text-right bold"><a href="javascript:void(0);" data-term="AUC" class="define">AUC</a></div>
                       <div id="auc_cases" class="table_data emptyblock"></div>
                       <div id="auc_controls" class="table_data emptyblock"></div>
                       <div id="auc_overall" class="table_data emptyblock"></div>
@@ -261,13 +259,13 @@
                   <div class="panel-heading">
                     <div class="panel-title text-center bold">Input Information</div>
                   </div>
-                  <div class="panel-heading bold"><span>Manually enter parameters </span>
+                  <div class="panel-heading bold"><span>Manually enter parameters</span>
                     <u>OR</u><span> import values from file</span>
                   </div>
                   <div id="upload" class="panel-body">
                     <div class="indent">
                       <p>
-                        <label for="file_upload" class="data_entry_by_file"><span>Upload CSV file to pre-populate parameters table with data </span><a href="bc/exampleValues.csv">(Example)</a></label>
+                        <label for="file_upload" class="data_entry_by_file"><span>Upload CSV file to pre-populate parameters table with data</span><a href="bc/exampleValues.csv"> (Example)</a></label>
                       </p>
                       <p>
                         <input id="file_upload" type="file" accept=".csv">
@@ -278,35 +276,33 @@
                     <div class="table_row non-data-row">
                       <div class="table_data bold">#</div>
                       <div class="table_data bold">Reference</div>
-                      <div id="Sens" data-term="Sens" class="table_data bold define">Sensitivity</div>
-                      <div id="Spec" data-term="Spec" class="table_data bold define">Specificity</div>
+                      <div id="Sens" class="table_data bold"><a href="#" data-term="Sens" class="define">Sensitivity</a></div>
+                      <div id="Spec" class="table_data bold"><a href="#" data-term="Spec" class="define">Specificity</a></div>
                       <div class="table_data emptyblock"></div>
                     </div>
                     <div row="0" class="table_row reference_row">
                       <div class="table_data emptyblock"></div>
-                      <div row="0" col="reference" class="table_data reference"><img src="/common/images/checkbox.png" alt="this row is the reference row"></div>
-                      <div row="0" col="sensitivity" class="table_data input_field sensitivity">0.8</div>
-                      <div row="0" col="specificity" class="table_data input_field specificity">0.7</div>
+                      <div row="0" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/checkbox.png" alt="this row is the reference row"></a></div>
+                      <div row="0" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.8</a></div>
+                      <div row="0" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.7</a></div>
                       <div class="table_data emptyblock"></div>
                     </div>
                     <div row="1" class="table_row">
                       <div class="table_data emptyblock"></div>
-                      <div row="1" col="reference" class="table_data reference"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></div>
-                      <div row="1" col="sensitivity" class="table_data input_field sensitivity">0.85</div>
-                      <div row="1" col="specificity" class="table_data input_field specificity">0.68</div>
+                      <div row="1" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></a></div>
+                      <div row="1" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.85</a></div>
+                      <div row="1" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.68</a></div>
                       <div class="table_data emptyblock">
-                        <button class="remove_row_button">Remove</button>
-                        <button class="remove_row_button"><span class="glyphicon glyphicon-minus-sign"></span></button>
+                        <button class="remove_row_button"><span class="text">Remove</span><span title="Remove row" class="glyphicon glyphicon-minus-sign"></span></button>
                       </div>
                     </div>
                     <div row="2" class="table_row">
                       <div class="table_data emptyblock"></div>
-                      <div row="2" col="reference" class="table_data reference"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></div>
-                      <div row="2" col="sensitivity" class="table_data input_field sensitivity">0.9</div>
-                      <div row="2" col="specificity" class="table_data input_field specificity">0.5</div>
+                      <div row="2" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></a></div>
+                      <div row="2" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.9</a></div>
+                      <div row="2" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.5</a></div>
                       <div class="table_data emptyblock">
-                        <button class="remove_row_button">Remove</button>
-                        <button class="remove_row_button"><span class="glyphicon glyphicon-minus-sign"></span></button>
+                        <button class="remove_row_button"><span class="text">Remove</span><span class="glyphicon glyphicon-minus-sign"></span></button>
                       </div>
                     </div>
                     <div class="table_row non-data-row">
@@ -314,7 +310,7 @@
                     </div>
                   </div>
                   <div class="panel-footer">
-                    <label id="DP" data-term="DP" for="prevalence_bc" class="define prevalence_label">Prevalence</label>
+                    <label id="DP" class="prevalence_label"><a href="#" data-term="DP" for="prevalence_bc" class="define">Prevalence</a></label>
                     <input id="prevalence_bc" type="text">
                     <button id="calculate_button">Calculate</button>
                     <button id="reset">Reset</button>
@@ -332,7 +328,7 @@
               <p><span>Marina V. Kondratovich, (2007),</span><i>
                   Comparing Two Medical Tests
                   When Results of Reference Standard Are Unavailable for Those
-                  Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, </i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
+                  Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,</i><a target="_blank" href="http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670">DOI: 10.1080/10543400701668308</a></p>
             </div>
           </div>
           <div id="riskStratAdvanced" role="tabpanel" class="tab-pane fade">
@@ -538,13 +534,12 @@
                       <input id="name-input" type="text" name="name-input" maxlength="30" pattern="^[a-zA-Z0-9_- ]*$" class="input_field">
                     </div>
                   </div>
-                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-1" class="panel-heading">
-                    <div class="glyphicon glyphicon-chevron-down"></div><span>Input: 2x2 Table</span>
-                  </div>
+                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-1" class="panel-heading"><a href="javascript:void(0);">
+                      <div class="glyphicon glyphicon-chevron-down"></div><span>Input: 2x2 Table</span></a></div>
                   <div class="option-1 panel-body panel-collapse table_container collapse in">
                     <div class="table_row">
-                      <div id="m_neg" data-term="m_neg" class="table_data define">Marker Negative (M-)</div>
-                      <div id="prob_m" data-term="prob_m" class="table_data define">Marker Positive (M+)</div>
+                      <div id="m_neg" class="table_data"><a href="javascript:void(0);" data-term="m_neg" class="define">Marker Negative (M-)</a></div>
+                      <div id="prob_m" class="table_data"><a href="javascript:void(0);" data-term="prob_m" class="define">Marker Positive (M+)</a></div>
                       <div class="table_data emptyblock"></div>
                     </div>
                     <div class="table_row">
@@ -556,7 +551,7 @@
                         <label for="a" class="sr-only">A</label>
                         <input id="a" name="a" type="number" maxlength="30" class="input_field">
                       </div>
-                      <div id="prob_d" data-term="prob_d" class="table_data text-left define">Disease Positive (D+)</div>
+                      <div id="prob_d" class="table_data text-left"><a href="javascript:void(0);" data-term="prob_d" class="define">Disease Positive (D+)</a></div>
                     </div>
                     <div class="table_row">
                       <div class="table_data">
@@ -567,12 +562,11 @@
                         <label for="c" class="sr-only">C</label>
                         <input id="c" name="c" type="number" maxlength="30" class="input_field">
                       </div>
-                      <div id="d_neg" data-term="d_neg" class="table_data text-left define">Disease Negative (D-)</div>
+                      <div id="d_neg" class="table_data text-left"><a href="javascript:void(0);" data-term="d_neg" class="define">Disease Negative (D-)</a></div>
                     </div>
                   </div>
-                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-2" class="panel-heading">
-                    <div class="glyphicon glyphicon-chevron-down"></div><span>Input: PPV, NPV, Sensitivity, Specificity, etc.</span>
-                  </div>
+                  <div data-parent="#marker-1" data-toggle="collapse" data-target="#marker-1 .option-2" class="panel-heading"><a href="javascript:void(0);">
+                      <div class="glyphicon glyphicon-chevron-down"></div><span>Input: PPV, NPV, Sensitivity, Specificity, etc.</span></a></div>
                   <div class="option-2 panel-body panel-collapse collapse">
                     <div class="table_padding">
                       <label for="sampsize">Sample Size</label>

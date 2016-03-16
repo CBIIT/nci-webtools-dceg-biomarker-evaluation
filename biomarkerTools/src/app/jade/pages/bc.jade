@@ -49,55 +49,67 @@
         .panel-heading
           .panel-title.text-center.bold Input Information
         .panel-heading.bold
-          span Manually enter parameters 
+          span Manually enter parameters
           u OR
           span  import values from file
         #upload.panel-body
           .indent
             p
               label.data_entry_by_file(for='file_upload')
-                span Upload CSV file to pre-populate parameters table with data 
-                a(href='bc/exampleValues.csv') (Example)
+                span Upload CSV file to pre-populate parameters table with data
+                a(href='bc/exampleValues.csv')  (Example)
             p
               input#file_upload(type='file', accept=".csv")
         #inputdata.panel-body.table_container
           .table_row.non-data-row
             .table_data.bold #
             .table_data.bold Reference
-            #Sens.table_data.bold.define(data-term='Sens') Sensitivity
-            #Spec.table_data.bold.define(data-term='Spec') Specificity
+            #Sens.table_data.bold
+                a.define(href="#",data-term='Sens') Sensitivity
+            #Spec.table_data.bold
+                a.define(href="#",data-term='Spec') Specificity
             .table_data.emptyblock
           .table_row.reference_row(row='0')
             .table_data.emptyblock
             .table_data.reference(row='0', col='reference')
-              img(src='/common/images/checkbox.png', alt='this row is the reference row')
-            .table_data.input_field.sensitivity(row='0', col='sensitivity') 0.8
-            .table_data.input_field.specificity(row='0', col='specificity') 0.7
+                a(href="javascript:void(0);")
+                    img(src='/common/images/checkbox.png', alt='this row is the reference row')
+            .table_data.input_field.sensitivity(row='0', col='sensitivity')
+                a(href="javascript:void(0);") 0.8
+            .table_data.input_field.specificity(row='0', col='specificity')
+                a(href="javascript:void(0);") 0.7
             .table_data.emptyblock
           .table_row(row='1')
             .table_data.emptyblock
             .table_data.reference(row='1', col='reference')
-              img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
-            .table_data.input_field.sensitivity(row='1', col='sensitivity') 0.85
-            .table_data.input_field.specificity(row='1', col='specificity') 0.68
+                a(href="javascript:void(0);")
+                    img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
+            .table_data.input_field.sensitivity(row='1', col='sensitivity')
+                a(href="javascript:void(0);") 0.85
+            .table_data.input_field.specificity(row='1', col='specificity')
+                a(href="javascript:void(0);") 0.68
             .table_data.emptyblock
-              button.remove_row_button Remove
               button.remove_row_button
-                span.glyphicon.glyphicon-minus-sign
+                span.text Remove
+                span.glyphicon.glyphicon-minus-sign(title="Remove row")
           .table_row(row='2')
             .table_data.emptyblock
             .table_data.reference(row='2', col='reference')
-              img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
-            .table_data.input_field.sensitivity(row='2', col='sensitivity') 0.9
-            .table_data.input_field.specificity(row='2', col='specificity') 0.5
+              a(href="javascript:void(0);")
+                img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
+            .table_data.input_field.sensitivity(row='2', col='sensitivity')
+                a(href="javascript:void(0);") 0.9
+            .table_data.input_field.specificity(row='2', col='specificity')
+                a(href="javascript:void(0);") 0.5
             .table_data.emptyblock
-              button.remove_row_button Remove
               button.remove_row_button
+                span.text Remove
                 span.glyphicon.glyphicon-minus-sign
           .table_row.non-data-row
             button#new_row_button New Row
         .panel-footer
-          label#DP.define.prevalence_label(data-term='DP',for='prevalence_bc') Prevalence
+          label#DP.prevalence_label
+            a.define(href="#",data-term='DP',for='prevalence_bc') Prevalence
           input#prevalence_bc(type='text')
           button#calculate_button Calculate
           button#reset Reset
@@ -115,5 +127,5 @@
       i
         | Comparing Two Medical Tests
         | When Results of Reference Standard Are Unavailable for Those
-        | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166, 
+        | Negative via Both Tests, Journal of Biopharmaceutical Statistics, 18:1, 145-166,
       a(target='_blank', href='http://www.tandfonline.com/doi/abs/10.1080/10543400701668308#.UubT8LQo670') DOI: 10.1080/10543400701668308

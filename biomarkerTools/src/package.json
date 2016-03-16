@@ -1,6 +1,6 @@
 {
   "name": "biomarker-tools",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "republish": "lsc -cj package.json.ls && lsc -cj bower.json.ls",
@@ -13,7 +13,6 @@
   "devDependencies": {
     "LiveScript": "1.2.0",
     "bower": "^1.3.9",
-    "chai": "^1.9.0",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-bower": "~0.0.2",
@@ -35,15 +34,10 @@
     "gulp-stylus": "^1.3.0",
     "gulp-util": "^3.0.1",
     "jshint-stylish": "^2.0.1",
-    "karma": "^0.12.23",
-    "karma-chai": "^0.1.0",
-    "karma-live-preprocessor": "^0.2.2",
-    "karma-mocha": "~0.1.0",
     "main-bower-files": "^1.0.1",
     "matchdep": "^0.3.0",
     "nib": "^1.0.3",
     "node-notifier": "^4.2.1",
-    "protractor": "^1.2.0",
     "streamqueue": "^0.1.1",
     "tiny-lr": "^0.1.1"
   }

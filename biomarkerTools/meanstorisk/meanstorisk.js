@@ -145,21 +145,21 @@ function validate_input(valid){
   var valueMissing = function(el) {
     return el.validity ? el.validity.valueMissing : el.val().trim() === "";
   };
-  
+
  
   var specificitySplit = thisTool.find("input#specificity").val().split(",");
   var prevalenceSplit = thisTool.find("input#prevalence").val().split(",");
-  
+
   $.each(specificitySplit, function(ind, singleSpec){
     if(!isNumberBetweenZeroAndOne(singleSpec))
       messages.push("Specficity contains an invalid value: '" + singleSpec + "'");
   });
-  
+
   $.each(prevalenceSplit, function(ind, singlePrev){
     if(!isNumberBetweenZeroAndOne(singlePrev))
       messages.push("Prevalence contains an invalid value: '" + singlePrev + "'");
   });
-  
+
   if(valueMissing(thisTool.find("input#specificity").eq(0))){
     messages.push("Specificity is required");
   }
@@ -183,7 +183,7 @@ function validate_input(valid){
       }
       if(isNaN(this.value))
         messages.push("'"+ this.value +"' is not a valid value for " + this.labels[0].textContent);
-      
+
       if(this.id == "N_cases_input" || this.id == "N_controls_input" ){
         if(this.value < 0) {
           messages.push(this.labels[0].textContent + " must be greater than 0. You entered '" + this.value + "'");
@@ -455,16 +455,16 @@ function set_values_table(dt) {
 
 
   if (values[0].Cases) set_value("#mean_cases",values[0].Cases.toPrecision(2)); else set_value("#mean_cases","");
-  if (values[0].Controls) set_value("#mean_controls",values[0].Controls.toPrecision(2));	else set_value("#mean_controls","");
+  if (values[0].Controls) set_value("#mean_controls",values[0].Controls.toPrecision(2));    else set_value("#mean_controls","");
   if (values[0].Overall) set_value("#mean_overall",values[0].Overall.toPrecision(2) ); else set_value("#mean_overall","");
 
 
-  if (values[1].Cases) set_value("#stderr_cases",values[1].Cases.toPrecision(4));	else set_value("#stderr_cases","");
+  if (values[1].Cases) set_value("#stderr_cases",values[1].Cases.toPrecision(4));    else set_value("#stderr_cases","");
   if (values[1].Controls) set_value("#stderr_controls",values[1].Controls.toPrecision(4)); else set_value("#stderr_controls","");
   if (values[1].Overall) set_value("#stderr_overall",values[1].Overall.toPrecision(4)); else set_value("#stderr_overall","");
 
   if (values[2].Cases) set_value("#N_cases",values[2].Cases); else set_value("#N_cases","");
-  if (values[2].Controls) set_value("#N_controls",values[2].Controls);	else set_value("#N_controls","");
+  if (values[2].Controls) set_value("#N_controls",values[2].Controls);    else set_value("#N_controls","");
   if (values[2].Overall) set_value("#N_overall",values[2].Overall); else set_value("#N_overall","");
 
   if (values[3].Cases) set_value("#deviation_cases",values[3].Cases.toPrecision(4)); else set_value("#deviation_cases","");
@@ -609,17 +609,17 @@ function reset_meanstorisk(){
   thisTool.find('#errors').fadeOut();
   var fileControl = thisTool.find("input#input_file_upload");
   thisTool.find("#mtr-results .table_row:not(:first-child) .table_data:not(:first-child), .tabbed_output_panel, .graph").html("");
-  
+
   thisTool.find("input#specificity").val("0.8, 0.9, 0.95, 0.99, 0.999");
   thisTool.find("input#prevalence").val("0.1, 0.05, 0.01, 0.005, 0.001");
-  
+
   thisTool.find("input#mean_cases_input").val("4");
   thisTool.find("input#mean_controls_input").val("1");
   thisTool.find("input#stderr_cases_input").val("0.1");
   thisTool.find("input#stderr_controls_input").val("0.1");
   thisTool.find("input#N_cases_input").val("100");
   thisTool.find("input#N_controls_input").val("200");
-  
+
   thisTool.find("#download_button").addClass("hide");
   thisTool.find("#spinner").addClass('hide');
   valuesFromFile = [];
