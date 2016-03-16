@@ -11,12 +11,15 @@
             label(for='name-input') Biomarker Name
             input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-1')
-          .glyphicon.glyphicon-chevron-down
-          span Input: 2x2 Table
+            a(href="javascript:void(0);")
+              .glyphicon.glyphicon-chevron-down
+              span Input: 2x2 Table
         .option-1.panel-body.panel-collapse.table_container.collapse.in
           .table_row
-            #m_neg.table_data.define(data-term="m_neg") Marker Negative (M-)
-            #prob_m.table_data.define(data-term="prob_m") Marker Positive (M+)
+            #m_neg.table_data
+                a.define(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
+            #prob_m.table_data
+                a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
             .table_data.emptyblock
           .table_row
             .table_data
@@ -25,7 +28,8 @@
             .table_data
               label.sr-only(for='a') A
               input#a.input_field(name='a', type='number', maxlength='30')
-            #prob_d.table_data.text-left.define(data-term="prob_d") Disease Positive (D+)
+            #prob_d.table_data.text-left
+                a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
           .table_row
             .table_data
               label.sr-only(for='d') D
@@ -33,10 +37,12 @@
             .table_data
               label.sr-only(for='c') C
               input#c.input_field(name='c', type='number', maxlength='30')
-            #d_neg.table_data.text-left.define(data-term="d_neg") Disease Negative (D-)
+            #d_neg.table_data.text-left
+                a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
-          .glyphicon.glyphicon-chevron-down
-          span Input: PPV, NPV, Sensitivity, Specificity, etc.
+            a(href="javascript:void(0);")
+                .glyphicon.glyphicon-chevron-down
+                span Input: PPV, NPV, Sensitivity, Specificity, etc.
         .option-2.panel-body.panel-collapse.collapse
           .table_padding
             label(for='sampsize') Sample Size
@@ -109,47 +115,56 @@
           th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
           th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
         tr
-          td.text-left.concern.define(data-term="concern") Concern = PPV-P(D+)
+          td.text-left.concern
+            a.define(href="javascript:void(0);", data-term="concern") Concern = PPV-P(D+)
           td.concern_result.output_field.bm_1
           td.concern_result.output_field.bm_2
           td.concern_result.output_field.bm_3
         tr
-          td.text-left.reassurance.define(data-term="reassurance") Reassurance = P(D+)-cNPV
+          td.text-left.reassurance
+            a.define(href="javascript:void(0);", data-term="reassurance") Reassurance = P(D+)-cNPV
           td.reassurance_result.output_field.bm_1
           td.reassurance_result.output_field.bm_2
           td.reassurance_result.output_field.bm_3
         tr
-          td.text-left.q_sens.define(data-term="q_sens") Concentration = Sensitivity - P(M+)
+          td.text-left.q_sens
+            a.define(href="javascript:void(0);", data-term="q_sens") Concentration = Sensitivity - P(M+)
           td.q_sens_result.output_field.bm_1
           td.q_sens_result.output_field.bm_2
           td.q_sens_result.output_field.bm_3
         tr
-          td.text-left.q_spec.define(data-term="q_spec") Reduction = P(M+) - cSpec
+          td.text-left.q_spec
+            a.define(href="javascript:void(0);", data-term="q_spec") Reduction = P(M+) - cSpec
           td.q_spec_result.output_field.bm_1
           td.q_spec_result.output_field.bm_2
           td.q_spec_result.output_field.bm_3
         tr
-          td.text-left.mrs.define(data-term="mrs") Mean Risk Stratification = 2(ad-bc)
+          td.text-left.mrs
+            a.define(href="javascript:void(0);", data-term="mrs") Mean Risk Stratification = 2(ad-bc)
           td.mrs_result.output_field.bm_1
           td.mrs_result.output_field.bm_2
           td.mrs_result.output_field.bm_3
         tr
-          td.text-left.max_mrs.define(data-term="max_mrs") Maximum possible MRS for a disease with this prevalence
+          td.text-left.max_mrs
+            a.define(href="javascript:void(0);", data-term="max_mrs") Maximum possible MRS for a disease with this prevalence
           td.max_mrs_result.output_field.bm_1
           td.max_mrs_result.output_field.bm_2
           td.max_mrs_result.output_field.bm_3
         tr
-          td.text-left.pbs.define(data-term="pbs") Population Burden Stratification (PBS) = a-b
+          td.text-left.pbs
+            a.define(href="javascript:void(0);", data-term="pbs") Population Burden Stratification (PBS) = a-b
           td.pbs_result.output_field.bm_1
           td.pbs_result.output_field.bm_2
           td.pbs_result.output_field.bm_3
         tr
-          td.text-left.nnr.define(data-term="nnr") Number Needed to Recruit (NNR) = 1/PBS
+          td.text-left.nnr
+            a.define(href="javascript:void(0);", data-term="nnr") Number Needed to Recruit (NNR) = 1/PBS
           td.nnr_result.output_field.bm_1
           td.nnr_result.output_field.bm_2
           td.nnr_result.output_field.bm_3
         tr
-          td.text-left.nns.define(data-term="nns") Number Needed to Screen (NNS) =1/RD
+          td.text-left.nns
+            a.define(href="javascript:void(0);", data-term="nns") Number Needed to Screen (NNS) =1/RD
           td.nns_result.output_field.bm_1
           td.nns_result.output_field.bm_2
           td.nns_result.output_field.bm_3
@@ -180,32 +195,37 @@
           td.m_neg_result.output_field.bm_2
           td.m_neg_result.output_field.bm_3
         tr
-          td.text-left.prob_m(data-term="prob_m") Marker Positivity
+          td.text-left.prob_m(href="javascript:void(0);", data-term="prob_m") Marker Positivity
           td.prob_m_result.output_field.bm_1
           td.prob_m_result.output_field.bm_2
           td.prob_m_result.output_field.bm_3
         tr
-          td.text-left.prob_d.define(data-term="prob_d") Disease Prevalence
+          td.text-left.prob_d
+            a.define(href="javascript:void(0);", data-term="prob_d") Disease Prevalence
           td.prob_d_result.output_field.bm_1
           td.prob_d_result.output_field.bm_2
           td.prob_d_result.output_field.bm_3
         tr
-          td.text-left.define.ppv(data-term="PPV") Positive Predictive Value (PPV)
+          td.text-left.ppv
+            a.define(href="javascript:void(0);", data-term="PPV") Positive Predictive Value (PPV)
           td.ppv_result.output_field.bm_1
           td.ppv_result.output_field.bm_2
           td.ppv_result.output_field.bm_3
         tr
-          td.text-left.cnpv.define(data-term="cnpv") Complement of Negative Predictive Value (cNPV)
+          td.text-left.cnpv
+            a.define(href="javascript:void(0);", data-term="cnpv") Complement of Negative Predictive Value (cNPV)
           td.c_npv_result.output_field.bm_1
           td.c_npv_result.output_field.bm_2
           td.c_npv_result.output_field.bm_3
         tr
-          td.text-left.define.sens(data-term="Sens") Sensitivity
+          td.text-left.sens
+            a.define(href="javascript:void(0);", data-term="Sens") Sensitivity
           td.sens_result.output_field.bm_1
           td.sens_result.output_field.bm_2
           td.sens_result.output_field.bm_3
         tr
-          td.text-left.define.spec(data-term="Spec") Specificity
+          td.text-left.spec
+            a.define(href="javascript:void(0);", data-term="Spec") Specificity
           td.spec_result.output_field.bm_1
           td.spec_result.output_field.bm_2
           td.spec_result.output_field.bm_3
@@ -231,7 +251,8 @@
           td.youden_result.output_field.bm_2
           td.youden_result.output_field.bm_3
         tr
-          td.text-left.define(data-term="AUC") AUC = (1+YI)/2
+          td.text-left
+            a.define(href="javascript:void(0);", data-term="AUC") AUC = (1+YI)/2
           td.auc_result.output_field.bm_1
           td.auc_result.output_field.bm_2
           td.auc_result.output_field.bm_3

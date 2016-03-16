@@ -9,8 +9,9 @@
           .panel-heading
             b Choose how to enter the data
           .panel-heading(data-toggle="collapse", data-target="#file_upload")
-            .glyphicon.glyphicon-chevron-down
-            span User Defined Distribution (from file)
+            a(href="javascript:void(0);")
+                .glyphicon.glyphicon-chevron-down
+                span User Defined Distribution (from file)
           #file_upload.panel-body.collapse.in
             p.indent
               label.data_entry_by_file(for='input_file_upload')
@@ -20,8 +21,9 @@
             p.indent
               input#input_file_upload.data_entry_by_file(type='file')
           .panel-heading(data-toggle="collapse", data-target="#cases_control")
-            .glyphicon.glyphicon-chevron-down
-            span Normal Distribution
+            a(href="javascript:void(0);")
+                .glyphicon.glyphicon-chevron-down
+                span Normal Distribution
           #cases_control.panel-body.collapse
             .panel.panel-default
               .panel-heading.bold Enter Mean, Standard Error, and N for Cases and Controls
@@ -56,10 +58,12 @@
                     input#N_controls_input(type='text', value='200', size='4')
           .panel-footer
             .table_padding
-              label#Spec.define(for='specificity',data-term='Spec') Specificity:
+              label#Spec(for='specificity')
+                a.define(href="javascript:void(0);", data-term='Spec') Specificity:
               input#specificity(type='text', value='0.8, 0.9, 0.95, 0.99, 0.999',required)
             .table_padding
-              label#DP.define(data-term='DP', for='prevalence') Prevalence:
+              label#DP(for='prevalence')
+                a.define(href="javascript:void(0);", data-term='DP') Prevalence:
               input#prevalence(type='text', value='0.1, 0.05, 0.01, 0.005, 0.001',required)
         .table_padding.text-center
           button#calculate_button(type='button') Calculate
@@ -98,7 +102,8 @@
             #variance_controls.table_data.emptyblock
             #variance_overall.table_data.emptyblock
           .table_row
-            .table_data.text-right.bold.define(data-term='CV') Coefficient of Variation (CV)
+            .table_data.text-right.bold
+                a.define(href="javascript:void(0);", data-term='CV') Coefficient of Variation (CV)
             #cv_cases.table_data.emptyblock
             #cv_controls.table_data.emptyblock
             #cv_overall.table_data.emptyblock
@@ -108,12 +113,14 @@
             #diff_controls.table_data.emptyblock
             #diff_overall.table_data.emptyblock
           .table_row
-            .table_data.text-right.bold.define(data-term='Delta') Delta
+            .table_data.text-right.bold
+                a.define(href="javascript:void(0);", data-term='Delta') Delta
             #delta_cases.table_data.emptyblock
             #delta_controls.table_data.emptyblock
             #delta_overall.table_data.emptyblock
           .table_row
-            .table_data.text-right.bold.define(data-term='AUC') AUC
+            .table_data.text-right.bold
+                a.define(href="javascript:void(0);", data-term='AUC') AUC
             #auc_cases.table_data.emptyblock
             #auc_controls.table_data.emptyblock
             #auc_overall.table_data.emptyblock
