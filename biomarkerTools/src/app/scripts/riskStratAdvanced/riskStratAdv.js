@@ -563,6 +563,10 @@ function getData(data) {
     service = "http://" + window.location.hostname + window.location.pathname + "riskStratAdvanced/test_result.json";
   }
 
+  else if (location.port)
+    service = rest + "/riskStratAdvanced/";
+
+
   return $.ajax({
     type : "POST",
     url : service,

@@ -310,6 +310,9 @@ function make_ajax_call_user_defined_calculation() {
   var hostname = window.location.hostname;
   var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
 
+  if (location.port)
+    url = rest + "/meanstorisk/";
+
   $.ajax({
     type: "POST",
     url: url,

@@ -342,6 +342,9 @@ function do_calculation(){
     var hostname = window.location.hostname;
     var service = "http://" + hostname + "/" + rest + "/bc/";
 
+    if (location.port)
+        service = rest + "/bc/";
+
     pre_request();
 
     if (validPrevValue) {

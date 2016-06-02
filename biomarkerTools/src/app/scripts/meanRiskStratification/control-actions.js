@@ -105,6 +105,9 @@ function calculate_mrs(e) {
 
     service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
 
+    if (location.port)
+        service = rest + "/meanRiskStratification/";
+
     thisTool.find('#spinner').removeClass("hide");
     thisTool.find('#calculate').attr("disabled", "").text("Please Wait....");
     disableAll();
