@@ -340,10 +340,8 @@ function do_calculation(){
 
     uniqueKey = generateUniqueKey();
     var hostname = window.location.hostname;
-    var service = "http://" + hostname + "/" + rest + "/bc/";
-
-    if (location.port)
-        service = rest + "/bc/";
+    //var service = "http://" + hostname + "/" + rest + "/bc/";
+    var service = rest + "/bc/";
 
     pre_request();
 

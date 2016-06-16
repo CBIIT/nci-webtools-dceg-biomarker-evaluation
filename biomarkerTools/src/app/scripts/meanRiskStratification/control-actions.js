@@ -103,10 +103,8 @@ function calculate_mrs(e) {
     var to_value = 10 * 2500; //25 seconds
     var input = JSON.stringify(valuesObj[0]);
 
-    service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
-
-    if (location.port)
-        service = rest + "/meanRiskStratification/";
+    //service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
+    service = rest + "/meanRiskStratification/";
 
     thisTool.find('#spinner').removeClass("hide");
     thisTool.find('#calculate').attr("disabled", "").text("Please Wait....");

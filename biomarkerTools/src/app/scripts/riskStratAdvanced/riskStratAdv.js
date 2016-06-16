@@ -557,14 +557,16 @@ function getFunctionName(independent, fixed, contour) {
 
 
 function getData(data) {
+  
+  /*
   var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
 
   if(window.location.host == "localhost") {
     service = "http://" + window.location.hostname + window.location.pathname + "riskStratAdvanced/test_result.json";
   }
+  */
 
-  else if (location.port)
-    service = rest + "/riskStratAdvanced/";
+  var service = rest + "/riskStratAdvanced/";
 
 
   return $.ajax({
@@ -580,7 +582,8 @@ function getData(data) {
 }
 
 function retrieve_excel(e) {
-  var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
+  //var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
+  var service = rest + "/riskStratAdvanced/";
 
   $.ajax({
     type : "POST",

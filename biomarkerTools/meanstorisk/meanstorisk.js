@@ -308,10 +308,8 @@ function make_ajax_call_user_defined_calculation() {
   uniqueKey = generateUniqueKey();
 
   var hostname = window.location.hostname;
-  var url = "http://" + hostname +"/" + rest + "/meanstorisk/";
-
-  if (location.port)
-    url = rest + "/meanstorisk/";
+ 
+  var url = rest + "/meanstorisk/";
 
   $.ajax({
     type: "POST",
@@ -341,7 +339,8 @@ function make_ajax_call_standard_calculation() {
 
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
-  url = "http://" + hostname +"/" + rest + "/meanstorisk/";
+ 
+  url = rest + "/meanstorisk/";
 
   $.ajax({
     type: "POST",
@@ -370,7 +369,8 @@ function make_ajax_call_standard_calculation() {
 function make_excel_call_user_defined_calculation() {
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
-  url = "http://" + hostname +"/" + rest + "/meanstorisk/";
+ 
+  url = rest + "/meanstorisk/";
 
   thisTool.find("#spinner").removeClass("hide");
 
@@ -404,7 +404,9 @@ function make_excel_call_user_defined_calculation() {
 function make_excel_call_standard_calculation() {
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
-  url = "http://" + hostname +"/" + rest + "/meanstorisk/";
+ 
+  url = rest + "/meanstorisk/";
+
 
   thisTool.find("#spinner").removeClass("hide");
 
