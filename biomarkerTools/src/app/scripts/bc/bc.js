@@ -341,7 +341,9 @@ function do_calculation(){
     uniqueKey = generateUniqueKey();
     var hostname = window.location.hostname;
     //var service = "http://" + hostname + "/" + rest + "/bc/";
-    var service = rest + "/bc/";
+    var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/bc/";
+
+    
 
     pre_request();
 
