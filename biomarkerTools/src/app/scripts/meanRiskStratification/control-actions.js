@@ -104,7 +104,7 @@ function calculate_mrs(e) {
     var input = JSON.stringify(valuesObj[0]);
 
     //service = "http://" + window.location.hostname + "/" + rest + "/meanRiskStratification/";
-    service = rest + "/meanRiskStratification/";
+    service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/meanRiskStratification/";
 
     thisTool.find('#spinner').removeClass("hide");
     thisTool.find('#calculate').attr("disabled", "").text("Please Wait....");

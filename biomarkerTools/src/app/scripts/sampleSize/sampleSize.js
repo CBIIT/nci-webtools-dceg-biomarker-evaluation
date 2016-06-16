@@ -304,7 +304,7 @@ function sampleSizeRequest(exporting){
 
   hostname = window.location.hostname;
   //url = "http://" + hostname +"/" + rest + "/sampleSize/";
-  url = rest + "/sampleSize/";
+  url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/sampleSize/";
 
   disableAll();
   thisTool.find(".post").attr('disabled','').text("Please Wait....");

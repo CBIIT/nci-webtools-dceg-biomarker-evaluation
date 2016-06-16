@@ -566,7 +566,7 @@ function getData(data) {
   }
   */
 
-  var service = rest + "/riskStratAdvanced/";
+  var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
 
 
   return $.ajax({
@@ -583,8 +583,8 @@ function getData(data) {
 
 function retrieve_excel(e) {
   //var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
-  var service = rest + "/riskStratAdvanced/";
-
+  var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
+  
   $.ajax({
     type : "POST",
     url : service,
