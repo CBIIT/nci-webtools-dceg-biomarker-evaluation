@@ -9,3 +9,4 @@ common/
 server.js
 node_modules/
 package.json
+*.sh
