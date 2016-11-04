@@ -180,33 +180,43 @@ function addPopupDefinition() {
     var independentTerm = termLookup[independent];
     createPopupDefinitionElement("indDef", independentTerm, independentTerm);
   } else {
-    thisTool.find("#indDef").html("");
+    thisTool.find("#indDef").removeClass("show");
   }
   if (!!contour) {
     var contourTerm = termLookup[contour];
     createPopupDefinitionElement("contourDef", contourTerm, contourTerm);
   } else {
-    thisTool.find("#contourDef").html("");
+    thisTool.find("#contourDef").removeClass("show");
   }
   if (!!fixedValue) {
     var fixedValueTerm = termLookup[fixedValue];
     createPopupDefinitionElement("fvDef", fixedValueTerm, fixedValueTerm);
   } else {
-    thisTool.find("#fvDef").html("");
+    thisTool.find("#fvDef").removeClass("show");
   }
 }
 
 function createPopupDefinitionElement(elementId, termId, dataTerm) {
-  thisTool.find("#" + elementId)
-    .html("<div class='define' id='" + termId + "' data-term='" + dataTerm + "'><img src='/common/images/info.png' alt='pop up definition for " + dataTerm + "'></div>");
+  var el = thisTool.find("#" + elementId);
+  el.attr("name", termId).attr("data-term", dataTerm);
+  el.attr("alt", "pop up definition for " + dataTerm);
+
+  el.popover('destroy');
+  el.unbind('click touchstart keydown', termDisplay);
+  el.bind('click touchstart keydown', termDisplay);
+  el.on('focus', function() {
+    $(this).trigger('mouseover');
+  }).on('blur', function() {
+    $(this).trigger('mouseout');
+  });
+
+  el.addClass('show');
+ 
+ 
 }
 
 function resetPopupDefinition() {
-
-  thisTool.find("#indDef").html("");
-  thisTool.find("#contourDef").html("");
-  thisTool.find("#fvDef").html("");
-
+  thisTool.find("#indDef, #contourDef, #fvDef").removeClass("show");
 }
 
 function resetPage() {
@@ -558,9 +568,7 @@ function getFunctionName(independent, fixed, contour) {
 
 function getData(data) {
   
-  
-
-  var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
+    var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
 
 
   return $.ajax({
