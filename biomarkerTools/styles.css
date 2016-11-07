@@ -579,3 +579,17 @@ header #branch-logo {
 #help h6 {
   font-weight: bold;
 }
+#help .glossary-title {
+  background-color: #154976;
+  color: #fff;
+  padding: 5px 0;
+}
+#help .glossary-title a {
+  text-decoration: underline;
+}
+#help .glossary-title a:hover {
+  text-decoration: none;
+}
+#help .glossary-title * {
+  color: inherit;
+}
