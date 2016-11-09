@@ -51,18 +51,20 @@
   margin 0px auto
   @media (min-width 1000px)
     max-width 620px
-.output
-  .top-header
-    background-color #444
-    color #FFF
-    text-align center
-  > div ~ div
-      display table
-      table-layout fixed
-      width 100%
-      div
-        display table-cell
-        text-align center
+table.output
+  width 100%
+  tr
+    th.top-header
+      background-color #444
+      color #FFF
+      text-align center
+    > tr
+        display table
+        table-layout fixed
+        width 100%
+        td
+          display table-cell
+          text-align center
 .reference_row
   background-color yellow
 .top_group

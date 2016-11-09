@@ -55,11 +55,11 @@
         #upload.panel-body
           .indent
             p
-              label.data_entry_by_file(for='file_upload')
+              label.data_entry_by_file(for='file_upload_bc')
                 span Upload CSV file to pre-populate parameters table with data
                 a(href='bc/exampleValues.csv')  (Example)
             p
-              input#file_upload(type='file', accept=".csv")
+              input#file_upload_bc(type='file', accept=".csv")
         #inputdata.panel-body.table_container
           .table_row.non-data-row
             .table_data.bold #
@@ -113,9 +113,9 @@
           input#prevalence_bc(type='text')
           button#calculate_button Calculate
           button#reset Reset
-      .output
+      table.output
     .graph
-      img.expand.hide(src="/common/images/initial.jpg", alt="placeholder image")
+      img.expand.hide(src="/common/images/initial.jpg", alt=" ")
       small.bold.hide (hover over or click image to expand)
   div
     include ../partials/loader

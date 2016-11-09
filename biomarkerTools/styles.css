@@ -216,6 +216,9 @@ header #branch-logo {
 #meanstorisk .input > .table_padding button {
   width: auto;
 }
+#meanstorisk #mtr-results .emptyblock {
+  display: table-cell;
+}
 #meanstorisk #mtr-results .table_row {
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -233,6 +236,7 @@ header #branch-logo {
 }
 #meanstorisk #mtr-results .table_data {
   width: 25%;
+  display: table-cell;
 }
 #meanstorisk #mtr-results .table_data:first-child {
   width: 33.333333333333336%;
@@ -356,17 +360,20 @@ header #branch-logo {
     max-width: 620px;
   }
 }
-#bc .output .top-header {
+#bc table.output {
+  width: 100%;
+}
+#bc table.output tr th.top-header {
   background-color: #444;
   color: #fff;
   text-align: center;
 }
-#bc .output > div ~ div {
+#bc table.output tr > tr {
   display: table;
   table-layout: fixed;
   width: 100%;
 }
-#bc .output > div ~ div div {
+#bc table.output tr > tr td {
   display: table-cell;
   text-align: center;
 }
@@ -582,7 +589,7 @@ header #branch-logo {
 #help .glossary-title {
   background-color: #154976;
   color: #fff;
-  padding: 5px 0;
+  padding: 5px;
 }
 #help .glossary-title a {
   text-decoration: underline;

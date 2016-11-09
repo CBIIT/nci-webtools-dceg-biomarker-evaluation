@@ -66,7 +66,11 @@ $('#contentTabs .nav-tabs').on('show.bs.tab', function(el){
   document.title = title;
 });
 
-$(document).on('click touchstart keydown', '.define', termDisplay);
+$(document).on('click touchstart keydown', '.define', termDisplay).on('focus', function() {
+    $(this).trigger('mouseover');
+  }).on('blur', function() {
+    $(this).trigger('mouseout');
+  });
 
 $('.disable_control').on('click',function(e){
   e.preventDefault();

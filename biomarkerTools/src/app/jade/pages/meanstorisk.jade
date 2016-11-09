@@ -35,27 +35,21 @@
                 .table_row
                   .table_data.text-right.bold Mean
                   .table_data
-                    label.sr-only(for='mean_cases_input') Mean for Cases
-                    input#mean_cases_input(type='text', value='4', size='4')
+                    input#mean_cases_input(type='text', value='4', size='4', aria-label="Mean for Cases")
                   .table_data
-                    label.sr-only(for='mean_controls_input') Mean for Controls
-                    input#mean_controls_input(type='text', value='1', size='4')
+                    input#mean_controls_input(type='text', value='1', size='4', aria-label="Mean for Controls")
                 .table_row
                   .table_data.text-right.bold Standard Error
                   .table_data
-                    label.sr-only(for='stderr_cases_input') Standard Error for Cases
-                    input#stderr_cases_input.pull-left(type='text', value='0.1', size='4')
+                    input#stderr_cases_input.pull-left(type='text', value='0.1', size='4', aria-label="Standard Error for Cases")
                   .table_data
-                    label.sr-only(for='stderr_controls_input') Standard Error for Controls
-                    input#stderr_controls_input(type='text', value='0.1', size='4')
+                    input#stderr_controls_input(type='text', value='0.1', size='4', aria-label="Standard Error for Controls")
                 .table_row
                   .table_data.text-right.bold N
                   .table_data
-                    label.sr-only(for='N_cases_input') N for Cases
-                    input#N_cases_input(type='text', value='100', size='4')
+                    input#N_cases_input(type='text', value='100', size='4', aria-label="N for Cases")
                   .table_data
-                    label.sr-only(for='N_controls_input') N for Controls
-                    input#N_controls_input(type='text', value='200', size='4')
+                    input#N_controls_input(type='text', value='200', size='4', aria-label="N for Controls")
           .panel-footer
             .table_padding
               label#Spec(for='specificity')
@@ -70,60 +64,60 @@
           button#reset(type='reset') Reset
           button#download_button.hide(type='button') Download Excel File
       .output
-        #mtr-results.panel.panel-default.table_container
-          .table_row
-            .table_data.emptyblock
-            .table_data.header.bold Cases
-            .table_data.header.bold Controls
-            .table_data.header.bold Overall
-          .table_row
-            .table_data.text-right.bold Mean
-            #mean_cases.table_data.emptyblock
-            #mean_controls.table_data.emptyblock
-            #mean_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold Standard Error
-            #stderr_cases.table_data.emptyblock
-            #stderr_controls.table_data.emptyblock
-            #stderr_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold N
-            #N_cases.table_data.emptyblock
-            #N_controls.table_data.emptyblock
-            #N_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold Standard Deviation
-            #deviation_cases.table_data.emptyblock
-            #deviation_controls.table_data.emptyblock
-            #deviation_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold Variance
-            #variance_cases.table_data.emptyblock
-            #variance_controls.table_data.emptyblock
-            #variance_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold
+        table#mtr-results.panel.panel-default.table
+          tr
+            th.emptyblock(scope="col")
+            th.header.bold#header-cases(scope="col") Cases
+            th.header.bold#header-controls(scope="col") Controls
+            th.header.bold#header-ovr(scope="col") Overall
+          tr
+            th.text-right.bold(scope="col") Mean
+            td#mean_cases.emptyblock(headers="header-cases")
+            td#mean_controls.emptyblock(headers="header-controls")
+            td#mean_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col") Standard Error
+            td#stderr_cases.emptyblock(headers="header-cases")
+            td#stderr_controls.emptyblock(headers="header-controls")
+            td#stderr_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col") N
+            td#N_cases.emptyblock(headers="header-cases")
+            td#N_controls.emptyblock(headers="header-controls")
+            td#N_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col") Standard Deviation
+            td#deviation_cases.emptyblock(headers="header-cases")
+            td#deviation_controls.emptyblock(headers="header-controls")
+            td#deviation_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col") Variance
+            td#variance_cases.emptyblock(headers="header-cases")
+            td#variance_controls.emptyblock(headers="header-controls")
+            td#variance_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col")
                 a.define(href="javascript:void(0);", data-term='CV') Coefficient of Variation (CV)
-            #cv_cases.table_data.emptyblock
-            #cv_controls.table_data.emptyblock
-            #cv_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold Difference in Mean
-            #diff_cases.table_data.emptyblock
-            #diff_controls.table_data.emptyblock
-            #diff_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold
+            td#cv_cases.emptyblock(headers="header-cases")
+            td#cv_controls.emptyblock(headers="header-controls")
+            td#cv_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col") Difference in Mean
+            td#diff_cases.emptyblock(headers="header-cases")
+            td#diff_controls.emptyblock(headers="header-controls")
+            td#diff_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col")
                 a.define(href="javascript:void(0);", data-term='Delta') Delta
-            #delta_cases.table_data.emptyblock
-            #delta_controls.table_data.emptyblock
-            #delta_overall.table_data.emptyblock
-          .table_row
-            .table_data.text-right.bold
+            td#delta_cases.emptyblock(headers="header-cases")
+            td#delta_controls.emptyblock(headers="header-controls")
+            td#delta_overall.emptyblock(headers="header-ovr")
+          tr
+            th.text-right.bold(scope="col")
                 a.define(href="javascript:void(0);", data-term='AUC') AUC
-            #auc_cases.table_data.emptyblock
-            #auc_controls.table_data.emptyblock
-            #auc_overall.table_data.emptyblock
+            td#auc_cases.emptyblock(headers="header-cases")
+            td#auc_controls.emptyblock(headers="header-controls")
+            td#auc_overall.emptyblock(headers="header-ovr")
       .graph
     include ../partials/loader
     .bottom_section.small

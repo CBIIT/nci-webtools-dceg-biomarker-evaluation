@@ -204,15 +204,13 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
   el.popover('destroy');
   el.unbind('click touchstart keydown', termDisplay);
   el.bind('click touchstart keydown', termDisplay);
-  el.on('focus', function() {
-    $(this).trigger('mouseover');
-  }).on('blur', function() {
-    $(this).trigger('mouseout');
-  });
+  // el.on('focus', function() {
+  //   $(this).trigger('mouseover');
+  // }).on('blur', function() {
+  //   $(this).trigger('mouseout');
+  // });
 
   el.addClass('show');
-  // thisTool.find("#" + elementId)
-  //   .html("<div class='define' id='" + termId + "' data-term='" + dataTerm + "'><img src='/common/images/info.png' alt='pop up definition for " + dataTerm + "'></div>");
 }
 
 function resetPopupDefinition() {

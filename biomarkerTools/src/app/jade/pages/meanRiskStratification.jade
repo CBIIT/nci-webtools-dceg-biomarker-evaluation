@@ -54,8 +54,9 @@
             .table_row(row='0')
               .table_data
                 label.sr-only(for="param_1") Parameter 1 Selections
-                span.dd.define(data-term='ppv')
-                  img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
+                span.dd
+                  a.define(href="#", data-term='ppv')
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
                 div
                   select#param_1.input_field(name='param_1')
                     option(value='ppv') PPV
@@ -66,8 +67,9 @@
             .table_row(row='1')
               .table_data
                 label.sr-only(for="param_2") Parameter 2 Selections
-                span.dd.define(data-term='npv')
-                  img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
+                span
+                  a.dd.define(href="#", data-term='npv')
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
                 div
                   select#param_2.input_field(name='param_2')
                     option(value='npv') NPV
@@ -78,8 +80,9 @@
             .table_row(row='2')
               .table_data
                 label.sr-only(for="param_3") Parameter 3 Selections
-                span.dd.define(data-term='prob_m')
-                  img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
+                span
+                  a.dd.define(href="#", data-term='prob_m')
+                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
                 div
                   select#param_3.input_field(name='param_3')
                     option(value='prob_m') Marker Positivity (P(M+))
@@ -110,10 +113,10 @@
     #results.hide
       table#paramTable
         tr
-          th(header="Calculations") Calculations
-          th.bm_1.marker_name(header="Calculations for Biomarker 1", title="Calculations for Biomarker 1") (Biomarker Title Placeholder)
-          th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2") (Biomarker Title Placeholder)
-          th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3") (Biomarker Title Placeholder)
+          th(header="Calculations", scope="col") Calculations
+          th.bm_1.marker_name(header="Calculations for Biomarker 1", title="Calculations for Biomarker 1", scope="col") (Biomarker Title Placeholder)
+          th.bm_2.marker_name(header="Calculations for Biomarker 2", title="Calculations for Biomarker 2", scope="col") (Biomarker Title Placeholder)
+          th.bm_3.marker_name(header="Calculations for Biomarker 3", title="Calculations for Biomarker 3", scope="col") (Biomarker Title Placeholder)
         tr
           td.text-left.concern
             a.define(href="javascript:void(0);", data-term="concern") Concern = PPV-P(D+)
@@ -171,9 +174,9 @@
       table#calcTable
         tr
           th(header="Parameters") Parameters
-          th.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1") (Biomarker Title Placeholder)
-          th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2") (Biomarker Title Placeholder)
-          th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3") (Biomarker Title Placeholder)
+          th.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1", scope="col") (Biomarker Title Placeholder)
+          th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2", scope="col") (Biomarker Title Placeholder)
+          th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3", scope="col") (Biomarker Title Placeholder)
         tr
           td.text-left True Positive Fraction = a
           td.d_pos_result.output_field.bm_1

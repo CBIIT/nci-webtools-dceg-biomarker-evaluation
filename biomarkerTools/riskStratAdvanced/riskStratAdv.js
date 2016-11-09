@@ -204,15 +204,13 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
   el.popover('destroy');
   el.unbind('click touchstart keydown', termDisplay);
   el.bind('click touchstart keydown', termDisplay);
-  el.on('focus', function() {
-    $(this).trigger('mouseover');
-  }).on('blur', function() {
-    $(this).trigger('mouseout');
-  });
+ 
+ 
+ 
+ 
+ 
 
   el.addClass('show');
- 
- 
 }
 
 function resetPopupDefinition() {
