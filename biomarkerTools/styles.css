@@ -442,11 +442,16 @@ header #branch-logo {
   font-weight: bold;
   text-align: center;
 }
-#riskStratAdvanced .output .table_container th {
+#riskStratAdvanced .output .table_container th.header {
+  text-align: center;
+}
+#riskStratAdvanced .output .table_container th,
+#riskStratAdvanced .output .table_container tr > td.header {
   background-color: #aaa;
   color: #444;
 }
-#riskStratAdvanced .output .table_container th:first-child {
+#riskStratAdvanced .output .table_container th:first-child,
+#riskStratAdvanced .output .table_container tr > td.header:first-child {
   vertical-align: top;
 }
 #riskStratAdvanced .output .table_container th,
@@ -474,6 +479,9 @@ header #branch-logo {
 #riskStratAdvanced #contourDef:not(.show),
 #riskStratAdvanced #fvDef:not(.show) {
   display: none;
+}
+#meanRiskStratification #markers table {
+  width: 100%;
 }
 #meanRiskStratification .input {
   overflow: auto;

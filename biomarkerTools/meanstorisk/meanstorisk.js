@@ -533,12 +533,16 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
   var general_table = $("<TABLE></TABLE>");
   $("#"+tab_id).empty().append(general_table);
   var first_header_row = $("<tr></tr>");
-  first_header_row.append("<TH id='header-prevalence-" + table_name + "' class='header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + "</TH>");
+  
+
+  first_header_row.append("<th id='header-prevalence-" + table_name + "' class='header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + 
+    "<br /><a id='" + type + tab_id + "' " + ( $_Glossary[type] === undefined ? "" : " class='define text-center " + type + "_stripe' data-term='" + type + "'" ) + 
+    ">" + table_second_name + "</a></th>");
+
+
   first_header_row.appendTo(general_table);
   var second_header_row = $("<tr></tr>");
-  second_header_row.append("<TH id='header-" + type + tab_id+"' headers='header-prevalence-" + table_name + "' class='text-center " + type + "_stripe' colspan='" +  (prevalence_count + 4) + "'>" +
-                             "<div id='" + type + tab_id+"'" + ($_Glossary[type]===undefined?"":" class='define' data-term='"+type+"'") + ">" + table_second_name + "</div>" +
-                           "</TH>");
+
   second_header_row.appendTo(general_table);
   var third_header_row = $("<tr></tr>");
   third_header_row.append("<TH id='header-Sens2-" + tab_id + "' class='header text-center' colspan='4' style='border-right:1px solid black;'>" +

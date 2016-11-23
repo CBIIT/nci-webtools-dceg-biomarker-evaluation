@@ -422,7 +422,7 @@ function refreshGraph(drawgraph){
   d = new Date();
 
   thisTool.find('.graph img').removeClass("hide")
-      .attr("alt",'output after calculation')
+      .attr("alt",'Likelyhood Ratio plot graph, Sensitivity versus Specificity with Likelyhood Ratio contours')
       .attr("src", graph_file + d.getTime())
     .next('.graph small').removeClass("hide");
 }
@@ -506,10 +506,10 @@ function createOutputTable(jsondata){
   top_header_row.append("<th class='top-header' colspan='4'><strong>Output Data</strong></th>");
   thisTool.find('.output').append(top_header_row);
   header_row = $("<tr></tr>");
-  header_row.append("<th id='Sens2' class='define' data-term='Sens'>Sensitivity</th>");
-  header_row.append("<th id='Spec2' class='define' data-term='Spec'>Specificity</th>");
-  header_row.append("<th id='LRP2' class='define' data-term='LRP'>LR+</th>");
-  header_row.append("<th id='LRN2' class='define' data-term='LRN'>LR-</th>");
+  header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
+  header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
+  header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
+  header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
   thisTool.find('.output').append(header_row);
   for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
     each = jsondata[i$];
@@ -523,12 +523,12 @@ function createOutputTableWithPrev(jsondata){
   top_header_row.append("<th class='top-header' colspan='6'>Output Data</th>");
   thisTool.find('.output').append(top_header_row);
   var header_row = $("<tr></tr>");
-  header_row.append("<th id='Sens3' class='define' data-term='Sens'>Sensitivity</th>");
-  header_row.append("<th id='Spec3' class='define' data-term='Spec'>Specificity</th>");
-  header_row.append("<th id='LRP3' class='define' data-term='LRP'>LR+</th>");
-  header_row.append("<th id='LRN3' class='define' data-term='LRN'>LR-</th>");
-  header_row.append("<th id='PPV3' class='define' data-term='PPV'>PPV</th>");
-  header_row.append("<th id='cNPV3' class='define' data-term='cNPV'>cNPV</th>");
+  header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
+  header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
+  header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
+  header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
+  header_row.append("<th scope='col' class='define' data-term='PPV'>PPV</th>");
+  header_row.append("<th scope='col' class='define' data-term='cNPV'>cNPV</th>");
   thisTool.find('.output').append(header_row);
   for (var each in jsondata) {
     jsonToCellWithPrev(jsondata[each]);
@@ -548,7 +548,7 @@ function reset_bc(){
   add_new_row();
 
   thisTool.find(".reference:first").click();
-  thisTool.find('.graph img').attr('alt','image of example output after calculation');
+  thisTool.find('.graph img').attr('alt','sample Likelyhood Ratio plot, Sensitivity versus Specificity with Likelyhood Ratio contours');
   thisTool.find('.graph img').addClass("hide").attr('src', '/common/images/initial.jpg');
   thisTool.find('.graph small').addClass("hide");
   thisTool.find('.output').empty();

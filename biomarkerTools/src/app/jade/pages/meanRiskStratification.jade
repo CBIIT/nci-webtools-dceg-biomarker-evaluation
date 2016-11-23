@@ -8,88 +8,79 @@
         .panel-heading.text-center.bold Biomarker #1
         .panel-body
           .table_padding
-            label(for='name-input') Biomarker Name
-            input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$')
+            input#name-input.input_field(type='text', name='name-input', maxlength='30', pattern='^[a-zA-Z0-9_- ]*$', aria-label="Biomarker Name", Placeholder="Biomarker Name")
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-1')
             a(href="javascript:void(0);")
               .glyphicon.glyphicon-chevron-down
               span Input: 2x2 Table
-        .option-1.panel-body.panel-collapse.table_container.collapse.in
-          .table_row
-            #m_neg.table_data
-                a.define(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
-            #prob_m.table_data
-                a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
-            .table_data.emptyblock
-          .table_row
-            .table_data
-              label.sr-only(for='b') B
-              input#b.input_field(name='b', type='number', maxlength='30')
-            .table_data
-              label.sr-only(for='a') A
-              input#a.input_field(name='a', type='number', maxlength='30')
-            #prob_d.table_data.text-left
-                a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
-          .table_row
-            .table_data
-              label.sr-only(for='d') D
-              input#d.input_field(name='d', type='number', maxlength='30')
-            .table_data
-              label.sr-only(for='c') C
-              input#c.input_field(name='c', type='number', maxlength='30')
-            #d_neg.table_data.text-left
-                a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
+        .option-1.panel-body.panel-collapse.collapse.in
+          table.table_container
+            tbody
+              tr.table_row
+                th#m_neg.table_data(scope="col", header="Marker Negative", title="Marker Negative")
+                    a.define(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
+                th#prob_m.table_data(scope="col", header="Marker Positive", title="Marker Positive")
+                    a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
+                td.table_data.emptyblock
+              tr.table_row
+                td.table_data
+                  input#b.input_field(name='b', type='number', maxlength='30', aria-label="parameter b")
+                td.table_data
+                  input#a.input_field(name='a', type='number', maxlength='30', aria-label="parameter a")
+                td#prob_d.table_data.text-left
+                    a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
+              tr.table_row
+                td.table_data
+                  input#d.input_field(name='d', type='number', maxlength='30', aria-label="parameter d")
+                td.table_data
+                  input#c.input_field(name='c', type='number', maxlength='30', aria-label="parameter c")
+                td#d_neg.table_data.text-left
+                    a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
             a(href="javascript:void(0);")
                 .glyphicon.glyphicon-chevron-down
                 span Input: PPV, NPV, Sensitivity, Specificity, etc.
         .option-2.panel-body.panel-collapse.collapse
           .table_padding
-            label(for='sampsize') Sample Size
-            input.input_field#sampsize(name='sampsize', type='number', maxlength='30', min='1')
-          .table_container
-            .table_row
-              .table_data.bold(title='Parameter Type Column', header="Parameter Type Column") Parameter
-              .table_data.bold(title='Parameter Proportion Column', header="Parameter Proportion Column") Proportion
-            .table_row(row='0')
-              .table_data
-                label.sr-only(for="param_1") Parameter 1 Selections
-                span.dd
-                  a.define(href="#", data-term='ppv')
-                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
-                div
-                  select#param_1.input_field(name='param_1')
-                    option(value='ppv') PPV
-                    option(value='sens') Sensitivity
-              .table_data
-                  label.sr-only(for="param_1_value") Parameter 1 Selections
-                  input#param_1_value.input_field(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001')
-            .table_row(row='1')
-              .table_data
-                label.sr-only(for="param_2") Parameter 2 Selections
-                span
-                  a.dd.define(href="#", data-term='npv')
-                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
-                div
-                  select#param_2.input_field(name='param_2')
-                    option(value='npv') NPV
-                    option(value='spec') Specificity
-              .table_data
-                label.sr-only(for="param_2_value") Parameter 2 Selections
-                input#param_2_value.input_field(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001')
-            .table_row(row='2')
-              .table_data
-                label.sr-only(for="param_3") Parameter 3 Selections
-                span
-                  a.dd.define(href="#", data-term='prob_m')
-                    img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
-                div
-                  select#param_3.input_field(name='param_3')
-                    option(value='prob_m') Marker Positivity (P(M+))
-                    option(value='prob_d') Disease Prevalence (P(D+))
-              .table_data
-                label.sr-only(for="param_3_value") Parameter 3 Selections
-                input#param_3_value.input_field(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001')
+            input.input_field#sampsize(name='sampsize', type='number', maxlength='30', min='1', aria-label="Sample Size", placeholder="Sample Size")
+          table.table_container
+            tbody
+              tr.table_row
+                th.table_data.bold(title='Parameter Type Column', header="Parameter Type Column", scope="col") Parameter
+                th.table_data.bold(title='Parameter Proportion Column', header="Parameter Proportion Column", scope="col") Proportion
+              tr.table_row(row='0')
+                td.table_data
+                  span.dd
+                    a.define(href="#", data-term='ppv')
+                      img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 1 dropdown value")
+                  div
+                    select#param_1.input_field(name='param_1', aria-label="parameter 1 type")
+                      option(value='ppv') PPV
+                      option(value='sens') Sensitivity
+                td.table_data
+                    input#param_1_value.input_field(type='number', name='param_1', min='0', max='1', maxlength='30', step='0.0001', aria-label="Parameter 1 value")
+              tr.table_row(row='1')
+                td.table_data
+                  span
+                    a.dd.define(href="#", data-term='npv')
+                      img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 2 dropdown value")
+                  div
+                    select#param_2.input_field(name='param_2', aria-label="parameter 2 type")
+                      option(value='npv') NPV
+                      option(value='spec') Specificity
+                td.table_data
+                  input#param_2_value.input_field(type='number', name='param_2', min='0', max='1', maxlength='30', step='0.0001', aria-label="parameter 2 value")
+              tr.table_row(row='2')
+                td.table_data
+                  span
+                    a.dd.define(href="#", data-term='prob_m')
+                      img(src="/common/images/info.png", height="20", width="20",alt="pop up definition for parameter 3 dropdown value")
+                  div
+                    select#param_3.input_field(name='param_3', aria-label="parameter 3 type")
+                      option(value='prob_m') Marker Positivity (P(M+))
+                      option(value='prob_d') Disease Prevalence (P(D+))
+                td.table_data
+                  input#param_3_value.input_field(type='number', name='param_3', min='0', max='1', maxlength='30', step='0.0001', aria-label="parameter 3 value")
     #control-group.table_container
       .table_row
         .table_data

@@ -27,28 +27,28 @@
           #cases_control.panel-body.collapse
             .panel.panel-default
               .panel-heading.bold Enter Mean, Standard Error, and N for Cases and Controls
-              .table_container
-                .table_row
-                  .table_data.emptyblock
-                  .table_data.bold Cases
-                  .table_data.bold Controls
-                .table_row
-                  .table_data.text-right.bold Mean
-                  .table_data
+              table.table_container
+                tr.table_row
+                  td.emptyblock
+                  th.bold(scope="col") Cases
+                  th.bold(scope="col") Controls
+                tr.table_row
+                  td.text-right.bold Mean
+                  td
                     input#mean_cases_input(type='text', value='4', size='4', aria-label="Mean for Cases")
-                  .table_data
+                  td
                     input#mean_controls_input(type='text', value='1', size='4', aria-label="Mean for Controls")
-                .table_row
-                  .table_data.text-right.bold Standard Error
-                  .table_data
+                tr.table_row
+                  td.text-right.bold Standard Error
+                  td
                     input#stderr_cases_input.pull-left(type='text', value='0.1', size='4', aria-label="Standard Error for Cases")
-                  .table_data
+                  td
                     input#stderr_controls_input(type='text', value='0.1', size='4', aria-label="Standard Error for Controls")
-                .table_row
-                  .table_data.text-right.bold N
-                  .table_data
+                tr.table_row
+                  td.text-right.bold N
+                  td
                     input#N_cases_input(type='text', value='100', size='4', aria-label="N for Cases")
-                  .table_data
+                  td
                     input#N_controls_input(type='text', value='200', size='4', aria-label="N for Controls")
           .panel-footer
             .table_padding
@@ -66,7 +66,7 @@
       .output
         table#mtr-results.panel.panel-default.table
           tr
-            th.emptyblock(scope="col")
+            td.emptyblock
             th.header.bold#header-cases(scope="col") Cases
             th.header.bold#header-controls(scope="col") Controls
             th.header.bold#header-ovr(scope="col") Overall

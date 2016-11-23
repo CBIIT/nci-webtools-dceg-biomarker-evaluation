@@ -709,29 +709,35 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
       $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
 
       thisTool.find(tabElement + " #" + tableId + " tr:first").prepend(
-        "<th class='ui-state-default' colspan='2'></td>");
+        "<td class='ui-state-default' colspan='2'></td>");
 
       var y = 0;
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
         function() {
           $(this).prepend(
-            "<th class='ui-state-default sorting_disabled'>" +
+            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='col' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
         });
 
       // add another first column for independent type
       thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
-        "<th class='header' rowspan='" + independentArraySplit.length +
-        "'><div class='vertical-text'>" + tableFirstRowLabel +
+        "<th id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
+        independentArraySplit.length + "'><div class='vertical-text'>" + tableFirstRowLabel +
         "</div></th>");
 
       // add a column heading for contour type
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><th class='header' colspan='2'></th><th class='header' colspan='5'>" +
-        tableFirstColLabel + "</th></tr>");
-      if(graphError != 1)
-        loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath);
+        "<tr><th class='header' id='header-" + tableFirstColLabel + 
+        "' colspan='7'>" + tableFirstColLabel + "</th></tr>");
+
+      if(graphError != 1) {
+        imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
+        " given different values of " + tableFirstRowLabel + " with " + 
+        fixed_dropdown_rs.value + " equal to " + fixed_rs.value.split(", ")[ tabnumber - 1];
+          
+        loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath, imgAlt);
+      }
     }
     else {
       display_errors([ singleDataObject.message ]);
@@ -751,12 +757,12 @@ function getColumnHeaderData(columnHeadings) {
   return columnHeaderData2d;
 }
 
-function loadImage(tabNumber, graphNamePreFix, graphFilename) {
+function loadImage(tabNumber, graphNamePreFix, graphFilename, altText) {
   var imageContainer = thisTool.find("#graphic-" + graphNamePreFix + tabNumber);
   imageContainer.empty();
 
   imageContainer.append(
-    "<img class='expand' src='" + graphFilename + "' alt='output " + graphNamePreFix + " image for tab " + tabNumber + "'>");
+    "<img class='expand' src='" + graphFilename + "' alt='" + altText + "'>");
 }
 
 function refreshGraph(drawgraph) {
