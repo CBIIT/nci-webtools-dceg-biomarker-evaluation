@@ -695,7 +695,16 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         "bSort" : false,
         "bPaginate" : false,
         "bDestroy" : true,
-        "aaSorting" : [ [ 0, "asc" ] ]
+        "aaSorting" : [ [ 0, "asc" ] ],
+        "headerCallback": function ( thead, data, start, end, display ) {
+          $.each(thead.cells, function(cell, i) {
+            $(cell).attr("scope", "col");
+          });
+        }
+      });
+
+      table.find("th").each(function(i, el) {
+        $(el).attr('scope', 'col');
       });
 
       $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
@@ -707,22 +716,22 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
         function() {
           $(this).prepend(
-            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='col' class='ui-state-default sorting_disabled'>" +
+            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='row' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
         });
 
      
       thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
-        "<th id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
+        "<th scope='row' id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
         independentArraySplit.length + "'><div class='vertical-text'>" + tableFirstRowLabel +
         "</div></th>");
 
      
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><th class='header' id='header-" + tableFirstColLabel + 
-        "' colspan='7'>" + tableFirstColLabel + "</th></tr>");
-
+        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='header-" + 
+        tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
+      
       if(graphError != 1) {
         imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
         " given different values of " + tableFirstRowLabel + " with " + 

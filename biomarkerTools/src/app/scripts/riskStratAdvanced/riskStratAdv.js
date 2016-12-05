@@ -204,11 +204,11 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
   el.popover('destroy');
   el.unbind('click touchstart keydown', termDisplay);
   el.bind('click touchstart keydown', termDisplay);
-  // el.on('focus', function() {
-  //   $(this).trigger('mouseover');
-  // }).on('blur', function() {
-  //   $(this).trigger('mouseout');
-  // });
+ 
+ 
+ 
+ 
+ 
 
   el.addClass('show');
 }
@@ -371,7 +371,7 @@ function checkInputFields() {
 }
 
 function validate_inputs() {
-  // Check pattern for each input box
+ 
   var checkInput = [];
   thisTool.find("input, select").each(function(){
     checkInput.push($(this)[0].checkValidity());
@@ -413,11 +413,11 @@ function validate_inputs() {
 }
 
 function calculate_riskStrat(){
-  // validate input first
+ 
   var validated = validate_inputs();
 
   if(validated){
-    // get input values
+   
     var independent_type = thisTool.find("#independent_dropdown_rs").val();
     var independent_values = thisTool.find("#independent_rs").val().replace(/[^\d,.-]/g, '');
     var indSplit = independent_values.split(",");
@@ -459,9 +459,9 @@ function calculate_riskStrat(){
     var request_data = [];
     var tableTitle = "";
 
-    // number of fixed values drives everything
-    // keyIndex is either 1 or 2. It may correspond with abbreviatedKey value cNPV or PPV.
-    // tabValue is each individual value of the 'fixed' comma separated values string
+   
+   
+   
 
     thisTool.find(".output").addClass("hide").empty();
     tabs = $("<div id='tabs'> </div>");
@@ -484,7 +484,7 @@ function calculate_riskStrat(){
           fixedType : fixed_type,
           uniqueId : uniqueKey,
           abreviatedKey : keyvalueShort[shortkey],
-          tabValue : thisFixedValue, //need to use fixed values in tab text
+          tabValue : thisFixedValue,
           export: false
         });
       }
@@ -501,10 +501,10 @@ function calculate_riskStrat(){
     }
 
     getData(request_data).done(function(data_array) {
-      // data should be return in individual objects
+     
 
       if (data_array.length > 0){
-        // then put the data and image into each tab
+       
         for (var i = 0; i < data_array.length; i++) {
           for (var j = 0; j < fixedSplit.length; j++) {
             fillTable(data_array[i], j, columnHeadings, indSplit);
@@ -566,15 +566,7 @@ function getFunctionName(independent, fixed, contour) {
 
 function getData(data) {
   
-  /*
-  var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
-
-  if(window.location.host == "localhost") {
-    service = "http://" + window.location.hostname + window.location.pathname + "riskStratAdvanced/test_result.json";
-  }
-  */
-
-  var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
+    var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
 
 
   return $.ajax({
@@ -590,7 +582,7 @@ function getData(data) {
 }
 
 function retrieve_excel(e) {
-  //var service = "http://" + window.location.hostname + "/" + rest + "/riskStratAdvanced/";
+ 
   var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
   
   $.ajax({
@@ -673,8 +665,8 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         for (var i = 0; i < rows; i++) {
           var values = [];
           row_entries = tableData[i];
-          // use column headings to properly sort the data, the number of headings and
-          // number of data row_entries should match up
+         
+         
           for ( var key in columnHeadings) {
             var columnInd = parseFloat(columnHeadings[key]);
             values.push(row_entries[columnInd]);
@@ -703,7 +695,16 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         "bSort" : false,
         "bPaginate" : false,
         "bDestroy" : true,
-        "aaSorting" : [ [ 0, "asc" ] ]
+        "aaSorting" : [ [ 0, "asc" ] ],
+        "headerCallback": function ( thead, data, start, end, display ) {
+          $.each(thead.cells, function(cell, i) {
+            $(cell).attr("scope", "col");
+          });
+        }
+      });
+
+      table.find("th").each(function(i, el) {
+        $(el).attr('scope', 'col');
       });
 
       $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
@@ -715,22 +716,22 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
         function() {
           $(this).prepend(
-            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='col' class='ui-state-default sorting_disabled'>" +
+            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='row' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
         });
 
-      // add another first column for independent type
+     
       thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
-        "<th id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
+        "<th scope='row' id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
         independentArraySplit.length + "'><div class='vertical-text'>" + tableFirstRowLabel +
         "</div></th>");
 
-      // add a column heading for contour type
+     
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><th class='header' id='header-" + tableFirstColLabel + 
-        "' colspan='7'>" + tableFirstColLabel + "</th></tr>");
-
+        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='header-" + 
+        tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
+      
       if(graphError != 1) {
         imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
         " given different values of " + tableFirstRowLabel + " with " + 
@@ -804,7 +805,7 @@ function makeSelectionsUnique(elementId) {
 function setInitialValue(textboxId) {
   var thisSelect = thisTool.find('#'+textboxId);
   var thisInput = thisTool.find('#'+textboxId.replace('_dropdown','')).attr('placeholder',initialData[$.inArray(thisSelect.val(), functionnames)]).val("");
-  // thisTool.find("#examples > :eq(" + thisSelect.parent().parent().index() + ") span").text(initialData[$.inArray(thisSelect.val(), functionnames)]);
+ 
 
   addPopupDefinition();
 }
@@ -831,7 +832,7 @@ function checkForInvalidVariableCombo() {
   }
 }
 
-// Find min max values in array
+
 Array.max = function( array ){
   array = array.map(Number);
   return Math.max.apply( Math, array );
