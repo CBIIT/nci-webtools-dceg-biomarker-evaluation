@@ -139,7 +139,7 @@ function bind_reference_row(){
     var row, col;
     row = $(this).attr('row');
     col = $(this).attr('col');
-    var oldReference = $(this).html("<img src='/common/images/checkbox.png' alt='check'/>")
+    var oldReference = $(this).html("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>")
       .siblings().last().empty().html('&nbsp;')
       .parent().addClass('reference_row')
       .siblings('.reference_row').removeClass('reference_row');
@@ -219,7 +219,7 @@ function change_value(field, new_value){
 
 function import_data_row(data, ind){
   var cell_1 = "<div class='table_row' row='" + ind + "'><div class='table_data emptyblock'></div>";
-  var cell_2 = "<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='uncheck'/></div>";
+  var cell_2 = "<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></div>";
   var cell_3 = "<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
   var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
   var cell_5 = "<div class='table_data emptyblock'>" +
@@ -228,7 +228,7 @@ function import_data_row(data, ind){
 
   $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
 
-  inputElm.children(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='check'/>").siblings().last().empty();
+  inputElm.children(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>").siblings().last().empty();
   bind_reference_row();
   bind_input();
 }
@@ -237,7 +237,7 @@ function add_new_row(){
   // exclude .non-data-rows in the count
   var num_rows = inputElm.children(':not(.non-data-row)').length;
   var row_1 = "<div class='table_row' row='" + num_rows + "'><div class='table_data emptyblock'></div>";
-  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='uncheck'/></a></div>";
+  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></div>";
   var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></div>" ;
   var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></div>";
   var row_5 = "<div class='table_data emptyblock'>" +
