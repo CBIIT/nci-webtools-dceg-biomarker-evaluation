@@ -1,4 +1,6 @@
-#inputdata
+table
+  width 100%
+table#inputdata
   @media (max-width 479px)
     .remove_row_button
         > .text
@@ -11,20 +13,22 @@
             display block
         > .glyphicon
             display none
-  .table_row
+  tr.table_row
     &:first-child
       @media (max-width 479px)
         font-size 11px
-      ~ .table_row
-        counter-increment bcDataRows
-        .table_data:first-child::after
-          content counter(bcDataRows)
-          font-weight bold
+    counter-increment bcDataRows
+    td.table_data:first-child:after
+      content counter(bcDataRows)
+      font-weight bold
     &:last-child
       counter-increment bcDataRows -1
       button
         width 100%
-  .table_data
+  tr td > button#new_row_button
+    width 100%
+  td.table_data, th
+    height initial
     width (100%*3/12)
     &:first-child
       width (100%*1/12)

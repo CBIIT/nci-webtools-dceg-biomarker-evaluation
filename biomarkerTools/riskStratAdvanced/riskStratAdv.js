@@ -697,14 +697,10 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         "bDestroy" : true,
         "aaSorting" : [ [ 0, "asc" ] ],
         "headerCallback": function ( thead, data, start, end, display ) {
-          $.each(thead.cells, function(cell, i) {
-            $(cell).attr("scope", "col");
+          $.each(thead.cells, function(i, cell) {
+            $(cell).attr("id", tableId + "_"  + columnHeadings[i].replace(".", "_"));
           });
         }
-      });
-
-      table.find("th").each(function(i, el) {
-        $(el).attr('scope', 'col');
       });
 
       $(tabElement + " #table-" + abbreviatedKey + tabnumber).append(table);
@@ -713,32 +709,35 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         "<td class='ui-state-default' colspan='2'></td>");
 
       var y = 0;
-      thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(
-        function() {
-          $(this).prepend(
-            "<th id='" + independentArraySplit[y].replace('.',"_") + "'' scope='row' class='ui-state-default sorting_disabled'>" +
+      thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(function(i, tr) {
+          $(tr).prepend("<th id='" + tableId + "_header_" + independentArraySplit[y].replace('.',"_") + "'' scope='col' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
-        });
+      });
 
-     
-      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend(
-        "<th scope='row' id='header-" + tableFirstRowLabel + "' class='header' rowspan='" + 
-        independentArraySplit.length + "'><div class='vertical-text'>" + tableFirstRowLabel +
-        "</div></th>");
+      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend("<th scope='row' id='" + tableId + "-header-" + 
+        tableFirstRowLabel + "' class='header' rowspan='" + independentArraySplit.length + 
+        "'><div class='vertical-text'>" + tableFirstRowLabel + "</div></th>");
 
      
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='header-" + 
+        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='" + tableId + "-header-" + 
         tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
+            
+        thisTool.find(tabElement + " #" + tableId + " tbody tr").each(function(i, tr) {
+            $(tr).find("td").each(function(j, td) {
+                $(td).attr("headers", tableId + '_header_' + independentArraySplit[i].replace('.',"_").trim() + 
+                           ' ' + tableId + "_"  + columnHeadings[j].replace(".", "_").trim());
+            });
+        });
       
-      if(graphError != 1) {
+    if(graphError != 1) {
         imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
         " given different values of " + tableFirstRowLabel + " with " + 
         fixed_dropdown_rs.value + " equal to " + fixed_rs.value.split(", ")[ tabnumber - 1];
-          
+
         loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath, imgAlt);
-      }
+    }
     }
     else {
       display_errors([ singleDataObject.message ]);

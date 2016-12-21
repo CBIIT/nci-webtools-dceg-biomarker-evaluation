@@ -23,16 +23,16 @@
                     a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
                 td.table_data.emptyblock
               tr.table_row
-                td.table_data
+                td.table_data(headers="m_neg prob_d")
                   input#b.input_field(name='b', type='number', maxlength='30', aria-label="parameter b")
-                td.table_data
+                td.table_data(headers="prob_m prob_d")
                   input#a.input_field(name='a', type='number', maxlength='30', aria-label="parameter a")
                 td#prob_d.table_data.text-left
                     a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
               tr.table_row
-                td.table_data
+                td.table_data(headers="d_neg m_neg")
                   input#d.input_field(name='d', type='number', maxlength='30', aria-label="parameter d")
-                td.table_data
+                td.table_data(headers="d_neg prob_m")
                   input#c.input_field(name='c', type='number', maxlength='30', aria-label="parameter c")
                 td#d_neg.table_data.text-left
                     a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
@@ -164,7 +164,7 @@
           td.nns_result.output_field.bm_3
       table#calcTable
         tr
-          th(header="Parameters") Parameters
+          th(header="Parameters", scope="col") Parameters
           th.bm_1.marker_name(header="Parameter results for Biomarker 1", title="Parameter results for Biomarker 1", scope="col") (Biomarker Title Placeholder)
           th.bm_2.marker_name(header="Parameter results for Biomarker 2", title="Parameter results for Biomarker 2", scope="col") (Biomarker Title Placeholder)
           th.bm_3.marker_name(header="Parameter results for Biomarker 3", title="Parameter results for Biomarker 3", scope="col") (Biomarker Title Placeholder)

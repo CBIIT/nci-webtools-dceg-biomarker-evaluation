@@ -254,6 +254,13 @@ header #branch-logo {
   border: 2px #000 solid;
   border-collapse: collapse;
 }
+#meanstorisk .tabbed_output_panel table caption {
+  border-bottom: 2px solid #bbb;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-top: 2px solid #000;
+  background: #f5f5f5;
+}
 #meanstorisk .tabbed_output_panel table tr:nth-child(2) {
   border-bottom: 1px #000 solid;
 }
@@ -286,53 +293,65 @@ header #branch-logo {
 #meanstorisk .tabbed_output_panel table td {
   padding: 0px 1em;
 }
+#bc table {
+  width: 100%;
+}
 @media (max-width: 479px) {
-  #bc #inputdata .remove_row_button > .text {
+  #bc table#inputdata .remove_row_button > .text {
     display: none;
   }
-  #bc #inputdata .remove_row_button > .glyphicon {
+  #bc table#inputdata .remove_row_button > .glyphicon {
     display: block;
   }
 }
 @media (min-width: 480px) {
-  #bc #inputdata .remove_row_button > .text {
+  #bc table#inputdata .remove_row_button > .text {
     display: block;
   }
-  #bc #inputdata .remove_row_button > .glyphicon {
+  #bc table#inputdata .remove_row_button > .glyphicon {
     display: none;
   }
 }
+#bc table#inputdata tr.table_row {
+  counter-increment: bcDataRows;
+}
 @media (max-width: 479px) {
-  #bc #inputdata .table_row:first-child {
+  #bc table#inputdata tr.table_row:first-child {
     font-size: 11px;
   }
 }
-#bc #inputdata .table_row:first-child ~ .table_row {
-  counter-increment: bcDataRows;
-}
-#bc #inputdata .table_row:first-child ~ .table_row .table_data:first-child::after {
+#bc table#inputdata tr.table_row td.table_data:first-child:after {
   content: counter(bcDataRows);
   font-weight: bold;
 }
-#bc #inputdata .table_row:last-child {
+#bc table#inputdata tr.table_row:last-child {
   counter-increment: bcDataRows -1;
 }
-#bc #inputdata .table_row:last-child button {
+#bc table#inputdata tr.table_row:last-child button {
   width: 100%;
 }
-#bc #inputdata .table_data {
+#bc table#inputdata tr td > button#new_row_button {
+  width: 100%;
+}
+#bc table#inputdata td.table_data,
+#bc table#inputdata th {
+  height: initial;
   width: 25%;
 }
-#bc #inputdata .table_data:first-child {
+#bc table#inputdata td.table_data:first-child,
+#bc table#inputdata th:first-child {
   width: 8.333333333333334%;
 }
-#bc #inputdata .table_data:last-child {
+#bc table#inputdata td.table_data:last-child,
+#bc table#inputdata th:last-child {
   width: auto;
 }
-#bc #inputdata .table_data .input_field:hover {
+#bc table#inputdata td.table_data .input_field:hover,
+#bc table#inputdata th .input_field:hover {
   cursor: text;
 }
-#bc #inputdata .table_data img {
+#bc table#inputdata td.table_data img,
+#bc table#inputdata th img {
   position: relative;
   top: -0.15em;
   height: 2em;

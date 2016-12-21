@@ -102,7 +102,7 @@ function validate_csv(file){
         if(valuesFromFile.length == 10) {
           valid = true;
          
-          inputElm.children(':not(.non-data-row)').each(function(i, row) {
+          inputElm.children('tr:not(.non-data-row)').each(function(i, row) {
             $(row).remove();
           });
 
@@ -218,39 +218,39 @@ function change_value(field, new_value){
 }
 
 function import_data_row(data, ind){
-  var cell_1 = "<div class='table_row' row='" + ind + "'><div class='table_data emptyblock'></div>";
-  var cell_2 = "<div class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></div>";
-  var cell_3 = "<div class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</div>" ;
-  var cell_4 = "<div class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</div>";
-  var cell_5 = "<div class='table_data emptyblock'>" +
-                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>" +
-               "</div>";
+  var cell_1 = "<tr class='table_row' row='" + ind + "'><td class='table_data emptyblock'></td>";
+  var cell_2 = "<td class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></td>";
+  var cell_3 = "<td class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</td>" ;
+  var cell_4 = "<td class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</td>";
+  var cell_5 = "<td class='table_data emptyblock'>" +
+                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
 
   $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
 
-  inputElm.children(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>").siblings().last().empty();
+  inputElm.children("tbody").find(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>").siblings().last().empty();
   bind_reference_row();
   bind_input();
 }
 
 function add_new_row(){
  
-  var num_rows = inputElm.children(':not(.non-data-row)').length;
-  var row_1 = "<div class='table_row' row='" + num_rows + "'><div class='table_data emptyblock'></div>";
-  var row_2 = "<div class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></div>";
-  var row_3 = "<div class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></div>" ;
-  var row_4 = "<div class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></div>";
-  var row_5 = "<div class='table_data emptyblock'>" +
-                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></div>";
-  inputElm.children().last().before(row_1 + row_2 + row_3 + row_4 + row_5);
-  if (num_rows === 2) {
-    inputElm.children(':not(.non-data-row)').each(function(i, row){
-      update_row_index(i, row);
-      if (!$(this).hasClass('reference_row')) {
-        $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
-      }
-    });
-  }
+  var num_rows = inputElm.find('tr:not(.non-data-row)').length;
+  var row = "<tr class='table_row' row='" + num_rows + "'><td class='table_data emptyblock'></td>"+
+      "<td class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></td>"+
+      "<td class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></td>" +
+      "<td class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></td>"+
+      "<td class='table_data emptyblock'><BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
+    inputElm.find("tr").last().prev().after(row);
+	
+    if (num_rows === 2) {
+        inputElm.find('tr:not(.non-data-row)').each(function(i, row){
+            update_row_index(i, row);
+            if (!$(this).hasClass('reference_row')) {
+                $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+            }
+        });
+    }
+    
   bind_reference_row();
   bind_input();
 }
@@ -269,11 +269,13 @@ function update_row_index(i, row){
 
 function remove_row(el){
   var row_to_remove = el.parent().parent().remove();
-  var num_rows = inputElm.children('*:not(.non-data-row)').length;
+  var num_rows = inputElm.find('tr:not(.non-data-row,.reference_row)').length;
+    
   if (num_rows <= 2) {
     inputElm.find('.remove_row_button').remove();
   }
-  inputElm.children(':not(.non-data-row)').each(update_row_index);
+    
+  inputElm.children('tr:not(.non-data-row,.reference_row)').each(update_row_index);
 }
 
 function do_calculation(){
@@ -302,7 +304,7 @@ function do_calculation(){
     prev = prevalence;
   }
 
-  inputElm.children(':not(:last-child)').each(function(i, el){
+  inputElm.find('tr:not(:last-child)').each(function(i, el){
     if ($(this).hasClass('reference_row')) {
       refSens = parseFloat($(this).find('.sensitivity a').text());
       refSpec = parseFloat($(this).find('.specificity a').text());
@@ -539,7 +541,7 @@ function reset_bc(){
   thisTool.find('#errors').addClass("hide");
   thisTool.find("#file_upload, #prevalence_bc").val("");
 
-  inputElm.children(':not(.non-data-row)').each(function(i, el) {
+  inputElm.find('tr:not(.non-data-row)').each(function(i, el) {
     $(el).remove();
   });
 

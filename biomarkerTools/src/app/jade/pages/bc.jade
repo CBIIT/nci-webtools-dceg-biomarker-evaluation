@@ -60,56 +60,57 @@
                 a(href='bc/exampleValues.csv')  (Example)
             p
               input#file_upload_bc(type='file', accept=".csv")
-        #inputdata.panel-body.table_container
-          .table_row.non-data-row
-            .table_data.bold #
-            .table_data.bold Reference
-            #Sens.table_data.bold
-                a.define(href="#",data-term='Sens') Sensitivity
-            #Spec.table_data.bold
-                a.define(href="#",data-term='Spec') Specificity
-            .table_data.emptyblock
-          .table_row.reference_row(row='0')
-            .table_data.emptyblock
-            .table_data.reference(row='0', col='reference')
+        table#inputdata.panel-body.table_container
+          tr.non-data-row
+            th.table_data.bold(scope="col") #
+            th.table_data.bold(scope="col") Reference
+            th.table_data.bold(scope="col")
+                a.define(data-term='Sens') Sensitivity
+            th.table_data.bold(scope="col")
+                a.define(data-term='Spec') Specificity
+            td.table_data.emptyblock
+          tr.table_row.reference_row(row='0')
+            td.table_data.emptyblock
+            td.table_data.reference(row='0', col='reference')
                 a(href="javascript:void(0);")
                     img(src='/common/images/checkbox.png', alt='this row is the reference row')
-            .table_data.input_field.sensitivity(row='0', col='sensitivity')
+            td.table_data.input_field.sensitivity(row='0', col='sensitivity')
                 a(href="javascript:void(0);") 0.8
-            .table_data.input_field.specificity(row='0', col='specificity')
+            td.table_data.input_field.specificity(row='0', col='specificity')
                 a(href="javascript:void(0);") 0.7
-            .table_data.emptyblock
-          .table_row(row='1')
-            .table_data.emptyblock
-            .table_data.reference(row='1', col='reference')
+            td.table_data.emptyblock
+          tr.table_row(row='1')
+            td.table_data.emptyblock
+            td.table_data.reference(row='1', col='reference')
                 a(href="javascript:void(0);")
                     img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
-            .table_data.input_field.sensitivity(row='1', col='sensitivity')
+            td.table_data.input_field.sensitivity(row='1', col='sensitivity')
                 a(href="javascript:void(0);") 0.85
-            .table_data.input_field.specificity(row='1', col='specificity')
+            td.table_data.input_field.specificity(row='1', col='specificity')
                 a(href="javascript:void(0);") 0.68
-            .table_data.emptyblock
+            td.table_data.emptyblock
               button.remove_row_button
                 span.text Remove
                 span.glyphicon.glyphicon-minus-sign(title="Remove row")
-          .table_row(row='2')
-            .table_data.emptyblock
-            .table_data.reference(row='2', col='reference')
+          tr.table_row(row='2')
+            td.table_data.emptyblock
+            td.table_data.reference(row='2', col='reference')
               a(href="javascript:void(0);")
                 img(src='/common/images/uncheckbox.png', alt='click to set this row as the reference row')
-            .table_data.input_field.sensitivity(row='2', col='sensitivity')
+            td.table_data.input_field.sensitivity(row='2', col='sensitivity')
                 a(href="javascript:void(0);") 0.9
-            .table_data.input_field.specificity(row='2', col='specificity')
+            td.table_data.input_field.specificity(row='2', col='specificity')
                 a(href="javascript:void(0);") 0.5
-            .table_data.emptyblock
+            td.table_data.emptyblock
               button.remove_row_button
                 span.text Remove
                 span.glyphicon.glyphicon-minus-sign(title="Remove row")
-          .table_row.non-data-row
-            button#new_row_button New Row
+          tr.non-data-row
+            td
+                button#new_row_button New Row
         .panel-footer
           label#DP.prevalence_label(for='prevalence_bc')
-            a.define(href="#",data-term='DP') Prevalence
+            a.define(href="#", data-term='DP') Prevalence
           input#prevalence_bc(type='text')
           button#calculate_button Calculate
           button#reset Reset

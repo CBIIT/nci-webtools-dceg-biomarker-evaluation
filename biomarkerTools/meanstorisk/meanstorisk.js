@@ -532,15 +532,11 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
   var specificity_count = matrix.length;
   var general_table = $("<TABLE></TABLE>");
   $("#"+tab_id).empty().append(general_table);
-  var first_header_row = $("<tr></tr>");
-  
+  var caption = $("<caption id='header-prevalence-" + table_name + "' class='header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + 
+        "<br /><a id='" + type + tab_id + "' " + ( $_Glossary[type] === undefined ? "" : " class='define text-center " + type + "_stripe' data-term='" + type + "'" ) + 
+        ">" + table_second_name + "</a></caption>");
 
-  first_header_row.append("<th id='header-prevalence-" + table_name + "' class='header text-center' colspan='" + (prevalence_count + 4) + "'>" + table_name + 
-    "<br /><a id='" + type + tab_id + "' " + ( $_Glossary[type] === undefined ? "" : " class='define text-center " + type + "_stripe' data-term='" + type + "'" ) + 
-    ">" + table_second_name + "</a></th>");
-
-
-  first_header_row.appendTo(general_table);
+  caption.appendTo(general_table);
   var second_header_row = $("<tr></tr>");
 
   second_header_row.appendTo(general_table);
@@ -576,7 +572,7 @@ function set_matrix(tab_id, type, table_name, table_second_name, sensitivity_mat
 
     for(var z = 0; z < prevalence_count; z++) {
       var prevalence_value = prevalence_values[z];
-      row.append("<TD headers='header-prevalence" + (format_number(prevalence_values[z])).replace(".","_") + "' class='col1 text-center'>" + format_number(matrix[y][prevalence_value]) + "</TD>");
+      row.append("<TD headers='header-DP2-" + tab_id + " header-prevalence" + (format_number(prevalence_values[z])).replace(".","_") + "' class='col1 text-center'>" + format_number(matrix[y][prevalence_value]) + "</TD>");
     }
     row.appendTo(general_table);
   }
