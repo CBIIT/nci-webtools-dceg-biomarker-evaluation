@@ -710,12 +710,12 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
 
       var y = 0;
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(function(i, tr) {
-          $(tr).prepend("<th id='" + tableId + "_header_" + independentArraySplit[y].replace('.',"_") + "'' scope='col' class='ui-state-default sorting_disabled'>" +
+          $(tr).prepend("<th id='" + tableId + "_header_" + independentArraySplit[y].replace('.',"_") + "' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
       });
 
-      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend("<th scope='row' id='" + tableId + "-header-" + 
+      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend("<th id='" + tableId + "-header-" + 
         tableFirstRowLabel + "' class='header' rowspan='" + independentArraySplit.length + 
         "'><div class='vertical-text'>" + tableFirstRowLabel + "</div></th>");
 
