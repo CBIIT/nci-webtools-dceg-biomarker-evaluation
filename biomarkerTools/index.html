@@ -123,9 +123,9 @@
                   <table id="mtr-results" class="panel panel-default table">
                     <tr>
                       <td class="emptyblock"></td>
-                      <th id="header-cases" scope="col" class="header bold">Cases</th>
-                      <th id="header-controls" scope="col" class="header bold">Controls</th>
-                      <th id="header-ovr" scope="col" class="header bold">Overall</th>
+                      <th scope="col" class="header bold">Cases</th>
+                      <th scope="col" class="header bold">Controls</th>
+                      <th scope="col" class="header bold">Overall</th>
                     </tr>
                     <tr>
                       <th scope="col" class="text-right bold">Mean</th>
@@ -273,15 +273,15 @@
                     <tr row="0" class="table_row reference_row">
                       <td class="table_data emptyblock"></td>
                       <td row="0" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/checkbox.png" alt="this row is the reference row"></a></td>
-                      <td row="0" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.8</a></td>
-                      <td row="0" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.7</a></td>
+                      <td row="0" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.8</a></td>
+                      <td row="0" class="table_data input_field specificity"><a href="javascript:void(0);">0.7</a></td>
                       <td class="table_data emptyblock"></td>
                     </tr>
                     <tr row="1" class="table_row">
                       <td class="table_data emptyblock"></td>
                       <td row="1" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></a></td>
-                      <td row="1" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.85</a></td>
-                      <td row="1" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.68</a></td>
+                      <td row="1" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.85</a></td>
+                      <td row="1" class="table_data input_field specificity"><a href="javascript:void(0);">0.68</a></td>
                       <td class="table_data emptyblock">
                         <button class="remove_row_button"><span class="text">Remove</span><span title="Remove row" class="glyphicon glyphicon-minus-sign"></span></button>
                       </td>
@@ -289,8 +289,8 @@
                     <tr row="2" class="table_row">
                       <td class="table_data emptyblock"></td>
                       <td row="2" col="reference" class="table_data reference"><a href="javascript:void(0);"><img src="/common/images/uncheckbox.png" alt="click to set this row as the reference row"></a></td>
-                      <td row="2" col="sensitivity" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.9</a></td>
-                      <td row="2" col="specificity" class="table_data input_field specificity"><a href="javascript:void(0);">0.5</a></td>
+                      <td row="2" class="table_data input_field sensitivity"><a href="javascript:void(0);">0.9</a></td>
+                      <td row="2" class="table_data input_field specificity"><a href="javascript:void(0);">0.5</a></td>
                       <td class="table_data emptyblock">
                         <button class="remove_row_button"><span class="text">Remove</span><span title="Remove row" class="glyphicon glyphicon-minus-sign"></span></button>
                       </td>
@@ -424,8 +424,8 @@
                     <table class="table_container">
                       <tbody>
                         <tr class="table_row">
-                          <th id="m_neg" scope="col" header="Marker Negative" title="Marker Negative" class="table_data"><a href="javascript:void(0);" data-term="m_neg" class="define">Marker Negative (M-)</a></th>
-                          <th id="prob_m" scope="col" header="Marker Positive" title="Marker Positive" class="table_data"><a href="javascript:void(0);" data-term="prob_m" class="define">Marker Positive (M+)</a></th>
+                          <th scope="col" header="Marker Negative" title="Marker Negative" class="table_data"><a id="m_neg" href="javascript:void(0);" data-term="m_neg" class="define">Marker Negative (M-)</a></th>
+                          <th scope="col" header="Marker Positive" title="Marker Positive" class="table_data"><a id="prob_m" href="javascript:void(0);" data-term="prob_m" class="define">Marker Positive (M+)</a></th>
                           <td class="table_data emptyblock"></td>
                         </tr>
                         <tr class="table_row">
@@ -435,7 +435,7 @@
                           <td headers="prob_m prob_d" class="table_data">
                             <input id="a" name="a" type="number" maxlength="30" aria-label="parameter a" class="input_field">
                           </td>
-                          <td id="prob_d" class="table_data text-left"><a href="javascript:void(0);" data-term="prob_d" class="define">Disease Positive (D+)</a></td>
+                          <td class="table_data text-left"><a id="prob_d" href="javascript:void(0);" data-term="prob_d" class="define">Disease Positive (D+)</a></td>
                         </tr>
                         <tr class="table_row">
                           <td headers="d_neg m_neg" class="table_data">
@@ -444,7 +444,7 @@
                           <td headers="d_neg prob_m" class="table_data">
                             <input id="c" name="c" type="number" maxlength="30" aria-label="parameter c" class="input_field">
                           </td>
-                          <td id="d_neg" class="table_data text-left"><a href="javascript:void(0);" data-term="d_neg" class="define">Disease Negative (D-)</a></td>
+                          <td class="table_data text-left"><a id="d_neg" href="javascript:void(0);" data-term="d_neg" class="define">Disease Negative (D-)</a></td>
                         </tr>
                       </tbody>
                     </table>

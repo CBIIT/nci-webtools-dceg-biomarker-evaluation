@@ -17,25 +17,25 @@
           table.table_container
             tbody
               tr.table_row
-                th#m_neg.table_data(scope="col", header="Marker Negative", title="Marker Negative")
-                    a.define(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
-                th#prob_m.table_data(scope="col", header="Marker Positive", title="Marker Positive")
-                    a.define(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
+                th.table_data(scope="col", header="Marker Negative", title="Marker Negative")
+                    a.define#m_neg(href="javascript:void(0);", data-term="m_neg") Marker Negative (M-)
+                th.table_data(scope="col", header="Marker Positive", title="Marker Positive")
+                    a.define#prob_m(href="javascript:void(0);", data-term="prob_m") Marker Positive (M+)
                 td.table_data.emptyblock
               tr.table_row
                 td.table_data(headers="m_neg prob_d")
                   input#b.input_field(name='b', type='number', maxlength='30', aria-label="parameter b")
                 td.table_data(headers="prob_m prob_d")
                   input#a.input_field(name='a', type='number', maxlength='30', aria-label="parameter a")
-                td#prob_d.table_data.text-left
-                    a.define(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
+                td.table_data.text-left
+                    a.define#prob_d(href="javascript:void(0);", data-term="prob_d") Disease Positive (D+)
               tr.table_row
                 td.table_data(headers="d_neg m_neg")
                   input#d.input_field(name='d', type='number', maxlength='30', aria-label="parameter d")
                 td.table_data(headers="d_neg prob_m")
                   input#c.input_field(name='c', type='number', maxlength='30', aria-label="parameter c")
-                td#d_neg.table_data.text-left
-                    a.define(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
+                td.table_data.text-left
+                    a.define#d_neg(href="javascript:void(0);", data-term="d_neg") Disease Negative (D-)
         .panel-heading(data-parent='#marker-1', data-toggle='collapse', data-target='#marker-1 .option-2')
             a(href="javascript:void(0);")
                 .glyphicon.glyphicon-chevron-down
