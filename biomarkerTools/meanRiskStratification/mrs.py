@@ -1,13 +1,10 @@
 # We need to import the jsonify object, it will let us
 # output json, and it will take care of the right string
 # data conversion, the headers for the response, etc
-import os
-import re
-import time
 import json
 from flask import Flask, render_template, request, jsonify
 import rpy2.robjects as robjects
-from rpy2.robjects.vectors import IntVector, FloatVector
+from rpy2.robjects.vectors import IntVector
 from socket import gethostname
 
 r_mrs_env = robjects.globalenv['MRS']

@@ -5,17 +5,8 @@ from flask import current_app
 
 import rpy2.robjects as robjects
 from rpy2.robjects import r
-import cgi
-import shutil
-import os
-from xml.sax.saxutils import escape, unescape
 from socket import gethostname
 import json
-import pandas as pd
-import numpy as np
-from pandas import DataFrame
-import pandas.rpy.common as com
-import urllib
 
 app = Flask(__name__, static_folder='', static_url_path='/')
 
