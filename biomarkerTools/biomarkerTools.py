@@ -1,6 +1,5 @@
-import rpy2.robjects as robjects
-
-robjects.r('''source('biomarkerToolsSuite.R')''')
+from rpy2.robjects import r
+r.source('biomarkerToolsSuite.R')
 
 from bc.bc import *
 from meanRiskStratification.mrs import *
