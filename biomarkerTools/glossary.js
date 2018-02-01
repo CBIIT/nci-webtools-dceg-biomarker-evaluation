@@ -57,7 +57,7 @@ $.extend($_Glossary,{
   },
   nns: {
     fullName: "Number Needed to Screen",
-    definition: "The reciprocal of the risk difference PPV-cNPV. Formula: Usual NNS = 1/RD."
+    definition: "The reciprocal of the risk difference PPV-cNPV. Formula: Usual NNS = 1/RD"
   },
   nnt: {
     fullName: "Number Needed to Test (NNTest)",
