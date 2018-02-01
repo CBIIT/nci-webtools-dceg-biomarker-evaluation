@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Begin DAP Code -->
-    <script src="//assets.adobedtm.com/f1bfa9f7170c81b1a9a9ecdcc6c5215ee0b03c84/satelliteLib-4b219b82c4737db0e1797b6c511cf10c802c95cb.js"></script>
     <title>Biomarker Tools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="//assets.adobedtm.com/f1bfa9f7170c81b1a9a9ecdcc6c5215ee0b03c84/satelliteLib-4b219b82c4737db0e1797b6c511cf10c802c95cb.js"></script>
     <link rel="stylesheet" href="/common/css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">
@@ -538,30 +537,6 @@
                     <th header="Calculations for Biomarker 3" title="Calculations for Biomarker 3" scope="col" class="bm_3 marker_name">(Biomarker Title Placeholder)</th>
                   </tr>
                   <tr>
-                    <td class="text-left concern"><a href="javascript:void(0);" data-term="concern" class="define">Concern = PPV-P(D+)</a></td>
-                    <td class="concern_result output_field bm_1"></td>
-                    <td class="concern_result output_field bm_2"></td>
-                    <td class="concern_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
-                    <td class="text-left reassurance"><a href="javascript:void(0);" data-term="reassurance" class="define">Reassurance = P(D+)-cNPV</a></td>
-                    <td class="reassurance_result output_field bm_1"></td>
-                    <td class="reassurance_result output_field bm_2"></td>
-                    <td class="reassurance_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
-                    <td class="text-left q_sens"><a href="javascript:void(0);" data-term="q_sens" class="define">Concentration = Sensitivity - P(M+)</a></td>
-                    <td class="q_sens_result output_field bm_1"></td>
-                    <td class="q_sens_result output_field bm_2"></td>
-                    <td class="q_sens_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
-                    <td class="text-left q_spec"><a href="javascript:void(0);" data-term="q_spec" class="define">Reduction = P(M+) - cSpec</a></td>
-                    <td class="q_spec_result output_field bm_1"></td>
-                    <td class="q_spec_result output_field bm_2"></td>
-                    <td class="q_spec_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
                     <td class="text-left mrs"><a href="javascript:void(0);" data-term="mrs" class="define">Mean Risk Stratification = 2(ad-bc)</a></td>
                     <td class="mrs_result output_field bm_1"></td>
                     <td class="mrs_result output_field bm_2"></td>
@@ -574,22 +549,10 @@
                     <td class="max_mrs_result output_field bm_3"></td>
                   </tr>
                   <tr>
-                    <td class="text-left pbs"><a href="javascript:void(0);" data-term="pbs" class="define">Population Burden Stratification (PBS) = a-b</a></td>
-                    <td class="pbs_result output_field bm_1"></td>
-                    <td class="pbs_result output_field bm_2"></td>
-                    <td class="pbs_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
-                    <td class="text-left nnr"><a href="javascript:void(0);" data-term="nnr" class="define">Number Needed to Recruit (NNR) = 1/PBS</a></td>
-                    <td class="nnr_result output_field bm_1"></td>
-                    <td class="nnr_result output_field bm_2"></td>
-                    <td class="nnr_result output_field bm_3"></td>
-                  </tr>
-                  <tr>
-                    <td class="text-left nns"><a href="javascript:void(0);" data-term="nns" class="define">Number Needed to Screen (NNS) =1/RD</a></td>
-                    <td class="nns_result output_field bm_1"></td>
-                    <td class="nns_result output_field bm_2"></td>
-                    <td class="nns_result output_field bm_3"></td>
+                    <td class="text-left nnt"><a href="javascript:void(0);" data-term="nnt" class="define">Number Needed to Test (NNT) =2/MRS</a></td>
+                    <td class="nnt_result output_field bm_1"></td>
+                    <td class="nnt_result output_field bm_2"></td>
+                    <td class="nnt_result output_field bm_3"></td>
                   </tr>
                 </table>
                 <table id="calcTable">
@@ -799,8 +762,6 @@
       </div>
     </div>
     <script data-main="requires" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.js"></script>
-    
-    <!-- End DAP Code -->
     <script>_satellite.pageBottom()</script>
   </body>
 </html>

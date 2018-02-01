@@ -49,7 +49,7 @@ $.extend($_Glossary,{
   },
   mrs: {
     fullName: "Mean Risk Stratification (MRS)",
-    definition: "Average change in pretest-posttest disease risk. Formula: MRS=2tp(1-p)."
+    definition: "Average change in pretest-posttest disease risk. Formula: MRS=2(ad-bc), where a,b,c,d are the joint probabilities inside a 2x2 table."
   },
   nnr: {
     fullName: "Number Needed to Recruit",
@@ -57,7 +57,11 @@ $.extend($_Glossary,{
   },
   nns: {
     fullName: "Number Needed to Screen",
-    definition: "screenThe reciprocal of the risk difference PPV-cNPV. Formula: Usual NNS = 1/RD"
+    definition: "The reciprocal of the risk difference PPV-cNPV. Formula: Usual NNS = 1/RD"
+  },
+  nnt: {
+    fullName: "Number Needed to Test (NNTest)",
+    definition: "The number needed to test to identify 1 more disease case than by randomly selecting individuals for disease ascertainment. Formula: NNTest=2/MRS."
   },
   npv: {
     fullName: "Negative Predictive Value (NPV)",

@@ -8,6 +8,7 @@ var lookup = {
     "Population Burden Stratification": "pbs",
     "Number Needed to Recruit": "nnr",
     "Number Needed to Screen": "nns",
+    "Number Needed to Test": "nnt",
     "a": "a",
     "b": "b",
     "c": "c",
