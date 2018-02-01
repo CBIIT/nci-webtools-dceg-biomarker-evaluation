@@ -154,7 +154,7 @@ function return_data(data) {
       var lookup_id = lookup[name];
       var data_item = params[name];
       var formattedText = data_item.Value;
-      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
+      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns' && lookup_id != 'nnt') {
         formattedText += "% ";
         if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
           ci_lb = data_item["Confidence Interval (lower bound)"];
