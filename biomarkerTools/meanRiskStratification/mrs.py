@@ -71,7 +71,7 @@ def mrsRest():
                     npv = data[currData]['npv']
                 if key == 'sampsize':
                     total = data[currData]['sampsize']
-                            if key == 'sens':
+                if key == 'sens':
                     sens = data[currData]['sens']
                 if key == 'spec':
                     spec = data[currData]['spec']
@@ -83,36 +83,40 @@ def mrsRest():
                 if npv is not None:
                     # probM != NULL && probD == NULL
                     if probM is not None and probD is None:
-                        fromR = (r_getJSON_PPVNPVprobM(float(ppv),float(npv),float(probM),int(total)))
+                        fromR = (r_getJSON_PPVNPVprobM(
+                            float(ppv),
+                            float(npv),
+                            float(probM),
+                            int(total)))
                         fromRlist = list(fromR)
                         fromRstr = ''.join(fromRlist)
                         # using json.loads
                         biomar[currData] = json.loads(fromRstr)
                     # probD != NULL && probM == NULL
                     elif probD is not None and probM is None:
-
-                        fromR = (r_getJSON_PPVNPVprobD(float(ppv),float(npv),float(probD),int(total)))
-                                            fromRlist = list(fromR)
-                                            fromRstr = ''.join(fromRlist)
-
+                        fromR = (r_getJSON_PPVNPVprobD(
+                            float(ppv),
+                            float(npv),
+                            float(probD),
+                            int(total)))
+                        fromRlist = list(fromR)
+                        fromRstr = ''.join(fromRlist)
                         biomar[currData] = json.loads(fromRstr)
+
             elif sens is not None:
                 if spec is not None:
                     if probM is not None and probD is None:
                         fromR = (r_getJSON_sensspecprobM(float(sens),float(spec),float(probM),int(total)))
-                                            fromRlist = list(fromR)
-                                            fromRstr = ''.join(fromRlist)
+                        fromRlist = list(fromR)
+                        fromRstr = ''.join(fromRlist)
                         biomar[currData] = json.loads(fromRstr)
-
-                                    elif probD is not None and probM is None:
+                    elif probD is not None and probM is None:
                         fromR = (r_getJSON_sensspecprobD(float(sens),float(spec),float(probD),int(total)))
-                                            fromRlist = list(fromR)
-                                            fromRstr = ''.join(fromRlist)
+                        fromRlist = list(fromR)
+                        fromRstr = ''.join(fromRlist)
                         biomar[currData] = json.loads(fromRstr)
 
-    # NCIATWP-864: add key for "Number Needed to Test (nnt)"
-
-
+    # NCIATWP-864: add "Number Needed to Test (nnt)"
     for key in biomar:
         mean_risk_stratification = biomar[key]['calculations']['Mean Risk Stratification']
         value = 0.01 * mean_risk_stratification['Value']
