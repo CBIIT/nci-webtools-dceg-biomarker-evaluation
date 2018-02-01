@@ -30,85 +30,101 @@ def mrsRest():
     biomar = {}
     i = 1
     for currData in data:
-	    if data[currData]['option'] == 1:
-		    a = data[currData]['a']
-		    b = data[currData]['b']
-		    c = data[currData]['c']
-		    d = data[currData]['d']
+        if data[currData]['option'] == 1:
+            a = data[currData]['a']
+            b = data[currData]['b']
+            c = data[currData]['c']
+            d = data[currData]['d']
 
-		    abcd = []
-		    abcd.append(a)
-		    abcd.append(b)
-		    abcd.append(c)
-		    abcd.append(d)
-		    
-		    fromR = (r_getJSON_abcd(IntVector(abcd)))
-		    fromRlist = list(fromR)
-		    fromRstr = ''.join(fromRlist)
+            abcd = []
+            abcd.append(a)
+            abcd.append(b)
+            abcd.append(c)
+            abcd.append(d)
 
-		    biomar[currData] = json.loads(fromRstr)
-	    elif data[currData]['option'] == 2:
-		    # if for example prob_m is not defind in the UI
-		    # then data[currData]['prob_m'] will throw a KeyError
-		    # when attempting to store the value to a reference variable (probM)
-		    # do a brute force check for all possible values that are not null (not None)
+            fromR = (r_getJSON_abcd(IntVector(abcd)))
+            fromRlist = list(fromR)
+            fromRstr = ''.join(fromRlist)
 
-		    # set variables to NULL (None) instead of a value because
-		    # further below we check for None
-		    ppv = None
-		    npv = None
-		    total = None
-		    sens = None
-		    spec = None
-		    probM = None
-		    probD = None
+            biomar[currData] = json.loads(fromRstr)
+        elif data[currData]['option'] == 2:
+            # if for example prob_m is not defind in the UI
+            # then data[currData]['prob_m'] will throw a KeyError
+            # when attempting to store the value to a reference variable (probM)
+            # do a brute force check for all possible values that are not null (not None)
 
-		    # save value to variable for all given keys
-		    for key in data[currData].keys():
-			    if key == 'ppv':
-				    ppv = data[currData]['ppv']
-			    if key == 'npv':
-				    npv = data[currData]['npv']
-			    if key == 'sampsize':
-				    total = data[currData]['sampsize']
+            # set variables to NULL (None) instead of a value because
+            # further below we check for None
+            ppv = None
+            npv = None
+            total = None
+            sens = None
+            spec = None
+            probM = None
+            probD = None
+
+            # save value to variable for all given keys
+            for key in data[currData].keys():
+                if key == 'ppv':
+                    ppv = data[currData]['ppv']
+                if key == 'npv':
+                    npv = data[currData]['npv']
+                if key == 'sampsize':
+                    total = data[currData]['sampsize']
                             if key == 'sens':
-				    sens = data[currData]['sens']
-			    if key == 'spec':
-				    spec = data[currData]['spec']
-			    if key == 'prob_m':
-				    probM = data[currData]['prob_m']
-			    if key == 'prob_d':
-				    probD = data[currData]['prob_d']
-		    if ppv is not None:
-			    if npv is not None:
-				    # probM != NULL && probD == NULL
-				    if probM is not None and probD is None:
-					    fromR = (r_getJSON_PPVNPVprobM(float(ppv),float(npv),float(probM),int(total)))
-					    fromRlist = list(fromR)
-					    fromRstr = ''.join(fromRlist)
-					    # using json.loads
-					    biomar[currData] = json.loads(fromRstr)
-				    # probD != NULL && probM == NULL
-				    elif probD is not None and probM is None:
+                    sens = data[currData]['sens']
+                if key == 'spec':
+                    spec = data[currData]['spec']
+                if key == 'prob_m':
+                    probM = data[currData]['prob_m']
+                if key == 'prob_d':
+                    probD = data[currData]['prob_d']
+            if ppv is not None:
+                if npv is not None:
+                    # probM != NULL && probD == NULL
+                    if probM is not None and probD is None:
+                        fromR = (r_getJSON_PPVNPVprobM(float(ppv),float(npv),float(probM),int(total)))
+                        fromRlist = list(fromR)
+                        fromRstr = ''.join(fromRlist)
+                        # using json.loads
+                        biomar[currData] = json.loads(fromRstr)
+                    # probD != NULL && probM == NULL
+                    elif probD is not None and probM is None:
 
-					    fromR = (r_getJSON_PPVNPVprobD(float(ppv),float(npv),float(probD),int(total)))
+                        fromR = (r_getJSON_PPVNPVprobD(float(ppv),float(npv),float(probD),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
 
-					    biomar[currData] = json.loads(fromRstr)
-		    elif sens is not None:
-			    if spec is not None:
-				    if probM is not None and probD is None:
-					    fromR = (r_getJSON_sensspecprobM(float(sens),float(spec),float(probM),int(total)))
+                        biomar[currData] = json.loads(fromRstr)
+            elif sens is not None:
+                if spec is not None:
+                    if probM is not None and probD is None:
+                        fromR = (r_getJSON_sensspecprobM(float(sens),float(spec),float(probM),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
-					    biomar[currData] = json.loads(fromRstr)
+                        biomar[currData] = json.loads(fromRstr)
 
                                     elif probD is not None and probM is None:
-					    fromR = (r_getJSON_sensspecprobD(float(sens),float(spec),float(probD),int(total)))
+                        fromR = (r_getJSON_sensspecprobD(float(sens),float(spec),float(probD),int(total)))
                                             fromRlist = list(fromR)
                                             fromRstr = ''.join(fromRlist)
-					    biomar[currData] = json.loads(fromRstr)
+                        biomar[currData] = json.loads(fromRstr)
+
+    # NCIATWP-864: add key for "Number Needed to Test (nnt)"
+
+
+    for key in biomar:
+        mean_risk_stratification = biomar[key]['calculations']['Mean Risk Stratification']
+        value = 0.01 * mean_risk_stratification['Value']
+        lower_bound = 0.01 * mean_risk_stratification['Confidence Interval (lower bound)']
+        upper_bound = 0.01 * mean_risk_stratification['Confidence Interval (upper bound)']
+        bounds = [2 / lower_bound, 2 / upper_bound]
+
+        biomar[key]['calculations']['Number Needed to Test'] = {
+            'Value': round(2 / value),
+            'Confidence Interval (lower bound)': round(min(bounds)),
+            'Confidence Interval (upper bound)': round(max(bounds)),
+        }
 
     return json.dumps(biomar)
 
