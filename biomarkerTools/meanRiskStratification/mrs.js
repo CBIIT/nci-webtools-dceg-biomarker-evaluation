@@ -154,7 +154,7 @@ function return_data(data) {
       var lookup_id = lookup[name];
       var data_item = params[name];
       var formattedText = data_item.Value;
-      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
+      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns' && lookup_id != 'nnt') {
         formattedText += "% ";
         if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
           ci_lb = data_item["Confidence Interval (lower bound)"];
@@ -164,7 +164,7 @@ function return_data(data) {
       } else if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
         ci_lb = data_item["Confidence Interval (lower bound)"];
         ci_ub = data_item["Confidence Interval (upper bound)"];
-        formattedText += "(" + ci_lb + ", " + ci_ub + ")";
+        formattedText += " (" + ci_lb + ", " + ci_ub + ")";
       }
       // append text to table cell
       cell = $('.' + lookup_id + '_result.' + marker_id + '.output_field');
@@ -177,7 +177,7 @@ function return_data(data) {
       var data_item = calc[name];
       var formattedText = data_item.Value;
 
-      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns') {
+      if (lookup_id != 'rr' && lookup_id != 'nnr' && lookup_id != 'nns' && lookup_id != 'nnt') {
         formattedText += "% ";
         if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
           ci_lb = data_item["Confidence Interval (lower bound)"];
@@ -187,7 +187,7 @@ function return_data(data) {
       } else if (data_item["Confidence Interval (lower bound)"] !== null && data_item["Confidence Interval (upper bound)"] !== null) {
         ci_lb = data_item["Confidence Interval (lower bound)"];
         ci_ub = data_item["Confidence Interval (upper bound)"];
-        formattedText += "(" + ci_lb + ", " + ci_ub + ")";
+        formattedText += " (" + ci_lb + ", " + ci_ub + ")";
       }
 
       cell = thisTool.find('.' + lookup_id + '_result.' + marker_id + '.output_field');
@@ -323,6 +323,7 @@ var lookup = {
     "Population Burden Stratification": "pbs",
     "Number Needed to Recruit": "nnr",
     "Number Needed to Screen": "nns",
+    "Number Needed to Test": "nnt",
     "a": "a",
     "b": "b",
     "c": "c",

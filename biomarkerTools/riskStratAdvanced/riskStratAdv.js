@@ -710,7 +710,7 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
 
       var y = 0;
       thisTool.find(tabElement + " #" + tableId + " tr:not(:first)").each(function(i, tr) {
-          $(tr).prepend("<th id='" + tableId + "_header_" + independentArraySplit[y].replace('.',"_") + "'' class='ui-state-default sorting_disabled'>" +
+          $(tr).prepend("<th id='" + tableId + "_header_" + independentArraySplit[y].replace('.',"_") + "' class='ui-state-default sorting_disabled'>" +
             independentArraySplit[y] + "</th>");
           y++;
       });
@@ -721,7 +721,7 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
 
      
       thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><td class='header' colspan='2'></td><th class='header' id='" + tableId + "-header-" + 
+        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='" + tableId + "-header-" + 
         tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
             
         thisTool.find(tabElement + " #" + tableId + " tbody tr").each(function(i, tr) {
