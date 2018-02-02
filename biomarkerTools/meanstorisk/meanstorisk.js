@@ -146,7 +146,6 @@ function validate_input(valid){
     return el.validity ? el.validity.valueMissing : el.val().trim() === "";
   };
 
- 
   var specificitySplit = thisTool.find("input#specificity").val().split(",");
   var prevalenceSplit = thisTool.find("input#prevalence").val().split(",");
 
@@ -308,7 +307,6 @@ function make_ajax_call_user_defined_calculation() {
   uniqueKey = generateUniqueKey();
 
   var hostname = window.location.hostname;
- 
   var url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/meanstorisk/";
 
 
@@ -340,7 +338,6 @@ function make_ajax_call_standard_calculation() {
 
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
- 
   url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/meanstorisk/";
 
   $.ajax({
@@ -370,7 +367,6 @@ function make_ajax_call_standard_calculation() {
 function make_excel_call_user_defined_calculation() {
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
- 
   url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/meanstorisk/";
 
   thisTool.find("#spinner").removeClass("hide");
@@ -405,7 +401,6 @@ function make_excel_call_user_defined_calculation() {
 function make_excel_call_standard_calculation() {
   uniqueKey = generateUniqueKey();
   hostname = window.location.hostname;
- 
   url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/meanstorisk/";
 
   thisTool.find("#spinner").removeClass("hide");

@@ -60,7 +60,6 @@ function checkValidity(){
   return [ isValid, messages ];
 }
 
-
 thisTool.find('.post').click(function(){
   thisTool.find("#errors").addClass("hide");
   var valid = checkValidity();
@@ -109,11 +108,9 @@ thisTool.find("#fixed").keyup(function(){
 thisTool.find("#contour_dropdown").on("change", lock_fixed_options);
 
 function generate_tables(jsonrtn){
- 
   var label = thisTool.find("#contour_dropdown option:selected").text();
 
   for(var i in jsonrtn) {
-   
     var tablesvar = '<div class="table_row">' +
                       '<div class="table_data">' + label + '</div>' +
                       '<div class="table_data">Optimal k</div>' +
@@ -158,14 +155,12 @@ function generate_tabs(iterate,randomnumber){
   var cimagename="cNPVkSensSpec-";
 
   var fixedtype=thisTool.find("#fixed_flag").text();
- 
   if (fixedtype === "Sensitivity"){
     pimagename="PPVkSpecSens-";
     cimagename="cNPVkSpecSens-";
   }
 
   for(var i = 0; i < arrayLength; i++) {
-   
     tabheaders += '<li><a href="#tab'+(i+1)+'">'+fixed_flag+'<br />'+fixedvals[i]+'</a></li>';
     tabcontent += '<div id="tab'+(i+1)+'" class="clearfix">' +
                     '<div class="left_group">' +
@@ -183,13 +178,11 @@ function generate_tabs(iterate,randomnumber){
                   '</div>';
   }
   tabheaders += "</ul>";
- 
 
   var tabs = $("<div id='tabs'> </div>");
   thisTool.find(".output").append(tabs);
   thisTool.find("#tabs").append(tabheaders);
   thisTool.find("#tabs").append(tabcontent);
- 
   thisTool.find("#tabs").tabs();
 
 }
@@ -303,14 +296,12 @@ function retrieve_excel() {
 function sampleSizeRequest(exporting){
 
   hostname = window.location.hostname;
- 
   url = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/sampleSize/";
 
   disableAll();
   thisTool.find(".post").attr('disabled','').text("Please Wait....");
   spinner.removeClass("hide");
 
- 
   document.querySelector(thisTool.find('#spinner').selector).scrollIntoView(true);
 
   return $.ajax({

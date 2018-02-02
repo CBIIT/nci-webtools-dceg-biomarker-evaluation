@@ -5,27 +5,23 @@ if (typeof String.prototype.trim !== 'function') {
 }
 
 var default_ajax_error;
-var rest = "biomarkerToolsRest";
-var activeRequest = false;
+var rest = "biomarkerToolsRest"; 
+var activeRequest = false; 
 var custom_po_tmpl = "<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>";
 
 function disableAll(){
- 
   activeRequest = true;
   $("a, button,select,input").attr("disabled","").addClass("disable_control");
 
- 
   $("[data-toggle='tab']").attr("data-toggle", "disabledTab");
   $("[data-toggle='collapse']").attr("data-toggle", "disabledCollapse");
 }
 
 function enableAll() {
- 
   activeRequest = false;
   $("a, button, select, input").removeAttr("disabled").removeClass("disable_control");
   $(".disable_control").unbind("click");
 
- 
   $("[data-toggle='disabledTab']").attr("data-toggle", "tab");
   $("[data-toggle='disabledCollapse']").attr("data-toggle", "collapse");
 }
@@ -45,7 +41,6 @@ $(document).ready(function(){
 $(document).on('hide.bs.tab', function (e) {
   var id = e.relatedTarget.hash;
   var currentTab = id.toString().replace('#', '');
- 
   if(currentTab != "home" && currentTab != "help")
     thisTool = $(id);
 });
@@ -110,7 +105,6 @@ $('.goToTab').on('click', function(el){
 function goToTarget(tar) {
   document.getElementById(tar.hash.replace("#","")).scrollIntoView(true);
 }
-
 
 function default_ajax_error(request, status, error){
   var logError;

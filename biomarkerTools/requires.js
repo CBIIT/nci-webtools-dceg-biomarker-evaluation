@@ -7,7 +7,6 @@ requirejs.config({
         bootstrap: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min",
         datatables:"https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min",
         help: 'help/help',
-       
         bc: 'bc/bc',
         meanstorisk: 'meanstorisk/meanstorisk',
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
@@ -40,7 +39,6 @@ requirejs.config({
         }
     }
 });
-
 
 require(['main'], function(){
     console.log("default scripts loaded");
