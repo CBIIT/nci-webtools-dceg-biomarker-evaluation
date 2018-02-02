@@ -204,13 +204,13 @@ function createPopupDefinitionElement(elementId, termId, dataTerm) {
   el.popover('destroy');
   el.unbind('click touchstart keydown', termDisplay);
   el.bind('click touchstart keydown', termDisplay);
- 
- 
- 
- 
- 
 
-  el.addClass('show');
+
+
+
+
+
+       el.addClass('show');
 }
 
 function resetPopupDefinition() {
@@ -371,8 +371,8 @@ function checkInputFields() {
 }
 
 function validate_inputs() {
- 
-  var checkInput = [];
+
+   var checkInput = [];
   thisTool.find("input, select").each(function(){
     checkInput.push($(this)[0].checkValidity());
 
@@ -413,12 +413,12 @@ function validate_inputs() {
 }
 
 function calculate_riskStrat(){
- 
-  var validated = validate_inputs();
+
+   var validated = validate_inputs();
 
   if(validated){
-   
-    var independent_type = thisTool.find("#independent_dropdown_rs").val();
+
+       var independent_type = thisTool.find("#independent_dropdown_rs").val();
     var independent_values = thisTool.find("#independent_rs").val().replace(/[^\d,.-]/g, '');
     var indSplit = independent_values.split(",");
     var indMin = Array.min(indSplit);
@@ -459,11 +459,11 @@ function calculate_riskStrat(){
     var request_data = [];
     var tableTitle = "";
 
-   
-   
-   
 
-    thisTool.find(".output").addClass("hide").empty();
+
+
+
+             thisTool.find(".output").addClass("hide").empty();
     tabs = $("<div id='tabs'> </div>");
     thisTool.find(".output").append(tabs);
     tab_names = $("<UL> </UL>");
@@ -501,11 +501,11 @@ function calculate_riskStrat(){
     }
 
     getData(request_data).done(function(data_array) {
-     
 
-      if (data_array.length > 0){
-       
-        for (var i = 0; i < data_array.length; i++) {
+
+           if (data_array.length > 0){
+
+               for (var i = 0; i < data_array.length; i++) {
           for (var j = 0; j < fixedSplit.length; j++) {
             fillTable(data_array[i], j, columnHeadings, indSplit);
           }
@@ -565,8 +565,8 @@ function getFunctionName(independent, fixed, contour) {
 
 
 function getData(data) {
-  
-    var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
+
+      var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
 
 
   return $.ajax({
@@ -582,10 +582,10 @@ function getData(data) {
 }
 
 function retrieve_excel(e) {
- 
-  var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
-  
-  $.ajax({
+
+   var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/riskStratAdvanced/";
+
+    $.ajax({
     type : "POST",
     url : service,
     data : JSON.stringify([{ export: true }]),
@@ -665,9 +665,9 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         for (var i = 0; i < rows; i++) {
           var values = [];
           row_entries = tableData[i];
-         
-         
-          for ( var key in columnHeadings) {
+
+
+                            for ( var key in columnHeadings) {
             var columnInd = parseFloat(columnHeadings[key]);
             values.push(row_entries[columnInd]);
           }
@@ -719,19 +719,19 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
         tableFirstRowLabel + "' class='header' rowspan='" + independentArraySplit.length + 
         "'><div class='vertical-text'>" + tableFirstRowLabel + "</div></th>");
 
-     
-      thisTool.find(tabElement + " #" + tableId + " thead").prepend(
+
+           thisTool.find(tabElement + " #" + tableId + " thead").prepend(
         "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='" + tableId + "-header-" + 
         tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
-            
-        thisTool.find(tabElement + " #" + tableId + " tbody tr").each(function(i, tr) {
+
+                    thisTool.find(tabElement + " #" + tableId + " tbody tr").each(function(i, tr) {
             $(tr).find("td").each(function(j, td) {
                 $(td).attr("headers", tableId + '_header_' + independentArraySplit[i].replace('.',"_").trim() + 
                            ' ' + tableId + "_"  + columnHeadings[j].replace(".", "_").trim());
             });
         });
-      
-    if(graphError != 1) {
+
+          if(graphError != 1) {
         imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
         " given different values of " + tableFirstRowLabel + " with " + 
         fixed_dropdown_rs.value + " equal to " + fixed_rs.value.split(", ")[ tabnumber - 1];
@@ -804,9 +804,9 @@ function makeSelectionsUnique(elementId) {
 function setInitialValue(textboxId) {
   var thisSelect = thisTool.find('#'+textboxId);
   var thisInput = thisTool.find('#'+textboxId.replace('_dropdown','')).attr('placeholder',initialData[$.inArray(thisSelect.val(), functionnames)]).val("");
- 
 
-  addPopupDefinition();
+
+   addPopupDefinition();
 }
 
 function checkForInvalidVariableCombo() {

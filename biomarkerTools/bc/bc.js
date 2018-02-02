@@ -59,18 +59,16 @@ function validate_csv(file){
     "application/vnd.ms-excel",
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     "text/csv" ];
- 
   var correct_type = ($.inArray(file.type, file_types) > -1) ? true : false;
 
   if(correct_type) {
-   
     if ( window.FileReader ) {
       var fr = new FileReader();
 
       fr.onload = function(e) {
         var valid = false;
         var txt = e.target.result;
-        var lines = txt.split("\n").filter(Boolean);
+        var lines = txt.split("\n").filter(Boolean); 
 
         if (lines.length > 0) numberOfCols = lines[0].split(",").length;
         numberOfRows = 0;
@@ -81,7 +79,6 @@ function validate_csv(file){
         else {
           valuesFromFile = [];
 
-         
           for (var count = 1; count < 11;count++) {
             var arr = lines[count].split(",");
             if(arr.length > 1) {
@@ -101,12 +98,10 @@ function validate_csv(file){
 
         if(valuesFromFile.length == 10) {
           valid = true;
-         
           inputElm.children('tr:not(.non-data-row)').each(function(i, row) {
             $(row).remove();
           });
 
-         
           valuesFromFile.forEach(import_data_row);
         }
         else {
@@ -233,7 +228,6 @@ function import_data_row(data, ind){
 }
 
 function add_new_row(){
- 
   var num_rows = inputElm.find('tr:not(.non-data-row)').length;
   var row = "<tr class='table_row' row='" + num_rows + "'><td class='table_data emptyblock'></td>"+
       "<td class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></td>"+
@@ -241,8 +235,8 @@ function add_new_row(){
       "<td class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></td>"+
       "<td class='table_data emptyblock'><BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
     inputElm.find("tr").last().prev().after(row);
-	
-    if (num_rows === 2) {
+
+	    if (num_rows === 2) {
         inputElm.find('tr:not(.non-data-row)').each(function(i, row){
             update_row_index(i, row);
             if (!$(this).hasClass('reference_row')) {
@@ -250,14 +244,13 @@ function add_new_row(){
             }
         });
     }
-    
-  bind_reference_row();
+
+      bind_reference_row();
   bind_input();
 }
 
 function update_row_index(i, row){
-  var ind = i + 1;
- 
+  var ind = i + 1; 
   $(row).attr("row", i);
 
   $(row).find("div:gt(0)").each(function(j, el){
@@ -270,16 +263,15 @@ function update_row_index(i, row){
 function remove_row(el){
   var row_to_remove = el.parent().parent().remove();
   var num_rows = inputElm.find('tr:not(.non-data-row,.reference_row)').length;
-    
-  if (num_rows <= 2) {
+
+      if (num_rows <= 2) {
     inputElm.find('.remove_row_button').remove();
   }
-    
-  inputElm.children('tr:not(.non-data-row,.reference_row)').each(update_row_index);
+
+      inputElm.children('tr:not(.non-data-row,.reference_row)').each(update_row_index);
 }
 
 function do_calculation(){
- 
   var promise;
   var refSens = "";
   var refSpec = "";
@@ -342,12 +334,11 @@ function do_calculation(){
 
     uniqueKey = generateUniqueKey();
     var hostname = window.location.hostname;
-   
     var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/bc/";
 
-    
 
-    pre_request();
+
+        pre_request();
 
     if (validPrevValue) {
       promise = $.ajax({

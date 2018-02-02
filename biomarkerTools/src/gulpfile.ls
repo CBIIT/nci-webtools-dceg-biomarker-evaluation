@@ -44,23 +44,23 @@ gulp.task \clean:scripts ->
   ] force: true
 
 gulp.task 'dev' <[template js:copy ls:app css]> (done) ->
-  gulp.watch ['app/jade/**/*.jade'] <[template]>
+  gulp.watch ['app/pug/**/*.pug'] <[template]>
   gulp.watch ['app/ls/**/*.ls'] <[ls:app]>
   gulp.watch 'app/stylus/**/*.styl' <[css]>
 
-require! <[ gulp-jade]>
+require! <[ gulp-pug]>
 gulp.task 'template' <[index]> ->
-  gulp.src ['app/jade/**/*.jade']
+  gulp.src ['app/pug/**/*.pug']
     .pipe gulp-if dev, plumber!
-    .pipe gulp-jade!
+    .pipe gulp-pug!
     .pipe gulp-if dev, livereload!
 
 gulp.task 'index' ->
-  pretty = 'yes' if gutil.env.env isnt \production
+  #pretty = 'yes' if gutil.env.env isnt \production
 
-  gulp.src ['app/jade/*.jade' ]
-    .pipe gulp-jade do
-      pretty: pretty
+  gulp.src ['app/pug/*.pug' ]
+    .pipe gulp-pug do
+      #pretty: pretty
       basedir: parentDir
     .pipe gulp.dest parentDir
     .pipe gulp-if dev, livereload!
