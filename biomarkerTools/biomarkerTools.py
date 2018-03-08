@@ -18,6 +18,15 @@ def index():
 def api_tool_calls():
     return 'List of calls: '
 
+@app.route('/ping/', strict_slashes=False)
+def ping():
+    try:
+        return r('"true"')[0]
+    except Exception as e:
+        print('------------EXCEPTION------------')
+        traceback.print_exc(1)
+        return str(e), 400
+
 @app.route('/biomarkerToolsRest/')
 @app.route('/biomarkerToolsRest/<toolName>/', methods = ['GET','POST'])
 # determine what python script to access and which method to call
@@ -33,7 +42,7 @@ def api_tunnel(toolName):
         return sampleSizeRest()
     if toolName == 'meanRiskStratification':
         return mrsRest()
-        
+
 
 if __name__ == '__main__':
     # sandbox/dev (9160/8160)
@@ -44,6 +53,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     port_num = int(args.port_number);
-	
+
     hostname = gethostname()
     app.run(host='0.0.0.0', port=port_num, debug = args.debug, use_evalex = False)
