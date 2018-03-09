@@ -1,7 +1,8 @@
 $.extend($_Glossary,{
 	AUC : {
-		fullName : "Area under the receiver operator characteristic curve",
-		definition : " for a biomarker is the average sensitivity (or, equivalently, the integral of the sensitivity) in the interval of cSpecificity from 0 to 1 (specificity from 1 to 0), itself equal to the area between the ROC curve and the x-axis."
+		fullName : "Area under the receiver operator characteristic curve (AUC)",
+		definition : "Area under the receiver operator characteristic curve (AUC) for a biomarker is the average sensitivity (or, equivalently, the integral of the sensitivity) in the interval of cSpecificity from 0 to 1 (specificity from 1 to 0), itself equal to the area between the ROC curve and the x-axis. For a binary biomarker with Youden’s index J, the AUC = (1+J)/2 (this AUC formula is used by Mean Risk Stratification).",
+		glossaryDefinition : "For a biomarker is the average sensitivity (or, equivalently, the integral of the sensitivity) in the interval of cSpecificity from 0 to 1 (specificity from 1 to 0), itself equal to the area between the ROC curve and the x-axis. For a binary biomarker with Youden’s index J, the AUC = (1+J)/2 (this AUC formula is used by Mean Risk Stratification)."
 	},
 	cNPV : {
 		fullName : "Complement of Negative Predictive Value (cNPV)",
@@ -41,7 +42,7 @@ $.extend($_Glossary,{
 	},
   max_mrs: {
     fullName: "Maximum possible MRS for a disease with this prevalence",
-    definition: "Maximum possible MRS for a disease with this prevalence. Formula: max risk strat=2q(1-q)."
+    definition: "Denoting disease prevalence as q, MRS=2q(1-q)J, where J is Youden’s index. MRS is maximized when J=1. Thus the maximum MRS is 2q(1-q). Youden’s index is the fraction of maximum risk stratification for the disease that is achieved by the biomarker."
   },
   m_neg: {
     fullName: "Marker Negativity (M-)",
@@ -49,7 +50,7 @@ $.extend($_Glossary,{
   },
   mrs: {
     fullName: "Mean Risk Stratification (MRS)",
-    definition: "Average change in pretest-posttest disease risk. Formula: MRS=2(ad-bc), where a,b,c,d are the joint probabilities inside a 2x2 table."
+    definition: "MRS is the average difference between predicted post-test individual risk and population-average (pre-test) risk. Simply, MRS is the average change in risk revealed by the test. Formula: MRS=2(ad-bc), where a,b,c,d are the joint probabilities inside a 2x2 table."
   },
   nnr: {
     fullName: "Number Needed to Recruit",
@@ -115,7 +116,11 @@ $.extend($_Glossary,{
 	Spec : {
 		fullName : "Specificity",
 		definition : "Specificity is the proportion whose biomarker test is negative (below the threshold) among those without disease."
-	}
+  },
+  Youden: {
+    fullName: "Youden's Index",
+    definition: "Youden's index (J) is the sum of sensitivity and specificity, minus 1. Denoting disease prevalence as q, MRS=2q(1-q)J, and thus Youden’s index is also the fraction of maximum risk stratification for the disease that is achieved by the biomarker."
+  }
 });
 $.extend($_Glossary, {
   cnpv: $_Glossary.cNPV,

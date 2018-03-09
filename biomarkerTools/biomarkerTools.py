@@ -8,15 +8,12 @@ from riskStratAdvanced.riskStratAdvanced import *
 from sampleSize.sampleSize import *
 
 from flask import Flask, url_for
-app = Flask(__name__, static_folder='', static_url_path='/')
+app = Flask(__name__, static_folder='', static_url_path='')
 
 @app.route('/')
 @app.route('/biomarkerToolsRest')
 def index():
-    return render_template('index.html')
-
-def api_tool_calls():
-    return 'List of calls: '
+    return app.send_static_file('index.html')
 
 @app.route('/ping/', strict_slashes=False)
 def ping():

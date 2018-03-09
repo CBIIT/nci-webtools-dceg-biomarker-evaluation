@@ -13,7 +13,9 @@ $(document).ready(function(){
     keys = keys.sort();
     for (var index in keys) {
       index = keys[index];
-      $("<p><b>" + terms[index].fullName + ":</b><span> " + terms[index].definition + "</span></p>").appendTo(glossary);
+      $("<p><b>" + terms[index].fullName + ":</b><span> " +
+        (terms[index].glossaryDefinition || terms[index].definition) +
+        "</span></p>").appendTo(glossary);
     }
 });
 
