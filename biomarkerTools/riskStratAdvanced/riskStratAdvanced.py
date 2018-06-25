@@ -75,9 +75,10 @@ def call_rsa_RFunction():
 
             #            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         print json.dumps(returnedData)
-        r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)
+        excel_file = r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)[0]
 
-    return json.dumps(returnedData)
+    return json.dumps({"data": returnedData, "excelFile": excel_file})
+
 
 if __name__ == '__main__':
     import argparse

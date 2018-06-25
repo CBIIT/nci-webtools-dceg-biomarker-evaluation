@@ -120,6 +120,8 @@ var keyLong = [
 
 var thisTool;
 var columnHeadings;
+var riskStratAdvanced = {excelFile: ''};
+
 
 $("a[href='#riskStratAdvanced']").on("shown.bs.tab",function(e){
   thisTool = $("#riskStratAdvanced");
@@ -136,9 +138,15 @@ $(document).ready(function(){
   thisTool.find("input").keyup(checkInputFields);
   thisTool.find("input").change(checkInputFields);
   thisTool.find("#add-test-data").click(addTestData);
-  thisTool.find("#download").on("click", retrieve_excel);
+  thisTool.find("#download").on("click", function() {
+    if (riskStratAdvanced.excelFile)
+      window.location = riskStratAdvanced.excelFile;
+    else
+      display_errors(["There was a problem generating the excel file."]);
+  });
   thisTool.find("#calculate").on("click", function(e) {
     e.preventDefault();
+    riskStratAdvanced.excelFile = '';
     $("#errors, #download").addClass("hide");
     if (checkRules() == "Fail") {
       display_errors(validation_rules);
@@ -500,8 +508,10 @@ function calculate_riskStrat(){
       createTab(thisFixedValue, fixedIndex, fixed_type, independent_type, contour_type, tabId);
     }
 
-    getData(request_data).done(function(data_array) {
 
+    getData(request_data).done(function(response) {
+        var data_array = response.data;
+        riskStratAdvanced.excelFile = response.excelFile;
 
            if (data_array.length > 0){
 
@@ -715,25 +725,25 @@ function fillTable(resultObject, index, columnHeadings, rowHeadings) {
           y++;
       });
 
-      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend("<th id='" + tableId + "-header-" + 
-        tableFirstRowLabel + "' class='header' rowspan='" + independentArraySplit.length + 
+      thisTool.find(tabElement + " #" + tableId + " tr:eq(1)").prepend("<th id='" + tableId + "-header-" +
+        tableFirstRowLabel + "' class='header' rowspan='" + independentArraySplit.length +
         "'><div class='vertical-text'>" + tableFirstRowLabel + "</div></th>");
 
 
            thisTool.find(tabElement + " #" + tableId + " thead").prepend(
-        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='" + tableId + "-header-" + 
+        "<tr><td class='header' colspan='2'></td><th scope='col' class='header' id='" + tableId + "-header-" +
         tableFirstColLabel + "' colspan='5'>" + tableFirstColLabel + "</th></tr>");
 
                     thisTool.find(tabElement + " #" + tableId + " tbody tr").each(function(i, tr) {
             $(tr).find("td").each(function(j, td) {
-                $(td).attr("headers", tableId + '_header_' + independentArraySplit[i].replace('.',"_").trim() + 
+                $(td).attr("headers", tableId + '_header_' + independentArraySplit[i].replace('.',"_").trim() +
                            ' ' + tableId + "_"  + columnHeadings[j].replace(".", "_").trim());
             });
         });
 
           if(graphError != 1) {
-        imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel + 
-        " given different values of " + tableFirstRowLabel + " with " + 
+        imgAlt = $_Glossary[abbreviatedKey].fullName + " versus " + tableFirstColLabel +
+        " given different values of " + tableFirstRowLabel + " with " +
         fixed_dropdown_rs.value + " equal to " + fixed_rs.value.split(", ")[ tabnumber - 1];
 
         loadImage(tabnumber, abbreviatedKey, singleDataObject.imagePath, imgAlt);
