@@ -7,6 +7,7 @@ import rpy2.robjects as robjects
 from rpy2.robjects import r
 from socket import gethostname
 import json
+import re
 
 app = Flask(__name__, static_folder='', static_url_path='/')
 
@@ -35,7 +36,13 @@ def jsonp(func):
 @app.route('/riskStratAdvRest/cal', methods = ['POST'])
 
 def call_rsa_RFunction():
-    data = request.json
+
+    try:
+        raw_data = request.stream.read()
+        sanitized_data = re.sub('[<>=()]', '', raw_data)
+        data = json.parse(sanitized_data)
+    except e:
+        return jsonify({'data': None, 'excelFile': None, error: 'invalid input'}), 400
 
     returnedData = list()
     if data[0]["export"] == True:
