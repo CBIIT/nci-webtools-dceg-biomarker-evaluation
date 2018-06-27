@@ -40,7 +40,7 @@ def call_rsa_RFunction():
     try:
         raw_data = request.stream.read()
         sanitized_data = re.sub('[<>=()]', '', raw_data)
-        data = json.parse(sanitized_data)
+        data = json.loads(sanitized_data)
     except e:
         return jsonify({'data': None, 'excelFile': None, error: 'invalid input'}), 400
 
