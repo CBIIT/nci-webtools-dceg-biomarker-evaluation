@@ -5,7 +5,6 @@ src/node_modules/
 src/bower_components/
 
 */.Rhistory
-common/
 server.js
 node_modules/
 package.json
