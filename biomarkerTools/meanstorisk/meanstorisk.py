@@ -2,7 +2,6 @@
 from flask import Flask, Response, abort, request, make_response, url_for, jsonify
 from functools import wraps
 from flask import current_app
-from rpy2.rinterface import RRuntimeError
 import rpy2.robjects as robjects
 from rpy2.robjects import r
 from socket import gethostname
@@ -33,7 +32,7 @@ def call_mean_RFunction():
     stream = request.stream.read().decode()
     try:
       jsondata = r_getname_getApcData(stream)
-    except RRuntimeError as e:
+    except Exception as e:
       if ("FileNotFound" in e.args[0]):
         response = jsonify({'error': "Please choose a file to upload, or use the Normal Distribution input method."})
         response.status_code = 500;
