@@ -28,7 +28,7 @@ def ping():
 @app.route('/biomarkerToolsRest/<toolName>/', methods = ['GET','POST'])
 # determine what python script to access and which method to call
 def api_tunnel(toolName):
-    print toolName
+    print(toolName)
     if toolName == 'bc':
         return call_bc_RFunction()
     if toolName == 'riskStratAdvanced':

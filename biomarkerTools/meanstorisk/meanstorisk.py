@@ -29,8 +29,8 @@ def jsonp(func):
 @app.route('/meanstoriskRest/', methods = ['GET','POST'])
 @jsonp
 def call_mean_RFunction():
-    print "Data Start Time: " + str(time.time());
-    stream = request.stream.read()
+    print("Data Start Time: " + str(time.time()));
+    stream = request.stream.read().decode()
     try:
       jsondata = r_getname_getApcData(stream)
     except RRuntimeError as e:
@@ -40,7 +40,7 @@ def call_mean_RFunction():
         return response
       else:
         raise
-    print "After Data Calculation: " + str(time.time());
+    print("After Data Calculation: " + str(time.time()));
     return jsondata[0]
 
 
@@ -52,6 +52,6 @@ if __name__ == '__main__':
     # Default port is production value; prod,stage,dev = 9982, sandbox=9983
     args = parser.parse_args()
     port_num = int(args.port_number);
-	
+
     hostname = gethostname()
     app.run(host='0.0.0.0', port=port_num, debug = args.debug, use_evalex = False)

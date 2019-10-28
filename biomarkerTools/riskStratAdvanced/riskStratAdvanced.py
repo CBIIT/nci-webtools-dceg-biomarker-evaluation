@@ -38,15 +38,16 @@ def jsonp(func):
 def call_rsa_RFunction():
 
     try:
-        raw_data = request.stream.read()
+        raw_data = request.stream.read().decode()
         sanitized_data = re.sub('[<>=()]', '', raw_data)
         data = json.loads(sanitized_data)
-    except e:
-        return jsonify({'data': None, 'excelFile': None, error: 'invalid input'}), 400
+    except Exception as e:
+        print(e)
+        return jsonify({'data': None, 'excelFile': None,'error': 'invalid input'}), 400
 
     returnedData = list()
     if data[0]["export"] == True:
-        returnedData = r_getExcel()[0];
+        returnedData = r_getExcel()[0]
     else:
         globalFixedValues = data[0]["fixed"]
         globalIndependentType = data[0]["independentType"]
@@ -81,7 +82,7 @@ def call_rsa_RFunction():
             returnedData.insert(i, json.loads(result[0]))
 
             #            print "+++++++++++++++++++++++++++++++++++ Returning Data +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        print json.dumps(returnedData)
+        print(json.dumps(returnedData))
         excel_file = r_createExcel(json.dumps(returnedData), globalIndependentType, globalContourType, globalFixedType, globalFixedValues)[0]
 
     return json.dumps({"data": returnedData, "excelFile": excel_file})

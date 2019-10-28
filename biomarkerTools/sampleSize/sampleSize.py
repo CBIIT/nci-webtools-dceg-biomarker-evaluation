@@ -43,7 +43,7 @@ def sampleSizeRest():
       "exporting": exp
     })
     start = time.time()
-    print "Starting Benchmark"
+    print("Starting Benchmark")
     
     if exp == True:
         jsonrtn = r_getExcel()
@@ -57,7 +57,7 @@ def sampleSizeRest():
 
     #2
     jsonstring=''.join(jsonlist)
-    print jsonstring
+    print(jsonstring)
     
     return jsonstring 
 

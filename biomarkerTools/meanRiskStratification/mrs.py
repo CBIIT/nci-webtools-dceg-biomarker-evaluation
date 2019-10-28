@@ -64,7 +64,7 @@ def mrsRest():
             probD = None
 
             # save value to variable for all given keys
-            for key in data[currData].keys():
+            for key in list(data[currData].keys()):
                 if key == 'ppv':
                     ppv = data[currData]['ppv']
                 if key == 'npv':

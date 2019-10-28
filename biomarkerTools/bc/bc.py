@@ -33,9 +33,9 @@ def jsonp(func):
 @jsonp
 def call_bc_RFunction():
     thestream=request.stream.read()
-    print " input stream "+str(thestream)
-    jsondata = r['BC']['getDataJSON'](thestream)[0]    
-    print "json string >> "+str(jsondata)
+    print(" input stream "+str(thestream))
+    jsondata = r['BC']['getDataJSON'](thestream.decode())[0]
+    print("json string >> "+str(jsondata))
     return jsondata
 
 if __name__ == '__main__':
@@ -46,6 +46,6 @@ if __name__ == '__main__':
     # Default port is production value; prod,stage,dev = 9982, sandbox=9983
     args = parser.parse_args()
     port_num = int(args.port_number);
-	
+
     hostname = gethostname()
     app.run(host='0.0.0.0', port=port_num, debug = args.debug, use_evalex = False)
