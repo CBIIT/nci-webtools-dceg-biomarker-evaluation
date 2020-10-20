@@ -5,18 +5,8 @@ requirejs.config({
         meanstorisk: 'meanstorisk/meanstorisk',
         riskStratAdvanced: 'riskStratAdvanced/riskStratAdv',
         meanRiskStratification: 'meanRiskStratification/mrs',
-        define: 'common/js/popover-functions',
-        glossary: 'glossary',
         main: 'main',
     },
-    shim: {
-        glossary: {
-            deps: ['define']
-        },
-        main: {
-            deps: ['glossary']
-        },
-    }
 });
 
 require(['main'], function(){
