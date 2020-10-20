@@ -1,558 +1,563 @@
-var uniqueKey = null;
-var old_value = null;
-var editing = false;
-var row = null;
-var col = null;
-var validPrevValue = false;
-var thisTool;
-var inputElm;
-var valuesFromFile = [];
+(function() {
 
-function init_bc(){
-  thisTool = $("#bc");
-  inputElm = thisTool.find('#inputdata');
-  thisTool.find("#errors").alert();
-  thisTool.find('#errors').addClass("hide");
-}
-
-$(document).ready(function(){
+  var uniqueKey = null;
+  var old_value = null;
+  var editing = false;
+  var row = null;
+  var col = null;
+  var validPrevValue = false;
+  var thisTool;
+  var inputElm;
+  var valuesFromFile = [];
   init_bc();
-
-  bind_reference_row();
-  bind_input();
-  bind_calculate_button();
-  thisTool.find('#inputdata').on('click', '.remove_row_button', function(e) {
-    e.preventDefault();
-    remove_row($(this));
-  });
-  bind_add_new_row();
-
-  thisTool.find("#file_upload").on('change', uploading_csv);
-  thisTool.find("#reset").on('click', reset_bc);
-});
-
-$('a[href="#bc"]').on('shown.bs.tab',function(e){
-  thisTool = $("#bc");
-});
-
-$('a[href="#bc"]').on('hide.bs.tab',function(e){
-  thisTool.find('#errors').addClass("hide");
-});
-
-$('a[href="#bc"]').on('click', function (e) {
-  init_bc();
-});
-
-function uploading_csv(e) {
-  thisTool.find('#errors').addClass("hide");
-
-  var files = e.target.files;
-
-  if(files.length > 0){
-    validate_csv(files[0]);
+  
+  function init_bc(){
+    thisTool = $("#bc");
+    inputElm = thisTool.find('#inputdata');
+    thisTool.find("#errors").alert();
+    thisTool.find('#errors').addClass("hide");
   }
-}
-
-function validate_csv(file){
-
-  var file_types = [
-    "application/vnd.ms-excel",
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "text/csv" ];
-  var correct_type = ($.inArray(file.type, file_types) > -1) ? true : false;
-
-  if(correct_type) {
-    if ( window.FileReader ) {
-      var fr = new FileReader();
-
-      fr.onload = function(e) {
-        var valid = false;
-        var txt = e.target.result;
-        var lines = txt.split("\n").filter(Boolean); 
-
-        if (lines.length > 0) numberOfCols = lines[0].split(",").length;
-        numberOfRows = 0;
-
-        if(numberOfCols != 2) {
-          display_errors("2 columns of data expected in CSV file. Found " + numberOfCols + " columns.");
-        }
-        else {
-          valuesFromFile = [];
-
-          for (var count = 1; count < 11;count++) {
-            var arr = lines[count].split(",");
-            if(arr.length > 1) {
-              if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
-                valuesFromFile.push(arr);
-                numberOfRows++;
-              }
-              else {
-                var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" +
-                  arr[0] + "' or '" + arr[1] + "' is not a decimal value";
-                display_errors(error_msg);
-                break;
+  
+  $(document).ready(function(){
+    init_bc();
+  
+    bind_reference_row();
+    bind_input();
+    bind_calculate_button();
+    thisTool.find('#inputdata').on('click', '.remove_row_button', function(e) {
+      e.preventDefault();
+      remove_row($(this));
+    });
+    bind_add_new_row();
+  
+    thisTool.find("#file_upload").on('change', uploading_csv);
+    thisTool.find("#reset").on('click', reset_bc);
+  });
+  
+  $('a[href="#bc"]').on('shown.bs.tab',function(e){
+    thisTool = $("#bc");
+  });
+  
+  $('a[href="#bc"]').on('hide.bs.tab',function(e){
+    thisTool.find('#errors').addClass("hide");
+  });
+  
+  $('a[href="#bc"]').on('click', function (e) {
+    init_bc();
+  });
+  
+  function uploading_csv(e) {
+    thisTool.find('#errors').addClass("hide");
+  
+    var files = e.target.files;
+  
+    if(files.length > 0){
+      validate_csv(files[0]);
+    }
+  }
+  
+  function validate_csv(file){
+  
+    var file_types = [
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "text/csv" ];
+    var correct_type = ($.inArray(file.type, file_types) > -1) ? true : false;
+  
+    if(correct_type) {
+      if ( window.FileReader ) {
+        var fr = new FileReader();
+  
+        fr.onload = function(e) {
+          var valid = false;
+          var txt = e.target.result;
+          var lines = txt.split("\n").filter(Boolean); 
+  
+          if (lines.length > 0) numberOfCols = lines[0].split(",").length;
+          numberOfRows = 0;
+  
+          if(numberOfCols != 2) {
+            display_errors("2 columns of data expected in CSV file. Found " + numberOfCols + " columns.");
+          }
+          else {
+            valuesFromFile = [];
+  
+            for (var count = 1; count < 11;count++) {
+              var arr = lines[count].split(",");
+              if(arr.length > 1) {
+                if (!isNaN(arr[0]) && !isNaN(arr[1]) ) {
+                  valuesFromFile.push(arr);
+                  numberOfRows++;
+                }
+                else {
+                  var error_msg = "Only decimal values are expected. Found incorrect data type in file. Either '" +
+                    arr[0] + "' or '" + arr[1] + "' is not a decimal value";
+                  display_errors(error_msg);
+                  break;
+                }
               }
             }
           }
-        }
-
-        if(valuesFromFile.length == 10) {
-          valid = true;
-          inputElm.children('tr:not(.non-data-row)').each(function(i, row) {
-            $(row).remove();
-          });
-
-          valuesFromFile.forEach(import_data_row);
-        }
-        else {
-          display_errors("There was a problem importing your file.");
-        }
-
-      };
-
-      fr.readAsText(file);
+  
+          if(valuesFromFile.length == 10) {
+            valid = true;
+            inputElm.children('tr:not(.non-data-row)').each(function(i, row) {
+              $(row).remove();
+            });
+  
+            valuesFromFile.forEach(import_data_row);
+          }
+          else {
+            display_errors("There was a problem importing your file.");
+          }
+  
+        };
+  
+        fr.readAsText(file);
+      }
     }
-  }
-  else{
-    display_errors(["Incorrect file type detected. Please upload a csv file."]);
-  }
-  return false;
-}
-
-function bind_add_new_row(){
-  thisTool.find('#new_row_button').click(function(){
-    add_new_row();
-  });
-}
-function bind_calculate_button(){
-  thisTool.find('#calculate_button').click(function(){
-    do_calculation();
-  });
-}
-function bind_reference_row(){
-  thisTool.find('.reference').click(function(e){
-    var row, col;
-    row = $(this).attr('row');
-    col = $(this).attr('col');
-    var oldReference = $(this).html("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>")
-      .siblings().last().empty().html('&nbsp;')
-      .parent().addClass('reference_row')
-      .siblings('.reference_row').removeClass('reference_row');
-    oldReference.children('.reference').html("<a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/></a>");
-    if (oldReference.parent().children().length > 4) {
-      oldReference.children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+    else{
+      display_errors(["Incorrect file type detected. Please upload a csv file."]);
     }
-  });
-}
-function bind_input() {
-    thisTool.find('.input_field').click(function (e) {
-        var row, col, val, inp;
-        if (!editing) {
-            row = $(this).attr('row');
-            col = $(this).attr('col');
-            val = $(this).text();
-            old_value = val;
-            inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
-            $(this).empty();
-            $(this).append(inp);
-            bind_text_change(inp);
-            inp.focus();
-            editing = true;
-        }
+    return false;
+  }
+  
+  function bind_add_new_row(){
+    thisTool.find('#new_row_button').click(function(){
+      add_new_row();
     });
-
-    thisTool.find('.input_field, .input_field a').on("focus", function (e) {
-        var row, col, val, inp;
-        if (!editing) {
-            row = $(this).attr('row');
-            col = $(this).attr('col');
-            val = $(this).text();
-            old_value = val;
-            inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
-            $(this).empty();
-            $(this).append(inp);
-            bind_text_change(inp);
-            inp.focus();
-            editing = true;
-        }
+  }
+  function bind_calculate_button(){
+    thisTool.find('#calculate_button').click(function(){
+      do_calculation();
     });
-}
-
-function bind_text_change(inp){
-  inp.on('blur', function(e){
-    var $this, new_value;
-    $this = $(this);
-    new_value = thisTool.find('#new_value').val();
-    change_value($this, new_value);
-  });
-  inp.on('keypress', function(e){
-    var $this, new_value;
-    $this = $(this);
-    if (e.which === 13) {
+  }
+  function bind_reference_row(){
+    thisTool.find('.reference').click(function(e){
+      var row, col;
+      row = $(this).attr('row');
+      col = $(this).attr('col');
+      var oldReference = $(this).html("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>")
+        .siblings().last().empty().html('&nbsp;')
+        .parent().addClass('reference_row')
+        .siblings('.reference_row').removeClass('reference_row');
+      oldReference.children('.reference').html("<a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='Click to set this as the reference row'/></a>");
+      if (oldReference.parent().children().length > 4) {
+        oldReference.children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+      }
+    });
+  }
+  function bind_input() {
+      thisTool.find('.input_field').click(function (e) {
+          var row, col, val, inp;
+          if (!editing) {
+              row = $(this).attr('row');
+              col = $(this).attr('col');
+              val = $(this).text();
+              old_value = val;
+              inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
+              $(this).empty();
+              $(this).append(inp);
+              bind_text_change(inp);
+              inp.focus();
+              editing = true;
+          }
+      });
+  
+      thisTool.find('.input_field, .input_field a').on("focus", function (e) {
+          var row, col, val, inp;
+          if (!editing) {
+              row = $(this).attr('row');
+              col = $(this).attr('col');
+              val = $(this).text();
+              old_value = val;
+              inp = $("<INPUT id='new_value' type='text' size='5' class='new_value' value=''></INPUT>");
+              $(this).empty();
+              $(this).append(inp);
+              bind_text_change(inp);
+              inp.focus();
+              editing = true;
+          }
+      });
+  }
+  
+  function bind_text_change(inp){
+    inp.on('blur', function(e){
+      var $this, new_value;
+      $this = $(this);
       new_value = thisTool.find('#new_value').val();
       change_value($this, new_value);
+    });
+    inp.on('keypress', function(e){
+      var $this, new_value;
+      $this = $(this);
+      if (e.which === 13) {
+        new_value = thisTool.find('#new_value').val();
+        change_value($this, new_value);
+      }
+    });
+  }
+  function change_value(field, new_value){
+  
+    if (!new_value || new_value === '') {
+      field.parent().empty().text(old_value);
+      editing = false;
+      return;
     }
-  });
-}
-function change_value(field, new_value){
-
-  if (!new_value || new_value === '') {
-    field.parent().empty().text(old_value);
-    editing = false;
-    return;
-  }
-  if (isNumberBetweenZeroAndOne(new_value)) {
-    thisTool.find('#errors').addClass("hide");
-    field.parent().empty().text(new_value);
-    editing = false;
-  } else {
-    display_errors("Valid Values are between 0 and 1 inclusive, you tried: " + new_value);
-    field.parent().empty().text(old_value);
-    editing = false;
-  }
-}
-
-function import_data_row(data, ind){
-  var cell_1 = "<tr class='table_row' row='" + ind + "'><td class='table_data emptyblock'></td>";
-  var cell_2 = "<td class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></td>";
-  var cell_3 = "<td class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</td>" ;
-  var cell_4 = "<td class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</td>";
-  var cell_5 = "<td class='table_data emptyblock'>" +
-                 "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
-
-  $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
-
-  inputElm.children("tbody").find(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>").siblings().last().empty();
-  bind_reference_row();
-  bind_input();
-}
-
-function add_new_row(){
-  var num_rows = inputElm.find('tr:not(.non-data-row)').length;
-  var row = "<tr class='table_row' row='" + num_rows + "'><td class='table_data emptyblock'></td>"+
-      "<td class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></td>"+
-      "<td class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></td>" +
-      "<td class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></td>"+
-      "<td class='table_data emptyblock'><BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
-    inputElm.find("tr").last().prev().after(row);
-
-	    if (num_rows === 2) {
-        inputElm.find('tr:not(.non-data-row)').each(function(i, row){
-            update_row_index(i, row);
-            if (!$(this).hasClass('reference_row')) {
-                $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
-            }
-        });
-    }
-
-      bind_reference_row();
-  bind_input();
-}
-
-function update_row_index(i, row){
-  var ind = i + 1; 
-  $(row).attr("row", i);
-
-  $(row).find("div:gt(0)").each(function(j, el){
-    if($(el).attr('row') !== undefined){
-      $(el).attr('row', i);
-    }
-  });
-}
-
-function remove_row(el){
-  var row_to_remove = el.parent().parent().remove();
-  var num_rows = inputElm.find('tr:not(.non-data-row,.reference_row)').length;
-
-      if (num_rows <= 2) {
-    inputElm.find('.remove_row_button').remove();
-  }
-
-      inputElm.children('tr:not(.non-data-row,.reference_row)').each(update_row_index);
-}
-
-function do_calculation(){
-  var promise;
-  var refSens = "";
-  var refSpec = "";
-  var sensArray = "";
-  var specArray = "";
-  var prev = "";
-  var sensArrayWithRef = "";
-  var specArrayWithRef = "";
-  var labels = "";
-  var prevalence = thisTool.find('#prevalence_bc').val();
-  var hasNoErrors = true;
-
-  validPrevValue = isNumberBetweenZeroAndOne(prevalence);
-
-  if (prevalence.length === 0) {
-    prev = 0;
-  }
-  else if (!validPrevValue && prevalence.length > 0) {
-    hasNoErrors = validPrevValue;
-  }
-  else {
-    prev = prevalence;
-  }
-
-  inputElm.find('tr:not(:last-child)').each(function(i, el){
-    if ($(this).hasClass('reference_row')) {
-      refSens = parseFloat($(this).find('.sensitivity a').text());
-      refSpec = parseFloat($(this).find('.specificity a').text());
-      sensArrayWithRef += refSens + ",";
-      specArrayWithRef += refSpec + ",";
-      hasNoErrors = isNumberBetweenZeroAndOne(refSens);
-      hasNoErrors = isNumberBetweenZeroAndOne(refSpec);
-    }
-    else if (!$(this).hasClass('non-data-row')) {
-      sensArray += parseFloat($(this).find('.sensitivity a').text()) + ",";
-      specArray += parseFloat($(this).find('.specificity a').text()) + ",";
-      sensArrayWithRef += parseFloat($(this).find('.sensitivity a').text()) + ",";
-      specArrayWithRef += parseFloat($(this).find('.specificity a').text()) + ",";
-      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity a').text()));
-      hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity a').text()));
-      labels += i + ",";
-    }
-
-    if(!hasNoErrors)
-      return hasNoErrors;
-  });
-
-  sensArray = sensArray.slice(0, -1);
-  specArray = specArray.slice(0, -1);
-  sensArrayWithRef = sensArrayWithRef.slice(0, -1);
-  specArrayWithRef = specArrayWithRef.slice(0, -1);
-  labels = labels.slice(0, -1);
-
-  if (!hasNoErrors) {
-    display_errors("Error with input data.  Not all values are numbers between Zero and One");
-    return;
-  }
-  else {
-    thisTool.find('#errors').addClass("hide");
-
-    uniqueKey = generateUniqueKey();
-    var hostname = window.location.hostname;
-    var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/bc/";
-
-
-
-        pre_request();
-
-    if (validPrevValue) {
-      promise = $.ajax({
-        type: 'POST',
-        url: service,
-        data: {
-          numberOfValues: '8',
-          refSpec: refSpec,
-          refSens: refSens,
-          specArray: specArray,
-          specArrayWithRef: specArrayWithRef,
-          sensArray: sensArray,
-          sensArrayWithRef: sensArrayWithRef,
-          prev: prev,
-          labels: labels,
-          unique_key: uniqueKey
-        },
-        dataType: 'json'
-      });
+    if (isNumberBetweenZeroAndOne(new_value)) {
+      thisTool.find('#errors').addClass("hide");
+      field.parent().empty().text(new_value);
+      editing = false;
     } else {
-      promise = $.ajax({
-        type: 'POST',
-        url: service,
-        data: {
-          numberOfValues: '7',
-          refSpec: refSpec,
-          refSens: refSens,
-          specArray: specArray,
-          specArrayWithRef: specArrayWithRef,
-          sensArray: sensArray,
-          sensArrayWithRef: sensArrayWithRef,
-          labels: labels,
-          unique_key: uniqueKey
-        },
-        dataType: 'json'
-      });
-    }
-
-    promise.then(set_data, default_ajax_error).always(post_request);
-  }
-}
-
-function pre_request() {
-  disableAll();
-  thisTool.find('#spinner').removeClass('hide');
-  thisTool.find("#calculate_button").attr("disabled","").text("Please Wait...");
-}
-
-function post_request() {
-  enableAll();
-  thisTool.find('#spinner').addClass('hide');
-  thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
-}
-
-function isNumberBetweenZeroAndOne(n){
-  if (isNaN(parseFloat(n))) {
-    return false;
-  } else if (n > 1) {
-    return false;
-  } else if (n < 0) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function refreshGraph(drawgraph){
-  var graph_file, d;
-  if (drawgraph === 1) {
-    graph_file = "tmp/SensSpecLR-" + uniqueKey + ".png?";
-  } else {
-    graph_file = "/common/images/fail-message.jpg?";
-  }
-  d = new Date();
-
-  thisTool.find('.graph img').removeClass("hide")
-      .attr("alt",'Likelyhood Ratio plot graph, Sensitivity versus Specificity with Likelyhood Ratio contours')
-      .attr("src", graph_file + d.getTime())
-    .next('.graph small').removeClass("hide");
-}
-
-function set_data(dt){
-  var jsonObject = JSON.parse(JSON.stringify(dt));
-  refreshGraph(1);
-  thisTool.find('.output').empty();
-  if (validPrevValue) {
-    createOutputTableWithPrev(jsonObject);
-  } else {
-    createOutputTable(jsonObject);
-  }
-}
-
-function jsonToCell(obj){
-  var Specificity;
-  var Sensitivity;
-  var LRplus;
-  var LRminus;
-
-  for (var key in obj) {
-    var value = obj[key];
-    if (obj.hasOwnProperty(key)) {
-      value = obj[key];
-    }
-    if (key === 'Specificity') {
-      Specificity = value;
-    } else if (key === 'Sensitivity') {
-      Sensitivity = value;
-    } else if (key === 'LRplus') {
-      LRplus = value;
-    } else if (key === 'LRminus') {
-      LRminus = value;
+      display_errors("Valid Values are between 0 and 1 inclusive, you tried: " + new_value);
+      field.parent().empty().text(old_value);
+      editing = false;
     }
   }
-  var new_row = $("<tr>");
-  new_row.append("<td>" + Sensitivity + "</td>");
-  new_row.append("<td>" + Specificity + "</td>");
-  new_row.append("<td>" + LRplus + "</td>");
-  new_row.append("<td>" + LRminus + "</td>");
-  thisTool.find('.output').append(new_row);
-}
-
-function jsonToCellWithPrev(obj){
-  var Specificity;
-  var Sensitivity;
-  var LRplus;
-  var LRminus;
-  var PPV;
-  var cNPV;
-  for (var key in obj)
-  {
-    if (obj.hasOwnProperty(key))
+  
+  function import_data_row(data, ind){
+    var cell_1 = "<tr class='table_row' row='" + ind + "'><td class='table_data emptyblock'></td>";
+    var cell_2 = "<td class='table_data reference' row='" + ind + "' col='reference'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></td>";
+    var cell_3 = "<td class='table_data input_field sensitivity' row='" + ind + "' col='sensitivity'>" + data[0] + "</td>" ;
+    var cell_4 = "<td class='table_data input_field specificity' row='" + ind + "' col='specificity'>" + data[1] + "</td>";
+    var cell_5 = "<td class='table_data emptyblock'>" +
+                   "<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
+  
+    $(cell_1 + cell_2 + cell_3 + cell_4 + cell_5).insertBefore(inputElm.children().last());
+  
+    inputElm.children("tbody").find(":not(.non-data-row):first").addClass("reference_row").children().eq(1).empty().append("<img src='/common/images/checkbox.png' alt='this row is the reference row'/>").siblings().last().empty();
+    bind_reference_row();
+    bind_input();
+  }
+  
+  function add_new_row(){
+    var num_rows = inputElm.find('tr:not(.non-data-row)').length;
+    var row = "<tr class='table_row' row='" + num_rows + "'><td class='table_data emptyblock'></td>"+
+        "<td class='table_data reference' row='" + num_rows + "' col='reference'><a href='javascript:void(0);'><img src='/common/images/uncheckbox.png' alt='click to set this as the reference row'/></a></td>"+
+        "<td class='table_data input_field sensitivity' row='" + num_rows + "' col='sensitivity'><a href='javascript:void(0);'>&nbsp;</a></td>" +
+        "<td class='table_data input_field specificity' row='" + num_rows + "' col='specificity'><a href='javascript:void(0);'>&nbsp;</a></td>"+
+        "<td class='table_data emptyblock'><BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON></td>";
+      inputElm.find("tr").last().prev().after(row);
+  
+        if (num_rows === 2) {
+          inputElm.find('tr:not(.non-data-row)').each(function(i, row){
+              update_row_index(i, row);
+              if (!$(this).hasClass('reference_row')) {
+                  $(this).children().last().empty().html("<BUTTON class='remove_row_button'><span class='text'>Remove</span><span class='glyphicon glyphicon-minus-sign'></span></BUTTON>");
+              }
+          });
+      }
+  
+        bind_reference_row();
+    bind_input();
+  }
+  
+  function update_row_index(i, row){
+    var ind = i + 1; 
+    $(row).attr("row", i);
+  
+    $(row).find("div:gt(0)").each(function(j, el){
+      if($(el).attr('row') !== undefined){
+        $(el).attr('row', i);
+      }
+    });
+  }
+  
+  function remove_row(el){
+    var row_to_remove = el.parent().parent().remove();
+    var num_rows = inputElm.find('tr:not(.non-data-row,.reference_row)').length;
+  
+        if (num_rows <= 2) {
+      inputElm.find('.remove_row_button').remove();
+    }
+  
+        inputElm.children('tr:not(.non-data-row,.reference_row)').each(update_row_index);
+  }
+  
+  function do_calculation(){
+    var promise;
+    var refSens = "";
+    var refSpec = "";
+    var sensArray = "";
+    var specArray = "";
+    var prev = "";
+    var sensArrayWithRef = "";
+    var specArrayWithRef = "";
+    var labels = "";
+    var prevalence = thisTool.find('#prevalence_bc').val();
+    var hasNoErrors = true;
+  
+    validPrevValue = isNumberBetweenZeroAndOne(prevalence);
+  
+    if (prevalence.length === 0) {
+      prev = 0;
+    }
+    else if (!validPrevValue && prevalence.length > 0) {
+      hasNoErrors = validPrevValue;
+    }
+    else {
+      prev = prevalence;
+    }
+  
+    inputElm.find('tr:not(:last-child)').each(function(i, el){
+      if ($(this).hasClass('reference_row')) {
+        refSens = parseFloat($(this).find('.sensitivity a').text());
+        refSpec = parseFloat($(this).find('.specificity a').text());
+        sensArrayWithRef += refSens + ",";
+        specArrayWithRef += refSpec + ",";
+        hasNoErrors = isNumberBetweenZeroAndOne(refSens);
+        hasNoErrors = isNumberBetweenZeroAndOne(refSpec);
+      }
+      else if (!$(this).hasClass('non-data-row')) {
+        sensArray += parseFloat($(this).find('.sensitivity a').text()) + ",";
+        specArray += parseFloat($(this).find('.specificity a').text()) + ",";
+        sensArrayWithRef += parseFloat($(this).find('.sensitivity a').text()) + ",";
+        specArrayWithRef += parseFloat($(this).find('.specificity a').text()) + ",";
+        hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.sensitivity a').text()));
+        hasNoErrors = isNumberBetweenZeroAndOne(parseFloat($(this).find('.specificity a').text()));
+        labels += i + ",";
+      }
+  
+      if(!hasNoErrors)
+        return hasNoErrors;
+    });
+  
+    sensArray = sensArray.slice(0, -1);
+    specArray = specArray.slice(0, -1);
+    sensArrayWithRef = sensArrayWithRef.slice(0, -1);
+    specArrayWithRef = specArrayWithRef.slice(0, -1);
+    labels = labels.slice(0, -1);
+  
+    if (!hasNoErrors) {
+      display_errors("Error with input data.  Not all values are numbers between Zero and One");
+      return;
+    }
+    else {
+      thisTool.find('#errors').addClass("hide");
+  
+      uniqueKey = generateUniqueKey();
+      var hostname = window.location.hostname;
+      var service = window.location.protocol + '//' + window.location.host + window.location.pathname + rest + "/bc/";
+  
+  
+  
+          pre_request();
+  
+      if (validPrevValue) {
+        promise = $.ajax({
+          type: 'POST',
+          url: service,
+          data: {
+            numberOfValues: '8',
+            refSpec: refSpec,
+            refSens: refSens,
+            specArray: specArray,
+            specArrayWithRef: specArrayWithRef,
+            sensArray: sensArray,
+            sensArrayWithRef: sensArrayWithRef,
+            prev: prev,
+            labels: labels,
+            unique_key: uniqueKey
+          },
+          dataType: 'json'
+        });
+      } else {
+        promise = $.ajax({
+          type: 'POST',
+          url: service,
+          data: {
+            numberOfValues: '7',
+            refSpec: refSpec,
+            refSens: refSens,
+            specArray: specArray,
+            specArrayWithRef: specArrayWithRef,
+            sensArray: sensArray,
+            sensArrayWithRef: sensArrayWithRef,
+            labels: labels,
+            unique_key: uniqueKey
+          },
+          dataType: 'json'
+        });
+      }
+  
+      promise.then(set_data, default_ajax_error).always(post_request);
+    }
+  }
+  
+  function pre_request() {
+    disableAll();
+    thisTool.find('#spinner').removeClass('hide');
+    thisTool.find("#calculate_button").attr("disabled","").text("Please Wait...");
+  }
+  
+  function post_request() {
+    enableAll();
+    thisTool.find('#spinner').addClass('hide');
+    thisTool.find("#calculate_button").removeAttr("disabled").text("Calculate");
+  }
+  
+  function isNumberBetweenZeroAndOne(n){
+    if (isNaN(parseFloat(n))) {
+      return false;
+    } else if (n > 1) {
+      return false;
+    } else if (n < 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+  function refreshGraph(drawgraph){
+    var graph_file, d;
+    if (drawgraph === 1) {
+      graph_file = "tmp/SensSpecLR-" + uniqueKey + ".png?";
+    } else {
+      graph_file = "/common/images/fail-message.jpg?";
+    }
+    d = new Date();
+  
+    thisTool.find('.graph img').removeClass("hide")
+        .attr("alt",'Likelyhood Ratio plot graph, Sensitivity versus Specificity with Likelyhood Ratio contours')
+        .attr("src", graph_file + d.getTime())
+      .next('.graph small').removeClass("hide");
+  }
+  
+  function set_data(dt){
+    var jsonObject = JSON.parse(JSON.stringify(dt));
+    refreshGraph(1);
+    thisTool.find('.output').empty();
+    if (validPrevValue) {
+      createOutputTableWithPrev(jsonObject);
+    } else {
+      createOutputTable(jsonObject);
+    }
+  }
+  
+  function jsonToCell(obj){
+    var Specificity;
+    var Sensitivity;
+    var LRplus;
+    var LRminus;
+  
+    for (var key in obj) {
+      var value = obj[key];
+      if (obj.hasOwnProperty(key)) {
+        value = obj[key];
+      }
+      if (key === 'Specificity') {
+        Specificity = value;
+      } else if (key === 'Sensitivity') {
+        Sensitivity = value;
+      } else if (key === 'LRplus') {
+        LRplus = value;
+      } else if (key === 'LRminus') {
+        LRminus = value;
+      }
+    }
+    var new_row = $("<tr>");
+    new_row.append("<td>" + Sensitivity + "</td>");
+    new_row.append("<td>" + Specificity + "</td>");
+    new_row.append("<td>" + LRplus + "</td>");
+    new_row.append("<td>" + LRminus + "</td>");
+    thisTool.find('.output').append(new_row);
+  }
+  
+  function jsonToCellWithPrev(obj){
+    var Specificity;
+    var Sensitivity;
+    var LRplus;
+    var LRminus;
+    var PPV;
+    var cNPV;
+    for (var key in obj)
     {
-      value = obj[key];
-      if (key == 'Specificity') Specificity=value;
-      else if (key== 'Sensitivity') Sensitivity=value;
-      else if (key== 'LRplus') LRplus=value;
-      else if (key== 'LRminus') LRminus=value;
-      else if (key== 'PPV') PPV=value;
-      else if (key== 'cNPV') cNPV=value;
+      if (obj.hasOwnProperty(key))
+      {
+        value = obj[key];
+        if (key == 'Specificity') Specificity=value;
+        else if (key== 'Sensitivity') Sensitivity=value;
+        else if (key== 'LRplus') LRplus=value;
+        else if (key== 'LRminus') LRminus=value;
+        else if (key== 'PPV') PPV=value;
+        else if (key== 'cNPV') cNPV=value;
+      }
+    }
+    var new_row = $("<tr>");
+    new_row.append("<td>" + Sensitivity + "</td>");
+    new_row.append("<td>" + Specificity + "</td>");
+    new_row.append("<td>" + LRplus + "</td>");
+    new_row.append("<td>" + LRminus + "</td>");
+    if (validPrevValue) {
+      new_row.append("<td>" + PPV + "</td>");
+      new_row.append("<td>" + cNPV + "</td>");
+    }
+    thisTool.find('.output').append(new_row);
+  }
+  
+  function createOutputTable(jsondata){
+    var top_header_row, header_row, i$, len$, each;
+    thisTool.find('.output').empty();
+    top_header_row = $("<tr></tr>");
+    top_header_row.append("<th class='top-header' colspan='4'><strong>Output Data</strong></th>");
+    thisTool.find('.output').append(top_header_row);
+    header_row = $("<tr></tr>");
+    header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
+    header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
+    header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
+    header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
+    thisTool.find('.output').append(header_row);
+    for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
+      each = jsondata[i$];
+      jsonToCell(each);
     }
   }
-  var new_row = $("<tr>");
-  new_row.append("<td>" + Sensitivity + "</td>");
-  new_row.append("<td>" + Specificity + "</td>");
-  new_row.append("<td>" + LRplus + "</td>");
-  new_row.append("<td>" + LRminus + "</td>");
-  if (validPrevValue) {
-    new_row.append("<td>" + PPV + "</td>");
-    new_row.append("<td>" + cNPV + "</td>");
+  
+  function createOutputTableWithPrev(jsondata){
+    thisTool.find('.output').empty();
+    top_header_row = $("<tr></tr>");
+    top_header_row.append("<th class='top-header' colspan='6'>Output Data</th>");
+    thisTool.find('.output').append(top_header_row);
+    var header_row = $("<tr></tr>");
+    header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
+    header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
+    header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
+    header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
+    header_row.append("<th scope='col' class='define' data-term='PPV'>PPV</th>");
+    header_row.append("<th scope='col' class='define' data-term='cNPV'>cNPV</th>");
+    thisTool.find('.output').append(header_row);
+    for (var each in jsondata) {
+      jsonToCellWithPrev(jsondata[each]);
+    }
   }
-  thisTool.find('.output').append(new_row);
-}
-
-function createOutputTable(jsondata){
-  var top_header_row, header_row, i$, len$, each;
-  thisTool.find('.output').empty();
-  top_header_row = $("<tr></tr>");
-  top_header_row.append("<th class='top-header' colspan='4'><strong>Output Data</strong></th>");
-  thisTool.find('.output').append(top_header_row);
-  header_row = $("<tr></tr>");
-  header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
-  header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
-  header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
-  header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
-  thisTool.find('.output').append(header_row);
-  for (i$ = 0, len$ = jsondata.length; i$ < len$; ++i$) {
-    each = jsondata[i$];
-    jsonToCell(each);
+  
+  function reset_bc(){
+    thisTool.find('#errors').addClass("hide");
+    thisTool.find("#file_upload, #prevalence_bc").val("");
+  
+    inputElm.find('tr:not(.non-data-row)').each(function(i, el) {
+      $(el).remove();
+    });
+  
+    add_new_row();
+    add_new_row();
+    add_new_row();
+  
+    thisTool.find(".reference:first").click();
+    thisTool.find('.graph img').attr('alt','sample Likelyhood Ratio plot, Sensitivity versus Specificity with Likelyhood Ratio contours');
+    thisTool.find('.graph img').addClass("hide").attr('src', '/common/images/initial.jpg');
+    thisTool.find('.graph small').addClass("hide");
+    thisTool.find('.output').empty();
+  
+    thisTool.find("[row='0'] .sensitivity a").text("0.8");
+    thisTool.find("[row='0'] .specificity a").text("0.7");
+  
+    thisTool.find("[row='1'] .sensitivity a").text("0.85");
+    thisTool.find("[row='1'] .specificity a").text("0.68");
+  
+    thisTool.find("[row='2'] .sensitivity a").text("0.9");
+    thisTool.find("[row='2'] .specificity a").text("0.5");
+  
   }
-}
-
-function createOutputTableWithPrev(jsondata){
-  thisTool.find('.output').empty();
-  top_header_row = $("<tr></tr>");
-  top_header_row.append("<th class='top-header' colspan='6'>Output Data</th>");
-  thisTool.find('.output').append(top_header_row);
-  var header_row = $("<tr></tr>");
-  header_row.append("<th scope='col' class='define' data-term='Sens'>Sensitivity</th>");
-  header_row.append("<th scope='col' class='define' data-term='Spec'>Specificity</th>");
-  header_row.append("<th scope='col' class='define' data-term='LRP'>LR+</th>");
-  header_row.append("<th scope='col' class='define' data-term='LRN'>LR-</th>");
-  header_row.append("<th scope='col' class='define' data-term='PPV'>PPV</th>");
-  header_row.append("<th scope='col' class='define' data-term='cNPV'>cNPV</th>");
-  thisTool.find('.output').append(header_row);
-  for (var each in jsondata) {
-    jsonToCellWithPrev(jsondata[each]);
-  }
-}
-
-function reset_bc(){
-  thisTool.find('#errors').addClass("hide");
-  thisTool.find("#file_upload, #prevalence_bc").val("");
-
-  inputElm.find('tr:not(.non-data-row)').each(function(i, el) {
-    $(el).remove();
-  });
-
-  add_new_row();
-  add_new_row();
-  add_new_row();
-
-  thisTool.find(".reference:first").click();
-  thisTool.find('.graph img').attr('alt','sample Likelyhood Ratio plot, Sensitivity versus Specificity with Likelyhood Ratio contours');
-  thisTool.find('.graph img').addClass("hide").attr('src', '/common/images/initial.jpg');
-  thisTool.find('.graph small').addClass("hide");
-  thisTool.find('.output').empty();
-
-  thisTool.find("[row='0'] .sensitivity a").text("0.8");
-  thisTool.find("[row='0'] .specificity a").text("0.7");
-
-  thisTool.find("[row='1'] .sensitivity a").text("0.85");
-  thisTool.find("[row='1'] .specificity a").text("0.68");
-
-  thisTool.find("[row='2'] .sensitivity a").text("0.9");
-  thisTool.find("[row='2'] .specificity a").text("0.5");
-
-}
+  
+})();

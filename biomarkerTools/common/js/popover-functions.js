@@ -47,6 +47,19 @@ function termDisplay(e) {
     var term = $_Glossary[dTerm].fullName;
 
     if (definition || term) {
+        $self.popover({
+            title: term,
+            content: definition,
+        });
+
+        $self.popover('show');
+        $self.on('mouseleave', function () {
+            $self.popover('hide');
+        })
+
+        return;
+
+
         var popoverTemplate = $(default_template);
 
         if (!term || term.length === 0) {

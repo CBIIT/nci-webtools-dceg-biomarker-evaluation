@@ -464,7 +464,7 @@ header #branch-logo {
 #riskStratAdvanced .output .table_container th.header {
   text-align: center;
 }
-#riskStratAdvanced .output .table_container th,
+/* #riskStratAdvanced .output .table_container th,
 #riskStratAdvanced .output .table_container tr > td.header {
   background-color: #aaa;
   color: #444;
@@ -479,7 +479,7 @@ header #branch-logo {
 }
 #riskStratAdvanced .output .table_container tbody tr:first-child th:first-child {
   height: 9em;
-}
+} */
 #riskStratAdvanced .output .vertical-text {
   -webkit-transform-origin: bottom left;
   -moz-transform-origin: bottom left;
